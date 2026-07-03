@@ -14,6 +14,7 @@ const PHASES = ["morning", "noon", "sunset", "night"];
 const CommandPalette = dynamic(() => import("./CommandPalette"), { ssr: false });
 const PlayerStatusPopup = dynamic(() => import("@/components/player/PlayerStatusPopup"), { ssr: false });
 const WorldChatPanel = dynamic(() => import("@/components/world-chat/WorldChatPanel"), { ssr: false });
+const NalaWidget = dynamic(() => import("@/components/nala/NalaWidget"), { ssr: false });
 
 export default function SiteProvider({ children }) {
   const [phase, setPhase] = useState("morning");
@@ -62,6 +63,7 @@ export default function SiteProvider({ children }) {
         {paletteOpen && <CommandPalette />}
         {playerOpen && <PlayerStatusPopup open={playerOpen} initialTab={playerTab} onClose={() => setPlayerOpen(false)} />}
         {chatOpen && <WorldChatPanel open={chatOpen} onClose={() => setChatOpen(false)} />}
+        <NalaWidget />
         <main className="site-main" id="main">
           {children}
         </main>

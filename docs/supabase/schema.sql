@@ -349,6 +349,44 @@ create table if not exists public.contact_events (
 
 create index if not exists contact_events_channel_created_idx on public.contact_events (channel_key, created_at desc);
 
+create table if not exists public.nala_conversations (
+  id text primary key,
+  shard_id text not null check (shard_id in ('s1', 's2', 's3')),
+  session_key text not null,
+  actor_key text,
+  status text not null default 'active' check (status in ('active', 'archived')),
+  source text not null default 'local-factual' check (source in ('openrouter', 'local-factual', 'error')),
+  last_expression text not null default 'idle' check (last_expression in ('idle', 'thinking', 'happy', 'confused', 'greeting', 'pointing')),
+  last_message_at timestamptz not null default now(),
+  metadata jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists nala_conversations_session_idx on public.nala_conversations (session_key, last_message_at desc);
+create index if not exists nala_conversations_updated_idx on public.nala_conversations (updated_at desc);
+
+drop trigger if exists nala_conversations_set_updated_at on public.nala_conversations;
+create trigger nala_conversations_set_updated_at
+before update on public.nala_conversations
+for each row execute function public.set_updated_at();
+
+create table if not exists public.nala_messages (
+  id text primary key,
+  shard_id text not null check (shard_id in ('s1', 's2', 's3')),
+  conversation_id text not null references public.nala_conversations(id) on delete cascade,
+  role text not null check (role in ('user', 'assistant', 'tool', 'system')),
+  body text not null check (char_length(body) between 1 and 4000),
+  expression text check (expression in ('idle', 'thinking', 'happy', 'confused', 'greeting', 'pointing')),
+  tool_name text,
+  tool_payload jsonb not null default '{}'::jsonb,
+  metadata jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists nala_messages_conversation_created_idx on public.nala_messages (conversation_id, created_at asc);
+create index if not exists nala_messages_created_idx on public.nala_messages (created_at desc);
+
 alter table public.blog_posts enable row level security;
 alter table public.chat_profiles enable row level security;
 alter table public.chat_messages enable row level security;
@@ -356,6 +394,8 @@ alter table public.inventory_items enable row level security;
 alter table public.about_entries enable row level security;
 alter table public.contact_channels enable row level security;
 alter table public.contact_events enable row level security;
+alter table public.nala_conversations enable row level security;
+alter table public.nala_messages enable row level security;
 
 drop policy if exists blog_posts_read on public.blog_posts;
 create policy blog_posts_read
@@ -469,6 +509,22 @@ to anon, authenticated
 using (private.is_backend_request())
 with check (private.is_backend_request());
 
+drop policy if exists nala_conversations_backend_only on public.nala_conversations;
+create policy nala_conversations_backend_only
+on public.nala_conversations
+for all
+to anon, authenticated
+using (private.is_backend_request())
+with check (private.is_backend_request());
+
+drop policy if exists nala_messages_backend_only on public.nala_messages;
+create policy nala_messages_backend_only
+on public.nala_messages
+for all
+to anon, authenticated
+using (private.is_backend_request())
+with check (private.is_backend_request());
+
 grant select, insert, update, delete on table public.blog_posts to anon, authenticated, service_role;
 grant select, insert, update, delete on table public.chat_profiles to anon, authenticated, service_role;
 grant select, insert, update, delete on table public.chat_messages to anon, authenticated, service_role;
@@ -476,6 +532,8 @@ grant select, insert, update, delete on table public.inventory_items to anon, au
 grant select, insert, update, delete on table public.about_entries to anon, authenticated, service_role;
 grant select, insert, update, delete on table public.contact_channels to anon, authenticated, service_role;
 grant select, insert, update, delete on table public.contact_events to anon, authenticated, service_role;
+grant select, insert, update, delete on table public.nala_conversations to anon, authenticated, service_role;
+grant select, insert, update, delete on table public.nala_messages to anon, authenticated, service_role;
 
 do $$
 begin
