@@ -1,0 +1,13 @@
+<!--
+  Badge shape rarity/tier — 1 file dipakai untuk S/A/COMMON, warna diatur
+  lewat CSS variable --badge-color di elemen pembungkus (pakai currentColor).
+  Ukuran natural: lebar mengikuti isi teks (gunakan sebagai background-image
+  atau clip-path referensi), tinggi tetap 22px.
+  Sudut kiri-atas & kanan-bawah dipotong 4px (pixel-corner), bukan rounded.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 22" width="90" height="22">
+  <polygon points="4,0 90,0 90,18 86,22 0,22 0,4"
+           fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="miter"/>
+  <!-- contoh isi teks: letakkan <text> lewat CSS/HTML overlay, bukan di dalam SVG,
+       supaya font Silkscreen dari @font-face project tetap dipakai -->
+</svg>

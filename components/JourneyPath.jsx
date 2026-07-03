@@ -1,16 +1,21 @@
 import Reveal from "./Reveal";
+import { CurrentMarker } from "@/components/claude";
 import { journey } from "@/lib/data";
 
 function Path() {
   return (
     <div className="journey-path">
-      {journey.map((lv, i) => (
-        <Reveal key={lv.when} className="level" delay={i * 80} data-testid={`journey-level-${i}`}>
+      {journey.map((lv, i) => {
+        const isCurrent = i === journey.length - 1;
+        return (
+        <Reveal key={lv.when} className={`level ${isCurrent ? "is-current" : ""}`} delay={i * 80} data-testid={`journey-level-${i}`}>
           <span className="when">{lv.when}</span>
+          {isCurrent && <CurrentMarker className="journey-current" />}
           <h3>{lv.title}</h3>
           <p>{lv.body}</p>
         </Reveal>
-      ))}
+      );
+      })}
     </div>
   );
 }

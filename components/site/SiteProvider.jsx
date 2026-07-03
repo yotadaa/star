@@ -4,6 +4,7 @@ import { createContext, useContext, useState, useEffect, useCallback } from "rea
 import TopNav from "./TopNav";
 import CommandPalette from "./CommandPalette";
 import Footer from "@/components/Footer";
+import { ToastProvider, XpScrollBar } from "@/components/claude";
 
 const SiteCtx = createContext(null);
 export const useSite = () => useContext(SiteCtx);
@@ -42,12 +43,15 @@ export default function SiteProvider({ children }) {
 
   return (
     <SiteCtx.Provider value={{ phase, night, cycleTheme, toggleNight, paletteOpen, setPaletteOpen }}>
-      <TopNav />
-      <CommandPalette />
-      <main className="site-main" id="main">
-        {children}
-      </main>
-      <Footer />
+      <ToastProvider>
+        <XpScrollBar />
+        <TopNav />
+        <CommandPalette />
+        <main className="site-main" id="main">
+          {children}
+        </main>
+        <Footer />
+      </ToastProvider>
     </SiteCtx.Provider>
   );
 }

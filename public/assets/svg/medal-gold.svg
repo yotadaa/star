@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <!-- pita -->
+  <path d="M9 2 L7 9 L10.5 10.5 L12 5.5 Z" fill="#c9552f" stroke="#2c1e1a" stroke-width="1"/>
+  <path d="M15 2 L17 9 L13.5 10.5 L12 5.5 Z" fill="#e8734a" stroke="#2c1e1a" stroke-width="1"/>
+  <!-- medali -->
+  <circle cx="12" cy="14.5" r="6.2" fill="#f0b23a" stroke="#2c1e1a" stroke-width="1.6"/>
+  <circle cx="12" cy="14.5" r="3.8" fill="none" stroke="#2c1e1a" stroke-width="1.2" opacity="0.6"/>
+  <path d="M12 11.7 L12.9 13.6 L15 13.9 L13.5 15.3 L13.9 17.4 L12 16.3 L10.1 17.4 L10.5 15.3 L9 13.9 L11.1 13.6 Z"
+        fill="#2c1e1a"/>
+</svg>

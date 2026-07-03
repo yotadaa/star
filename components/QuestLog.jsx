@@ -1,6 +1,15 @@
 import { questChips } from "@/lib/data";
+import { HudStatusStrip, SpriteIcon } from "@/components/claude";
+
+const ICONS = ["icon-star-level", "icon-flame-streak", "icon-command", "icon-pin"];
 
 export default function QuestLog() {
+  const items = questChips.map((chip, index) => ({
+    label: { text: chip.label, href: chip.href },
+    accent: index === 0 || index === 1 ? "gold" : "aurora",
+    icon: <SpriteIcon id={ICONS[index] || "icon-star-level"} size={14} />,
+  }));
+
   return (
     <div
       className="questlog"
@@ -8,26 +17,7 @@ export default function QuestLog() {
       aria-label="Bukti cepat"
       data-testid="quest-log"
     >
-      {questChips.map((c) =>
-        c.href ? (
-          <a
-            className="chip"
-            role="listitem"
-            key={c.label}
-            href={c.href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="pip" />
-            {c.label}
-          </a>
-        ) : (
-          <div className="chip" role="listitem" key={c.label}>
-            <span className="pip" />
-            {c.label}
-          </div>
-        )
-      )}
+      <HudStatusStrip items={items} />
     </div>
   );
 }

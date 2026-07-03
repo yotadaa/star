@@ -2,10 +2,17 @@
 
 import { useState, useMemo } from "react";
 import GithubActivityCalendar from "@/components/GithubActivityCalendar";
+import { PixelButton, RarityTag } from "@/components/claude";
 import { featuredQuests } from "@/lib/data";
 
 const TYPES = ["Semua", "Web", "AI", "Data"];
 const CATS = ["Semua", "Personal", "Research", "Community"];
+
+function tierRarity(tier = "") {
+  if (tier.includes("TIER S")) return "epic";
+  if (tier.includes("TIER A")) return "rare";
+  return "common";
+}
 
 export default function ProjectsGrid() {
   const [type, setType] = useState("Semua");
@@ -27,25 +34,25 @@ export default function ProjectsGrid() {
         <div className="filter-row">
           <span className="flabel">TIPE</span>
           {TYPES.map((t) => (
-            <button key={t} type="button" className={`chip-btn ${type === t ? "active" : ""}`} onClick={() => setType(t)} data-testid={`filter-type-${t.toLowerCase()}`}>
+            <PixelButton key={t} as="pill" selected={type === t} className="chip-btn" onClick={() => setType(t)} data-testid={`filter-type-${t.toLowerCase()}`}>
               {t}
-            </button>
+            </PixelButton>
           ))}
         </div>
         <div className="filter-row">
           <span className="flabel">KATEGORI</span>
           {CATS.map((c) => (
-            <button key={c} type="button" className={`chip-btn ${cat === c ? "active" : ""}`} onClick={() => setCat(c)} data-testid={`filter-cat-${c.toLowerCase()}`}>
+            <PixelButton key={c} as="pill" selected={cat === c} className="chip-btn" onClick={() => setCat(c)} data-testid={`filter-cat-${c.toLowerCase()}`}>
               {c}
-            </button>
+            </PixelButton>
           ))}
         </div>
       </div>
 
       <div className="quest-grid">
         {list.map((q, i) => (
-          <a key={q.title} href={q.href} target="_blank" rel="noopener noreferrer" className="quest-card" data-testid={`quest-card-${i}`}>
-            <span className="tier">{q.tier}</span>
+          <a key={q.title} href={q.href} target="_blank" rel="noopener noreferrer" className="quest-card project-card has-rarity" data-testid={`quest-card-${i}`}>
+            <RarityTag rarity={tierRarity(q.tier)} label={q.tier} />
             <h3>{q.title}</h3>
             <p>{q.desc}</p>
             <div className="tag-row">

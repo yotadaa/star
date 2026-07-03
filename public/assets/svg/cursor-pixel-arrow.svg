@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <!-- hotspot: titik 2,2 (ujung panah) -->
+  <path d="M2 2 L2 18 L6.5 14.5 L9.5 21 L12.5 19.5 L9.5 13 L15 12.5 Z"
+        fill="#fbeedd" stroke="#2c1e1a" stroke-width="1.6" stroke-linejoin="miter"/>
+</svg>

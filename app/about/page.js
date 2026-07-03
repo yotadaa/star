@@ -3,6 +3,7 @@ import ExperienceTimeline from "@/components/ExperienceTimeline";
 import SkillsGrid from "@/components/SkillsGrid";
 import Achievements from "@/components/Achievements";
 import JourneyPath from "@/components/JourneyPath";
+import { HudStatusStrip, SpriteIcon } from "@/components/claude";
 import { profile } from "@/lib/data";
 
 export const metadata = { title: "About — Mukhtada Billah NST" };
@@ -20,6 +21,14 @@ export default function AboutPage() {
         <strong>fullstack web</strong>, <strong>AI tooling</strong>, dan <strong>data science</strong>. Aku suka
         mengajar, menulis riset, dan membangun hal-hal kecil yang berguna untuk komunitas.
       </p>
+      <HudStatusStrip
+        className="profile-hud"
+        items={[
+          { label: "Class: Fullstack Adventurer", accent: "gold", icon: <SpriteIcon id="icon-star-level" size={14} /> },
+          { label: "Level 4", accent: "gold", icon: <SpriteIcon id="icon-trophy" size={14} /> },
+          { label: profile.location, accent: "aurora", icon: <SpriteIcon id="icon-pin" size={14} /> },
+        ]}
+      />
 
       <div className="page-divider" style={{ marginTop: 48 }} />
       <div className="section-head" style={{ textAlign: "left", margin: "0 0 28px", maxWidth: "none" }}>

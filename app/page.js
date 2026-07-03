@@ -6,12 +6,14 @@ import HomeGlimpseSlider from "@/components/HomeGlimpseSlider";
 import ParallaxScene from "@/components/ParallaxScene";
 import QuestLog from "@/components/QuestLog";
 import Reveal from "@/components/Reveal";
+import { RarityTag } from "@/components/claude";
 import { featuredQuests, homeGlimpses } from "@/lib/data";
 import { useSite } from "@/components/site/SiteProvider";
 
 export default function Home() {
   const { phase } = useSite();
   const featured = featuredQuests.filter((q) => q.featured);
+  const tierRarity = (tier = "") => (tier.includes("TIER S") ? "epic" : tier.includes("TIER A") ? "rare" : "common");
 
   return (
     <>
@@ -49,8 +51,8 @@ export default function Home() {
           </div>
           <div className="quest-grid">
             {featured.map((q, i) => (
-              <Reveal as="a" key={q.title} href={q.href} target="_blank" rel="noopener noreferrer" className="quest-card" delay={i * 70} data-testid={`quest-card-${i}`}>
-                <span className="tier">{q.tier}</span>
+              <Reveal as="a" key={q.title} href={q.href} target="_blank" rel="noopener noreferrer" className="quest-card project-card has-rarity" delay={i * 70} data-testid={`quest-card-${i}`}>
+                <RarityTag rarity={tierRarity(q.tier)} label={q.tier} />
                 <h3>{q.title}</h3>
                 <p>{q.desc}</p>
                 <div className="tag-row">
