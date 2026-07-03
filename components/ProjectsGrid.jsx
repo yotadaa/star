@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import GithubActivityCalendar from "@/components/GithubActivityCalendar";
 import { featuredQuests } from "@/lib/data";
 
 const TYPES = ["Semua", "Web", "AI", "Data"];
@@ -20,6 +21,8 @@ export default function ProjectsGrid() {
 
   return (
     <div data-testid="projects-grid">
+      <GithubActivityCalendar />
+
       <div className="filters-wrap">
         <div className="filter-row">
           <span className="flabel">TIPE</span>

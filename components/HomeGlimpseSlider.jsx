@@ -46,8 +46,10 @@ export default function HomeGlimpseSlider({ items }) {
         {items.map((item, index) => {
           const offset = getOffset(index, active, total);
           const abs = Math.abs(offset);
-          const visible = abs <= 2;
+          const visible = abs <= 1;
           const isActive = offset === 0;
+          const scale = abs === 0 ? 1 : 0.58;
+          const opacity = !visible ? 0 : abs === 0 ? 1 : 0.72;
 
           return (
             <article
@@ -56,10 +58,10 @@ export default function HomeGlimpseSlider({ items }) {
               data-testid={`glimpse-card-${index}`}
               aria-hidden={!visible}
               style={{
-                "--slide-x": `${offset * 34}%`,
-                "--slide-scale": 1 - Math.min(abs, 3) * 0.08,
-                "--slide-rotate": `${offset * -1.8}deg`,
-                "--slide-opacity": visible ? 1 - abs * 0.18 : 0,
+                "--slide-x": `${offset * 430}px`,
+                "--slide-scale": scale,
+                "--slide-rotate": `${offset * -1.15}deg`,
+                "--slide-opacity": opacity,
                 "--slide-z": 10 - abs,
               }}
             >

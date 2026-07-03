@@ -1,8 +1,14 @@
-import { profile } from "@/lib/data";
+import { homeConfig, profile } from "@/lib/data";
 
 export default function HeroGlassPanel() {
+  const showGlassContainer = homeConfig.hero.showGlassContainer;
+
   return (
-    <div className="glass-window" data-testid="hero-glass">
+    <div
+      className={`hero-copy ${showGlassContainer ? "glass-window" : "hero-copy--plain"}`}
+      data-testid="hero-glass"
+      data-glass-container={showGlassContainer ? "enabled" : "disabled"}
+    >
       <span className="kicker">
         <span className="live-dot" /> SYSTEM ONLINE — SAVE FILE: MUKHTADA.NST
       </span>
