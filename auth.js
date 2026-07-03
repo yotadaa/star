@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 
-const ownerEmail = process.env.OWNER_EMAIL?.trim().toLowerCase();
+const ownerEmail = "mukhtadanasution@gmail.com";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -17,7 +17,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     jwt({ token }) {
       const email = token.email?.toLowerCase();
-      token.role = ownerEmail && email === ownerEmail ? "owner" : "visitor";
+      token.role = email === ownerEmail ? "owner" : "visitor";
       return token;
     },
     session({ session, token }) {

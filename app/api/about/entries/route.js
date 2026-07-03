@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { canWriteBackend } from "@/lib/backend/routeAuth";
-import { createAboutEntry, listAboutEntries } from "@/lib/backend/featureStore";
+import { createAboutEntry, listAboutEntries, upsertAboutEntry } from "@/lib/backend/featureStore";
 
 export const dynamic = "force-dynamic";
 
@@ -34,6 +34,21 @@ export async function POST(request) {
     const payload = await request.json();
     const entry = await createAboutEntry({ payload, actor });
     return NextResponse.json({ ok: true, entry, source: "supabase" }, { status: 201 });
+  } catch (error) {
+    return errorResponse(error, 400);
+  }
+}
+
+export async function PUT(request) {
+  const actor = await canWriteBackend(request);
+  if (!actor) {
+    return NextResponse.json({ ok: false, error: "UNAUTHORIZED" }, { status: 401 });
+  }
+
+  try {
+    const payload = await request.json();
+    const entry = await upsertAboutEntry({ payload, actor });
+    return NextResponse.json({ ok: true, entry, source: "supabase" });
   } catch (error) {
     return errorResponse(error, 400);
   }

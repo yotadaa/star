@@ -3,7 +3,7 @@ export default function PageHeader({ label, title, children }) {
     <header className="page-head">
       <span className="pixel-label">{label}</span>
       <h1>{title}</h1>
-      {children && <p>{children}</p>}
+      {children && (typeof children === "string" ? <p>{children}</p> : children)}
     </header>
   );
 }

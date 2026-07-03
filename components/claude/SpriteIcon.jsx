@@ -118,6 +118,91 @@ const ICON_PATHS = {
       <path d="M7 13 L13 12" strokeLinecap="square" />
     </>
   ),
+  "icon-plus": (
+    <>
+      <path d="M12 5 V19" strokeLinecap="square" />
+      <path d="M5 12 H19" strokeLinecap="square" />
+    </>
+  ),
+  "icon-grid": (
+    <>
+      <rect x="4" y="4" width="6" height="6" />
+      <rect x="14" y="4" width="6" height="6" />
+      <rect x="4" y="14" width="6" height="6" />
+      <rect x="14" y="14" width="6" height="6" />
+    </>
+  ),
+  "icon-list": (
+    <>
+      <path d="M8 6 H20 M8 12 H20 M8 18 H20" strokeLinecap="square" />
+      <path d="M4 6 H4.5 M4 12 H4.5 M4 18 H4.5" strokeLinecap="square" />
+    </>
+  ),
+  "icon-pencil": (
+    <>
+      <path d="M14.5 4.5 L19.5 9.5 L8 21 H3 V16 Z" strokeLinejoin="round" />
+      <path d="M12.5 6.5 L17.5 11.5" strokeLinecap="square" />
+    </>
+  ),
+  "icon-trash": (
+    <>
+      <path d="M5 7 H19" strokeLinecap="square" />
+      <path d="M9 7 V4.5 H15 V7" />
+      <path d="M7 7 L8 20 H16 L17 7" strokeLinejoin="round" />
+      <path d="M10.5 10.5 V16.5 M13.5 10.5 V16.5" strokeLinecap="square" />
+    </>
+  ),
+  "icon-heading": (
+    <>
+      <path d="M5 5 V19 M14 5 V19 M5 12 H14" strokeLinecap="square" />
+      <path d="M17 9 C17 7.7 18 6.8 19.2 6.8 C20.3 6.8 21 7.5 21 8.4 C21 9.8 17 10.4 17 14 H21" strokeLinejoin="round" />
+    </>
+  ),
+  "icon-quote": (
+    <>
+      <path d="M5 9 C5 6.8 6.8 5 9 5 V8 C7.9 8 7 8.9 7 10 V13 H10 V18 H5 Z" strokeLinejoin="round" />
+      <path d="M14 9 C14 6.8 15.8 5 18 5 V8 C16.9 8 16 8.9 16 10 V13 H19 V18 H14 Z" strokeLinejoin="round" />
+    </>
+  ),
+  "icon-code": (
+    <>
+      <path d="M9 7 L4 12 L9 17" strokeLinejoin="round" strokeLinecap="square" />
+      <path d="M15 7 L20 12 L15 17" strokeLinejoin="round" strokeLinecap="square" />
+    </>
+  ),
+  "icon-image": (
+    <>
+      <rect x="4" y="5" width="16" height="14" />
+      <circle cx="9" cy="10" r="1.5" />
+      <path d="M5 17 L10 12 L13 15 L16 12 L20 16" strokeLinejoin="round" />
+    </>
+  ),
+  "icon-divider": <path d="M4 12 H20" strokeLinecap="square" strokeDasharray="3 3" />,
+  "icon-table": (
+    <>
+      <rect x="4" y="5" width="16" height="14" />
+      <path d="M4 10 H20 M4 14 H20 M10 5 V19 M15 5 V19" strokeLinecap="square" />
+    </>
+  ),
+  "icon-bold": (
+    <>
+      <path d="M8 5 H13.5 C15.2 5 16.5 6.2 16.5 7.8 C16.5 9.4 15.2 10.6 13.5 10.6 H8 Z" strokeLinejoin="round" />
+      <path d="M8 10.6 H14.5 C16.2 10.6 17.5 11.8 17.5 13.8 C17.5 15.8 16.2 17 14.5 17 H8 Z" strokeLinejoin="round" />
+    </>
+  ),
+  "icon-italic": (
+    <>
+      <path d="M14 5 L10 19" strokeLinecap="square" />
+      <path d="M12 5 H17 M7 19 H12" strokeLinecap="square" />
+    </>
+  ),
+  "icon-link": (
+    <>
+      <path d="M9.5 14.5 L14.5 9.5" strokeLinecap="square" />
+      <path d="M11 6.5 L13 4.5 C14.5 3 17 3 18.5 4.5 C20 6 20 8.5 18.5 10 L16.5 12" />
+      <path d="M13 17.5 L11 19.5 C9.5 21 7 21 5.5 19.5 C4 18 4 15.5 5.5 14 L7.5 12" />
+    </>
+  ),
   "icon-database-offline": (
     <>
       <ellipse cx="12" cy="6" rx="7" ry="3" />

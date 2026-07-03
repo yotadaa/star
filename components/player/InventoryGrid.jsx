@@ -168,6 +168,7 @@ export default function InventoryGrid({ items }) {
         <article className="inventory-detail">
           <RarityTag rarity={selected.rarity} label={selected.rarity.toUpperCase()} className="player-rarity" />
           <h3>{selected.name}</h3>
+          {selected.fullName && selected.fullName !== selected.name && <span className="player-meta">Full: {selected.fullName}</span>}
           <p>{selected.description}</p>
           <span className="player-meta">Acquired: {selected.acquiredAt}</span>
           {selected.linkTo && (

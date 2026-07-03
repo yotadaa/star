@@ -4,6 +4,7 @@
 
 - [ ] **Improve Home performance** - real-image/R3F hero is currently laggy and heavy.
 - [ ] **Commit every completed work unit** - after a coherent implementation + validation pass, create a git commit before starting the next unrelated unit. See `plans/commit-validation-workflow.md`.
+- [ ] **Shrink mobile utility bar into floating circle menu** - on narrow/mobile view, collapse World Chat/Login floating bar into one circular trigger that opens a design-system dropdown.
 
 ## Waiting On
 
@@ -11,6 +12,10 @@
 
 ## Done
 
+- [x] ~~**Fix World Chat send + Supabase Realtime** - make the Kirim button submit, subscribe to `chat:public` broadcast events across all shards, and keep polling as backup.~~ (2026-07-03)
+- [x] ~~**Gate Blog CMS actions to owner email** - only `mukhtadanasution@gmail.com` can add/edit/archive blog content; visitors no longer see `// CMS ACCESS`.~~ (2026-07-03)
+- [x] ~~**Rebuild Blog list/editor from mockup** - implement grid/list categories, owner row actions, Medium-style seamless block editor, block insert menu, table/list/icon blocks, and editable header caption.~~ (2026-07-03)
+- [x] ~~**Shorten Inventory item names** - compact long inventory labels while preserving full names in detail metadata.~~ (2026-07-03)
 - [x] ~~**Remove Home hero glass text container** - remove the glass text container from the Home hero.~~ (2026-07-03)
 - [x] ~~**Polish Build Glimpses carousel to design system** - replace soft carousel styling with token gradient, hard-shadow card frame, RarityTag category badges, square node dots, PixelButton arrows, stronger HUD chip contrast, and inactive-card state.~~ (2026-07-03)
 - [x] ~~**Build PlayerStatusPopup system** - Inventory / Achievement / Mission modal connected by Player Points, derived level thresholds, segmented mission progress, inventory artifacts, toast events, and new sprite icons.~~ (2026-07-03)

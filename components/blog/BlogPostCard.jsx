@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { RarityTag, SpriteIcon } from "@/components/claude";
 
-export default function BlogPostCard({ post }) {
+export default function BlogPostCard({ post, canManageBlog = false }) {
   return (
     <article className={`blog-card hardcard blog-card-${post.coverTone}`}>
       <Link href={`/blog/${post.slug}`} className="blog-card-cover" aria-label={`Baca ${post.title}`}>
@@ -21,6 +21,10 @@ export default function BlogPostCard({ post }) {
         <div className="blog-card-meta">
           <span>{post.publishedAt}</span>
           <span>{post.readTime}</span>
+        </div>
+        <div className="blog-card-actions">
+          <Link href={`/blog/${post.slug}`}>Baca</Link>
+          {canManageBlog && <Link href={`/blog/admin/${post.id}/edit`}>Edit</Link>}
         </div>
       </div>
     </article>

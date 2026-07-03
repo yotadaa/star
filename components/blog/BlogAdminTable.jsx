@@ -1,10 +1,32 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import RequireLoginGate from "@/components/auth/RequireLoginGate";
 import { PixelButton, SpriteIcon } from "@/components/claude";
 
 export default function BlogAdminTable({ posts, source = "local", warnings = [] }) {
+  const [items, setItems] = useState(posts);
+  const [actionState, setActionState] = useState({ id: null, message: "" });
+
+  async function updateStatus(post, status) {
+    setActionState({ id: post.id, message: "Menyimpan..." });
+    try {
+      const response = await fetch(`/api/blog/posts/${post.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ status }),
+      });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Update failed");
+      setItems((current) => (status === "archived" ? current.filter((item) => item.id !== post.id) : current.map((item) => (item.id === post.id ? data.post : item))));
+      setActionState({ id: null, message: status === "archived" ? "Archived" : `Status: ${status}` });
+    } catch (error) {
+      setActionState({ id: null, message: error.message });
+    }
+  }
+
   return (
     <RequireLoginGate
       title="Login ke System"
@@ -33,7 +55,7 @@ export default function BlogAdminTable({ posts, source = "local", warnings = [] 
               </tr>
             </thead>
             <tbody>
-              {posts.map((post) => (
+              {items.map((post) => (
                 <tr key={post.id}>
                   <td>{post.title}</td>
                   <td><span className="blog-status-pill">{post.status}</span></td>
@@ -41,12 +63,19 @@ export default function BlogAdminTable({ posts, source = "local", warnings = [] 
                   <td>
                     <Link href={`/blog/admin/${post.id}/edit`}>Edit</Link>
                     <Link href={`/blog/${post.slug}`}>Preview</Link>
+                    <button type="button" disabled={actionState.id === post.id} onClick={() => updateStatus(post, post.status === "published" ? "draft" : "published")}>
+                      {post.status === "published" ? "Unpublish" : "Publish"}
+                    </button>
+                    <button type="button" disabled={actionState.id === post.id} onClick={() => updateStatus(post, "archived")}>
+                      Archive
+                    </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        {actionState.message && <p className="blog-admin-action-state" role="status">{actionState.message}</p>}
       </section>
     </RequireLoginGate>
   );

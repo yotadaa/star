@@ -1,8 +1,27 @@
 "use client";
 
+import { createClient } from "@supabase/supabase-js";
 import { useEffect, useRef, useState } from "react";
 import { PixelButton, SpriteIcon } from "@/components/claude";
 import RequireLoginGate from "@/components/auth/RequireLoginGate";
+
+function normalizeRealtimeMessage(payload) {
+  if (!payload?.id) return null;
+  return {
+    id: payload.id,
+    authorName: payload.authorName || payload.author_name || "Visitor",
+    body: payload.body || "",
+    createdAt: payload.createdAt || payload.created_at || new Date().toISOString(),
+    storage: { shardId: payload.storage?.shardId || payload.shard_id || null },
+  };
+}
+
+function upsertMessage(items, message) {
+  if (!message?.id || !message.body) return items;
+  return [...items.filter((item) => item.id !== message.id), message]
+    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+    .slice(-40);
+}
 
 export default function WorldChatPanel({ open, onClose }) {
   const panelRef = useRef(null);
@@ -10,6 +29,7 @@ export default function WorldChatPanel({ open, onClose }) {
   const [draft, setDraft] = useState("");
   const [status, setStatus] = useState({ mode: "idle", label: "Memuat channel..." });
   const [sending, setSending] = useState(false);
+  const isOnline = ["live", "realtime", "sending"].includes(status.mode);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -32,29 +52,87 @@ export default function WorldChatPanel({ open, onClose }) {
   useEffect(() => {
     if (!open) return undefined;
     let active = true;
+    const realtimeClients = [];
+    const realtimeChannels = [];
 
     async function loadMessages() {
       try {
-        const response = await fetch("/api/chat/messages?limit=40", { cache: "no-store" });
+        const response = await fetch("/api/chat/messages?limit=40", { cache: "no-store", credentials: "same-origin" });
         const data = await response.json();
         if (!active) return;
         if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Chat unavailable");
         setMessages(data.messages || []);
-        setStatus({
-          mode: data.source === "supabase" ? "live" : "offline",
-          label: data.source === "supabase" ? "Supabase chat live" : "Menunggu migration database",
-        });
+        setStatus((current) =>
+          current.mode === "realtime"
+            ? current
+            : {
+              mode: data.source === "supabase" ? "live" : "offline",
+              label: data.source === "supabase" ? "History Supabase siap" : "Menunggu migration database",
+            }
+        );
       } catch (error) {
         if (!active) return;
         setStatus({ mode: "offline", label: error.message });
       }
     }
 
+    async function startRealtime() {
+      try {
+        const response = await fetch("/api/chat/realtime-config", { cache: "no-store", credentials: "same-origin" });
+        const data = await response.json();
+        if (!active) return;
+        if (!response.ok || !data.ok || !data.shards?.length) throw new Error(data.message || "Realtime config unavailable");
+
+        for (const shard of data.shards) {
+          const client = createClient(shard.url, shard.publishableKey, {
+            auth: { autoRefreshToken: false, persistSession: false },
+          });
+          const channel = client.channel(shard.channel || "chat:public");
+
+          channel
+            .on("broadcast", { event: "message_created" }, ({ payload }) => {
+              const message = normalizeRealtimeMessage(payload);
+              if (message) setMessages((items) => upsertMessage(items, message));
+            })
+            .on("broadcast", { event: "message_updated" }, ({ payload }) => {
+              const message = normalizeRealtimeMessage(payload);
+              if (payload?.status === "deleted") {
+                setMessages((items) => items.filter((item) => item.id !== payload.id));
+              } else if (message) {
+                setMessages((items) => upsertMessage(items, message));
+              }
+            })
+            .on("broadcast", { event: "message_deleted" }, ({ payload }) => {
+              if (payload?.id) setMessages((items) => items.filter((item) => item.id !== payload.id));
+            })
+            .subscribe((state) => {
+              if (!active || state !== "SUBSCRIBED") return;
+              setStatus((current) =>
+                current.mode === "sending"
+                  ? current
+                  : { mode: "realtime", label: `Realtime aktif di ${data.shards.length} shard` }
+              );
+            });
+
+          realtimeClients.push(client);
+          realtimeChannels.push(channel);
+        }
+      } catch (error) {
+        if (!active) return;
+        setStatus((current) =>
+          current.mode === "offline" ? current : { mode: "live", label: `Polling aktif; Realtime belum tersambung (${error.message})` }
+        );
+      }
+    }
+
     loadMessages();
-    const interval = window.setInterval(loadMessages, 6000);
+    startRealtime();
+    const interval = window.setInterval(loadMessages, 15000);
     return () => {
       active = false;
       window.clearInterval(interval);
+      realtimeChannels.forEach((channel) => channel.unsubscribe());
+      realtimeClients.forEach((client) => client.removeAllChannels());
     };
   }, [open]);
 
@@ -69,13 +147,14 @@ export default function WorldChatPanel({ open, onClose }) {
       const response = await fetch("/api/chat/messages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
         body: JSON.stringify({ body }),
       });
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Send failed");
       setMessages((items) => [...items, data.message].slice(-40));
       setDraft("");
-      setStatus({ mode: "live", label: `Terkirim via ${data.source}` });
+      setStatus({ mode: "live", label: `Terkirim ke ${data.message?.storage?.shardId || "Supabase"}` });
     } catch (error) {
       setStatus({ mode: "offline", label: error.message });
     } finally {
@@ -102,7 +181,7 @@ export default function WorldChatPanel({ open, onClose }) {
           </span>
           <div>
             <h2 id="world-chat-title">World Chat</h2>
-            <span>{status.mode === "live" ? "Realtime/polling aktif" : "Polling fallback"}</span>
+            <span>{status.mode === "realtime" ? "Realtime Supabase aktif" : isOnline ? "Polling Supabase aktif" : "Polling fallback"}</span>
           </div>
         </div>
         <PixelButton className="world-chat-close" onClick={onClose}>
@@ -111,7 +190,7 @@ export default function WorldChatPanel({ open, onClose }) {
       </header>
 
       <div className="world-chat-status">
-        <span aria-hidden="true"><SpriteIcon id={status.mode === "live" ? "icon-database-online" : "icon-database-offline"} size={16} /></span>
+        <span aria-hidden="true"><SpriteIcon id={isOnline ? "icon-database-online" : "icon-database-offline"} size={16} /></span>
         <span>{status.label}</span>
       </div>
 
@@ -120,13 +199,14 @@ export default function WorldChatPanel({ open, onClose }) {
           <article className="world-chat-empty">
             <SpriteIcon id="icon-chat-bubble" size={32} />
             <h3>Channel siap</h3>
-            <p>{status.mode === "live" ? "Belum ada pesan publik. Channel Supabase sudah siap." : "Migration chat belum selesai di shard Supabase."}</p>
+            <p>{isOnline ? "Belum ada pesan publik. Channel Supabase sudah siap." : "Migration chat belum selesai di shard Supabase."}</p>
           </article>
         ) : (
           messages.map((message) => (
             <article className="world-chat-message" key={message.id}>
               <div>
                 <strong>{message.authorName}</strong>
+                {message.storage?.shardId && <span className="world-chat-shard">{message.storage.shardId}</span>}
                 <time dateTime={message.createdAt}>{new Date(message.createdAt).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}</time>
               </div>
               <p>{message.body}</p>
@@ -149,7 +229,7 @@ export default function WorldChatPanel({ open, onClose }) {
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
             />
-            <PixelButton disabled={sending || !draft.trim()}>
+            <PixelButton type="submit" disabled={sending || !draft.trim()}>
               <SpriteIcon id="icon-send" size={15} />
               {sending ? "Mengirim" : "Kirim"}
             </PixelButton>

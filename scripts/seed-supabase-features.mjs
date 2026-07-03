@@ -48,6 +48,38 @@ function pickShard(items, index) {
   return items[index % items.length];
 }
 
+function compactInventoryName(name) {
+  const raw = String(name || "")
+    .replace(/^(Scroll|Artifact|Medal|Key):\s*/i, "")
+    .replace(/\s*\([^)]{24,}\)/g, "")
+    .trim();
+  const known = [
+    [/Analisis Prediktif Tren Pendidikan/i, "KNN Pendidikan"],
+    [/Prototype Sistem Informasi Terintegrasi/i, "E-Ticket TNKS"],
+    [/Integrasi Agrowisata dan UMKM/i, "Virtual Tour UMKM"],
+    [/Analisis Implementasi Algoritma Genetika/i, "GA Scheduler"],
+    [/Nara\s*-/i, "Nara"],
+    [/GenBI CMS/i, "GenBI CMS"],
+    [/Word AI Draft/i, "Word AI Add-in"],
+    [/IDR\/USD/i, "IDR/USD Forecast"],
+    [/4 Publikasi/i, "4 Publikasi Scholar"],
+    [/Vice President/i, "VP English Club"],
+    [/Repo GitHub/i, "50+ GitHub Repos"],
+    [/Finalis OSN-P/i, "Finalis OSN-P"],
+    [/DIGDAYA/i, "DIGDAYA Hackathon"],
+    [/PEDAS/i, "PEDAS Nasional"],
+    [/JICEST/i, "JICEST Committee"],
+    [/Sitasi pertama/i, "Sitasi Pertama"],
+    [/h-index/i, "h-index 2"],
+  ];
+
+  for (const [pattern, label] of known) {
+    if (pattern.test(raw)) return label;
+  }
+
+  return raw.length > 24 ? `${raw.slice(0, 23).trim()}...` : raw;
+}
+
 async function upsertOrThrow(shard, appKey, table, rows, conflict) {
   if (rows.length === 0) return;
   const url = new URL(`/rest/v1/${table}`, shard.url);
@@ -112,7 +144,7 @@ const inventorySeeds = [
     sourceId: publication.href,
     type: "scroll",
     icon: "icon-scroll",
-    name: `Scroll: ${publication.title}`,
+    name: compactInventoryName(publication.title),
     description: `${publication.venue} · ${publication.year}`,
     rarity: publication.citedBy > 1 ? "rare" : "common",
     acquiredAt: publication.year,
@@ -123,7 +155,7 @@ const inventorySeeds = [
     sourceId: quest.href,
     type: "artifact",
     icon: "icon-artifact-vase",
-    name: `Artifact: ${quest.title}`,
+    name: compactInventoryName(quest.title),
     description: quest.desc,
     rarity: quest.featured ? "rare" : "common",
     acquiredAt: quest.tier,
@@ -134,7 +166,7 @@ const inventorySeeds = [
     sourceId: `${achievement.title}-${achievement.year}`,
     type: "medal",
     icon: "icon-trophy",
-    name: `Medal: ${achievement.title}`,
+    name: compactInventoryName(achievement.title),
     description: `${achievement.org} · ${achievement.year}`,
     rarity: achievement.medal === "gold" ? "epic" : achievement.medal === "silver" ? "rare" : "common",
     acquiredAt: achievement.year,

@@ -28,7 +28,14 @@ export async function GET(request) {
 export async function POST(request) {
   const actor = await getApiActor(request);
   if (!actor?.email) {
-    return NextResponse.json({ ok: false, error: "LOGIN_REQUIRED" }, { status: 401 });
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "LOGIN_REQUIRED",
+        message: "Login ke System dibutuhkan sebelum mengirim pesan. GET chat tetap bisa 200 karena membaca channel publik.",
+      },
+      { status: 401 }
+    );
   }
 
   try {

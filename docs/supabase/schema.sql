@@ -214,6 +214,59 @@ create table if not exists public.chat_messages (
 create index if not exists chat_messages_created_idx on public.chat_messages (created_at desc);
 create index if not exists chat_messages_actor_created_idx on public.chat_messages (actor_key, created_at desc);
 
+create or replace function public.broadcast_chat_message_change()
+returns trigger
+language plpgsql
+security definer
+set search_path = public, realtime
+as $$
+declare
+  event_name text;
+  payload jsonb;
+begin
+  if (TG_OP = 'INSERT') then
+    event_name := 'message_created';
+    payload := jsonb_build_object(
+      'id', NEW.id,
+      'authorName', NEW.author_name,
+      'body', NEW.body,
+      'createdAt', NEW.created_at,
+      'status', NEW.status,
+      'storage', jsonb_build_object('shardId', NEW.shard_id)
+    );
+    perform realtime.send(payload, event_name, 'chat:public', false);
+    return NEW;
+  elsif (TG_OP = 'UPDATE') then
+    event_name := case when NEW.status = 'deleted' then 'message_deleted' else 'message_updated' end;
+    payload := jsonb_build_object(
+      'id', NEW.id,
+      'authorName', NEW.author_name,
+      'body', NEW.body,
+      'createdAt', NEW.created_at,
+      'status', NEW.status,
+      'storage', jsonb_build_object('shardId', NEW.shard_id)
+    );
+    perform realtime.send(payload, event_name, 'chat:public', false);
+    return NEW;
+  elsif (TG_OP = 'DELETE') then
+    event_name := 'message_deleted';
+    payload := jsonb_build_object(
+      'id', OLD.id,
+      'storage', jsonb_build_object('shardId', OLD.shard_id)
+    );
+    perform realtime.send(payload, event_name, 'chat:public', false);
+    return OLD;
+  end if;
+
+  return null;
+end;
+$$;
+
+drop trigger if exists chat_messages_realtime_broadcast on public.chat_messages;
+create trigger chat_messages_realtime_broadcast
+after insert or update or delete on public.chat_messages
+for each row execute function public.broadcast_chat_message_change();
+
 create table if not exists public.inventory_items (
   id text primary key,
   shard_id text not null check (shard_id in ('s1', 's2', 's3')),
