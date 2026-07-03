@@ -4,6 +4,9 @@ const nextConfig = {
   devIndicators: false,
   outputFileTracingRoot: __dirname,
   eslint: { ignoreDuringBuilds: true },
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
+  },
   allowedDevOrigins: [
     'dusk-navigator.preview.emergentagent.com',
     '*.preview.emergentagent.com',
@@ -14,7 +17,6 @@ const nextConfig = {
     'mukhtada.my.id/*',
   ],
   images: {
-    unoptimized: true,
     remotePatterns: [
       { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
       { protocol: 'https', hostname: 'scholar.googleusercontent.com' },

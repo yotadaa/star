@@ -1,14 +1,22 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import HeroGlassPanel from "@/components/HeroGlassPanel";
-import HomeGlimpseSlider from "@/components/HomeGlimpseSlider";
-import ParallaxScene from "@/components/ParallaxScene";
 import QuestLog from "@/components/QuestLog";
 import Reveal from "@/components/Reveal";
 import { RarityTag } from "@/components/claude";
 import { featuredQuests, homeGlimpses } from "@/lib/data";
 import { useSite } from "@/components/site/SiteProvider";
+
+const HomeGlimpseSlider = dynamic(() => import("@/components/HomeGlimpseSlider"), {
+  ssr: false,
+  loading: () => null,
+});
+const ParallaxScene = dynamic(() => import("@/components/ParallaxScene"), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function Home() {
   const { phase } = useSite();

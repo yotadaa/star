@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { PixelButton, RarityTag } from "@/components/claude";
 
@@ -67,7 +68,14 @@ export default function HomeGlimpseSlider({ items }) {
               }}
             >
               <div className="glimpse-frame">
-                <img src={item.image} alt={item.alt} loading={isActive ? "eager" : "lazy"} decoding="async" />
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  width={1200}
+                  height={675}
+                  sizes="(max-width: 640px) 92vw, (max-width: 1100px) 76vw, 760px"
+                  priority={isActive}
+                />
               </div>
               <div className="glimpse-copy">
                 <RarityTag rarity="rare" label={item.eyebrow} className="glimpse-rarity" />

@@ -4,7 +4,6 @@
 
 - [ ] **Improve Home performance** - real-image/R3F hero is currently laggy and heavy.
 - [ ] **Commit every completed work unit** - after a coherent implementation + validation pass, create a git commit before starting the next unrelated unit. See `plans/commit-validation-workflow.md`.
-- [ ] **Optimize codebase for Vercel deploy** - after parallax image compression, audit the codebase deeply for resource efficiency, faster deploy/runtime behavior, and Vercel-friendly logic.
 - [ ] **Replace native dropdowns with custom controls** - later, scan all built-in HTML dropdowns/selects and replace them with design-system custom dropdowns.
 
 ## Waiting On
@@ -16,6 +15,7 @@
 - [x] ~~**Shrink utility chat/login from medium screens** - collapse the top-left Chat/Login bar into the circle menu on tablet/medium view so it does not force the navbar downward; screenshot evidence: `screenshots/utility-medium-2026-07-03/medium.png`, `medium-open.png`, `mobile.png`, `desktop.png`.~~ (2026-07-03)
 - [x] ~~**Compress parallax images** - losslessly compress image assets in `public/assets/parallax/` and `source/` while preserving alpha and scene composition; saved ~1.32MB.~~ (2026-07-03)
 - [x] ~~**Fix mobile parallax layer seams** - reduce mobile scroll parallax drift and add mobile-specific landscape overlap; screenshot evidence: `screenshots/parallax-mobile-2026-07-03/mobile-scrolled.png`, `desktop.png`.~~ (2026-07-03)
+- [x] ~~**Optimize codebase for Vercel deploy** - split heavy Home/global chunks, stop closed-chat polling, enable Next image optimization, and verify Home first-load JS at 127 kB; evidence: `npm run build`, `screenshots/vercel-optimization-2026-07-03/mobile-production.png`.~~ (2026-07-03)
 - [x] ~~**Shrink mobile utility bar into floating circle menu** - on narrow/mobile view, collapse World Chat/Login floating bar into one circular trigger; screenshot evidence: `screenshots/utility-mobile-2026-07-03/mobile-closed.png`, `mobile-open.png`, `desktop.png`.~~ (2026-07-03)
 - [x] ~~**Fix World Chat send + Supabase Realtime** - make the Kirim button submit, subscribe to `chat:public` broadcast events across all shards, and keep polling as backup.~~ (2026-07-03)
 - [x] ~~**Gate Blog CMS actions to owner email** - only `mukhtadanasution@gmail.com` can add/edit/archive blog content; visitors no longer see `// CMS ACCESS`.~~ (2026-07-03)

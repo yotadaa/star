@@ -1,17 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import TopNav from "./TopNav";
 import UtilityBar from "./UtilityBar";
-import CommandPalette from "./CommandPalette";
 import Footer from "@/components/Footer";
 import { ToastProvider, XpScrollBar } from "@/components/claude";
-import PlayerStatusPopup from "@/components/player/PlayerStatusPopup";
-import WorldChatPanel from "@/components/world-chat/WorldChatPanel";
 
 const SiteCtx = createContext(null);
 export const useSite = () => useContext(SiteCtx);
 const PHASES = ["morning", "noon", "sunset", "night"];
+
+const CommandPalette = dynamic(() => import("./CommandPalette"), { ssr: false });
+const PlayerStatusPopup = dynamic(() => import("@/components/player/PlayerStatusPopup"), { ssr: false });
+const WorldChatPanel = dynamic(() => import("@/components/world-chat/WorldChatPanel"), { ssr: false });
 
 export default function SiteProvider({ children }) {
   const [phase, setPhase] = useState("morning");
@@ -52,9 +54,9 @@ export default function SiteProvider({ children }) {
         <XpScrollBar />
         <UtilityBar />
         <TopNav />
-        <CommandPalette />
-        <PlayerStatusPopup open={playerOpen} onClose={() => setPlayerOpen(false)} />
-        <WorldChatPanel open={chatOpen} onClose={() => setChatOpen(false)} />
+        {paletteOpen && <CommandPalette />}
+        {playerOpen && <PlayerStatusPopup open={playerOpen} onClose={() => setPlayerOpen(false)} />}
+        {chatOpen && <WorldChatPanel open={chatOpen} onClose={() => setChatOpen(false)} />}
         <main className="site-main" id="main">
           {children}
         </main>
