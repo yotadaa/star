@@ -4,7 +4,10 @@
 
 - [ ] **Improve Home performance** - real-image/R3F hero is currently laggy and heavy.
 - [ ] **Commit every completed work unit** - after a coherent implementation + validation pass, create a git commit before starting the next unrelated unit. See `plans/commit-validation-workflow.md`.
-- [ ] **Shrink mobile utility bar into floating circle menu** - on narrow/mobile view, collapse World Chat/Login floating bar into one circular trigger that opens a design-system dropdown.
+- [ ] **Compress parallax images** - after the mobile utility bar task, compress image assets in `public/assets/parallax/` without breaking the parallax scene.
+- [ ] **Optimize codebase for Vercel deploy** - after parallax image compression, audit the codebase deeply for resource efficiency, faster deploy/runtime behavior, and Vercel-friendly logic.
+- [ ] **Replace native dropdowns with custom controls** - later, scan all built-in HTML dropdowns/selects and replace them with design-system custom dropdowns.
+- [ ] **Fix mobile parallax layer seams** - later, repair the separated-looking parallax layers on narrow/mobile view while preserving the scene composition.
 
 ## Waiting On
 
@@ -12,6 +15,7 @@
 
 ## Done
 
+- [x] ~~**Shrink mobile utility bar into floating circle menu** - on narrow/mobile view, collapse World Chat/Login floating bar into one circular trigger; screenshot evidence: `screenshots/utility-mobile-2026-07-03/mobile-closed.png`, `mobile-open.png`, `desktop.png`.~~ (2026-07-03)
 - [x] ~~**Fix World Chat send + Supabase Realtime** - make the Kirim button submit, subscribe to `chat:public` broadcast events across all shards, and keep polling as backup.~~ (2026-07-03)
 - [x] ~~**Gate Blog CMS actions to owner email** - only `mukhtadanasution@gmail.com` can add/edit/archive blog content; visitors no longer see `// CMS ACCESS`.~~ (2026-07-03)
 - [x] ~~**Rebuild Blog list/editor from mockup** - implement grid/list categories, owner row actions, Medium-style seamless block editor, block insert menu, table/list/icon blocks, and editable header caption.~~ (2026-07-03)

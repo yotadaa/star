@@ -515,6 +515,17 @@ a.hud-chip:focus-visible {
   box-shadow: 4px 4px 0 var(--ink);
 }
 
+.utility-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.utility-mobile-trigger,
+.utility-mobile-menu {
+  display: none;
+}
+
 .utility-chat-button,
 .utility-bar .login-system-button {
   min-height: 32px;
@@ -609,6 +620,97 @@ a.hud-chip:focus-visible {
   margin-top: 3px;
   padding: 7px 10px;
   font-size: 8.5px;
+}
+
+@media (max-width: 560px) {
+  .island-wrap {
+    top: max(12px, env(safe-area-inset-top));
+  }
+
+  .utility-bar {
+    top: max(12px, env(safe-area-inset-top));
+    left: max(12px, env(safe-area-inset-left));
+    display: block;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .utility-actions-desktop {
+    display: none;
+  }
+
+  .utility-mobile-trigger {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    background: var(--gold);
+    color: var(--ink);
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 80ms var(--ease-pixel), box-shadow 80ms var(--ease-pixel), background 120ms var(--ease-pixel);
+  }
+
+  .utility-mobile-trigger:hover,
+  .utility-mobile-trigger:focus-visible,
+  .utility-bar.is-mobile-open .utility-mobile-trigger {
+    background: var(--cream);
+  }
+
+  .utility-mobile-trigger:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+
+  .utility-mobile-trigger:focus-visible {
+    outline: 2px dashed var(--gold);
+    outline-offset: 3px;
+  }
+
+  .utility-mobile-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: min(232px, calc(100vw - 24px));
+    display: grid;
+    gap: 8px;
+    padding: 8px;
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+    background: color-mix(in srgb, var(--pine-deep) 92%, var(--cream) 8%);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+
+  .utility-mobile-menu .utility-chat-button,
+  .utility-mobile-menu .login-system-button,
+  .utility-mobile-menu .utility-user-button {
+    width: 100%;
+    min-height: 38px;
+    justify-content: flex-start;
+    border-width: 1.5px;
+    box-shadow: none;
+  }
+
+  .utility-mobile-menu .login-system-button,
+  .utility-mobile-menu .utility-user-button {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  .utility-mobile-account,
+  .utility-mobile-account .user-avatar-menu {
+    width: 100%;
+  }
+
+  .utility-mobile-account .utility-user-menu {
+    left: 0;
+    width: min(260px, calc(100vw - 24px));
+  }
 }
 
 /* ================= ROUTE STATES ================= */
@@ -1775,7 +1877,7 @@ footer.site-footer .foot-copy a {
   }
 }
 
-@media (max-width: 1100px) {
+@media (min-width: 561px) and (max-width: 1100px) {
   .island-wrap {
     top: 66px;
   }
@@ -4112,25 +4214,13 @@ footer.site-footer .foot-copy a {
   .utility-user-button {
     max-width: 150px;
   }
+
+  .utility-mobile-menu .utility-user-button {
+    max-width: none;
+  }
 }
 
 @media (max-width: 420px) {
-  .utility-bar {
-    right: 12px;
-    width: calc(100vw - 24px);
-  }
-
-  .utility-bar > * {
-    flex: 1;
-  }
-
-  .utility-chat-button,
-  .utility-bar .login-system-button,
-  .utility-user-button {
-    width: 100%;
-    justify-content: center;
-  }
-
   .route-state-page {
     padding-inline: 14px;
   }
