@@ -622,7 +622,7 @@ a.hud-chip:focus-visible {
   font-size: 8.5px;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 1100px) {
   .island-wrap {
     top: max(12px, env(safe-area-inset-top));
   }
@@ -1878,10 +1878,6 @@ footer.site-footer .foot-copy a {
 }
 
 @media (min-width: 561px) and (max-width: 1100px) {
-  .island-wrap {
-    top: 66px;
-  }
-
   .utility-bar {
     top: 12px;
     left: 12px;

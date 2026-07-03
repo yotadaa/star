@@ -15,6 +15,7 @@
 
 ## Done
 
+- [x] ~~**Shrink utility chat/login from medium screens** - collapse the top-left Chat/Login bar into the circle menu on tablet/medium view so it does not force the navbar downward; screenshot evidence: `screenshots/utility-medium-2026-07-03/medium.png`, `medium-open.png`, `mobile.png`, `desktop.png`.~~ (2026-07-03)
 - [x] ~~**Shrink mobile utility bar into floating circle menu** - on narrow/mobile view, collapse World Chat/Login floating bar into one circular trigger; screenshot evidence: `screenshots/utility-mobile-2026-07-03/mobile-closed.png`, `mobile-open.png`, `desktop.png`.~~ (2026-07-03)
 - [x] ~~**Fix World Chat send + Supabase Realtime** - make the Kirim button submit, subscribe to `chat:public` broadcast events across all shards, and keep polling as backup.~~ (2026-07-03)
 - [x] ~~**Gate Blog CMS actions to owner email** - only `mukhtadanasution@gmail.com` can add/edit/archive blog content; visitors no longer see `// CMS ACCESS`.~~ (2026-07-03)
