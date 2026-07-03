@@ -1,6 +1,6 @@
 import BlogAdminTable from "@/components/blog/BlogAdminTable";
 import PageHeader from "@/components/PageHeader";
-import { blogPosts } from "@/lib/data";
+import { listBlogPosts } from "@/lib/backend/featureStore";
 import requireOwner from "@/lib/requireOwner";
 
 export const metadata = {
@@ -9,13 +9,14 @@ export const metadata = {
 
 export default async function BlogAdminPage() {
   await requireOwner();
+  const { posts, source, warnings } = await listBlogPosts({ includeDrafts: true });
 
   return (
     <div className="page-wrap blog-admin-page">
       <PageHeader label="// OWNER CMS" title="Blog Admin">
-        Session owner sudah diverifikasi. Penyimpanan draft dan publish masih menunggu database CMS.
+        Session owner sudah diverifikasi. Tabel membaca Supabase lebih dulu dan fallback lokal saat schema belum siap.
       </PageHeader>
-      <BlogAdminTable posts={blogPosts} />
+      <BlogAdminTable posts={posts} source={source} warnings={warnings} />
     </div>
   );
 }

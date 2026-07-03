@@ -24,6 +24,7 @@ export default function PortalCard({
   title,
   description,
   cta,
+  eventKey,
   className = "",
 }) {
   const [ripple, setRipple] = useState(null); // { x, y, id }
@@ -35,6 +36,15 @@ export default function PortalCard({
     const y = e.clientY - rect.top;
     const id = Date.now();
     setRipple({ x, y, id });
+
+    if (eventKey) {
+      fetch("/api/contact/events", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ channelKey: eventKey, eventName: "open" }),
+        keepalive: true,
+      }).catch(() => {});
+    }
 
     // beri waktu ripple terlihat sebagian sebelum navigasi
     window.setTimeout(() => {

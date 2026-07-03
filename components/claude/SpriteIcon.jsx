@@ -126,6 +126,14 @@ const ICON_PATHS = {
       <path d="M4 20 L20 4" strokeLinecap="square" />
     </>
   ),
+  "icon-database-online": (
+    <>
+      <ellipse cx="12" cy="6" rx="7" ry="3" />
+      <path d="M5 6 V14 C5 15.7 8.1 17 12 17 C15.9 17 19 15.7 19 14 V6" />
+      <path d="M5 10 C5 11.7 8.1 13 12 13 C15.9 13 19 11.7 19 10" />
+      <path d="M9 19 L11 21 L16 16" strokeLinecap="square" strokeLinejoin="round" />
+    </>
+  ),
   "icon-admin-shield": (
     <>
       <path d="M12 3.5 L19 7 V12.5 C19 16.4 16.2 19.2 12 20.8 C7.8 19.2 5 16.4 5 12.5 V7 Z" strokeLinejoin="round" />

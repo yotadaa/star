@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import LoginButton from "@/components/auth/LoginButton";
 import useCurrentUser from "@/components/auth/useCurrentUser";
 import { PixelButton, RarityTag, SpriteIcon } from "@/components/claude";
@@ -9,14 +9,59 @@ const filters = ["all", "scroll", "tool", "artifact", "medal", "key"];
 
 export default function InventoryGrid({ items }) {
   const [filter, setFilter] = useState("all");
+  const [inventoryItems, setInventoryItems] = useState(items);
   const [selectedId, setSelectedId] = useState(items[0]?.id ?? null);
   const [formOpen, setFormOpen] = useState(false);
+  const [formState, setFormState] = useState({ status: "idle", message: "" });
   const { isOwner, isConfigured } = useCurrentUser();
   const visibleItems = useMemo(
-    () => (filter === "all" ? items : items.filter((item) => item.type === filter)),
-    [filter, items]
+    () => (filter === "all" ? inventoryItems : inventoryItems.filter((item) => item.type === filter)),
+    [filter, inventoryItems]
   );
-  const selected = items.find((item) => item.id === selectedId);
+  const selected = inventoryItems.find((item) => item.id === selectedId);
+
+  useEffect(() => {
+    let active = true;
+    fetch("/api/inventory/items", { cache: "no-store" })
+      .then((response) => response.json())
+      .then((data) => {
+        if (!active || !data.ok || !Array.isArray(data.items)) return;
+        setInventoryItems(data.items);
+        setSelectedId((current) => current ?? data.items[0]?.id ?? null);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  async function handleCreate(event) {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    setFormState({ status: "saving", message: "Menyimpan item..." });
+
+    try {
+      const response = await fetch("/api/inventory/items", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.get("name"),
+          type: form.get("type"),
+          rarity: form.get("rarity"),
+          description: form.get("description"),
+          linkTo: form.get("linkTo"),
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Save failed");
+      setInventoryItems((current) => [data.item, ...current]);
+      setSelectedId(data.item.id);
+      setFormState({ status: "saved", message: `Saved via ${data.source}` });
+      event.currentTarget.reset();
+    } catch (error) {
+      setFormState({ status: "error", message: error.message });
+    }
+  }
 
   return (
     <div className="inventory-panel">
@@ -30,15 +75,15 @@ export default function InventoryGrid({ items }) {
             {formOpen && (
               <form
                 className="inventory-add-form"
-                onSubmit={(event) => event.preventDefault()}
+                onSubmit={handleCreate}
               >
                 <label>
                   Nama Item
-                  <input type="text" required placeholder="Scroll: Riset terbaru" />
+                  <input name="name" type="text" required placeholder="Scroll: Riset terbaru" />
                 </label>
                 <label>
                   Tipe
-                  <select defaultValue="scroll">
+                  <select name="type" defaultValue="scroll">
                     <option value="scroll">Scroll - riset</option>
                     <option value="tool">Tool - skill</option>
                     <option value="artifact">Artifact - proyek</option>
@@ -48,20 +93,25 @@ export default function InventoryGrid({ items }) {
                 </label>
                 <label>
                   Rarity
-                  <select defaultValue="rare">
+                  <select name="rarity" defaultValue="rare">
                     <option value="epic">Epic</option>
                     <option value="rare">Rare</option>
                     <option value="common">Common</option>
                   </select>
                 </label>
+                <label>
+                  Link
+                  <input name="linkTo" type="url" placeholder="https://..." />
+                </label>
                 <label className="inventory-add-wide">
                   Deskripsi
-                  <textarea rows={3} placeholder="Konteks singkat item ini" />
+                  <textarea name="description" rows={3} placeholder="Konteks singkat item ini" />
                 </label>
-                <PixelButton>
-                  <SpriteIcon id="icon-database-offline" size={15} />
-                  Simpan setelah backend aktif
+                <PixelButton disabled={formState.status === "saving"}>
+                  <SpriteIcon id={formState.status === "saved" ? "icon-database-online" : "icon-database-offline"} size={15} />
+                  {formState.status === "saving" ? "Menyimpan" : "Simpan Item"}
                 </PixelButton>
+                {formState.message && <span className="inventory-form-status">{formState.message}</span>}
               </form>
             )}
           </>
@@ -85,7 +135,7 @@ export default function InventoryGrid({ items }) {
             selected={filter === itemFilter}
             onClick={() => {
               setFilter(itemFilter);
-              const next = itemFilter === "all" ? items[0] : items.find((item) => item.type === itemFilter);
+              const next = itemFilter === "all" ? inventoryItems[0] : inventoryItems.find((item) => item.type === itemFilter);
               setSelectedId(next?.id ?? null);
             }}
           >

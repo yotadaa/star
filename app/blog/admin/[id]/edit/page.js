@@ -1,16 +1,14 @@
 import { notFound } from "next/navigation";
 import BlockEditorPreview from "@/components/blog/BlockEditorPreview";
 import PageHeader from "@/components/PageHeader";
-import { blogPosts } from "@/lib/data";
+import { getBlogPostById } from "@/lib/backend/featureStore";
 import requireOwner from "@/lib/requireOwner";
 
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({ id: post.id }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const post = blogPosts.find((item) => item.id === id);
+  const { post } = await getBlogPostById(id);
   return {
     title: post ? `Edit ${post.title} - Blog Admin` : "Edit Blog",
   };
@@ -19,13 +17,13 @@ export async function generateMetadata({ params }) {
 export default async function EditBlogPostPage({ params }) {
   await requireOwner();
   const { id } = await params;
-  const post = blogPosts.find((item) => item.id === id);
+  const { post, source } = await getBlogPostById(id);
   if (!post) notFound();
 
   return (
     <div className="page-wrap blog-editor-page">
       <PageHeader label="// EDIT LORE ENTRY" title={`Edit: ${post.title}`}>
-        Route edit sudah tersedia. Penyimpanan masih menunggu backend CMS.
+        Route edit membaca {source}; update hanya tersedia untuk post yang sudah tersimpan di Supabase.
       </PageHeader>
       <BlockEditorPreview post={post} />
     </div>

@@ -12,7 +12,7 @@ export default async function NewBlogPostPage() {
   return (
     <div className="page-wrap blog-editor-page">
       <PageHeader label="// NEW LORE ENTRY" title="Tulis Baru">
-        Preview editor block. Autosave dan publish akan aktif setelah stack CMS dikonfirmasi.
+        Native block editor untuk CMS blog. Publish menyimpan ke shard Supabase yang dipilih round-robin.
       </PageHeader>
       <BlockEditorPreview />
     </div>

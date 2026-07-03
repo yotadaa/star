@@ -4,7 +4,7 @@
 > ada di `report.md` (apa) dan `design-system.md` (bagaimana bentuknya).
 > Dokumen ini mengatur **urutan, validasi, dan batas** - siapa/apa pun yang
 > mengeksekusi (agent AI atau developer manusia) wajib mengikuti fase di
-> bawah secara berurutan, tidak boleh lompat ke IMPLEMENT sebelum PLAN & 
+> bawah secara berurutan, tidak boleh lompat ke IMPLEMENT sebelum PLAN &
 > CONFIRM selesai.
 
 **Prinsip inti (non-negotiable):**
@@ -20,6 +20,10 @@
 4. **No silent assumption** - apa pun yang ditandai `[ASUMSI]` di
    `design-system.md` §1 (token warna rarity/tier) **wajib** dikonfirmasi
    pemilik proyek sebelum dipakai di kode produksi (lihat §6).
+5. **Visual evidence over self-report** - "task selesai" tidak berarti apa-apa
+   tanpa bukti visual. Setiap komponen yang diklaim selesai wajib disertai
+   screenshot hasil render nyata (bukan deskripsi tekstual, bukan asumsi
+   "seharusnya sudah benar berdasarkan kode"). Lihat §5 untuk prosedurnya.
 
 ---
 
@@ -98,9 +102,9 @@ Catatan Kepatuhan Brief & §11.
 ## 2. Alur Kerja (6 Fase)
 
 ```
-DISCOVER → PLAN → CONFIRM → IMPLEMENT → VALIDATE → LOG
-   ↑                                                  │
-   └──────────────── revisi jika gate gagal ──────────┘
+DISCOVER → PLAN → CONFIRM → IMPLEMENT → VALIDATE (screenshot + triase) → LOG
+   ↑                                                                       │
+   └───────────────────────── revisi jika gate gagal ─────────────────────┘
 ```
 
 ### Fase 1 - DISCOVER (baca sebelum tulis kode)
@@ -184,8 +188,46 @@ Aturan eksekusi:
 
 ### Fase 5 - VALIDATE (Validation Gate)
 
-Gunakan checklist ini per komponen, **bukan sekali di akhir proyek**.
-Task tidak boleh ditandai `done` di `TASKS.md` sebelum semua baris ini ✅.
+Validasi dilakukan **per komponen**, bukan sekali di akhir proyek, dan **tidak
+boleh berbasis self-report tekstual saja**. Prosedurnya dibagi tiga langkah:
+(5.1) ambil screenshot, (5.2) analisis screenshot terhadap checklist, (5.3)
+triase & perbaiki. Task tidak boleh ditandai `done` di `TASKS.md` sebelum
+ketiga langkah ini selesai dan semua baris checklist ✅.
+
+#### 5.1 Ambil Screenshot (wajib, sebelum menandai apa pun selesai)
+
+Agent **wajib** menangkap bukti visual nyata dari hasil render, bukan
+menyimpulkan dari kode saja. Gunakan tooling browser automation yang sudah
+tersedia di stack (mis. Playwright/Puppeteer lewat skrip Node, atau devtools
+screenshot di browser yang dijalankan agent) untuk mengambil:
+
+- **Multi-viewport**: minimal desktop (≥1280px) dan mobile (375px); tambahkan
+  tablet (768px) jika komponen berada di area yang diketahui rawan overflow
+  (HUD strip, XP bar - lihat §1.2).
+- **Multi-state**: default, `:hover`/`:focus-visible` (untuk item interaktif
+  di 3.3, 9, cursor kustom 6.2), state "setelah trigger" untuk animasi
+  one-time (2.3, unlock reveal), dan state `prefers-reduced-motion: reduce`
+  (emulasikan lewat DevTools/Playwright `page.emulateMedia`) untuk memastikan
+  animasi loop benar-benar berhenti, bukan cuma diperlambat.
+- **Multi-halaman** kalau komponen global (Press State, XP Bar, Toast)
+  dipakai di beberapa halaman - screenshot tiap halaman yang memakainya,
+  jangan asumsikan konsisten dari satu contoh saja.
+
+Simpan tiap screenshot dengan nama yang bisa ditelusuri ke task, mis.
+`validation/2.3-kamu-di-sini/mobile-default.png`,
+`.../desktop-reduced-motion.png`. Path ini dicatat di field "Screenshot
+evidence" pada Template Task (§4).
+
+#### 5.2 Analisis Screenshot terhadap Checklist
+
+Agent membaca ulang tiap screenshot **secara visual**, dibandingkan poin per
+poin dengan checklist gate di bawah dan dengan spesifikasi di `report.md` /
+`design-system.md`. Untuk hal yang tidak bisa dipastikan lewat mata saja
+(kontras angka pasti, nilai computed style, class name yang benar-benar
+terpasang), lengkapi dengan pemeriksaan terprogram (ekstrak computed style /
+DOM lewat skrip yang sama yang mengambil screenshot, atau tool aksesibilitas
+seperti axe-core) - **screenshot untuk kebenaran visual, ekstraksi DOM/style
+untuk kebenaran numerik**, jangan menebak angka kontras dari mata.
 
 **Gate Fungsional**
 - [ ] Elemen muncul tepat di letak yang disebut di `report.md`.
@@ -217,8 +259,46 @@ di `TASKS.md`)
       tidak menambah beban render yang memperparah lag hero yang sudah
       tercatat sebagai isu aktif - ukur sebelum/sesudah jika memungkinkan.
 
-Jika ada satu baris gagal → task kembali ke status `in-progress`, **tidak**
-lanjut ke komponen berikutnya.
+Asumsikan sejak awal bahwa satu batch screenshot **akan** menunjukkan lebih
+dari satu masalah sekaligus (mis. sekaligus overflow mobile, kontras kurang,
+dan posisi meleset dari spesifikasi). Itu bukan tanda proses gagal - itu
+alasan langkah 5.3 ada. Jangan berhenti di temuan pertama; catat **semua**
+penyimpangan yang terlihat di setiap screenshot sebelum masuk ke triase.
+
+#### 5.3 Triase & Perbaikan (saat screenshot menunjukkan banyak masalah)
+
+Ketika satu putaran screenshot menghasilkan beberapa temuan sekaligus, agent
+memutuskan urutan perbaikan pakai prioritas berikut - **dari atas ke bawah**,
+bukan berdasar mana yang paling mudah diperbaiki dulu:
+
+| Prioritas | Kategori | Contoh | Tindakan |
+|---|---|---|---|
+| P0 - Blocker guardrail | Melanggar larangan keras §1.1 (hex baru, dependency baru, emoji produksi, modal blocking) | Warna rarity ternyata pakai hex baru di luar token | **Wajib** diperbaiki sebelum lanjut apa pun; jika perbaikannya butuh token baru → eskalasi ke Fase 3 CONFIRM, jangan tebak sendiri |
+| P1 - Fungsional gagal | Elemen tidak muncul di letak yang benar, data ternyata fabricated, struktur HTML menyimpang dari `design-system.md` | Rarity tag muncul di posisi berbeda dari report.md §2.2 | Perbaiki dalam siklus task ini juga, sebelum re-screenshot |
+| P2 - Aksesibilitas gagal | Reduced-motion tidak berhenti, fokus keyboard tidak terlihat, kontras di bawah AA, overflow mobile | Toast tidak berhenti animasi saat reduced-motion aktif | Perbaiki dalam siklus task ini juga - ini bagian dari acceptance criteria (§4), bukan opsional |
+| P3 - Performa | Render tambahan memperparah isu "Improve Home performance" yang sudah aktif | XP bar scroll listener bikin jank di hero Home | Perbaiki jika penyebabnya jelas dari komponen ini; jika perlu investigasi lebih luas (bukan hanya komponen ini), catat sebagai temuan terpisah di `TASKS.md` - jangan diam-diam melebarkan scope task saat ini (lihat §8) |
+| P4 - Kosmetik minor | Spasi 1-2px, warna sedikit meleset dari token yang sama, alignment sub-pixel | Padding tag 6px vs 8px di desain | Perbaiki kalau perbaikannya trivial (satu baris CSS) di siklus yang sama; kalau tidak trivial, catat di `TASKS.md` bagian "Someday" alih-alih memaksakan perbaikan yang berisiko menyentuh komponen lain |
+
+Aturan tambahan triase:
+
+1. **Perbaiki P0-P2 sebelum menandai task apa pun `validated`.** P3/P4 boleh
+   dicatat sebagai temuan terpisah kalau perbaikannya berisiko melebarkan
+   scope task saat ini - tapi harus dicatat, tidak boleh diam-diam diabaikan.
+2. **Batasi siklus screenshot→analisis→perbaikan maksimal 3 putaran** untuk
+   satu komponen. Kalau setelah 3 putaran masih ada temuan P0/P1 yang belum
+   selesai, ini sinyal spesifikasi ambigu atau task terlalu besar - hentikan,
+   eskalasi ke Fase 3 (CONFIRM) atau pecah task jadi lebih kecil, jangan terus
+   coba-coba tanpa batas.
+3. **Setelah tiap perbaikan, ambil screenshot ulang** (regresi check) untuk
+   memastikan perbaikan tidak merusak gate yang sebelumnya sudah lolos (mis.
+   memperbaiki overflow mobile tapi jadi merusak focus-visible desktop).
+4. **Jangan memperbaiki temuan di luar scope komponen yang sedang dikerjakan**
+   meskipun terlihat di screenshot yang sama (mis. sambil validasi Toast,
+   terlihat bug lama di Navbar) - catat sebagai item baru di `TASKS.md`
+   bagian "Someday" per §8, jangan sekalian diperbaiki di siklus ini.
+
+Jika ada satu baris gate gagal dan belum diperbaiki → task kembali ke status
+`in-progress`, **tidak** lanjut ke komponen berikutnya.
 
 ---
 
@@ -229,10 +309,15 @@ Setiap task yang lolos Fase 5:
 1. Update `TASKS.md`: pindahkan dari Active → Done, dengan tanggal, mengikuti
    format yang sudah dipakai di file (`~~judul~~ (tanggal)`).
 2. Catat di changelog/commit message: item report.md nomor berapa, sumber
-   desain-nya di `design-system.md` bagian mana.
+   desain-nya di `design-system.md` bagian mana, dan path screenshot final
+   yang jadi bukti lolos gate (§5.1).
 3. Jika selama implementasi ada penyimpangan dari spesifikasi (mis. warna
    diganti karena kontras gagal AA), catat **alasan + evidence** (hasil test
-   kontras), jangan diam-diam diubah.
+   kontras, screenshot sebelum/sesudah), jangan diam-diam diubah.
+4. Jika ada temuan P3/P4 (§5.3) yang sengaja tidak diperbaiki di siklus ini,
+   catat sebagai item baru di `TASKS.md` bagian "Someday" dengan referensi
+   screenshot yang menunjukkan temuannya - jangan hilang begitu saja setelah
+   task ditandai `done`.
 
 ---
 
@@ -246,11 +331,18 @@ PRODUCT.md rules ─┘                                              │no
                                                               IMPLEMENT
                                                                    │
                                                                    ▼
-                                                          VALIDATE (Gate §5)
-                                                          fail ──┐  │pass
-                                                                 │  ▼
-                                                                 │ LOG → TASKS.md
-                                                                 └──> kembali ke IMPLEMENT
+                                                    ┌── VALIDATE ─────────────────────┐
+                                                    │ 5.1 screenshot (multi-viewport/  │
+                                                    │     multi-state)                 │
+                                                    │ 5.2 analisis vs checklist gate    │
+                                                    │ 5.3 triase P0→P4, perbaiki,       │
+                                                    │     re-screenshot (maks 3 putaran)│
+                                                    └───────────────┬──────────────────┘
+                                                          fail ─────┤  pass
+                                                                    │   │
+                                                                    │   ▼
+                                                                    │  LOG → TASKS.md
+                                                                    └──> kembali ke IMPLEMENT
 ```
 
 ---
@@ -273,6 +365,8 @@ Salin blok ini untuk setiap item report.md sebelum mulai coding:
   2. [kriteria a11y terukur]
   3. [kriteria guardrail terukur]
 - Guardrail relevan dari §1: [list nomor larangan/kewajiban yang berlaku]
+- Screenshot evidence: [path folder validation/<task>/..., viewport & state yang dicakup]
+- Temuan triase (jika ada): [daftar P0-P4 dari §5.3 + status masing-masing: fixed / deferred ke TASKS.md]
 - Status: planned / blocked / in-progress / validated / done
 ```
 
@@ -313,6 +407,10 @@ Salin blok ini untuk setiap item report.md sebelum mulai coding:
    tidak perlu eskalasi - itu bukan `[ASUMSI]`, itu sudah spesifikasi final.
 4. Setelah dikonfirmasi, catat jawaban di §7 (Log Keputusan) sebelum lanjut
    IMPLEMENT - konfirmasi lisan/chat yang tidak dicatat dianggap belum ada.
+5. Temuan dari analisis screenshot (§5.2-5.3) yang ternyata butuh keputusan
+   desain baru (bukan sekadar bug teknis) - mis. layout ternyata harus
+   diubah struktural untuk memperbaiki overflow - mengikuti protokol yang
+   sama: `blocked` sampai dikonfirmasi, bukan diputuskan sepihak oleh agent.
 
 ---
 
@@ -326,6 +424,12 @@ Gunakan tabel ini untuk mencatat setiap konfirmasi/penyimpangan dari spesifikasi
 | 2026-07-03 | Google Auth.js dependency dan OAuth credential | Plan §0 memblokir dependency/credential auth sampai dikonfirmasi. | Tambah `next-auth` untuk Google login. Credential hanya disimpan di `.env.local`; role owner tidak diberikan sampai `OWNER_EMAIL` diisi eksplisit. | Permintaan user: "setup google auth config" beserta credential OAuth |
 | 2026-07-03 | Static export vs OAuth callback | `output: "export"` tidak dapat menghasilkan route handler Auth.js `/api/auth/[...nextauth]`. | Default build diubah menjadi Next.js server build. Artifact HTML statis lama tetap ada, tetapi build baru memerlukan runtime Node agar Google OAuth berfungsi. | Build failure evidence: Next.js menolak dynamic auth route saat static export |
 | 2026-07-03 | Supabase round-robin backend setup | Direct `psql` to `db.<project-ref>.supabase.co` reached the host but rejected `.env.local` `DB_PASSWORD` for user `postgres`; regional pooler fallback rejected the tenant/user. | Backend adapter/routes/schema are implemented and `.env.local` can be synced from local docs, but remote schema application remains blocked until the correct Supabase database connection/password is supplied. | Validation evidence: `npm run supabase:setup` failed with password auth; `/api/backend/records` create showed schema missing on an uninitialized shard. |
+| 2026-07-03 | Supabase feature migration resolved | User reset the Supabase database password and confirmed all three projects use the same password. | Applied schema and seed data to all three `public` schemas; Blog, Chat, Inventory, About, and Contact APIs now read from Supabase with no schema warnings. Tables live in `public`; `private` only stores the backend app-key helper. | Validation evidence: `npm run supabase:setup`, `npm run supabase:seed`, `/api/backend/health`, `/api/blog/posts`, `/api/chat/messages`, and screenshots in `screenshots/backend-feature-2026-07-03/`. |
+
+> Catatan: mulai berlaku dokumen ini, entri baru di tabel di atas untuk task
+> yang melewati Fase 5 sebaiknya menyertakan referensi path screenshot yang
+> jadi bukti (kolom "Keputusan" atau catatan tambahan), khususnya untuk
+> penyimpangan yang ditemukan lewat analisis visual (§5.3).
 
 ---
 
@@ -335,7 +439,13 @@ Untuk menjaga workflow ini tidak jadi celah untuk melonggarkan aturan:
 
 - Workflow ini **tidak** memberi wewenang untuk menambah scope baru di luar
   `report.md` §1–§6. Ide baru → dicatat sebagai item baru di `TASKS.md`
-  bagian "Someday", bukan langsung diimplementasi.
+  bagian "Someday", bukan langsung diimplementasi. Ini termasuk temuan P3/P4
+  atau bug di luar scope yang terlihat saat analisis screenshot (§5.3).
 - Workflow ini **tidak** menggantikan `report.md` §8 (Yang Tidak
   Direkomendasikan Ditambah) - daftar itu tetap berlaku penuh.
-- Fase CONFIRM (§3) **tidak boleh** dilewati dengan alasan "menghemat waktu".
+- Fase CONFIRM (§3) **tidak boleh** dilewati dengan alasan "menghemat waktu",
+  termasuk saat perbaikan hasil triase screenshot (§5.3) ternyata butuh
+  keputusan desain baru.
+- Proses screenshot (§5.1-5.3) **tidak** menggantikan checklist manual gate
+  di §5.2 - screenshot adalah bukti pendukung dan alat temuan bug, bukan
+  pengganti pengecekan terprogram untuk hal numerik (kontras, computed style).

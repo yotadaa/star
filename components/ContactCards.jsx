@@ -12,10 +12,10 @@ const ACCENTS = {
   instagram: "#e06a45",
 };
 
-export default function ContactCards() {
+export default function ContactCards({ channels = socials, source = "local" }) {
   return (
-    <div className="contact-grid" data-testid="contact-cards">
-      {socials.map((s, i) => {
+    <div className="contact-grid" data-testid="contact-cards" data-source={source}>
+      {channels.map((s, i) => {
         const Ic = ICONS[s.key] || ArrowUpRight;
         return (
           <Reveal key={s.key} delay={i * 60} data-testid={`contact-${s.key}`}>
@@ -26,6 +26,7 @@ export default function ContactCards() {
               title={s.label}
               description={s.sub}
               cta={`${s.cta} ->`}
+              eventKey={s.key}
               className={s.tone}
             />
           </Reveal>

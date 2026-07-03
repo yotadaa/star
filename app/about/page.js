@@ -5,10 +5,15 @@ import Achievements from "@/components/Achievements";
 import JourneyPath from "@/components/JourneyPath";
 import { HudStatusStrip, SpriteIcon } from "@/components/claude";
 import { profile } from "@/lib/data";
+import { listAboutEntries } from "@/lib/backend/featureStore";
 
 export const metadata = { title: "About - Mukhtada Billah NST" };
+export const dynamic = "force-dynamic";
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const { entries, source, warnings } = await listAboutEntries();
+  const introEntry = entries.find((entry) => entry.entryKey === "intro");
+
   return (
     <div className="page-wrap">
       <PageHeader label="// Save File · Profile" title="Tentang Mukhtada">
@@ -16,10 +21,14 @@ export default function AboutPage() {
       </PageHeader>
 
       <p className="intro-prose">
-        Aku <strong>Mukhtada Billah NST</strong> - mahasiswa <strong>Sistem Informasi Universitas Jambi</strong> yang
-        senang mengubah riset jadi produk yang benar-benar jalan. Fokusku di{" "}
-        <strong>fullstack web</strong>, <strong>AI tooling</strong>, dan <strong>data science</strong>. Aku suka
-        mengajar, menulis riset, dan membangun hal-hal kecil yang berguna untuk komunitas.
+        {introEntry?.body ?? (
+          <>
+            Aku <strong>Mukhtada Billah NST</strong> - mahasiswa <strong>Sistem Informasi Universitas Jambi</strong> yang
+            senang mengubah riset jadi produk yang benar-benar jalan. Fokusku di{" "}
+            <strong>fullstack web</strong>, <strong>AI tooling</strong>, dan <strong>data science</strong>. Aku suka
+            mengajar, menulis riset, dan membangun hal-hal kecil yang berguna untuk komunitas.
+          </>
+        )}
       </p>
       <HudStatusStrip
         className="profile-hud"
@@ -27,8 +36,10 @@ export default function AboutPage() {
           { label: "Class: Fullstack Adventurer", accent: "gold", icon: <SpriteIcon id="icon-level-badge" size={14} /> },
           { label: "Level 4", accent: "gold", icon: <SpriteIcon id="icon-trophy" size={14} /> },
           { label: profile.location, accent: "aurora", icon: <SpriteIcon id="icon-pin" size={14} /> },
+          { label: source === "local-fallback" ? "About local fallback" : "About DB synced", accent: "ink", icon: <SpriteIcon id={source === "local-fallback" ? "icon-database-offline" : "icon-database-online"} size={14} /> },
         ]}
       />
+      {warnings?.length > 0 && <p className="backend-warning" role="status">Sebagian shard About belum merespons, profil lokal faktual tetap dipakai sebagai cadangan baca.</p>}
 
       <div className="page-divider" style={{ marginTop: 48 }} />
       <div className="section-head" style={{ textAlign: "left", margin: "0 0 28px", maxWidth: "none" }}>

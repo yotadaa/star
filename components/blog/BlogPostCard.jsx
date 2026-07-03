@@ -10,7 +10,7 @@ export default function BlogPostCard({ post }) {
       <div className="blog-card-body">
         <RarityTag rarity="common" label={post.status === "local-preview" ? "LOCAL PREVIEW" : post.status} className="blog-status-tag" />
         <div className="blog-card-tags" aria-label="Tags">
-          {post.tags.map((tag) => (
+          {(post.tags || []).map((tag) => (
             <span key={tag}>{tag}</span>
           ))}
         </div>

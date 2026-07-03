@@ -8,7 +8,9 @@
     "build": "next build",
     "serve": "next start -p 3123 -H 0.0.0.0",
     "supabase:sync-env": "node scripts/sync-supabase-env-from-docs.mjs",
-    "supabase:setup": "node scripts/setup-supabase-shards.mjs"
+    "supabase:setup": "node scripts/setup-supabase-shards.mjs",
+    "supabase:seed": "node scripts/seed-supabase-features.mjs",
+    "supabase:migrate": "npm run supabase:setup && npm run supabase:seed"
   },
   "dependencies": {
     "@react-three/fiber": "9.6.1",

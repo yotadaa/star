@@ -24,20 +24,23 @@ function readShard(index, env) {
   const id = env[`${prefix}_ID`] || `s${index}`;
   const host = env[`${prefix}_DB_HOST`];
   const projectRef = env[`${prefix}_PROJECT_REF`];
+  const password = env[`${prefix}_DB_PASSWORD`] || env.DB_PASSWORD;
 
   if (!host || !projectRef) {
     throw new Error(`Missing ${prefix}_DB_HOST or ${prefix}_PROJECT_REF. Run npm run supabase:sync-env first.`);
   }
 
-  return { id, host, projectRef };
+  if (!password) {
+    throw new Error(`Missing ${prefix}_DB_PASSWORD or DB_PASSWORD in .env.local`);
+  }
+
+  return { id, host, projectRef, password };
 }
 
 const env = { ...process.env, ...readEnvFile(envPath) };
-const password = env.DB_PASSWORD;
 const appKey = env.SUPABASE_BACKEND_APP_KEY;
 const bucket = env.SUPABASE_BACKEND_BUCKET || "mb-backend-assets";
 
-if (!password) throw new Error("Missing DB_PASSWORD in .env.local");
 if (!appKey) throw new Error("Missing SUPABASE_BACKEND_APP_KEY in .env.local");
 if (!fs.existsSync(schemaPath)) throw new Error(`Missing schema file: ${schemaPath}`);
 
@@ -60,14 +63,14 @@ for (const shard of shards) {
     ],
     {
       cwd: root,
-      env: { ...process.env, PGPASSWORD: password, PGSSLMODE: "require" },
+      env: { ...process.env, PGPASSWORD: shard.password, PGSSLMODE: "require" },
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"],
     }
   );
 
   if (result.status !== 0) {
-    const stderr = result.stderr.replaceAll(password, "[redacted]");
+    const stderr = result.stderr.replaceAll(shard.password, "[redacted]");
     throw new Error(`Schema setup failed for ${shard.id}: ${stderr}`);
   }
 

@@ -7,8 +7,6 @@
 
 ## Waiting On
 
-- [ ] **Apply Supabase round-robin backend schema** - backend code/schema/scripts are ready, but `npm run supabase:setup` needs the correct database password/connection string for all three Supabase projects. See `plans/supabase-round-robin-backend.md`.
-
 ## Someday
 
 ## Done
@@ -21,3 +19,6 @@
 - [x] ~~**Split Chat/Login into a top-left utility bar** - keep IslandNav focused and responsive.~~ (2026-07-03)
 - [x] ~~**Configure Google Auth.js login** - server-only OAuth secrets, JWT session, and owner-aware route guards.~~ (2026-07-03)
 - [x] ~~**Add route-state pages** - design-system-aligned not-found, forbidden, and allowlisted redirect routes.~~ (2026-07-03)
+- [x] ~~**Apply Supabase round-robin backend schema** - apply backend schema to all three Supabase projects with explicit grants/RLS.~~ (2026-07-03)
+- [x] ~~**Migrate feature databases to all Supabase shards** - apply Blog, Chat, Inventory, About, and Contact tables/policies to every configured shard.~~ (2026-07-03)
+- [x] ~~**Implement Blog CMS + feature backend wiring** - execute `plans/blog-implementation/` with Auth.js owner guard, Supabase round-robin feature APIs, factual fallback for read-only pages, and visual validation.~~ (2026-07-03)

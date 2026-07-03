@@ -20,6 +20,7 @@ export default function TopNav() {
   const { phase, cycleTheme, setPaletteOpen, setPlayerOpen } = useSite();
   const progress = usePlayerProgress();
   const { label, Icon } = PHASE_META[phase] || PHASE_META.morning;
+  const isActive = (href) => (href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`));
 
   return (
     <div className="island-wrap">
@@ -33,7 +34,7 @@ export default function TopNav() {
             <Link
               key={l.href}
               href={l.href}
-              className={`island-link ${pathname === l.href ? "active" : ""}`}
+              className={`island-link ${isActive(l.href) ? "active" : ""}`}
               data-testid={`nav-${l.label.toLowerCase()}`}
             >
               {l.label}

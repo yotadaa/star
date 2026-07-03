@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Feature Mockup — Blog Grid/List · CRUD Artikel · Editable Header Caption</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Silkscreen:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dusk-top:#241733; --dusk-mid:#5b2a4f; --dusk-warm:#8a3b4f;
+    --sunset:#e8734a; --sunset-light:#f7b169; --cream:#fbeedd;
+    --parchment:#f6e2c4; --ink:#2c1e1a; --olive:#5c7a41; --olive-dark:#33461f;
+    --terracotta:#c9552f; --gold:#f0b23a;
+    --ease-pixel: cubic-bezier(.2,.9,.25,1.15);
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--parchment); color:var(--ink); font-family:'Nunito',sans-serif; }
+  .pixel{font-family:'Silkscreen',monospace;}
+  .display{font-family:'Fraunces',serif;}
+  svg.ic{ display:inline-block; vertical-align:middle; }
+
+  /* ===== NAV ===== */
+  .topnav{ display:flex; justify-content:center; padding:20px 16px 8px; }
+  .pill{ display:flex; align-items:center; gap:6px; background:var(--ink); border-radius:999px; padding:8px 10px;
+    box-shadow:0 6px 20px rgba(0,0,0,.25); flex-wrap:wrap; justify-content:center; }
+  .pill .brand{ color:var(--gold); font-size:11px; padding:0 10px; display:flex; align-items:center; gap:5px; }
+  .pill button.navitem{ font-family:'Silkscreen',monospace; font-size:11px; letter-spacing:.3px; text-transform:uppercase;
+    background:none; border:none; color:var(--cream); padding:8px 14px; border-radius:999px; cursor:pointer; }
+  .pill button.navitem.active{ background:var(--gold); color:var(--ink); }
+  .pill .iconbtn{ width:32px; height:32px; border-radius:999px; border:1.5px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.05); color:var(--cream); display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .avatar-chip{ display:flex; align-items:center; gap:6px; background:rgba(255,255,255,.06);
+    border:1.5px solid rgba(255,255,255,.2); border-radius:999px; padding:4px 10px 4px 4px; cursor:pointer; }
+  .avatar-chip img{ width:22px; height:22px; border-radius:50%; }
+  .avatar-chip span{ font-size:11px; color:var(--cream); font-family:'Silkscreen',monospace; }
+
+  /* ===== TABS ===== */
+  .tabbar{ display:flex; justify-content:center; gap:10px; padding:24px 16px 8px; flex-wrap:wrap; }
+  .tabbar button{ font-family:'Silkscreen',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.4px;
+    padding:10px 16px; border:2px solid var(--ink); background:var(--cream); color:var(--ink); border-radius:8px;
+    cursor:pointer; box-shadow:4px 4px 0 var(--ink); transition:transform 80ms var(--ease-pixel), box-shadow 80ms var(--ease-pixel); }
+  .tabbar button:active{ transform:translate(2px,2px); box-shadow:2px 2px 0 var(--ink); }
+  .tabbar button.active{ background:var(--gold); }
+
+  .stage{ max-width:1120px; margin:0 auto; padding:24px 16px 80px; }
+  .view{ display:none; }
+  .view.active{ display:block; animation:fadein .2s var(--ease-pixel); }
+  @keyframes fadein{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .eyebrow{ font-family:'Silkscreen',monospace; font-size:11px; color:var(--terracotta); text-transform:uppercase;
+    letter-spacing:1px; margin-bottom:8px; }
+  h1.pagetitle{ font-family:'Fraunces',serif; font-size:34px; margin:0 0 6px; }
+  p.sub{ color:#5a4a3f; max-width:640px; margin:0 0 20px; line-height:1.5; }
+  .hardcard{ background:var(--cream); border:2px solid var(--ink); border-radius:8px; box-shadow:6px 6px 0 var(--ink); }
+  code{ background:rgba(44,30,26,.08); padding:1px 5px; border-radius:4px; font-size:12px; }
+
+  /* pixel button base */
+  .pbtn{ font-family:'Silkscreen',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.3px;
+    border:2px solid var(--ink); background:var(--cream); color:var(--ink); border-radius:6px; padding:8px 12px;
+    cursor:pointer; box-shadow:3px 3px 0 var(--ink); transition:transform 80ms var(--ease-pixel), box-shadow 80ms var(--ease-pixel);
+    display:inline-flex; align-items:center; gap:6px; }
+  .pbtn:active{ transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink); }
+  .pbtn.gold{ background:var(--gold); }
+  .pbtn.ghost{ background:transparent; box-shadow:none; border-color:rgba(44,30,26,.3); }
+  .pbtn.danger{ border-color:var(--terracotta); color:var(--terracotta); }
+  .pbtn.iconly{ padding:8px; }
+  .pbtn.pill{ border-radius:999px; }
+  .pbtn.pill.active{ background:var(--gold); }
+
+  /* ============ 1. BLOG LIST ============ */
+  .blog-toolbar{ display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:16px; }
+  .cat-filters{ display:flex; gap:8px; flex-wrap:wrap; }
+  .toolbar-right{ display:flex; align-items:center; gap:10px; }
+  .viewtoggle{ display:flex; border:2px solid var(--ink); border-radius:6px; overflow:hidden; }
+  .viewtoggle button{ border:none; background:var(--cream); padding:8px 10px; cursor:pointer; color:var(--ink); }
+  .viewtoggle button.active{ background:var(--ink); color:var(--gold); }
+
+  .blog-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
+  .blog-card{ overflow:hidden; position:relative; }
+  .blog-card .cover{ height:120px; background:linear-gradient(135deg,var(--dusk-mid),var(--sunset));
+    display:flex; align-items:center; justify-content:center; }
+  .blog-card .cover svg{ width:30px; height:30px; color:rgba(255,255,255,.85); }
+  .blog-card .body{ padding:16px; }
+  .blog-card .tag{ font-family:'Silkscreen',monospace; font-size:9px; color:var(--terracotta); text-transform:uppercase; }
+  .blog-card h3{ font-family:'Fraunces',serif; font-size:17px; margin:8px 0 6px; }
+  .blog-card p{ font-size:12.5px; color:#5a4a3f; line-height:1.5; margin:0 0 10px; }
+  .blog-card .meta{ font-size:10.5px; color:#a8988c; }
+  .card-owner-actions{ position:absolute; top:10px; right:10px; display:flex; gap:6px;
+    opacity:0; transition:opacity 120ms var(--ease-pixel); }
+  .blog-card:hover .card-owner-actions{ opacity:1; }
+  .card-owner-actions button{ width:28px; height:28px; border-radius:6px; border:1.5px solid var(--ink);
+    background:var(--cream); cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .card-owner-actions button.danger{ color:var(--terracotta); border-color:var(--terracotta); }
+
+  .blog-list{ display:flex; flex-direction:column; }
+  .blog-row{ display:flex; align-items:center; gap:14px; padding:14px 6px; border-bottom:1.5px solid rgba(44,30,26,.15); }
+  .blog-row .thumb{ width:52px; height:52px; border-radius:6px; flex-shrink:0; background:linear-gradient(135deg,var(--olive),var(--olive-dark));
+    display:flex; align-items:center; justify-content:center; }
+  .blog-row .thumb svg{ width:18px; height:18px; color:#fff; }
+  .blog-row .content{ flex:1; min-width:0; }
+  .blog-row h4{ font-family:'Fraunces',serif; font-size:15px; margin:0 0 3px; }
+  .blog-row p{ font-size:12px; color:#5a4a3f; margin:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .blog-row .meta{ font-size:10px; color:#a8988c; white-space:nowrap; }
+  .blog-row .row-actions{ display:flex; gap:6px; }
+  .blog-row .row-actions button{ width:26px; height:26px; border-radius:5px; border:1.5px solid var(--ink); background:var(--cream); cursor:pointer; }
+
+  #blogGridView, #blogListView{ display:none; }
+  #blogGridView.on, #blogListView.on{ display:block; }
+
+  /* ============ 2. EDITOR (write/edit) — Medium-style, seamless, no box ============ */
+  .editor-subtabs{ display:flex; gap:8px; margin-bottom:8px; }
+
+  .editor-topbar{ display:flex; justify-content:space-between; align-items:center; padding:14px 0; margin-bottom:6px;
+    border-bottom:1px solid rgba(44,30,26,.12); }
+  .editor-topbar .left-meta{ font-size:11px; color:#8a7a6f; display:flex; align-items:center; gap:8px; }
+  .editor-topbar .left-meta .led{ width:6px; height:6px; border-radius:50%; background:#4caf50; }
+  .editor-topbar .actions{ display:flex; gap:8px; align-items:center; }
+  .editor-topbar .settings-link{ font-size:11.5px; color:#8a7a6f; text-decoration:underline; text-underline-offset:3px; cursor:pointer; background:none; border:none; font-family:'Nunito'; }
+
+  .writing-surface{ max-width:680px; margin:0 auto; padding:34px 0 120px; }
+  .writing-surface .title-input{
+    display:block; width:100%; border:none; outline:none; background:none;
+    font-family:'Fraunces',serif; font-size:38px; font-weight:600; line-height:1.2;
+    color:var(--ink); margin-bottom:8px;
+  }
+  .writing-surface .title-input::placeholder{ color:#c9b8a8; }
+  .writing-surface .subtitle-hint{ font-size:13px; color:#a8988c; margin-bottom:30px; font-style:italic; }
+
+  /* each block row: hover reveals a left-margin plus button (Medium/Notion pattern) */
+  .block-row{ position:relative; padding:4px 0 4px 40px; margin-left:-40px; }
+  .block-row .block-plus{
+    position:absolute; left:0; top:2px; width:26px; height:26px; border-radius:6px;
+    border:1.5px solid rgba(44,30,26,.25); background:var(--cream); color:var(--ink);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    opacity:0; transition:opacity 120ms var(--ease-pixel), background 120ms;
+  }
+  .block-row:hover .block-plus{ opacity:1; }
+  .block-row .block-plus:hover{ background:var(--gold); border-color:var(--ink); }
+
+  .block-row p{ font-family:'Nunito'; font-size:17px; line-height:1.75; color:var(--ink); margin:0; }
+  .block-row p.placeholder{ color:#b3a294; }
+  .block-row h2{ font-family:'Fraunces',serif; font-size:26px; margin:26px 0 4px; }
+  .block-row blockquote{ border-left:3px solid var(--gold); padding-left:16px; margin:10px 0; color:#5a4a3f; font-style:italic; font-size:17px; }
+  .block-row pre{ background:var(--ink); color:var(--cream); padding:14px 16px; border-radius:6px; font-size:13px; overflow-x:auto; margin:8px 0; }
+  .block-row ul{ margin:4px 0; padding-left:22px; font-size:17px; line-height:1.75; }
+  .block-row .img-placeholder{ border:1.5px dashed rgba(44,30,26,.3); border-radius:8px; padding:34px; text-align:center; color:#a8988c; font-size:12.5px; }
+  .block-row hr{ border:none; border-top:1.5px dashed rgba(44,30,26,.3); margin:20px 0; }
+
+  /* block insert menu (popover from the plus button) */
+  .block-menu{
+    display:none; position:absolute; left:34px; top:28px; z-index:20;
+    background:#fff; border:2px solid var(--ink); border-radius:8px; box-shadow:5px 5px 0 var(--ink);
+    padding:6px; width:190px;
+  }
+  .block-menu.open{ display:block; }
+  .block-menu button{
+    display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border:none; background:none;
+    text-align:left; cursor:pointer; border-radius:6px; font-family:'Nunito'; font-size:12.5px; color:var(--ink);
+  }
+  .block-menu button:hover{ background:var(--parchment); }
+  .block-menu button svg{ flex-shrink:0; color:var(--terracotta); }
+
+  /* floating bubble toolbar on text selection */
+  .bubble-toolbar{
+    display:none; position:absolute; background:var(--ink); border-radius:8px; padding:6px; gap:4px;
+    box-shadow:0 6px 18px rgba(0,0,0,.3); z-index:30;
+  }
+  .bubble-toolbar.show{ display:flex; }
+  .bubble-toolbar button{ width:28px; height:28px; border:none; background:none; color:var(--cream); border-radius:5px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; }
+  .bubble-toolbar button:hover{ background:rgba(255,255,255,.15); }
+
+  /* settings drawer (slug/tags/status) — tucked away, not always-visible boxed row */
+  .settings-drawer{ display:none; max-width:680px; margin:0 auto 24px; padding:18px 20px; }
+  .settings-drawer.open{ display:block; }
+  .settings-drawer .row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .settings-drawer .field{ flex:1; min-width:150px; }
+  .settings-drawer label{ font-family:'Silkscreen',monospace; font-size:9px; text-transform:uppercase; display:block; margin-bottom:6px; color:#8a7a6f; }
+  .settings-drawer input{ width:100%; border:1.5px solid var(--ink); border-radius:6px; padding:8px 10px; font-family:'Nunito'; font-size:12.5px; }
+  .settings-drawer .status-toggle{ display:flex; gap:6px; }
+  .settings-drawer .status-toggle button{ flex:1; }
+
+
+  /* ============ 3. EDITABLE HEADER CAPTION ============ */
+  .demo-page-head{ position:relative; padding:8px 0 24px; border-bottom:2px dashed rgba(44,30,26,.2); margin-bottom:26px; }
+  .caption-text{ color:#5a4a3f; max-width:640px; line-height:1.6; margin:0; }
+  .caption-text b{ color:var(--ink); }
+  .caption-edit-trigger{ position:absolute; top:2px; right:0; width:26px; height:26px; border-radius:6px;
+    border:1.5px solid var(--ink); background:var(--cream); cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .caption-inline-editor{ display:none; border:2px solid var(--gold); border-radius:8px; background:#fff; padding:12px; max-width:640px; }
+  .caption-inline-editor.on{ display:block; }
+  .caption-inline-toolbar{ display:flex; gap:6px; margin-bottom:8px; }
+  .caption-inline-toolbar button{ width:26px; height:26px; border:1.5px solid var(--ink); background:var(--cream); border-radius:5px; cursor:pointer; font-size:11px; font-weight:700; }
+  .caption-inline-editor textarea{ width:100%; border:none; outline:none; font-family:'Nunito'; font-size:13.5px; resize:vertical; min-height:60px; }
+  .caption-inline-actions{ display:flex; gap:8px; margin-top:8px; }
+  .route-switch{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px; }
+
+  .owner-toggle-bar{ position:fixed; bottom:18px; left:50%; transform:translateX(-50%);
+    background:var(--ink); border-radius:999px; padding:8px 8px 8px 16px; display:flex; align-items:center; gap:10px;
+    box-shadow:0 8px 24px rgba(0,0,0,.3); z-index:50; }
+  .owner-toggle-bar span{ color:var(--cream); font-family:'Silkscreen',monospace; font-size:10px; text-transform:uppercase; }
+  .switch{ width:38px; height:20px; border-radius:999px; background:#5a4a3f; position:relative; cursor:pointer; }
+  .switch .knob{ position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:#fff; transition:left 150ms var(--ease-pixel); }
+  .switch.on{ background:var(--gold); }
+  .switch.on .knob{ left:20px; }
+  body.owner-mode .owner-only{ display:inline-flex !important; }
+  .owner-only{ display:none; }
+</style>
+</head>
+<body>
+
+<svg style="display:none">
+  <symbol id="icon-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M15.5 8.5 L13 13 L8.5 15.5 L11 11 Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="currentColor"/></symbol>
+  <symbol id="icon-backpack" viewBox="0 0 24 24"><path d="M9 8 V6 C9 4.3 10.3 3 12 3 C13.7 3 15 4.3 15 6 V8" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/><rect x="6.5" y="8" width="11" height="13" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="9.5" y="11" width="5" height="4" stroke="currentColor" stroke-width="1.4" fill="none"/></symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M4 5.5 H20 V15.5 H9.5 L5.5 19 V15.5 H4 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/><line x1="7.5" y1="9.5" x2="16.5" y2="9.5" stroke="currentColor" stroke-width="1.3"/><line x1="7.5" y1="12.3" x2="13.5" y2="12.3" stroke="currentColor" stroke-width="1.3"/></symbol>
+  <symbol id="icon-command" viewBox="0 0 24 24"><path d="M8.5 5.5 A2.5 2.5 0 1 0 11 8 V16 A2.5 2.5 0 1 0 13.5 18.5 V5.5 A2.5 2.5 0 1 0 16 8 H8 A2.5 2.5 0 1 0 8.5 5.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-doc" viewBox="0 0 24 24"><path d="M6 3.5 H14 L18 7.5 V20.5 H6 Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M14 3.5 V7.5 H18" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><line x1="8.5" y1="12" x2="15.5" y2="12" stroke="currentColor" stroke-width="1.2"/><line x1="8.5" y1="15" x2="15.5" y2="15" stroke="currentColor" stroke-width="1.2"/></symbol>
+  <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="13" y="4" width="7" height="7" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="4" y="13" width="7" height="7" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="13" y="13" width="7" height="7" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+  <symbol id="icon-list" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.8"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.8"/><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="icon-plus" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20" stroke="currentColor" stroke-width="2"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="icon-pencil" viewBox="0 0 24 24"><path d="M14.5 4.5 L19.5 9.5 L8 21 H3 V16 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/><line x1="12.5" y1="6.5" x2="17.5" y2="11.5" stroke="currentColor" stroke-width="1.4"/></symbol>
+  <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M5 7 H19" stroke="currentColor" stroke-width="1.7"/><path d="M9 7 V4.5 H15 V7" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M7 7 L8 20 H16 L17 7" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><line x1="10.5" y1="10.5" x2="10.5" y2="16.5" stroke="currentColor" stroke-width="1.3"/><line x1="13.5" y1="10.5" x2="13.5" y2="16.5" stroke="currentColor" stroke-width="1.3"/></symbol>
+  <symbol id="icon-bold" viewBox="0 0 24 24"><path d="M7 4 H13.5 C15.4 4 17 5.6 17 7.5 C17 9.4 15.4 11 13.5 11 H7 Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M7 11 H14.5 C16.4 11 18 12.6 18 14.5 C18 16.4 16.4 18 14.5 18 H7 Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-italic" viewBox="0 0 24 24"><line x1="14" y1="4" x2="9" y2="20" stroke="currentColor" stroke-width="1.8"/><line x1="16" y1="4" x2="10" y2="4" stroke="currentColor" stroke-width="1.8"/><line x1="14" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="icon-link" viewBox="0 0 24 24"><path d="M9.5 14.5 L14.5 9.5" stroke="currentColor" stroke-width="1.7"/><path d="M11 6.5 L13 4.5 C14.5 3 17 3 18.5 4.5 C20 6 20 8.5 18.5 10 L16.5 12" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M13 17.5 L11 19.5 C9.5 21 7 21 5.5 19.5 C4 18 4 15.5 5.5 14 L7.5 12" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+  <symbol id="icon-heading" viewBox="0 0 24 24"><path d="M5 4 V20 M13 4 V20 M5 12 H13" stroke="currentColor" stroke-width="1.8"/><path d="M16 9 C16 7.5 17.2 6.5 18.5 6.5 C19.8 6.5 20.5 7.3 20.5 8.2 C20.5 9.7 16 10.5 16 14 H20.5" stroke="currentColor" stroke-width="1.3" fill="none"/></symbol>
+  <symbol id="icon-quote" viewBox="0 0 24 24"><path d="M5 9 C5 6.8 6.8 5 9 5 V8 C7.9 8 7 8.9 7 10 V13 H10 V18 H5 Z" stroke="currentColor" stroke-width="1.3" fill="currentColor"/><path d="M14 9 C14 6.8 15.8 5 18 5 V8 C16.9 8 16 8.9 16 10 V13 H19 V18 H14 Z" stroke="currentColor" stroke-width="1.3" fill="currentColor"/></symbol>
+  <symbol id="icon-code" viewBox="0 0 24 24"><path d="M9 6 L3.5 12 L9 18" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6 L20.5 12 L15 18" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-image" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="8.5" cy="10" r="1.6" stroke="currentColor" stroke-width="1.3" fill="none"/><path d="M4 17 L9 12 L13 15.5 L16.5 12.5 L20 16" stroke="currentColor" stroke-width="1.4" fill="none"/></symbol>
+  <symbol id="icon-divider" viewBox="0 0 24 24"><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.8" stroke-dasharray="3 3"/></symbol>
+</svg>
+
+<div class="topnav">
+  <div class="pill">
+    <span class="brand pixel">● MB · NST</span>
+    <button class="navitem">Home</button>
+    <button class="navitem">About</button>
+    <button class="navitem">Projects</button>
+    <button class="navitem">Research</button>
+    <button class="navitem active">Blog</button>
+    <button class="navitem">Contact</button>
+    <span class="iconbtn" title="Compass"><svg class="ic" width="15" height="15"><use href="#icon-compass"/></svg></span>
+    <span class="iconbtn" title="Inventory"><svg class="ic" width="15" height="15"><use href="#icon-backpack"/></svg></span>
+    <span class="iconbtn" title="World Chat"><svg class="ic" width="15" height="15"><use href="#icon-chat"/></svg></span>
+    <span class="iconbtn" title="Command"><svg class="ic" width="15" height="15"><use href="#icon-command"/></svg></span>
+    <span class="avatar-chip">
+      <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=mukhtada" alt="" />
+      <span>Mukhtada</span>
+    </span>
+  </div>
+</div>
+
+<div class="tabbar">
+  <button class="tabbtn active" data-target="view-bloglist">1. Blog Grid/List + Kategori</button>
+  <button class="tabbtn" data-target="view-editor">2. Tulis / Edit Artikel</button>
+  <button class="tabbtn" data-target="view-caption">3. Editable Header Caption</button>
+</div>
+
+<div class="stage">
+
+  <!-- ================= 1. BLOG LIST ================= -->
+  <div id="view-bloglist" class="view active">
+    <div class="eyebrow">// LORE ENTRIES</div>
+    <h1 class="pagetitle">Blog</h1>
+    <p class="sub">Toggle grid/list, filter kategori dari tag yang benar-benar ada, dan tombol tambah artikel (khusus owner). Hover card grid / row list untuk lihat aksi edit-hapus.</p>
+
+    <div class="blog-toolbar">
+      <div class="cat-filters">
+        <button class="pbtn pill active">Semua</button>
+        <button class="pbtn pill">Research</button>
+        <button class="pbtn pill">Data</button>
+        <button class="pbtn pill">Web</button>
+        <button class="pbtn pill">Community</button>
+      </div>
+      <div class="toolbar-right">
+        <div class="viewtoggle">
+          <button id="btnGrid" class="active" title="Grid view"><svg class="ic" width="15" height="15"><use href="#icon-grid"/></svg></button>
+          <button id="btnList" title="List view"><svg class="ic" width="15" height="15"><use href="#icon-list"/></svg></button>
+        </div>
+        <button class="pbtn gold">
+          <svg class="ic" width="13" height="13"><use href="#icon-plus"/></svg>
+          Tambah Artikel
+        </button>
+      </div>
+    </div>
+
+    <!-- GRID -->
+    <div id="blogGridView" class="on">
+      <div class="blog-grid">
+        <div class="hardcard blog-card">
+          <div class="card-owner-actions">
+            <button title="Edit"><svg class="ic" width="13" height="13"><use href="#icon-pencil"/></svg></button>
+            <button class="danger" title="Hapus"><svg class="ic" width="13" height="13"><use href="#icon-trash"/></svg></button>
+          </div>
+          <div class="cover"><svg class="ic" width="30" height="30"><use href="#icon-doc"/></svg></div>
+          <div class="body">
+            <div class="tag">RESEARCH</div>
+            <h3>Catatan Riset KNN Pendidikan</h3>
+            <p>Rancangan lore entry tentang proses publikasi prediktif tren pendidikan, dari data mentah sampai model KNN.</p>
+            <div class="meta">CMS pending · 4 min baca</div>
+          </div>
+        </div>
+        <div class="hardcard blog-card">
+          <div class="card-owner-actions">
+            <button title="Edit"><svg class="ic" width="13" height="13"><use href="#icon-pencil"/></svg></button>
+            <button class="danger" title="Hapus"><svg class="ic" width="13" height="13"><use href="#icon-trash"/></svg></button>
+          </div>
+          <div class="cover" style="background:linear-gradient(135deg,var(--olive),var(--olive-dark));"><svg class="ic" width="30" height="30"><use href="#icon-doc"/></svg></div>
+          <div class="body">
+            <div class="tag">WEB</div>
+            <h3>Dev Log E-Ticket TNKS</h3>
+            <p>Draft dev log tentang sistem e-ticketing TNKS, alur reservasi, dan kontribusi front-end/back-end.</p>
+            <div class="meta">CMS pending · 6 min baca</div>
+          </div>
+        </div>
+        <div class="hardcard blog-card">
+          <div class="card-owner-actions">
+            <button title="Edit"><svg class="ic" width="13" height="13"><use href="#icon-pencil"/></svg></button>
+            <button class="danger" title="Hapus"><svg class="ic" width="13" height="13"><use href="#icon-trash"/></svg></button>
+          </div>
+          <div class="cover" style="background:linear-gradient(135deg,var(--terracotta),var(--sunset));"><svg class="ic" width="30" height="30"><use href="#icon-doc"/></svg></div>
+          <div class="body">
+            <div class="tag">COMMUNITY</div>
+            <h3>Mentor Study Club Batch 4</h3>
+            <p>Draft refleksi tentang mengajar web development untuk sekitar 30 mahasiswa selama lima hari.</p>
+            <div class="meta">CMS pending · 5 min baca</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIST -->
+    <div id="blogListView">
+      <div class="hardcard" style="padding:4px 14px;">
+        <div class="blog-list">
+          <div class="blog-row">
+            <div class="thumb"><svg class="ic" width="18" height="18" style="color:#fff"><use href="#icon-doc"/></svg></div>
+            <div class="content">
+              <h4>Catatan Riset KNN Pendidikan</h4>
+              <p>Rancangan lore entry tentang proses publikasi prediktif tren pendidikan...</p>
+            </div>
+            <div class="meta">4 min · Research</div>
+            <div class="row-actions">
+              <button title="Edit"><svg class="ic" width="12" height="12"><use href="#icon-pencil"/></svg></button>
+              <button title="Hapus"><svg class="ic" width="12" height="12"><use href="#icon-trash"/></svg></button>
+            </div>
+          </div>
+          <div class="blog-row">
+            <div class="thumb" style="background:linear-gradient(135deg,var(--olive),var(--olive-dark));"><svg class="ic" width="18" height="18" style="color:#fff"><use href="#icon-doc"/></svg></div>
+            <div class="content">
+              <h4>Dev Log E-Ticket TNKS</h4>
+              <p>Draft dev log tentang sistem e-ticketing TNKS, alur reservasi...</p>
+            </div>
+            <div class="meta">6 min · Web</div>
+            <div class="row-actions">
+              <button title="Edit"><svg class="ic" width="12" height="12"><use href="#icon-pencil"/></svg></button>
+              <button title="Hapus"><svg class="ic" width="12" height="12"><use href="#icon-trash"/></svg></button>
+            </div>
+          </div>
+          <div class="blog-row">
+            <div class="thumb" style="background:linear-gradient(135deg,var(--terracotta),var(--sunset));"><svg class="ic" width="18" height="18" style="color:#fff"><use href="#icon-doc"/></svg></div>
+            <div class="content">
+              <h4>Mentor Study Club Batch 4</h4>
+              <p>Draft refleksi tentang mengajar web development untuk sekitar 30 mahasiswa...</p>
+            </div>
+            <div class="meta">5 min · Community</div>
+            <div class="row-actions">
+              <button title="Edit"><svg class="ic" width="12" height="12"><use href="#icon-pencil"/></svg></button>
+              <button title="Hapus"><svg class="ic" width="12" height="12"><use href="#icon-trash"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 2. EDITOR ================= -->
+  <div id="view-editor" class="view">
+    <div class="eyebrow">// BLOCK EDITOR</div>
+    <h1 class="pagetitle">Tulis / Edit Artikel</h1>
+    <p class="sub">Nulis langsung di halaman, seamless — tidak dibatasi kotak. Hover kiri tiap baris untuk tombol "+" (insert block baru), select teks untuk bubble toolbar mengambang. Sama komponen dipakai untuk <code>/blog/new</code> dan <code>/blog/[slug]/edit</code>.</p>
+
+    <div class="editor-subtabs">
+      <button class="pbtn pill active" id="tabNew">Mode: Tulis Baru</button>
+      <button class="pbtn pill" id="tabEdit">Mode: Edit Existing</button>
+    </div>
+
+    <div class="editor-topbar" style="max-width:680px;margin:0 auto;">
+      <span class="left-meta"><span class="led"></span>Tersimpan otomatis · 3 detik lalu</span>
+      <div class="actions">
+        <button class="settings-link" id="toggleSettings">Pengaturan cerita</button>
+        <button class="pbtn ghost">Simpan Draft</button>
+        <button class="pbtn gold">Publish</button>
+      </div>
+    </div>
+
+    <div class="settings-drawer hardcard" id="settingsDrawer">
+      <div class="row">
+        <div class="field">
+          <label>Slug</label>
+          <input type="text" id="slugInput" placeholder="auto-dari-judul" />
+        </div>
+        <div class="field">
+          <label>Tags</label>
+          <input type="text" placeholder="research, data" />
+        </div>
+        <div class="field">
+          <label>Status</label>
+          <div class="status-toggle">
+            <button class="pbtn ghost active" style="background:var(--parchment);">Draft</button>
+            <button class="pbtn ghost">Published</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="writing-surface">
+      <input class="title-input" id="editorTitleInput" value="" placeholder="Judul artikel..." />
+      <div class="subtitle-hint">Ketik "/" atau klik "+" di kiri baris kosong untuk menyisipkan block.</div>
+
+      <div id="editorBody">
+        <div class="block-row">
+          <button class="block-plus" data-menu="menu1" title="Tambah block"><svg class="ic" width="13" height="13"><use href="#icon-plus"/></svg></button>
+          <p class="placeholder" contenteditable="true" spellcheck="false">Mulai menulis di sini...</p>
+          <div class="block-menu" id="menu1">
+            <button><svg width="14" height="14"><use href="#icon-heading"/></svg>Heading</button>
+            <button><svg width="14" height="14"><use href="#icon-quote"/></svg>Quote</button>
+            <button><svg width="14" height="14"><use href="#icon-list"/></svg>Bullet list</button>
+            <button><svg width="14" height="14"><use href="#icon-code"/></svg>Code block</button>
+            <button><svg width="14" height="14"><use href="#icon-image"/></svg>Image</button>
+            <button><svg width="14" height="14"><use href="#icon-divider"/></svg>Divider</button>
+          </div>
+        </div>
+
+        <div class="block-row" id="editExtraBlocks" style="display:none;" contenteditable="true" spellcheck="false">
+          <h2>Latar Belakang</h2>
+          <p>Penjadwalan mata kuliah masih dilakukan manual di banyak prodi. Riset genetic algorithm sebelumnya menunjukkan hasil optimasi yang menjanjikan, terutama pada constraint jadwal dosen yang bentrok.</p>
+          <blockquote>"Target riset lanjutan: menambah constraint preferensi dosen ke fitness function."</blockquote>
+          <p>Langkah berikutnya adalah menguji dataset yang lebih besar dan membandingkan dengan pendekatan heuristik lain — bagian ini bisa <b>di-select</b> untuk lihat bubble toolbar mengambang.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble-toolbar" id="bubbleToolbar">
+      <button title="Bold"><svg class="ic" width="13" height="13"><use href="#icon-bold"/></svg></button>
+      <button title="Italic"><svg class="ic" width="13" height="13"><use href="#icon-italic"/></svg></button>
+      <button title="Link"><svg class="ic" width="13" height="13"><use href="#icon-link"/></svg></button>
+      <button title="Heading"><svg class="ic" width="13" height="13"><use href="#icon-heading"/></svg></button>
+      <button title="Quote"><svg class="ic" width="13" height="13"><use href="#icon-quote"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ================= 3. EDITABLE HEADER CAPTION ================= -->
+  <div id="view-caption" class="view">
+    <div class="eyebrow">// GLOBAL PAGE HEADER</div>
+    <h1 class="pagetitle">Editable Header Caption</h1>
+    <p class="sub">Berlaku di semua route (bukan cuma Blog). Judul halaman tetap tidak bisa diedit — hanya caption di bawahnya, dengan toolbar ringkas (bold/italic/link).</p>
+
+    <div class="route-switch">
+      <button class="pbtn pill active" data-route="blog">/blog</button>
+      <button class="pbtn pill" data-route="about">/about</button>
+      <button class="pbtn pill" data-route="projects">/projects</button>
+    </div>
+
+    <div class="hardcard" style="padding:22px 26px;">
+      <div class="demo-page-head" id="captionBlock">
+        <div class="eyebrow" id="captionEyebrow">// LORE ENTRIES</div>
+        <h1 class="pagetitle" id="captionTitle" style="font-size:28px;">Blog</h1>
+        <p class="caption-text" id="captionDisplay">Catatan proses riset, web build, dan community work. CMS backend belum aktif; konten di bawah adalah <b>local preview</b> dari data portofolio yang sudah ada.</p>
+
+        <div class="caption-inline-editor" id="captionEditor">
+          <div class="caption-inline-toolbar">
+            <button title="Bold"><svg class="ic" width="13" height="13"><use href="#icon-bold"/></svg></button>
+            <button title="Italic"><svg class="ic" width="13" height="13"><use href="#icon-italic"/></svg></button>
+            <button title="Link"><svg class="ic" width="13" height="13"><use href="#icon-link"/></svg></button>
+          </div>
+          <textarea id="captionTextarea">Catatan proses riset, web build, dan community work. CMS backend belum aktif; konten di bawah adalah local preview dari data portofolio yang sudah ada.</textarea>
+          <div class="caption-inline-actions">
+            <button class="pbtn gold" id="saveCaption">Simpan</button>
+            <button class="pbtn ghost" id="cancelCaption">Batal</button>
+          </div>
+        </div>
+
+        <button class="caption-edit-trigger owner-only" id="editCaptionBtn" title="Edit caption" aria-label="Edit caption">
+          <svg class="ic" width="13" height="13"><use href="#icon-pencil"/></svg>
+        </button>
+      </div>
+      <p style="font-size:11.5px;color:#8a7a6f;margin-top:8px;">Ikon pensil di pojok kanan atas caption hanya tampil kalau mode "Login sebagai Owner" di bawah ini aktif.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="owner-toggle-bar">
+  <span>Login sebagai Owner</span>
+  <div class="switch" id="ownerSwitch"><div class="knob"></div></div>
+</div>
+
+<script>
+  // top-level tabs
+  document.querySelectorAll('.tabbtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tabbtn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.target).classList.add('active');
+    });
+  });
+
+  // owner mode toggle (global, affects card actions + caption pencil)
+  const ownerSwitch = document.getElementById('ownerSwitch');
+  ownerSwitch.addEventListener('click', () => {
+    ownerSwitch.classList.toggle('on');
+    document.body.classList.toggle('owner-mode');
+  });
+  document.querySelectorAll('.card-owner-actions, .row-actions').forEach(el => el.classList.add('owner-only'));
+
+  // grid/list toggle
+  const btnGrid = document.getElementById('btnGrid');
+  const btnList = document.getElementById('btnList');
+  const gridView = document.getElementById('blogGridView');
+  const listView = document.getElementById('blogListView');
+  btnGrid.addEventListener('click', () => {
+    btnGrid.classList.add('active'); btnList.classList.remove('active');
+    gridView.classList.add('on'); listView.classList.remove('on');
+  });
+  btnList.addEventListener('click', () => {
+    btnList.classList.add('active'); btnGrid.classList.remove('active');
+    listView.classList.add('on'); gridView.classList.remove('on');
+  });
+
+  // category pills (single-select demo)
+  document.querySelectorAll('.cat-filters .pbtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cat-filters .pbtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // editor new/edit mode demo
+  const titleInput = document.getElementById('editorTitleInput');
+  const slugInput = document.getElementById('slugInput');
+  const extraBlocks = document.getElementById('editExtraBlocks');
+  const firstPlaceholder = document.querySelector('#editorBody .block-row:first-child p');
+
+  document.getElementById('tabNew').addEventListener('click', function(){
+    this.classList.add('active'); document.getElementById('tabEdit').classList.remove('active');
+    titleInput.value = ''; slugInput.value = '';
+    firstPlaceholder.textContent = 'Mulai menulis di sini...';
+    firstPlaceholder.classList.add('placeholder');
+    extraBlocks.style.display = 'none';
+  });
+  document.getElementById('tabEdit').addEventListener('click', function(){
+    this.classList.add('active'); document.getElementById('tabNew').classList.remove('active');
+    titleInput.value = 'Rencana Riset Genetic Algorithm Lanjutan';
+    slugInput.value = 'rencana-riset-genetic-algorithm-lanjutan';
+    firstPlaceholder.textContent = '';
+    firstPlaceholder.classList.remove('placeholder');
+    extraBlocks.style.display = 'block';
+  });
+  titleInput.addEventListener('input', () => {
+    const slug = titleInput.value.toLowerCase().trim().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-');
+    slugInput.value = slug;
+  });
+
+  // settings drawer toggle ("Pengaturan cerita")
+  document.getElementById('toggleSettings').addEventListener('click', () => {
+    document.getElementById('settingsDrawer').classList.toggle('open');
+  });
+
+  // block "+" menu — click plus button near a row to open insert menu
+  document.querySelectorAll('.block-plus').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const menu = document.getElementById(btn.dataset.menu);
+      document.querySelectorAll('.block-menu.open').forEach(m => { if (m !== menu) m.classList.remove('open'); });
+      menu.classList.toggle('open');
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.block-menu.open').forEach(m => m.classList.remove('open'));
+  });
+  document.querySelectorAll('.block-menu button').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      btn.closest('.block-menu').classList.remove('open');
+    });
+  });
+
+  // floating bubble toolbar on text selection inside the writing surface
+  const bubbleToolbar = document.getElementById('bubbleToolbar');
+  document.querySelector('.writing-surface').addEventListener('mouseup', () => {
+    const selection = window.getSelection();
+    if (selection && selection.toString().trim().length > 0) {
+      const range = selection.getRangeAt(0);
+      const rect = range.getBoundingClientRect();
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const scrollX = window.scrollX || document.documentElement.scrollLeft;
+      bubbleToolbar.style.top = (rect.top + scrollY - 44) + 'px';
+      bubbleToolbar.style.left = (rect.left + scrollX + rect.width / 2 - 80) + 'px';
+      bubbleToolbar.classList.add('show');
+    } else {
+      bubbleToolbar.classList.remove('show');
+    }
+  });
+  document.addEventListener('mousedown', (e) => {
+    if (!bubbleToolbar.contains(e.target)) bubbleToolbar.classList.remove('show');
+  });
+
+
+  // caption inline editor demo
+  const captionDisplay = document.getElementById('captionDisplay');
+  const captionEditor = document.getElementById('captionEditor');
+  const captionTextarea = document.getElementById('captionTextarea');
+  document.getElementById('editCaptionBtn').addEventListener('click', () => {
+    captionDisplay.style.display = 'none';
+    captionEditor.classList.add('on');
+  });
+  document.getElementById('cancelCaption').addEventListener('click', () => {
+    captionEditor.classList.remove('on');
+    captionDisplay.style.display = 'block';
+  });
+  document.getElementById('saveCaption').addEventListener('click', () => {
+    captionDisplay.innerHTML = captionTextarea.value;
+    captionEditor.classList.remove('on');
+    captionDisplay.style.display = 'block';
+  });
+
+  // route switch demo for caption block
+  const routeData = {
+    blog: { eyebrow:'// LORE ENTRIES', title:'Blog', caption:'Catatan proses riset, web build, dan community work. CMS backend belum aktif; konten di bawah adalah <b>local preview</b> dari data portofolio yang sudah ada.' },
+    about: { eyebrow:'// SAVE FILE · PROFILE', title:'Tentang Mukhtada', caption:'Mahasiswa Sistem Informasi Universitas Jambi yang senang mengubah riset jadi produk yang <b>benar-benar jalan</b>.' },
+    projects: { eyebrow:'// QUEST BOARD', title:'Projects', caption:'Proyek pilihan lintas web, AI, dan data science — <b>57 repo</b> selengkapnya ada di GitHub.' },
+  };
+  document.querySelectorAll('.route-switch .pbtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.route-switch .pbtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const d = routeData[btn.dataset.route];
+      document.getElementById('captionEyebrow').textContent = d.eyebrow;
+      document.getElementById('captionTitle').textContent = d.title;
+      captionDisplay.innerHTML = d.caption;
+      captionTextarea.value = d.caption.replace(/<\/?b>/g,'');
+      captionEditor.classList.remove('on');
+      captionDisplay.style.display = 'block';
+    });
+  });
+</script>
+
+</body>
+</html>

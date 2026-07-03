@@ -2844,6 +2844,35 @@ footer.site-footer .foot-copy a {
   line-height: 1.5;
 }
 
+.world-chat-message {
+  padding: 10px;
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  background: var(--cream);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.world-chat-message + .world-chat-message {
+  margin-top: 12px;
+}
+
+.world-chat-message div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+  font-family: var(--font-pixel), monospace;
+  font-size: 9px;
+  color: var(--coral-dark);
+  text-transform: uppercase;
+}
+
+.world-chat-message p {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
 .world-chat-input-shell {
   padding: 14px;
   border-top: 2px solid var(--ink);
@@ -2886,6 +2915,18 @@ footer.site-footer .foot-copy a {
 .blog-page .blog-status-strip {
   justify-content: flex-start;
   margin: 0 0 28px;
+}
+
+.backend-warning {
+  margin: -10px 0 22px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--gold);
+  background: color-mix(in srgb, var(--gold) 18%, var(--cream));
+  color: var(--ink);
+  font-family: var(--font-pixel), monospace;
+  font-size: 9px;
+  line-height: 1.45;
+  text-transform: uppercase;
 }
 
 .blog-filter-row {
@@ -3069,6 +3110,14 @@ footer.site-footer .foot-copy a {
   font-size: 1.35rem;
 }
 
+.blog-admin-source {
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+  font-family: var(--font-pixel), monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
 .blog-new-button,
 .blog-publish-button {
   gap: 8px;
@@ -3166,10 +3215,99 @@ footer.site-footer .foot-copy a {
   font-size: 9px;
 }
 
-.block-editor-preview .blog-renderer {
+.block-editor-meta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 2px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  background: color-mix(in srgb, var(--parchment) 72%, var(--cream));
+}
+
+.block-editor-meta label,
+.block-editor-row label {
+  display: grid;
+  gap: 6px;
+  font-family: var(--font-pixel), monospace;
+  font-size: 9px;
+  color: var(--coral-dark);
+  text-transform: uppercase;
+}
+
+.block-editor-meta input,
+.block-editor-meta select,
+.block-editor-meta textarea,
+.block-editor-row select,
+.block-editor-row textarea {
+  width: 100%;
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  background: var(--cream);
+  color: var(--ink);
+  padding: 9px;
+  font: 700 0.9rem var(--font-body), sans-serif;
+  text-transform: none;
+}
+
+.block-editor-wide {
+  grid-column: 1 / -1;
+}
+
+.block-editor-workbench {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.95fr) minmax(320px, 1.05fr);
+}
+
+.block-editor-fields {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 16px;
+  border-right: 2px solid var(--ink);
+  background: var(--cream);
+}
+
+.block-editor-row {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr) 36px;
+  gap: 10px;
+  padding: 12px;
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  background: var(--parchment);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.block-editor-block-text {
+  min-width: 0;
+}
+
+.block-editor-remove {
+  align-self: end;
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  background: var(--coral);
+  color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  font-family: var(--font-pixel), monospace;
+}
+
+.block-editor-live-preview {
   max-width: none;
   min-height: 260px;
   padding: 22px 24px;
+}
+
+.block-editor-live-preview .pixel-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--coral-dark);
+}
+
+.block-editor-live-preview .blog-renderer {
+  max-width: none;
 }
 
 .block-editor-footer {
@@ -3261,6 +3399,14 @@ footer.site-footer .foot-copy a {
   grid-column: 1 / -1;
 }
 
+.inventory-form-status {
+  grid-column: 1 / -1;
+  font-family: var(--font-pixel), monospace;
+  font-size: 9px;
+  color: var(--coral-dark);
+  text-transform: uppercase;
+}
+
 @media (max-width: 760px) {
   .login-gate,
   .inventory-owner-setup {
@@ -3282,6 +3428,20 @@ footer.site-footer .foot-copy a {
   }
 
   .inventory-add-form {
+    grid-template-columns: 1fr;
+  }
+
+  .block-editor-meta,
+  .block-editor-workbench {
+    grid-template-columns: 1fr;
+  }
+
+  .block-editor-fields {
+    border-right: 0;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .block-editor-row {
     grid-template-columns: 1fr;
   }
 

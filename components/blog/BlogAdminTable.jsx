@@ -4,7 +4,7 @@ import Link from "next/link";
 import RequireLoginGate from "@/components/auth/RequireLoginGate";
 import { PixelButton, SpriteIcon } from "@/components/claude";
 
-export default function BlogAdminTable({ posts }) {
+export default function BlogAdminTable({ posts, source = "local", warnings = [] }) {
   return (
     <RequireLoginGate
       title="Login ke System"
@@ -15,6 +15,7 @@ export default function BlogAdminTable({ posts }) {
           <div>
             <span className="pixel-label">// CMS CONTROL</span>
             <h2>Post Registry</h2>
+            <p className="blog-admin-source">Source: {source}{warnings.length ? ` / ${warnings.slice(0, 1).join(" ")}` : ""}</p>
           </div>
           <PixelButton as="a" href="/blog/admin/new" className="blog-new-button">
             <SpriteIcon id="icon-editor-blocks" size={15} />

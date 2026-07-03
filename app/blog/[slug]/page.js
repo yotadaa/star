@@ -3,15 +3,13 @@ import { notFound } from "next/navigation";
 import BlogPostRenderer from "@/components/blog/BlogPostRenderer";
 import PageHeader from "@/components/PageHeader";
 import { PixelButton, SpriteIcon } from "@/components/claude";
-import { blogPosts } from "@/lib/data";
+import { getBlogPostBySlug } from "@/lib/backend/featureStore";
 
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const post = blogPosts.find((item) => item.slug === slug);
+  const { post } = await getBlogPostBySlug(slug);
   return {
     title: post ? `${post.title} - Blog` : "Blog",
     description: post?.excerpt,
@@ -20,7 +18,7 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
-  const post = blogPosts.find((item) => item.slug === slug);
+  const { post, source } = await getBlogPostBySlug(slug);
   if (!post) notFound();
 
   return (
@@ -33,12 +31,13 @@ export default async function BlogPostPage({ params }) {
         <span><SpriteIcon id="icon-blog-page" size={15} /> {post.status}</span>
         <span>{post.publishedAt}</span>
         <span>{post.readTime}</span>
+        <span><SpriteIcon id={source === "supabase" ? "icon-database-online" : "icon-database-offline"} size={15} /> {source}</span>
       </div>
 
       <BlogPostRenderer blocks={post.blocks} />
 
       <div className="blog-post-actions">
-        <PixelButton as="a" href={post.sourceHref} className="blog-source-link">
+        <PixelButton as="a" href={post.sourceHref || "/blog"} className="blog-source-link">
           <SpriteIcon id="icon-portal-ring" size={15} />
           Buka sumber
         </PixelButton>

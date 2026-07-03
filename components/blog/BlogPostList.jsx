@@ -5,9 +5,9 @@ import { PixelButton } from "@/components/claude";
 import BlogPostCard from "./BlogPostCard";
 
 export default function BlogPostList({ posts }) {
-  const tags = useMemo(() => ["Semua", ...Array.from(new Set(posts.flatMap((post) => post.tags)))], [posts]);
+  const tags = useMemo(() => ["Semua", ...Array.from(new Set(posts.flatMap((post) => post.tags || [])))], [posts]);
   const [activeTag, setActiveTag] = useState("Semua");
-  const visiblePosts = activeTag === "Semua" ? posts : posts.filter((post) => post.tags.includes(activeTag));
+  const visiblePosts = activeTag === "Semua" ? posts : posts.filter((post) => (post.tags || []).includes(activeTag));
 
   return (
     <section className="blog-list-section" aria-label="Lore entries">
