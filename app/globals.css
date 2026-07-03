@@ -316,6 +316,23 @@ a.hud-chip:focus-visible {
   color: var(--sky-6);
 }
 .island-toggle:hover { background: var(--aurora-deep); color: var(--cream); }
+.island-player-toggle { position: relative; color: var(--gold); }
+.island-level-badge {
+  position: absolute;
+  top: -7px;
+  right: -8px;
+  min-width: 24px;
+  padding: 1px 4px;
+  border: 1px solid var(--ink);
+  border-radius: 5px;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--font-pixel), monospace;
+  font-size: 7.5px;
+  line-height: 1.4;
+  letter-spacing: 0;
+  box-shadow: 2px 2px 0 var(--ink);
+}
 .island-logo:focus-visible,
 .island-link:focus-visible,
 .island-toggle:focus-visible {
@@ -849,6 +866,316 @@ footer.site-footer .foot-copy a { color: var(--aurora); text-decoration: none; }
 .cmdk-item .ic { color: var(--aurora); display: flex; }
 .cmdk-empty { padding: 24px; text-align: center; color: var(--ink-soft); font-size: 0.9rem; }
 
+/* ===== PlayerStatusPopup: Inventory / Achievement / Mission ===== */
+.player-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 330;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: color-mix(in srgb, var(--ink) 72%, transparent);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  animation: popup-overlay-in 180ms ease both;
+}
+.player-popup {
+  width: min(980px, 100%);
+  max-height: min(780px, calc(100dvh - 56px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--cream) 92%, var(--aurora)), var(--parchment));
+  color: var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+  outline: none;
+  animation: popup-card-in 220ms var(--ease-pixel) both;
+}
+.player-popup:focus-visible { outline: 2px dashed var(--gold); outline-offset: 4px; }
+.player-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border-bottom: 2px solid var(--ink);
+  background: color-mix(in srgb, var(--pine-deep) 88%, var(--cream));
+}
+.player-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.player-tab.pixel-button {
+  min-height: 34px;
+  padding: 8px 10px;
+  font-size: 9px;
+}
+.player-close.pixel-button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: var(--coral);
+}
+.player-popup-summary {
+  padding: 18px 20px 16px;
+  border-bottom: 2px solid color-mix(in srgb, var(--ink) 18%, transparent);
+}
+.player-popup-summary h2 {
+  margin-bottom: 12px;
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
+}
+.player-hud {
+  justify-content: flex-start;
+  margin-bottom: 14px;
+}
+.player-popup-body {
+  min-height: 0;
+  overflow: auto;
+  padding: 18px 20px 22px;
+}
+.segmented-progress {
+  display: grid;
+  gap: 8px;
+}
+.segmented-track {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(12px, 1fr));
+  gap: 5px;
+  max-width: 420px;
+}
+.segment {
+  display: block;
+  height: 11px;
+  border: 1px solid color-mix(in srgb, var(--ink) 26%, transparent);
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.segment.filled {
+  background: var(--gold);
+  border-color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.segmented-label {
+  font-family: var(--font-pixel), monospace;
+  font-size: 10px;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.player-card,
+.inventory-detail,
+.player-empty {
+  position: relative;
+  border: 2px solid var(--ink);
+  background: var(--cream);
+  color: var(--ink);
+  border-radius: 8px;
+  box-shadow: 5px 5px 0 var(--ink);
+}
+.player-card { padding: 16px; }
+.player-card h3,
+.inventory-detail h3 {
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+.player-card p,
+.inventory-detail p {
+  margin: 8px 0 12px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  font-size: .9rem;
+}
+.player-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.player-rarity.rarity-tag {
+  position: static;
+  display: inline-block;
+}
+.player-points {
+  flex-shrink: 0;
+  font-family: var(--font-pixel), monospace;
+  font-size: 10px;
+  letter-spacing: 0;
+  color: var(--coral-dark);
+  text-transform: uppercase;
+}
+.player-meta {
+  display: inline-block;
+  font-family: var(--font-pixel), monospace;
+  font-size: 9px;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+.achievement-body {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.achievement-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  color: var(--gold);
+  border: 2px solid var(--ink);
+  background: var(--parchment);
+}
+.achievement-card.is-locked {
+  opacity: .66;
+  filter: grayscale(.65);
+}
+.mission-card .segmented-progress { margin: 14px 0 12px; }
+.mission-card.status-completed { border-color: var(--gold); }
+.inventory-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, .72fr);
+  gap: 18px;
+  align-items: start;
+}
+.inventory-filter {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.inventory-filter-btn.pixel-button {
+  min-height: 32px;
+  padding: 7px 10px;
+  font-size: 8.5px;
+}
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+.inventory-item {
+  min-height: 132px;
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  padding: 12px 10px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  text-align: center;
+  transition: transform 90ms var(--ease-pixel), box-shadow 90ms var(--ease-pixel), background .18s ease;
+}
+.inventory-item:hover,
+.inventory-item:focus-visible,
+.inventory-item.active {
+  background: color-mix(in srgb, var(--gold) 24%, var(--cream));
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.inventory-item:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.inventory-item svg { color: var(--aurora-deep); }
+.inventory-type {
+  font-family: var(--font-pixel), monospace;
+  font-size: 8px;
+  letter-spacing: 0;
+  color: var(--coral-dark);
+  text-transform: uppercase;
+}
+.inventory-name {
+  max-width: 100%;
+  color: var(--ink);
+  font-weight: 800;
+  font-size: .82rem;
+  line-height: 1.25;
+}
+.inventory-detail {
+  padding: 18px;
+  position: sticky;
+  top: 0;
+}
+.inventory-link {
+  display: inline-flex;
+  margin-top: 12px;
+  padding: 8px 10px;
+  border: 2px solid var(--ink);
+  background: var(--gold);
+  color: var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  text-decoration: none;
+  font-family: var(--font-pixel), monospace;
+  font-size: 9px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+.player-empty {
+  grid-column: 1 / -1;
+  padding: 18px;
+  font-weight: 800;
+}
+@keyframes popup-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes popup-card-in {
+  from { opacity: 0; transform: scale(.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 760px) {
+  .player-popup-overlay {
+    align-items: stretch;
+    padding: 78px 14px 18px;
+  }
+  .player-popup {
+    max-height: calc(100dvh - 96px);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  .player-popup-header {
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .player-tabs {
+    flex: 1;
+  }
+  .player-tab.pixel-button {
+    font-size: 8px;
+    padding: 7px 8px;
+  }
+  .player-popup-summary,
+  .player-popup-body {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .player-grid,
+  .inventory-panel {
+    grid-template-columns: 1fr;
+  }
+  .inventory-detail {
+    position: relative;
+  }
+  .inventory-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .inventory-item {
+    min-height: 124px;
+  }
+}
+
 /* ===== inner page shells ===== */
 .page-wrap { max-width: 940px; margin: 0 auto; padding: 112px 32px 96px; }
 @media (max-width: 1023px) { .page-wrap { padding: 92px 20px 72px; } }
@@ -1022,5 +1349,9 @@ footer.site-footer .foot-copy a { color: var(--aurora); text-decoration: none; }
   .reveal { opacity: 1; transform: none; }
   .xp-bar-fill { transition: none; }
   .glimpse-slide.active { animation: none; }
+  .player-popup-overlay,
+  .player-popup {
+    animation: none;
+  }
   .foot-complete { opacity: 1; transform: none; }
 }

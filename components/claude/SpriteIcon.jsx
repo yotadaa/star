@@ -1,17 +1,137 @@
 import React from "react";
 
+const ICON_PATHS = {
+  "icon-star-level": (
+    <path d="M12 3 L14.3 9.2 L21 9.8 L15.8 14 L17.4 20.6 L12 16.9 L6.6 20.6 L8.2 14 L3 9.8 L9.7 9.2 Z" strokeLinejoin="round" />
+  ),
+  "icon-level-badge": (
+    <>
+      <path d="M12 3.5 L19 7.5 V13.2 C19 16.7 16.1 19.2 12 20.8 C7.9 19.2 5 16.7 5 13.2 V7.5 Z" strokeLinejoin="round" />
+      <path d="M9 12.2 L11.1 14.3 L15.4 9.8" strokeLinecap="square" />
+      <path d="M8 7.8 H16" opacity="0.7" />
+    </>
+  ),
+  "icon-player-points": (
+    <>
+      <rect x="5" y="5" width="14" height="14" rx="2" strokeLinejoin="round" />
+      <path d="M9 9 H13.6 C15.1 9 16 9.9 16 11.2 C16 12.6 15.1 13.5 13.6 13.5 H11 V16" strokeLinecap="square" />
+      <path d="M9 9 V16" strokeLinecap="square" />
+    </>
+  ),
+  "icon-flame-streak": (
+    <>
+      <path d="M12 2.5 C12 6 8.5 7 8.5 11 C8.5 13.5 10 14.5 10 14.5 C9 13 9.5 11.5 10.5 10.5 C10.5 13 12.5 13.5 12.5 16 C12.5 17.8 11.2 18.6 11.2 18.6 C14 18.6 17 16.6 17 13 C17 9.5 14 8.5 14 5.5 C14 4 13 3 12 2.5 Z" strokeLinejoin="round" />
+      <circle cx="12" cy="19" r="1.6" />
+    </>
+  ),
+  "icon-pin": (
+    <>
+      <path d="M12 21 C12 21 18 14.6 18 10 C18 6.7 15.3 4 12 4 C8.7 4 6 6.7 6 10 C6 14.6 12 21 12 21 Z" strokeLinejoin="round" />
+      <rect x="10.5" y="8.5" width="3" height="3" />
+    </>
+  ),
+  "icon-lock": (
+    <>
+      <rect x="5.5" y="11" width="13" height="9" />
+      <path d="M8.5 11 V8 C8.5 5.5 10 4 12 4 C14 4 15.5 5.5 15.5 8 V11" />
+      <rect x="11.2" y="14" width="1.6" height="3.4" fill="currentColor" stroke="none" />
+    </>
+  ),
+  "icon-marker-current": (
+    <>
+      <rect x="9" y="9" width="6" height="6" fill="currentColor" />
+      <rect x="4" y="4" width="16" height="16" opacity="0.5" />
+    </>
+  ),
+  "icon-trophy": (
+    <>
+      <path d="M7 4 H17 V9 C17 12 14.8 14 12 14 C9.2 14 7 12 7 9 Z" strokeLinejoin="round" />
+      <path d="M7 5.5 H4.5 C4.5 8 5.5 9.5 7.5 10" />
+      <path d="M17 5.5 H19.5 C19.5 8 18.5 9.5 16.5 10" />
+      <line x1="12" y1="14" x2="12" y2="18" />
+      <line x1="8.5" y1="20" x2="15.5" y2="20" />
+      <line x1="10" y1="18" x2="14" y2="18" />
+    </>
+  ),
+  "icon-clipboard": (
+    <>
+      <rect x="6" y="5" width="12" height="16" />
+      <rect x="9" y="3" width="6" height="3" />
+      <line x1="8.5" y1="11" x2="15.5" y2="11" />
+      <line x1="8.5" y1="14.5" x2="15.5" y2="14.5" />
+    </>
+  ),
+  "icon-chevron-up": <path d="M6 15 L12 9 L18 15" strokeLinecap="square" />,
+  "icon-portal-ring": (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <circle cx="12" cy="12" r="4.5" opacity="0.6" />
+    </>
+  ),
+  "icon-compass": (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M15.5 8.5 L13 13 L8.5 15.5 L11 11 Z" strokeLinejoin="round" fill="currentColor" />
+    </>
+  ),
+  "icon-command": (
+    <path d="M8.5 5.5 A2.5 2.5 0 1 0 11 8 V16 A2.5 2.5 0 1 0 13.5 18.5 V5.5 A2.5 2.5 0 1 0 16 8 H8 A2.5 2.5 0 1 0 8.5 5.5" strokeLinejoin="round" />
+  ),
+  "icon-backpack": (
+    <>
+      <path d="M8 8 V6.8 C8 4.7 9.7 3.5 12 3.5 C14.3 3.5 16 4.7 16 6.8 V8" />
+      <rect x="6" y="7" width="12" height="13" rx="2" />
+      <path d="M8.5 12 H15.5 M9 16 H15" />
+      <path d="M6 10 H4.7 V17 H6 M18 10 H19.3 V17 H18" />
+    </>
+  ),
+  "icon-scroll": (
+    <>
+      <path d="M7 5 H17 V18.5 C17 19.6 16.1 20.5 15 20.5 H7.5 C8.4 20.5 9 19.8 9 18.8 V6.8 C9 5.8 8.2 5 7.2 5 C6.2 5 5.5 5.8 5.5 6.8 C5.5 7.7 6.1 8.3 7 8.3 H9" strokeLinejoin="round" />
+      <path d="M11 9 H15 M11 12.5 H15 M11 16 H14" />
+    </>
+  ),
+  "icon-tool-wrench": (
+    <path d="M14.5 4.5 C16.1 3.9 18 4.2 19.2 5.4 L16.3 8.3 L15.7 10 L17.4 9.4 L20.3 6.5 C21 8.3 20.6 10.4 19.1 11.9 C17.4 13.6 15 13.8 13.1 12.7 L7.1 18.7 C6.4 19.4 5.3 19.4 4.6 18.7 C3.9 18 3.9 16.9 4.6 16.2 L10.6 10.2 C9.6 8.3 9.8 6 11.5 4.5" strokeLinejoin="round" />
+  ),
+  "icon-artifact-vase": (
+    <>
+      <path d="M9 4 H15 L14 8 C16 9.2 17 11.4 17 14 C17 18 15 20.5 12 20.5 C9 20.5 7 18 7 14 C7 11.4 8 9.2 10 8 Z" strokeLinejoin="round" />
+      <path d="M9 4 H15 M8 13 H16 M9 17 H15" />
+    </>
+  ),
+  "icon-key": (
+    <>
+      <circle cx="8" cy="12" r="3.5" />
+      <path d="M11.5 12 H20 M17 12 V15 M14.5 12 V14" />
+      <circle cx="8" cy="12" r="1" fill="currentColor" stroke="none" />
+    </>
+  ),
+  "icon-lock-silhouette": (
+    <>
+      <path d="M7 10 V8 C7 5.2 9 3.5 12 3.5 C15 3.5 17 5.2 17 8 V10 H18.5 V20 H5.5 V10 Z" fill="currentColor" fillOpacity="0.12" strokeLinejoin="round" />
+      <path d="M10 10 V8 C10 6.7 10.8 6 12 6 C13.2 6 14 6.7 14 8 V10" />
+    </>
+  ),
+};
+
 export default function SpriteIcon({ id, className = "", size = 16, title }) {
+  const content = ICON_PATHS[id] ?? ICON_PATHS["icon-star-level"];
+
   return (
     <svg
       className={`sprite-icon ${className}`.trim()}
       width={size}
       height={size}
       viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
       aria-hidden={title ? undefined : "true"}
       role={title ? "img" : undefined}
     >
       {title && <title>{title}</title>}
-      <use href={`/assets/svg/icons-sprite.svg#${id}`} />
+      {content}
     </svg>
   );
 }

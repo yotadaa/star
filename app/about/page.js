@@ -24,7 +24,7 @@ export default function AboutPage() {
       <HudStatusStrip
         className="profile-hud"
         items={[
-          { label: "Class: Fullstack Adventurer", accent: "gold", icon: <SpriteIcon id="icon-star-level" size={14} /> },
+          { label: "Class: Fullstack Adventurer", accent: "gold", icon: <SpriteIcon id="icon-level-badge" size={14} /> },
           { label: "Level 4", accent: "gold", icon: <SpriteIcon id="icon-trophy" size={14} /> },
           { label: profile.location, accent: "aurora", icon: <SpriteIcon id="icon-pin" size={14} /> },
         ]}

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Sunrise, Sun, Sunset, Moon, Command } from "lucide-react";
+import { SpriteIcon } from "@/components/claude";
+import usePlayerProgress from "@/components/player/usePlayerProgress";
 import { navLinks, profile } from "@/lib/data";
 import { useSite } from "./SiteProvider";
 
@@ -15,7 +17,8 @@ const PHASE_META = {
 
 export default function TopNav() {
   const pathname = usePathname();
-  const { phase, cycleTheme, setPaletteOpen } = useSite();
+  const { phase, cycleTheme, setPaletteOpen, setPlayerOpen } = useSite();
+  const progress = usePlayerProgress();
   const { label, Icon } = PHASE_META[phase] || PHASE_META.morning;
 
   return (
@@ -40,6 +43,17 @@ export default function TopNav() {
 
         <button type="button" className="island-toggle" onClick={cycleTheme} aria-label={label} title={label} data-testid="daynight-toggle">
           <Icon size={16} />
+        </button>
+        <button
+          type="button"
+          className="island-toggle island-player-toggle"
+          onClick={() => setPlayerOpen(true)}
+          aria-label={`Buka inventory pemain, level ${progress.level.current.number}`}
+          title="Inventory, Achievement, Mission"
+          data-testid="open-player-status"
+        >
+          <SpriteIcon id="icon-backpack" size={16} />
+          <span className="island-level-badge">Lv.{progress.level.current.number}</span>
         </button>
         <button type="button" className="island-toggle" onClick={() => setPaletteOpen(true)} aria-label="Buka command palette" data-testid="open-palette">
           <Command size={16} />

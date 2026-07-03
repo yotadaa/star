@@ -322,7 +322,7 @@ Gunakan tabel ini untuk mencatat setiap konfirmasi/penyimpangan dari spesifikasi
 
 | Tanggal | Item | Pertanyaan/Isu | Keputusan | Sumber otorisasi |
 |---|---|---|---|---|
-| — | — | — | — | — |
+| 2026-07-03 | PlayerStatusPopup PP/rarity/threshold | `plans/player-status-popup-system.md` menandai skala poin, threshold level, dan mapping item sebagai asumsi yang perlu konfirmasi. | Implement memakai nilai plan sebagai arahan eksplisit, tetapi semua progress mission tetap dihitung dari `lib/data.js` dan ikon emoji diganti sprite monoline sesuai `PRODUCT.md`. | Permintaan user: "implement all the plan in plans/" |
 
 ---
 
