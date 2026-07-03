@@ -7,6 +7,8 @@
 
 ## Waiting On
 
+- [ ] **Apply Supabase round-robin backend schema** - backend code/schema/scripts are ready, but `npm run supabase:setup` needs the correct database password/connection string for all three Supabase projects. See `plans/supabase-round-robin-backend.md`.
+
 ## Someday
 
 ## Done

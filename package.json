@@ -6,10 +6,14 @@
     "dev": "next dev -p 3123 -H 0.0.0.0",
     "start": "next dev -p 3123 -H 0.0.0.0",
     "build": "next build",
-    "serve": "next start -p 3123 -H 0.0.0.0"
+    "serve": "next start -p 3123 -H 0.0.0.0",
+    "supabase:sync-env": "node scripts/sync-supabase-env-from-docs.mjs",
+    "supabase:setup": "node scripts/setup-supabase-shards.mjs"
   },
   "dependencies": {
     "@react-three/fiber": "9.6.1",
+    "@supabase/ssr": "^0.12.0",
+    "@supabase/supabase-js": "^2.109.0",
     "cmdk": "1.1.1",
     "lucide-react": "0.516.0",
     "next": "15.5.19",
