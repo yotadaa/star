@@ -2,6 +2,7 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import { PixelButton, RarityTag } from "@/components/claude";
 
 function getOffset(index, active, total) {
   let offset = index - active;
@@ -69,7 +70,7 @@ export default function HomeGlimpseSlider({ items }) {
                 <img src={item.image} alt={item.alt} loading={isActive ? "eager" : "lazy"} decoding="async" />
               </div>
               <div className="glimpse-copy">
-                <span className="pixel-label">{item.eyebrow}</span>
+                <RarityTag rarity="rare" label={item.eyebrow} className="glimpse-rarity" />
                 <h3>{item.title}</h3>
                 <p>{item.caption}</p>
               </div>
@@ -79,9 +80,9 @@ export default function HomeGlimpseSlider({ items }) {
       </div>
 
       <div className="glimpse-controls" aria-label="Project glimpse controls">
-        <button type="button" className="glimpse-arrow" onClick={goPrev} aria-label="Previous glimpse">
+        <PixelButton className="glimpse-arrow" onClick={goPrev} aria-label="Previous glimpse">
           <ChevronLeft size={18} aria-hidden="true" />
-        </button>
+        </PixelButton>
         <div className="glimpse-dots">
           {items.map((item, index) => (
             <button
@@ -94,9 +95,9 @@ export default function HomeGlimpseSlider({ items }) {
             />
           ))}
         </div>
-        <button type="button" className="glimpse-arrow" onClick={goNext} aria-label="Next glimpse">
+        <PixelButton className="glimpse-arrow" onClick={goNext} aria-label="Next glimpse">
           <ChevronRight size={18} aria-hidden="true" />
-        </button>
+        </PixelButton>
       </div>
     </div>
   );

@@ -284,7 +284,8 @@ a.hud-chip:focus-visible {
 }
 .island-logo {
   display: flex; align-items: center; gap: 8px; flex-shrink: 0;
-  font-family: var(--font-pixel), monospace; font-size: 12px;
+  font-family: var(--font-pixel), monospace; font-size: 11px;
+  letter-spacing: 0;
   color: var(--aurora); cursor: pointer; user-select: none;
   background: none; border: none; padding: 6px 8px; border-radius: 999px;
 }
@@ -295,9 +296,11 @@ a.hud-chip:focus-visible {
 }
 @keyframes pulse-dot { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.8); } }
 .island-link {
-  text-decoration: none; font-size: 12px; color: var(--parchment);
+  text-decoration: none; font-size: 10.5px; color: var(--parchment);
+  font-family: var(--font-pixel), monospace;
+  letter-spacing: 0;
   padding: 8px 12px; border-radius: 999px; white-space: nowrap;
-  font-weight: 700; transition: background .25s ease, color .25s ease;
+  font-weight: 400; transition: background .25s ease, color .25s ease;
 }
 .island-link:hover, .island-link:focus-visible { background: var(--aurora-deep); color: var(--cream); }
 .island-link.active { background: var(--gold); color: var(--ink); }
@@ -313,6 +316,12 @@ a.hud-chip:focus-visible {
   color: var(--sky-6);
 }
 .island-toggle:hover { background: var(--aurora-deep); color: var(--cream); }
+.island-logo:focus-visible,
+.island-link:focus-visible,
+.island-toggle:focus-visible {
+  outline: 2px dashed var(--gold);
+  outline-offset: 2px;
+}
 
 /* ================= HERO ================= */
 .hero {
@@ -475,11 +484,28 @@ a.hud-chip:focus-visible {
 
 /* ---- home glimpse previews ---- */
 .glimpse-band {
+  position: relative;
   background:
-    linear-gradient(180deg, rgba(34,57,42,0.98), rgba(22,36,31,0.96)),
-    radial-gradient(circle at 20% 12%, rgba(69,184,164,0.22), transparent 34%);
+    linear-gradient(180deg, var(--pine-deep) 0%, var(--ink) 76%, var(--ink) 100%);
   color: var(--cream);
   overflow-x: clip;
+  isolation: isolate;
+}
+.glimpse-band::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -96px;
+  height: 120px;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(180deg, transparent 0%, var(--pine-deep) 78%, var(--pine-deep) 100%);
+}
+.glimpse-band .content { position: relative; z-index: 1; }
+.glimpse-band .section-head .pixel-label {
+  font-family: var(--font-pixel), monospace;
+  color: var(--coral);
 }
 .glimpse-band .section-head h2 { color: var(--cream); }
 .glimpse-band .section-head p { color: rgba(245, 236, 216, 0.76); }
@@ -506,31 +532,37 @@ a.hud-chip:focus-visible {
   transform-origin: center center;
   z-index: var(--slide-z);
   opacity: var(--slide-opacity);
-  background: rgba(245, 236, 216, 0.1);
-  border: 1px solid rgba(255, 248, 226, 0.2);
+  background: color-mix(in srgb, var(--pine-deep) 84%, var(--cream));
+  border: 2px solid var(--ink);
   border-radius: 8px;
-  box-shadow: 0 18px 36px rgba(0,0,0,0.24);
-  backdrop-filter: blur(6px) saturate(112%);
-  -webkit-backdrop-filter: blur(6px) saturate(112%);
+  box-shadow: 6px 6px 0 var(--ink);
   overflow: hidden;
   pointer-events: none;
   transition:
     transform 820ms cubic-bezier(.2,.8,.2,1),
     opacity 640ms ease,
     filter 640ms ease,
-    box-shadow 640ms ease;
-  filter: saturate(.75) brightness(.72);
+    border-color 220ms ease,
+    box-shadow 220ms var(--ease-pixel);
+  filter: saturate(.42) brightness(.58);
 }
 .glimpse-slide.active {
   pointer-events: auto;
   filter: saturate(1) brightness(1);
-  box-shadow: 0 28px 70px rgba(0,0,0,0.38), 0 0 0 2px rgba(236,182,63,0.48);
+  border-color: var(--gold);
+  box-shadow: 6px 6px 0 var(--ink);
+  animation: glimpse-unlock 380ms var(--ease-pixel) both;
+}
+@keyframes glimpse-unlock {
+  0% { border-color: var(--gold); box-shadow: 3px 3px 0 var(--gold), 6px 6px 0 var(--ink); }
+  65% { border-color: var(--gold); box-shadow: 6px 6px 0 var(--gold), 10px 10px 0 var(--ink); }
+  100% { border-color: var(--gold); box-shadow: 6px 6px 0 var(--ink); }
 }
 .glimpse-frame {
   position: relative;
   aspect-ratio: 16 / 9;
-  background: rgba(0,0,0,0.28);
-  border-bottom: 1px solid rgba(255, 248, 226, 0.14);
+  background: var(--ink);
+  border-bottom: 2px solid var(--ink);
   overflow: hidden;
 }
 .glimpse-frame img {
@@ -548,23 +580,20 @@ a.hud-chip:focus-visible {
 }
 .glimpse-copy {
   padding: 16px 16px 18px;
-  background: linear-gradient(180deg, rgba(245, 236, 216, 0.08), rgba(22, 36, 31, 0.34));
-  border-top: 1px solid rgba(255, 248, 226, 0.16);
-  backdrop-filter: blur(4px) saturate(108%);
-  -webkit-backdrop-filter: blur(4px) saturate(108%);
+  background: linear-gradient(180deg, var(--parchment), var(--cream));
+  border-top: 0;
 }
-.glimpse-copy .pixel-label {
-  display: block;
-  color: var(--gold);
-  font-size: 9.5px;
-  margin-bottom: 8px;
+.glimpse-rarity.rarity-tag {
+  position: static;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 .glimpse-copy h3 {
   font-size: 1.05rem;
-  color: var(--cream);
+  color: var(--ink);
 }
 .glimpse-copy p {
-  color: rgba(245, 236, 216, 0.72);
+  color: var(--ink-soft);
   font-size: .88rem;
   line-height: 1.5;
   margin: 8px 0 0;
@@ -576,27 +605,27 @@ a.hud-chip:focus-visible {
   gap: 14px;
   margin-top: 6px;
 }
-.glimpse-arrow,
 .glimpse-dot {
-  border: 1px solid rgba(255, 248, 226, 0.22);
-  background: rgba(245, 236, 216, 0.08);
+  border: 2px solid color-mix(in srgb, var(--cream) 70%, var(--ink));
+  background: transparent;
   color: var(--cream);
   cursor: pointer;
 }
 .glimpse-arrow {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  transition: background .2s ease, color .2s ease, transform .2s var(--ease-pixel);
+  border-radius: 8px;
+  background: var(--parchment);
+  color: var(--ink);
 }
 .glimpse-arrow:hover,
 .glimpse-arrow:focus-visible {
   background: var(--gold);
   color: var(--ink);
-  transform: translateY(-1px);
 }
 .glimpse-dots {
   display: flex;
@@ -604,16 +633,18 @@ a.hud-chip:focus-visible {
   gap: 8px;
 }
 .glimpse-dot {
-  width: 9px;
-  height: 9px;
+  width: 11px;
+  height: 11px;
   padding: 0;
-  border-radius: 999px;
-  transition: width .28s ease, background .28s ease, border-color .28s ease;
+  border-radius: 2px;
+  transition: transform .18s var(--ease-pixel), background .18s ease, border-color .18s ease;
 }
 .glimpse-dot.active {
-  width: 28px;
+  width: 14px;
+  height: 14px;
   background: var(--gold);
   border-color: var(--gold);
+  transform: translateY(-1px);
 }
 
 /* ---- journey timeline ---- */
@@ -794,8 +825,8 @@ footer.site-footer .foot-copy a { color: var(--aurora); text-decoration: none; }
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .glimpse-slide { background: rgba(32, 52, 40, 0.92); }
-  .glimpse-copy { background: rgba(22, 36, 31, 0.78); }
+  .glimpse-slide { background: var(--pine-deep); }
+  .glimpse-copy { background: var(--cream); }
 }
 
 /* ===================================================================
@@ -990,5 +1021,6 @@ footer.site-footer .foot-copy a { color: var(--aurora); text-decoration: none; }
   }
   .reveal { opacity: 1; transform: none; }
   .xp-bar-fill { transition: none; }
+  .glimpse-slide.active { animation: none; }
   .foot-complete { opacity: 1; transform: none; }
 }
