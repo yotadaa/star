@@ -196,7 +196,7 @@ function useSmoothTheme(themeName) {
   return live;
 }
 
-function Layer({ pointer, depth, z, baseX = 0, baseY = 0, children }) {
+function Layer({ pointer, depth, z, baseX = 0, baseY = 0, verticalScale = 1, children }) {
   const ref = useRef(null);
   const smooth = useRef({ x: 0, y: 0 });
 
@@ -206,7 +206,7 @@ function Layer({ pointer, depth, z, baseX = 0, baseY = 0, children }) {
     smooth.current.x += (pointer.current.x - smooth.current.x) * 0.06;
     smooth.current.y += (pointer.current.y - smooth.current.y) * 0.06;
     group.position.x = baseX + smooth.current.x * depth * PARALLAX_X;
-    group.position.y = baseY - smooth.current.y * depth * PARALLAX_Y;
+    group.position.y = baseY - smooth.current.y * depth * PARALLAX_Y * verticalScale;
     group.position.z = z;
   });
 
@@ -422,16 +422,28 @@ function SunMoonRig({ themeName, pointer }) {
   );
 }
 
-function LandscapeLayer({ asset, pointer, depth, z, widthFactor, baseYFactor, opacity, tint }) {
+function LandscapeLayer({
+  asset,
+  pointer,
+  depth,
+  z,
+  widthFactor,
+  baseYFactor,
+  opacity,
+  tint,
+  mobile = false,
+  mobileWidthFactor,
+  mobileBaseYFactor,
+}) {
   const texture = useLoader(THREE.TextureLoader, asset);
   const vp = useViewportAt(z);
   useMemo(() => srgb(texture), [texture]);
 
-  const width = vp.width * widthFactor;
-  const y = -vp.height * 0.5 + vp.height * baseYFactor;
+  const width = vp.width * (mobile ? mobileWidthFactor || widthFactor : widthFactor);
+  const y = -vp.height * 0.5 + vp.height * (mobile ? mobileBaseYFactor || baseYFactor : baseYFactor);
 
   return (
-    <Layer pointer={pointer} depth={depth} z={z} baseY={y}>
+    <Layer pointer={pointer} depth={depth} z={z} baseY={y} verticalScale={mobile ? 0.52 : 1}>
       <ImagePlane texture={texture} width={width} opacity={opacity} tint={tint} alphaTest={0.025} />
     </Layer>
   );
@@ -450,16 +462,16 @@ function ColorWash({ themeName }) {
   );
 }
 
-function SceneContent({ themeName, pointer }) {
+function SceneContent({ themeName, pointer, mobile }) {
   const theme = THEMES[themeName] || THEMES.morning;
   return (
     <>
       <Sky themeName={themeName} />
       <SunMoonRig themeName={themeName} pointer={pointer} />
       <CloudLayer pointer={pointer} themeName={themeName} />
-      <LandscapeLayer asset={ASSETS.mountains} pointer={pointer} depth={DEPTH.mountains} z={-8} widthFactor={2.02} baseYFactor={0.3} opacity={themeName === "night" ? 0.72 : 0.94} tint={themeName === "night" ? "#506277" : "#d8e5df"} />
-      <LandscapeLayer asset={ASSETS.hills} pointer={pointer} depth={DEPTH.hills} z={-4.2} widthFactor={1.48} baseYFactor={0.13} opacity={themeName === "night" ? 0.48 : 0.92} tint={theme.landscape} />
-      <LandscapeLayer asset={ASSETS.meadow} pointer={pointer} depth={DEPTH.meadow} z={-1.2} widthFactor={1.34} baseYFactor={0.058} opacity={themeName === "night" ? 0.54 : 1} tint={theme.landscape} />
+      <LandscapeLayer asset={ASSETS.mountains} pointer={pointer} depth={DEPTH.mountains} z={-8} widthFactor={2.02} baseYFactor={0.3} mobile={mobile} mobileWidthFactor={2.34} mobileBaseYFactor={0.34} opacity={themeName === "night" ? 0.72 : 0.94} tint={themeName === "night" ? "#506277" : "#d8e5df"} />
+      <LandscapeLayer asset={ASSETS.hills} pointer={pointer} depth={DEPTH.hills} z={-4.2} widthFactor={1.48} baseYFactor={0.13} mobile={mobile} mobileWidthFactor={1.82} mobileBaseYFactor={0.22} opacity={themeName === "night" ? 0.48 : 0.92} tint={theme.landscape} />
+      <LandscapeLayer asset={ASSETS.meadow} pointer={pointer} depth={DEPTH.meadow} z={-1.2} widthFactor={1.34} baseYFactor={0.058} mobile={mobile} mobileWidthFactor={1.68} mobileBaseYFactor={0.15} opacity={themeName === "night" ? 0.54 : 1} tint={theme.landscape} />
       <ColorWash themeName={themeName} />
     </>
   );
@@ -485,7 +497,7 @@ export default function ParallaxScene({ phase = "morning", night = false }) {
       if (!mobile) return;
       const h = window.innerHeight || 1;
       const y = Math.min(1, window.scrollY / h);
-      pointer.current = { x: 0, y: y * 2 - 0.2 };
+      pointer.current = { x: 0, y: y * 0.72 - 0.08 };
     };
     const onMove = (event) => {
       if (mobile) return;
@@ -514,7 +526,7 @@ export default function ParallaxScene({ phase = "morning", night = false }) {
       style={{ width: "100%", height: "100%" }}
       data-testid="parallax-canvas"
     >
-      <SceneContent themeName={themeName} pointer={pointer} />
+      <SceneContent themeName={themeName} pointer={pointer} mobile={mobile} />
     </Canvas>
   );
 }
