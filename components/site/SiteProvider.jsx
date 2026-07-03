@@ -19,6 +19,7 @@ export default function SiteProvider({ children }) {
   const [phase, setPhase] = useState("morning");
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [playerOpen, setPlayerOpen] = useState(false);
+  const [playerTab, setPlayerTab] = useState("inventory");
   const [chatOpen, setChatOpen] = useState(false);
   const night = phase === "night";
 
@@ -36,6 +37,10 @@ export default function SiteProvider({ children }) {
   }, []);
 
   const toggleNight = cycleTheme;
+  const openPlayerStatus = useCallback((tab = "inventory") => {
+    setPlayerTab(tab);
+    setPlayerOpen(true);
+  }, []);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -49,13 +54,13 @@ export default function SiteProvider({ children }) {
   }, []);
 
   return (
-    <SiteCtx.Provider value={{ phase, night, cycleTheme, toggleNight, paletteOpen, setPaletteOpen, playerOpen, setPlayerOpen, chatOpen, setChatOpen }}>
+    <SiteCtx.Provider value={{ phase, night, cycleTheme, toggleNight, paletteOpen, setPaletteOpen, playerOpen, setPlayerOpen, playerTab, openPlayerStatus, chatOpen, setChatOpen }}>
       <ToastProvider>
         <XpScrollBar />
         <UtilityBar />
         <TopNav />
         {paletteOpen && <CommandPalette />}
-        {playerOpen && <PlayerStatusPopup open={playerOpen} onClose={() => setPlayerOpen(false)} />}
+        {playerOpen && <PlayerStatusPopup open={playerOpen} initialTab={playerTab} onClose={() => setPlayerOpen(false)} />}
         {chatOpen && <WorldChatPanel open={chatOpen} onClose={() => setChatOpen(false)} />}
         <main className="site-main" id="main">
           {children}

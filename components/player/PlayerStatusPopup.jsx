@@ -14,8 +14,8 @@ const tabs = [
   { key: "missions", label: "Mission" },
 ];
 
-export default function PlayerStatusPopup({ open, onClose }) {
-  const [tab, setTab] = useState("inventory");
+export default function PlayerStatusPopup({ open, onClose, initialTab = "inventory" }) {
+  const [tab, setTab] = useState(initialTab);
   const dialogRef = useRef(null);
   const previousFocusRef = useRef(null);
   const progress = usePlayerProgress();
@@ -27,6 +27,10 @@ export default function PlayerStatusPopup({ open, onClose }) {
     const id = window.requestAnimationFrame(() => dialogRef.current?.focus());
     return () => window.cancelAnimationFrame(id);
   }, [open]);
+
+  useEffect(() => {
+    if (open && tabs.some((item) => item.key === initialTab)) setTab(initialTab);
+  }, [initialTab, open]);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -117,7 +121,7 @@ export default function PlayerStatusPopup({ open, onClose }) {
         <div className="player-popup-summary">
           <h2 id="player-popup-title">Player Status</h2>
           <HudStatusStrip
-            className="player-hud"
+            className="player-popup-hud-status"
             items={[
               {
                 icon: <SpriteIcon id="icon-level-badge" size={14} />,

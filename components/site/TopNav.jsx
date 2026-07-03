@@ -17,7 +17,7 @@ const PHASE_META = {
 
 export default function TopNav() {
   const pathname = usePathname();
-  const { phase, cycleTheme, setPaletteOpen, setPlayerOpen } = useSite();
+  const { phase, cycleTheme, setPaletteOpen, openPlayerStatus } = useSite();
   const progress = usePlayerProgress();
   const { label, Icon } = PHASE_META[phase] || PHASE_META.morning;
   const isActive = (href) => (href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`));
@@ -48,7 +48,7 @@ export default function TopNav() {
         <button
           type="button"
           className="island-toggle island-player-toggle"
-          onClick={() => setPlayerOpen(true)}
+          onClick={() => openPlayerStatus("inventory")}
           aria-label={`Buka inventory pemain, level ${progress.level.current.number}`}
           title="Inventory, Achievement, Mission"
           data-testid="open-player-status"

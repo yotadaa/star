@@ -248,6 +248,34 @@ const ICON_PATHS = {
       <path d="M9 4 H15 M8 13 H16 M9 17 H15" />
     </>
   ),
+  "icon-artifact": (
+    <>
+      <path d="M8 4 H16 L15 8 C16.5 9.5 17 11.3 17 13 C17 16.9 14.8 20 12 20 C9.2 20 7 16.9 7 13 C7 11.3 7.5 9.5 9 8 Z" strokeLinejoin="round" />
+      <path d="M8.3 4 H15.7" strokeLinecap="square" />
+    </>
+  ),
+  "icon-medal-outline": (
+    <>
+      <path d="M9 2 L7 9 L10.5 10.5 L12 5.5 Z" strokeLinejoin="round" />
+      <path d="M15 2 L17 9 L13.5 10.5 L12 5.5 Z" strokeLinejoin="round" />
+      <circle cx="12" cy="14.5" r="6.2" />
+    </>
+  ),
+  "icon-target": (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <circle cx="12" cy="12" r="5" opacity="0.75" />
+      <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none" />
+    </>
+  ),
+  "icon-pixel-face": (
+    <>
+      <rect x="6" y="4" width="12" height="16" />
+      <rect x="9" y="9" width="2" height="2" fill="currentColor" stroke="none" />
+      <rect x="13" y="9" width="2" height="2" fill="currentColor" stroke="none" />
+      <rect x="9" y="14" width="6" height="2" fill="currentColor" stroke="none" />
+    </>
+  ),
   "icon-key": (
     <>
       <circle cx="8" cy="12" r="3.5" />
