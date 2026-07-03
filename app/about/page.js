@@ -1,3 +1,5 @@
+import { auth } from "@/auth";
+import EditablePageCaption from "@/components/EditablePageCaption";
 import PageHeader from "@/components/PageHeader";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import SkillsGrid from "@/components/SkillsGrid";
@@ -11,25 +13,37 @@ export const metadata = { title: "About - Mukhtada Billah NST" };
 export const dynamic = "force-dynamic";
 
 export default async function AboutPage() {
-  const { entries, source, warnings } = await listAboutEntries();
+  const [session, { entries, source, warnings }] = await Promise.all([auth(), listAboutEntries()]);
   const introEntry = entries.find((entry) => entry.entryKey === "intro");
+  const fallbackCaption = `${profile.affiliation} · ${profile.location}`;
+  const fallbackIntro =
+    "Aku Mukhtada Billah NST - mahasiswa Sistem Informasi Universitas Jambi yang senang mengubah riset jadi produk yang benar-benar jalan. Fokusku di fullstack web, AI tooling, dan data science. Aku suka mengajar, menulis riset, dan membangun hal-hal kecil yang berguna untuk komunitas.";
+  const caption = entries.find((entry) => entry.entryKey === "about-caption")?.body || fallbackCaption;
+  const intro = introEntry?.body || fallbackIntro;
+  const canManage = session?.user?.role === "owner";
 
   return (
     <div className="page-wrap">
       <PageHeader label="// Save File · Profile" title="Tentang Mukhtada">
-        {profile.affiliation} · {profile.location}
+        <EditablePageCaption
+          entryKey="about-caption"
+          title="About caption"
+          initialText={caption}
+          canManage={canManage}
+        />
       </PageHeader>
 
-      <p className="intro-prose">
-        {introEntry?.body ?? (
-          <>
-            Aku <strong>Mukhtada Billah NST</strong> - mahasiswa <strong>Sistem Informasi Universitas Jambi</strong> yang
-            senang mengubah riset jadi produk yang benar-benar jalan. Fokusku di{" "}
-            <strong>fullstack web</strong>, <strong>AI tooling</strong>, dan <strong>data science</strong>. Aku suka
-            mengajar, menulis riset, dan membangun hal-hal kecil yang berguna untuk komunitas.
-          </>
-        )}
-      </p>
+      <EditablePageCaption
+        entryKey="intro"
+        title="Tentang Mukhtada"
+        initialText={intro}
+        canManage={canManage}
+        className="intro-editable"
+        textClassName="intro-prose"
+        payload={{ ...introEntry?.payload, type: "profile-intro" }}
+        editLabel="Edit paragraf profil"
+        textareaLabel="Paragraf profil"
+      />
       <HudStatusStrip
         className="profile-hud"
         items={[

@@ -2,6 +2,7 @@
 
 ## Active
 
+- [ ] **Implement the Player HUD plan** - after editable route captions are committed, execute every checklist item in `plans/player-hud-implementation-plan/` through the `AGENTS.md` discover, plan, implement, validate, and log workflow.
 - [ ] **Improve Home performance** - real-image/R3F hero is currently laggy and heavy.
 - [ ] **Commit every completed work unit** - after a coherent implementation + validation pass, create a git commit before starting the next unrelated unit. See `plans/commit-validation-workflow.md`.
 - [ ] **Replace native dropdowns with custom controls** - later, scan all built-in HTML dropdowns/selects and replace them with design-system custom dropdowns.
@@ -12,6 +13,7 @@
 
 ## Done
 
+- [x] ~~**Add owner-editable captions to About, Projects, Research, and Contact** - reused the Blog inline editor and owner guard, included the second About profile paragraph without losing its payload, persisted route captions across all Supabase shards, and validated desktop/mobile visitor states; evidence: `screenshots/editable-route-captions-2026-07-04/`.~~ (2026-07-04)
 - [x] ~~**Shrink utility chat/login from medium screens** - collapse the top-left Chat/Login bar into the circle menu on tablet/medium view so it does not force the navbar downward; screenshot evidence: `screenshots/utility-medium-2026-07-03/medium.png`, `medium-open.png`, `mobile.png`, `desktop.png`.~~ (2026-07-03)
 - [x] ~~**Compress parallax images** - losslessly compress image assets in `public/assets/parallax/` and `source/` while preserving alpha and scene composition; saved ~1.32MB.~~ (2026-07-03)
 - [x] ~~**Fix mobile parallax layer seams** - reduce mobile scroll parallax drift and add mobile-specific landscape overlap; screenshot evidence: `screenshots/parallax-mobile-2026-07-03/mobile-scrolled.png`, `desktop.png`.~~ (2026-07-03)

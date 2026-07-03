@@ -1,15 +1,29 @@
+import { auth } from "@/auth";
+import EditablePageCaption from "@/components/EditablePageCaption";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import { HudStatusStrip, LockedSlot, SpriteIcon } from "@/components/claude";
+import { listAboutEntries } from "@/lib/backend/featureStore";
 import { publications } from "@/lib/data";
 
 export const metadata = { title: "Research - Mukhtada Billah NST" };
+export const dynamic = "force-dynamic";
 
-export default function ResearchPage() {
+export default async function ResearchPage() {
+  const [session, { entries }] = await Promise.all([auth(), listAboutEntries()]);
+  const fallbackCaption = "Riset yang benar-benar terbit, terindeks, dan tersitasi di Google Scholar.";
+  const caption = entries.find((entry) => entry.entryKey === "research-caption")?.body || fallbackCaption;
+  const canManage = session?.user?.role === "owner";
+
   return (
     <div className="page-wrap">
       <PageHeader label="// Lab Notes & Research" title="Publikasi">
-        Riset yang benar-benar terbit, terindeks, dan tersitasi di Google Scholar.
+        <EditablePageCaption
+          entryKey="research-caption"
+          title="Research caption"
+          initialText={caption}
+          canManage={canManage}
+        />
       </PageHeader>
       <HudStatusStrip
         className="research-hud"

@@ -2413,6 +2413,10 @@ footer.site-footer .foot-copy a {
   color: var(--ink);
 }
 
+.intro-prose.caption-text {
+  margin-bottom: 16px;
+}
+
 /* ===== experience cards ===== */
 .exp-list {
   display: flex;
