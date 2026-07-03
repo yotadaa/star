@@ -43,7 +43,7 @@ export default function Footer() {
         Level complete - seluruh peta sudah dijelajahi.
       </p>
       <p className="foot-copy">
-        © 2026 {profile.name.toUpperCase()} — BUILT WITH COFFEE &amp; PIXELS ·{" "}
+        © 2026 {profile.name.toUpperCase()} - BUILT WITH COFFEE &amp; PIXELS ·{" "}
         <a href="/#hero">↑ KEMBALI KE ATAS</a>
       </p>
     </footer>

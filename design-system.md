@@ -1,11 +1,11 @@
-# Design System Addendum — Gamification Layer
+# Design System Addendum - Gamification Layer
 
 Dokumen ini adalah **tambahan** di atas token yang sudah ditetapkan di
 `components/NUMBER-RATIONALE.md` (skema warna, Fraunces/Silkscreen/Nunito,
---ease-pixel, dsb — tidak diulang di sini, hanya dipatuhi). Isinya adalah
+--ease-pixel, dsb - tidak diulang di sini, hanya dipatuhi). Isinya adalah
 spesifikasi komponen baru untuk mendukung `report.md`.
 
-> Semua nilai warna baru di bawah **harus dikonfirmasi** sebelum dipakai —
+> Semua nilai warna baru di bawah **harus dikonfirmasi** sebelum dipakai -
 > ditandai `[ASUMSI]` jika belum ada di token asli. Jangan menambah hex baru
 > tanpa konfirmasi, sesuai aturan brief.
 
@@ -14,7 +14,7 @@ spesifikasi komponen baru untuk mendukung `report.md`.
 ## 1. Token Tambahan (Rarity & Status)
 
 Dibutuhkan untuk item 2.2 (rarity tag), 3.2 (tier color), 2.6 (medal).
-Skema di bawah **[ASUMSI, MOHON DIKONFIRMASI]** — dipetakan dari palet yang
+Skema di bawah **[ASUMSI, MOHON DIKONFIRMASI]** - dipetakan dari palet yang
 sudah ada agar tidak keluar dari skema 1/2 yang ditetapkan:
 
 | Rarity/Tier | Warna dipakai | Sumber token |
@@ -24,7 +24,7 @@ sudah ada agar tidak keluar dari skema 1/2 yang ditetapkan:
 | COMMON / Bronze medal | `--terracotta` (#c9552f) | sudah ada |
 | Locked / belum tercapai | `--ink` @ 30% opacity | derivasi dari --ink |
 
-Tidak ada hex baru — seluruhnya remap dari token skema 1 yang sudah disetujui.
+Tidak ada hex baru - seluruhnya remap dari token skema 1 yang sudah disetujui.
 Jika proyek final memakai skema 2 (custom, belum didefinisikan di brief),
 mapping ini harus diulang setelah skema 2 final ditentukan.
 
@@ -68,7 +68,7 @@ Struktur:
   (di atas navbar pill yang biasanya z-index 50).
 - Track background: var(--ink) @ 10% opacity.
 - Fill: linear-gradient kiri→kanan `var(--sunset) → var(--gold)`.
-- Transition width: `transform` (bukan `width`) untuk performa —
+- Transition width: `transform` (bukan `width`) untuk performa -
   gunakan `scaleX` dengan `transform-origin: left`.
 - Reduce-motion: jika `prefers-reduced-motion`, hilangkan transition, update
   instan (tetap tampil, hanya animasinya dimatikan).
@@ -87,7 +87,7 @@ Struktur:
 
 - Posisi absolute: `top: 12px; left: 12px` di dalam card yang sudah
   `position: relative` (Experience card, Achievement card).
-- Bentuk: pixel-corner badge — sudut dipotong 3px (clip-path polygon)
+- Bentuk: pixel-corner badge - sudut dipotong 3px (clip-path polygon)
   bukan border-radius biasa, supaya konsisten dengan tone pixel-game.
 - Border: 1.5px solid warna rarity terkait (lihat §1).
 - Font: Silkscreen 10px, letter-spacing 0.5px, uppercase.
@@ -99,7 +99,7 @@ Struktur:
 
 ## 5. Komponen: Interactive Press State (Button/Pill)
 
-**Dipakai di**: Global — semua CTA, filter pill, nav pill (1.4, 3.1)
+**Dipakai di**: Global - semua CTA, filter pill, nav pill (1.4, 3.1)
 
 ```css
 .btn-pixel {
@@ -119,13 +119,13 @@ Struktur:
   `animation: pill-select 150ms var(--ease-pixel);` → keyframe scale
   `1 → 1.08 → 1`.
 - **Kegunaan**: feedback taktil dasar; wajib ada di semua elemen clickable,
-  bukan opsional — ini fondasi "game-feel" paling murah.
+  bukan opsional - ini fondasi "game-feel" paling murah.
 
 ---
 
 ## 6. Komponen: "Kamu di sini" Marker
 
-**Dipakai di**: About — Journey Log (2.3)
+**Dipakai di**: About - Journey Log (2.3)
 
 ```
 Struktur (tambahan pada node terakhir):
@@ -138,7 +138,7 @@ Struktur (tambahan pada node terakhir):
 - `.pulse-ring`: box 20x20px, border 2px solid var(--gold), border-radius 4px
   (kotak sedikit rounded, konsisten arahan "corner agak rounded" di brief),
   `animation: pulse-soft 2.2s ease-in-out infinite`.
-- Keyframe pulse-soft: `opacity 0.6→0→0.6`, `scale 1→1.4→1` — **halus**, bukan
+- Keyframe pulse-soft: `opacity 0.6→0→0.6`, `scale 1→1.4→1` - **halus**, bukan
   berkedip cepat (brief eksplisit minta ini untuk aksesibilitas & tone "warm").
 - Wajib dibungkus reduce-motion check (matikan animasi, tampilkan ring statis).
 - Label: Silkscreen 10px, warna --terracotta, posisi di kanan node.
@@ -163,11 +163,11 @@ Struktur (tambahan pada node terakhir):
 ```
 
 - Trigger: `IntersectionObserver` native (threshold 0.2), one-time per elemen
-  (unobserve setelah trigger — jangan replay tiap scroll naik-turun).
+  (unobserve setelah trigger - jangan replay tiap scroll naik-turun).
 - Border color flash memakai transisi border-color terpisah, durasi 200ms,
   kembali ke `var(--ink)` setelah animasi selesai.
 - **Kegunaan**: menggantikan reveal-on-scroll generik dengan versi yang
-  terasa seperti "item baru terbuka" — dipakai di Experience card, Achievement
+  terasa seperti "item baru terbuka" - dipakai di Experience card, Achievement
   card, Project card.
 
 ---
@@ -188,15 +188,15 @@ Struktur:
 
 - Posisi: `position: fixed; bottom: 24px; right: 24px; z-index: 70`.
 - Style: background var(--ink), text var(--cream), border-radius 8px
-  (rounded, bukan pixel-hard-corner — toast harus terasa "lembut/notifikasi",
+  (rounded, bukan pixel-hard-corner - toast harus terasa "lembut/notifikasi",
   beda kelas dari card konten), padding 12px 16px, font Nunito 13px.
 - Masuk: slide-up + fade 250ms; keluar otomatis setelah 3.5s, slide-down + fade.
-- Maks 1 toast tampil bersamaan (queue, bukan stack menumpuk) — supaya tidak
+- Maks 1 toast tampil bersamaan (queue, bukan stack menumpuk) - supaya tidak
   mengganggu.
 - **Trigger yang direkomendasikan (minimal set, bisa ditambah nanti)**:
   1. Mencapai node terakhir Journey Log → "🏆 Kamu sudah mengikuti seluruh perjalanan!"
   2. Klik "salin email/kontak" (jika ada) → "📋 Disalin ke clipboard"
-- **Kegunaan**: satu-satunya elemen yang benar-benar event-driven — prioritas
+- **Kegunaan**: satu-satunya elemen yang benar-benar event-driven - prioritas
   tinggi karena paling menegaskan "sistem", bukan dekorasi.
 
 ---
@@ -216,7 +216,7 @@ Struktur:
 ```
 
 - `--card-accent` per card = warna dominan card itu sendiri (biru untuk
-  LinkedIn, hijau untuk Scholar, dst) — bukan token baru, ambil dari background
+  LinkedIn, hijau untuk Scholar, dst) - bukan token baru, ambil dari background
   gradient yang sudah dipakai tiap card.
 - Klik → ripple flash: `<span class="ripple">` di-inject di titik klik (offsetX/Y
   dari event), scale 0→4, opacity 0.5→0, durasi 400ms, lalu navigasi ke link
@@ -234,7 +234,7 @@ Struktur:
 Struktur:
 <div class="locked-slot">
   <LockIcon/>
-  <span>Publikasi berikutnya — in progress</span>
+  <span>Publikasi berikutnya - in progress</span>
 </div>
 ```
 
@@ -252,7 +252,7 @@ Struktur:
 Wajib dipatuhi lintas §2–§10, mengikuti FASE 3.3 & FASE 5.3 di brief teknis:
 
 1. Semua animasi loop (pulse ring, sweep reflection, toast) **harus** dimatikan
-   total saat `prefers-reduced-motion: reduce` — bukan diperlambat, tapi
+   total saat `prefers-reduced-motion: reduce` - bukan diperlambat, tapi
    dihentikan (tampilkan state akhir statis).
 2. Semua elemen custom (rarity tag, locked slot, HUD chip) yang murni
    dekoratif diberi `aria-hidden="true"` bila tidak menambah informasi baru;
@@ -284,12 +284,12 @@ Wajib dipatuhi lintas §2–§10, mengikuti FASE 3.3 & FASE 5.3 di brief teknis:
 
 ## Catatan Kepatuhan Brief
 
-- Tidak ada dependency npm baru diperkenalkan di dokumen ini — semua efek
+- Tidak ada dependency npm baru diperkenalkan di dokumen ini - semua efek
   (pulse, unlock, toast, ripple) dapat dibangun dengan Framer Motion / CSS
   murni yang sudah ada di stack yang diizinkan.
 - Semua warna baru bersifat **remap dari token existing**, ditandai
-  `[ASUMSI, MOHON DIKONFIRMASI]` di §1 — belum final sampai dikonfirmasi
+  `[ASUMSI, MOHON DIKONFIRMASI]` di §1 - belum final sampai dikonfirmasi
   pemilik proyek, terutama karena skema warna final proyek disebut akan
   memakai "skema 2" yang belum didefinisikan nilainya di brief asli.
-- Dokumen ini adalah **spesifikasi desain**, bukan hasil implementasi/build —
+- Dokumen ini adalah **spesifikasi desain**, bukan hasil implementasi/build -
   tidak ada klaim "sudah dijalankan/diuji".

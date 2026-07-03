@@ -1,7 +1,7 @@
 import React from "react";
 
 /**
- * RARITY TOKEN MAP — [ASUMSI, MOHON DIKONFIRMASI]
+ * RARITY TOKEN MAP - [ASUMSI, MOHON DIKONFIRMASI]
  * Remap dari token skema 1 yang sudah ada (bukan hex baru).
  * Ganti isi map ini kalau proyek final pindah ke skema 2.
  */
@@ -12,7 +12,7 @@ const RARITY_STYLES = {
 };
 
 /**
- * RarityTag — badge sudut-terpotong (pixel-corner), diposisikan absolute
+ * RarityTag - badge sudut-terpotong (pixel-corner), diposisikan absolute
  * di pojok kiri-atas card (Experience card, Project card).
  * Wrapper card WAJIB `position: relative`.
  *

@@ -1,7 +1,7 @@
 import React from "react";
 
 /**
- * CurrentMarker — dipasang HANYA di node terakhir Journey Log timeline
+ * CurrentMarker - dipasang HANYA di node terakhir Journey Log timeline
  * untuk menandai posisi "sekarang". Node lain di timeline tetap statis
  * (kotak solid biasa), jangan pasang komponen ini di node non-terakhir.
  *

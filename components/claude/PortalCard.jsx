@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 /**
- * PortalCard — kartu channel di halaman Contact (LinkedIn, GitHub, Scholar,
+ * PortalCard - kartu channel di halaman Contact (LinkedIn, GitHub, Scholar,
  * Blog, Instagram). Hover lift + shadow warna sesuai tema card, dan efek
  * ripple singkat dari titik klik sebelum membuka link di tab baru.
  *
@@ -61,15 +61,15 @@ export default function PortalCard({
       <span className="portal-card-cta">{cta}</span>
 
       {ripple && (
-          <span
-            key={ripple.id}
-            className="portal-ripple"
-            style={{
-              left: ripple.x,
-              top: ripple.y,
-            }}
-          />
-        )}
+        <span
+          key={ripple.id}
+          className="portal-ripple"
+          style={{
+            left: ripple.x,
+            top: ripple.y,
+          }}
+        />
+      )}
     </a>
   );
 }

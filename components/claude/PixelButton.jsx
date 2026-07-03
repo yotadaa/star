@@ -3,7 +3,7 @@
 import React from "react";
 
 /**
- * PixelButton — tombol/pill dasar dengan:
+ * PixelButton - tombol/pill dasar dengan:
  *  - press state (turun 2px + shadow mengecil saat :active)
  *  - focus-visible outline dashed (aksesibilitas keyboard)
  *  - opsi `selected` untuk filter pill aktif (micro-bounce saat berubah)

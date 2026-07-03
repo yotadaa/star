@@ -5,7 +5,7 @@ import React, { createContext, useCallback, useContext, useRef, useState } from 
 const ToastContext = createContext(null);
 
 /**
- * ToastProvider — pasang sekali di root layout, membungkus seluruh app:
+ * ToastProvider - pasang sekali di root layout, membungkus seluruh app:
  *   <ToastProvider><App /></ToastProvider>
  *
  * useToast() mengembalikan fungsi showToast(message, { icon }).
@@ -63,7 +63,7 @@ export function ToastProvider({ children }) {
 }
 
 /**
- * useToast — dipakai di komponen manapun di dalam ToastProvider.
+ * useToast - dipakai di komponen manapun di dalam ToastProvider.
  * Contoh:
  *   const { showToast } = useToast();
  *   showToast("Kamu sudah mengikuti seluruh perjalanan!", { icon: <TrophyIcon/> });

@@ -77,6 +77,61 @@ const ICON_PATHS = {
   "icon-command": (
     <path d="M8.5 5.5 A2.5 2.5 0 1 0 11 8 V16 A2.5 2.5 0 1 0 13.5 18.5 V5.5 A2.5 2.5 0 1 0 16 8 H8 A2.5 2.5 0 1 0 8.5 5.5" strokeLinejoin="round" />
   ),
+  "icon-chat-bubble": (
+    <>
+      <path d="M5 5.5 H19 V15 H12.8 L8 19 V15 H5 Z" strokeLinejoin="round" />
+      <path d="M8 9 H16 M8 12 H13" strokeLinecap="square" />
+    </>
+  ),
+  "icon-login-key": (
+    <>
+      <rect x="4.5" y="5" width="10" height="14" />
+      <path d="M8.5 12 H18.5 M16 12 V9.5 M18.5 12 L20.5 10 M18.5 12 L20.5 14" strokeLinecap="square" />
+      <path d="M7.5 8.5 H11.5 M7.5 15.5 H10.5" opacity="0.7" />
+    </>
+  ),
+  "icon-user-chip": (
+    <>
+      <rect x="4" y="5" width="16" height="14" rx="2" />
+      <circle cx="10" cy="11" r="2.2" />
+      <path d="M6.8 17 C7.5 15 9 14.2 10 14.2 C11 14.2 12.5 15 13.2 17" strokeLinecap="square" />
+      <path d="M14.8 9 H18 M14.8 12 H18 M14.8 15 H17" />
+    </>
+  ),
+  "icon-blog-page": (
+    <>
+      <path d="M6 4 H15 L19 8 V20 H6 Z" strokeLinejoin="round" />
+      <path d="M15 4 V8 H19" strokeLinejoin="round" />
+      <path d="M8.5 11 H15.5 M8.5 14.5 H16 M8.5 18 H13" strokeLinecap="square" />
+    </>
+  ),
+  "icon-editor-blocks": (
+    <>
+      <rect x="4" y="5" width="16" height="4" />
+      <rect x="4" y="12" width="7" height="7" />
+      <path d="M14 13 H20 M14 16 H18.5 M14 19 H17" strokeLinecap="square" />
+    </>
+  ),
+  "icon-send": (
+    <>
+      <path d="M4 5 L20 12 L4 19 L7 13 L13 12 L7 11 Z" strokeLinejoin="round" />
+      <path d="M7 13 L13 12" strokeLinecap="square" />
+    </>
+  ),
+  "icon-database-offline": (
+    <>
+      <ellipse cx="12" cy="6" rx="7" ry="3" />
+      <path d="M5 6 V14 C5 15.7 8.1 17 12 17 C15.9 17 19 15.7 19 14 V6" />
+      <path d="M5 10 C5 11.7 8.1 13 12 13 C15.9 13 19 11.7 19 10" />
+      <path d="M4 20 L20 4" strokeLinecap="square" />
+    </>
+  ),
+  "icon-admin-shield": (
+    <>
+      <path d="M12 3.5 L19 7 V12.5 C19 16.4 16.2 19.2 12 20.8 C7.8 19.2 5 16.4 5 12.5 V7 Z" strokeLinejoin="round" />
+      <path d="M8.5 13 H15.5 M12 9 V17" strokeLinecap="square" />
+    </>
+  ),
   "icon-backpack": (
     <>
       <path d="M8 8 V6.8 C8 4.7 9.7 3.5 12 3.5 C14.3 3.5 16 4.7 16 6.8 V8" />
@@ -111,6 +166,24 @@ const ICON_PATHS = {
     <>
       <path d="M7 10 V8 C7 5.2 9 3.5 12 3.5 C15 3.5 17 5.2 17 8 V10 H18.5 V20 H5.5 V10 Z" fill="currentColor" fillOpacity="0.12" strokeLinejoin="round" />
       <path d="M10 10 V8 C10 6.7 10.8 6 12 6 C13.2 6 14 6.7 14 8 V10" />
+    </>
+  ),
+  "icon-route-lost": (
+    <>
+      <path d="M4 6 H9 L12 9 H20 V18 H15 L12 15 H4 Z" strokeLinejoin="round" />
+      <path d="M8 10 L11 13 M11 10 L8 13 M15 12 H18" strokeLinecap="square" />
+    </>
+  ),
+  "icon-forbidden-shield": (
+    <>
+      <path d="M12 3.5 L19 7 V12.5 C19 16.4 16.2 19.2 12 20.8 C7.8 19.2 5 16.4 5 12.5 V7 Z" strokeLinejoin="round" />
+      <path d="M8.5 8.5 L15.5 15.5 M15.5 8.5 L8.5 15.5" strokeLinecap="square" />
+    </>
+  ),
+  "icon-route-redirect": (
+    <>
+      <path d="M4 7 H15 C17.8 7 20 9.2 20 12 C20 14.8 17.8 17 15 17 H8" />
+      <path d="M11 13 L7 17 L11 21 M16 3 L20 7 L16 11" strokeLinecap="square" strokeLinejoin="round" />
     </>
   ),
 };

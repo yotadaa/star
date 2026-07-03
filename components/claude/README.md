@@ -1,4 +1,4 @@
-# Komponen Gamifikasi — React
+# Komponen Gamifikasi - React
 
 Implementasi dari `report.md` dan `design-system.md`. Semua komponen memakai
 **CSS variable proyek + React/CSS native** tanpa dependency baru.
@@ -8,7 +8,7 @@ Implementasi dari `report.md` dan `design-system.md`. Semua komponen memakai
 1. Token warna/font (`--gold`, `--ink`, `--cream`, `font-silkscreen`,
    `font-fraunces`, `font-nunito`, `--ease-pixel`, dst) **sudah didefinisikan**
    sebagai CSS variable & Tailwind font family di `globals.css` /
-   `tailwind.config` proyekmu — komponen ini hanya *memakai* token itu, tidak
+   `tailwind.config` proyekmu - komponen ini hanya *memakai* token itu, tidak
    mendefinisikan ulang.
 2. Jika pakai App Router Next.js: tambahkan `"use client"` di baris pertama
    tiap file (semua komponen di sini interaktif/pakai hook).
@@ -69,13 +69,13 @@ import { UnlockCard, RarityTag } from "@/components";
   style={{ borderColor: "var(--ink)", boxShadow: "6px 6px 0 var(--ink)" }}
 >
   <RarityTag rarity="epic" label="EPIC" />
-  <h3>Vice President — English Club</h3>
+  <h3>Vice President - English Club</h3>
   ...
 </UnlockCard>
 ```
 
 ```jsx
-// Journey Log — node terakhir
+// Journey Log - node terakhir
 import { CurrentMarker } from "@/components";
 
 {items.map((item, i) => (
@@ -87,7 +87,7 @@ import { CurrentMarker } from "@/components";
 ```
 
 ```jsx
-// Trigger toast — mis. saat mencapai node terakhir Journey Log
+// Trigger toast - mis. saat mencapai node terakhir Journey Log
 import { useToast } from "@/components";
 
 const { showToast } = useToast();
@@ -112,10 +112,10 @@ import { PortalCard } from "@/components";
 ```
 
 ```jsx
-// Research grid — slot terakhir
+// Research grid - slot terakhir
 import { LockedSlot } from "@/components";
 
-<LockedSlot label="Publikasi berikutnya — in progress" />
+<LockedSlot label="Publikasi berikutnya - in progress" />
 ```
 
 ## Catatan integrasi

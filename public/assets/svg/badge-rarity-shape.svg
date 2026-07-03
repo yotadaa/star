@@ -1,5 +1,5 @@
 <!--
-  Badge shape rarity/tier — 1 file dipakai untuk S/A/COMMON, warna diatur
+  Badge shape rarity/tier - 1 file dipakai untuk S/A/COMMON, warna diatur
   lewat CSS variable --badge-color di elemen pembungkus (pakai currentColor).
   Ukuran natural: lebar mengikuti isi teks (gunakan sebagai background-image
   atau clip-path referensi), tinggi tetap 22px.

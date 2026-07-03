@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * useInViewOnce — native IntersectionObserver, trigger sekali saja
+ * useInViewOnce - native IntersectionObserver, trigger sekali saja
  * (unobserve setelah masuk viewport pertama kali). Dipakai untuk
  * unlock-reveal animation di Experience/Achievement/Project card.
  *

@@ -21,7 +21,7 @@ export default function Home() {
         <div className="hero-canvas">
           <ParallaxScene phase={phase} />
         </div>
-        <HeroGlassPanel />
+        <HeroGlassPanel phase={phase} />
         <div className="scroll-cue">
           GULIR <span className="chev">▾</span>
         </div>

@@ -1,9 +1,9 @@
-# Report: Penguatan Kesan Gamifikasi — Portofolio "MB · NST"
+# Report: Penguatan Kesan Gamifikasi - Portofolio "MB · NST"
 
 Berdasarkan 5 screenshot yang diaudit (Home, About, Projects, Research, Contact).
 Portofolio ini sudah punya **lapisan estetika** game (navbar pill "Dynamic Island",
 label "// SAVE FILE", "Quest Log", "Journey Log", "Skill Tree", warna pixel-badge,
-shadow hard-offset ala kartu game). Tapi lapisan **mekanik/interaksi** game belum ada —
+shadow hard-offset ala kartu game). Tapi lapisan **mekanik/interaksi** game belum ada -
 semua elemen gamifikasi saat ini bersifat *kosmetik/label saja*, bukan *sistem*.
 Report ini membedah per halaman, lalu memberi daftar penyesuaian & elemen baru,
 masing-masing dengan **alasan, fungsi, dan letak persis**.
@@ -15,13 +15,13 @@ masing-masing dengan **alasan, fungsi, dan letak persis**.
 | Area | Kondisi sekarang | Masalah |
 |---|---|---|
 | Navbar | Pill capsule statis, label "MB · NST" | Tidak ada indikator progres/status pemain |
-| Section headers | Sudah pakai "// SAVE FILE", "// QUEST BOARD" dsb | Bagus, tapi tidak konsisten — Home pakai "SYSTEM ONLINE", About pakai "EXPERIENCE LOG", tone campur |
+| Section headers | Sudah pakai "// SAVE FILE", "// QUEST BOARD" dsb | Bagus, tapi tidak konsisten - Home pakai "SYSTEM ONLINE", About pakai "EXPERIENCE LOG", tone campur |
 | Cards (Quest/Project) | Border tegas + shadow offset (sudah pixel-game) | Tidak ada state "locked/unlocked", tidak ada reward saat interaksi |
-| Skill Tree (About) | Chip datar dikelompokkan | Tidak terasa seperti "tree" — tidak ada progres/level per skill |
+| Skill Tree (About) | Chip datar dikelompokkan | Tidak terasa seperti "tree" - tidak ada progres/level per skill |
 | Journey Log (About) | Timeline vertikal dengan node kotak | Sudah bagus sebagai "quest progression", tinggal ditambah state "current" |
 | Achievements | Card statis dengan tahun & tag | Tidak ada visual reward (medal/rarity) |
 | Contact | Grid kartu channel warna-warni | Sudah terasa seperti "portal select", tapi tidak ada feedback klik |
-| Feedback loop | Tidak terlihat ada micro-interaction (hover state jelas hanya di satu tombol Contact aktif) | Gamifikasi butuh *feedback instan* tiap aksi — ini yang paling kurang |
+| Feedback loop | Tidak terlihat ada micro-interaction (hover state jelas hanya di satu tombol Contact aktif) | Gamifikasi butuh *feedback instan* tiap aksi - ini yang paling kurang |
 
 **Kesimpulan utama:** untuk naik dari "tema visual game" ke "terasa seperti main game",
 yang paling dibutuhkan adalah **sistem status pemain yang persisten** (level/XP/progress)
@@ -37,8 +37,8 @@ di setiap titik interaksi.
   sebagai badge terpisah) digabung dengan `⭐ Level: Fullstack Explorer` dan
   `🔥 Streak: 4 publikasi aktif`.
 - **Fungsi**: memberi kesan pemain punya "karakter" dengan status, bukan sekadar CV.
-- **Letak**: menyatu dengan baris badge yang sudah ada (`GitHub — 57 repo`, dll) di
-  bawah pegunungan — ubah baris badge itu jadi HUD stat bar bergaya inventory slot.
+- **Letak**: menyatu dengan baris badge yang sudah ada (`GitHub - 57 repo`, dll) di
+  bawah pegunungan - ubah baris badge itu jadi HUD stat bar bergaya inventory slot.
 - **Alasan**: baris badge saat ini info statis; dengan framing "stat pemain" ia
   langsung terasa seperti game character sheet tanpa data baru.
 
@@ -46,7 +46,7 @@ di setiap titik interaksi.
 - **Elemen**: garis tipis (3-4px) di tepi atas viewport, terisi warna `--gold`
   mengikuti persentase scroll halaman, dengan label kecil "%" di ujung kanan
   saat idle 2 detik lalu fade.
-- **Fungsi**: representasi "seberapa jauh sudah menjelajah halaman" — pengganti
+- **Fungsi**: representasi "seberapa jauh sudah menjelajah halaman" - pengganti
   scrollbar biasa jadi elemen game.
 - **Letak**: fixed top, di atas (z-index lebih tinggi dari) navbar pill.
 - **Alasan**: teknik umum di portofolio bertema game (dianggap "progress quest"),
@@ -55,9 +55,9 @@ di setiap titik interaksi.
 ### 1.3 **Parallax layer character/avatar kecil**
 - **Elemen**: sprite kecil (silhouette karakter berjalan) di layer grass terdepan,
   idle-bob animation.
-- **Fungsi**: representasi "pemain" di dunia — memperkuat metafora eksplorasi,
+- **Fungsi**: representasi "pemain" di dunia - memperkuat metafora eksplorasi,
   bukan cuma landscape statis.
-- **Letak**: sudah disebut di brief teknis sebagai "sprite karakter" pada Layer 6 —
+- **Letak**: sudah disebut di brief teknis sebagai "sprite karakter" pada Layer 6 -
   pastikan ini benar-benar terlihat & idle-animated, bukan cuma placeholder statis.
 - **Alasan**: tanpa elemen hidup di foreground, scene parallax terasa seperti
   wallpaper, bukan "dunia yang bisa dijelajahi".
@@ -65,10 +65,10 @@ di setiap titik interaksi.
 ### 1.4 Tombol CTA: tambahkan **press/depress state**
 - **Elemen**: saat `► MULAI QUEST` ditekan (mousedown), tombol turun 2px +
   shadow offset mengecil (efek tombol arcade fisik).
-- **Fungsi**: feedback taktil visual — hal paling dasar dalam UI game yang belum
+- **Fungsi**: feedback taktil visual - hal paling dasar dalam UI game yang belum
   ada sama sekali di screenshot manapun.
 - **Letak**: semua tombol CTA & pill nav (bukan hanya hero).
-- **Alasan**: ini "cheapest win" — 1 baris CSS `:active`, dampak besar ke "game-feel".
+- **Alasan**: ini "cheapest win" - 1 baris CSS `:active`, dampak besar ke "game-feel".
 
 ### 1.5 Carousel "Header yang pernah dibangun" → **Gallery Card Flip / Unlock reveal**
 - **Elemen**: saat card carousel di-scroll ke tengah, beri efek scale-up + glow
@@ -76,7 +76,7 @@ di setiap titik interaksi.
 - **Fungsi**: menandai item yang sedang fokus, seperti item ter-highlight di
   inventory game.
 - **Letak**: carousel section, kartu tengah saja.
-- **Alasan**: saat ini kartu tengah hanya lebih besar tanpa aksen warna — kurang
+- **Alasan**: saat ini kartu tengah hanya lebih besar tanpa aksen warna - kurang
   "game selection state".
 
 ---
@@ -85,7 +85,7 @@ di setiap titik interaksi.
 
 ### 2.1 **Level/Class Badge** di header "Tentang Mukhtada"
 - **Elemen**: badge pixel kecil di sebelah judul, contoh: `🎮 CLASS: Fullstack Adventurer · LV 4`.
-- **Fungsi**: framing identitas sebagai "karakter" — konsisten dengan tone RPG di
+- **Fungsi**: framing identitas sebagai "karakter" - konsisten dengan tone RPG di
   seluruh situs (quest, journey, skill tree sudah RPG-themed, tapi karakter itu
   sendiri belum diberi identitas game).
 - **Letak**: tepat di bawah judul "Tentang Mukhtada", sejajar dengan subjudul
@@ -97,21 +97,21 @@ di setiap titik interaksi.
 - **Elemen**: pojok kiri-atas tiap card experience diberi tag kecil rarity
   (`COMMON`, `RARE`, `EPIC`) sesuai bobot pengalaman (mis. Backend Developer
   Internship = RARE, Vice President = EPIC), memakai warna border berbeda
-  (hijau/biru/ungu) — mengikuti konvensi loot-rarity game.
+  (hijau/biru/ungu) - mengikuti konvensi loot-rarity game.
 - **Fungsi**: memberi hierarki visual instan tanpa harus baca teks, dan menambah
   rasa "loot/reward" pada tiap pengalaman.
 - **Letak**: pojok kiri atas tiap card di grid "Pengalaman", sejajar dengan
   tanggal yang sudah ada di kanan.
-- **Alasan**: 6 card pengalaman saat ini punya bobot visual sama rata — padahal
+- **Alasan**: 6 card pengalaman saat ini punya bobot visual sama rata - padahal
   dalam game, item punya rarity untuk membedakan value.
 
 ### 2.3 **Journey Log**: tandai node "current/kamu di sini"
-- **Elemen**: node terakhir (`2025 — kini`) diberi ring pulsing (animasi glow
+- **Elemen**: node terakhir (`2025 - kini`) diberi ring pulsing (animasi glow
   halus, bukan berkedip cepat) + label kecil "◉ KAMU DI SINI".
 - **Fungsi**: linimasa jadi terasa seperti "map quest progression" dengan penanda
-  posisi pemain saat ini — pola umum di RPG world-map.
+  posisi pemain saat ini - pola umum di RPG world-map.
 - **Letak**: node paling bawah pada timeline "Perjalanan akademik".
-- **Alasan**: saat ini semua node terlihat setara (kotak kuning solid) — tidak
+- **Alasan**: saat ini semua node terlihat setara (kotak kuning solid) - tidak
   ada indikasi mana titik "sekarang" vs "riwayat".
 
 ### 2.4 **Skill Tree**: ubah dari daftar chip flat menjadi **node berjenjang**
@@ -122,7 +122,7 @@ di setiap titik interaksi.
   skill turunan), bukan sekadar daftar tag.
 - **Letak**: bagian "Keahlian", menggantikan 4 kotak grid datar saat ini.
 - **Alasan**: nama section sudah "Skill Tree" tapi implementasinya cuma
-  grouped-tags biasa — ini kesenjangan penamaan vs bentuk paling mencolok di
+  grouped-tags biasa - ini kesenjangan penamaan vs bentuk paling mencolok di
   seluruh situs.
 - **Catatan**: ini perubahan struktural, tandai sebagai opsional/fase lanjutan
   jika waktu terbatas; alternatif minim-effort di 2.5 di bawah.
@@ -139,35 +139,35 @@ di setiap titik interaksi.
 - **Elemen**: icon medali kecil (🥇🥈🥉 atau custom pixel medal) menggantikan/
   mendampingi badge tahun oranye, warnanya beda per tingkat pencapaian
   (nasional = emas, kompetisi sekolah = perak, dst).
-- **Fungsi**: achievement card di game selalu punya ikon trophy/medal — bukan
+- **Fungsi**: achievement card di game selalu punya ikon trophy/medal - bukan
   cuma teks + tanggal.
 - **Letak**: pojok kanan-atas tiap card di grid "Pencapaian", posisi badge tahun
   yang sudah ada.
 - **Alasan**: 4 card pencapaian saat ini nyaris identik secara visual meski
-  levelnya beda (nasional vs sekolah) — medal membantu diferensiasi cepat.
+  levelnya beda (nasional vs sekolah) - medal membantu diferensiasi cepat.
 
 ### 2.7 **Unlock animation** saat card pertama kali masuk viewport
 - **Elemen**: card (Experience, Achievement) muncul dengan efek "unlock":
   scale dari 0.9→1 + flash border kuning sekilas (150ms) saat pertama kali
-  intersect viewport — bukan sekadar fade-in biasa.
+  intersect viewport - bukan sekadar fade-in biasa.
 - **Fungsi**: momen "reveal reward" khas game, membedakan dari reveal-on-scroll
   generik yang sudah direncanakan di FASE 6 (yang itu netral/tidak game-y).
 - **Letak**: semua card di About & Projects, dipicu IntersectionObserver yang
   sudah direncanakan.
 - **Alasan**: reveal-on-scroll polos (translate+fade) itu standar semua web
-  modern, bukan spesifik game — versi "unlock flash" yang membedakan.
+  modern, bukan spesifik game - versi "unlock flash" yang membedakan.
 
 ---
 
 ## 3. PROJECTS (Quest Board)
 
 ### 3.1 Filter Tipe/Kategori → beri **efek "equip" saat aktif**
-- **Elemen**: filter pill yang aktif (`SEMUA`, `WEB`, dll — saat ini sudah
+- **Elemen**: filter pill yang aktif (`SEMUA`, `WEB`, dll - saat ini sudah
   kuning solid) ditambah micro-bounce (scale 1→1.08→1, 150ms) saat diklik +
   suara-visual "klik" berupa kilat border sekilas.
 - **Fungsi**: menegaskan aksi filter sebagai "aksi pemain", bukan toggle pasif.
 - **Letak**: seluruh filter pill di baris "TIPE" dan "KATEGORI".
-- **Alasan**: saat ini transisi filter kemungkinan hanya ganti warna instan —
+- **Alasan**: saat ini transisi filter kemungkinan hanya ganti warna instan -
   tidak ada feedback gerak yang memperkuat game-feel.
 
 ### 3.2 Tier label (`TIER S`, `TIER A`) → **warna & style dibedakan per tier**
@@ -175,30 +175,30 @@ di setiap titik interaksi.
   `TIER A` (hijau seperti sekarang), plus mini icon bintang sesuai jumlah tier
   (S = ★★★, A = ★★).
 - **Fungsi**: sistem tier sudah ada secara tekstual (S/A) tapi visualnya seragam
-  — padahal tier adalah konsep gamifikasi paling eksplisit di konten ini.
+  - padahal tier adalah konsep gamifikasi paling eksplisit di konten ini.
 - **Letak**: label kecil pojok kiri-atas tiap project card, tempat teks
   "TIER S · AI TOOLING" berada sekarang.
-- **Alasan**: ini gap paling jelas — istilah "TIER" sudah dipakai tapi tidak
+- **Alasan**: ini gap paling jelas - istilah "TIER" sudah dipakai tapi tidak
   diberi treatment visual sama sekali, padahal paling murah untuk diperbaiki.
 
 ### 3.3 Project card hover → **flip/reveal detail tambahan**
 - **Elemen**: saat hover (desktop) atau tap-hold (mobile), card menampilkan
   overlay tambahan singkat: metrik tersembunyi (mis. "★ 1" stars, jumlah commit,
   atau "status: LIVE/ARCHIVED").
-- **Fungsi**: reward eksplorasi — pemain yang "berinteraksi lebih" mendapat info
+- **Fungsi**: reward eksplorasi - pemain yang "berinteraksi lebih" mendapat info
   ekstra, pola umum item-inspection di game.
 - **Letak**: seluruh project card grid.
 - **Alasan**: saat ini semua info sudah tampil sekaligus (tidak ada progresi
   discovery), padahal salah satu data (`★ 1` di IDR/USD Forecast) sudah muncul
-  tak konsisten — jadikan pola konsisten via hover-reveal.
+  tak konsisten - jadikan pola konsisten via hover-reveal.
 
 ### 3.4 Tambahkan **"57 repo" progress counter** yang hidup
 - **Elemen**: angka "57 repo publik" (di Home & Projects) dibuat count-up
   animation (dari 0 ke 57) saat section pertama masuk viewport, bukan angka
   statis.
-- **Fungsi**: statistik yang bergerak terasa seperti "skor" — pola umum landing
+- **Fungsi**: statistik yang bergerak terasa seperti "skor" - pola umum landing
   page game/produk.
-- **Letak**: badge "GitHub — 57 repo publik" di Home, dan subjudul di Projects
+- **Letak**: badge "GitHub - 57 repo publik" di Home, dan subjudul di Projects
   ("57 repo selengkapnya ada di GitHub").
 - **Alasan**: quick win, tidak butuh data baru, cukup animasi angka.
 
@@ -224,12 +224,12 @@ di setiap titik interaksi.
   jadi terasa seperti skor kumulatif karakter.
 - **Letak**: menggantikan/mendampingi kalimat subjudul di bawah judul "Publikasi".
 - **Alasan**: satu-satunya section yang murni tekstual tanpa sentuhan visual
-  gamifikasi apa pun di seluruh 5 halaman — paling perlu disentuh.
+  gamifikasi apa pun di seluruh 5 halaman - paling perlu disentuh.
 
-### 4.3 Halaman Research terasa kosong di bawah — tambahkan **"Next Quest" teaser**
-- **Elemen**: card kosong bergaya dashed-border "🔒 Publikasi berikutnya —
+### 4.3 Halaman Research terasa kosong di bawah - tambahkan **"Next Quest" teaser**
+- **Elemen**: card kosong bergaya dashed-border "🔒 Publikasi berikutnya -
   in progress" untuk memberi rasa "next unlock akan datang".
-- **Fungsi**: pola "locked slot" khas inventory/achievement game — memberi
+- **Fungsi**: pola "locked slot" khas inventory/achievement game - memberi
   progres masa depan tanpa perlu data nyata.
 - **Letak**: sebagai card ke-5 di grid publikasi (sejajar 4 card yang ada),
   atau di bawah grid sebagai banner tipis.
@@ -242,11 +242,11 @@ di setiap titik interaksi.
 
 ### 5.1 Channel card → **hover lift + icon bounce**, konsisten dengan Quest Card di About
 - **Elemen**: saat hover, card naik `translate(-3px,-3px)` + shadow offset warna
-  sesuai tema card (biru/hitam/hijau/oranye/ungu) — pola yang sudah didefinisikan
+  sesuai tema card (biru/hitam/hijau/oranye/ungu) - pola yang sudah didefinisikan
   untuk Quest Card di FASE 6 brief teknis, tapi di screenshot Contact belum
   terlihat diterapkan.
 - **Fungsi**: konsistensi bahasa interaksi di seluruh situs; card contact secara
-  visual sudah mirip "portal" — tinggal diberi feedback hover yang sama.
+  visual sudah mirip "portal" - tinggal diberi feedback hover yang sama.
 - **Letak**: 5 channel card (LinkedIn, GitHub, Scholar, Blog, Instagram).
 - **Alasan**: tanpa hover-state yang terlihat jelas di screenshot, card ini
   terasa statis dibanding bagian lain situs.
@@ -258,7 +258,7 @@ di setiap titik interaksi.
   judul "Ayo terhubung" + grid warna-warni gaya teleporter.
 - **Letak**: seluruh tombol "BUKA ..." di tiap channel card.
 - **Alasan**: momen keluar dari situs (ke link eksternal) adalah titik terakhir
-  interaksi — beri "penutup" visual yang berkesan, bukan langsung pindah tab.
+  interaksi - beri "penutup" visual yang berkesan, bukan langsung pindah tab.
 
 ---
 
@@ -269,7 +269,7 @@ di setiap titik interaksi.
   (mis. "🏆 Achievement unlocked: Kamu sudah scroll semua Journey Log!" saat
   user mencapai node terakhir timeline, atau "📌 Copied to clipboard" saat email
   disalin).
-- **Fungsi**: memberi *reward loop* nyata, bukan cuma dekorasi — inilah yang
+- **Fungsi**: memberi *reward loop* nyata, bukan cuma dekorasi - inilah yang
   paling membuat situs "terasa seperti game" karena ada *event → feedback*.
 - **Letak**: global overlay, pojok kanan-bawah, di atas semua konten.
 - **Alasan**: ini elemen dengan dampak persepsi gamifikasi tertinggi dari semua
@@ -286,16 +286,16 @@ di setiap titik interaksi.
 - **Alasan**: low-risk, high-perception-value, tidak mengganggu aksesibilitas
   jika di-skip pada touch device.
 
-### 6.3 **Command palette (⌘)** — ikon sudah ada di navbar, pastikan fungsional
-- **Elemen**: ikon `⌘` di ujung kanan navbar (terlihat di semua screenshot) —
+### 6.3 **Command palette (⌘)** - ikon sudah ada di navbar, pastikan fungsional
+- **Elemen**: ikon `⌘` di ujung kanan navbar (terlihat di semua screenshot) -
   pastikan ini benar-benar membuka command palette (search-jump ke section),
   bukan ikon dekoratif kosong.
-- **Fungsi**: elemen "cheat console" khas game/developer tool — sangat cocok
+- **Fungsi**: elemen "cheat console" khas game/developer tool - sangat cocok
   dengan tema keseluruhan dan sudah "dijanjikan" secara visual oleh ikon yang
   ada.
 - **Letak**: navbar pill, kanan setelah ikon kompas.
 - **Alasan**: jika ikon ini saat ini hanya dekorasi, itu adalah *broken promise*
-  terhadap ekspektasi pengunjung yang familiar dengan pola ⌘K — prioritas
+  terhadap ekspektasi pengunjung yang familiar dengan pola ⌘K - prioritas
   tinggi untuk dikonfirmasi/diimplementasikan.
 
 ### 6.4 **Footer "Level Complete" micro-copy**
@@ -303,7 +303,7 @@ di setiap titik interaksi.
   1 baris kecil di atasnya saat user scroll sampai footer: "🎉 Kamu sudah
   menjelajahi seluruh peta!" (muncul sekali per sesi, subtle fade-in).
 - **Fungsi**: penutup naratif untuk metafora "quest/eksplorasi" yang dipakai
-  sejak Home — memberi rasa selesai.
+  sejak Home - memberi rasa selesai.
 - **Letak**: tepat di atas garis "© 2026 Mukhtada Billah NST...", trigger via
   IntersectionObserver footer.
 - **Alasan**: elemen kecil, tidak butuh library baru, menutup narasi dengan baik.
@@ -312,7 +312,7 @@ di setiap titik interaksi.
 
 ## 7. Prioritas Implementasi (jika waktu/effort terbatas)
 
-**Quick wins (effort rendah, dampak tinggi)** — kerjakan duluan:
+**Quick wins (effort rendah, dampak tinggi)** - kerjakan duluan:
 1. 1.4 Button press state
 2. 3.2 Tier color differentiation
 3. 3.4 / 4.2 Count-up stat & stat-chip
@@ -335,14 +335,14 @@ di setiap titik interaksi.
 
 ## 8. Yang TIDAK Direkomendasikan Ditambah
 
-- **Tidak** menambah sistem XP/level sungguhan dengan backend/database — di luar
+- **Tidak** menambah sistem XP/level sungguhan dengan backend/database - di luar
   scope portofolio statis, dan brief awal melarang penambahan dependency tanpa
   konfirmasi.
-- **Tidak** menambah suara (audio feedback) — berisiko mengganggu UX & aksesibilitas
+- **Tidak** menambah suara (audio feedback) - berisiko mengganggu UX & aksesibilitas
   tanpa toggle mute yang jelas; jika diinginkan, harus jadi item terpisah dengan
   konfirmasi eksplisit.
 - **Tidak** menambah popup "level up" yang mengganggu alur baca (mis. modal
-  full-screen) — cukup toast non-blocking seperti 6.1.
+  full-screen) - cukup toast non-blocking seperti 6.1.
 
 ---
 
@@ -352,7 +352,7 @@ Semua rekomendasi di atas adalah **desain/spesifikasi**, belum ada kode yang
 dijalankan atau library baru yang diasumsikan tersedia. Implementasi teknisnya
 (animasi count-up, IntersectionObserver, toast system) semuanya bisa dibangun
 dengan stack yang sudah diizinkan di brief awal (Framer Motion + Tailwind +
-native browser API) — **tidak ada library tambahan yang diperlukan** untuk item
+native browser API) - **tidak ada library tambahan yang diperlukan** untuk item
 manapun di atas. Jika pada eksekusi nanti ternyata dibutuhkan (misal untuk
 count-up number), gunakan implementasi manual (`useEffect` + `requestAnimationFrame`)
 alih-alih menambah paket seperti `react-countup` tanpa konfirmasi.

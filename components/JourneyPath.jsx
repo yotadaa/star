@@ -8,13 +8,13 @@ function Path() {
       {journey.map((lv, i) => {
         const isCurrent = i === journey.length - 1;
         return (
-        <Reveal key={lv.when} className={`level ${isCurrent ? "is-current" : ""}`} delay={i * 80} data-testid={`journey-level-${i}`}>
-          <span className="when">{lv.when}</span>
-          {isCurrent && <CurrentMarker className="journey-current" />}
-          <h3>{lv.title}</h3>
-          <p>{lv.body}</p>
-        </Reveal>
-      );
+          <Reveal key={lv.when} className={`level ${isCurrent ? "is-current" : ""}`} delay={i * 80} data-testid={`journey-level-${i}`}>
+            <span className="when">{lv.when}</span>
+            {isCurrent && <CurrentMarker className="journey-current" />}
+            <h3>{lv.title}</h3>
+            <p>{lv.body}</p>
+          </Reveal>
+        );
       })}
     </div>
   );
@@ -28,7 +28,7 @@ export default function JourneyPath({ embedded = false }) {
         <div className="section-head">
           <span className="pixel-label">// Journey Log</span>
           <h2>Perjalanan riset &amp; akademik</h2>
-          <p>Bukan CV datar — ini level path dari titik mulai sampai posisi sekarang.</p>
+          <p>Bukan CV datar - ini level path dari titik mulai sampai posisi sekarang.</p>
         </div>
         <Path />
       </div>

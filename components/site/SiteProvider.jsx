@@ -2,10 +2,12 @@
 
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import TopNav from "./TopNav";
+import UtilityBar from "./UtilityBar";
 import CommandPalette from "./CommandPalette";
 import Footer from "@/components/Footer";
 import { ToastProvider, XpScrollBar } from "@/components/claude";
 import PlayerStatusPopup from "@/components/player/PlayerStatusPopup";
+import WorldChatPanel from "@/components/world-chat/WorldChatPanel";
 
 const SiteCtx = createContext(null);
 export const useSite = () => useContext(SiteCtx);
@@ -15,6 +17,7 @@ export default function SiteProvider({ children }) {
   const [phase, setPhase] = useState("morning");
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [playerOpen, setPlayerOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
   const night = phase === "night";
 
   useEffect(() => {
@@ -44,12 +47,14 @@ export default function SiteProvider({ children }) {
   }, []);
 
   return (
-    <SiteCtx.Provider value={{ phase, night, cycleTheme, toggleNight, paletteOpen, setPaletteOpen, playerOpen, setPlayerOpen }}>
+    <SiteCtx.Provider value={{ phase, night, cycleTheme, toggleNight, paletteOpen, setPaletteOpen, playerOpen, setPlayerOpen, chatOpen, setChatOpen }}>
       <ToastProvider>
         <XpScrollBar />
+        <UtilityBar />
         <TopNav />
         <CommandPalette />
         <PlayerStatusPopup open={playerOpen} onClose={() => setPlayerOpen(false)} />
+        <WorldChatPanel open={chatOpen} onClose={() => setChatOpen(false)} />
         <main className="site-main" id="main">
           {children}
         </main>

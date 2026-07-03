@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Feature Mockup — Login · World Chat · Inventory · Blog CMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Silkscreen:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dusk-top:#241733; --dusk-mid:#5b2a4f; --dusk-warm:#8a3b4f;
+    --sunset:#e8734a; --sunset-light:#f7b169; --cream:#fbeedd;
+    --parchment:#f6e2c4; --ink:#2c1e1a; --olive:#5c7a41; --olive-dark:#33461f;
+    --terracotta:#c9552f; --gold:#f0b23a;
+    --ease-pixel: cubic-bezier(.2,.9,.25,1.15);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--parchment); color:var(--ink);
+    font-family:'Nunito',sans-serif;
+  }
+  .pixel{font-family:'Silkscreen',monospace;}
+  .display{font-family:'Fraunces',serif;}
+  .mock-icon{width:16px;height:16px;display:block;}
+
+  /* ============ TOP NAV MOCKUP ============ */
+  .topnav{
+    display:flex; justify-content:center; padding:20px 16px 8px;
+  }
+  .pill{
+    display:flex; align-items:center; gap:6px;
+    background: var(--ink); border-radius:999px; padding:8px 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.25);
+    flex-wrap:wrap; justify-content:center;
+  }
+  .pill .brand{ color:var(--gold); font-size:11px; padding:0 10px; }
+  .pill button.navitem{
+    font-family:'Silkscreen',monospace; font-size:11px; letter-spacing:.3px;
+    text-transform:uppercase; background:none; border:none; color:var(--cream);
+    padding:8px 14px; border-radius:999px; cursor:pointer;
+  }
+  .pill button.navitem.active{ background:var(--gold); color:var(--ink); }
+  .pill .iconbtn{
+    width:32px; height:32px; border-radius:999px; border:1.5px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.05); color:var(--cream); display:flex; align-items:center;
+    justify-content:center; cursor:pointer; position:relative;
+  }
+  .pill .iconbtn .dot{
+    position:absolute; top:-2px; right:-2px; width:8px; height:8px; border-radius:50%;
+    background:var(--terracotta); border:1.5px solid var(--ink);
+  }
+  .avatar-chip{
+    display:flex; align-items:center; gap:6px; background:rgba(255,255,255,.06);
+    border:1.5px solid rgba(255,255,255,.2); border-radius:999px; padding:4px 10px 4px 4px;
+    cursor:pointer;
+  }
+  .avatar-chip img{ width:22px; height:22px; border-radius:50%; }
+  .avatar-chip span{ font-size:11px; color:var(--cream); font-family:'Silkscreen',monospace; }
+
+  /* ============ TABS to switch mockups ============ */
+  .tabbar{
+    display:flex; justify-content:center; gap:10px; padding:24px 16px 8px; flex-wrap:wrap;
+  }
+  .tabbar button{
+    font-family:'Silkscreen',monospace; font-size:11px; text-transform:uppercase;
+    letter-spacing:.4px; padding:10px 16px; border:2px solid var(--ink); background:var(--cream);
+    color:var(--ink); border-radius:8px; cursor:pointer; box-shadow:4px 4px 0 var(--ink);
+    transition: transform 80ms var(--ease-pixel), box-shadow 80ms var(--ease-pixel);
+  }
+  .tabbar button:active{ transform:translate(2px,2px); box-shadow:2px 2px 0 var(--ink); }
+  .tabbar button.active{ background:var(--gold); }
+
+  .stage{ max-width:1080px; margin:0 auto; padding:24px 16px 80px; }
+  .view{ display:none; }
+  .view.active{ display:block; animation:fadein .2s var(--ease-pixel); }
+  @keyframes fadein{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .eyebrow{ font-family:'Silkscreen',monospace; font-size:11px; color:var(--terracotta);
+    text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
+  h1.pagetitle{ font-family:'Fraunces',serif; font-size:34px; margin:0 0 6px; }
+  p.sub{ color:#5a4a3f; max-width:640px; margin:0 0 28px; line-height:1.5; }
+
+  .hardcard{
+    background:var(--cream); border:2px solid var(--ink); border-radius:8px;
+    box-shadow:6px 6px 0 var(--ink);
+  }
+
+  /* ============ LOGIN MOCKUP ============ */
+  .login-stage{ display:flex; justify-content:center; padding:40px 0; }
+  .login-card{ width:360px; padding:32px 28px; text-align:center; }
+  .login-card .badge{
+    width:52px; height:52px; border-radius:12px; background:var(--gold); margin:0 auto 16px;
+    display:flex; align-items:center; justify-content:center; border:2px solid var(--ink);
+  }
+  .login-card h2{ font-family:'Fraunces',serif; font-size:22px; margin:0 0 8px; }
+  .login-card p{ font-size:13px; color:#5a4a3f; margin:0 0 24px; line-height:1.5; }
+  .google-btn{
+    display:flex; align-items:center; justify-content:center; gap:10px; width:100%;
+    padding:12px 16px; border:2px solid var(--ink); border-radius:8px; background:#fff;
+    font-family:'Silkscreen',monospace; font-size:11px; text-transform:uppercase; cursor:pointer;
+    box-shadow:4px 4px 0 var(--ink); transition:transform 80ms var(--ease-pixel), box-shadow 80ms var(--ease-pixel);
+  }
+  .google-btn:active{ transform:translate(2px,2px); box-shadow:2px 2px 0 var(--ink); }
+  .login-note{ font-size:11px; color:#8a7a6f; margin-top:16px; line-height:1.5; }
+
+  /* ============ WORLD CHAT MOCKUP ============ */
+  .chat-shell{ display:flex; justify-content:flex-end; }
+  .chat-panel{ width:380px; max-width:100%; display:flex; flex-direction:column; height:560px; overflow:hidden; }
+  .chat-header{
+    background:var(--ink); color:var(--cream); padding:14px 16px; display:flex;
+    align-items:center; justify-content:space-between; border-bottom:2px solid var(--ink);
+  }
+  .chat-header .title{ font-family:'Silkscreen',monospace; font-size:12px; text-transform:uppercase; }
+  .chat-header .online{ font-size:11px; color:#8fd18f; display:flex; align-items:center; gap:5px; }
+  .chat-header .online .led{ width:7px; height:7px; border-radius:50%; background:#4caf50; }
+  .chat-messages{ flex:1; overflow-y:auto; padding:14px 16px; display:flex; flex-direction:column; gap:12px; background:var(--parchment); }
+  .msg{ display:flex; gap:10px; }
+  .msg img{ width:30px; height:30px; border-radius:6px; flex-shrink:0; }
+  .msg .bubble{ background:#fff; border:2px solid var(--ink); border-radius:8px; padding:8px 10px; max-width:250px; }
+  .msg.owner .bubble{ border-color:var(--gold); box-shadow:2px 2px 0 var(--gold); }
+  .msg .name{ font-family:'Silkscreen',monospace; font-size:9px; text-transform:uppercase; color:var(--terracotta); margin-bottom:3px; }
+  .msg.owner .name{ color:#a8790f; }
+  .msg .text{ font-size:13px; line-height:1.4; }
+  .msg .time{ font-size:9px; color:#a8988c; margin-top:4px; }
+  .chat-input-row{ display:flex; gap:8px; padding:12px; border-top:2px solid var(--ink); background:var(--cream); }
+  .chat-input-row input{
+    flex:1; border:2px solid var(--ink); border-radius:8px; padding:10px 12px; font-family:'Nunito';
+    font-size:13px; background:#fff;
+  }
+  .chat-input-row button{
+    background:var(--gold); border:2px solid var(--ink); border-radius:8px; padding:0 16px;
+    font-family:'Silkscreen',monospace; font-size:11px; cursor:pointer; box-shadow:3px 3px 0 var(--ink);
+  }
+  .chat-locked{ padding:16px; text-align:center; border-top:2px dashed var(--ink); background:var(--cream); }
+  .chat-locked p{ font-size:12px; margin:0 0 10px; color:#5a4a3f; }
+
+  /* ============ INVENTORY MOCKUP ============ */
+  .inv-topbar{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:12px; }
+  .inv-stats{ display:flex; gap:10px; flex-wrap:wrap; }
+  .hud-chip{
+    display:inline-flex; align-items:center; gap:6px; border:1.5px solid var(--ink); border-radius:6px;
+    padding:6px 12px; font-family:'Silkscreen',monospace; font-size:10px; text-transform:uppercase; background:var(--cream);
+  }
+  .hud-chip.gold{ border-color:var(--gold); }
+  .addbtn{
+    font-family:'Silkscreen',monospace; font-size:11px; text-transform:uppercase; padding:10px 16px;
+    background:var(--gold); border:2px solid var(--ink); border-radius:8px; cursor:pointer;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .inv-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; margin-top:18px; }
+  .inv-item{ padding:16px 12px; text-align:center; position:relative; }
+  .inv-item .rarity{
+    position:absolute; top:8px; left:8px; font-family:'Silkscreen',monospace; font-size:8px;
+    padding:3px 6px; border:1.3px solid var(--gold); color:var(--gold); background:var(--cream);
+    clip-path:polygon(3px 0,100% 0,100% calc(100% - 3px),calc(100% - 3px) 100%,0 100%,0 3px);
+  }
+  .inv-item.rare .rarity{ border-color:var(--olive); color:var(--olive); }
+  .inv-item.common .rarity{ border-color:var(--terracotta); color:var(--terracotta); }
+  .inv-item .icon{ font-size:30px; margin:14px 0 8px; }
+  .inv-item .name{ font-size:12px; font-weight:700; line-height:1.3; }
+  .inv-item .manual-badge{
+    position:absolute; bottom:8px; right:8px; font-size:8px; font-family:'Silkscreen',monospace;
+    color:#a8988c;
+  }
+  .inv-add-form{ margin-top:18px; padding:20px; display:none; }
+  .inv-add-form.open{ display:block; }
+  .inv-add-form .row{ display:flex; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+  .inv-add-form label{ font-size:11px; font-family:'Silkscreen',monospace; text-transform:uppercase; display:block; margin-bottom:6px; }
+  .inv-add-form input, .inv-add-form select, .inv-add-form textarea{
+    width:100%; border:2px solid var(--ink); border-radius:6px; padding:9px 10px; font-family:'Nunito'; font-size:13px;
+  }
+  .inv-add-form .field{ flex:1; min-width:140px; }
+  .inv-add-form .submit-row{ display:flex; gap:10px; margin-top:8px; }
+  .owner-note{ font-size:11px; color:#8a7a6f; margin-top:6px; }
+
+  /* ============ BLOG MOCKUP ============ */
+  .blog-tabs{ display:flex; gap:8px; margin-bottom:22px; }
+  .blog-tabs button{
+    font-family:'Silkscreen',monospace; font-size:10px; text-transform:uppercase; padding:8px 14px;
+    border:2px solid var(--ink); background:var(--cream); border-radius:6px; cursor:pointer;
+  }
+  .blog-tabs button.active{ background:var(--olive); color:#fff; }
+  .blog-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
+  .blog-card{ overflow:hidden; }
+  .blog-card .cover{ height:120px; background:linear-gradient(135deg,var(--dusk-mid),var(--sunset)); }
+  .blog-card .body{ padding:16px; }
+  .blog-card .tag{ font-family:'Silkscreen',monospace; font-size:9px; color:var(--terracotta); text-transform:uppercase; }
+  .blog-card h3{ font-family:'Fraunces',serif; font-size:17px; margin:8px 0 6px; }
+  .blog-card p{ font-size:12.5px; color:#5a4a3f; line-height:1.5; margin:0 0 10px; }
+  .blog-card .meta{ font-size:10.5px; color:#a8988c; }
+
+  .admin-table{ width:100%; border-collapse:collapse; }
+  .admin-table th, .admin-table td{ text-align:left; padding:10px 12px; font-size:12.5px; border-bottom:1.5px solid rgba(44,30,26,.15); }
+  .admin-table th{ font-family:'Silkscreen',monospace; font-size:9.5px; text-transform:uppercase; color:#8a7a6f; }
+  .status-pill{ font-family:'Silkscreen',monospace; font-size:9px; padding:3px 8px; border-radius:999px; text-transform:uppercase; }
+  .status-pill.published{ background:#dff0d8; color:var(--olive-dark); }
+  .status-pill.draft{ background:#f0e0d0; color:var(--terracotta); }
+  .row-actions button{ font-size:10.5px; font-family:'Silkscreen',monospace; border:1.5px solid var(--ink); background:#fff; padding:5px 9px; border-radius:5px; cursor:pointer; margin-right:4px; }
+
+  .editor-shell{ padding:0; overflow:hidden; }
+  .editor-header{ display:flex; justify-content:space-between; align-items:center; padding:14px 18px; border-bottom:2px solid var(--ink); background:var(--cream); }
+  .editor-header input.title-input{ border:none; background:none; font-family:'Fraunces',serif; font-size:20px; width:70%; outline:none; }
+  .publish-btn{ font-family:'Silkscreen',monospace; font-size:10px; text-transform:uppercase; background:var(--gold); border:2px solid var(--ink); padding:8px 14px; border-radius:6px; cursor:pointer; }
+  .editor-toolbar{ display:flex; gap:6px; padding:10px 18px; border-bottom:1.5px solid rgba(44,30,26,.15); flex-wrap:wrap; }
+  .editor-toolbar button{ width:30px; height:30px; border:1.5px solid var(--ink); background:#fff; border-radius:5px; cursor:pointer; font-size:12px; font-weight:700; }
+  .editor-body{ padding:22px 24px; min-height:220px; font-family:'Nunito'; font-size:14px; line-height:1.7; color:var(--ink); }
+  .editor-body h2{ font-family:'Fraunces',serif; font-size:22px; margin:0 0 10px; }
+  .editor-body blockquote{ border-left:3px solid var(--gold); margin:14px 0; padding-left:14px; color:#5a4a3f; font-style:italic; }
+  .editor-footer{ display:flex; justify-content:space-between; align-items:center; padding:12px 18px; border-top:1.5px solid rgba(44,30,26,.15); font-size:11px; color:#8a7a6f; flex-wrap:wrap; gap:10px; }
+  .autosave{ display:flex; align-items:center; gap:6px; }
+  .autosave .led{ width:6px; height:6px; border-radius:50%; background:#4caf50; }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="pill">
+    <span class="brand pixel">● MB · NST</span>
+    <button class="navitem active">Home</button>
+    <button class="navitem">About</button>
+    <button class="navitem">Projects</button>
+    <button class="navitem">Research</button>
+    <button class="navitem">Blog</button>
+    <button class="navitem">Contact</button>
+    <span class="iconbtn" title="Compass"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-compass"></use></svg></span>
+    <span class="iconbtn" title="Inventory / Achievement / Mission"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-backpack"></use></svg><span class="dot"></span></span>
+    <span class="iconbtn" title="World Chat"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-chat-bubble"></use></svg></span>
+    <span class="iconbtn" title="Command Palette"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-command"></use></svg></span>
+    <span class="avatar-chip">
+      <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=mukhtada" alt="" />
+      <span>Mukhtada</span>
+    </span>
+  </div>
+</div>
+
+<div class="tabbar">
+  <button class="tabbtn active" data-target="view-login">1. Login</button>
+  <button class="tabbtn" data-target="view-chat">2. World Chat</button>
+  <button class="tabbtn" data-target="view-inventory">3. Inventory Mgmt</button>
+  <button class="tabbtn" data-target="view-blog">4. Blog CMS</button>
+</div>
+
+<div class="stage">
+
+  <!-- ================= 1. LOGIN ================= -->
+  <div id="view-login" class="view active">
+    <div class="eyebrow">// AUTH GATE</div>
+    <h1 class="pagetitle">Login untuk Bergabung</h1>
+    <p class="sub">Muncul kontekstual saat pengunjung mencoba buka World Chat atau (untuk owner) kelola Inventory & Blog — bukan gerbang wajib sebelum lihat portofolio.</p>
+
+    <div class="login-stage">
+      <div class="hardcard login-card">
+        <div class="badge pixel" style="font-size:22px;"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-login-key"></use></svg></div>
+        <h2>Login ke System</h2>
+        <p>Login diperlukan untuk ikut World Chat dan menyimpan progresmu. Kami hanya pakai nama, email, dan foto profil Google-mu.</p>
+        <button class="google-btn">
+          <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.9 32.9 29.4 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34.5 5.1 29.5 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21c0-1.4-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 18.9 13 24 13c3.1 0 5.8 1.1 8 3l6-6C34.5 5.1 29.5 3 24 3 16.3 3 9.6 7.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 45c5.3 0 10.1-1.8 13.9-5l-6.4-5.4C29.3 36.5 26.8 37 24 37c-5.3 0-9.8-3.1-11.3-7.5l-6.6 5.1C9.5 40.7 16.2 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1 3-3.2 5.5-6.1 7.1l6.4 5.4C39.6 37.5 43 31.5 43 24c0-1.4-.1-2.7-.4-3.5z"/></svg>
+          Lanjutkan dengan Google
+        </button>
+        <div class="login-note">Hanya Google — tidak ada login email/password. Login otomatis kembali ke halaman asal setelah selesai.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 2. WORLD CHAT ================= -->
+  <div id="view-chat" class="view">
+    <div class="eyebrow">// WORLD CHAT</div>
+    <h1 class="pagetitle">Panel Chat — Slide-in dari Navbar</h1>
+    <p class="sub">Satu ruang obrolan publik realtime. Border emas menandai pesan dari owner (bukan dekorasi — informasi peran asli).</p>
+
+    <div class="chat-shell">
+      <div class="hardcard chat-panel">
+        <div class="chat-header">
+          <span class="title"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-chat-bubble"></use></svg> World Chat</span>
+          <span class="online"><span class="led"></span>3 penjelajah online</span>
+        </div>
+        <div class="chat-messages">
+          <div class="msg owner">
+            <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=mukhtada" alt="" />
+            <div>
+              <div class="bubble">
+                <div class="name">Mukhtada · GM</div>
+                <div class="text">Selamat datang di world chat. Tanya-tanya soal proyek boleh di sini.</div>
+              </div>
+              <div class="time">10:02</div>
+            </div>
+          </div>
+          <div class="msg">
+            <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=visitor1" alt="" />
+            <div>
+              <div class="bubble">
+                <div class="name">Rina · Lv.1 Visitor</div>
+                <div class="text">Keren banget parallax hero-nya, itu three.js ya?</div>
+              </div>
+              <div class="time">10:04</div>
+            </div>
+          </div>
+          <div class="msg owner">
+            <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=mukhtada" alt="" />
+            <div>
+              <div class="bubble">
+                <div class="name">Mukhtada · GM</div>
+                <div class="text">Betul, r3f + custom shader tipis buat sunset glow-nya.</div>
+              </div>
+              <div class="time">10:05</div>
+            </div>
+          </div>
+          <div class="msg">
+            <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=visitor2" alt="" />
+            <div>
+              <div class="bubble">
+                <div class="name">Deni · Lv.2 Visitor</div>
+                <div class="text">Mau collab riset data science, bisa DM lewat LinkedIn?</div>
+              </div>
+              <div class="time">10:07</div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-locked" id="chatLocked">
+          <p><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-login-key"></use></svg> Login untuk ikut ngobrol di world chat.</p>
+          <button class="google-btn" style="max-width:220px;margin:0 auto;">Login dengan Google</button>
+        </div>
+        <div class="chat-input-row" id="chatInputRow" style="display:none;">
+          <input type="text" placeholder="Ketik pesan ke semua penjelajah... (maks 280 karakter)" />
+          <button>Kirim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 3. INVENTORY MANAGEMENT ================= -->
+  <div id="view-inventory" class="view">
+    <div class="eyebrow">// INVENTORY — OWNER MODE</div>
+    <h1 class="pagetitle">Kelola Inventory</h1>
+    <p class="sub">Item auto (dari Achievement/Mission) tampil berdampingan dengan item manual. Tombol "+ Tambah Item" hanya render untuk owner.</p>
+
+    <div class="inv-topbar">
+      <div class="inv-stats">
+        <span class="hud-chip gold"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-level-badge"></use></svg> Lv.3 Fullstack Adventurer</span>
+        <span class="hud-chip">42 PP</span>
+        <span class="hud-chip"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-backpack"></use></svg> 9 item</span>
+      </div>
+      <button class="addbtn" onclick="document.getElementById('addForm').classList.toggle('open')">+ Tambah Item</button>
+    </div>
+
+    <div class="hardcard inv-add-form" id="addForm">
+      <div class="row">
+        <div class="field">
+          <label>Nama Item</label>
+          <input type="text" placeholder="mis. Scroll: Riset Terbaru" />
+        </div>
+        <div class="field">
+          <label>Tipe</label>
+          <select>
+            <option>Scroll (riset)</option>
+            <option>Tool (skill)</option>
+            <option>Artifact (proyek)</option>
+            <option>Medal (kompetisi/organisasi)</option>
+            <option>Key (milestone)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Rarity</label>
+          <select><option>Epic</option><option>Rare</option><option>Common</option></select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Link (opsional)</label>
+          <input type="text" placeholder="https://scholar.google.com/..." />
+        </div>
+        <div class="field">
+          <label>Icon (opsional, max 500KB)</label>
+          <input type="file" />
+        </div>
+      </div>
+      <label>Deskripsi</label>
+      <textarea rows="2" placeholder="Konteks singkat item ini..."></textarea>
+      <div class="submit-row">
+        <button class="addbtn">Simpan Item</button>
+        <button class="tabbtn" style="background:#fff;box-shadow:none;" onclick="document.getElementById('addForm').classList.remove('open')">Batal</button>
+      </div>
+      <div class="owner-note">Hanya kamu (owner) yang bisa melihat & memakai form ini. Pengunjung lain tidak melihat tombol "+ Tambah Item" sama sekali.</div>
+    </div>
+
+    <div class="inv-grid">
+      <div class="hardcard inv-item epic"><span class="rarity">EPIC</span><div class="icon"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-scroll"></use></svg></div><div class="name">4 Publikasi Terindeks Scholar</div></div>
+      <div class="hardcard inv-item rare"><span class="rarity">RARE</span><div class="icon"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-artifact-vase"></use></svg></div><div class="name">E-Ticket TNKS</div></div>
+      <div class="hardcard inv-item rare"><span class="rarity">RARE</span><div class="icon"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-trophy"></use></svg></div><div class="name">Vice President English Club</div></div>
+      <div class="hardcard inv-item common"><span class="rarity">COMMON</span><div class="icon"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-key"></use></svg></div><div class="name">Level 2 Unlocked</div></div>
+      <div class="hardcard inv-item rare"><span class="rarity">RARE</span><div class="icon"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-tool-wrench"></use></svg></div><div class="name">Laravel — Mastery Lv.3</div><span class="manual-badge">manual</span></div>
+      <div class="hardcard inv-item epic"><span class="rarity">EPIC</span><div class="icon"><svg class="mock-icon"><use href="../../public/assets/svg/icons-sprite.svg#icon-trophy"></use></svg></div><div class="name">Finalis OSN-P Informatika</div><span class="manual-badge">manual</span></div>
+    </div>
+  </div>
+
+  <!-- ================= 4. BLOG CMS ================= -->
+  <div id="view-blog" class="view">
+    <div class="eyebrow">// LORE ENTRIES</div>
+    <h1 class="pagetitle">Blog — Publik & Admin</h1>
+    <p class="sub">Tiga sub-view: daftar publik <code>/blog</code>, dashboard kelola <code>/blog/admin</code>, dan block editor untuk tulis/edit post.</p>
+
+    <div class="blog-tabs">
+      <button class="blogsub active" data-sub="sub-public">Publik /blog</button>
+      <button class="blogsub" data-sub="sub-admin">Admin /blog/admin</button>
+      <button class="blogsub" data-sub="sub-editor">Editor</button>
+    </div>
+
+    <!-- public list -->
+    <div id="sub-public" class="blogsubview">
+      <div class="blog-grid">
+        <div class="hardcard blog-card">
+          <div class="cover"></div>
+          <div class="body">
+            <div class="tag">RESEARCH</div>
+            <h3>Catatan dari Riset KNN Pendidikan</h3>
+            <p>Proses di balik publikasi prediktif tren pendidikan — mulai dari data mentah sampai model final.</p>
+            <div class="meta">12 Jan 2026 · 4 min baca</div>
+          </div>
+        </div>
+        <div class="hardcard blog-card">
+          <div class="cover" style="background:linear-gradient(135deg,var(--olive),var(--olive-dark));"></div>
+          <div class="body">
+            <div class="tag">WEB DEV</div>
+            <h3>Membangun E-Ticket TNKS: Dev Log #1</h3>
+            <p>Keputusan arsitektur awal, kenapa Laravel + Bootstrap, dan tantangan reservasi realtime.</p>
+            <div class="meta">28 Nov 2025 · 6 min baca</div>
+          </div>
+        </div>
+        <div class="hardcard blog-card">
+          <div class="cover" style="background:linear-gradient(135deg,var(--terracotta),var(--sunset));"></div>
+          <div class="body">
+            <div class="tag">COMMUNITY</div>
+            <h3>Mengajar 30 Mahasiswa dalam 5 Hari</h3>
+            <p>Refleksi jadi mentor Study Club — apa yang berhasil, apa yang saya perbaiki di batch berikutnya.</p>
+            <div class="meta">15 Feb 2025 · 5 min baca</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- admin table -->
+    <div id="sub-admin" class="blogsubview" style="display:none;">
+      <div class="hardcard" style="padding:6px 4px;">
+        <table class="admin-table">
+          <thead><tr><th>Judul</th><th>Status</th><th>Tanggal</th><th>Aksi</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Catatan dari Riset KNN Pendidikan</td>
+              <td><span class="status-pill published">Published</span></td>
+              <td>12 Jan 2026</td>
+              <td class="row-actions"><button>Edit</button><button>Unpublish</button><button>Hapus</button></td>
+            </tr>
+            <tr>
+              <td>Membangun E-Ticket TNKS: Dev Log #1</td>
+              <td><span class="status-pill published">Published</span></td>
+              <td>28 Nov 2025</td>
+              <td class="row-actions"><button>Edit</button><button>Unpublish</button><button>Hapus</button></td>
+            </tr>
+            <tr>
+              <td>Rencana Riset Genetic Algorithm Lanjutan</td>
+              <td><span class="status-pill draft">Draft</span></td>
+              <td>—</td>
+              <td class="row-actions"><button>Edit</button><button>Publish</button><button>Hapus</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:14px;"><button class="addbtn">+ Tulis Baru</button></div>
+    </div>
+
+    <!-- editor -->
+    <div id="sub-editor" class="blogsubview" style="display:none;">
+      <div class="hardcard editor-shell">
+        <div class="editor-header">
+          <input class="title-input" value="Rencana Riset Genetic Algorithm Lanjutan" />
+          <button class="publish-btn">Publish</button>
+        </div>
+        <div class="editor-toolbar">
+          <button>H1</button><button>H2</button><button><i>I</i></button><button><b>B</b></button>
+          <button>Quote</button><button>Code</button><button>Image</button><button>Line</button>
+        </div>
+        <div class="editor-body">
+          <h2>Latar Belakang</h2>
+          <p>Penjadwalan mata kuliah masih dilakukan manual di banyak prodi. Riset genetic algorithm sebelumnya menunjukkan hasil optimasi yang menjanjikan...</p>
+          <blockquote>"Target riset lanjutan: menambah constraint preferensi dosen ke fitness function."</blockquote>
+          <p>Langkah berikutnya adalah menguji dataset yang lebih besar dan membandingkan dengan pendekatan heuristik lain.</p>
+        </div>
+        <div class="editor-footer">
+          <span class="autosave"><span class="led"></span>Tersimpan otomatis · 4 detik lalu</span>
+          <span>Slug: <code>rencana-riset-genetic-algorithm-lanjutan</code></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // top-level tabs
+  document.querySelectorAll('.tabbtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tabbtn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.target).classList.add('active');
+    });
+  });
+
+  // chat login toggle demo
+  document.querySelector('#chatLocked .google-btn').addEventListener('click', () => {
+    document.getElementById('chatLocked').style.display = 'none';
+    document.getElementById('chatInputRow').style.display = 'flex';
+  });
+
+  // blog sub-tabs
+  document.querySelectorAll('.blogsub').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.blogsub').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.blogsubview').forEach(v => v.style.display = 'none');
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.sub).style.display = 'block';
+    });
+  });
+</script>
+
+</body>
+</html>

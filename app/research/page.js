@@ -3,7 +3,7 @@ import Reveal from "@/components/Reveal";
 import { HudStatusStrip, LockedSlot, SpriteIcon } from "@/components/claude";
 import { publications } from "@/lib/data";
 
-export const metadata = { title: "Research — Mukhtada Billah NST" };
+export const metadata = { title: "Research - Mukhtada Billah NST" };
 
 export default function ResearchPage() {
   return (

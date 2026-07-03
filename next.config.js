@@ -10,8 +10,11 @@ const nextConfig = {
     '*.preview.emergentcf.cloud',
     '*.emergentcf.cloud',
     '*.emergentagent.com',
+    'mukhtada.my.id',
+    'mukhtada.my.id/*',
   ],
   images: {
+    unoptimized: true,
     remotePatterns: [
       { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
       { protocol: 'https', hostname: 'scholar.googleusercontent.com' },

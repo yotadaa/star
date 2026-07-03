@@ -9,7 +9,7 @@ export default function FeaturedQuests() {
           <span className="pixel-label">// Featured Quests</span>
           <h2>Proyek pilihan, bukan daftar penuh</h2>
           <p>
-            Setiap kartu adalah quest yang sudah dijalani — lengkap dengan stack,
+            Setiap kartu adalah quest yang sudah dijalani - lengkap dengan stack,
             peran, dan dampaknya. 57 repo lainnya menunggu di GitHub.
           </p>
         </div>

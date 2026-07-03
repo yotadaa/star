@@ -15,3 +15,7 @@
 - [x] ~~**Polish Build Glimpses carousel to design system** - replace soft carousel styling with token gradient, hard-shadow card frame, RarityTag category badges, square node dots, PixelButton arrows, stronger HUD chip contrast, and inactive-card state.~~ (2026-07-03)
 - [x] ~~**Build PlayerStatusPopup system** - Inventory / Achievement / Mission modal connected by Player Points, derived level thresholds, segmented mission progress, inventory artifacts, toast events, and new sprite icons.~~ (2026-07-03)
 - [x] ~~**Add popup entry to IslandNav** - add backpack trigger, mini level badge, and connect it to the PlayerStatusPopup.~~ (2026-07-03)
+- [x] ~~**Generate HTML build** - produce a built HTML/static artifact for the app when ready.~~ (2026-07-03)
+- [x] ~~**Split Chat/Login into a top-left utility bar** - keep IslandNav focused and responsive.~~ (2026-07-03)
+- [x] ~~**Configure Google Auth.js login** - server-only OAuth secrets, JWT session, and owner-aware route guards.~~ (2026-07-03)
+- [x] ~~**Add route-state pages** - design-system-aligned not-found, forbidden, and allowlisted redirect routes.~~ (2026-07-03)

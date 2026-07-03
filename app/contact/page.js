@@ -1,7 +1,7 @@
 import PageHeader from "@/components/PageHeader";
 import ContactCards from "@/components/ContactCards";
 
-export const metadata = { title: "Contact — Mukhtada Billah NST" };
+export const metadata = { title: "Contact - Mukhtada Billah NST" };
 
 export default function ContactPage() {
   return (

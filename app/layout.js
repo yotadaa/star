@@ -1,5 +1,6 @@
 import { Fraunces, Silkscreen, Nunito } from "next/font/google";
 import "./globals.css";
+import AuthProvider from "@/components/auth/AuthProvider";
 import SiteProvider from "@/components/site/SiteProvider";
 
 const fraunces = Fraunces({
@@ -22,7 +23,7 @@ const nunito = Nunito({
 });
 
 export const metadata = {
-  title: "Mukhtada Billah NST — Builder's Journey",
+  title: "Mukhtada Billah NST - Builder's Journey",
   description:
     "Fullstack builder, AI tinkerer, dan peneliti data dari Universitas Jambi. Portofolio kabin senja 2.5D.",
   icons: {
@@ -44,7 +45,9 @@ export default function RootLayout({ children }) {
     >
       <body>
         <a href="#main" className="skip-link">Loncat ke konten utama</a>
-        <SiteProvider>{children}</SiteProvider>
+        <AuthProvider>
+          <SiteProvider>{children}</SiteProvider>
+        </AuthProvider>
       </body>
     </html>
   );

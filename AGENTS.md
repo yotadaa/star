@@ -1,23 +1,23 @@
-# Workflow Implementasi — Lapisan Gamifikasi "MB · NST"
+# Workflow Implementasi - Lapisan Gamifikasi "MB · NST"
 
 > Dokumen ini adalah **prosedur kerja**, bukan spesifikasi desain. Spesifikasi
 > ada di `report.md` (apa) dan `design-system.md` (bagaimana bentuknya).
-> Dokumen ini mengatur **urutan, validasi, dan batas** — siapa/apa pun yang
+> Dokumen ini mengatur **urutan, validasi, dan batas** - siapa/apa pun yang
 > mengeksekusi (agent AI atau developer manusia) wajib mengikuti fase di
 > bawah secara berurutan, tidak boleh lompat ke IMPLEMENT sebelum PLAN & 
 > CONFIRM selesai.
 
 **Prinsip inti (non-negotiable):**
 
-1. **Evidence-first** — setiap keputusan desain/implementasi harus bisa
+1. **Evidence-first** - setiap keputusan desain/implementasi harus bisa
    ditunjuk sumbernya (baris/bagian di `report.md`, `design-system.md`, atau
    `PRODUCT.md`). Tidak ada keputusan "karena rasanya bagus".
-2. **Validated action** — tidak ada task yang ditandai selesai tanpa lolos
+2. **Validated action** - tidak ada task yang ditandai selesai tanpa lolos
    Validation Gate (§5). Self-report tanpa checklist tidak dihitung selesai.
-3. **Plan before act** — setiap task besar dipecah jadi task-plan tertulis
+3. **Plan before act** - setiap task besar dipecah jadi task-plan tertulis
    (§4) sebelum kode ditulis. Task tanpa acceptance criteria tidak boleh
    dieksekusi.
-4. **No silent assumption** — apa pun yang ditandai `[ASUMSI]` di
+4. **No silent assumption** - apa pun yang ditandai `[ASUMSI]` di
    `design-system.md` §1 (token warna rarity/tier) **wajib** dikonfirmasi
    pemilik proyek sebelum dipakai di kode produksi (lihat §6).
 
@@ -36,7 +36,7 @@ Kalau ada konflik antar dokumen, urutan otoritas dari tinggi ke rendah:
 
 Jika sebuah task di `report.md` bertentangan dengan `PRODUCT.md` (mis. anti-reference
 "emoji-based gamification" vs pemakaian emoji sebagai icon di beberapa item report),
-**PRODUCT.md menang** — icon emoji di report harus dibaca sebagai placeholder
+**PRODUCT.md menang** - icon emoji di report harus dibaca sebagai placeholder
 konsep, bukan instruksi literal pakai emoji di produksi. Catat penyesuaian ini
 di log keputusan (§7).
 
@@ -51,28 +51,28 @@ Catatan Kepatuhan Brief & §11.
 ### 1.1 Larangan Keras (DO NOT)
 
 - ❌ Jangan menambah dependency npm baru tanpa konfirmasi eksplisit pemilik
-  proyek — semua efek (pulse, unlock, toast, ripple) harus dibangun dari
+  proyek - semua efek (pulse, unlock, toast, ripple) harus dibangun dari
   Framer Motion / CSS murni yang sudah ada di stack.
-- ❌ Jangan menambah hex color baru — semua warna baru harus **remap** dari
+- ❌ Jangan menambah hex color baru - semua warna baru harus **remap** dari
   token existing (lihat tabel `design-system.md` §1), dan tabel itu sendiri
   masih berstatus `[ASUMSI, MOHON DIKONFIRMASI]` sampai disetujui.
 - ❌ Jangan membuat data fiktif: no fake XP/level backend, no fabricated
   achievement, no angka repo/sitasi palsu, no rarity yang tidak berdasar dari
   data nyata (assignment rarity di 2.2 harus mengikuti bobot pengalaman asli,
   bukan acak).
-- ❌ Jangan menambah audio/sound feedback tanpa toggle mute eksplisit —
+- ❌ Jangan menambah audio/sound feedback tanpa toggle mute eksplisit -
   di luar scope kecuali item terpisah dengan konfirmasi.
 - ❌ Jangan menambah modal full-screen "level up" atau popup yang memutus
-  alur baca — feedback harus non-blocking (toast).
-- ❌ Jangan pakai emoji sebagai elemen gamifikasi permanen di produksi —
+  alur baca - feedback harus non-blocking (toast).
+- ❌ Jangan pakai emoji sebagai elemen gamifikasi permanen di produksi -
   `PRODUCT.md` eksplisit melarang "emoji-based gamification"; emoji di
   `report.md` adalah shorthand konsep saat drafting, bukan output final.
   Ganti dengan icon monoline/pixel sesuai `design-system.md`.
-- ❌ Jangan pakai gradient/glow ala AI SaaS generik atau glass card —
+- ❌ Jangan pakai gradient/glow ala AI SaaS generik atau glass card -
   anti-reference eksplisit di `PRODUCT.md`.
 - ❌ Jangan replay animasi unlock/reveal setiap kali elemen masuk-keluar
-  viewport — one-time trigger, unobserve setelah trigger (`design-system.md` §7).
-- ❌ Jangan biarkan toast menumpuk — queue, maksimal 1 tampil bersamaan
+  viewport - one-time trigger, unobserve setelah trigger (`design-system.md` §7).
+- ❌ Jangan biarkan toast menumpuk - queue, maksimal 1 tampil bersamaan
   (`design-system.md` §8).
 - ❌ Jangan menyembunyikan custom cursor tanpa fallback di device
   `pointer: coarse` (`design-system.md` §11.3).
@@ -87,7 +87,7 @@ Catatan Kepatuhan Brief & §11.
 - ✅ Elemen dekoratif murni (rarity tag, locked slot, HUD chip) →
   `aria-hidden="true"`. Elemen yang menyampaikan info baru (toast) →
   `aria-live="polite"`.
-- ✅ Gamifikasi tidak boleh bergantung hanya pada warna — rarity/tier harus
+- ✅ Gamifikasi tidak boleh bergantung hanya pada warna - rarity/tier harus
   tetap terbaca lewat label teks, bukan warna saja.
 - ✅ Target WCAG 2.1 AA kontras teks & akses keyboard di semua komponen baru.
 - ✅ Tidak ada horizontal overflow akibat elemen baru (HUD strip, XP bar,
@@ -103,17 +103,17 @@ DISCOVER → PLAN → CONFIRM → IMPLEMENT → VALIDATE → LOG
    └──────────────── revisi jika gate gagal ──────────┘
 ```
 
-### Fase 1 — DISCOVER (baca sebelum tulis kode)
+### Fase 1 - DISCOVER (baca sebelum tulis kode)
 
 Tujuan: memastikan agent/dev punya konteks lengkap sebelum membuat keputusan apa pun.
 
-1. Baca `PRODUCT.md` penuh — catat brand personality & anti-reference.
-2. Baca `design-system.md` penuh — catat token, struktur komponen per §,
+1. Baca `PRODUCT.md` penuh - catat brand personality & anti-reference.
+2. Baca `design-system.md` penuh - catat token, struktur komponen per §,
    dan semua item `[ASUMSI]`.
-3. Baca `report.md` penuh — catat per item: elemen, fungsi, letak, alasan.
-4. Baca `TASKS.md` — cek task aktif yang mungkin overlap (mis. "Improve Home
+3. Baca `report.md` penuh - catat per item: elemen, fungsi, letak, alasan.
+4. Baca `TASKS.md` - cek task aktif yang mungkin overlap (mis. "Improve Home
    performance" bisa konflik dengan penambahan parallax sprite 1.3 atau
-   custom cursor 6.2 — keduanya menambah beban render).
+   custom cursor 6.2 - keduanya menambah beban render).
 5. Hasil fase ini: daftar mentah semua item kerja + flag konflik/ambiguitas.
    **Tidak boleh menulis kode di fase ini.**
 
@@ -124,12 +124,12 @@ sumber.
 
 ---
 
-### Fase 2 — PLAN (pecah jadi task-plan terstruktur)
+### Fase 2 - PLAN (pecah jadi task-plan terstruktur)
 
 Setiap item report.md diubah jadi entri task memakai **Template Task** (§4).
 Urutan prioritas mengikuti `report.md` §7 (Quick win → Medium → Higher
 effort), **kecuali** ada dependency teknis yang memaksa urutan lain (contoh:
-XP Scroll Bar 1.2 butuh z-index di atas navbar pill — pastikan token
+XP Scroll Bar 1.2 butuh z-index di atas navbar pill - pastikan token
 `z-index` navbar sudah fix sebelum implement 1.2).
 
 Output Fase 2: file/board task (bisa ekstensi dari `TASKS.md`) berisi semua
@@ -141,39 +141,39 @@ dicentang sebagai "akan dipatuhi".
 
 ---
 
-### Fase 3 — CONFIRM (checkpoint wajib untuk item beresiko)
+### Fase 3 - CONFIRM (checkpoint wajib untuk item beresiko)
 
 Sebelum implementasi dimulai, task berikut **wajib** dikonfirmasi pemilik
-proyek — implementasi tanpa konfirmasi ini dianggap pelanggaran guardrail:
+proyek - implementasi tanpa konfirmasi ini dianggap pelanggaran guardrail:
 
 | Item | Alasan wajib konfirmasi |
 |---|---|
 | Tabel warna rarity/tier (`design-system.md` §1) | Ditandai `[ASUMSI]` eksplisit di sumber |
 | Skema warna final: skema 1 vs skema 2 | Skema 2 disebut "belum didefinisikan di brief" |
 | Assignment rarity per experience card (2.2) | Menentukan bobot COMMON/RARE/EPIC per entri butuh input pemilik data, bukan tebakan agent |
-| Assignment medal tier per achievement (2.6) | Sama alasan — nasional vs sekolah harus dikonfirmasi pemetaannya, bukan diasumsikan dari judul |
-| Command palette (6.3): status saat ini fungsional/dekoratif? | Report menandai ini sebagai kemungkinan "broken promise" — perlu verifikasi kondisi aktual sebelum di-scope sebagai bug-fix vs fitur baru |
-| Skill Tree berjenjang (2.4) vs alternatif progress bar (2.5) | Perubahan struktural — pilih salah satu di awal, jangan kerjakan dua-duanya |
+| Assignment medal tier per achievement (2.6) | Sama alasan - nasional vs sekolah harus dikonfirmasi pemetaannya, bukan diasumsikan dari judul |
+| Command palette (6.3): status saat ini fungsional/dekoratif? | Report menandai ini sebagai kemungkinan "broken promise" - perlu verifikasi kondisi aktual sebelum di-scope sebagai bug-fix vs fitur baru |
+| Skill Tree berjenjang (2.4) vs alternatif progress bar (2.5) | Perubahan struktural - pilih salah satu di awal, jangan kerjakan dua-duanya |
 
 Jika pemilik proyek belum merespons, task terkait **tetap `blocked`**, tidak
 boleh masuk Fase 4 dengan asumsi default dari agent.
 
 ---
 
-### Fase 4 — IMPLEMENT (satu komponen per siklus)
+### Fase 4 - IMPLEMENT (satu komponen per siklus)
 
 Aturan eksekusi:
 
-1. Satu komponen/task per siklus commit — jangan gabung beberapa item
+1. Satu komponen/task per siklus commit - jangan gabung beberapa item
    report.md jadi satu perubahan besar (memudahkan validasi & rollback).
-2. Ikuti urutan: **Global dulu, baru per-halaman** — karena beberapa
+2. Ikuti urutan: **Global dulu, baru per-halaman** - karena beberapa
    komponen global (Press State §5, XP Bar §3, Toast §8) dipakai lintas
    halaman; membangunnya lebih dulu mencegah rework.
    - Urutan disarankan: `Press State (1.4/3.1)` → `XP Scroll Bar (1.2)` →
      `Toast system (6.1)` → baru masuk ke komponen per-halaman
      (`Rarity Tag`, `Journey marker`, `Portal hover`, dst).
 3. Setiap komponen dibangun mengikuti struktur HTML/CSS persis seperti di
-   `design-system.md` (class name, posisi, unit ukuran) — jangan improvisasi
+   `design-system.md` (class name, posisi, unit ukuran) - jangan improvisasi
    struktur baru tanpa alasan teknis yang dicatat.
 4. Reduced-motion & focus-visible **ditulis bersamaan** dengan animasi utama,
    bukan ditambahkan belakangan sebagai "task terpisah".
@@ -182,7 +182,7 @@ Aturan eksekusi:
 
 ---
 
-### Fase 5 — VALIDATE (Validation Gate)
+### Fase 5 - VALIDATE (Validation Gate)
 
 Gunakan checklist ini per komponen, **bukan sekali di akhir proyek**.
 Task tidak boleh ditandai `done` di `TASKS.md` sebelum semua baris ini ✅.
@@ -190,7 +190,7 @@ Task tidak boleh ditandai `done` di `TASKS.md` sebelum semua baris ini ✅.
 **Gate Fungsional**
 - [ ] Elemen muncul tepat di letak yang disebut di `report.md`.
 - [ ] Struktur HTML/class sesuai `design-system.md` untuk komponen ini.
-- [ ] Tidak ada data yang di-fabricate (angka, rarity, medal — semua
+- [ ] Tidak ada data yang di-fabricate (angka, rarity, medal - semua
       berdasar data nyata/terkonfirmasi, lihat Fase 3).
 
 **Gate Guardrail (§1)**
@@ -201,13 +201,13 @@ Task tidak boleh ditandai `done` di `TASKS.md` sebelum semua baris ini ✅.
 - [ ] Tidak ada modal blocking / audio ditambahkan.
 
 **Gate Aksesibilitas**
-- [ ] `prefers-reduced-motion: reduce` diuji manual — animasi loop berhenti,
+- [ ] `prefers-reduced-motion: reduce` diuji manual - animasi loop berhenti,
       state akhir statis tetap tampil.
 - [ ] Navigasi keyboard (Tab) mencapai elemen interaktif baru dan
       `:focus-visible` terlihat setara dengan `:active`.
 - [ ] `aria-hidden`/`aria-live` dipasang sesuai kategori elemen (§1.2).
 - [ ] Cek kontras teks komponen baru terhadap background (target AA).
-- [ ] Diuji di viewport mobile — tidak ada horizontal scroll baru.
+- [ ] Diuji di viewport mobile - tidak ada horizontal scroll baru.
 - [ ] Jika ada hover-only interaction (3.3, 9), pastikan ada padanan
       touch (tap-hold atau tap-to-reveal), bukan fitur yang hilang di mobile.
 
@@ -215,14 +215,14 @@ Task tidak boleh ditandai `done` di `TASKS.md` sebelum semua baris ini ✅.
 di `TASKS.md`)
 - [ ] Komponen baru di Home (HUD strip 1.1, XP bar 1.2, sprite parallax 1.3)
       tidak menambah beban render yang memperparah lag hero yang sudah
-      tercatat sebagai isu aktif — ukur sebelum/sesudah jika memungkinkan.
+      tercatat sebagai isu aktif - ukur sebelum/sesudah jika memungkinkan.
 
 Jika ada satu baris gagal → task kembali ke status `in-progress`, **tidak**
 lanjut ke komponen berikutnya.
 
 ---
 
-### Fase 6 — LOG (jejak keputusan)
+### Fase 6 - LOG (jejak keputusan)
 
 Setiap task yang lolos Fase 5:
 
@@ -260,7 +260,7 @@ PRODUCT.md rules ─┘                                              │no
 Salin blok ini untuk setiap item report.md sebelum mulai coding:
 
 ```
-### Task: [nomor & nama item report.md, mis. "2.3 — Kamu di Sini Marker"]
+### Task: [nomor & nama item report.md, mis. "2.3 - Kamu di Sini Marker"]
 
 - Sumber spesifikasi: report.md §2.3, design-system.md §6
 - Halaman/letak persis: [salin letak dari report.md]
@@ -278,12 +278,12 @@ Salin blok ini untuk setiap item report.md sebelum mulai coding:
 
 ---
 
-## 5. Matriks Prioritas (dari report.md §7 — dipatuhi, tidak diurutkan ulang tanpa alasan)
+## 5. Matriks Prioritas (dari report.md §7 - dipatuhi, tidak diurutkan ulang tanpa alasan)
 
 | Tier | Item | Effort | Catatan eksekusi |
 |---|---|---|---|
-| Quick win | 1.4 Button press state | Rendah | Kerjakan pertama — dipakai semua CTA/pill lain |
-| Quick win | 3.2 Tier color differentiation | Rendah | Tidak butuh token baru — remap dari §1 setelah dikonfirmasi |
+| Quick win | 1.4 Button press state | Rendah | Kerjakan pertama - dipakai semua CTA/pill lain |
+| Quick win | 3.2 Tier color differentiation | Rendah | Tidak butuh token baru - remap dari §1 setelah dikonfirmasi |
 | Quick win | 3.4 / 4.2 Count-up stat & stat-chip | Rendah | Manual `requestAnimationFrame`, bukan lib `react-countup` |
 | Quick win | 5.1 Contact card hover lift | Rendah | Warna aksen ambil dari gradient card existing, bukan token baru |
 | Quick win | 2.3 "Kamu di sini" marker | Rendah | Wajib reduced-motion check sejak awal (§1.2) |
@@ -304,15 +304,15 @@ Salin blok ini untuk setiap item report.md sebelum mulai coding:
    yang tidak ada di dokumen (rarity, medal tier, skema warna final),
    task **otomatis** berstatus `blocked`, bukan `planned`.
 2. Tulis pertanyaan konfirmasi spesifik (bukan pertanyaan terbuka), contoh
-   yang benar: *"Experience card 'Vice President' — apakah rarity EPIC
+   yang benar: *"Experience card 'Vice President' - apakah rarity EPIC
    sesuai bobot organisasi, atau ada mapping lain yang diinginkan?"*
-   — bukan *"warna apa yang mau dipakai?"*.
+   - bukan *"warna apa yang mau dipakai?"*.
 3. Jangan pernah default ke asumsi sendiri untuk item berdampak data/branding
    hanya karena ingin lanjut jalan. Item non-blocking (mis. detail animasi
    timing yang sudah dispesifikasikan angka pastinya di design-system.md)
-   tidak perlu eskalasi — itu bukan `[ASUMSI]`, itu sudah spesifikasi final.
+   tidak perlu eskalasi - itu bukan `[ASUMSI]`, itu sudah spesifikasi final.
 4. Setelah dikonfirmasi, catat jawaban di §7 (Log Keputusan) sebelum lanjut
-   IMPLEMENT — konfirmasi lisan/chat yang tidak dicatat dianggap belum ada.
+   IMPLEMENT - konfirmasi lisan/chat yang tidak dicatat dianggap belum ada.
 
 ---
 
@@ -323,6 +323,8 @@ Gunakan tabel ini untuk mencatat setiap konfirmasi/penyimpangan dari spesifikasi
 | Tanggal | Item | Pertanyaan/Isu | Keputusan | Sumber otorisasi |
 |---|---|---|---|---|
 | 2026-07-03 | PlayerStatusPopup PP/rarity/threshold | `plans/player-status-popup-system.md` menandai skala poin, threshold level, dan mapping item sebagai asumsi yang perlu konfirmasi. | Implement memakai nilai plan sebagai arahan eksplisit, tetapi semua progress mission tetap dihitung dari `lib/data.js` dan ikon emoji diganti sprite monoline sesuai `PRODUCT.md`. | Permintaan user: "implement all the plan in plans/" |
+| 2026-07-03 | Google Auth.js dependency dan OAuth credential | Plan §0 memblokir dependency/credential auth sampai dikonfirmasi. | Tambah `next-auth` untuk Google login. Credential hanya disimpan di `.env.local`; role owner tidak diberikan sampai `OWNER_EMAIL` diisi eksplisit. | Permintaan user: "setup google auth config" beserta credential OAuth |
+| 2026-07-03 | Static export vs OAuth callback | `output: "export"` tidak dapat menghasilkan route handler Auth.js `/api/auth/[...nextauth]`. | Default build diubah menjadi Next.js server build. Artifact HTML statis lama tetap ada, tetapi build baru memerlukan runtime Node agar Google OAuth berfungsi. | Build failure evidence: Next.js menolak dynamic auth route saat static export |
 
 ---
 
@@ -334,5 +336,5 @@ Untuk menjaga workflow ini tidak jadi celah untuk melonggarkan aturan:
   `report.md` §1–§6. Ide baru → dicatat sebagai item baru di `TASKS.md`
   bagian "Someday", bukan langsung diimplementasi.
 - Workflow ini **tidak** menggantikan `report.md` §8 (Yang Tidak
-  Direkomendasikan Ditambah) — daftar itu tetap berlaku penuh.
+  Direkomendasikan Ditambah) - daftar itu tetap berlaku penuh.
 - Fase CONFIRM (§3) **tidak boleh** dilewati dengan alasan "menghemat waktu".

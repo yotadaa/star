@@ -4,7 +4,7 @@ import React from "react";
 import { useInViewOnce } from "./useInViewOnce";
 
 /**
- * UnlockCard — pembungkus generic untuk Experience card, Achievement card,
+ * UnlockCard - pembungkus generic untuk Experience card, Achievement card,
  * atau Project card. Muncul dengan efek "unlock": scale-up + flash border
  * kuning sekilas saat pertama kali masuk viewport.
  *

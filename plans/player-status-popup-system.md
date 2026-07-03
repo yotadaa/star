@@ -6,7 +6,7 @@ saling terhubung lewat satu **sistem poin (Player Points / PP)**.
 
 ---
 
-## 0. Konsep Inti — Kenapa 3 Popup Ini Perlu Terhubung
+## 0. Konsep Inti - Kenapa 3 Popup Ini Perlu Terhubung
 
 Achievement dan Mission sama-sama point-based, tapi beda fungsi:
 
@@ -17,7 +17,7 @@ Achievement dan Mission sama-sama point-based, tapi beda fungsi:
   (mis. "capai 10 project publik", "kumpulkan 10 sitasi"). Punya progress
   bar, bisa naik pelan-pelan, reward poin cair saat target tercapai.
 - **Inventory** = *representasi hasil*. Bukan sistem poin baru, tapi
-  **galeri item yang sudah di-unlock** lewat Achievement & Mission — cara
+  **galeri item yang sudah di-unlock** lewat Achievement & Mission - cara
   visual untuk "memamerkan" pencapaian sebagai benda yang bisa dikoleksi.
 
 Jadi alurnya satu arah:
@@ -29,13 +29,13 @@ Mission selesai        ─┘
          └─→ memicu 1 item baru muncul di Inventory
 ```
 
-Inventory **tidak** punya sumber poin sendiri — dia murni etalase dari apa
+Inventory **tidak** punya sumber poin sendiri - dia murni etalase dari apa
 yang sudah dibuka lewat dua sistem lainnya. Ini penting supaya user tidak
 bingung "kenapa ada 3 tempat poin berbeda".
 
 ---
 
-## 1. Sistem Poin (Player Points — PP)
+## 1. Sistem Poin (Player Points - PP)
 
 - Satu angka global: **Total PP** = jumlah semua Achievement unlocked +
   semua Mission selesai.
@@ -51,14 +51,14 @@ bingung "kenapa ada 3 tempat poin berbeda".
 | 5 | Research Voyager | 90 |
 
 - Total PP & level ini yang dipakai untuk mengisi `HudChip` "Level:
-  Fullstack Explorer" di Home (item report 1.1) — jadi sekarang datanya
+  Fullstack Explorer" di Home (item report 1.1) - jadi sekarang datanya
   **bukan teks statis**, tapi hasil hitung dari Achievement + Mission.
 - Level-up memicu **Toast** ("🎉 Level naik ke Systems Builder!") lewat
   `useToast()` yang sudah dibuat.
 
 ---
 
-## 2. ACHIEVEMENT — Struktur & Contoh Konten
+## 2. ACHIEVEMENT - Struktur & Contoh Konten
 
 ### 2.1 Skema data
 
@@ -93,7 +93,7 @@ type Achievement = {
 | Repo GitHub publik tembus 50+ | +5 | rare | web |
 | Deploy proyek fullstack pertama (E-Ticket TNKS) | +6 | rare | web |
 
-**Poin ditentukan berdasarkan bobot usaha/dampak** — bukan angka acak:
+**Poin ditentukan berdasarkan bobot usaha/dampak** - bukan angka acak:
 common (2–4 poin) untuk partisipasi, rare (5–8) untuk kontribusi nyata
 dengan hasil terukur, epic (8–12) untuk pencapaian dengan validasi eksternal
 (terindeks, terpilih lewat seleksi, publikasi resmi).
@@ -103,15 +103,15 @@ dengan hasil terukur, epic (8–12) untuk pencapaian dengan validasi eksternal
 Achievement yang belum tercapai tetap **ditampilkan** (bukan disembunyikan)
 tapi silhouette gelap + poin disamarkan (`+??`), supaya:
 1. User tahu ada target yang bisa dikejar (bukan cuma yang sudah lewat).
-2. Memberi rasa "masih ada lebih banyak untuk ditemukan" — sesuai pola
+2. Memberi rasa "masih ada lebih banyak untuk ditemukan" - sesuai pola
    locked-slot yang sudah kita desain di Research (item report 4.3).
 
 Contoh locked achievement yang relevan ke depan:
-`"Publikasi ke-5 terindeks" — +6 poin — 🔒 belum tercapai`.
+`"Publikasi ke-5 terindeks" - +6 poin - 🔒 belum tercapai`.
 
 ---
 
-## 3. MISSION — Struktur & Contoh Konten
+## 3. MISSION - Struktur & Contoh Konten
 
 Beda dari Achievement: mission punya **progress numerik**, bukan
 boolean unlocked/locked.
@@ -142,11 +142,11 @@ type Mission = {
 | Selesaikan h-index 3 | 2/3 | 3 | +6 |
 
 *_Angka current di sini contoh ilustratif berdasar data About/Research yang
-sudah ada di situs (5 sitasi, 57 repo, 4 publikasi, h-index 2) — sebaiknya
+sudah ada di situs (5 sitasi, 57 repo, 4 publikasi, h-index 2) - sebaiknya
 di-generate otomatis dari `data/` yang sudah kamu simpan (lihat §3.3), bukan
 di-input manual dua kali supaya tidak drift dari angka asli di halaman lain.
 
-### 3.3 Sumber data otomatis (penting — hindari data ganda)
+### 3.3 Sumber data otomatis (penting - hindari data ganda)
 
 Jangan hardcode angka mission terpisah dari data yang sudah dipakai di
 halaman Projects/Research. Ambil dari satu sumber:
@@ -171,18 +171,18 @@ const missions = [
 ];
 ```
 
-Ini juga menjawab kekhawatiran "jangan mengarang data" dari brief awal —
+Ini juga menjawab kekhawatiran "jangan mengarang data" dari brief awal -
 mission harus mencerminkan angka nyata di `data/`, bukan angka fiktif.
 
 ### 3.4 Progress bar visual
 
 Pakai styling segmented-bar pixel (bukan gradient smooth), konsisten dengan
-gaya "quest log" — 10 kotak kecil, terisi sesuai rasio current/target,
+gaya "quest log" - 10 kotak kecil, terisi sesuai rasio current/target,
 warna `--gold` untuk terisi, `--ink @ 15%` untuk kosong.
 
 ---
 
-## 4. INVENTORY — Konsep & Struktur
+## 4. INVENTORY - Konsep & Struktur
 
 Ini bagian yang paling perlu "dipikirkan" karena tidak ada padanan
 langsung di konten portofolio biasa. Berikut pendekatan yang saya
@@ -191,14 +191,14 @@ rekomendasikan:
 ### 4.1 Metafora: Inventory = "Artifact yang Dikoleksi dari Quest"
 
 Setiap Achievement/Mission yang selesai **otomatis melahirkan 1 item**
-di Inventory. Item ini bukan data baru — dia representasi visual dari
+di Inventory. Item ini bukan data baru - dia representasi visual dari
 achievement/mission yang sama, tapi dikelompokkan berdasarkan **jenis
 artifact**, bukan kronologis:
 
 | Jenis Item | Diisi dari | Icon/visual | Contoh |
 |---|---|---|---|
 | 📜 **Scroll** (riset/tulisan) | Achievement/Mission kategori `research` | gulungan kertas | "Scroll: Analisis Prediktif Tren Pendidikan (KNN)" |
-| 🛠️ **Tool** (skill/stack dikuasai) | Skill Tree yang sudah level tertentu | ikon alat | "Tool: Laravel — Mastery Lv.3" |
+| 🛠️ **Tool** (skill/stack dikuasai) | Skill Tree yang sudah level tertentu | ikon alat | "Tool: Laravel - Mastery Lv.3" |
 | 🏺 **Artifact** (proyek jadi) | Achievement/Mission kategori `web` | guci/artefak | "Artifact: E-Ticket TNKS" |
 | 🎖️ **Medal** (kompetisi/organisasi) | Achievement kategori `competition`/`community` | medali (sudah ada svg: medal-gold/silver/bronze) | "Medal: Finalis OSN-P Informatika" |
 | 🔑 **Key** (milestone level-up) | Otomatis saat naik level (§1) | kunci pixel | "Key: Level 3 Unlocked" |
@@ -206,7 +206,7 @@ artifact**, bukan kronologis:
 ### 4.2 Kenapa dikelompokkan begini (bukan cuma list flat)
 
 - Portofolio Mukhtada punya 4 domain jelas (riset, web dev, kompetisi,
-  organisasi) — mengelompokkan sebagai "jenis artifact" membuat Inventory
+  organisasi) - mengelompokkan sebagai "jenis artifact" membuat Inventory
   terasa seperti tas RPG beneran (ada slot senjata, slot ramuan, slot
   quest-item), bukan cuma daftar achievement yang diduplikasi.
 - Recruiter/pengunjung yang scan cepat Inventory bisa langsung lihat
@@ -225,7 +225,7 @@ type InventoryItem = {
   linkTo?: string;          // opsional: link ke project/publikasi asli
 };
 
-// Inventory TIDAK disimpan manual — di-generate:
+// Inventory TIDAK disimpan manual - di-generate:
 function buildInventory(achievements, missions) {
   return [
     ...achievements.filter(a => a.unlocked).map(toInventoryItem),
@@ -243,13 +243,13 @@ membuka detail singkat yang link ke sumber asli:
 - Medal → tidak perlu link (organisasi/kompetisi biasanya tak punya URL)
 
 Ini membuat Inventory bukan cuma dekorasi, tapi jadi **navigasi alternatif**
-ke konten situs — nilai tambah fungsional, bukan cuma estetika.
+ke konten situs - nilai tambah fungsional, bukan cuma estetika.
 
 ### 4.5 Rarity & sorting
 
 - Default sort: rarity (epic → rare → common), lalu terbaru.
 - Filter tab di dalam popup Inventory: All / Scroll / Tool / Artifact / Medal
-  — pakai `PixelButton` varian `as="pill"` yang sudah ada, sama pola dengan
+  - pakai `PixelButton` varian `as="pill"` yang sudah ada, sama pola dengan
   filter Tipe/Kategori di halaman Projects.
 
 ---
@@ -260,10 +260,10 @@ ke konten situs — nilai tambah fungsional, bukan cuma estetika.
 
 - Ikon baru di navbar pill, di sebelah ikon `⌘` yang sudah ada
   (gunakan `icon-command` di sprite sebagai referensi style, buat versi
-  baru misal ikon tas/backpack untuk trigger popup ini — **perlu SVG baru**,
+  baru misal ikon tas/backpack untuk trigger popup ini - **perlu SVG baru**,
   lihat §7).
 - Alternatif: 1 ikon trigger membuka modal dengan 3 tab di dalamnya
-  (Inventory / Achievement / Mission), bukan 3 ikon terpisah — lebih hemat
+  (Inventory / Achievement / Mission), bukan 3 ikon terpisah - lebih hemat
   ruang di navbar yang sudah padat (Home/About/Projects/Research/Contact +
   2 ikon existing).
 
@@ -282,15 +282,15 @@ ke konten situs — nilai tambah fungsional, bukan cuma estetika.
 └─────────────────────────────────────────┘
 ```
 
-- Header ringkasan PP/level **selalu tampil** di ketiga tab — supaya
+- Header ringkasan PP/level **selalu tampil** di ketiga tab - supaya
   koneksi "achievement/mission → poin → level → inventory" terasa nyata,
   bukan 3 fitur terpisah.
 - Modal: backdrop blur + card style sama seperti `HeroGlassPanel` yang
   sudah direncanakan di brief awal (konsisten glass-cockpit theme).
-- Animasi buka: scale+fade, bukan slide — konsisten `--ease-pixel`.
+- Animasi buka: scale+fade, bukan slide - konsisten `--ease-pixel`.
 - Tutup: klik backdrop, tombol ✕, atau tombol `Esc` (wajib untuk aksesibilitas).
 
-### 5.3 Tab Achievement — layout per item
+### 5.3 Tab Achievement - layout per item
 
 ```
 ┌───────────────────────────┐
@@ -302,7 +302,7 @@ ke konten situs — nilai tambah fungsional, bukan cuma estetika.
 ```
 Item locked: sama layout, tapi icon jadi silhouette abu + poin `+??`.
 
-### 5.4 Tab Mission — layout per item
+### 5.4 Tab Mission - layout per item
 
 ```
 ┌───────────────────────────┐
@@ -312,7 +312,7 @@ Item locked: sama layout, tapi icon jadi silhouette abu + poin `+??`.
 └───────────────────────────┘
 ```
 
-### 5.5 Tab Inventory — layout per item (grid icon besar)
+### 5.5 Tab Inventory - layout per item (grid icon besar)
 
 ```
 ┌───────┐
@@ -345,10 +345,10 @@ Menyambung dari komponen yang sudah dibuat sebelumnya:
 | `MissionList.jsx` | Grid mission + progress bar | `RarityTag` (utk kategori) |
 | `InventoryGrid.jsx` | Grid item + detail expand | `UnlockCard`, `RarityTag` |
 | `ProgressBarSegmented.jsx` | Progress bar kotak-kotak pixel (dipakai Mission & header level) | baru, generic |
-| `usePlayerProgress.js` (hook) | Hitung Total PP, level, status locked/unlocked dari `data/achievements.json` + `data/missions.json` | — |
+| `usePlayerProgress.js` (hook) | Hitung Total PP, level, status locked/unlocked dari `data/achievements.json` + `data/missions.json` | - |
 
 Semua trigger unlock (achievement baru / mission selesai / level naik)
-wajib memanggil `useToast()` yang sudah ada — supaya user benar-benar
+wajib memanggil `useToast()` yang sudah ada - supaya user benar-benar
 "merasakan" event-nya, bukan cuma lihat angka berubah diam-diam saat
 buka popup.
 
@@ -358,35 +358,35 @@ buka popup.
 
 Belum ada di `icons-sprite.svg` sebelumnya, perlu ditambahkan:
 
-1. `icon-backpack` — trigger navbar untuk buka popup (§5.1)
-2. `icon-scroll` — item type Scroll (riset)
-3. `icon-tool-wrench` — item type Tool (skill)
-4. `icon-artifact-vase` — item type Artifact (proyek)
-5. `icon-key` — item type Key (level milestone)
-6. `icon-lock-silhouette` — versi "locked" achievement (icon abu, sudah ada
+1. `icon-backpack` - trigger navbar untuk buka popup (§5.1)
+2. `icon-scroll` - item type Scroll (riset)
+3. `icon-tool-wrench` - item type Tool (skill)
+4. `icon-artifact-vase` - item type Artifact (proyek)
+5. `icon-key` - item type Key (level milestone)
+6. `icon-lock-silhouette` - versi "locked" achievement (icon abu, sudah ada
    `icon-lock` tapi ini varian untuk isi card, bukan locked-slot)
 
 Beri tahu saya kalau ingin saya generate SVG-SVG ini sekarang (sprite
-tambahan, format sama seperti `icons-sprite.svg` — monoline, currentColor).
+tambahan, format sama seperti `icons-sprite.svg` - monoline, currentColor).
 
 ---
 
 ## 8. Hal yang Perlu Dikonfirmasi (ASUMSI, MOHON DIKONFIRMASI)
 
 1. **Skala poin** di §2.2 dan §3.2 adalah usulan awal saya berdasarkan bobot
-   relatif — jumlah pastinya sebaiknya kamu review sendiri (terutama makna
-   "Sinta 5" — saya asumsikan ini merujuk ke indeks jurnal Sinta, bukan
+   relatif - jumlah pastinya sebaiknya kamu review sendiri (terutama makna
+   "Sinta 5" - saya asumsikan ini merujuk ke indeks jurnal Sinta, bukan
    istilah lain).
 2. **Threshold level** di §1 (0/15/35/60/90 PP) itu angka ilustratif,
    perlu disesuaikan supaya level terakhir tidak terlalu cepat/lambat
    tercapai berdasarkan total achievement+mission riil yang akan didaftarkan.
 3. **Persistensi progress**: mission progress (current count) sebaiknya
-   **dihitung otomatis dari data** (§3.3), bukan disimpan manual per user —
+   **dihitung otomatis dari data** (§3.3), bukan disimpan manual per user -
    karena ini portofolio publik (bukan aplikasi multi-user dengan akun),
    semua pengunjung akan melihat progress yang sama (progress si pemilik
    portofolio, bukan progress masing-masing pengunjung). Perlu dikonfirmasi
-   ini pemahaman yang benar — beda dengan game sungguhan di mana progress
+   ini pemahaman yang benar - beda dengan game sungguhan di mana progress
    itu milik tiap pemain.
-4. Item Inventory §4.4 yang link keluar ke Scholar/GitHub — pastikan
+4. Item Inventory §4.4 yang link keluar ke Scholar/GitHub - pastikan
    URL-nya diambil dari `data/` yang sama dipakai halaman Research/Projects,
    supaya tidak ada link yang dikarang.

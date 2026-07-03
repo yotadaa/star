@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 /**
- * XpScrollBar — garis tipis fixed-top yang terisi sesuai persentase
+ * XpScrollBar - garis tipis fixed-top yang terisi sesuai persentase
  * scroll halaman, dibingkai sebagai "XP bar".
  *
  * Pasang sekali di root layout, di atas <IslandNav/>:

@@ -6,7 +6,7 @@ import JourneyPath from "@/components/JourneyPath";
 import { HudStatusStrip, SpriteIcon } from "@/components/claude";
 import { profile } from "@/lib/data";
 
-export const metadata = { title: "About — Mukhtada Billah NST" };
+export const metadata = { title: "About - Mukhtada Billah NST" };
 
 export default function AboutPage() {
   return (
@@ -16,7 +16,7 @@ export default function AboutPage() {
       </PageHeader>
 
       <p className="intro-prose">
-        Aku <strong>Mukhtada Billah NST</strong> — mahasiswa <strong>Sistem Informasi Universitas Jambi</strong> yang
+        Aku <strong>Mukhtada Billah NST</strong> - mahasiswa <strong>Sistem Informasi Universitas Jambi</strong> yang
         senang mengubah riset jadi produk yang benar-benar jalan. Fokusku di{" "}
         <strong>fullstack web</strong>, <strong>AI tooling</strong>, dan <strong>data science</strong>. Aku suka
         mengajar, menulis riset, dan membangun hal-hal kecil yang berguna untuk komunitas.

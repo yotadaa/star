@@ -6,7 +6,7 @@ import { Home, User, FolderGit2, FlaskConical, Mail, Github, Linkedin, Graduatio
 import { navLinks, socials } from "@/lib/data";
 import { useSite } from "./SiteProvider";
 
-const NAV_ICONS = { "/": Home, "/about": User, "/projects": FolderGit2, "/research": FlaskConical, "/contact": Mail };
+const NAV_ICONS = { "/": Home, "/about": User, "/projects": FolderGit2, "/research": FlaskConical, "/blog": PenLine, "/contact": Mail };
 const LINK_ICONS = { linkedin: Linkedin, github: Github, scholar: GraduationCap, blog: PenLine };
 
 export default function CommandPalette() {
