@@ -36,11 +36,11 @@ function routedId(shardId, namespace, sourceId) {
 function cleanBlocks(blocks) {
   return Array.isArray(blocks)
     ? blocks
-        .map((block) => ({
-          type: ["heading", "paragraph", "quote"].includes(block?.type) ? block.type : "paragraph",
-          text: String(block?.text || "").trim(),
-        }))
-        .filter((block) => block.text)
+      .map((block) => ({
+        type: ["heading", "paragraph", "quote"].includes(block?.type) ? block.type : "paragraph",
+        text: String(block?.text || "").trim(),
+      }))
+      .filter((block) => block.text)
     : [];
 }
 
@@ -199,7 +199,7 @@ aboutRowsByShard.get(shards[0].id).push({
   entry_key: "intro",
   title: "Tentang Mukhtada",
   body:
-    "Aku Mukhtada Billah NST - mahasiswa Sistem Informasi Universitas Jambi yang senang mengubah riset jadi produk yang benar-benar jalan. Fokusku di fullstack web, AI tooling, dan data science. Aku suka mengajar, menulis riset, dan membangun hal-hal kecil yang berguna untuk komunitas.",
+    "Aku Mukhtada Billah NSTs - mahasiswa Sistem Informasi Universitas Jambi yang senang mengubah riset jadi produk yang benar-benar jalan. Fokusku di fullstack web, AI tooling, dan data science. Aku suka mengajar, menulis riset, dan membangun hal-hal kecil yang berguna untuk komunitas.",
   payload: {
     affiliation: dataModule.profile.affiliation,
     location: dataModule.profile.location,
