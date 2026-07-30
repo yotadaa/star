@@ -34,6 +34,7 @@ grant execute on function private.is_backend_request() to anon, authenticated, s
 create or replace function public.set_updated_at()
 returns trigger
 language plpgsql
+set search_path = public, pg_temp
 as $$
 begin
   new.updated_at = now();
@@ -88,6 +89,7 @@ create or replace function public.increment_backend_record_file_count(target_rec
 returns void
 language sql
 security invoker
+set search_path = public, pg_temp
 as $$
   update public.backend_records
   set file_count = file_count + 1
