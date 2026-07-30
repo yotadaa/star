@@ -1,0 +1,244 @@
+<svg viewBox="0 0 176 216" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="Nala - berpikir, gear berputar">
+<style>
+.nala-sprite {
+  --nala-ink: var(--ink, #2c1e1a);
+  --nala-skin: var(--cream, #fbeedd);
+  --nala-hair: var(--terracotta, #c9552f);
+  --nala-vest: var(--olive, #5c7a41);
+  --nala-gold: var(--gold, #f0b23a);
+  --nala-blush: var(--terracotta, #c9552f);
+}
+.nala-sprite .blush{ opacity:.55; }
+@media (prefers-reduced-motion: no-preference) {
+  .nala-sprite .float-part{ animation: nala-float 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  .nala-sprite .spin-part{ animation: nala-spin 3.2s linear infinite; transform-box: fill-box; transform-origin: center; }
+}
+@keyframes nala-float { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-4px);} }
+@keyframes nala-spin { from{ transform: rotate(0deg);} to{ transform: rotate(360deg);} }
+</style>
+<g class="nala-sprite">
+<rect x="14" y="94" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="30" y="94" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="54" y="94" width="28" height="12" fill="var(--nala-ink)"/>
+<rect x="94" y="94" width="28" height="12" fill="var(--nala-ink)"/>
+<rect x="134" y="94" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="150" y="94" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="22" y="182" width="36" height="12" fill="var(--nala-ink)"/>
+<rect x="118" y="182" width="36" height="12" fill="var(--nala-ink)"/>
+<rect x="14" y="54" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="30" y="54" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="54" y="54" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="110" y="54" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="134" y="54" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="150" y="54" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="22" y="134" width="36" height="12" fill="var(--nala-ink)"/>
+<rect x="118" y="134" width="36" height="12" fill="var(--nala-ink)"/>
+<rect x="6" y="14" width="20" height="12" fill="var(--nala-ink)"/>
+<rect x="30" y="14" width="116" height="12" fill="var(--nala-ink)"/>
+<rect x="150" y="14" width="20" height="12" fill="var(--nala-ink)"/>
+<rect x="14" y="38" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="30" y="38" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="46" y="38" width="20" height="12" fill="var(--nala-ink)"/>
+<rect x="110" y="38" width="20" height="12" fill="var(--nala-ink)"/>
+<rect x="134" y="38" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="150" y="38" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="22" y="150" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="142" y="150" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="14" y="70" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="30" y="70" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="54" y="70" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="110" y="70" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="134" y="70" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="150" y="70" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="14" y="86" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="30" y="86" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="54" y="86" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="110" y="86" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="134" y="86" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="150" y="86" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="22" y="118" width="60" height="12" fill="var(--nala-ink)"/>
+<rect x="94" y="118" width="60" height="12" fill="var(--nala-ink)"/>
+<rect x="14" y="46" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="30" y="46" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="54" y="46" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="110" y="46" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="134" y="46" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="150" y="46" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="14" y="102" width="36" height="12" fill="var(--nala-ink)"/>
+<rect x="70" y="102" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="94" y="102" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="126" y="102" width="36" height="12" fill="var(--nala-ink)"/>
+<rect x="54" y="206" width="68" height="12" fill="var(--nala-ink)"/>
+<rect x="14" y="30" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="30" y="30" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="46" y="30" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="118" y="30" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="134" y="30" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="150" y="30" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="14" y="22" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="30" y="22" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="46" y="22" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="118" y="22" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="134" y="22" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="150" y="22" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="14" y="62" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="30" y="62" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="54" y="62" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="110" y="62" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="134" y="62" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="150" y="62" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="46" y="126" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="118" y="126" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="22" y="142" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="142" y="142" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="6" y="6" width="20" height="12" fill="var(--nala-ink)"/>
+<rect x="30" y="6" width="20" height="12" fill="var(--nala-ink)"/>
+<rect x="126" y="6" width="20" height="12" fill="var(--nala-ink)"/>
+<rect x="150" y="6" width="20" height="12" fill="var(--nala-ink)"/>
+<rect x="22" y="174" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="142" y="174" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="14" y="-2" width="28" height="12" fill="var(--nala-ink)"/>
+<rect x="134" y="-2" width="28" height="12" fill="var(--nala-ink)"/>
+<rect x="46" y="190" width="20" height="12" fill="var(--nala-ink)"/>
+<rect x="110" y="190" width="20" height="12" fill="var(--nala-ink)"/>
+<rect x="22" y="110" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="38" y="110" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="70" y="110" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="94" y="110" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="126" y="110" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="142" y="110" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="22" y="166" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="142" y="166" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="14" y="78" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="30" y="78" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="54" y="78" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="110" y="78" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="134" y="78" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="150" y="78" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="22" y="158" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="142" y="158" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="54" y="198" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="110" y="198" width="12" height="12" fill="var(--nala-ink)"/>
+<rect x="16" y="0" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="136" y="0" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="8" y="8" width="40" height="8" fill="var(--nala-hair)"/>
+<rect x="128" y="8" width="40" height="8" fill="var(--nala-hair)"/>
+<rect x="8" y="16" width="160" height="8" fill="var(--nala-hair)"/>
+<rect x="16" y="24" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="48" y="24" width="80" height="8" fill="var(--nala-hair)"/>
+<rect x="136" y="24" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="16" y="32" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="48" y="32" width="8" height="8" fill="var(--nala-hair)"/>
+<rect x="56" y="32" width="64" height="8" fill="var(--nala-skin)"/>
+<rect x="120" y="32" width="8" height="8" fill="var(--nala-hair)"/>
+<rect x="136" y="32" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="16" y="40" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="48" y="40" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="72" y="40" width="32" height="8" fill="var(--nala-skin)"/>
+<rect x="104" y="40" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="136" y="40" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="16" y="48" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="56" y="48" width="64" height="8" fill="var(--nala-skin)"/>
+<rect x="136" y="48" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="16" y="56" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="56" y="56" width="64" height="8" fill="var(--nala-skin)"/>
+<rect x="136" y="56" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="16" y="64" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="56" y="64" width="8" height="8" fill="var(--nala-skin)"/>
+<rect x="64" y="64" width="16" height="8" fill="var(--nala-ink)"/>
+<rect x="80" y="64" width="40" height="8" fill="var(--nala-skin)"/>
+<rect x="136" y="64" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="16" y="72" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="56" y="72" width="8" height="8" fill="var(--nala-blush)" class="blush"/>
+<rect x="64" y="72" width="32" height="8" fill="var(--nala-skin)"/>
+<rect x="96" y="72" width="16" height="8" fill="var(--nala-ink)"/>
+<rect x="112" y="72" width="8" height="8" fill="var(--nala-blush)" class="blush"/>
+<rect x="136" y="72" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="16" y="80" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="56" y="80" width="16" height="8" fill="var(--nala-skin)"/>
+<rect x="72" y="80" width="32" height="8" fill="var(--nala-ink)"/>
+<rect x="104" y="80" width="16" height="8" fill="var(--nala-skin)"/>
+<rect x="136" y="80" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="16" y="88" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="56" y="88" width="64" height="8" fill="var(--nala-skin)"/>
+<rect x="136" y="88" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="16" y="96" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="56" y="96" width="64" height="8" fill="var(--nala-skin)"/>
+<rect x="136" y="96" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="16" y="104" width="32" height="8" fill="var(--nala-hair)"/>
+<rect x="72" y="104" width="32" height="8" fill="var(--nala-skin)"/>
+<rect x="128" y="104" width="32" height="8" fill="var(--nala-hair)"/>
+<rect x="24" y="112" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="72" y="112" width="32" height="8" fill="var(--nala-skin)"/>
+<rect x="128" y="112" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="24" y="120" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="48" y="120" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="56" y="120" width="64" height="8" fill="var(--nala-vest)"/>
+<rect x="120" y="120" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="128" y="120" width="24" height="8" fill="var(--nala-hair)"/>
+<rect x="48" y="128" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="56" y="128" width="64" height="8" fill="var(--nala-vest)"/>
+<rect x="120" y="128" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="24" y="136" width="24" height="8" fill="var(--nala-vest)"/>
+<rect x="48" y="136" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="56" y="136" width="64" height="8" fill="var(--nala-vest)"/>
+<rect x="120" y="136" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="128" y="136" width="24" height="8" fill="var(--nala-vest)"/>
+<rect x="24" y="144" width="24" height="8" fill="var(--nala-vest)"/>
+<rect x="48" y="144" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="56" y="144" width="64" height="8" fill="var(--nala-vest)"/>
+<rect x="120" y="144" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="128" y="144" width="24" height="8" fill="var(--nala-vest)"/>
+<rect x="24" y="152" width="24" height="8" fill="var(--nala-vest)"/>
+<rect x="48" y="152" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="56" y="152" width="16" height="8" fill="var(--nala-vest)"/>
+<rect x="72" y="152" width="32" height="8" fill="var(--nala-gold)"/>
+<rect x="104" y="152" width="16" height="8" fill="var(--nala-vest)"/>
+<rect x="120" y="152" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="128" y="152" width="24" height="8" fill="var(--nala-vest)"/>
+<rect x="24" y="160" width="24" height="8" fill="var(--nala-skin)"/>
+<rect x="48" y="160" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="56" y="160" width="16" height="8" fill="var(--nala-vest)"/>
+<rect x="72" y="160" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="80" y="160" width="16" height="8" fill="var(--nala-ink)"/>
+<rect x="96" y="160" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="104" y="160" width="16" height="8" fill="var(--nala-vest)"/>
+<rect x="120" y="160" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="128" y="160" width="24" height="8" fill="var(--nala-skin)"/>
+<rect x="24" y="168" width="24" height="8" fill="var(--nala-skin)"/>
+<rect x="48" y="168" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="56" y="168" width="16" height="8" fill="var(--nala-vest)"/>
+<rect x="72" y="168" width="32" height="8" fill="var(--nala-gold)"/>
+<rect x="104" y="168" width="16" height="8" fill="var(--nala-vest)"/>
+<rect x="120" y="168" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="128" y="168" width="24" height="8" fill="var(--nala-skin)"/>
+<rect x="24" y="176" width="24" height="8" fill="var(--nala-skin)"/>
+<rect x="48" y="176" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="56" y="176" width="64" height="8" fill="var(--nala-vest)"/>
+<rect x="120" y="176" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="128" y="176" width="24" height="8" fill="var(--nala-skin)"/>
+<rect x="24" y="184" width="24" height="8" fill="var(--nala-skin)"/>
+<rect x="48" y="184" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="56" y="184" width="64" height="8" fill="var(--nala-vest)"/>
+<rect x="120" y="184" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="128" y="184" width="24" height="8" fill="var(--nala-skin)"/>
+<rect x="48" y="192" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="56" y="192" width="64" height="8" fill="var(--nala-vest)"/>
+<rect x="120" y="192" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="56" y="200" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="64" y="200" width="48" height="8" fill="var(--nala-vest)"/>
+<rect x="112" y="200" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="56" y="208" width="8" height="8" fill="var(--nala-gold)"/>
+<rect x="64" y="208" width="48" height="8" fill="var(--nala-vest)"/>
+<rect x="112" y="208" width="8" height="8" fill="var(--nala-gold)"/>
+<g class="float-part">
+      <g class="spin-part" transform="translate(162,14)">
+        <rect x="-3" y="-9" width="6" height="6" fill="var(--nala-gold)" stroke="var(--nala-ink)" stroke-width="2"/>
+        <rect x="-9" y="-3" width="6" height="6" fill="var(--nala-gold)" stroke="var(--nala-ink)" stroke-width="2"/>
+        <rect x="3" y="-3" width="6" height="6" fill="var(--nala-gold)" stroke="var(--nala-ink)" stroke-width="2"/>
+        <rect x="-3" y="3" width="6" height="6" fill="var(--nala-gold)" stroke="var(--nala-ink)" stroke-width="2"/>
+        <rect x="-5" y="-5" width="10" height="10" fill="var(--nala-gold)" stroke="var(--nala-ink)" stroke-width="2"/>
+        <rect x="-2" y="-2" width="4" height="4" fill="var(--nala-ink)"/>
+      </g>
+    </g>
+</g></svg>

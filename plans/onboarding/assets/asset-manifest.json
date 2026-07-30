@@ -1,0 +1,612 @@
+{
+  "canvas": {
+    "width": 96,
+    "height": 128
+  },
+  "palette": {
+    "ink": "#16241f",
+    "ink_soft": "#47584f",
+    "cream": "#f5ecd8",
+    "parchment": "#eaddc0",
+    "parchment_dark": "#ddcba4",
+    "gold": "#ecb63f",
+    "aurora": "#45b8a4",
+    "aurora_deep": "#2b8a7a",
+    "moss": "#6a9a55",
+    "moss_dark": "#3f5f34",
+    "coral": "#e06a45",
+    "coral_dark": "#b8492b"
+  },
+  "base": {
+    "male": {
+      "idle": {
+        "front": [
+          "assets/base/male/idle/front/frame-00.png",
+          "assets/base/male/idle/front/frame-01.png",
+          "assets/base/male/idle/front/frame-02.png",
+          "assets/base/male/idle/front/frame-03.png"
+        ],
+        "back": [
+          "assets/base/male/idle/back/frame-00.png",
+          "assets/base/male/idle/back/frame-01.png",
+          "assets/base/male/idle/back/frame-02.png",
+          "assets/base/male/idle/back/frame-03.png"
+        ],
+        "side": [
+          "assets/base/male/idle/side/frame-00.png",
+          "assets/base/male/idle/side/frame-01.png",
+          "assets/base/male/idle/side/frame-02.png",
+          "assets/base/male/idle/side/frame-03.png"
+        ]
+      },
+      "walk": {
+        "front": [
+          "assets/base/male/walk/front/frame-00.png",
+          "assets/base/male/walk/front/frame-01.png",
+          "assets/base/male/walk/front/frame-02.png",
+          "assets/base/male/walk/front/frame-03.png"
+        ],
+        "back": [
+          "assets/base/male/walk/back/frame-00.png",
+          "assets/base/male/walk/back/frame-01.png",
+          "assets/base/male/walk/back/frame-02.png",
+          "assets/base/male/walk/back/frame-03.png"
+        ],
+        "side": [
+          "assets/base/male/walk/side/frame-00.png",
+          "assets/base/male/walk/side/frame-01.png",
+          "assets/base/male/walk/side/frame-02.png",
+          "assets/base/male/walk/side/frame-03.png"
+        ]
+      },
+      "sit-floor": {
+        "front": [
+          "assets/base/male/sit-floor/front/frame-00.png",
+          "assets/base/male/sit-floor/front/frame-01.png",
+          "assets/base/male/sit-floor/front/frame-02.png",
+          "assets/base/male/sit-floor/front/frame-03.png"
+        ]
+      },
+      "sit-chair": {
+        "side": [
+          "assets/base/male/sit-chair/side/frame-00.png",
+          "assets/base/male/sit-chair/side/frame-01.png",
+          "assets/base/male/sit-chair/side/frame-02.png",
+          "assets/base/male/sit-chair/side/frame-03.png"
+        ]
+      },
+      "expressive": {
+        "idle": [
+          "assets/base/male/expressive/idle/frame-00.png",
+          "assets/base/male/expressive/idle/frame-01.png",
+          "assets/base/male/expressive/idle/frame-02.png",
+          "assets/base/male/expressive/idle/frame-03.png"
+        ],
+        "thinking": [
+          "assets/base/male/expressive/thinking/frame-00.png",
+          "assets/base/male/expressive/thinking/frame-01.png",
+          "assets/base/male/expressive/thinking/frame-02.png",
+          "assets/base/male/expressive/thinking/frame-03.png"
+        ],
+        "happy": [
+          "assets/base/male/expressive/happy/frame-00.png",
+          "assets/base/male/expressive/happy/frame-01.png",
+          "assets/base/male/expressive/happy/frame-02.png",
+          "assets/base/male/expressive/happy/frame-03.png"
+        ],
+        "confused": [
+          "assets/base/male/expressive/confused/frame-00.png",
+          "assets/base/male/expressive/confused/frame-01.png",
+          "assets/base/male/expressive/confused/frame-02.png",
+          "assets/base/male/expressive/confused/frame-03.png"
+        ],
+        "greeting": [
+          "assets/base/male/expressive/greeting/frame-00.png",
+          "assets/base/male/expressive/greeting/frame-01.png",
+          "assets/base/male/expressive/greeting/frame-02.png",
+          "assets/base/male/expressive/greeting/frame-03.png"
+        ],
+        "pointing": [
+          "assets/base/male/expressive/pointing/frame-00.png",
+          "assets/base/male/expressive/pointing/frame-01.png",
+          "assets/base/male/expressive/pointing/frame-02.png",
+          "assets/base/male/expressive/pointing/frame-03.png"
+        ]
+      }
+    },
+    "female": {
+      "idle": {
+        "front": [
+          "assets/base/female/idle/front/frame-00.png",
+          "assets/base/female/idle/front/frame-01.png",
+          "assets/base/female/idle/front/frame-02.png",
+          "assets/base/female/idle/front/frame-03.png"
+        ],
+        "back": [
+          "assets/base/female/idle/back/frame-00.png",
+          "assets/base/female/idle/back/frame-01.png",
+          "assets/base/female/idle/back/frame-02.png",
+          "assets/base/female/idle/back/frame-03.png"
+        ],
+        "side": [
+          "assets/base/female/idle/side/frame-00.png",
+          "assets/base/female/idle/side/frame-01.png",
+          "assets/base/female/idle/side/frame-02.png",
+          "assets/base/female/idle/side/frame-03.png"
+        ]
+      },
+      "walk": {
+        "front": [
+          "assets/base/female/walk/front/frame-00.png",
+          "assets/base/female/walk/front/frame-01.png",
+          "assets/base/female/walk/front/frame-02.png",
+          "assets/base/female/walk/front/frame-03.png"
+        ],
+        "back": [
+          "assets/base/female/walk/back/frame-00.png",
+          "assets/base/female/walk/back/frame-01.png",
+          "assets/base/female/walk/back/frame-02.png",
+          "assets/base/female/walk/back/frame-03.png"
+        ],
+        "side": [
+          "assets/base/female/walk/side/frame-00.png",
+          "assets/base/female/walk/side/frame-01.png",
+          "assets/base/female/walk/side/frame-02.png",
+          "assets/base/female/walk/side/frame-03.png"
+        ]
+      },
+      "sit-floor": {
+        "front": [
+          "assets/base/female/sit-floor/front/frame-00.png",
+          "assets/base/female/sit-floor/front/frame-01.png",
+          "assets/base/female/sit-floor/front/frame-02.png",
+          "assets/base/female/sit-floor/front/frame-03.png"
+        ]
+      },
+      "sit-chair": {
+        "side": [
+          "assets/base/female/sit-chair/side/frame-00.png",
+          "assets/base/female/sit-chair/side/frame-01.png",
+          "assets/base/female/sit-chair/side/frame-02.png",
+          "assets/base/female/sit-chair/side/frame-03.png"
+        ]
+      },
+      "expressive": {
+        "idle": [
+          "assets/base/female/expressive/idle/frame-00.png",
+          "assets/base/female/expressive/idle/frame-01.png",
+          "assets/base/female/expressive/idle/frame-02.png",
+          "assets/base/female/expressive/idle/frame-03.png"
+        ],
+        "thinking": [
+          "assets/base/female/expressive/thinking/frame-00.png",
+          "assets/base/female/expressive/thinking/frame-01.png",
+          "assets/base/female/expressive/thinking/frame-02.png",
+          "assets/base/female/expressive/thinking/frame-03.png"
+        ],
+        "happy": [
+          "assets/base/female/expressive/happy/frame-00.png",
+          "assets/base/female/expressive/happy/frame-01.png",
+          "assets/base/female/expressive/happy/frame-02.png",
+          "assets/base/female/expressive/happy/frame-03.png"
+        ],
+        "confused": [
+          "assets/base/female/expressive/confused/frame-00.png",
+          "assets/base/female/expressive/confused/frame-01.png",
+          "assets/base/female/expressive/confused/frame-02.png",
+          "assets/base/female/expressive/confused/frame-03.png"
+        ],
+        "greeting": [
+          "assets/base/female/expressive/greeting/frame-00.png",
+          "assets/base/female/expressive/greeting/frame-01.png",
+          "assets/base/female/expressive/greeting/frame-02.png",
+          "assets/base/female/expressive/greeting/frame-03.png"
+        ],
+        "pointing": [
+          "assets/base/female/expressive/pointing/frame-00.png",
+          "assets/base/female/expressive/pointing/frame-01.png",
+          "assets/base/female/expressive/pointing/frame-02.png",
+          "assets/base/female/expressive/pointing/frame-03.png"
+        ]
+      }
+    }
+  },
+  "items": {
+    "male": {
+      "hair": {
+        "short-crop": "assets/items/male/hair/short-crop.png",
+        "side-part": "assets/items/male/hair/side-part.png",
+        "low-bun": "assets/items/male/hair/low-bun.png"
+      },
+      "face-accessory": {
+        "round-glasses": "assets/items/male/face-accessory/round-glasses.png",
+        "half-mask": "assets/items/male/face-accessory/half-mask.png",
+        "mustache": "assets/items/male/face-accessory/mustache.png"
+      },
+      "expression": {
+        "calm": "assets/items/male/expression/calm.png",
+        "happy": "assets/items/male/expression/happy.png",
+        "focused": "assets/items/male/expression/focused.png"
+      },
+      "shirt": {
+        "plain-tee": "assets/items/male/shirt/plain-tee.png",
+        "field-shirt": "assets/items/male/shirt/field-shirt.png",
+        "varsity-tee": "assets/items/male/shirt/varsity-tee.png",
+        "pixel-hoodie": "assets/items/male/shirt/pixel-hoodie.png"
+      },
+      "body-accessory": {
+        "satchel": "assets/items/male/body-accessory/satchel.png",
+        "lanyard": "assets/items/male/body-accessory/lanyard.png",
+        "utility-strap": "assets/items/male/body-accessory/utility-strap.png"
+      },
+      "pants": {
+        "utility-pants": "assets/items/male/pants/utility-pants.png",
+        "straight-pants": "assets/items/male/pants/straight-pants.png",
+        "dark-cargos": "assets/items/male/pants/dark-cargos.png",
+        "shorts": "assets/items/male/pants/shorts.png"
+      },
+      "shoes": {
+        "boots": "assets/items/male/shoes/boots.png",
+        "sneakers": "assets/items/male/shoes/sneakers.png",
+        "soft-boots": "assets/items/male/shoes/soft-boots.png"
+      }
+    },
+    "female": {
+      "hair": {
+        "short-crop": "assets/items/female/hair/short-crop.png",
+        "side-part": "assets/items/female/hair/side-part.png",
+        "low-bun": "assets/items/female/hair/low-bun.png"
+      },
+      "face-accessory": {
+        "round-glasses": "assets/items/female/face-accessory/round-glasses.png",
+        "half-mask": "assets/items/female/face-accessory/half-mask.png",
+        "mustache": "assets/items/female/face-accessory/mustache.png"
+      },
+      "expression": {
+        "calm": "assets/items/female/expression/calm.png",
+        "happy": "assets/items/female/expression/happy.png",
+        "focused": "assets/items/female/expression/focused.png"
+      },
+      "shirt": {
+        "plain-tee": "assets/items/female/shirt/plain-tee.png",
+        "field-shirt": "assets/items/female/shirt/field-shirt.png",
+        "varsity-tee": "assets/items/female/shirt/varsity-tee.png",
+        "pixel-hoodie": "assets/items/female/shirt/pixel-hoodie.png"
+      },
+      "body-accessory": {
+        "satchel": "assets/items/female/body-accessory/satchel.png",
+        "lanyard": "assets/items/female/body-accessory/lanyard.png",
+        "utility-strap": "assets/items/female/body-accessory/utility-strap.png"
+      },
+      "pants": {
+        "utility-pants": "assets/items/female/pants/utility-pants.png",
+        "straight-pants": "assets/items/female/pants/straight-pants.png",
+        "dark-cargos": "assets/items/female/pants/dark-cargos.png",
+        "shorts": "assets/items/female/pants/shorts.png"
+      },
+      "shoes": {
+        "boots": "assets/items/female/shoes/boots.png",
+        "sneakers": "assets/items/female/shoes/sneakers.png",
+        "soft-boots": "assets/items/female/shoes/soft-boots.png"
+      }
+    }
+  },
+  "sets": {
+    "male": {
+      "field-researcher": {
+        "layers": {
+          "hair": "short-crop",
+          "face-accessory": "round-glasses",
+          "expression": "focused",
+          "shirt": "field-shirt",
+          "body-accessory": "satchel",
+          "pants": "utility-pants",
+          "shoes": "boots"
+        },
+        "preview": "assets/previews/male-field-researcher.png"
+      },
+      "campus-organizer": {
+        "layers": {
+          "hair": "side-part",
+          "face-accessory": "round-glasses",
+          "expression": "happy",
+          "shirt": "varsity-tee",
+          "body-accessory": "lanyard",
+          "pants": "straight-pants",
+          "shoes": "sneakers"
+        },
+        "preview": "assets/previews/male-campus-organizer.png"
+      },
+      "night-coder": {
+        "layers": {
+          "hair": "low-bun",
+          "face-accessory": "half-mask",
+          "expression": "calm",
+          "shirt": "pixel-hoodie",
+          "body-accessory": "utility-strap",
+          "pants": "dark-cargos",
+          "shoes": "soft-boots"
+        },
+        "preview": "assets/previews/male-night-coder.png"
+      }
+    },
+    "female": {
+      "field-researcher": {
+        "layers": {
+          "hair": "short-crop",
+          "face-accessory": "round-glasses",
+          "expression": "focused",
+          "shirt": "field-shirt",
+          "body-accessory": "satchel",
+          "pants": "utility-pants",
+          "shoes": "boots"
+        },
+        "preview": "assets/previews/female-field-researcher.png"
+      },
+      "campus-organizer": {
+        "layers": {
+          "hair": "side-part",
+          "face-accessory": "round-glasses",
+          "expression": "happy",
+          "shirt": "varsity-tee",
+          "body-accessory": "lanyard",
+          "pants": "straight-pants",
+          "shoes": "sneakers"
+        },
+        "preview": "assets/previews/female-campus-organizer.png"
+      },
+      "night-coder": {
+        "layers": {
+          "hair": "low-bun",
+          "face-accessory": "half-mask",
+          "expression": "calm",
+          "shirt": "pixel-hoodie",
+          "body-accessory": "utility-strap",
+          "pants": "dark-cargos",
+          "shoes": "soft-boots"
+        },
+        "preview": "assets/previews/female-night-coder.png"
+      }
+    }
+  },
+  "poses": {
+    "male": {
+      "field-researcher": {
+        "idle": [
+          "assets/poses/male/field-researcher/idle/frame-00.png",
+          "assets/poses/male/field-researcher/idle/frame-01.png",
+          "assets/poses/male/field-researcher/idle/frame-02.png",
+          "assets/poses/male/field-researcher/idle/frame-03.png"
+        ],
+        "thinking": [
+          "assets/poses/male/field-researcher/thinking/frame-00.png",
+          "assets/poses/male/field-researcher/thinking/frame-01.png",
+          "assets/poses/male/field-researcher/thinking/frame-02.png",
+          "assets/poses/male/field-researcher/thinking/frame-03.png"
+        ],
+        "happy": [
+          "assets/poses/male/field-researcher/happy/frame-00.png",
+          "assets/poses/male/field-researcher/happy/frame-01.png",
+          "assets/poses/male/field-researcher/happy/frame-02.png",
+          "assets/poses/male/field-researcher/happy/frame-03.png"
+        ],
+        "confused": [
+          "assets/poses/male/field-researcher/confused/frame-00.png",
+          "assets/poses/male/field-researcher/confused/frame-01.png",
+          "assets/poses/male/field-researcher/confused/frame-02.png",
+          "assets/poses/male/field-researcher/confused/frame-03.png"
+        ],
+        "greeting": [
+          "assets/poses/male/field-researcher/greeting/frame-00.png",
+          "assets/poses/male/field-researcher/greeting/frame-01.png",
+          "assets/poses/male/field-researcher/greeting/frame-02.png",
+          "assets/poses/male/field-researcher/greeting/frame-03.png"
+        ],
+        "pointing": [
+          "assets/poses/male/field-researcher/pointing/frame-00.png",
+          "assets/poses/male/field-researcher/pointing/frame-01.png",
+          "assets/poses/male/field-researcher/pointing/frame-02.png",
+          "assets/poses/male/field-researcher/pointing/frame-03.png"
+        ]
+      },
+      "campus-organizer": {
+        "idle": [
+          "assets/poses/male/campus-organizer/idle/frame-00.png",
+          "assets/poses/male/campus-organizer/idle/frame-01.png",
+          "assets/poses/male/campus-organizer/idle/frame-02.png",
+          "assets/poses/male/campus-organizer/idle/frame-03.png"
+        ],
+        "thinking": [
+          "assets/poses/male/campus-organizer/thinking/frame-00.png",
+          "assets/poses/male/campus-organizer/thinking/frame-01.png",
+          "assets/poses/male/campus-organizer/thinking/frame-02.png",
+          "assets/poses/male/campus-organizer/thinking/frame-03.png"
+        ],
+        "happy": [
+          "assets/poses/male/campus-organizer/happy/frame-00.png",
+          "assets/poses/male/campus-organizer/happy/frame-01.png",
+          "assets/poses/male/campus-organizer/happy/frame-02.png",
+          "assets/poses/male/campus-organizer/happy/frame-03.png"
+        ],
+        "confused": [
+          "assets/poses/male/campus-organizer/confused/frame-00.png",
+          "assets/poses/male/campus-organizer/confused/frame-01.png",
+          "assets/poses/male/campus-organizer/confused/frame-02.png",
+          "assets/poses/male/campus-organizer/confused/frame-03.png"
+        ],
+        "greeting": [
+          "assets/poses/male/campus-organizer/greeting/frame-00.png",
+          "assets/poses/male/campus-organizer/greeting/frame-01.png",
+          "assets/poses/male/campus-organizer/greeting/frame-02.png",
+          "assets/poses/male/campus-organizer/greeting/frame-03.png"
+        ],
+        "pointing": [
+          "assets/poses/male/campus-organizer/pointing/frame-00.png",
+          "assets/poses/male/campus-organizer/pointing/frame-01.png",
+          "assets/poses/male/campus-organizer/pointing/frame-02.png",
+          "assets/poses/male/campus-organizer/pointing/frame-03.png"
+        ]
+      },
+      "night-coder": {
+        "idle": [
+          "assets/poses/male/night-coder/idle/frame-00.png",
+          "assets/poses/male/night-coder/idle/frame-01.png",
+          "assets/poses/male/night-coder/idle/frame-02.png",
+          "assets/poses/male/night-coder/idle/frame-03.png"
+        ],
+        "thinking": [
+          "assets/poses/male/night-coder/thinking/frame-00.png",
+          "assets/poses/male/night-coder/thinking/frame-01.png",
+          "assets/poses/male/night-coder/thinking/frame-02.png",
+          "assets/poses/male/night-coder/thinking/frame-03.png"
+        ],
+        "happy": [
+          "assets/poses/male/night-coder/happy/frame-00.png",
+          "assets/poses/male/night-coder/happy/frame-01.png",
+          "assets/poses/male/night-coder/happy/frame-02.png",
+          "assets/poses/male/night-coder/happy/frame-03.png"
+        ],
+        "confused": [
+          "assets/poses/male/night-coder/confused/frame-00.png",
+          "assets/poses/male/night-coder/confused/frame-01.png",
+          "assets/poses/male/night-coder/confused/frame-02.png",
+          "assets/poses/male/night-coder/confused/frame-03.png"
+        ],
+        "greeting": [
+          "assets/poses/male/night-coder/greeting/frame-00.png",
+          "assets/poses/male/night-coder/greeting/frame-01.png",
+          "assets/poses/male/night-coder/greeting/frame-02.png",
+          "assets/poses/male/night-coder/greeting/frame-03.png"
+        ],
+        "pointing": [
+          "assets/poses/male/night-coder/pointing/frame-00.png",
+          "assets/poses/male/night-coder/pointing/frame-01.png",
+          "assets/poses/male/night-coder/pointing/frame-02.png",
+          "assets/poses/male/night-coder/pointing/frame-03.png"
+        ]
+      }
+    },
+    "female": {
+      "field-researcher": {
+        "idle": [
+          "assets/poses/female/field-researcher/idle/frame-00.png",
+          "assets/poses/female/field-researcher/idle/frame-01.png",
+          "assets/poses/female/field-researcher/idle/frame-02.png",
+          "assets/poses/female/field-researcher/idle/frame-03.png"
+        ],
+        "thinking": [
+          "assets/poses/female/field-researcher/thinking/frame-00.png",
+          "assets/poses/female/field-researcher/thinking/frame-01.png",
+          "assets/poses/female/field-researcher/thinking/frame-02.png",
+          "assets/poses/female/field-researcher/thinking/frame-03.png"
+        ],
+        "happy": [
+          "assets/poses/female/field-researcher/happy/frame-00.png",
+          "assets/poses/female/field-researcher/happy/frame-01.png",
+          "assets/poses/female/field-researcher/happy/frame-02.png",
+          "assets/poses/female/field-researcher/happy/frame-03.png"
+        ],
+        "confused": [
+          "assets/poses/female/field-researcher/confused/frame-00.png",
+          "assets/poses/female/field-researcher/confused/frame-01.png",
+          "assets/poses/female/field-researcher/confused/frame-02.png",
+          "assets/poses/female/field-researcher/confused/frame-03.png"
+        ],
+        "greeting": [
+          "assets/poses/female/field-researcher/greeting/frame-00.png",
+          "assets/poses/female/field-researcher/greeting/frame-01.png",
+          "assets/poses/female/field-researcher/greeting/frame-02.png",
+          "assets/poses/female/field-researcher/greeting/frame-03.png"
+        ],
+        "pointing": [
+          "assets/poses/female/field-researcher/pointing/frame-00.png",
+          "assets/poses/female/field-researcher/pointing/frame-01.png",
+          "assets/poses/female/field-researcher/pointing/frame-02.png",
+          "assets/poses/female/field-researcher/pointing/frame-03.png"
+        ]
+      },
+      "campus-organizer": {
+        "idle": [
+          "assets/poses/female/campus-organizer/idle/frame-00.png",
+          "assets/poses/female/campus-organizer/idle/frame-01.png",
+          "assets/poses/female/campus-organizer/idle/frame-02.png",
+          "assets/poses/female/campus-organizer/idle/frame-03.png"
+        ],
+        "thinking": [
+          "assets/poses/female/campus-organizer/thinking/frame-00.png",
+          "assets/poses/female/campus-organizer/thinking/frame-01.png",
+          "assets/poses/female/campus-organizer/thinking/frame-02.png",
+          "assets/poses/female/campus-organizer/thinking/frame-03.png"
+        ],
+        "happy": [
+          "assets/poses/female/campus-organizer/happy/frame-00.png",
+          "assets/poses/female/campus-organizer/happy/frame-01.png",
+          "assets/poses/female/campus-organizer/happy/frame-02.png",
+          "assets/poses/female/campus-organizer/happy/frame-03.png"
+        ],
+        "confused": [
+          "assets/poses/female/campus-organizer/confused/frame-00.png",
+          "assets/poses/female/campus-organizer/confused/frame-01.png",
+          "assets/poses/female/campus-organizer/confused/frame-02.png",
+          "assets/poses/female/campus-organizer/confused/frame-03.png"
+        ],
+        "greeting": [
+          "assets/poses/female/campus-organizer/greeting/frame-00.png",
+          "assets/poses/female/campus-organizer/greeting/frame-01.png",
+          "assets/poses/female/campus-organizer/greeting/frame-02.png",
+          "assets/poses/female/campus-organizer/greeting/frame-03.png"
+        ],
+        "pointing": [
+          "assets/poses/female/campus-organizer/pointing/frame-00.png",
+          "assets/poses/female/campus-organizer/pointing/frame-01.png",
+          "assets/poses/female/campus-organizer/pointing/frame-02.png",
+          "assets/poses/female/campus-organizer/pointing/frame-03.png"
+        ]
+      },
+      "night-coder": {
+        "idle": [
+          "assets/poses/female/night-coder/idle/frame-00.png",
+          "assets/poses/female/night-coder/idle/frame-01.png",
+          "assets/poses/female/night-coder/idle/frame-02.png",
+          "assets/poses/female/night-coder/idle/frame-03.png"
+        ],
+        "thinking": [
+          "assets/poses/female/night-coder/thinking/frame-00.png",
+          "assets/poses/female/night-coder/thinking/frame-01.png",
+          "assets/poses/female/night-coder/thinking/frame-02.png",
+          "assets/poses/female/night-coder/thinking/frame-03.png"
+        ],
+        "happy": [
+          "assets/poses/female/night-coder/happy/frame-00.png",
+          "assets/poses/female/night-coder/happy/frame-01.png",
+          "assets/poses/female/night-coder/happy/frame-02.png",
+          "assets/poses/female/night-coder/happy/frame-03.png"
+        ],
+        "confused": [
+          "assets/poses/female/night-coder/confused/frame-00.png",
+          "assets/poses/female/night-coder/confused/frame-01.png",
+          "assets/poses/female/night-coder/confused/frame-02.png",
+          "assets/poses/female/night-coder/confused/frame-03.png"
+        ],
+        "greeting": [
+          "assets/poses/female/night-coder/greeting/frame-00.png",
+          "assets/poses/female/night-coder/greeting/frame-01.png",
+          "assets/poses/female/night-coder/greeting/frame-02.png",
+          "assets/poses/female/night-coder/greeting/frame-03.png"
+        ],
+        "pointing": [
+          "assets/poses/female/night-coder/pointing/frame-00.png",
+          "assets/poses/female/night-coder/pointing/frame-01.png",
+          "assets/poses/female/night-coder/pointing/frame-02.png",
+          "assets/poses/female/night-coder/pointing/frame-03.png"
+        ]
+      }
+    }
+  },
+  "notes": [
+    "Adult non-sexual mannequin base with minimal undergarment/base layer.",
+    "All production layers share a 96x128 transparent canvas.",
+    "Expressive pose frames mirror the Nala plan states: idle, thinking, happy, confused, greeting, pointing.",
+    "CSS/JS mockup freezes animation under prefers-reduced-motion."
+  ]
+}

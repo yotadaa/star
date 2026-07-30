@@ -27,6 +27,14 @@ const FLIGHT = {
   firefly: { kind: "firefly", duration: 10800, flap: 480, drift: 18, pause: [3200, 5200] },
 };
 
+const FLIGHT_CURVES = {
+  butterfly: { primaryCycles: 1.25, secondaryCycles: 2.5, primaryWeight: 0.62, secondaryWeight: 0.18 },
+  sparrow: { primaryCycles: 0.7, secondaryCycles: 1.45, primaryWeight: 0.48, secondaryWeight: 0.12 },
+  migration: { primaryCycles: 0.45, secondaryCycles: 0.9, primaryWeight: 0.34, secondaryWeight: 0.08 },
+  bat: { primaryCycles: 1.45, secondaryCycles: 2.65, primaryWeight: 0.56, secondaryWeight: 0.2 },
+  firefly: { primaryCycles: 0.95, secondaryCycles: 2.1, primaryWeight: 0.46, secondaryWeight: 0.18 },
+};
+
 const LANE_BY_PHASE = {
   morning: [13, 18],
   noon: [13, 18],
@@ -42,6 +50,50 @@ function between(min, max) {
 
 function pick(values) {
   return values[Math.floor(Math.random() * values.length)];
+}
+
+function getFlightDrift(encounter, progress) {
+  const curve = FLIGHT_CURVES[encounter.flightKind];
+  const envelope = Math.sin(Math.PI * progress);
+  const primary = Math.sin((progress * curve.primaryCycles + encounter.primaryPhase) * Math.PI * 2);
+  const secondary = Math.sin((progress * curve.secondaryCycles + encounter.secondaryPhase) * Math.PI * 2);
+
+  return Math.round(
+    encounter.drift * envelope * (primary * curve.primaryWeight + secondary * curve.secondaryWeight)
+  );
+}
+
+function getFlightPosition(encounter, layerWidth, progress) {
+  const edgeMargin = encounter.entity === "migration-v" ? 176 : 144;
+  const startX = encounter.direction === "right" ? -edgeMargin : layerWidth + edgeMargin;
+  const endX = encounter.direction === "right" ? layerWidth + edgeMargin : -edgeMargin;
+
+  return {
+    x: startX + (endX - startX) * progress,
+    y: getFlightDrift(encounter, progress),
+  };
+}
+
+function createFlightKeyframes(encounter, layerWidth) {
+  const resumeProgress = encounter.resumeProgress || 0;
+  const remainingDuration = encounter.duration * (1 - resumeProgress);
+  const rejoinDuration = encounter.courseOffsetX || encounter.courseOffsetY ? 720 : 0;
+  const frameCount = 24;
+
+  return Array.from({ length: frameCount + 1 }, (_, index) => {
+    const offset = index / frameCount;
+    const progress = resumeProgress + (1 - resumeProgress) * offset;
+    const coursePosition = getFlightPosition(encounter, layerWidth, progress);
+    const rejoinProgress = rejoinDuration ? Math.min((remainingDuration * offset) / rejoinDuration, 1) : 1;
+    const rejoinFactor = 1 - (1 - rejoinProgress) ** 3;
+    const x = coursePosition.x + (encounter.courseOffsetX || 0) * (1 - rejoinFactor);
+    const y = coursePosition.y + (encounter.courseOffsetY || 0) * (1 - rejoinFactor);
+
+    return {
+      offset,
+      transform: `translate3d(${Math.round(x)}px, ${y}px, 0)`,
+    };
+  });
 }
 
 function createEncounter(phase, reducedMotion) {
@@ -60,10 +112,9 @@ function createEncounter(phase, reducedMotion) {
     direction,
     lane,
     flightKind: profile.kind,
-    flightY1: Math.round(between(-drift, drift)),
-    flightY2: Math.round(between(-drift, drift)),
-    flightY3: Math.round(between(-drift, drift)),
-    flightY4: Math.round(between(-drift, drift)),
+    drift,
+    primaryPhase: between(0, 1),
+    secondaryPhase: between(0, 1),
     duration: profile.duration,
     flap: profile.flap,
     pause: profile.pause,
@@ -80,12 +131,18 @@ function clearTimer(ref) {
   }
 }
 
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
 export default function HeroEntityLayer({ phase = "morning" }) {
   const layerRef = useRef(null);
   const spawnTimerRef = useRef(null);
   const finishTimerRef = useRef(null);
   const sparkTimerRef = useRef(null);
+  const flightAnimationRef = useRef(null);
   const interactingRef = useRef(false);
+  const encounterNodeRef = useRef(null);
   const [visible, setVisible] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [encounter, setEncounter] = useState(null);
@@ -95,6 +152,13 @@ export default function HeroEntityLayer({ phase = "morning" }) {
     clearTimer(spawnTimerRef);
     clearTimer(finishTimerRef);
     clearTimer(sparkTimerRef);
+  }, []);
+
+  const stopFlight = useCallback(() => {
+    if (flightAnimationRef.current) {
+      flightAnimationRef.current.cancel();
+      flightAnimationRef.current = null;
+    }
   }, []);
 
   const scheduleSpawn = useCallback((delay) => {
@@ -129,47 +193,80 @@ export default function HeroEntityLayer({ phase = "morning" }) {
 
   useEffect(() => {
     clearTimers();
+    stopFlight();
     setSpark(null);
     setEncounter(null);
     interactingRef.current = false;
     if (visible) {
       scheduleSpawn(reducedMotion ? 0 : 900);
     }
-    return clearTimers;
-  }, [clearTimers, phase, reducedMotion, scheduleSpawn, visible]);
+    return () => {
+      clearTimers();
+      stopFlight();
+    };
+  }, [clearTimers, phase, reducedMotion, scheduleSpawn, stopFlight, visible]);
 
   const finishEncounter = useCallback((encounterId, pause) => {
     setEncounter((current) => (current?.id === encounterId ? null : current));
     scheduleSpawn(between(pause[0], pause[1]));
   }, [scheduleSpawn]);
 
-  const handleFlightEnd = useCallback((event) => {
-    if (event.target !== event.currentTarget || event.animationName !== "hero-entity-flight") return;
-    const active = encounter;
-    if (!active || active.status !== "flying") return;
-    finishEncounter(active.id, active.pause);
-  }, [encounter, finishEncounter]);
+  useEffect(() => {
+    stopFlight();
+    if (!encounter || encounter.status !== "flying" || encounter.static || !visible) return undefined;
+
+    const layer = layerRef.current;
+    const node = encounterNodeRef.current;
+    if (!layer || !node) return undefined;
+
+    const resumeProgress = encounter.resumeProgress || 0;
+    const animation = node.animate(
+      createFlightKeyframes(encounter, layer.getBoundingClientRect().width),
+      {
+        duration: encounter.duration * (1 - resumeProgress),
+        easing: "linear",
+        fill: "forwards",
+      }
+    );
+    flightAnimationRef.current = animation;
+    animation.finished.then(() => {
+      if (flightAnimationRef.current !== animation) return;
+      flightAnimationRef.current = null;
+      finishEncounter(encounter.id, encounter.pause);
+    }).catch(() => {});
+
+    return () => {
+      if (flightAnimationRef.current === animation) {
+        animation.cancel();
+        flightAnimationRef.current = null;
+      }
+    };
+  }, [encounter, finishEncounter, stopFlight, visible]);
 
   const handleInteract = useCallback((event) => {
     if (!encounter || encounter.status !== "flying" || interactingRef.current) return;
     const layer = layerRef.current;
     if (!layer) return;
 
+    const previousProgress = encounter.resumeProgress || 0;
+    const animationTime = Number(flightAnimationRef.current?.currentTime || 0);
+    const resumeProgress = Math.min(previousProgress + animationTime / encounter.duration, 1);
     interactingRef.current = true;
+    stopFlight();
     clearTimer(spawnTimerRef);
     const targetRect = event.currentTarget.getBoundingClientRect();
     const layerRect = layer.getBoundingClientRect();
     const startX = targetRect.left - layerRect.left;
     const startY = targetRect.top - layerRect.top;
-    const headingRight = encounter.direction === "right";
-    const fleeDuration = encounter.entity === "firefly" ? 480 : 400;
-    const fleeEndX = headingRight ? layerRect.width + 144 : -144;
-    const fleeEndY = Math.max(18, Math.min(layerRect.height - 70, startY + between(-96, 96)));
+    const centerX = startX + targetRect.width / 2;
+    const centerY = startY + targetRect.height / 2;
+    const pointerX = Number.isFinite(event.clientX) ? event.clientX - layerRect.left : centerX;
+    const pointerY = Number.isFinite(event.clientY) ? event.clientY - layerRect.top : centerY;
     const sparkX = Math.max(
       26,
-      Math.min(layerRect.width - 26, startX + targetRect.width / 2 + (headingRight ? -30 : 30))
+      Math.min(layerRect.width - 26, centerX)
     );
-    const sparkY = Math.max(26, startY + targetRect.height / 2 - 22);
+    const sparkY = Math.max(26, centerY - 22);
 
     setSpark({
       id: `${encounter.id}-spark`,
@@ -179,26 +276,56 @@ export default function HeroEntityLayer({ phase = "morning" }) {
     clearTimer(sparkTimerRef);
     sparkTimerRef.current = window.setTimeout(() => setSpark(null), 520);
 
+    if (reducedMotion) {
+      interactingRef.current = false;
+      return;
+    }
+
+    const dodgeDuration = encounter.entity === "firefly" ? 360 : 300;
+    const xMin = 14;
+    const xMax = Math.max(xMin, layerRect.width - targetRect.width - 14);
+    const yMin = 20;
+    const yMax = Math.max(yMin, layerRect.height - targetRect.height - 20);
+    const horizontalDirection = pointerX <= centerX ? 1 : -1;
+    const verticalDirection = Math.abs(pointerY - centerY) < 8
+      ? (Math.random() > 0.5 ? 1 : -1)
+      : (pointerY <= centerY ? 1 : -1);
+    const dodgeDistanceX = between(74, 116);
+    const dodgeDistanceY = between(42, 68);
+    let dodgeEndX = clamp(startX + horizontalDirection * dodgeDistanceX, xMin, xMax);
+    if (Math.abs(dodgeEndX - startX) < dodgeDistanceX * 0.45) {
+      dodgeEndX = clamp(startX - horizontalDirection * dodgeDistanceX, xMin, xMax);
+    }
+    const dodgeEndY = clamp(startY + verticalDirection * dodgeDistanceY, yMin, yMax);
     setEncounter((current) => {
       if (!current || current.id !== encounter.id) return current;
       return {
         ...current,
-        status: "fleeing",
-        fleeDuration,
-        fleeStartX: Math.round(startX),
-        fleeStartY: Math.round(startY),
-        fleeEndX: Math.round(fleeEndX),
-        fleeEndY: Math.round(fleeEndY),
+        status: "dodging",
+        dodgeDuration,
+        dodgeStartX: Math.round(startX),
+        dodgeStartY: Math.round(startY),
+        dodgeEndX: Math.round(dodgeEndX),
+        dodgeEndY: Math.round(dodgeEndY),
+        resumeProgress,
       };
     });
 
     clearTimer(finishTimerRef);
     finishTimerRef.current = window.setTimeout(() => {
-      setEncounter((current) => (current?.id === encounter.id ? null : current));
+      const baseline = getFlightPosition(encounter, layerRect.width, resumeProgress);
+      setEncounter((current) => {
+        if (current?.id !== encounter.id) return current;
+        return {
+          ...current,
+          status: "flying",
+          courseOffsetX: Math.round(dodgeEndX - baseline.x),
+          courseOffsetY: Math.round(dodgeEndY - baseline.y),
+        };
+      });
       interactingRef.current = false;
-      scheduleSpawn(reducedMotion ? 900 : between(encounter.pause[0], encounter.pause[1]));
-    }, reducedMotion ? 520 : fleeDuration + 80);
-  }, [encounter, reducedMotion, scheduleSpawn]);
+    }, dodgeDuration + 30);
+  }, [encounter, reducedMotion, stopFlight]);
 
   const handleKeyDown = useCallback((event) => {
     if (event.key !== "Enter" && event.key !== " ") return;
@@ -206,23 +333,20 @@ export default function HeroEntityLayer({ phase = "morning" }) {
     handleInteract(event);
   }, [handleInteract]);
 
-  const encounterStyle = encounter?.status === "fleeing"
+  const encounterStyle = encounter?.status === "dodging"
     ? {
-      "--flee-duration": `${encounter.fleeDuration}ms`,
-      "--flee-start-x": `${encounter.fleeStartX}px`,
-      "--flee-start-y": `${encounter.fleeStartY}px`,
-      "--flee-end-x": `${encounter.fleeEndX}px`,
-      "--flee-end-y": `${encounter.fleeEndY}px`,
+      "--dodge-duration": `${encounter.dodgeDuration}ms`,
+      "--dodge-start-x": `${encounter.dodgeStartX}px`,
+      "--dodge-start-y": `${encounter.dodgeStartY}px`,
+      "--dodge-end-x": `${encounter.dodgeEndX}px`,
+      "--dodge-end-y": `${encounter.dodgeEndY}px`,
     }
     : {
       "--entity-lane": `${encounter?.lane || 18}%`,
-      "--flight-start-x": encounter?.direction === "right" ? "-10rem" : "calc(100vw + 10rem)",
-      "--flight-end-x": encounter?.direction === "right" ? "calc(100vw + 10rem)" : "-10rem",
-      "--flight-y-1": `${encounter?.flightY1 || 0}px`,
-      "--flight-y-2": `${encounter?.flightY2 || 0}px`,
-      "--flight-y-3": `${encounter?.flightY3 || 0}px`,
-      "--flight-y-4": `${encounter?.flightY4 || 0}px`,
-      "--flight-duration": `${encounter?.duration || 1}ms`,
+      "--flight-start-x": encounter?.dodgeEndX
+        ? `${encounter.dodgeEndX}px`
+        : encounter?.direction === "right" ? "-10rem" : "calc(100vw + 10rem)",
+      "--flight-start-y": encounter?.dodgeEndY ? `${encounter.dodgeEndY}px` : "0px",
       "--flap-duration": `${encounter?.flap || 1}ms`,
       "--static-x": encounter?.direction === "right" ? "12%" : "calc(100% - 10rem)",
     };
@@ -239,18 +363,19 @@ export default function HeroEntityLayer({ phase = "morning" }) {
 
       {encounter && (
         <div
-          className={`hero-entity-encounter${encounter.static ? " is-static" : ""}${encounter.status === "fleeing" ? " is-fleeing" : ""}`}
+          className={`hero-entity-encounter${encounter.static ? " is-static" : ""}${encounter.status === "dodging" ? " is-dodging" : ""}`}
           data-entity={encounter.entity}
           data-flight={encounter.flightKind}
           data-direction={encounter.direction}
+          data-state={encounter.status}
           data-testid="hero-entity-encounter"
           style={encounterStyle}
-          onAnimationEnd={handleFlightEnd}
+          ref={encounterNodeRef}
         >
           <button
             className={`hero-entity-target${encounter.pair ? " is-pair" : ""}`}
             type="button"
-            aria-label={`Sentuh ${ENTITY_COPY[encounter.entity]}; ia akan terbang menjauh.`}
+            aria-label={`Sentuh ${ENTITY_COPY[encounter.entity]}; ia akan menghindar.`}
             data-testid={`hero-entity-${encounter.entity}`}
             onClick={handleInteract}
             onKeyDown={handleKeyDown}

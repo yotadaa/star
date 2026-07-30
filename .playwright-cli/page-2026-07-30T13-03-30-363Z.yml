@@ -1,0 +1,109 @@
+- generic [active] [ref=e1]:
+  - link "Loncat ke konten utama" [ref=e2]:
+    - /url: "#main"
+  - navigation "World Chat dan Player HUD" [ref=e3]:
+    - button "Buka Player HUD Mukhtada, level 4" [ref=e6] [cursor=pointer]:
+      - generic "Level 4" [ref=e9]: "4"
+  - navigation "Navigasi utama" [ref=e10]:
+    - link "Mukhtada" [ref=e11] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e13]:
+      - link "Home" [ref=e14]:
+        - /url: /
+      - link "About" [ref=e15]:
+        - /url: /about
+      - link "Projects" [ref=e16]:
+        - /url: /projects
+      - link "Research" [ref=e17]:
+        - /url: /research
+      - link "Blog" [ref=e18]:
+        - /url: /blog
+      - link "Contact" [ref=e19]:
+        - /url: /contact
+    - button "Ganti ke mode siang" [ref=e20] [cursor=pointer]
+    - button "Buka inventory pemain, level 4" [ref=e26] [cursor=pointer]:
+      - generic [ref=e32]: Lv.4
+    - button "Buka command palette" [ref=e33] [cursor=pointer]
+  - main [ref=e36]:
+    - generic [ref=e37]:
+      - generic "Makhluk terbang interaktif"
+      - generic [ref=e39]:
+        - generic [ref=e40]: "SYSTEM ONLINE - SAVE FILE: MUKHTADA.NST"
+        - heading [level=1] [ref=e42]:
+          - text: Membangun sistem,
+          - emphasis [ref=e43]: satu quest
+          - text: pada satu waktu.
+        - paragraph [ref=e44]: Mahasiswa Sistem Informasi Universitas Jambi yang senang mengubah riset jadi produk yang jalan beneran - fullstack, AI tooling, dan data science, dilihat lewat jendela kabin senja ini.
+        - generic [ref=e45]:
+          - link "▶ Mulai Quest" [ref=e46] [cursor=pointer]:
+            - /url: "#quests"
+          - link "Baca Lore" [ref=e47] [cursor=pointer]:
+            - /url: "#journey"
+      - generic [ref=e48]:
+        - text: GULIR
+        - generic [ref=e49]: ▾
+    - list "Bukti cepat" [ref=e50]:
+      - status "Status ringkas" [ref=e51]:
+        - link [ref=e52]:
+          - /url: https://github.com/yotadaa
+        - link [ref=e56]:
+          - /url: https://scholar.google.com/citations?user=w-CDgG8AAAAJ&hl=en
+        - generic [ref=e61]: UNJA - Sistem Informasi
+        - generic [ref=e65]: Jambi, ID - base camp
+    - generic [ref=e72]:
+      - generic [ref=e73]: // Build Glimpses
+      - heading "Header yang pernah dibangun" [level=2] [ref=e74]
+      - paragraph [ref=e75]: Beberapa first-screen dari proyek web, riset, community platform, hackathon, dan thesis build.
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - generic [ref=e79]: // Featured Quests
+        - heading "Quest unggulan" [level=2] [ref=e80]
+        - paragraph [ref=e81]: Cuplikan proyek pilihan. Filter lengkap dari 57 repo ada di halaman Projects.
+      - generic [ref=e82]:
+        - 'link "TIER S · AI TOOLING Nara - Natural Language Assistant Asisten berbasis bahasa natural yang bisa berjalan lokal: membantu mencari, meringkas, dan berkomunikasi. Fokus pada respons yang terasa manusiawi. JavaScript NLP Assistant" [ref=e83]':
+          - /url: https://github.com/yotadaa/nara
+          - generic [ref=e84]: TIER S · AI TOOLING
+          - heading "Nara - Natural Language Assistant" [level=3] [ref=e85]
+          - paragraph [ref=e86]: "Asisten berbasis bahasa natural yang bisa berjalan lokal: membantu mencari, meringkas, dan berkomunikasi. Fokus pada respons yang terasa manusiawi."
+          - generic [ref=e87]:
+            - generic [ref=e88]: JavaScript
+            - generic [ref=e89]: NLP
+            - generic [ref=e90]: Assistant
+        - link "TIER A · AI / DOCS Word AI Draft Add-in Add-in Microsoft Word untuk drafting berbantuan AI langsung di dalam dokumen - menyatukan Office.js dengan alur penulisan. TypeScript Office.js AI" [ref=e91]:
+          - /url: https://github.com/yotadaa/word-ai-draft-addin
+          - generic [ref=e92]: TIER A · AI / DOCS
+          - heading "Word AI Draft Add-in" [level=3] [ref=e93]
+          - paragraph [ref=e94]: Add-in Microsoft Word untuk drafting berbantuan AI langsung di dalam dokumen - menyatukan Office.js dengan alur penulisan.
+          - generic [ref=e95]:
+            - generic [ref=e96]: TypeScript
+            - generic [ref=e97]: Office.js
+            - generic [ref=e98]: AI
+        - link "TIER S · FULLSTACK · RISET E-Ticket TNKS Sistem e-ticketing untuk Taman Nasional Kerinci Seblat pada penelitian dosen - reservasi online menggantikan pemesanan on-site. Asisten web developer (front & back). Laravel Bootstrap Research" [ref=e99]:
+          - /url: https://scholar.google.com/citations?user=w-CDgG8AAAAJ&hl=en
+          - generic [ref=e100]: TIER S · FULLSTACK · RISET
+          - heading "E-Ticket TNKS" [level=3] [ref=e101]
+          - paragraph [ref=e102]: Sistem e-ticketing untuk Taman Nasional Kerinci Seblat pada penelitian dosen - reservasi online menggantikan pemesanan on-site. Asisten web developer (front & back).
+          - generic [ref=e103]:
+            - generic [ref=e104]: Laravel
+            - generic [ref=e105]: Bootstrap
+            - generic [ref=e106]: Research
+      - generic [ref=e107]:
+        - link "▶ Semua Projects" [ref=e108] [cursor=pointer]:
+          - /url: /projects
+        - link "Baca Research" [ref=e109] [cursor=pointer]:
+          - /url: /research
+  - contentinfo [ref=e110]:
+    - generic [ref=e111]:
+      - link "GITHUB" [ref=e112]:
+        - /url: https://github.com/yotadaa
+      - link "LINKEDIN" [ref=e113]:
+        - /url: https://www.linkedin.com/in/mukhtada-nasution-893aaa246/
+      - link "SCHOLAR" [ref=e114]:
+        - /url: https://scholar.google.com/citations?user=w-CDgG8AAAAJ&hl=en
+      - link "BLOG" [ref=e115]:
+        - /url: https://write.mukhtada.site
+    - paragraph [ref=e116]: Level complete - seluruh peta sudah dijelajahi.
+    - paragraph [ref=e117]:
+      - text: © 2026 MUKHTADA BILLAH NST - BUILT WITH COFFEE & PIXELS ·
+      - link "↑ KEMBALI KE ATAS" [ref=e118]:
+        - /url: /#hero

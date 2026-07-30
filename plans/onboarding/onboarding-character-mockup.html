@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Onboarding Character Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Silkscreen:wght@400;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky-1:#123642; --sky-2:#1f5b5c; --sky-3:#3f8f7f; --sky-4:#7db98f;
+    --sky-5:#e7c66a; --sky-6:#f2dfa6; --ink:#16241f; --ink-soft:#47584f;
+    --cream:#f5ecd8; --parchment:#eaddc0; --parchment-dark:#ddcba4;
+    --moss:#6a9a55; --moss-dark:#3f5f34; --gold:#ecb63f; --aurora:#45b8a4;
+    --aurora-deep:#2b8a7a; --coral:#e06a45; --coral-dark:#b8492b;
+    --ease-pixel:cubic-bezier(.2,.9,.25,1.15);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--parchment);color:var(--ink);font-family:Nunito,sans-serif}
+  button{font:inherit}
+  .pixel{font-family:Silkscreen,monospace}
+  .display{font-family:Fraunces,serif}
+  .shell{max-width:1180px;margin:0 auto;padding:28px 18px 80px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}
+  .brand{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--cream);border-radius:999px;padding:10px 16px;box-shadow:5px 5px 0 color-mix(in srgb,var(--ink) 35%,transparent)}
+  .brand-mark{width:16px;height:16px;background:var(--gold);border:2px solid var(--cream);clip-path:polygon(4px 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%,0 4px)}
+  .eyebrow{font-family:Silkscreen,monospace;color:var(--coral-dark);font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
+  h1{font-family:Fraunces,serif;font-size:clamp(34px,6vw,64px);line-height:.96;margin:8px 0 14px}
+  .intro{max-width:760px;line-height:1.55;color:var(--ink-soft);font-size:16px}
+  .grid{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:22px;align-items:start;margin-top:28px}
+  .card{background:var(--cream);border:2px solid var(--ink);border-radius:8px;box-shadow:7px 7px 0 var(--ink)}
+  .panel{padding:18px}
+  .panel-title{font-family:Silkscreen,monospace;font-size:12px;text-transform:uppercase;letter-spacing:.8px;color:var(--coral-dark);margin-bottom:12px}
+  .stage{min-height:520px;display:grid;place-items:center;background:
+    linear-gradient(color-mix(in srgb,var(--ink) 12%,transparent) 1px,transparent 1px),
+    linear-gradient(90deg,color-mix(in srgb,var(--ink) 12%,transparent) 1px,transparent 1px),
+    linear-gradient(180deg,var(--sky-6),var(--parchment));
+    background-size:18px 18px,18px 18px,auto;border-radius:6px;position:relative;overflow:hidden}
+  .sprite-frame{position:relative;width:288px;height:384px;image-rendering:pixelated}
+  .sprite-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
+  .stage-hud{position:absolute;left:14px;top:14px;display:flex;gap:8px;flex-wrap:wrap}
+  .chip{font-family:Silkscreen,monospace;font-size:10px;text-transform:uppercase;border:1.5px solid var(--ink);background:var(--cream);padding:7px 10px;border-radius:6px}
+  .chip.gold{background:var(--gold)}
+  .controls{display:grid;gap:16px}
+  .control-group{display:grid;gap:8px}
+  .label{font-family:Silkscreen,monospace;font-size:11px;text-transform:uppercase;color:var(--ink-soft)}
+  .seg{display:flex;flex-wrap:wrap;gap:8px}
+  .seg button{font-family:Silkscreen,monospace;font-size:10px;text-transform:uppercase;border:2px solid var(--ink);background:var(--cream);color:var(--ink);border-radius:7px;padding:9px 10px;box-shadow:4px 4px 0 var(--ink);cursor:pointer;transition:transform 80ms var(--ease-pixel),box-shadow 80ms var(--ease-pixel)}
+  .seg button:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+  .seg button.active{background:var(--gold)}
+  button:focus-visible{outline:2px dashed var(--gold);outline-offset:3px}
+  .note{margin-top:14px;color:var(--ink-soft);font-size:13px;line-height:1.55}
+  .sets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+  .set-card{padding:14px;display:grid;gap:8px}
+  .set-card img{width:100%;max-height:210px;object-fit:contain;image-rendering:pixelated}
+  .set-name{font-family:Silkscreen,monospace;color:var(--coral-dark);font-size:11px;text-transform:uppercase}
+  .set-meta{font-size:12px;color:var(--ink-soft);line-height:1.45}
+  .asset-section{margin-top:30px}
+  .asset-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:12px}
+  .asset-card{padding:10px;text-align:center}
+  .asset-card img{width:76px;height:102px;object-fit:contain;image-rendering:pixelated;background:var(--parchment);border:1.5px dashed var(--ink);border-radius:6px}
+  .asset-card .name{font-family:Silkscreen,monospace;font-size:9px;color:var(--coral-dark);margin-top:7px;text-transform:uppercase;overflow-wrap:anywhere}
+  .preview-strip{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+  .preview-strip img{width:100%;background:var(--cream);border:2px solid var(--ink);border-radius:8px;box-shadow:5px 5px 0 var(--ink)}
+  @media (max-width:860px){
+    .grid{grid-template-columns:1fr}
+    .stage{min-height:430px}
+    .sprite-frame{width:220px;height:294px}
+    .sets{grid-template-columns:1fr}
+    .preview-strip{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .seg button{transition:none}
+  }
+</style>
+</head>
+<body>
+<main class="shell">
+  <div class="topbar">
+    <div class="brand pixel"><span class="brand-mark" aria-hidden="true"></span> MB NST / ONBOARDING</div>
+    <div class="chip gold">96x128 PNG LAYERS</div>
+  </div>
+
+  <div class="eyebrow">// CHARACTER BUILDER KIT</div>
+  <h1>Base Character Modular</h1>
+  <p class="intro">Base male dan female dibuat sebagai adult mannequin non-sexual dengan canvas transparan tetap. Semua layer fashion memakai ukuran yang sama sehingga bisa diganti per kategori: rambut, aksesoris wajah, ekspresi, baju, aksesoris tubuh, celana, dan sepatu.</p>
+
+  <section class="grid">
+    <div class="card stage">
+      <div class="stage-hud">
+        <span class="chip" id="hudGender">MALE</span>
+        <span class="chip" id="hudPose">IDLE / FRONT</span>
+        <span class="chip gold" id="hudSet">FIELD RESEARCHER</span>
+      </div>
+      <div class="sprite-frame" aria-label="Animated character preview">
+        <img id="baseLayer" alt="Base character animation frame" />
+        <img id="hairLayer" alt="" aria-hidden="true" />
+        <img id="expressionLayer" alt="" aria-hidden="true" />
+        <img id="faceLayer" alt="" aria-hidden="true" />
+        <img id="shirtLayer" alt="" aria-hidden="true" />
+        <img id="pantsLayer" alt="" aria-hidden="true" />
+        <img id="shoesLayer" alt="" aria-hidden="true" />
+        <img id="bodyLayer" alt="" aria-hidden="true" />
+      </div>
+    </div>
+
+    <div class="card panel">
+      <div class="panel-title">Layer Controls</div>
+      <div class="controls">
+        <div class="control-group">
+          <div class="label">Base</div>
+          <div class="seg" data-control="gender">
+            <button class="active" data-value="male">Male</button>
+            <button data-value="female">Female</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="label">Pose / View</div>
+          <div class="seg" data-control="anim">
+            <button class="active" data-pose="idle" data-view="front">Idle Front</button>
+            <button data-pose="idle" data-view="back">Idle Back</button>
+            <button data-pose="idle" data-view="side">Idle Side</button>
+            <button data-pose="walk" data-view="front">Walk Front</button>
+            <button data-pose="walk" data-view="back">Walk Back</button>
+            <button data-pose="walk" data-view="side">Walk Side</button>
+            <button data-pose="sit-floor" data-view="front">Sit Floor</button>
+            <button data-pose="sit-chair" data-view="side">Sit Chair</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="label">Fashion Set</div>
+          <div class="seg" data-control="set">
+            <button class="active" data-value="field-researcher">Field Researcher</button>
+            <button data-value="campus-organizer">Campus Organizer</button>
+            <button data-value="night-coder">Night Coder</button>
+          </div>
+        </div>
+      </div>
+      <p class="note">Layer fashion ditampilkan pada pose idle/front karena item kategori batch ini align ke tampak depan. Pose lain tetap dipreview sebagai base animation untuk memastikan fondasi gerak lengkap.</p>
+    </div>
+  </section>
+
+  <section class="sets" aria-label="Fashion set previews">
+    <div class="card set-card">
+      <img data-preview="field-researcher" alt="Field researcher set preview" />
+      <div class="set-name">Field Researcher</div>
+      <div class="set-meta">short-crop, round-glasses, focused, field-shirt, satchel, utility-pants, boots</div>
+    </div>
+    <div class="card set-card">
+      <img data-preview="campus-organizer" alt="Campus organizer set preview" />
+      <div class="set-name">Campus Organizer</div>
+      <div class="set-meta">side-part, round-glasses, happy, varsity-tee, lanyard, straight-pants, sneakers</div>
+    </div>
+    <div class="card set-card">
+      <img data-preview="night-coder" alt="Night coder set preview" />
+      <div class="set-name">Night Coder</div>
+      <div class="set-meta">low-bun, half-mask, calm, pixel-hoodie, utility-strap, dark-cargos, soft-boots</div>
+    </div>
+  </section>
+
+  <section class="asset-section">
+    <div class="eyebrow">// INDEPENDENT ITEMS</div>
+    <h2 class="display">Category Layers</h2>
+    <div class="asset-grid" id="assetGrid"></div>
+  </section>
+
+  <section class="asset-section">
+    <div class="eyebrow">// VALIDATION PREVIEWS</div>
+    <h2 class="display">Contact Sheets</h2>
+    <div class="preview-strip">
+      <img src="assets/previews/base-animation-contact-sheet.png" alt="Base animation contact sheet" />
+      <img src="assets/previews/fashion-set-contact-sheet.png" alt="Fashion set contact sheet" />
+    </div>
+  </section>
+</main>
+
+<script>
+const state = { gender: "male", pose: "idle", view: "front", set: "field-researcher", frame: 0 };
+const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+const sets = {
+  "field-researcher": {
+    hair: "short-crop",
+    "face-accessory": "round-glasses",
+    expression: "focused",
+    shirt: "field-shirt",
+    "body-accessory": "satchel",
+    pants: "utility-pants",
+    shoes: "boots",
+  },
+  "campus-organizer": {
+    hair: "side-part",
+    "face-accessory": "round-glasses",
+    expression: "happy",
+    shirt: "varsity-tee",
+    "body-accessory": "lanyard",
+    pants: "straight-pants",
+    shoes: "sneakers",
+  },
+  "night-coder": {
+    hair: "low-bun",
+    "face-accessory": "half-mask",
+    expression: "calm",
+    shirt: "pixel-hoodie",
+    "body-accessory": "utility-strap",
+    pants: "dark-cargos",
+    shoes: "soft-boots",
+  },
+};
+const independent = {
+  hair: ["short-crop", "side-part", "low-bun"],
+  "face-accessory": ["round-glasses", "half-mask", "mustache"],
+  expression: ["calm", "happy", "focused"],
+  shirt: ["plain-tee", "field-shirt", "varsity-tee", "pixel-hoodie"],
+  "body-accessory": ["satchel", "lanyard", "utility-strap"],
+  pants: ["utility-pants", "straight-pants", "dark-cargos", "shorts"],
+  shoes: ["boots", "sneakers", "soft-boots"],
+};
+const layerIds = {
+  hair: "hairLayer",
+  expression: "expressionLayer",
+  "face-accessory": "faceLayer",
+  shirt: "shirtLayer",
+  pants: "pantsLayer",
+  shoes: "shoesLayer",
+  "body-accessory": "bodyLayer",
+};
+function srcBase(){
+  return `assets/base/${state.gender}/${state.pose}/${state.view}/frame-${String(state.frame).padStart(2,"0")}.png`;
+}
+function srcItem(category, item){
+  return `assets/items/${state.gender}/${category}/${item}.png`;
+}
+function render(){
+  document.getElementById("baseLayer").src = srcBase();
+  document.getElementById("hudGender").textContent = state.gender.toUpperCase();
+  document.getElementById("hudPose").textContent = `${state.pose} / ${state.view}`.toUpperCase();
+  document.getElementById("hudSet").textContent = state.set.replace("-", " ").toUpperCase();
+  const showLayers = state.pose === "idle" && state.view === "front";
+  Object.entries(layerIds).forEach(([category, id]) => {
+    const el = document.getElementById(id);
+    el.src = showLayers ? srcItem(category, sets[state.set][category]) : "";
+    el.hidden = !showLayers;
+  });
+  document.querySelectorAll("[data-preview]").forEach((img) => {
+    img.src = `assets/previews/${state.gender}-${img.dataset.preview}.png`;
+  });
+  renderItems();
+}
+function renderItems(){
+  const grid = document.getElementById("assetGrid");
+  grid.innerHTML = "";
+  Object.entries(independent).forEach(([category, items]) => {
+    items.forEach((item) => {
+      const card = document.createElement("div");
+      card.className = "card asset-card";
+      card.innerHTML = `<img src="${srcItem(category,item)}" alt="${category} ${item} layer" /><div class="name">${category}<br>${item}</div>`;
+      grid.appendChild(card);
+    });
+  });
+}
+function activateButton(button){
+  const group = button.parentElement;
+  group.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
+  button.classList.add("active");
+}
+document.querySelectorAll("[data-control='gender'] button").forEach((button) => {
+  button.addEventListener("click", () => {
+    activateButton(button);
+    state.gender = button.dataset.value;
+    state.frame = 0;
+    render();
+  });
+});
+document.querySelectorAll("[data-control='set'] button").forEach((button) => {
+  button.addEventListener("click", () => {
+    activateButton(button);
+    state.set = button.dataset.value;
+    render();
+  });
+});
+document.querySelectorAll("[data-control='anim'] button").forEach((button) => {
+  button.addEventListener("click", () => {
+    activateButton(button);
+    state.pose = button.dataset.pose;
+    state.view = button.dataset.view;
+    state.frame = 0;
+    render();
+  });
+});
+setInterval(() => {
+  if (reduced.matches) return;
+  state.frame = (state.frame + 1) % 4;
+  render();
+}, 220);
+render();
+</script>
+</body>
+</html>

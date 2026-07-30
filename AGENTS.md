@@ -427,7 +427,7 @@ Gunakan tabel ini untuk mencatat setiap konfirmasi/penyimpangan dari spesifikasi
 | 2026-07-03 | Supabase feature migration resolved | User reset the Supabase database password and confirmed all three projects use the same password. | Applied schema and seed data to all three `public` schemas; Blog, Chat, Inventory, About, and Contact APIs now read from Supabase with no schema warnings. Tables live in `public`; `private` only stores the backend app-key helper. | Validation evidence: `npm run supabase:setup`, `npm run supabase:seed`, `/api/backend/health`, `/api/blog/posts`, `/api/chat/messages`, and screenshots in `screenshots/backend-feature-2026-07-03/`. |
 | 2026-07-04 | Player HUD plan assumptions | The plan asks to confirm System Integrity semantics, avatar option, and the two-action collapsed layout. | Treat the request to implement the complete plan as approval of its recommended real-data System Integrity model and separate Chat/HUD actions. Use the real user-provided profile image crop for the static pixel avatar, retain a generated SVG fallback, and preserve auth actions inside the HUD card. Final multi-viewport and reduced-motion evidence is in `screenshots/player-hud-2026-07-04/`. | User request: "implementasikan player-hud-implementation-plan"; validation: `plans/player-hud-implementation-plan/execution-checklist.md`. |
 | 2026-07-04 | Nala AI NPC persistence and model fallback | `plans/ai-npc-plan/implementation-plan.md` says Nala MVP can avoid Supabase, but the user explicitly requested database migration; OpenRouter env was not present locally. | Added `public.nala_conversations` and `public.nala_messages` to all shards for backend-only conversation storage. `/api/nala/chat` is OpenRouter-ready when env exists and otherwise uses deterministic factual tools from local/backend data, with no fabricated portfolio facts. Fixed validation issues found in screenshots: tokenized search, user `tool_payload`, mobile FAB overlap, and desktop thread auto-scroll. | User request: "Sepertinya kita akan butuh migrasi database"; validation: `npm run supabase:setup`, DB readback of `s2_3f06ffe585b0440ca478fd328f897fbc`, `npm run build`, and screenshots in `screenshots/ai-npc-nala-2026-07-04/`. |
-| 2026-07-30 | Hero entity interaction and motion | `plans/hero-entity.md` requested watchtower shooting; the user explicitly replaced it with direct touch → spark → entity flees, and later found the first linear flight paths unnatural. | Excluded watchtower, crosshair, projectile, score, and toast. Generated six optimized 4-frame transparent WebP sheets, then added species-specific natural CSS trajectories with mobile sky-only lanes and 30% vertical amplitude. | User request in this task; validation: `npm run build`, alpha/key-color inspection, keyboard/focus/reduced-motion checks, and screenshots in `validation/hero-entities-2026-07-30/`. |
+| 2026-07-30 | Hero entity interaction and motion | `plans/hero-entity.md` requested watchtower shooting; the user explicitly replaced it with direct touch → spark. The user then required natural motion, click-only activation, and a nearby dodge rather than fleeing. | Excluded watchtower, crosshair, projectile, score, and toast. Generated six optimized 4-frame transparent WebP sheets. Replaced uncorrelated CSS waypoint drift with a continuous species curve compiled to one cancellable `Element.animate()` sequence; direct rAF transform updates caused Hero/WebGL screenshot tearing and were removed. Hover has no state effect; click/tap or Enter/Space sparks, dodges within the Hero, then resumes flight. | User requests in this task; validation: `npm run build`, native-animation state/position checks, keyboard/focus/reduced-motion checks, and screenshots in `validation/hero-entities-2026-07-30/`. |
 | 2026-07-30 | Supabase shard `s1` migration | Project ref `bmidlseqfflcswamyhtd` had not received the backend schema and its Realtime channel could not join before the project became reachable. | Applied the existing idempotent `docs/supabase/schema.sql` to `s1` atomically. The security advisor then identified mutable search paths in two source functions, so both functions now explicitly set `search_path = public, pg_temp`; the final advisor result has no warnings. | User request: "s1 havent been migrated yet,migrate it"; validation: live DB assertions for chat table/RLS/trigger/publication plus a `SUBSCRIBED` WebSocket client on `chat:public`. |
 
 > Catatan: mulai berlaku dokumen ini, entri baru di tabel di atas untuk task
@@ -453,3 +453,47 @@ Untuk menjaga workflow ini tidak jadi celah untuk melonggarkan aturan:
 - Proses screenshot (§5.1-5.3) **tidak** menggantikan checklist manual gate
   di §5.2 - screenshot adalah bukti pendukung dan alat temuan bug, bukan
   pengganti pengecekan terprogram untuk hal numerik (kontras, computed style).
+
+
+<!-- headroom:rtk-instructions -->
+# RTK (Rust Token Killer) - Token-Optimized Commands
+
+When running shell commands, **always prefix with `rtk`**. This reduces context
+usage by 60-90% with zero behavior change. If rtk has no filter for a command,
+it passes through unchanged — so it is always safe to use.
+
+## Key Commands
+```bash
+# Git (59-80% savings)
+rtk git status          rtk git diff            rtk git log
+
+# Files & Search (60-75% savings)
+rtk ls <path>           rtk read <file>         rtk grep <pattern>
+rtk find <pattern>      rtk diff <file>
+
+# Test (90-99% savings) — shows failures only
+rtk pytest tests/       rtk cargo test          rtk test <cmd>
+
+# Build & Lint (80-90% savings) — shows errors only
+rtk tsc                 rtk lint                rtk cargo build
+rtk prettier --check    rtk mypy                rtk ruff check
+
+# Analysis (70-90% savings)
+rtk err <cmd>           rtk log <file>          rtk json <file>
+rtk summary <cmd>       rtk deps                rtk env
+
+# GitHub (26-87% savings)
+rtk gh pr view <n>      rtk gh run list         rtk gh issue list
+
+# Infrastructure (85% savings)
+rtk docker ps           rtk kubectl get         rtk docker logs <c>
+
+# Package managers (70-90% savings)
+rtk pip list            rtk pnpm install        rtk npm run <script>
+```
+
+## Rules
+- In command chains, prefix each segment: `rtk git add . && rtk git commit -m "msg"`
+- For debugging, use raw command without rtk prefix
+- `rtk proxy <cmd>` runs command without filtering but tracks usage
+<!-- /headroom:rtk-instructions -->

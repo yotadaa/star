@@ -1,0 +1,47 @@
+[     499ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:25630
+[    1402ms] [WARNING] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead. @ webpack-internal:///(app-pages-browser)/./node_modules/three/build/three.core.js:1969
+[    8406ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:25630
+[    9354ms] [WARNING] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead. @ webpack-internal:///(app-pages-browser)/./node_modules/three/build/three.core.js:1969
+[   83363ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/dev/hot-reloader/app/hot-reloader-app.js:183
+[   84682ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/dev/hot-reloader/app/hot-reloader-app.js:183
+[   84709ms] [LOG] [Fast Refresh] done in 26ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/dev/report-hmr-latency.js:13
+[   85521ms] [LOG] [Fast Refresh] done in 839ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/dev/report-hmr-latency.js:13
+[   86038ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:3124/_next/static/css/app/layout.css?v=1785417820519:0
+[   86050ms] Event
+[   86360ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:3124/:0
+[   86663ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom-client.development.js:24594
+[   86795ms] TypeError: __webpack_modules__[moduleId] is not a function
+    at Object.__webpack_require__ [as require] (file://C:\Users\LENOVO\projects\variant\.next\server\webpack-runtime.js:25:42)
+    at Object.require (file://C:\Users\LENOVO\projects\variant\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:28568)
+    at globalThis.__next_require__ (file://C:\Users\LENOVO\projects\variant\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:29391)
+    at requireModule (file://C:\Users\LENOVO\projects\variant\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:2:318257)
+    at initializeModuleChunk (file://C:\Users\LENOVO\projects\variant\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:2:347653)
+    at getOutlinedModel (file://C:\Users\LENOVO\projects\variant\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:2:357412)
+    at <unknown> (file://C:\Users\LENOVO\projects\variant\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:2:365365)
+    at ResponseInstance._fromJSON (file://C:\Users\LENOVO\projects\variant\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:2:365456)
+    at JSON.parse (<anonymous>)
+    at initializeModelChunk (file://C:\Users\LENOVO\projects\variant\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:2:347044)
+    at resolveModelChunk (file://C:\Users\LENOVO\projects\variant\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:2:345332)
+    at processFullStringRow (file://C:\Users\LENOVO\projects\variant\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:2:384476)
+    at <unknown> (file://C:\Users\LENOVO\projects\variant\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:2:386879)
+    at processBinaryChunk (file://C:\Users\LENOVO\projects\variant\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:2:386951)
+    at progress (file://C:\Users\LENOVO\projects\variant\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:2:388479)
+[   86795ms] [LOG] [HMR] connected @ webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/dev/hot-reloader/pages/websocket.js:45
+[   86813ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:3124/favicon.ico:0
+[  161234ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:3124/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/dev/hot-reloader/pages/websocket.js:88
+[  164254ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:3124/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/dev/hot-reloader/pages/websocket.js:88
+[  167304ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:3124/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/dev/hot-reloader/pages/websocket.js:88
+[  171696ms] [LOG] [HMR] connected @ webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/dev/hot-reloader/pages/websocket.js:45
+[  171736ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:3124/_next/static/webpack/375dae1b0e2d7955.webpack.hot-update.json:0
+[  171737ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/dev/hot-reloader/pages/hot-reloader-pages.js:338
+[  172189ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/dev/hot-reloader/pages/hot-reloader-pages.js:197
+[  177513ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/dev/hot-reloader/pages/hot-reloader-pages.js:197
+[  177527ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:3124/_next/static/webpack/375dae1b0e2d7955.webpack.hot-update.json:0
+[  177527ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/dev/hot-reloader/pages/hot-reloader-pages.js:338
+[  178971ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:25630
+[  179409ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/dev/hot-reloader/app/hot-reloader-app.js:183
+[  179776ms] [LOG] [Fast Refresh] done in 367ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/dev/report-hmr-latency.js:13
+[  180359ms] [WARNING] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead. @ webpack-internal:///(app-pages-browser)/./node_modules/three/build/three.core.js:1969
+[  194156ms] [WARNING] WebGL: CONTEXT_LOST_WEBGL: loseContext: context lost @ http://127.0.0.1:3124/:0
+[  194158ms] [LOG] THREE.WebGLRenderer: Context Lost. @ webpack-internal:///(app-pages-browser)/./node_modules/three/build/three.core.js:1927
+[  195180ms] [LOG] THREE.WebGLRenderer: Context Restored. @ webpack-internal:///(app-pages-browser)/./node_modules/three/build/three.core.js:1927

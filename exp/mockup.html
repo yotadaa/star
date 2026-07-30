@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nala — NPC Assistant Mockup</title>
+<style>
+  :root{
+    --dusk-top:#20241f;
+    --parchment:#f4ecd8;
+    --cream:#faf6ec;
+    --ink:#2a2420;
+    --gold:#f0b23a;
+    --terracotta:#c9552f;
+    --olive:#5c7a41;
+    --ease-pixel: cubic-bezier(.2,.9,.25,1);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100vh;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(240,178,58,.08), transparent 55%),
+      linear-gradient(180deg,#171a16,#20241f 45%,#262b21 100%);
+    font-family: 'Nunito', system-ui, sans-serif;
+    color: var(--cream);
+    position:relative;
+    overflow-x:hidden;
+  }
+  @font-face{ /* fallback stack only, no external fetch in mockup */ }
+  .display{ font-family: 'Georgia', 'Fraunces', serif; }
+  .pixel{ font-family: 'Courier New', 'Silkscreen', monospace; letter-spacing:.5px; }
+
+  /* ---------- page scaffold (just enough to sell context) ---------- */
+  header.site{
+    padding: 28px 32px 12px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark{
+    width:28px;height:28px;border:2px solid var(--gold); border-radius:6px;
+    display:grid; place-items:center; font-size:12px; color:var(--gold);
+  }
+  .brand-name{ font-size:14px; letter-spacing:1px; opacity:.85; }
+  nav.pill{
+    display:flex; gap:4px; background:rgba(244,236,216,.06);
+    border:1.5px solid rgba(244,236,216,.18); border-radius:999px; padding:6px;
+  }
+  nav.pill a{
+    color: var(--cream); text-decoration:none; font-size:12px; padding:8px 14px;
+    border-radius:999px; opacity:.7;
+  }
+  nav.pill a.active{ background: var(--gold); color:var(--ink); opacity:1; font-weight:700; }
+
+  main.hero{
+    padding: 64px 32px 40px; max-width:760px;
+  }
+  .eyebrow{
+    font-size:11px; letter-spacing:2px; color:var(--gold); text-transform:uppercase;
+    display:flex; align-items:center; gap:8px; margin-bottom:14px;
+  }
+  .eyebrow::before{ content:''; width:16px;height:2px; background:var(--gold); }
+  h1{
+    font-size: clamp(32px, 5vw, 52px); line-height:1.05; margin:0 0 18px;
+    font-family: Georgia, serif; font-weight:600;
+  }
+  p.lead{ font-size:16px; line-height:1.6; opacity:.8; max-width:52ch; }
+
+  .note-banner{
+    max-width:760px; margin: 0 32px 40px; padding:14px 18px;
+    border:1.5px dashed rgba(244,236,216,.3); border-radius:10px;
+    font-size:13px; opacity:.75; line-height:1.55;
+  }
+  .note-banner b{ color: var(--gold); }
+
+  /* ================= NALA LAUNCHER ================= */
+  #nala-launcher{
+    position:fixed; right:24px; bottom:24px; z-index:80;
+    width:68px; height:68px; border-radius:16px;
+    background: var(--parchment);
+    border: 2px solid var(--ink);
+    box-shadow: 4px 4px 0 rgba(0,0,0,.35);
+    display:grid; place-items:center;
+    cursor:pointer;
+    transition: transform 80ms var(--ease-pixel), box-shadow 80ms var(--ease-pixel);
+  }
+  #nala-launcher:hover{ transform: translate(-2px,-2px); box-shadow: 6px 6px 0 rgba(0,0,0,.35); }
+  #nala-launcher:active{ transform: translate(2px,2px); box-shadow: 1px 1px 0 rgba(0,0,0,.35); }
+  #nala-launcher:focus-visible{ outline: 2px dashed var(--gold); outline-offset:3px; }
+  #nala-launcher svg{ width:44px; height:auto; image-rendering: pixelated; }
+  #nala-launcher .ping{
+    position:absolute; top:-4px; right:-4px; width:14px;height:14px;
+    background: var(--terracotta); border:2px solid var(--ink); border-radius:50%;
+  }
+  #nala-launcher .breathe{ animation: breathe 2.6s ease-in-out infinite; }
+  @keyframes breathe{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-3px);} }
+
+  /* ================= NALA PANEL ================= */
+  #nala-panel{
+    position:fixed; right:24px; bottom:104px; z-index:81;
+    width:360px; max-width:calc(100vw - 32px);
+    height:480px; max-height:calc(100vh - 140px);
+    background: var(--parchment); color:var(--ink);
+    border: 2px solid var(--ink); border-radius:14px;
+    box-shadow: 6px 6px 0 rgba(0,0,0,.35);
+    display:flex; flex-direction:column; overflow:hidden;
+    opacity:0; transform: translateY(12px) scale(.98); pointer-events:none;
+    transition: opacity 180ms var(--ease-pixel), transform 180ms var(--ease-pixel);
+  }
+  #nala-panel.open{ opacity:1; transform:none; pointer-events:auto; }
+
+  .nala-header{
+    display:flex; align-items:center; gap:10px;
+    padding:12px 14px; border-bottom:1.5px solid rgba(42,36,32,.15);
+    background: var(--cream);
+  }
+  .nala-header .avatar-wrap{
+    width:40px;height:40px; border-radius:10px; background:var(--parchment);
+    border:1.5px solid var(--ink); display:grid; place-items:center; overflow:hidden;
+    flex-shrink:0;
+  }
+  .nala-header .avatar-wrap svg{ width:34px; height:auto; image-rendering:pixelated; }
+  .nala-header .who{ flex:1; min-width:0; }
+  .nala-header .who .name{ font-weight:800; font-size:14px; }
+  .nala-header .who .status{ font-size:11px; opacity:.65; display:flex; align-items:center; gap:5px;}
+  .nala-header .who .status .dot{ width:6px;height:6px;border-radius:50%; background:var(--olive); }
+  .nala-header .close{
+    border:1.5px solid var(--ink); background:var(--parchment); border-radius:8px;
+    width:26px; height:26px; cursor:pointer; font-size:13px; line-height:1;
+    display:grid; place-items:center;
+  }
+  .nala-header .close:focus-visible{ outline: 2px dashed var(--gold); outline-offset:2px; }
+
+  .nala-body{
+    flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:10px;
+  }
+  .msg{ max-width:85%; font-size:13px; line-height:1.5; }
+  .msg.from-nala{ align-self:flex-start; }
+  .msg.from-user{ align-self:flex-end; }
+  .bubble{
+    padding:9px 12px; border-radius:10px; border:1.5px solid var(--ink);
+  }
+  .msg.from-nala .bubble{ background: var(--cream); border-bottom-left-radius:2px; }
+  .msg.from-user .bubble{ background: var(--gold); border-bottom-right-radius:2px; }
+
+  .tool-tag{
+    display:inline-flex; align-items:center; gap:5px;
+    font-size:10px; padding:3px 8px; margin-bottom:5px;
+    border:1px solid rgba(42,36,32,.35); border-radius:999px;
+    background: rgba(92,122,65,.12); color: var(--olive); font-weight:700;
+    letter-spacing:.3px; text-transform:uppercase;
+  }
+  .tool-tag svg{ width:10px; height:10px; }
+  .tool-tag.empty{ background: rgba(201,85,47,.12); color: var(--terracotta); }
+
+  .typing-row{ display:flex; align-items:center; gap:6px; font-size:11px; opacity:.65; padding:0 2px; }
+  .typing-dots{ display:inline-flex; gap:3px; }
+  .typing-dots span{
+    width:5px;height:5px;border-radius:50%; background:var(--ink); opacity:.5;
+    animation: blink 1.1s infinite ease-in-out;
+  }
+  .typing-dots span:nth-child(2){ animation-delay:.15s; }
+  .typing-dots span:nth-child(3){ animation-delay:.3s; }
+  @keyframes blink{ 0%,80%,100%{ opacity:.25; } 40%{ opacity:.9; } }
+
+  .quick-prompts{
+    display:flex; gap:6px; flex-wrap:wrap; padding: 0 14px 10px;
+  }
+  .quick-prompts button{
+    font-size:11px; padding:7px 10px; border-radius:999px;
+    border:1.5px solid var(--ink); background:var(--cream); color:var(--ink);
+    cursor:pointer; transition: transform 80ms var(--ease-pixel), box-shadow 80ms var(--ease-pixel);
+  }
+  .quick-prompts button:hover{ background:#fff; }
+  .quick-prompts button:active{ transform: translate(1px,1px); }
+  .quick-prompts button:focus-visible{ outline:2px dashed var(--gold); outline-offset:2px; }
+
+  .nala-input{
+    display:flex; gap:8px; padding:12px 14px; border-top:1.5px solid rgba(42,36,32,.15);
+    background: var(--cream);
+  }
+  .nala-input input{
+    flex:1; border:1.5px solid var(--ink); border-radius:8px; padding:9px 11px;
+    font-size:13px; background:#fff; color:var(--ink); font-family:inherit;
+  }
+  .nala-input input:focus-visible{ outline:2px dashed var(--gold); outline-offset:2px; }
+  .nala-input button{
+    border:1.5px solid var(--ink); background:var(--gold); color:var(--ink);
+    border-radius:8px; padding:0 14px; font-weight:800; font-size:12px; cursor:pointer;
+    transition: transform 80ms var(--ease-pixel), box-shadow 80ms var(--ease-pixel);
+  }
+  .nala-input button:active{ transform: translate(2px,2px); }
+  .nala-input button:focus-visible{ outline:2px dashed var(--ink); outline-offset:2px; }
+
+  .sr-only{
+    position:absolute; width:1px;height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    #nala-launcher .breathe{ animation:none; }
+    .typing-dots span{ animation:none; opacity:.7; }
+    #nala-panel{ transition:none; }
+  }
+
+  @media (max-width: 480px){
+    #nala-panel{ right:16px; left:16px; width:auto; bottom:96px; }
+    #nala-launcher{ right:16px; bottom:16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="brand">
+    <div class="brand-mark pixel">MB</div>
+    <div class="brand-name pixel">MUKHTADA · NST</div>
+  </div>
+  <nav class="pill pixel">
+    <a href="#" class="active">HOME</a>
+    <a href="#">ABOUT</a>
+    <a href="#">PROJECTS</a>
+    <a href="#">RESEARCH</a>
+    <a href="#">CONTACT</a>
+  </nav>
+</header>
+
+<main class="hero">
+  <div class="eyebrow">SYSTEM ONLINE — SAVE FILE</div>
+  <h1>Builder-researcher, viewed<br>through the cockpit window.</h1>
+  <p class="lead">
+    Ini mockup overview interaksi <strong>Nala</strong> — NPC pemandu portofolio.
+    Klik avatar di pojok kanan-bawah untuk membuka panel chat dan coba jalur
+    percakapan dummy (tool-calling → jawaban grounded, dan jalur fallback
+    "tidak ketemu").
+  </p>
+</main>
+
+<div class="note-banner pixel" style="font-family:'Nunito',sans-serif;">
+  <b>Catatan mockup:</b> seluruh percakapan di panel ini pakai data dummy
+  berskrip (bukan pemanggilan OpenRouter sungguhan) — tujuannya menunjukkan
+  <em>alur interaksi</em>: launcher → panel → quick prompt / ketik manual →
+  state ekspresi Nala berubah mengikuti fase (listening → thinking → talking
+  / confused) → tool-tag transparansi di atas tiap jawaban.
+</div>
+
+<!-- ================= NALA LAUNCHER ================= -->
+<button id="nala-launcher" aria-haspopup="dialog" aria-expanded="false" aria-controls="nala-panel"
+        aria-label="Buka chat dengan Nala, asisten portofolio">
+  <span class="ping" aria-hidden="true"></span>
+  <span class="breathe" id="launcher-avatar-wrap">
+    <svg viewBox="0 0 176 208" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <style>
+  .nala-state { display: none; }
+  .nala-state.is-active { display: block; }
+</style>
+<g id="nala-idle" class="nala-state" data-state="idle">
+<rect x="48" y="8" width="80" height="8" fill="#2a2420"/>
+<rect x="40" y="16" width="96" height="8" fill="#2a2420"/>
+<rect x="40" y="24" width="96" height="8" fill="#2a2420"/>
+<rect x="40" y="32" width="96" height="8" fill="#2a2420"/>
+<rect x="32" y="40" width="112" height="8" fill="#2a2420"/>
+<rect x="32" y="48" width="112" height="8" fill="#2a24
+    </svg>
+  </span>
+</button>
+
+<!-- ================= NALA PANEL ================= -->
+<section id="nala-panel" role="dialog" aria-modal="false" aria-label="Chat dengan Nala" aria-hidden="true">
+  <div class="nala-header">
+    <div class="avatar-wrap">
+      <svg id="header-avatar-svg" viewBox="0 0 176 208" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <style>
+  .nala-state { display: none; }
+  .nala-state.is-active { display: block; }
+</style>
+<g id="nala-idle" class="nala-state" data-state="idle">
+<rect x="48" y="8" width="80" height="8" fill="#2a2420"/>
+<rect x="40" y="16" width="96" height="8" fill="#2a2420"/>
+<rect x="40" y="24" width="96" height="8" fill="#2a2420"/>
+<rect x="40" y="32" width="96" height="8" fill="#2a2420"/>
+<rect x="32" y="40" width="112" height="8" fill="#2a2420"/>
+<rect x="32" y="48" width="112" height="8" fill="#2a24
+      </svg>
+    </div>
+    <div class="who">
+      <div class="name">Nala</div>
+      <div class="status"><span class="dot"></span><span id="status-text">Idle — siap membantu</span></div>
+    </div>
+    <button class="close" id="nala-close" aria-label="Tutup chat Nala">✕</button>
+  </div>
+
+  <div class="nala-body" id="nala-body" aria-live="polite">
+    <div class="msg from-nala">
+      <div class="bubble">
+        Hai! Aku Nala, pemandu lab ini. Tanya aku soal proyek, riset,
+        achievement, atau cara kontak Mukhtada — aku jawab dari data asli,
+        bukan ngarang. 🔧
+      </div>
+    </div>
+  </div>
+
+  <div class="quick-prompts">
+    <button type="button" data-demo="projects">Proyek AI</button>
+    <button type="button" data-demo="achievements">Achievement</button>
+    <button type="button" data-demo="unknown">Investor pitch deck?</button>
+  </div>
+
+  <form class="nala-input" id="nala-form">
+    <label for="nala-text" class="sr-only">Tanya Nala</label>
+    <input id="nala-text" type="text" placeholder="Tanya Nala…" autocomplete="off">
+    <button type="submit">Kirim</button>
+  </form>
+</section>
+
+<script>
+(function(){
+  const launcher = document.getElementById('nala-launcher');
+  const panel = document.getElementById('nala-panel');
+  const closeBtn = document.getElementById('nala-close');
+  const body = document.getElementById('nala-body');
+  const form = document.getElementById('nala-form');
+  const input = document.getElementById('nala-text');
+  const statusText = document.getElementById('status-text');
+  const headerSvg = document.getElementById('header-avatar-svg');
+
+  function setState(state){
+    headerSvg.querySelectorAll('.nala-state').forEach(g=>{
+      g.classList.toggle('is-active', g.getAttribute('data-state') === state);
+    });
+  }
+  setState('idle');
+
+  function openPanel(){
+    panel.classList.add('open');
+    panel.setAttribute('aria-hidden','false');
+    launcher.setAttribute('aria-expanded','true');
+    input.focus();
+  }
+  function closePanel(){
+    panel.classList.remove('open');
+    panel.setAttribute('aria-hidden','true');
+    launcher.setAttribute('aria-expanded','false');
+    launcher.focus();
+    setState('idle');
+    statusText.textContent = 'Idle — siap membantu';
+  }
+  launcher.addEventListener('click', ()=>{
+    panel.classList.contains('open') ? closePanel() : openPanel();
+  });
+  closeBtn.addEventListener('click', closePanel);
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && panel.classList.contains('open')) closePanel();
+  });
+
+  function addUserMsg(text){
+    const el = document.createElement('div');
+    el.className = 'msg from-user';
+    el.innerHTML = '<div class="bubble"></div>';
+    el.querySelector('.bubble').textContent = text;
+    body.appendChild(el);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function addTypingRow(){
+    const row = document.createElement('div');
+    row.className = 'typing-row';
+    row.id = 'typing-row';
+    row.innerHTML = '<span class="typing-dots"><span></span><span></span><span></span></span><span id="typing-label">Nala sedang mencari…</span>';
+    body.appendChild(row);
+    body.scrollTop = body.scrollHeight;
+    return row;
+  }
+
+  function toolTagHTML(label, empty){
+    return '<span class="tool-tag' + (empty ? ' empty' : '') + '">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>' +
+      label + '</span>';
+  }
+
+  function addNalaMsg({tool, empty, html}){
+    const el = document.createElement('div');
+    el.className = 'msg from-nala';
+    el.innerHTML = '<div class="bubble">' + (tool ? toolTagHTML(tool, empty) + '<br>' : '') + html + '</div>';
+    body.appendChild(el);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  // ---- scripted demo responses (dummy data, mimics real tool-call flow) ----
+  const SCRIPTS = {
+    projects: {
+      user: 'Ada proyek AI yang menarik?',
+      tool: 'search_projects · query: "AI"',
+      typing: 'Nala mencari di Proyek…',
+      state: 'talking',
+      html: 'Ketemu 2: <b>"Research Web"</b> (RAG internal untuk arsip riset, tier RARE) dan <b>"Portfolio Cockpit"</b> (situs ini sendiri). Mau aku bukakan detail salah satunya?',
+      final: 'happy'
+    },
+    achievements: {
+      user: 'Achievement apa saja yang sudah didapat?',
+      tool: 'get_achievements',
+      typing: 'Nala membuka catatan Achievement…',
+      state: 'talking',
+      html: '3 unlocked: <b>Terindeks Sinta 5</b> (+6 PP), <b>4 Publikasi Scholar</b> (+10 PP), <b>Kontributor Open Source</b> (+4 PP). Masih ada beberapa slot terkunci — aku belum bisa bocorin isinya sebelum selesai 🔒',
+      final: 'happy'
+    },
+    unknown: {
+      user: 'Boleh minta pitch deck buat investor?',
+      tool: 'search_projects · query: "investor pitch deck"',
+      typing: 'Nala mencari di seluruh data…',
+      state: 'confused',
+      empty: true,
+      html: 'Hmm, aku nggak nemu data soal itu di sini — sepertinya ini bukan sesuatu yang ada di portofolio. Coba langsung kontak Mukhtada lewat email di section Contact ya, biar dijawab langsung.',
+      final: 'confused'
+    }
+  };
+
+  function runScript(key){
+    const s = SCRIPTS[key];
+    if(!s) return;
+    addUserMsg(s.user);
+    statusText.textContent = 'Listening…';
+    setState('listening');
+
+    setTimeout(()=>{
+      statusText.textContent = 'Thinking — memanggil tool';
+      setState('thinking');
+      const row = addTypingRow();
+      row.querySelector('#typing-label').textContent = s.typing;
+
+      setTimeout(()=>{
+        row.remove();
+        statusText.textContent = s.empty ? 'Tidak ditemukan' : 'Menjawab…';
+        setState(s.state);
+        addNalaMsg({tool: s.tool, empty: s.empty, html: s.html});
+        setTimeout(()=>{
+          setState(s.final);
+          statusText.textContent = s.empty ? 'Idle — siap membantu' : 'Idle — siap membantu';
+        }, 500);
+      }, 1100);
+    }, 500);
+  }
+
+  document.querySelectorAll('.quick-prompts button').forEach(btn=>{
+    btn.addEventListener('click', ()=> runScript(btn.dataset.demo));
+  });
+
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const text = input.value.trim();
+    if(!text) return;
+    input.value = '';
+    // freeform input maps to the "unknown / escalate" demo path, to show
+    // the fallback behaviour honestly instead of faking a match
+    addUserMsg(text);
+    statusText.textContent = 'Listening…';
+    setState('listening');
+    setTimeout(()=>{
+      statusText.textContent = 'Thinking — memanggil tool';
+      setState('thinking');
+      const row = addTypingRow();
+      setTimeout(()=>{
+        row.remove();
+        setState('confused');
+        statusText.textContent = 'Tidak ditemukan';
+        addNalaMsg({
+          tool: 'search_projects · search_publications',
+          empty: true,
+          html: 'Ini mockup statis, jadi pertanyaan bebas belum tersambung ke OpenRouter sungguhan — coba salah satu quick prompt di atas untuk lihat alur lengkapnya 🙂'
+        });
+      }, 1100);
+    }, 500);
+  });
+})();
+</script>
+
+</body>
+</html>

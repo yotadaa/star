@@ -8,7 +8,7 @@
 - [x] Seluruh markdown root dibaca: `AGENTS.md`, `PRODUCT.md`, `design-system.md`, `report.md`, `TASKS.md`, `README.md`, `dev-history.md`, dan `gamification-system-overview.md`.
 - [x] `plans/hero-entity.md` dibaca kembali sebelum checklist dibuat.
 - [x] Implementasi saat ini di Home, SiteProvider, ParallaxScene, CSS, dan package manifest diinventarisasi.
-- [x] Override pemilik dicatat: tanpa watchtower; sentuh → spark → entity kabur.
+- [x] Override pemilik dicatat: tanpa watchtower; sentuh → spark → entity menghindar lalu kembali ke lintasan.
 - [x] Aset yang dikecualikan dicatat: watchtower, projectile, crosshair, HUD/score assets.
 - [x] Tidak ada dependency baru atau token CSS baru direncanakan.
 
@@ -31,7 +31,7 @@
 - [x] Mapping phase/entity dan varians pasangan/rare sesuai plan.
 - [x] Tidak ada score, combo, toast, projectile, watchtower, atau hit state kekerasan.
 - [x] Pointer/touch/Enter/Space menggunakan handler tunggal yang idempoten.
-- [x] Spark dekoratif muncul pada sentuhan dan entity pindah keluar layar pada motion normal.
+- [x] Spark dekoratif muncul pada sentuhan dan entity melakukan dodge dekat tanpa meninggalkan Hero pada motion normal.
 - [x] Empty space Hero tetap dapat menerima scroll/pointer; layer tidak memblokir CTA.
 - [x] Coarse-pointer target minimal 48 × 48 px tanpa memperbesar gambar pixel.
 - [x] Fokus keyboard terlihat dan label tombol spesifik untuk jenis entity.
@@ -47,11 +47,25 @@
 - [x] Desktop 1280px, fase sore: screenshot formasi V.
 - [x] Desktop 1280px, fase malam: screenshot kelelawar dan kunang-kunang.
 - [x] Mobile 375px: screenshot default serta sentuh; tidak ada horizontal overflow dan CTA tidak tertutup.
-- [x] Keyboard: Tab fokus jelas; Enter dan Space memberi satu flee/spark, tanpa aksi ganda.
+- [x] Keyboard: Tab fokus jelas; Enter dan Space memberi satu dodge/spark, tanpa aksi ganda.
 - [x] Reduced motion: screenshot dan inspeksi membuktikan tidak ada loop flight/flap.
 - [x] Screenshot final diperiksa visual terhadap palet, layering, clipping, dan readability.
 - [x] Tidak ada dependency yang berubah pada `package.json`.
 - [x] Tidak ada P0/P1/P2 terbuka. P3/P4, bila ada, dicatat terpisah.
+
+## Motion refinement — 2026-07-30
+
+- [x] Riset MDN Motion Path, timing function, reduced motion, serta Web Animations API dicatat di plan.
+- [x] Waypoint `flightY1`–`flightY4` independen dan easing yang berhenti di tiap waypoint dihapus.
+- [x] Satu `Element.animate()` memakai 25 transform keyframe yang dibangun dari kurva spesies kontinu; tidak ada RAF atau React update per frame.
+- [x] Kontrol screenshot menemukan tearing Hero/WebGL dari rAF lama; visual bersih setelah animasi native menggantikannya.
+- [x] Desktop hover: `flying → flying`, 0 spark, dan satu native animation aktif.
+- [x] Desktop click: `dodging` + tepat satu spark; setelah 900 ms kembali `flying` dan target tetap di dalam Hero.
+- [x] Sampel lintasan 260 ms: `x` 1198 → 1151 → 1104 → 1060 → 1016, membuktikan perjalanan horizontal kontinu tanpa stop waypoint.
+- [x] Mobile 375 px: dodge kembali ke `flying` tanpa horizontal overflow; CTA tetap terbuka.
+- [x] Keyboard: focus outline `solid 2px`; Enter menghasilkan satu dodge dan satu spark.
+- [x] Reduced motion: `is-static`, 0 animation wrapper, sprite animation `none`; click hanya membuat spark tanpa dodge.
+- [x] Bukti baru: `desktop-natural-flight-refined.png`, `desktop-dodging.png`, `mobile-natural-flight-refined.png`, `desktop-reduced-motion-refined.png`.
 
 ## Log completion
 

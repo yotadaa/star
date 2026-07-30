@@ -1,0 +1,11 @@
+<style>
+  .nala-state { display: none; }
+  .nala-state.is-active { display: block; }
+</style>
+<g id="nala-idle" class="nala-state" data-state="idle">
+<rect x="48" y="8" width="80" height="8" fill="#2a2420"/>
+<rect x="40" y="16" width="96" height="8" fill="#2a2420"/>
+<rect x="40" y="24" width="96" height="8" fill="#2a2420"/>
+<rect x="40" y="32" width="96" height="8" fill="#2a2420"/>
+<rect x="32" y="40" width="112" height="8" fill="#2a2420"/>
+<rect x="32" y="48" width="112" height="8" fill="#2a24

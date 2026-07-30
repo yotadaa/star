@@ -1,0 +1,113 @@
+- generic [active] [ref=e1]:
+  - link "Loncat ke konten utama" [ref=e2]:
+    - /url: "#main"
+  - navigation "World Chat dan Player HUD" [ref=e3]:
+    - generic [ref=e4]:
+      - button "Buka World Chat" [ref=e5]:
+        - generic [ref=e9]: Chat
+      - button "Buka Player HUD Mukhtada, level 4" [ref=e11] [cursor=pointer]:
+        - generic "Level 4" [ref=e14]: "4"
+        - generic [ref=e15]: Mukhtada
+  - navigation "Navigasi utama" [ref=e16]:
+    - link "Mukhtada" [ref=e17] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e19]:
+      - link "Home" [ref=e20]:
+        - /url: /
+      - link "About" [ref=e21]:
+        - /url: /about
+      - link "Projects" [ref=e22]:
+        - /url: /projects
+      - link "Research" [ref=e23]:
+        - /url: /research
+      - link "Blog" [ref=e24]:
+        - /url: /blog
+      - link "Contact" [ref=e25]:
+        - /url: /contact
+    - button "Ganti ke mode siang" [ref=e26] [cursor=pointer]
+    - button "Buka inventory pemain, level 4" [ref=e32] [cursor=pointer]:
+      - generic [ref=e38]: Lv.4
+    - button "Buka command palette" [ref=e39] [cursor=pointer]
+  - main [ref=e42]:
+    - generic [ref=e43]:
+      - generic "Makhluk terbang interaktif"
+      - generic [ref=e45]:
+        - generic [ref=e46]: "SYSTEM ONLINE - SAVE FILE: MUKHTADA.NST"
+        - heading [level=1] [ref=e48]:
+          - text: Membangun sistem,
+          - emphasis [ref=e49]: satu quest
+          - text: pada satu waktu.
+        - paragraph [ref=e50]: Mahasiswa Sistem Informasi Universitas Jambi yang senang mengubah riset jadi produk yang jalan beneran - fullstack, AI tooling, dan data science, dilihat lewat jendela kabin senja ini.
+        - generic [ref=e51]:
+          - link "▶ Mulai Quest" [ref=e52] [cursor=pointer]:
+            - /url: "#quests"
+          - link "Baca Lore" [ref=e53] [cursor=pointer]:
+            - /url: "#journey"
+      - generic [ref=e54]:
+        - text: GULIR
+        - generic [ref=e55]: ▾
+    - list "Bukti cepat" [ref=e56]:
+      - status "Status ringkas" [ref=e57]:
+        - link [ref=e58]:
+          - /url: https://github.com/yotadaa
+        - link [ref=e62]:
+          - /url: https://scholar.google.com/citations?user=w-CDgG8AAAAJ&hl=en
+        - generic [ref=e67]: UNJA - Sistem Informasi
+        - generic [ref=e71]: Jambi, ID - base camp
+    - generic [ref=e78]:
+      - generic [ref=e79]: // Build Glimpses
+      - heading "Header yang pernah dibangun" [level=2] [ref=e80]
+      - paragraph [ref=e81]: Beberapa first-screen dari proyek web, riset, community platform, hackathon, dan thesis build.
+    - generic [ref=e83]:
+      - generic [ref=e84]:
+        - generic [ref=e85]: // Featured Quests
+        - heading "Quest unggulan" [level=2] [ref=e86]
+        - paragraph [ref=e87]: Cuplikan proyek pilihan. Filter lengkap dari 57 repo ada di halaman Projects.
+      - generic [ref=e88]:
+        - 'link "TIER S · AI TOOLING Nara - Natural Language Assistant Asisten berbasis bahasa natural yang bisa berjalan lokal: membantu mencari, meringkas, dan berkomunikasi. Fokus pada respons yang terasa manusiawi. JavaScript NLP Assistant" [ref=e89]':
+          - /url: https://github.com/yotadaa/nara
+          - generic [ref=e90]: TIER S · AI TOOLING
+          - heading "Nara - Natural Language Assistant" [level=3] [ref=e91]
+          - paragraph [ref=e92]: "Asisten berbasis bahasa natural yang bisa berjalan lokal: membantu mencari, meringkas, dan berkomunikasi. Fokus pada respons yang terasa manusiawi."
+          - generic [ref=e93]:
+            - generic [ref=e94]: JavaScript
+            - generic [ref=e95]: NLP
+            - generic [ref=e96]: Assistant
+        - link "TIER A · AI / DOCS Word AI Draft Add-in Add-in Microsoft Word untuk drafting berbantuan AI langsung di dalam dokumen - menyatukan Office.js dengan alur penulisan. TypeScript Office.js AI" [ref=e97]:
+          - /url: https://github.com/yotadaa/word-ai-draft-addin
+          - generic [ref=e98]: TIER A · AI / DOCS
+          - heading "Word AI Draft Add-in" [level=3] [ref=e99]
+          - paragraph [ref=e100]: Add-in Microsoft Word untuk drafting berbantuan AI langsung di dalam dokumen - menyatukan Office.js dengan alur penulisan.
+          - generic [ref=e101]:
+            - generic [ref=e102]: TypeScript
+            - generic [ref=e103]: Office.js
+            - generic [ref=e104]: AI
+        - link "TIER S · FULLSTACK · RISET E-Ticket TNKS Sistem e-ticketing untuk Taman Nasional Kerinci Seblat pada penelitian dosen - reservasi online menggantikan pemesanan on-site. Asisten web developer (front & back). Laravel Bootstrap Research" [ref=e105]:
+          - /url: https://scholar.google.com/citations?user=w-CDgG8AAAAJ&hl=en
+          - generic [ref=e106]: TIER S · FULLSTACK · RISET
+          - heading "E-Ticket TNKS" [level=3] [ref=e107]
+          - paragraph [ref=e108]: Sistem e-ticketing untuk Taman Nasional Kerinci Seblat pada penelitian dosen - reservasi online menggantikan pemesanan on-site. Asisten web developer (front & back).
+          - generic [ref=e109]:
+            - generic [ref=e110]: Laravel
+            - generic [ref=e111]: Bootstrap
+            - generic [ref=e112]: Research
+      - generic [ref=e113]:
+        - link "▶ Semua Projects" [ref=e114] [cursor=pointer]:
+          - /url: /projects
+        - link "Baca Research" [ref=e115] [cursor=pointer]:
+          - /url: /research
+  - contentinfo [ref=e116]:
+    - generic [ref=e117]:
+      - link "GITHUB" [ref=e118]:
+        - /url: https://github.com/yotadaa
+      - link "LINKEDIN" [ref=e119]:
+        - /url: https://www.linkedin.com/in/mukhtada-nasution-893aaa246/
+      - link "SCHOLAR" [ref=e120]:
+        - /url: https://scholar.google.com/citations?user=w-CDgG8AAAAJ&hl=en
+      - link "BLOG" [ref=e121]:
+        - /url: https://write.mukhtada.site
+    - paragraph [ref=e122]: Level complete - seluruh peta sudah dijelajahi.
+    - paragraph [ref=e123]:
+      - text: © 2026 MUKHTADA BILLAH NST - BUILT WITH COFFEE & PIXELS ·
+      - link "↑ KEMBALI KE ATAS" [ref=e124]:
+        - /url: /#hero

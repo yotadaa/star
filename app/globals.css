@@ -1151,197 +1151,32 @@ a.hud-chip:focus-visible {
   left: 0;
   z-index: 1;
   pointer-events: none;
+  transform: translate3d(var(--flight-start-x), var(--flight-start-y, 0), 0);
   will-change: transform;
-  animation: hero-entity-flight var(--flight-duration) linear forwards;
-}
-
-@keyframes hero-entity-flight {
-  from {
-    transform: translate3d(var(--flight-start-x), 0, 0);
-  }
-
-  to {
-    transform: translate3d(var(--flight-end-x), var(--flight-end-y), 0);
-  }
-}
-
-/* Each species follows a different short, eased flight path. Leftward travel
-   plays the same path in reverse, so the movement remains continuous. */
-.hero-entity-encounter[data-direction="left"] {
-  animation-direction: reverse;
-}
-
-.hero-entity-encounter[data-flight="butterfly"] {
-  animation-name: hero-entity-butterfly-flight;
-}
-
-.hero-entity-encounter[data-flight="sparrow"] {
-  animation-name: hero-entity-sparrow-flight;
-}
-
-.hero-entity-encounter[data-flight="migration"] {
-  animation-name: hero-entity-migration-flight;
-}
-
-.hero-entity-encounter[data-flight="bat"] {
-  animation-name: hero-entity-bat-flight;
-}
-
-.hero-entity-encounter[data-flight="firefly"] {
-  animation-name: hero-entity-firefly-flight;
-}
-
-@keyframes hero-entity-butterfly-flight {
-  0% {
-    transform: translate3d(-10rem, 0, 0);
-    animation-timing-function: cubic-bezier(0.35, 0.05, 0.2, 1);
-  }
-
-  16% {
-    transform: translate3d(16vw, var(--flight-y-1), 0);
-    animation-timing-function: cubic-bezier(0.36, 0, 0.24, 1);
-  }
-
-  38% {
-    transform: translate3d(39vw, var(--flight-y-2), 0);
-    animation-timing-function: cubic-bezier(0.36, 0, 0.24, 1);
-  }
-
-  61% {
-    transform: translate3d(62vw, var(--flight-y-3), 0);
-    animation-timing-function: cubic-bezier(0.36, 0, 0.24, 1);
-  }
-
-  84% {
-    transform: translate3d(85vw, var(--flight-y-4), 0);
-    animation-timing-function: cubic-bezier(0.35, 0.05, 0.2, 1);
-  }
-
-  100% {
-    transform: translate3d(calc(100vw + 10rem), 0, 0);
-  }
-}
-
-@keyframes hero-entity-sparrow-flight {
-  0% {
-    transform: translate3d(-10rem, 0, 0);
-    animation-timing-function: cubic-bezier(0.2, 0.7, 0.35, 1);
-  }
-
-  31% {
-    transform: translate3d(29vw, var(--flight-y-1), 0);
-    animation-timing-function: cubic-bezier(0.24, 0.05, 0.36, 1);
-  }
-
-  67% {
-    transform: translate3d(66vw, var(--flight-y-2), 0);
-    animation-timing-function: cubic-bezier(0.2, 0.7, 0.35, 1);
-  }
-
-  100% {
-    transform: translate3d(calc(100vw + 10rem), var(--flight-y-3), 0);
-  }
-}
-
-@keyframes hero-entity-migration-flight {
-  0% {
-    transform: translate3d(-11rem, 0, 0);
-    animation-timing-function: cubic-bezier(0.3, 0.05, 0.22, 1);
-  }
-
-  48% {
-    transform: translate3d(49vw, var(--flight-y-1), 0);
-    animation-timing-function: cubic-bezier(0.22, 0, 0.24, 1);
-  }
-
-  100% {
-    transform: translate3d(calc(100vw + 11rem), var(--flight-y-2), 0);
-  }
-}
-
-@keyframes hero-entity-bat-flight {
-  0% {
-    transform: translate3d(-10rem, 0, 0);
-    animation-timing-function: cubic-bezier(0.24, 0.65, 0.34, 1);
-  }
-
-  17% {
-    transform: translate3d(16vw, var(--flight-y-1), 0);
-    animation-timing-function: cubic-bezier(0.3, 0, 0.38, 1);
-  }
-
-  39% {
-    transform: translate3d(38vw, var(--flight-y-2), 0);
-    animation-timing-function: cubic-bezier(0.26, 0.7, 0.4, 1);
-  }
-
-  63% {
-    transform: translate3d(63vw, var(--flight-y-3), 0);
-    animation-timing-function: cubic-bezier(0.28, 0, 0.38, 1);
-  }
-
-  84% {
-    transform: translate3d(84vw, var(--flight-y-4), 0);
-    animation-timing-function: cubic-bezier(0.22, 0.7, 0.38, 1);
-  }
-
-  100% {
-    transform: translate3d(calc(100vw + 10rem), 0, 0);
-  }
-}
-
-@keyframes hero-entity-firefly-flight {
-  0% {
-    transform: translate3d(-10rem, 0, 0);
-    animation-timing-function: cubic-bezier(0.4, 0.05, 0.25, 1);
-  }
-
-  20% {
-    transform: translate3d(18vw, var(--flight-y-1), 0);
-    animation-timing-function: cubic-bezier(0.36, 0, 0.3, 1);
-  }
-
-  43% {
-    transform: translate3d(41vw, var(--flight-y-2), 0);
-    animation-timing-function: cubic-bezier(0.38, 0.05, 0.26, 1);
-  }
-
-  68% {
-    transform: translate3d(66vw, var(--flight-y-3), 0);
-    animation-timing-function: cubic-bezier(0.36, 0, 0.3, 1);
-  }
-
-  87% {
-    transform: translate3d(86vw, var(--flight-y-4), 0);
-    animation-timing-function: cubic-bezier(0.4, 0.05, 0.25, 1);
-  }
-
-  100% {
-    transform: translate3d(calc(100vw + 10rem), 0, 0);
-  }
 }
 
 .hero-entity-encounter.is-static {
   left: var(--static-x);
+  transform: none;
   animation: none;
   will-change: auto;
 }
 
-.hero-entity-encounter.is-fleeing {
+.hero-entity-encounter.is-dodging {
   top: 0;
   left: 0;
-  animation: hero-entity-flee var(--flee-duration) var(--ease-pixel) forwards;
+  animation: hero-entity-dodge var(--dodge-duration) var(--ease-pixel) forwards;
 }
 
-@keyframes hero-entity-flee {
+@keyframes hero-entity-dodge {
   from {
-    transform: translate3d(var(--flee-start-x), var(--flee-start-y), 0) scale(1);
+    transform: translate3d(var(--dodge-start-x), var(--dodge-start-y), 0) scale(1);
     opacity: 1;
   }
 
   to {
-    transform: translate3d(var(--flee-end-x), var(--flee-end-y), 0) scale(0.84);
-    opacity: 0.88;
+    transform: translate3d(var(--dodge-end-x), var(--dodge-end-y), 0) scale(1.03);
+    opacity: 1;
   }
 }
 
@@ -1357,9 +1192,10 @@ a.hud-chip:focus-visible {
   border-radius: var(--radius-sm);
   background: transparent;
   color: inherit;
+  cursor: pointer;
   pointer-events: auto;
   touch-action: manipulation;
-  animation: hero-entity-wander 1.8s ease-in-out infinite;
+  animation: hero-entity-body-drift 2.4s ease-in-out infinite;
 }
 
 .hero-entity-target:focus-visible {
@@ -1482,65 +1318,71 @@ a.hud-chip:focus-visible {
   transform: translate(15px, -4px) scaleX(var(--sprite-flip, 1));
 }
 
-.hero-entity-encounter[data-entity="butterfly-terracotta"] .hero-entity-target,
-.hero-entity-encounter[data-entity="butterfly-moss"] .hero-entity-target {
-  animation-name: hero-entity-butterfly-wander;
-}
-
-.hero-entity-encounter[data-entity="bat"] .hero-entity-target {
-  animation-name: hero-entity-bat-wander;
-}
-
-.hero-entity-encounter[data-entity="migration-v"] .hero-entity-target {
-  animation-name: none;
-}
-
-@keyframes hero-entity-wander {
+@keyframes hero-entity-body-drift {
   0%,
   100% {
     transform: translateY(0);
   }
 
-  50% {
-    transform: translateY(-5px);
+  46% {
+    transform: translateY(-3px);
+  }
+
+  72% {
+    transform: translateY(1px);
   }
 }
 
-@keyframes hero-entity-butterfly-wander {
+.hero-entity-encounter[data-entity="butterfly-terracotta"] .hero-entity-target,
+.hero-entity-encounter[data-entity="butterfly-moss"] .hero-entity-target {
+  animation-name: hero-entity-butterfly-body-drift;
+  animation-duration: 2.7s;
+}
+
+@keyframes hero-entity-butterfly-body-drift {
   0%,
   100% {
-    transform: translate(0, 0) rotate(-4deg);
+    transform: translate3d(0, 0, 0) rotate(-2deg);
   }
 
-  25% {
-    transform: translate(10px, -18px) rotate(4deg);
+  30% {
+    transform: translate3d(3px, -6px, 0) rotate(2deg);
   }
 
-  50% {
-    transform: translate(2px, 8px) rotate(-2deg);
+  62% {
+    transform: translate3d(-2px, 2px, 0) rotate(-1deg);
   }
 
-  75% {
-    transform: translate(-8px, -10px) rotate(3deg);
+  82% {
+    transform: translate3d(2px, -2px, 0) rotate(1deg);
   }
 }
 
-@keyframes hero-entity-bat-wander {
+.hero-entity-encounter[data-entity="bat"] .hero-entity-target {
+  animation-name: hero-entity-bat-body-drift;
+  animation-duration: 1.7s;
+}
+
+@keyframes hero-entity-bat-body-drift {
   0%,
   100% {
     transform: translateY(0);
   }
 
   36% {
-    transform: translateY(-12px);
+    transform: translateY(-5px);
   }
 
   62% {
-    transform: translateY(5px);
+    transform: translateY(2px);
   }
 }
 
-.hero-entity-encounter.is-fleeing .hero-entity-target,
+.hero-entity-encounter[data-entity="migration-v"] .hero-entity-target {
+  animation: none;
+}
+
+.hero-entity-encounter.is-dodging .hero-entity-target,
 .hero-entity-encounter.is-static .hero-entity-target {
   animation: none;
 }
@@ -5400,11 +5242,6 @@ footer.site-footer .foot-copy a {
     animation: none !important;
     transition: none !important;
     will-change: auto;
-  }
-
-  .hero-entity-encounter.is-fleeing {
-    opacity: 0;
-    transform: translate3d(var(--flee-end-x), var(--flee-end-y), 0) scale(0.84);
   }
 
   .hero-entity-spark {

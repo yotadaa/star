@@ -1,0 +1,16 @@
+[     735ms] [WARNING] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead. @ http://127.0.0.1:3123/_next/static/chunks/bd904a5c.8f95ceaeedf4b04b.js:0
+[    5269ms] [ERROR] Failed to fetch RSC payload for http://127.0.0.1:3123/about. Falling back to browser navigation. Error: Failed to read a RSC payload created by a development version of React on the server while using a production version on the client. Always use matching versions on the server and the client.
+    at http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:1:152337
+    at t (http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:1:152830) @ http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:0
+[    5270ms] [ERROR] Failed to fetch RSC payload for http://127.0.0.1:3123/projects. Falling back to browser navigation. Error: Failed to read a RSC payload created by a development version of React on the server while using a production version on the client. Always use matching versions on the server and the client.
+    at http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:1:152337
+    at t (http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:1:152830) @ http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:0
+[    5270ms] [ERROR] Failed to fetch RSC payload for http://127.0.0.1:3123/blog. Falling back to browser navigation. Error: Failed to read a RSC payload created by a development version of React on the server while using a production version on the client. Always use matching versions on the server and the client.
+    at http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:1:152337
+    at t (http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:1:152830) @ http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:0
+[    5270ms] [ERROR] Failed to fetch RSC payload for http://127.0.0.1:3123/research. Falling back to browser navigation. Error: Failed to read a RSC payload created by a development version of React on the server while using a production version on the client. Always use matching versions on the server and the client.
+    at http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:1:152337
+    at t (http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:1:152830) @ http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:0
+[    5271ms] [ERROR] Failed to fetch RSC payload for http://127.0.0.1:3123/contact. Falling back to browser navigation. Error: Failed to read a RSC payload created by a development version of React on the server while using a production version on the client. Always use matching versions on the server and the client.
+    at http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:1:152337
+    at t (http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:1:152830) @ http://127.0.0.1:3123/_next/static/chunks/1255-a1d43dff9827c512.js:0

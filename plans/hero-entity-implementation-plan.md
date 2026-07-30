@@ -12,7 +12,7 @@ Dokumen sumber semula mendeskripsikan menara pandang, proyektil, tembakan, skor,
 | --- | --- | --- |
 | Menara pandang | **Tidak diimplementasikan.** Tidak ada aset, CSS, atau markup watchtower. | Arahan eksplisit: “kecualikan watch tower”. |
 | Tembak, proyektil, target/crosshair | **Tidak diimplementasikan.** | Interaksi diganti menjadi sentuhan yang ramah terhadap satwa. |
-| Klik/tap entity | Sentuhan, klik, Enter, atau Space menghasilkan spark kecil di lokasi entity; entity lalu menjauh ke arah tepi layar dan dibuang dari DOM. | Arahan eksplisit: “will spark on touch … entity akan menjauh kabur seperti binatang yang kabur”. |
+| Klik/tap entity | Sentuhan, klik, Enter, atau Space menghasilkan spark kecil dan dodge singkat ke area langit terdekat; entity kemudian menyambung kembali ke lintasan normalnya. | Arahan pemilik terbaru: “ketika interaksi entity tidak kabur tapi menghindar”. |
 | Skor, combo, milestone, HUD, toast | **Tidak diimplementasikan.** | Nilai skor dalam dokumen adalah data permainan fiktif dan tidak dibutuhkan oleh interaksi baru. |
 | Fase waktu | **Memakai sistem yang sudah ada** (`morning`, `noon`, `sunset`, `night`) dari `SiteProvider`; tidak membuat toggle atau token langit kedua. | `SiteProvider` sudah menyimpan fase manual; `ParallaxScene` sudah merender empat tema. |
 
@@ -24,10 +24,10 @@ Lapisan entity akan menjadi detail ambient opsional di atas kanvas Hero: satu gr
 
 1. Tiap fase memakai entity yang tepat: kupu-kupu pagi, pipit siang, formasi migrasi sore, serta kelelawar atau kunang-kunang langka malam.
 2. Kedua varian kupu-kupu tersedia dan pemilihannya acak; pipit kadang memakai formasi pasangan; kunang-kunang muncul dengan peluang 1/6 pada fase malam.
-3. Semua **enam** aset entity mempunyai empat frame kepak/gerak yang berbeda (`> 3`), dikemas sebagai satu sprite sheet transparan dan di-animate dengan CSS `steps(4)`.
-4. Interaksi pointer, touch, dan keyboard memicu satu spark dekoratif dan flight/flee keluar layar—tanpa efek kekerasan, tembakan, skor, atau toast.
+3. Semua **enam** aset entity mempunyai empat frame kepak/gerak yang berbeda (`> 3`), dikemas sebagai satu sprite sheet transparan dan di-animate dengan CSS `steps(3)` untuk melintasi empat cell secara tepat.
+4. Interaksi pointer, touch, dan keyboard memicu satu spark dekoratif dan dodge di dalam Hero, lalu entity menyambung kembali ke lintasan normal—tanpa efek kekerasan, tembakan, skor, atau toast.
 5. Area kosong Hero tetap tidak menangkap pointer event; target touch minimum 48 × 48 px; CTA dan salinan Hero selalu berada di atas layer entity.
-6. `prefers-reduced-motion: reduce` menghentikan spawn/flight/sprite loop. Entity statis tetap dapat difokuskan dan disentuh; aksinya hanya memberi state akhir statis/spark singkat, lalu digantikan tanpa lintasan kabur.
+6. `prefers-reduced-motion: reduce` menghentikan spawn/flight/sprite loop. Entity statis tetap dapat difokuskan dan disentuh; aksinya hanya memberi spark singkat tanpa dodge atau lintasan baru.
 7. Resource hanya mulai dijadwalkan ketika Hero terlihat, membatalkan timer/animasi saat keluar viewport atau unmount, dan tidak menambah render loop React/Three.js per frame.
 
 ## 3. Resource manifest yang akan dihasilkan
@@ -60,26 +60,26 @@ app/page.js
     scroll-cue (z-index 10)
 ```
 
-Komponen menyimpan paling banyak satu `activeEncounter` (sebuah entity tunggal atau satu grup V/pasangan) dan daftar spark yang sangat kecil. `IntersectionObserver` pada section Hero menentukan apakah scheduler boleh berjalan. Timer disimpan dalam ref dan selalu dibersihkan. Flight normal sepenuhnya memakai transform CSS; tidak ada `setState` per frame dan tidak ada event listener global untuk animasi.
+Komponen menyimpan paling banyak satu `activeEncounter` (sebuah entity tunggal atau satu grup V/pasangan) dan daftar spark yang sangat kecil. `IntersectionObserver` pada section Hero menentukan apakah scheduler boleh berjalan. Timer dan satu `Animation` native disimpan dalam ref dan selalu dibersihkan. Flight normal memakai `Element.animate()` untuk transform composited; tidak ada `setState` per frame dan tidak ada event listener global untuk animasi.
 
-Saat interaksi, posisi target dibaca sekali dari `getBoundingClientRect()`. Elemen active diberi status `fleeing` yang mengubah transform dengan transisi singkat ke luar sisi terdekat (sedikit naik/turun), sementara spark dirender pada koordinat tersebut. Setelah transisi selesai encounter dibuang dan spawn berikutnya dijadwalkan. Ini mempertahankan GPU-composited `transform`/`opacity`, bukan `left`/`top` per-frame.
+Saat interaksi, posisi target dibaca sekali dari `getBoundingClientRect()`. Elemen active diberi status `dodging` yang mengubah transform singkat 74–116 px secara horizontal dan 42–68 px secara vertikal, tetap dikunci dalam langit Hero. Setelahnya, offset dodge diredam kembali ke kurva normal agar sambungan tidak melompat. Spark dirender pada koordinat sentuh. Ini mempertahankan `transform`/`opacity`, bukan `left`/`top` per-frame.
 
 ### 4.2 Matriks spawn dan gerak
 
-| Fase | Encounter | Interval setelah selesai | Lintasan normal | Flee setelah sentuh |
+| Fase | Encounter | Interval setelah selesai | Lintasan normal | Dodge setelah sentuh |
 | --- | --- | --- | --- | --- |
-| morning | satu kupu-kupu, varian A/B acak | 2.4–4.0 dtk | pelan, lintasan S lebar | 420 ms ke arah tepi terdekat, naik/turun 8–14vh |
-| noon | satu pipit atau pasangan pipit | 2.0–3.4 dtk | cepat dan hampir lurus | 360 ms menjauh horizontal dengan drift vertikal kecil |
-| sunset | satu wrapper formasi V | 3.2–5.0 dtk | tinggi dan sedang | 460 ms keluar ke arah flight saat ini |
-| night | kelelawar (5/6) atau kunang-kunang (1/6) | 2.4–4.8 dtk | kelelawar bersegmen kecil; kunang-kunang lambat | 400 ms (bat) / 480 ms (firefly) menuju tepi |
+| morning | satu kupu-kupu, varian A/B acak | 2.4–4.0 dtk | pelan, lintasan S lebar | 300 ms menyamping/naik-turun lalu rejoin |
+| noon | satu pipit atau pasangan pipit | 2.0–3.4 dtk | cepat dan hampir lurus | 300 ms menyamping/naik-turun lalu rejoin |
+| sunset | satu wrapper formasi V | 3.2–5.0 dtk | tinggi dan sedang | 300 ms menyamping/naik-turun lalu rejoin |
+| night | kelelawar (5/6) atau kunang-kunang (1/6) | 2.4–4.8 dtk | kelelawar bersegmen kecil; kunang-kunang lambat | 300 ms (bat) / 360 ms (firefly), lalu rejoin |
 
 Nilai ini adalah timing teknis, bukan skor/data produk. Randomness hanya memvariasikan posisi dan pilihan asset dalam rentang langit atas yang dibatasi, sehingga entity tidak muncul di pusat salinan Hero, di area gunung/foreground, atau di bawah navbar/scroll cue. Pada layar ≤640px, scheduler mengunci lane ke 10% dari tinggi Hero dan mengurangi amplitudo vertikal menjadi 30% agar jalurnya tetap di langit tanpa menutupi kicker, judul, atau CTA.
 
 ### 4.3 Interaksi dan aksesibilitas
 
 - Root layer `pointer-events: none`; hanya `<button type="button" class="hero-entity-target">` yang `pointer-events: auto`.
-- Tombol memakai label spesifik, contohnya “Sentuh kupu-kupu; ia akan terbang menjauh”. Pasangan pipit dan formasi V adalah satu tombol agar urutan tab singkat dan target mobile luas.
-- `onClick`, `onPointerUp`, `onKeyDown` untuk Enter/Space memakai satu handler idempoten; state `fleeing` mencegah spark ganda.
+- Tombol memakai label spesifik, contohnya “Sentuh kupu-kupu; ia akan menghindar”. Pasangan pipit dan formasi V adalah satu tombol agar urutan tab singkat dan target mobile luas.
+- `onClick` (termasuk tap sintetis) dan `onKeyDown` untuk Enter/Space memakai satu handler idempoten; tidak ada handler hover atau pointer-enter. State `dodging` mencegah spark ganda.
 - Spark adalah `<span aria-hidden="true">` murni dekoratif, dibentuk dari CSS pseudo-elements dengan token yang ada; tidak memakai emoji atau aset tambahan.
 - `:focus-visible` memakai outline token global dan shadow pixel dari token yang sama seperti tombol existing. Target minimum 48 px pada pointer coarse.
 - Saat reduced motion, scheduler hanya menampilkan satu target statis pada lokasi aman. Setelah interaksi, spark tampil statis singkat dan target diganti tanpa animasi perjalanan; `aria-label` tetap menjelaskan aksi secara netral.
@@ -89,8 +89,8 @@ Nilai ini adalah timing teknis, bukan skor/data produk. Randomness hanya memvari
 Tambahkan blok `HERO ENTITIES` pada `app/globals.css`:
 
 - `.hero-entity-layer`, `.hero-entity-encounter`, `.hero-entity-target`, `.hero-entity-sprite`, `.hero-entity-spark`, dan variasi `data-entity`/`data-phase`.
-- Sprite dikendalikan oleh satu `@keyframes hero-entity-flap` dengan `steps(4, end)` dan durasi khusus per jenis. Flight normal memakai transform CSS pada wrapper, bukan `background-position` per JavaScript frame.
-- `.is-fleeing` mematikan flight normal, memutar transisi satu kali untuk keluar layar, lalu React menghapus node setelah `transitionend` dengan fallback timeout.
+- Sprite dikendalikan oleh satu `@keyframes hero-entity-flap` dengan `steps(3, end)` untuk melewati empat cell secara tepat dan durasi khusus per jenis. Flight normal memakai transform CSS pada wrapper, bukan `background-position` per JavaScript frame.
+- `.is-dodging` mematikan flight normal, memutar transisi satu kali ke posisi aman di dalam Hero, lalu `Element.animate()` baru menyambung dari offset tersebut dan meredamnya ke lintasan normal.
 - Aturan responsive menurunkan ukuran asset dan mengunci zona aman kiri/kanan agar tidak bertabrakan dengan copy; `@media (pointer: coarse)` memperbesar hit target tanpa membesarkan pixel sprite.
 - Aturan reduced motion eksplisit menghapus looping flight dan flap, terlepas dari reset global yang sudah ada.
 - Semua warna CSS menggunakan variable eksisting (`--ink`, `--cream`, `--gold`, `--aurora`, `--coral`, `--moss-dark`, `--sky-*`); tidak ada hex literal baru.
@@ -126,3 +126,33 @@ Implementasi hanya selesai bila checklist `plans/hero-entity-execution-checklist
 - Validasi runtime memakai motion species-specific: `hero-entity-butterfly-flight`, `hero-entity-sparrow-flight`, `hero-entity-migration-flight`, `hero-entity-bat-flight`, dan `hero-entity-firefly-flight`. Mobile memakai sky lane aman dan amplitudo vertikal 30%.
 - Bukti visual final: `validation/hero-entities-2026-07-30/desktop-morning.png`, `desktop-noon-pair.png`, `desktop-sunset.png`, `desktop-night-bat.png`, `desktop-night-firefly.png`, `desktop-reduced-motion.png`, `mobile-morning.png`, dan `mobile-interaction.png`.
 - `npm run build` selesai sukses pada 2026-07-30. First Load JS Home tetap 130 kB; tidak ada dependency package baru.
+
+## 9. Iterasi gerak alami — 2026-07-30
+
+**Status:** validated
+
+### Bukti dan keputusan
+
+- [CSS Motion Path MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Motion_path) menjelaskan lintasan sebagai path eksplisit yang diikuti melalui `offset-distance`; ini menguatkan bahwa posisi perlu berasal dari satu kurva, bukan sampel acak yang berdiri sendiri.
+- [CSS animation timing MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-timing-function) menjelaskan bahwa easing dapat dipasang untuk setiap rentang keyframe. Easing lama yang berhenti pada setiap waypoint menyebabkan perubahan laju/belokan terasa mekanis.
+- [Reduced motion MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/%40media/prefers-reduced-motion) tetap menjadi batas aksesibilitas: ketika pengguna memilih `reduce`, semua flight dan flap dihentikan total.
+- [Element.animate() MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/animate) mendukung array keyframe transform dan mengembalikan satu `Animation`; [Animation.cancel() MDN](https://developer.mozilla.org/en-US/docs/Web/API/Animation/cancel) menjelaskan bahwa efek dapat dihentikan dan dibersihkan saat dodge, exit viewport, atau unmount.
+
+Hero bersifat responsif sehingga `offset-path: path()` dengan koordinat piksel tetap tidak dipakai. Posisi horizontal dihitung melintas konstan dan posisi vertikal dari gelombang teredam yang bernilai nol di kedua tepi. Parameter gelombang berbeda per spesies (kupu-kupu/kunang-kunang lincah, pipit cepat, migrasi tenang, kelelawar berkelok halus), sehingga offset antar-sampel tetap berkorelasi. Dari validasi visual, rAF yang memutasi `transform` langsung menyebabkan tearing pada screenshot bersama kanvas WebGL; karena itu 25 keyframe transform dikirim sekali ke **satu `Element.animate()` native** selama satu encounter terlihat. Ini menghilangkan render React per frame dan artefak visual, sementara `cancel()` menghentikannya saat dodge/keluar viewport/reduced-motion/unmount.
+
+Hover tidak, dan tidak akan, mengubah status entity. Hanya `click`/tap atau Enter/Space yang memanggil handler dodge dan membuat spark.
+
+### Acceptance criteria iterasi
+
+1. Tidak ada lagi `flightY1`–`flightY4` yang diacak independen atau easing berhenti pada waypoint untuk normal flight.
+2. Hanya satu `Animation` native aktif ketika satu encounter terlihat; tidak ada state React yang diperbarui per frame dan animasi dibatalkan saat state berubah.
+3. `page.hover()` pada target tidak membuat `.is-dodging` maupun `.hero-entity-spark`; click/tap dan keyboard tetap membuat tepat satu spark/dodge, lalu entity meneruskan flight.
+4. Desktop, mobile, serta `prefers-reduced-motion: reduce` diambil ulang sebagai bukti visual; tidak ada overflow atau regresi CTA.
+
+### Hasil validasi iterasi
+
+- `npm run build` berhasil; tidak ada dependency atau token warna baru.
+- Hover desktop terukur `flying → flying` dengan `0` spark. Click menghasilkan `dodging` dengan `1` spark, kembali `flying` setelah 900 ms, dan target masih berada di dalam boundary Hero.
+- Lima pembacaan posisi dengan jarak 260 ms menghasilkan `x` 1198 → 1151 → 1104 → 1060 → 1016. Ini adalah bukti lintasan horizontal kontinu, bukan langkah yang berhenti pada waypoint.
+- Mobile 375 px lolos tanpa overflow, dan reduced motion membuktikan entity statis serta `0` flight/sprite animation; klik pada mode ini hanya memberi spark tanpa dodge.
+- Screenshot final: `validation/hero-entities-2026-07-30/desktop-natural-flight-refined.png`, `desktop-dodging.png`, `mobile-natural-flight-refined.png`, dan `desktop-reduced-motion-refined.png`.
