@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import HeroGlassPanel from "@/components/HeroGlassPanel";
+import HeroEntityLayer from "@/components/HeroEntityLayer";
 import QuestLog from "@/components/QuestLog";
 import Reveal from "@/components/Reveal";
 import { RarityTag } from "@/components/claude";
@@ -29,6 +30,7 @@ export default function Home() {
         <div className="hero-canvas">
           <ParallaxScene phase={phase} />
         </div>
+        <HeroEntityLayer phase={phase} />
         <HeroGlassPanel phase={phase} />
         <div className="scroll-cue">
           GULIR <span className="chev">▾</span>
