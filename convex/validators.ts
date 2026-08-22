@@ -131,6 +131,15 @@ export const publicChatMessage = v.object({
   authorName: v.string(),
   body: v.string(),
   createdAt: v.string(),
+  replyTo: v.union(
+    v.object({
+      id: v.string(),
+      authorName: v.string(),
+      body: v.string(),
+    }),
+    v.null(),
+  ),
+  replyUnavailable: v.boolean(),
 });
 
 export const publicInventoryItem = v.object({

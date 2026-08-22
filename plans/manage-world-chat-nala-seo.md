@@ -358,7 +358,15 @@ write it directly.
      backend paths succeed.
   5. No hard delete, fabricated message, new package, new color, or emoji.
 - Evidence folder: `validation/manage-world-chat-nala-seo/world-chat/`.
-- Status: planned.
+- Validation result: Convex accepted a real reply relation, rejected a visitor
+  soft delete with `CHAT_FORBIDDEN`, accepted the owner soft delete, removed
+  deleted parent content from a child reply, and returned the database to its
+  original single active row. Anonymous HTTP checks returned GET 200, POST 401,
+  and DELETE 401. Desktop/mobile/focus evidence is stored in
+  `validation/manage-world-chat-nala-seo/world-chat/`; mobile measured 375 px
+  viewport width with no document overflow and focus computed to a 2 px aurora
+  outline.
+- Status: validated.
 
 ### Task B: Live OpenRouter Nala and expression contract
 

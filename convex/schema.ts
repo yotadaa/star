@@ -41,6 +41,7 @@ export default defineSchema({
     actorRole,
     authorName: v.string(),
     body: v.string(),
+    replyToId: v.optional(v.id("worldChatMessages")),
     status: chatStatus,
     sentAt: v.number(),
     deletedAt: v.optional(v.number()),

@@ -4,15 +4,19 @@ import { useEffect, useRef, useState } from "react";
 import { useConvexConnectionState, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import RequireLoginGate from "@/components/auth/RequireLoginGate";
+import useCurrentUser from "@/components/auth/useCurrentUser";
 import { PixelButton, SpriteIcon } from "@/components/claude";
 
 export default function WorldChatPanel({ open, onClose }) {
   const panelRef = useRef(null);
+  const textareaRef = useRef(null);
+  const { user } = useCurrentUser();
   const result = useQuery(api.worldChat.listLatest, open ? { limit: 40 } : "skip");
   const connection = useConvexConnectionState();
   const [draft, setDraft] = useState("");
   const [sending, setSending] = useState(false);
   const [sendStatus, setSendStatus] = useState("");
+  const [replyTo, setReplyTo] = useState(null);
   const messages = result?.messages || [];
   const isLive = Boolean(result && connection.isWebSocketConnected);
 
@@ -43,17 +47,24 @@ export default function WorldChatPanel({ open, onClose }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "same-origin",
-        body: JSON.stringify({ body }),
+        body: JSON.stringify({ body, replyToId: replyTo?.id || undefined }),
       });
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Send failed");
       setDraft("");
+      setReplyTo(null);
       setSendStatus("Terkirim · sinkron realtime aktif");
     } catch (error) {
       setSendStatus(error.message);
     } finally {
       setSending(false);
     }
+  }
+
+  function selectReply(message) {
+    setReplyTo({ id: message.id, authorName: message.authorName, body: message.body });
+    setSendStatus(`Membalas ${message.authorName}`);
+    window.requestAnimationFrame(() => textareaRef.current?.focus());
   }
 
   if (!open) return null;
@@ -112,11 +123,34 @@ export default function WorldChatPanel({ open, onClose }) {
         ) : (
           messages.map((message) => (
             <article className="world-chat-message" key={message.id}>
-              <div>
-                <strong>{message.authorName}</strong>
-                <time dateTime={message.createdAt}>{new Date(message.createdAt).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}</time>
+              {message.replyTo && (
+                <div className="world-chat-reply-quote">
+                  <span>Membalas {message.replyTo.authorName}</span>
+                  <p>{message.replyTo.body}</p>
+                </div>
+              )}
+              {message.replyUnavailable && (
+                <div className="world-chat-reply-quote is-unavailable">
+                  <span>Pesan rujukan sudah dihapus</span>
+                </div>
+              )}
+              <div className="world-chat-message-header">
+                <span className="world-chat-message-identity">
+                  <strong>{message.authorName}</strong>
+                  <time dateTime={message.createdAt}>{new Date(message.createdAt).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}</time>
+                </span>
+                {(!user?.name || user.name !== message.authorName) && (
+                  <PixelButton
+                    className="world-chat-reply-button"
+                    onClick={() => selectReply(message)}
+                    aria-label={`Balas pesan ${message.authorName}`}
+                  >
+                    <SpriteIcon id="icon-chat-bubble" size={13} />
+                    Balas
+                  </PixelButton>
+                )}
               </div>
-              <p>{message.body}</p>
+              <p className="world-chat-message-body">{message.body}</p>
             </article>
           ))
         )}
@@ -128,8 +162,25 @@ export default function WorldChatPanel({ open, onClose }) {
           description="Login dibutuhkan sebelum ikut mengirim pesan ke World Chat."
         >
           <form className="world-chat-form" onSubmit={handleSubmit}>
+            {replyTo && (
+              <div className="world-chat-compose-reply" role="status">
+                <div>
+                  <span>Membalas {replyTo.authorName}</span>
+                  <p>{replyTo.body}</p>
+                </div>
+                <PixelButton
+                  type="button"
+                  className="world-chat-cancel-reply"
+                  onClick={() => setReplyTo(null)}
+                  aria-label="Batalkan balasan"
+                >
+                  Batal
+                </PixelButton>
+              </div>
+            )}
             <label htmlFor="world-chat-message">Pesan</label>
             <textarea
+              ref={textareaRef}
               id="world-chat-message"
               maxLength={280}
               placeholder="Ketik pesan ke semua penjelajah..."

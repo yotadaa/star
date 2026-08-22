@@ -63,7 +63,7 @@ export default function SiteProvider({ children }) {
         {paletteOpen && <CommandPalette />}
         {playerOpen && <PlayerStatusPopup open={playerOpen} initialTab={playerTab} onClose={() => setPlayerOpen(false)} />}
         {chatOpen && <WorldChatPanel open={chatOpen} onClose={() => setChatOpen(false)} />}
-        <NalaWidget />
+        <NalaWidget obscured={chatOpen} />
         <main className="site-main" id="main">
           {children}
         </main>

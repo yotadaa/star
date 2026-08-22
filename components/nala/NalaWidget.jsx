@@ -57,7 +57,7 @@ function NalaPortrait({ expression = "idle", className = "" }) {
   );
 }
 
-export default function NalaWidget() {
+export default function NalaWidget({ obscured = false }) {
   const router = useRouter();
   const { showToast } = useToast();
   const fabRef = useRef(null);
@@ -88,6 +88,10 @@ export default function NalaWidget() {
       document.documentElement.dataset.nalaPanel = "closed";
     };
   }, [open]);
+
+  useEffect(() => {
+    if (obscured) setOpen(false);
+  }, [obscured]);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -221,6 +225,8 @@ export default function NalaWidget() {
       showToast("Teks disalin ke clipboard.", { icon: <SpriteIcon id="icon-clipboard" size={15} /> });
     }
   }
+
+  if (obscured) return null;
 
   return (
     <section className="nala-widget" aria-label="Nala NPC assistant" data-testid="nala-widget">

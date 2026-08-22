@@ -41,7 +41,14 @@ type BlogPost = {
   blocks: EditorBlock[];
   updatedAt: number;
 };
-type ChatMessage = { id: string; authorName: string; body: string; createdAt: string };
+type ChatMessage = {
+  id: string;
+  authorName: string;
+  body: string;
+  createdAt: string;
+  replyTo: { id: string; authorName: string; body: string } | null;
+  replyUnavailable: boolean;
+};
 type ContentEntry = { id: string; entryKey: string; title: string; body: string; payload: unknown; source: "convex" };
 type InventoryItem = {
   id: string;
@@ -163,11 +170,27 @@ export const updateBlog = action({
 });
 
 export const sendWorldChat = action({
-  args: { secret: v.string(), body: v.string(), actor: actorSnapshot },
+  args: { secret: v.string(), body: v.string(), replyToId: v.optional(v.string()), actor: actorSnapshot },
   returns: publicChatMessage,
   handler: async (ctx, args): Promise<ChatMessage> => {
     requireBridgeSecret(args.secret);
-    return await ctx.runMutation(internal.worldChat.sendFromBackend, { body: args.body, actor: args.actor });
+    return await ctx.runMutation(internal.worldChat.sendFromBackend, {
+      body: args.body,
+      replyToId: args.replyToId,
+      actor: args.actor,
+    });
+  },
+});
+
+export const deleteWorldChat = action({
+  args: { secret: v.string(), id: v.string(), actor: actorSnapshot },
+  returns: v.boolean(),
+  handler: async (ctx, args): Promise<boolean> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.worldChat.softDelete, {
+      id: args.id,
+      actor: args.actor,
+    });
   },
 });
 
