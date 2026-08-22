@@ -137,7 +137,8 @@ If no settings row exists, runtime defaults are returned without fabricating a
 database record:
 
 - enabled: `true`
-- model: `NALA_MODEL` or `openrouter/auto`
+- model: persisted `/manage` value, seeded from `NALA_MODEL` or
+  `nvidia/nemotron-3-ultra-550b-a55b:free`
 - temperature: `0.25`
 - max tokens: `620`
 - prompt supplement: empty
@@ -389,8 +390,11 @@ write it directly.
   6. Provider/key/config failures show honest UI copy and a confused pose.
 - Evidence folder: `validation/manage-world-chat-nala-seo/nala-live/`.
 - Validation result: real project API calls returned `source: openrouter` through
-  `openrouter/auto`; observed routed models included Gemini 2.5 Flash and
-  DeepSeek V4 Flash. The forced Player Stats tool returned the grounded Level 4,
+  `nvidia/nemotron-3-ultra-550b-a55b:free`. The model remains owner-editable in
+  `/manage`; its exact slug is persisted in Convex, while the server-only key never
+  enters that table. Because the free endpoint occasionally returned an HTTP 200
+  with no completion, the provider adapter retries that specific empty response at
+  most twice before showing an honest failure. The forced Player Stats tool returned the grounded Level 4,
   71 PP, and 19 PP-to-next-level values with `happy`; Contact returned
   `pointing`; an unmatched project returned `confused`. A disabled config
   returned HTTP 503 and the widget rendered its confused sprite with explicit

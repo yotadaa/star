@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import TopNav from "./TopNav";
 import UtilityBar from "./UtilityBar";
 import Footer from "@/components/Footer";
@@ -17,12 +18,14 @@ const WorldChatPanel = dynamic(() => import("@/components/world-chat/WorldChatPa
 const NalaWidget = dynamic(() => import("@/components/nala/NalaWidget"), { ssr: false });
 
 export default function SiteProvider({ children }) {
+  const pathname = usePathname();
   const [phase, setPhase] = useState("morning");
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [playerOpen, setPlayerOpen] = useState(false);
   const [playerTab, setPlayerTab] = useState("inventory");
   const [chatOpen, setChatOpen] = useState(false);
   const night = phase === "night";
+  const isManageRoute = pathname === "/manage" || pathname.startsWith("/manage/");
 
   useEffect(() => {
     const saved = localStorage.getItem("cockpit-phase");
@@ -58,16 +61,16 @@ export default function SiteProvider({ children }) {
     <SiteCtx.Provider value={{ phase, night, cycleTheme, toggleNight, paletteOpen, setPaletteOpen, playerOpen, setPlayerOpen, playerTab, openPlayerStatus, chatOpen, setChatOpen }}>
       <ToastProvider>
         <XpScrollBar />
-        <UtilityBar />
+        {!isManageRoute && <UtilityBar />}
         <TopNav />
-        {paletteOpen && <CommandPalette />}
-        {playerOpen && <PlayerStatusPopup open={playerOpen} initialTab={playerTab} onClose={() => setPlayerOpen(false)} />}
-        {chatOpen && <WorldChatPanel open={chatOpen} onClose={() => setChatOpen(false)} />}
-        <NalaWidget obscured={chatOpen} />
+        {!isManageRoute && paletteOpen && <CommandPalette />}
+        {!isManageRoute && playerOpen && <PlayerStatusPopup open={playerOpen} initialTab={playerTab} onClose={() => setPlayerOpen(false)} />}
+        {!isManageRoute && chatOpen && <WorldChatPanel open={chatOpen} onClose={() => setChatOpen(false)} />}
+        {!isManageRoute && <NalaWidget obscured={chatOpen} />}
         <main className="site-main" id="main">
           {children}
         </main>
-        <Footer />
+        {!isManageRoute && <Footer />}
       </ToastProvider>
     </SiteCtx.Provider>
   );

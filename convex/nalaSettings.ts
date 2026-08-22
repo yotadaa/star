@@ -15,7 +15,7 @@ type NalaSettings = {
 
 const DEFAULT_SETTINGS: NalaSettings = {
   enabled: true,
-  model: "openrouter/auto",
+  model: "nvidia/nemotron-3-ultra-550b-a55b:free",
   systemPromptSupplement: "",
   temperature: 0.25,
   maxTokens: 620,
