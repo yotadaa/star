@@ -1,14 +1,14 @@
-# MB · NST
+# Mukhtada's Portfolio
 
 > Membangun sistem, satu quest pada satu waktu.
 
-[MB · NST](https://me.mukhtada.my.id) is Mukhtada Billah NST's portfolio: an
-Indonesian-language record of fullstack work, AI experiments, data research,
-publications, and community projects. It takes the shape of a small game world,
-but the work inside it stays factual. Projects link to source, research links
-to publications, and progress is calculated from real portfolio data.
+[Mukhtada's portfolio](https://me.mukhtada.my.id) is an Indonesian-language
+record of fullstack work, AI experiments, data research, publications, and
+community projects. It takes the shape of a small game world, but the work
+inside it stays factual. Projects link to source, research links to
+publications, and progress is calculated from real portfolio data.
 
-![The MB · NST Home page at sunset, with a mountain landscape, quest prompt, and pixel interface](validation/hero-entities-2026-07-30/desktop-sunset.png)
+![Mukhtada's portfolio Home page at sunset, with a mountain landscape, quest prompt, and pixel interface](validation/hero-entities-2026-07-30/desktop-sunset.png)
 
 The public site is only one part of the repository. There is a reactive World
 Chat, a live assistant named Nala, a Convex-backed Blog, a player HUD built from
