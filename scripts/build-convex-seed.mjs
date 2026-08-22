@@ -9,6 +9,7 @@ const root = process.cwd();
 const outputDir = path.join(root, ".migration", "convex-seed");
 const sourceFiles = [
   "lib/data.js",
+  "scripts/publish-caelestia-blog.mjs",
   "scripts/convex-seed-data.mjs",
   "scripts/build-convex-seed.mjs",
 ];
@@ -50,7 +51,14 @@ function validate(tables) {
     if (!post.slug || !post.title || !post.excerpt) fail(`blogPosts ${post.slug || "unknown"} has empty required text`);
     if (!validHref(post.sourceHref)) fail(`blogPosts ${post.slug} has invalid sourceHref`);
     for (const block of post.blocks) {
-      if (!block.text || !["heading", "paragraph", "quote"].includes(block.type)) fail(`blogPosts ${post.slug} has invalid block`);
+      if (!["heading", "paragraph", "quote", "list", "code", "image", "divider", "table", "icon"].includes(block.type)) {
+        fail(`blogPosts ${post.slug} has unsupported block type ${block.type}`);
+      }
+      if (block.type === "image" && (!block.src?.startsWith("https://") || !block.alt)) {
+        fail(`blogPosts ${post.slug} has invalid image block`);
+      }
+      if (block.type === "table" && !block.rows?.length) fail(`blogPosts ${post.slug} has invalid table block`);
+      if (!block.text && !["divider", "image"].includes(block.type)) fail(`blogPosts ${post.slug} has empty block`);
     }
   }
   for (const item of tables.inventoryItems) {

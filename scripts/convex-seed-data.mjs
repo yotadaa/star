@@ -1,4 +1,5 @@
 import crypto from "node:crypto";
+import { caelestiaBlogPayload } from "./publish-caelestia-blog.mjs";
 
 const SHARDS = ["s1", "s2", "s3"];
 
@@ -37,13 +38,22 @@ function compactInventoryName(name) {
 }
 
 function cleanBlocks(blocks) {
+  const allowedTypes = new Set(["heading", "paragraph", "quote", "list", "code", "image", "divider", "table", "icon"]);
   return Array.isArray(blocks)
     ? blocks
-      .map((block) => ({
-        type: ["heading", "paragraph", "quote"].includes(block?.type) ? block.type : "paragraph",
-        text: String(block?.text || "").trim(),
-      }))
-      .filter((block) => block.text)
+      .map((block) => {
+        const type = allowedTypes.has(block?.type) ? block.type : "paragraph";
+        return {
+          type,
+          text: String(block?.text || "").trim(),
+          ...(type === "table" && Array.isArray(block?.rows)
+            ? { rows: block.rows.map((row) => row.map((cell) => String(cell || "").trim())) }
+            : {}),
+          ...(type === "image" && block?.src ? { src: String(block.src).trim() } : {}),
+          ...(type === "image" && block?.alt ? { alt: String(block.alt).trim() } : {}),
+        };
+      })
+      .filter((block) => block.type === "divider" || block.text || block.src || block.rows?.length)
     : [];
 }
 
@@ -89,7 +99,15 @@ function inventorySeeds(data) {
 }
 
 export function buildSeedTables(data) {
-  const blogPosts = data.blogPosts.map((post, index) => {
+  const sourceBlogPosts = [
+    ...data.blogPosts,
+    {
+      id: "blog-caelestia-island-suite",
+      publishedAt: "2026-08-23",
+      ...caelestiaBlogPayload,
+    },
+  ];
+  const blogPosts = sourceBlogPosts.map((post, index) => {
     const shard = SHARDS[index % SHARDS.length];
     return {
       legacyId: routedId(shard, "blog", post.id),
@@ -99,6 +117,7 @@ export function buildSeedTables(data) {
       excerpt: post.excerpt || "",
       status: "published",
       tags: post.tags || [],
+      publishedAt: Number.isFinite(Date.parse(post.publishedAt)) ? Date.parse(post.publishedAt) : index,
       publishedAtLabel: post.publishedAt || "CMS pending",
       readTime: post.readTime || "4 min baca",
       coverTone: post.coverTone || "research",
@@ -187,7 +206,7 @@ export function buildSeedTables(data) {
 }
 
 export const expectedSeedCounts = {
-  blogPosts: 3,
+  blogPosts: 4,
   inventoryItems: 14,
   contentEntries: 6,
   contactChannels: 5,

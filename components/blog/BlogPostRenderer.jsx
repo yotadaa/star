@@ -30,10 +30,22 @@ export default function BlogPostRenderer({ blocks = [] }) {
           return <pre key={`${block.type}-${index}`}><code>{block.text}</code></pre>;
         }
         if (block.type === "image") {
+          const source = String(block.src || "").trim();
+          const canRender = (source.startsWith("/") && !source.startsWith("//")) || source.startsWith("https://");
+          const description = String(block.alt || block.text || "").trim();
           return (
-            <figure className="blog-renderer-image" key={`${block.type}-${index}`}>
-              <SpriteIcon id="icon-image" size={28} />
-              <figcaption>{block.text}</figcaption>
+            <figure className={`blog-renderer-image${canRender ? " has-image" : ""}`} key={`${block.type}-${index}`}>
+              {canRender ? (
+                <img
+                  src={source}
+                  alt={description}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <SpriteIcon id="icon-image" size={28} />
+              )}
+              {block.text ? <figcaption>{block.text}</figcaption> : null}
             </figure>
           );
         }

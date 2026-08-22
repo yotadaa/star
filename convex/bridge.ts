@@ -28,6 +28,8 @@ type EditorBlock = {
   type: "heading" | "paragraph" | "quote" | "list" | "code" | "image" | "divider" | "table" | "icon";
   text: string;
   rows?: string[][];
+  src?: string;
+  alt?: string;
 };
 type BlogPost = {
   id: string;

@@ -31,7 +31,7 @@ function newBlock(type = "paragraph") {
   if (type === "quote") return { type, text: "Catatan penting dari proses build." };
   if (type === "list") return { type, text: "Poin pertama\nPoin kedua" };
   if (type === "code") return { type, text: "const quest = 'build';" };
-  if (type === "image") return { type, text: "Caption gambar atau aset pendukung" };
+  if (type === "image") return { type, text: "", src: "", alt: "" };
   if (type === "table") return { type, text: "Table", rows: [["Kolom 1", "Kolom 2"], ["Isi", "Isi"]] };
   if (type === "icon") return { type, text: "Milestone penting" };
   if (type === "divider") return { type, text: "" };
@@ -133,7 +133,7 @@ export default function BlockEditorPreview({ post }) {
       sourceHref,
       readTime: post?.readTime ?? "4 min baca",
       coverTone: post?.coverTone ?? "research",
-      blocks: blocks.filter((block) => block.type === "divider" || block.text || block.rows?.length),
+      blocks: blocks.filter((block) => block.type === "divider" || block.text || block.src || block.rows?.length),
     };
 
     try {
@@ -313,10 +313,41 @@ function BlockInput({ block, onChange }) {
   if (block.type === "quote") return <textarea className="writer-quote-input" rows={2} {...props} />;
   if (block.type === "code") return <textarea className="writer-code-input" rows={4} {...props} />;
   if (block.type === "image") {
+    const source = String(block.src || "").trim();
+    const canPreview = (source.startsWith("/") && !source.startsWith("//")) || source.startsWith("https://");
     return (
       <div className="writer-image-placeholder">
-        <SpriteIcon id="icon-image" size={18} />
-        <input {...props} />
+        {canPreview ? (
+          <img
+            src={source}
+            alt={block.alt || block.text || "Preview image block"}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <SpriteIcon id="icon-image" size={18} />
+        )}
+        <label>
+          Image URL
+          <input
+            value={block.src || ""}
+            onChange={(event) => onChange({ src: event.target.value })}
+            placeholder="/assets/blog/image.png atau https://..."
+            aria-invalid={Boolean(source) && !canPreview}
+          />
+        </label>
+        <label>
+          Alt text
+          <input
+            value={block.alt || ""}
+            onChange={(event) => onChange({ alt: event.target.value })}
+            placeholder="Jelaskan isi gambar"
+          />
+        </label>
+        <label>
+          Caption
+          <input {...props} placeholder="Caption opsional" />
+        </label>
       </div>
     );
   }

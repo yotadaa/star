@@ -15,6 +15,7 @@
     "convex:seed:import": "node scripts/import-convex-seed.mjs",
     "convex:migrate": "npm run convex:seed:build && npm run convex:seed:import",
     "convex:migrate:prod": "npm run convex:seed:build && node scripts/import-convex-seed.mjs --prod",
+    "blog:publish:caelestia": "node scripts/publish-caelestia-blog.mjs",
     "convex:typecheck": "tsc --noEmit"
   },
   "dependencies": {

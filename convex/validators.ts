@@ -38,6 +38,8 @@ export const editorBlock = v.object({
   ),
   text: v.string(),
   rows: v.optional(v.array(v.array(v.string()))),
+  src: v.optional(v.string()),
+  alt: v.optional(v.string()),
 });
 
 export const actorSnapshot = v.object({
