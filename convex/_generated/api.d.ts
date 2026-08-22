@@ -16,6 +16,7 @@ import type * as files from "../files.js";
 import type * as inventory from "../inventory.js";
 import type * as migrationAudit from "../migrationAudit.js";
 import type * as migrations from "../migrations.js";
+import type * as nalaSettings from "../nalaSettings.js";
 import type * as records from "../records.js";
 import type * as validators from "../validators.js";
 import type * as worldChat from "../worldChat.js";
@@ -35,6 +36,7 @@ declare const fullApi: ApiFromModules<{
   inventory: typeof inventory;
   migrationAudit: typeof migrationAudit;
   migrations: typeof migrations;
+  nalaSettings: typeof nalaSettings;
   records: typeof records;
   validators: typeof validators;
   worldChat: typeof worldChat;

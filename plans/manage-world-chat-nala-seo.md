@@ -388,7 +388,16 @@ write it directly.
      testable state transitions; reduced motion stops sprite/dot loops.
   6. Provider/key/config failures show honest UI copy and a confused pose.
 - Evidence folder: `validation/manage-world-chat-nala-seo/nala-live/`.
-- Status: planned.
+- Validation result: real project API calls returned `source: openrouter` through
+  `openrouter/auto`; observed routed models included Gemini 2.5 Flash and
+  DeepSeek V4 Flash. The forced Player Stats tool returned the grounded Level 4,
+  71 PP, and 19 PP-to-next-level values with `happy`; Contact returned
+  `pointing`; an unmatched project returned `confused`. A disabled config
+  returned HTTP 503 and the widget rendered its confused sprite with explicit
+  no-template failure copy. Desktop greeting/thinking/live and mobile
+  live/empty/error screenshots are stored in
+  `validation/manage-world-chat-nala-seo/nala-live/`.
+- Status: validated.
 
 ### Task C: Nala settings persistence and owner API
 

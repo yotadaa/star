@@ -111,6 +111,24 @@ export const contactEventInput = v.object({
   metadata: v.optional(v.any()),
 });
 
+export const nalaSettingsInput = v.object({
+  enabled: v.boolean(),
+  model: v.string(),
+  systemPromptSupplement: v.string(),
+  temperature: v.number(),
+  maxTokens: v.number(),
+});
+
+export const publicNalaSettings = v.object({
+  enabled: v.boolean(),
+  model: v.string(),
+  systemPromptSupplement: v.string(),
+  temperature: v.number(),
+  maxTokens: v.number(),
+  updatedAt: v.union(v.number(), v.null()),
+  persisted: v.boolean(),
+});
+
 export const publicBlogPost = v.object({
   id: v.string(),
   slug: v.string(),

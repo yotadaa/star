@@ -51,6 +51,18 @@ export default defineSchema({
     .index("by_status_and_sentAt", ["status", "sentAt"])
     .index("by_actorKey_and_sentAt", ["actorKey", "sentAt"]),
 
+  nalaSettings: defineTable({
+    configKey: v.string(),
+    enabled: v.boolean(),
+    model: v.string(),
+    systemPromptSupplement: v.string(),
+    temperature: v.number(),
+    maxTokens: v.number(),
+    updatedAt: v.number(),
+    updatedByKey: v.string(),
+    schemaVersion: v.number(),
+  }).index("by_configKey", ["configKey"]),
+
   inventoryItems: defineTable({
     legacyId: v.optional(v.string()),
     legacyShardId: v.optional(v.string()),

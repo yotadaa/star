@@ -12,12 +12,14 @@ import {
   contactEventInput,
   contentInput,
   inventoryInput,
+  nalaSettingsInput,
   publicBlogPost,
   publicChatMessage,
   publicContactChannel,
   publicContentEntry,
   publicFile,
   publicInventoryItem,
+  publicNalaSettings,
   publicRecord,
   recordVisibility,
 } from "./validators";
@@ -64,6 +66,15 @@ type InventoryItem = {
 };
 type ContactChannel = { id: string; key: string; label: string; sub: string; cta: string; href: string; tone: string };
 type ContactEvent = { id: string; channelKey: string; eventName: string; occurredAt: string };
+type NalaSettings = {
+  enabled: boolean;
+  model: string;
+  systemPromptSupplement: string;
+  temperature: number;
+  maxTokens: number;
+  updatedAt: number | null;
+  persisted: boolean;
+};
 type RecordResult = {
   id: string;
   collection: string;
@@ -189,6 +200,27 @@ export const deleteWorldChat = action({
     requireBridgeSecret(args.secret);
     return await ctx.runMutation(internal.worldChat.softDelete, {
       id: args.id,
+      actor: args.actor,
+    });
+  },
+});
+
+export const getNalaSettings = action({
+  args: { secret: v.string() },
+  returns: publicNalaSettings,
+  handler: async (ctx, args): Promise<NalaSettings> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runQuery(internal.nalaSettings.get, {});
+  },
+});
+
+export const updateNalaSettings = action({
+  args: { secret: v.string(), payload: nalaSettingsInput, actor: actorSnapshot },
+  returns: publicNalaSettings,
+  handler: async (ctx, args): Promise<NalaSettings> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.nalaSettings.update, {
+      payload: args.payload,
       actor: args.actor,
     });
   },

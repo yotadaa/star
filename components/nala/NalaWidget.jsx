@@ -70,7 +70,7 @@ export default function NalaWidget({ obscured = false }) {
   const [chips, setChips] = useState(INITIAL_CHIPS);
   const [draft, setDraft] = useState("");
   const [pending, setPending] = useState(false);
-  const [status, setStatus] = useState("Siap menjawab dari data portofolio");
+  const [status, setStatus] = useState("Siap untuk koneksi live OpenRouter");
   const [pendingAction, setPendingAction] = useState(null);
 
   const history = useMemo(
@@ -183,7 +183,7 @@ export default function NalaWidget({ obscured = false }) {
         ]);
         setPendingAction(data.action || null);
         setChips(Array.isArray(data.suggestedChips) && data.suggestedChips.length ? data.suggestedChips.slice(0, 3) : INITIAL_CHIPS);
-        setStatus(data.source === "openrouter" ? "OpenRouter tool mode" : "Mode faktual lokal");
+        setStatus(data.source === "openrouter" ? "OpenRouter live · data tool terverifikasi" : "Sumber respons tidak dikenali");
       } catch (error) {
         setExpression("confused");
         setStatus(error.message);
@@ -193,11 +193,11 @@ export default function NalaWidget({ obscured = false }) {
             id: createId("assistant"),
             role: "assistant",
             expression: "confused",
-            content: "Nala belum bisa menyelesaikan jawaban barusan. Coba tanya dengan kata kunci yang lebih spesifik, atau buka kanal kontak.",
-            action: { type: "navigate", route: "/contact", anchor: null },
+            content: "Koneksi live Nala gagal sebelum jawaban selesai. Coba lagi sebentar; tidak ada jawaban template yang dipakai sebagai pengganti.",
+            action: null,
           },
         ]);
-        setPendingAction({ type: "navigate", route: "/contact", anchor: null });
+        setPendingAction(null);
       } finally {
         setPending(false);
       }
