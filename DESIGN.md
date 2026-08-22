@@ -104,6 +104,7 @@ Additional current-state evidence:
 | `validation/manage-world-chat-nala-seo/world-chat/` | Desktop reply selection, right-edge reply action, 375 px composer/quote, and focus-visible state |
 | `validation/manage-world-chat-nala-seo/nala-live/` | Desktop greeting/thinking/live responses plus mobile live, empty-result, disabled/error expressions |
 | `validation/manage-world-chat-nala-seo/manage-unlocked/` | Desktop moderation/config/expression states, tablet workbench, mobile World Chat and Nala config |
+| `validation/nala-reliability-2026-08-23/` | Desktop provider failure/retry-in-place, 393 px live navigation answer, 1280 px reflow, and route handoff |
 | `validation/manage-world-chat-nala-seo/manage-locked/` | Anonymous redirect state after the final owner guard |
 | `validation/manage-world-chat-nala-seo/seo/` | Generated 1200 × 630 social card and parsed production-response audit |
 
@@ -641,7 +642,7 @@ glow, glass card, decorative metric, emoji, or color token. **[CODE][SOURCE]**
 - Successful answers are live OpenRouter completions from
   `https://openrouter.ai/api/v1/chat/completions`; there is no successful local
   template fallback. Missing key, disabled runtime, provider error, timeout,
-  empty completion, unknown tool, and ungrounded numeric response all surface as
+  empty completion, serialized tool markup, invalid route, and ungrounded numeric response all surface as
   explicit failures with the `confused` expression.
 - `NALA_KEY` stays in the Next.js server environment. Neither the browser nor
   Convex receives its value; management surfaces expose only “key installed” or
@@ -651,10 +652,16 @@ glow, glass card, decorative metric, emoji, or color token. **[CODE][SOURCE]**
   slug without a redeploy. The live singleton also stores enabled state,
   temperature `0.25`, maximum tokens `620`, and an optional owner supplement.
 - Every factual response must execute at least one server-side read-only
-  portfolio tool. The first tool is inferred and forced; subsequent model turns
-  follow the documented tool-call exchange. The loop stops after three model
-  turns, each provider request times out after 24 seconds, and the specific free
-  endpoint anomaly “HTTP 200 with no completion” is retried at most twice.
+  portfolio tool. Tool selection and execution happen locally before the model
+  request; the configured model receives plain, verified context through the
+  standard chat-completions message format. Nala therefore does not require the
+  selected model to support function calling, `tool_choice`, or a provider-specific
+  tool syntax. This is the compatibility boundary for owner-selected OpenRouter
+  chat models.
+- Each provider request times out after 24 seconds. Network failures plus HTTP
+  `408`, `429`, `500`, `502`, `503`, `504`, `524`, and `529` receive one bounded
+  retry; an HTTP 200 response without a completion is retried at most twice.
+  Provider error metadata is logged server-side without exposing the API key.
 - A numeric grounding check rejects or repairs numbers absent from tool results.
   The validated Player Stats response returned Level 4, 71 Player Points, and
   19 points remaining without calculating an unsupported percentage.
@@ -662,6 +669,16 @@ glow, glass card, decorative metric, emoji, or color token. **[CODE][SOURCE]**
   `thinking` during the provider call, `happy` for found factual data,
   `pointing` for contact/navigation, `confused` for empty/error results, and
   `idle` for a general profile summary.
+- Navigation intent is resolved on the server against the public allowlist `/`,
+  `/about`, `/blog`, `/contact`, `/projects`, and `/research`; `/manage` and
+  arbitrary model-produced paths can never become client actions. The action is
+  rendered as a real link, while the copy must say the page is ready rather than
+  claiming it already opened.
+- A failed browser request leaves one user turn and one honest error bubble. Its
+  `Coba lagi` control replaces that failure in place, excludes the failed turn
+  from model history, and does not append a duplicate user message. Quick prompts
+  are hidden while a request is pending so the compact thread keeps its working
+  state visible.
 
 Nala now has a Convex **configuration** table, but still has no conversation or
 message persistence table. History remains client/session-local, the API reports
@@ -1008,7 +1025,7 @@ Convex mutations provide transactional write behavior, so related database updat
 | Contact portals              | Convex `contactChannels` or local factual fallback   | Public `contactEvents` route                       | Fixed local channels can render                     | Public arbitrary event metadata                         |
 | Blog list/detail             | Convex `blogPosts`                                   | Auth.js route → bridge → internal functions        | Local seeded factual fallback for selected reads    | Seed dates are not all final                            |
 | World Chat                   | Reactive Convex public query + resolved parent quote | Authenticated send; owner/backend soft delete       | No polling fallback                                 | Latest 40; deleted parent quote is unavailable          |
-| Nala                         | Session history + factual tools + live OpenRouter    | Public rate-limited `/api/nala/chat`                | Honest error only; no successful template fallback  | No durable Convex memory/history                        |
+| Nala                         | Session history + locally selected factual tool + plain live OpenRouter completion | Public rate-limited `/api/nala/chat` | Honest retryable error only; no successful template fallback | No durable Convex memory/history; model need not support tool calling |
 | Data Management             | Chat query + Convex `nalaSettings` singleton         | Owner page/API → bridge → internal mutations        | Config read can show explicit warning/default       | Route hidden from discovery and guarded server-side     |
 | SEO discovery               | Local profile facts + published Convex Blog rows     | Build/runtime metadata routes                       | Static public routes survive backend failure; local previews stay excluded | Unknown Blog timestamps omit `lastmod`; never use epoch |
 | Generic records              | Convex `records`                                     | Protected routes                                   | Compatibility abstraction                           | Live set empty                                          |
@@ -1234,7 +1251,7 @@ For any component change, evidence must include:
 | P2 visual consistency | Command palette is functional but visually generic/soft/glass-like                              | Current component/CSS                           | Retain function; redesign shell only if scoped and approved                                 |
 | P2 layering           | Nala and Player Status still share z-index 330; Nala/World Chat collision is now explicitly orchestrated | CSS/SiteProvider                         | Extend the same mutual-exclusion/focus policy to every remaining overlay pair               |
 | P2 privacy/abuse      | Contact events accept arbitrary public metadata with no documented retention                    | Schema/routes                                   | Minimize allowed fields, rate-limit, document retention                                     |
-| P2 resilience         | Nala rate limits are process-local, history is non-durable, and the selected free model can be intermittently unavailable | Nala route/live validation           | Keep honest session-only/error copy; use durable rate state or paid/provider SLA only as separately scoped work |
+| P2 resilience         | Nala rate limits are process-local, history is non-durable, and any selected provider/model can still be unavailable after the bounded retry | Nala route/live validation | Keep honest session-only/retry copy; use durable rate state or paid/provider SLA only as separately scoped work |
 | P2 configuration      | A misspelled Convex key residue, optional backend key gap, and legacy Supabase secrets remain locally | Environment audit                         | Remove obsolete local residues after recovery needs are confirmed; keep tracked docs aligned with the pinned owner rule |
 | P2 token drift        | Root `themeColor` uses `#0c1f2b`, outside the documented root palette                           | `app/layout.js`                                 | Map to an approved token/value or document the browser-chrome exception                     |
 | P3 performance        | Home hero/WebGL/parallax work remains an active performance concern                             | `TASKS.md`, hero implementation                 | Benchmark before/after future hero or global fixed-layer changes                            |
@@ -1356,7 +1373,8 @@ A change remains faithful to MB · NST only if all applicable statements are tru
 - [Convex optimistic concurrency and atomicity](https://docs.convex.dev/database/advanced/occ)
 - [Convex file uploads](https://docs.convex.dev/file-storage/upload-files)
 - [OpenRouter chat completions](https://openrouter.ai/docs/api/api-reference/chat/create-a-chat-completion)
-- [OpenRouter tool calling](https://openrouter.ai/docs/guides/features/tool-calling)
+- [OpenRouter errors and debugging](https://openrouter.ai/docs/api_reference/errors-and-debugging)
+- [OpenRouter rate limits](https://openrouter.ai/docs/api_reference/limits)
 - [OpenRouter Nemotron 3 Ultra](https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b%3Afree)
 - [Next.js metadata and Open Graph images](https://nextjs.org/docs/15/app/getting-started/metadata-and-og-images)
 - [Next.js sitemap file convention](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap)
