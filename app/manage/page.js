@@ -1,5 +1,6 @@
 import ManageCockpit from "@/app/manage/ManageCockpit";
 import { getNalaSettings } from "@/lib/backend/featureStore";
+import requireOwner from "@/lib/requireOwner";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,8 @@ const DEFAULT_SETTINGS = {
 };
 
 export default async function ManagePage() {
+  await requireOwner();
+
   let settings = DEFAULT_SETTINGS;
   let configWarning = "";
   try {
@@ -27,7 +30,7 @@ export default async function ManagePage() {
       initialSettings={settings}
       keyConfigured={Boolean(process.env.NALA_KEY)}
       configWarning={configWarning}
-      guardLabel="Review mode"
+      guardLabel="Owner session"
     />
   );
 }

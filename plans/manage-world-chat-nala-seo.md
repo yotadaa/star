@@ -419,7 +419,11 @@ write it directly.
   4. UI reveals only whether the key is configured.
   5. Disabled Nala returns 503 and the widget does not show a fake answer.
 - Evidence folder: `validation/manage-world-chat-nala-seo/nala-config/`.
-- Status: planned.
+- Validation result: server and Convex both reject non-owner writes; numeric
+  values are clamped, the disabled state returns HTTP 503, the key is reduced to
+  a configured/not-configured flag, and the persisted model is read on the next
+  Nala request.
+- Status: validated.
 
 ### Task D: `/manage` cockpit, unlocked review phase
 
@@ -436,7 +440,11 @@ write it directly.
   5. No public navigation surface links to `/manage`.
   6. Write APIs remain owner-only even before the page guard is installed.
 - Evidence folder: `validation/manage-world-chat-nala-seo/manage-unlocked/`.
-- Status: planned.
+- Validation result: desktop, tablet, and 375 px screenshots show the real
+  reactive chat count, editable Nemotron model slug, all six expression states,
+  keyboard focus, and no horizontal overflow. The page had no public nav entry,
+  while anonymous management API writes still returned 401.
+- Status: validated.
 
 ### Task E: Final `/manage` auth lock
 
@@ -452,7 +460,12 @@ write it directly.
      navigation.
   5. Direct write API tests still enforce the same owner boundary.
 - Evidence folder: `validation/manage-world-chat-nala-seo/manage-locked/`.
-- Status: planned.
+- Validation result: an anonymous document request returns HTTP 307 with
+  `location: /forbidden?reason=login`; anonymous Nala configuration and chat
+  deletion requests independently return HTTP 401. The server page calls the
+  same `requireOwner()` guard as Blog Admin before reading its configuration,
+  and Auth.js assigns `owner` only to `mukhtadanasution@gmail.com`.
+- Status: validated.
 
 ### Task F: Public SEO and indexing contract
 
