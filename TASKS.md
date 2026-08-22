@@ -2,6 +2,7 @@
 
 ## Active
 
+- [ ] **Extend World Chat, activate Nala, build `/manage`, and complete public SEO** - follow `plans/manage-world-chat-nala-seo.md`; validate reply/delete authorization, live OpenRouter expressions, owner settings, unlocked then locked management states, sitemap/robots/metadata, and multi-viewport evidence.
 - [ ] **Improve Home performance** - real-image/R3F hero is currently laggy and heavy.
 - [ ] **Commit every completed work unit** - after a coherent implementation + validation pass, create a git commit before starting the next unrelated unit. See `plans/commit-validation-workflow.md`.
 - [ ] **Replace native dropdowns with custom controls** - later, scan all built-in HTML dropdowns/selects and replace them with design-system custom dropdowns.
