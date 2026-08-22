@@ -212,15 +212,17 @@ Then replace the remaining example values needed by your deployment.
 
 ### Connect Convex
 
-Run Convex once so the CLI can create or select a development deployment and
-write `CONVEX_DEPLOYMENT` and `NEXT_PUBLIC_CONVEX_URL`:
+Run Convex once so the CLI can create or select a development deployment:
 
 ```bash
 npm run convex:dev
 ```
 
-Leave that process running. In another terminal, synchronize the internal
-bridge secret:
+Map the generated deployment addresses to `CONVEX_CLOUD_URL` for Convex
+clients and `CONVEX_HTTP_URL` for the HTTP Actions origin. The root server
+layout passes the public cloud address to the browser client, so neither value
+needs a `NEXT_PUBLIC_` prefix. Leave Convex running. In another terminal,
+synchronize the internal bridge secret:
 
 ```bash
 npm run convex:bridge:configure
@@ -288,7 +290,8 @@ Copy [`.env.example`](.env.example), then keep `.env.local` out of Git.
 | `GOOGLE_CLIENT_SECRET` | Server | Authenticate the Google OAuth app |
 | `NEXT_PUBLIC_AUTH_ENABLED` | Browser | Show or hide sign-in UI |
 | `CONVEX_DEPLOYMENT` | CLI and server | Select the Convex deployment |
-| `NEXT_PUBLIC_CONVEX_URL` | Browser | Connect the reactive Convex client |
+| `CONVEX_CLOUD_URL` | Server and browser | Connect server function calls and the reactive client |
+| `CONVEX_HTTP_URL` | Server | Identify the Convex HTTP Actions origin (`.convex.site`) |
 | `CONVEX_INTERNAL_API_KEY` | Server and Convex | Authenticate internal bridge calls |
 | `BACKEND_API_KEY` | Server, optional | Guard compatible direct backend clients |
 | `NALA_KEY` | Server | Authenticate OpenRouter requests |

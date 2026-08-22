@@ -1,13 +1,9 @@
 "use client";
 
+import { useMemo } from "react";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 
-const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
-if (!convexUrl) {
-  throw new Error("NEXT_PUBLIC_CONVEX_URL is required before starting Next.js.");
-}
-const convex = new ConvexReactClient(convexUrl);
-
-export default function ConvexClientProvider({ children }) {
+export default function ConvexClientProvider({ children, deploymentUrl }) {
+  const convex = useMemo(() => new ConvexReactClient(deploymentUrl), [deploymentUrl]);
   return <ConvexProvider client={convex}>{children}</ConvexProvider>;
 }

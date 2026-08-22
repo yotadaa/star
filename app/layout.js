@@ -90,6 +90,10 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   const structuredData = JSON.stringify(siteStructuredData()).replace(/</g, "\\u003c");
+  const convexDeploymentUrl = String(process.env.CONVEX_CLOUD_URL || "").trim().replace(/\/+$/, "");
+  if (!convexDeploymentUrl) {
+    throw new Error("CONVEX_CLOUD_URL is required before starting Next.js.");
+  }
 
   return (
     <html
@@ -103,7 +107,7 @@ export default function RootLayout({ children }) {
         />
         <a href="#main" className="skip-link">Loncat ke konten utama</a>
         <AuthProvider>
-          <ConvexClientProvider>
+          <ConvexClientProvider deploymentUrl={convexDeploymentUrl}>
             <SiteProvider>{children}</SiteProvider>
           </ConvexClientProvider>
         </AuthProvider>
