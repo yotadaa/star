@@ -2,7 +2,7 @@
 
 Date: 2026-08-23
 
-Status: in progress
+Status: completed and validated
 
 ## 1. Requested outcome
 
@@ -327,7 +327,8 @@ write it directly.
 
 ### SEO and crawlability
 
-- `lib/siteUrl.js`: canonical origin normalization used by metadata routes.
+- `lib/seo.js`: canonical origin normalization, page metadata builder, and
+  grounded structured-data graph.
 - `app/layout.js`: metadata base, title template, authorship, Open Graph,
   Twitter, robots defaults, optional verification, and grounded JSON-LD.
 - `app/sitemap.js`: static public routes plus published blog routes.
@@ -486,8 +487,9 @@ write it directly.
      fields.
   6. `/manage`, Blog admin, forbidden, redirect, and API paths are not in the
      sitemap.
-  7. Production build succeeds without depending on a live Convex response,
-     because published Blog sitemap data retains the factual local fallback.
+  7. Production build succeeds without depending on a live Convex response:
+     static public routes remain present, while local-preview Blog rows stay
+     excluded unless the database marks them published.
 - Evidence folder: `validation/manage-world-chat-nala-seo/seo/`.
 - Validation result: the production server returned HTTP 200 for sitemap,
   robots, manifest, SVG icon, and the 1200×630 PNG share image. `xmllint`

@@ -2,7 +2,6 @@
 
 ## Active
 
-- [ ] **Extend World Chat, activate Nala, build `/manage`, and complete public SEO** - follow `plans/manage-world-chat-nala-seo.md`; validate reply/delete authorization, live OpenRouter expressions, owner settings, unlocked then locked management states, sitemap/robots/metadata, and multi-viewport evidence.
 - [ ] **Improve Home performance** - real-image/R3F hero is currently laggy and heavy.
 - [ ] **Commit every completed work unit** - after a coherent implementation + validation pass, create a git commit before starting the next unrelated unit. See `plans/commit-validation-workflow.md`.
 - [ ] **Replace native dropdowns with custom controls** - later, scan all built-in HTML dropdowns/selects and replace them with design-system custom dropdowns.
@@ -15,6 +14,7 @@
 
 ## Done
 
+- [x] ~~**Extend World Chat, activate Nala, build `/manage`, and complete public SEO** - added relational replies and owner soft deletion, live tool-grounded OpenRouter Nala with owner-editable Nemotron configuration, a responsive owner-only management workbench, and the full sitemap/robots/canonical/Open Graph/JSON-LD indexing surface.~~ (2026-08-23; plan: `plans/manage-world-chat-nala-seo.md`; evidence: `validation/manage-world-chat-nala-seo/`)
 - [x] ~~**Migrate the application backend and World Chat realtime layer from inaccessible Supabase shards to Convex** - added typed Convex tables/functions, an Auth.js server bridge, deterministic JSONL seed generation, `@convex-dev/migrations` backfills and audit gates, reactive chat subscriptions, Convex storage/records adapters, and legacy environment pruning. Development seed verified at 3 Blog, 14 Inventory, 6 Content, and 5 Contact rows; two-client realtime smoke data was removed after validation.~~ (2026-08-22; runbook: `docs/convex-migration.md`, evidence: `validation/convex-world-chat/`)
 - [x] ~~**Research and refine natural Hero entity movement** - replaced uncorrelated waypoint drift with continuous species curves executed by one cancellable native animation; hover remains inert, while click/tap/keyboard create a local dodge and spark before flight resumes.~~ (2026-07-30; evidence: `validation/hero-entities-2026-07-30/desktop-natural-flight-refined.png`, `desktop-dodging.png`, `mobile-natural-flight-refined.png`, `desktop-reduced-motion-refined.png`)
 - [x] ~~**Refine Hero entity movement** - replaced the initial linear paths with species-specific eased curves (butterfly/firefly drift, sparrow arc, migration glide, bat zig-zag); mobile is limited to a safe sky lane and 30% amplitude.~~ (2026-07-30; evidence: `validation/hero-entities-2026-07-30/`)

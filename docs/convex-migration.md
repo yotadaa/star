@@ -2,9 +2,9 @@
 
 Date: 2026-08-22
 
-The application runtime now uses Convex for Blog, World Chat, Inventory,
-editable content, Contact, generic records, and files. The inaccessible legacy
-Supabase databases are not contacted by any migration step.
+The application runtime now uses Convex for Blog, World Chat, Nala runtime
+settings, Inventory, editable content, Contact, generic records, and files. The
+inaccessible legacy Supabase databases are not contacted by any migration step.
 
 ## What was recovered
 
@@ -22,6 +22,10 @@ The verified seed is `convex-seed-v1-e5d4a727b15e`, with content hash
 World Chat, contact events, generic records/files, and old Nala conversations
 start empty because no auditable backup exists. New data created after cutover
 is preserved normally.
+
+`nalaSettings` is operational state, not recovered content. It is created by an
+owner/backend mutation as a singleton with `configKey: "primary"`; it is not
+part of the replaceable seed. The OpenRouter key is never stored in Convex.
 
 ## Development migration
 
@@ -64,7 +68,12 @@ Then configure the production Next.js host with:
 - The same server-only `CONVEX_INTERNAL_API_KEY` configured by the production
   bridge command.
 - Existing Auth.js values (`AUTH_SECRET`, `AUTH_URL`, Google credentials,
-  `OWNER_EMAIL`, and `NEXT_PUBLIC_AUTH_ENABLED`).
+  and `NEXT_PUBLIC_AUTH_ENABLED`). Owner access is pinned in `auth.js` to
+  `mukhtadanasution@gmail.com`, not selected by a deployment variable.
+- `NALA_KEY` as a server-only OpenRouter credential.
+- `NEXT_PUBLIC_SITE_URL=https://me.mukhtada.my.id` for canonical metadata and
+  the OpenRouter referer. `NALA_MODEL` is only a bootstrap default; once the
+  singleton exists, `/manage` owns the persisted model slug.
 
 Verify `/api/backend/health`, `/api/blog/posts`, `/api/chat/messages`,
 `/api/about/entries`, `/api/inventory/items`, and `/api/contact/channels` before
@@ -76,19 +85,32 @@ keys without printing their values.
 
 The browser subscribes directly with `useQuery(api.worldChat.listLatest)`. A
 message write still crosses the Auth.js-protected Next.js route, which invokes a
-secret-checked Convex bridge action. Convex invalidates the query subscription
-after the mutation, so there are no shard fan-outs, browser Supabase clients, or
-15-second polling fallback.
+secret-checked Convex bridge action. Optional `replyToId` values must resolve to
+an active parent. The public query resolves the parent quote in the same batch;
+if that parent is later deleted, child replies remain but receive
+`replyUnavailable` without the deleted content.
+
+Only the pinned owner or the protected backend actor can delete a message.
+Deletion is an idempotent internal soft mutation that stores deletion time and
+actor key, removes the row from active subscriptions, and preserves the audit
+record. Convex invalidates the query subscription after mutations, so there are
+no shard fan-outs, browser Supabase clients, or 15-second polling fallback.
 
 The migration was validated with two independent browser clients. A temporary
 smoke message reached both clients reactively and was then hard-deleted; the
 test function was removed from the final Convex deployment, and existing user
 messages were preserved.
 
-## Deferred boundary
+## Nala configuration and deferred boundary
 
-Nala can still answer from factual local/Convex-backed tools, but conversation
-persistence is disabled. Migrating Nala history/streaming to
-`@convex-dev/agent` remains a separate confirmation gate because the old
-conversation database is inaccessible and the Agent component changes the
-storage/streaming model.
+Nala answers through OpenRouter chat completions with at least one factual,
+read-only local/Convex-backed tool. The current singleton is enabled with
+`nvidia/nemotron-3-ultra-550b-a55b:free`; the owner can change the slug,
+temperature, max tokens, prompt supplement, or kill switch from `/manage`.
+The management API and the Convex mutation both enforce owner/backend access.
+
+Conversation persistence remains disabled: `/api/nala/chat` returns
+`storage: null`, the browser keeps only current-session history, and old Nala
+conversations were not recoverable. Migrating history/streaming to
+`@convex-dev/agent` remains a separate confirmation gate because the Agent
+component changes the storage and streaming model.
