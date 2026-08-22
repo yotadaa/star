@@ -8,8 +8,14 @@ import JourneyPath from "@/components/JourneyPath";
 import { HudStatusStrip, SpriteIcon } from "@/components/claude";
 import { profile } from "@/lib/data";
 import { listAboutEntries } from "@/lib/backend/featureStore";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = { title: "About - Mukhtada Billah NST" };
+export const metadata = pageMetadata({
+  title: "Tentang Mukhtada",
+  description:
+    "Profil, pengalaman, perjalanan akademik, keahlian, dan pencapaian Mukhtada Billah NST di fullstack web, AI tooling, serta riset data.",
+  path: "/about",
+});
 export const dynamic = "force-dynamic";
 
 export default async function AboutPage() {

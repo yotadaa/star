@@ -4,11 +4,14 @@ import EditablePageCaption from "@/components/EditablePageCaption";
 import PageHeader from "@/components/PageHeader";
 import { PixelButton, SpriteIcon } from "@/components/claude";
 import { listAboutEntries, listBlogPosts } from "@/lib/backend/featureStore";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Blog - Mukhtada Billah NST",
-  description: "Lore entries dan dev log Mukhtada Billah NST.",
-};
+export const metadata = pageMetadata({
+  title: "Blog",
+  description:
+    "Catatan proses riset, pengembangan web, AI tooling, dan kerja komunitas dari Mukhtada Billah NST.",
+  path: "/blog",
+});
 
 export const dynamic = "force-dynamic";
 

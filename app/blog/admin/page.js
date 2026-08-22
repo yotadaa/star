@@ -4,7 +4,7 @@ import { listBlogPosts } from "@/lib/backend/featureStore";
 import requireOwner from "@/lib/requireOwner";
 
 export const metadata = {
-  title: "Blog Admin - Mukhtada Billah NST",
+  title: "Blog Admin",
 };
 
 export default async function BlogAdminPage() {

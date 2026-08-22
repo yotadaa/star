@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Data Management - Mukhtada Billah NST",
+  title: "Data Management",
   description: "Private owner console for World Chat moderation and Nala runtime configuration.",
   robots: {
     index: false,

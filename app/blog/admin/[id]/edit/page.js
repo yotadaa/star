@@ -10,7 +10,7 @@ export async function generateMetadata({ params }) {
   const { id } = await params;
   const { post } = await getBlogPostById(id);
   return {
-    title: post ? `Edit ${post.title} - Blog Admin` : "Edit Blog",
+    title: post ? `Edit ${post.title}` : "Edit Blog",
   };
 }
 

@@ -5,8 +5,14 @@ import Reveal from "@/components/Reveal";
 import { HudStatusStrip, LockedSlot, SpriteIcon } from "@/components/claude";
 import { listAboutEntries } from "@/lib/backend/featureStore";
 import { publications } from "@/lib/data";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = { title: "Research - Mukhtada Billah NST" };
+export const metadata = pageMetadata({
+  title: "Research",
+  description:
+    "Publikasi ilmiah Mukhtada Billah NST yang terindeks Google Scholar, mencakup pendidikan, optimasi, data, dan sistem informasi.",
+  path: "/research",
+});
 export const dynamic = "force-dynamic";
 
 export default async function ResearchPage() {

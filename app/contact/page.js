@@ -3,8 +3,14 @@ import PageHeader from "@/components/PageHeader";
 import ContactCards from "@/components/ContactCards";
 import EditablePageCaption from "@/components/EditablePageCaption";
 import { listAboutEntries, listContactChannels } from "@/lib/backend/featureStore";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = { title: "Contact - Mukhtada Billah NST" };
+export const metadata = pageMetadata({
+  title: "Contact",
+  description:
+    "Hubungi Mukhtada Billah NST melalui kanal profesional, kode sumber, publikasi ilmiah, blog, atau media sosial yang terverifikasi.",
+  path: "/contact",
+});
 export const dynamic = "force-dynamic";
 
 export default async function ContactPage() {

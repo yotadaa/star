@@ -3,8 +3,14 @@ import EditablePageCaption from "@/components/EditablePageCaption";
 import PageHeader from "@/components/PageHeader";
 import ProjectsGrid from "@/components/ProjectsGrid";
 import { listAboutEntries } from "@/lib/backend/featureStore";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = { title: "Projects - Mukhtada Billah NST" };
+export const metadata = pageMetadata({
+  title: "Projects",
+  description:
+    "Proyek pilihan Mukhtada Billah NST di web, AI, data science, riset, dan kerja komunitas, lengkap dengan stack serta tautan sumber.",
+  path: "/projects",
+});
 export const dynamic = "force-dynamic";
 
 export default async function ProjectsPage() {

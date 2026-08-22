@@ -163,7 +163,7 @@ and Nala navigation suggestions.
 ### 3.8 SEO boundary
 
 The canonical production origin is read from `NEXT_PUBLIC_SITE_URL`, with the
-repo-grounded fallback `https://mukhtada.my.id` from `next.config.js`.
+verified live portfolio origin `https://me.mukhtada.my.id` as its fallback.
 
 The sitemap contains:
 
@@ -489,7 +489,15 @@ write it directly.
   7. Production build succeeds without depending on a live Convex response,
      because published Blog sitemap data retains the factual local fallback.
 - Evidence folder: `validation/manage-world-chat-nala-seo/seo/`.
-- Status: planned.
+- Validation result: the production server returned HTTP 200 for sitemap,
+  robots, manifest, SVG icon, and the 1200×630 PNG share image. `xmllint`
+  accepted the sitemap; it contains six public routes and three published Blog
+  entries, with no private/API route. All six public page heads expose unique
+  descriptions and canonical URLs plus Open Graph/Twitter images. JSON-LD
+  parses with `WebSite`, `ProfilePage`, and `Person`. An initial audit exposed
+  migrated `updatedAt: 0` values and missing child-route share images; the
+  implementation now omits unknown dates and declares the image per route.
+- Status: validated.
 
 ## 8. Validation matrix
 

@@ -4,16 +4,25 @@ import BlogPostRenderer from "@/components/blog/BlogPostRenderer";
 import PageHeader from "@/components/PageHeader";
 import { PixelButton, SpriteIcon } from "@/components/claude";
 import { getBlogPostBySlug } from "@/lib/backend/featureStore";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const { post } = await getBlogPostBySlug(slug);
-  return {
-    title: post ? `${post.title} - Blog` : "Blog",
-    description: post?.excerpt,
-  };
+  if (!post) {
+    return {
+      title: "Blog entry tidak ditemukan",
+      robots: { index: false, follow: false },
+    };
+  }
+  return pageMetadata({
+    title: post.title,
+    description: post.excerpt,
+    path: `/blog/${encodeURIComponent(post.slug)}`,
+    type: "article",
+  });
 }
 
 export default async function BlogPostPage({ params }) {

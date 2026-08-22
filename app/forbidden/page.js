@@ -2,7 +2,12 @@ import LoginButton from "@/components/auth/LoginButton";
 import RouteStatePage from "@/components/site/RouteStatePage";
 
 export const metadata = {
-  title: "Akses Ditolak - Mukhtada",
+  title: "Akses Ditolak",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+  },
 };
 
 export default async function ForbiddenPage({ searchParams }) {

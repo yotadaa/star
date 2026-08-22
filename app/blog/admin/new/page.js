@@ -3,7 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import requireOwner from "@/lib/requireOwner";
 
 export const metadata = {
-  title: "New Blog Entry - Mukhtada Billah NST",
+  title: "New Blog Entry",
 };
 
 export default async function NewBlogPostPage() {
