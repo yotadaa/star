@@ -43,7 +43,7 @@ export async function PATCH(request, { params }) {
       return NextResponse.json({ ok: false, error: "NOT_FOUND_OR_LOCAL_FALLBACK" }, { status: 404 });
     }
 
-    return NextResponse.json({ ok: true, post, source: "supabase" });
+    return NextResponse.json({ ok: true, post, source: "convex" });
   } catch (error) {
     return errorResponse(error, 400);
   }

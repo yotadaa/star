@@ -31,7 +31,7 @@ export default async function BlogPostPage({ params }) {
         <span><SpriteIcon id="icon-blog-page" size={15} /> {post.status}</span>
         <span>{post.publishedAt}</span>
         <span>{post.readTime}</span>
-        <span><SpriteIcon id={source === "supabase" ? "icon-database-online" : "icon-database-offline"} size={15} /> {source}</span>
+        <span><SpriteIcon id={source === "convex" ? "icon-database-online" : "icon-database-offline"} size={15} /> {source}</span>
       </div>
 
       <BlogPostRenderer blocks={post.blocks} />

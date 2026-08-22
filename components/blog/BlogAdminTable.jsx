@@ -30,7 +30,7 @@ export default function BlogAdminTable({ posts, source = "local", warnings = [] 
   return (
     <RequireLoginGate
       title="Login ke System"
-      description="Admin CMS membutuhkan autentikasi owner. Setelah Auth.js/Supabase siap, tabel ini akan mengelola draft dan published post."
+      description="Admin CMS membutuhkan autentikasi owner untuk mengelola draft dan published post di Convex."
     >
       <section className="blog-admin-panel hardcard">
         <div className="blog-admin-topbar">

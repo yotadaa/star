@@ -7,7 +7,7 @@ export async function POST(request) {
   try {
     const payload = await request.json();
     const event = await createContactEvent({ payload });
-    return NextResponse.json({ ok: true, event, source: "supabase" }, { status: 201 });
+    return NextResponse.json({ ok: true, event, source: "convex" }, { status: 201 });
   } catch (error) {
     return NextResponse.json(
       {

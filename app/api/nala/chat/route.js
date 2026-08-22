@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import crypto from "node:crypto";
 import { getNalaReply } from "@/lib/nala/assistant";
-import { storeNalaExchange } from "@/lib/backend/nalaStore";
 
 export const dynamic = "force-dynamic";
 
@@ -63,27 +62,10 @@ export async function POST(request) {
     }
 
     const answer = await getNalaReply({ message, history: payload.history });
-    const warnings = Array.isArray(answer.warnings) ? [...answer.warnings] : [];
-    let persistence = null;
-
-    try {
-      persistence = await storeNalaExchange({
-        conversationId,
-        sessionKey,
-        userMessage: message,
-        assistantMessage: answer.reply,
-        expression: answer.expression,
-        source: answer.source,
-        toolResults: answer.toolResults,
-        action: answer.action,
-        metadata: {
-          client: "nala-widget",
-          openRouterConfigured: Boolean(process.env.OPENROUTER_API_KEY || process.env.NALA_OPENROUTER_API_KEY),
-        },
-      });
-    } catch (error) {
-      warnings.push(`storage:${error.code || "error"}:${error.message || "unknown error"}`);
-    }
+    const warnings = [
+      ...(Array.isArray(answer.warnings) ? answer.warnings : []),
+      "history:not-restored:legacy-database-unavailable",
+    ];
 
     return NextResponse.json({
       ok: true,
@@ -92,8 +74,8 @@ export async function POST(request) {
       suggestedChips: answer.suggestedChips || [],
       action: answer.action || null,
       source: answer.source,
-      conversationId: persistence?.conversationId || conversationId || null,
-      storage: persistence?.storage || null,
+      conversationId: conversationId || null,
+      storage: null,
       warnings,
     });
   } catch (error) {

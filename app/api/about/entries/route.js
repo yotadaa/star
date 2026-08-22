@@ -33,7 +33,7 @@ export async function POST(request) {
   try {
     const payload = await request.json();
     const entry = await createAboutEntry({ payload, actor });
-    return NextResponse.json({ ok: true, entry, source: "supabase" }, { status: 201 });
+    return NextResponse.json({ ok: true, entry, source: "convex" }, { status: 201 });
   } catch (error) {
     return errorResponse(error, 400);
   }
@@ -48,7 +48,7 @@ export async function PUT(request) {
   try {
     const payload = await request.json();
     const entry = await upsertAboutEntry({ payload, actor });
-    return NextResponse.json({ ok: true, entry, source: "supabase" });
+    return NextResponse.json({ ok: true, entry, source: "convex" });
   } catch (error) {
     return errorResponse(error, 400);
   }

@@ -16,7 +16,7 @@ export default async function BlogPage() {
   const session = await auth();
   const [{ posts, source, warnings }, { entries }] = await Promise.all([listBlogPosts(), listAboutEntries()]);
   const canManageBlog = session?.user?.role === "owner";
-  const fallbackCaption = "Catatan proses riset, web build, dan community work. Konten membaca CMS Supabase lebih dulu, lalu fallback ke data lokal yang sudah ada.";
+  const fallbackCaption = "Catatan proses riset, web build, dan community work. Konten disimpan di Convex dengan fallback lokal faktual saat backend tidak tersedia.";
   const blogCaption = entries.find((entry) => entry.entryKey === "blog-caption")?.body || fallbackCaption;
 
   return (
@@ -34,7 +34,7 @@ export default async function BlogPage() {
         <div className="blog-admin-access hardcard" aria-label="Akses CMS Blog">
           <div>
             <span className="pixel-label">// CMS ACCESS</span>
-            <p>{source === "supabase" ? "CMS Supabase aktif" : "Mode baca cadangan lokal"} · {posts.length} entry</p>
+            <p>{source === "convex" ? "CMS Convex aktif" : "Mode baca cadangan lokal"} · {posts.length} entry</p>
           </div>
           <div className="blog-admin-access-actions">
             <PixelButton as="a" href="/blog/admin">
@@ -51,7 +51,7 @@ export default async function BlogPage() {
 
       {warnings?.length > 0 && (
         <p className="backend-warning" role="status">
-          Sebagian shard CMS belum merespons, konten lokal faktual tetap dipakai sebagai cadangan baca.
+          Convex belum merespons, konten lokal faktual tetap dipakai sebagai cadangan baca.
         </p>
       )}
 

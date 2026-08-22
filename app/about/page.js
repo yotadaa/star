@@ -53,7 +53,7 @@ export default async function AboutPage() {
           { label: source === "local-fallback" ? "About local fallback" : "About DB synced", accent: "ink", icon: <SpriteIcon id={source === "local-fallback" ? "icon-database-offline" : "icon-database-online"} size={14} /> },
         ]}
       />
-      {warnings?.length > 0 && <p className="backend-warning" role="status">Sebagian shard About belum merespons, profil lokal faktual tetap dipakai sebagai cadangan baca.</p>}
+      {warnings?.length > 0 && <p className="backend-warning" role="status">Convex belum merespons, profil lokal faktual tetap dipakai sebagai cadangan baca.</p>}
 
       <div className="page-divider" style={{ marginTop: 48 }} />
       <div className="section-head" style={{ textAlign: "left", margin: "0 0 28px", maxWidth: "none" }}>

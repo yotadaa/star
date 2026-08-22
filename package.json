@@ -7,16 +7,21 @@
     "start": "next dev -p 3123 -H 0.0.0.0",
     "build": "next build",
     "serve": "next start -p 3123 -H 0.0.0.0",
-    "supabase:sync-env": "node scripts/sync-supabase-env-from-docs.mjs",
-    "supabase:setup": "node scripts/setup-supabase-shards.mjs",
-    "supabase:seed": "node scripts/seed-supabase-features.mjs",
-    "supabase:migrate": "npm run supabase:setup && npm run supabase:seed"
+    "convex:dev": "convex dev",
+    "convex:bridge:configure": "node scripts/configure-convex-bridge.mjs",
+    "convex:bridge:configure:prod": "node scripts/configure-convex-bridge.mjs --prod",
+    "convex:env:prune-legacy": "node scripts/prune-legacy-env.mjs",
+    "convex:seed:build": "node scripts/build-convex-seed.mjs",
+    "convex:seed:import": "node scripts/import-convex-seed.mjs",
+    "convex:migrate": "npm run convex:seed:build && npm run convex:seed:import",
+    "convex:migrate:prod": "npm run convex:seed:build && node scripts/import-convex-seed.mjs --prod",
+    "convex:typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@convex-dev/migrations": "^0.3.6",
     "@react-three/fiber": "9.6.1",
-    "@supabase/ssr": "^0.12.0",
-    "@supabase/supabase-js": "^2.109.0",
     "cmdk": "1.1.1",
+    "convex": "^1.45.0",
     "lucide-react": "0.516.0",
     "next": "15.5.19",
     "next-auth": "^5.0.0-beta.31",
@@ -25,11 +30,13 @@
     "three": "0.185.1"
   },
   "devDependencies": {
+    "@types/node": "20.17.6",
     "autoprefixer": "10.4.20",
     "playwright-core": "1.61.1",
     "postcss": "8.5.10",
     "tailwindcss": "3.4.17",
-    "tailwindcss-animate": "1.0.7"
+    "tailwindcss-animate": "1.0.7",
+    "typescript": "^5.9.3"
   },
   "overrides": {
     "postcss": "8.5.10"

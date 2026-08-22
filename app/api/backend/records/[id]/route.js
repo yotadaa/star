@@ -43,7 +43,7 @@ export async function DELETE(request, context) {
 
   try {
     const { id } = await context.params;
-    const deleted = await deleteRecordById(id);
+    const deleted = await deleteRecordById(id, actor);
     if (!deleted) {
       return NextResponse.json({ ok: false, error: "NOT_FOUND" }, { status: 404 });
     }

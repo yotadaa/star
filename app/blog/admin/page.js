@@ -14,7 +14,7 @@ export default async function BlogAdminPage() {
   return (
     <div className="page-wrap blog-admin-page">
       <PageHeader label="// OWNER CMS" title="Blog Admin">
-        Session owner sudah diverifikasi. Tabel membaca Supabase lebih dulu dan fallback lokal saat schema belum siap.
+        Session owner sudah diverifikasi. Tabel membaca Convex dan tetap punya fallback lokal faktual saat backend tidak tersedia.
       </PageHeader>
       <BlogAdminTable posts={posts} source={source} warnings={warnings} />
     </div>

@@ -58,8 +58,9 @@ export default function BlockEditorPreview({ post }) {
         ]
   );
   const [saveState, setSaveState] = useState({ status: "idle", message: "Tersimpan lokal" });
-  const endpoint = post?.storage?.shardId ? `/api/blog/posts/${post.id}` : "/api/blog/posts";
-  const method = post?.storage?.shardId ? "PATCH" : "POST";
+  const isPersisted = Boolean(post?.id && post?.status !== "local-preview");
+  const endpoint = isPersisted ? `/api/blog/posts/${post.id}` : "/api/blog/posts";
+  const method = isPersisted ? "PATCH" : "POST";
 
   useEffect(() => {
     if (!post?.slug) setSlug(slugify(title));
@@ -121,7 +122,7 @@ export default function BlockEditorPreview({ post }) {
   }
 
   async function savePost(nextStatus = status) {
-    setSaveState({ status: "saving", message: "Menyimpan ke shard..." });
+    setSaveState({ status: "saving", message: "Menyimpan ke Convex..." });
 
     const payload = {
       title: title || "Untitled Lore",
@@ -149,7 +150,7 @@ export default function BlockEditorPreview({ post }) {
       setStatus(nextStatus);
       setSaveState({ status: "saved", message: `Saved via ${data.source}` });
       router.refresh();
-      if (!post?.storage?.shardId && data.post?.id) router.push(`/blog/admin/${data.post.id}/edit`);
+      if (!isPersisted && data.post?.id) router.push(`/blog/admin/${data.post.id}/edit`);
     } catch (error) {
       setSaveState({ status: "error", message: error.message });
     }

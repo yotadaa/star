@@ -33,7 +33,7 @@ export async function POST(request) {
   try {
     const payload = await request.json();
     const channel = await createContactChannel({ payload, actor });
-    return NextResponse.json({ ok: true, channel, source: "supabase" }, { status: 201 });
+    return NextResponse.json({ ok: true, channel, source: "convex" }, { status: 201 });
   } catch (error) {
     return errorResponse(error, 400);
   }

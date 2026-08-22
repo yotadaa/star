@@ -40,7 +40,7 @@ export async function POST(request) {
   try {
     const payload = await request.json();
     const post = await createBlogPost({ payload, actor });
-    return NextResponse.json({ ok: true, post, source: "supabase" }, { status: 201 });
+    return NextResponse.json({ ok: true, post, source: "convex" }, { status: 201 });
   } catch (error) {
     return errorResponse(error, 400);
   }

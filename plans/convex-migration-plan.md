@@ -2,7 +2,15 @@
 
 Tanggal: 2026-08-22
 
-Status: **PLAN / belum diimplementasikan**
+Status: **IMPLEMENTED ON DEVELOPMENT / production import pending approval**
+
+Implementation evidence (2026-08-22): the deterministic offline seed and
+`@convex-dev/migrations` backfills completed on `dev:impartial-basilisk-364`;
+see `docs/convex-migration.md` for the verified counts, production cutover, and
+rollback-safe operating notes. World Chat passed a two-client reactive
+propagation test, with final desktop/mobile evidence in
+`validation/convex-world-chat/`. Nala conversation persistence remains deferred
+behind its separate Convex Agent confirmation gate.
 
 Premis dari pemilik proyek: database Supabase lama tidak lagi dapat diakses.
 

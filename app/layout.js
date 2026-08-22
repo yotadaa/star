@@ -1,6 +1,7 @@
 import { Fraunces, Silkscreen, Nunito } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/auth/AuthProvider";
+import ConvexClientProvider from "@/components/ConvexClientProvider";
 import SiteProvider from "@/components/site/SiteProvider";
 
 const fraunces = Fraunces({
@@ -46,7 +47,9 @@ export default function RootLayout({ children }) {
       <body>
         <a href="#main" className="skip-link">Loncat ke konten utama</a>
         <AuthProvider>
-          <SiteProvider>{children}</SiteProvider>
+          <ConvexClientProvider>
+            <SiteProvider>{children}</SiteProvider>
+          </ConvexClientProvider>
         </AuthProvider>
       </body>
     </html>

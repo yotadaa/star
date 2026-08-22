@@ -3579,13 +3579,6 @@ footer.site-footer .foot-copy a {
   text-transform: uppercase;
 }
 
-.world-chat-shard {
-  padding: 2px 5px;
-  border: 1px solid var(--gold);
-  color: var(--ink);
-  background: color-mix(in srgb, var(--gold) 24%, var(--cream));
-}
-
 .world-chat-message p {
   margin: 0;
   color: var(--ink);
@@ -5065,7 +5058,7 @@ footer.site-footer .foot-copy a {
     top: 124px;
     right: 12px;
     bottom: 12px;
-    width: calc(100vw - 24px);
+    width: calc(100% - 24px);
   }
 
   .world-chat-header,

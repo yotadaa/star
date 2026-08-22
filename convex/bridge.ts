@@ -1,0 +1,310 @@
+"use node";
+
+import { timingSafeEqual } from "node:crypto";
+import { v } from "convex/values";
+import { internal } from "./_generated/api";
+import type { Id } from "./_generated/dataModel";
+import { action } from "./_generated/server";
+import {
+  actorSnapshot,
+  blogInput,
+  contactChannelInput,
+  contactEventInput,
+  contentInput,
+  inventoryInput,
+  publicBlogPost,
+  publicChatMessage,
+  publicContactChannel,
+  publicContentEntry,
+  publicFile,
+  publicInventoryItem,
+  publicRecord,
+  recordVisibility,
+} from "./validators";
+
+type EditorBlock = {
+  type: "heading" | "paragraph" | "quote" | "list" | "code" | "image" | "divider" | "table" | "icon";
+  text: string;
+  rows?: string[][];
+};
+type BlogPost = {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  status: "draft" | "published" | "archived";
+  tags: string[];
+  publishedAt: string;
+  readTime: string;
+  coverTone: string;
+  sourceHref: string;
+  blocks: EditorBlock[];
+  updatedAt: number;
+};
+type ChatMessage = { id: string; authorName: string; body: string; createdAt: string };
+type ContentEntry = { id: string; entryKey: string; title: string; body: string; payload: unknown; source: "convex" };
+type InventoryItem = {
+  id: string;
+  sourceId?: string;
+  type: "scroll" | "tool" | "artifact" | "medal" | "key";
+  icon: string;
+  name: string;
+  fullName: string;
+  description: string;
+  rarity: "common" | "rare" | "epic";
+  acquiredAt: string;
+  linkTo?: string;
+};
+type ContactChannel = { id: string; key: string; label: string; sub: string; cta: string; href: string; tone: string };
+type ContactEvent = { id: string; channelKey: string; eventName: string; occurredAt: string };
+type RecordResult = {
+  id: string;
+  collection: string;
+  slug?: string;
+  visibility: "public" | "private";
+  payload: unknown;
+  file_count: number;
+  created_at: string;
+  updated_at: string;
+};
+type FileResult = {
+  id: string;
+  record_id?: string;
+  original_name: string;
+  content_type: string;
+  size_bytes: number;
+  metadata: unknown;
+  created_at: string;
+  url?: string;
+};
+type TableAudit = { count: number; schemaVersionMissing: number; duplicateKeys: string[] };
+type MigrationStatus = {
+  blogPosts: TableAudit;
+  inventoryItems: TableAudit;
+  contentEntries: TableAudit;
+  contactChannels: TableAudit;
+  worldChatMessages: number;
+  contactEvents: number;
+  records: number;
+  files: number;
+  seedManifests: number;
+};
+
+const tableAudit = v.object({
+  count: v.number(),
+  schemaVersionMissing: v.number(),
+  duplicateKeys: v.array(v.string()),
+});
+const migrationStatus = v.object({
+  blogPosts: tableAudit,
+  inventoryItems: tableAudit,
+  contentEntries: tableAudit,
+  contactChannels: tableAudit,
+  worldChatMessages: v.number(),
+  contactEvents: v.number(),
+  records: v.number(),
+  files: v.number(),
+  seedManifests: v.number(),
+});
+
+function requireBridgeSecret(provided: string) {
+  const expected = process.env.CONVEX_INTERNAL_API_KEY;
+  if (!expected) throw new Error("BRIDGE_SECRET_NOT_CONFIGURED");
+  const left = Buffer.from(provided);
+  const right = Buffer.from(expected);
+  if (left.length !== right.length || !timingSafeEqual(left, right)) {
+    throw new Error("BRIDGE_UNAUTHORIZED");
+  }
+}
+
+export const health = action({
+  args: { secret: v.string() },
+  returns: migrationStatus,
+  handler: async (ctx, args): Promise<MigrationStatus> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runQuery(internal.migrationAudit.seedStatus, {});
+  },
+});
+
+export const listBlogAdmin = action({
+  args: { secret: v.string(), limit: v.optional(v.number()) },
+  returns: v.array(publicBlogPost),
+  handler: async (ctx, args): Promise<BlogPost[]> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runQuery(internal.blog.listAdmin, { limit: args.limit });
+  },
+});
+
+export const getBlogAdmin = action({
+  args: { secret: v.string(), id: v.id("blogPosts") },
+  returns: v.union(publicBlogPost, v.null()),
+  handler: async (ctx, args): Promise<BlogPost | null> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runQuery(internal.blog.getAdminById, { id: args.id });
+  },
+});
+
+export const createBlog = action({
+  args: { secret: v.string(), payload: blogInput, actor: actorSnapshot },
+  returns: publicBlogPost,
+  handler: async (ctx, args): Promise<BlogPost> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.blog.create, { payload: args.payload, actor: args.actor });
+  },
+});
+
+export const updateBlog = action({
+  args: { secret: v.string(), id: v.id("blogPosts"), payload: blogInput, actor: actorSnapshot },
+  returns: v.union(publicBlogPost, v.null()),
+  handler: async (ctx, args): Promise<BlogPost | null> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.blog.update, { id: args.id, payload: args.payload, actor: args.actor });
+  },
+});
+
+export const sendWorldChat = action({
+  args: { secret: v.string(), body: v.string(), actor: actorSnapshot },
+  returns: publicChatMessage,
+  handler: async (ctx, args): Promise<ChatMessage> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.worldChat.sendFromBackend, { body: args.body, actor: args.actor });
+  },
+});
+
+export const createContent = action({
+  args: { secret: v.string(), payload: contentInput, actor: actorSnapshot },
+  returns: publicContentEntry,
+  handler: async (ctx, args): Promise<ContentEntry> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.content.create, { payload: args.payload, actor: args.actor });
+  },
+});
+
+export const upsertContent = action({
+  args: { secret: v.string(), payload: contentInput, actor: actorSnapshot },
+  returns: publicContentEntry,
+  handler: async (ctx, args): Promise<ContentEntry> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.content.upsert, { payload: args.payload, actor: args.actor });
+  },
+});
+
+export const createInventory = action({
+  args: { secret: v.string(), payload: inventoryInput, actor: actorSnapshot },
+  returns: publicInventoryItem,
+  handler: async (ctx, args): Promise<InventoryItem> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.inventory.create, { payload: args.payload, actor: args.actor });
+  },
+});
+
+export const createContactChannel = action({
+  args: { secret: v.string(), payload: contactChannelInput, actor: actorSnapshot },
+  returns: publicContactChannel,
+  handler: async (ctx, args): Promise<ContactChannel> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.contact.createChannel, { payload: args.payload, actor: args.actor });
+  },
+});
+
+export const createContactEvent = action({
+  args: { secret: v.string(), payload: contactEventInput },
+  returns: v.object({ id: v.string(), channelKey: v.string(), eventName: v.string(), occurredAt: v.string() }),
+  handler: async (ctx, args): Promise<ContactEvent> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.contact.createEvent, { payload: args.payload });
+  },
+});
+
+export const listRecordsAdmin = action({
+  args: { secret: v.string(), collection: v.optional(v.string()), limit: v.optional(v.number()) },
+  returns: v.array(publicRecord),
+  handler: async (ctx, args): Promise<RecordResult[]> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runQuery(internal.records.listAdmin, { collection: args.collection, limit: args.limit });
+  },
+});
+
+export const getRecordAdmin = action({
+  args: { secret: v.string(), id: v.id("records") },
+  returns: v.union(publicRecord, v.null()),
+  handler: async (ctx, args): Promise<RecordResult | null> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runQuery(internal.records.getAdminById, { id: args.id });
+  },
+});
+
+export const createRecord = action({
+  args: {
+    secret: v.string(),
+    collection: v.string(),
+    payload: v.any(),
+    visibility: recordVisibility,
+    slug: v.optional(v.string()),
+    actor: actorSnapshot,
+  },
+  returns: publicRecord,
+  handler: async (ctx, args): Promise<RecordResult> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.records.create, {
+      collection: args.collection,
+      payload: args.payload,
+      visibility: args.visibility,
+      slug: args.slug,
+      actor: args.actor,
+    });
+  },
+});
+
+export const removeRecord = action({
+  args: { secret: v.string(), id: v.id("records"), actor: actorSnapshot },
+  returns: v.boolean(),
+  handler: async (ctx, args): Promise<boolean> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.records.remove, { id: args.id, actor: args.actor });
+  },
+});
+
+export const createFileUploadUrl = action({
+  args: { secret: v.string(), actor: actorSnapshot },
+  returns: v.string(),
+  handler: async (ctx, args): Promise<string> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.files.createUploadUrl, { actor: args.actor });
+  },
+});
+
+export const commitFile = action({
+  args: {
+    secret: v.string(),
+    storageId: v.id("_storage"),
+    recordId: v.optional(v.id("records")),
+    originalName: v.string(),
+    contentType: v.string(),
+    sizeBytes: v.number(),
+    metadata: v.any(),
+    actor: actorSnapshot,
+  },
+  returns: v.id("files"),
+  handler: async (ctx, args): Promise<Id<"files">> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.files.commit, {
+      storageId: args.storageId,
+      recordId: args.recordId,
+      originalName: args.originalName,
+      contentType: args.contentType,
+      sizeBytes: args.sizeBytes,
+      metadata: args.metadata,
+      actor: args.actor,
+    });
+  },
+});
+
+export const getFile = action({
+  args: { secret: v.string(), id: v.id("files") },
+  returns: v.union(publicFile, v.null()),
+  handler: async (ctx, args): Promise<FileResult | null> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runQuery(internal.files.getById, { id: args.id });
+  },
+});

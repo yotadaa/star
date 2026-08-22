@@ -43,8 +43,8 @@ export async function POST(request) {
     const stored = await uploadFile({
       file,
       recordId: form.get("recordId") || null,
-      collection: form.get("collection") || "files",
       metadata: parseMetadata(form.get("metadata")),
+      actor,
     });
 
     return NextResponse.json({ ok: true, file: stored }, { status: 201 });

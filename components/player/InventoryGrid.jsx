@@ -120,7 +120,7 @@ export default function InventoryGrid({ items }) {
             <SpriteIcon id="icon-admin-shield" size={24} />
             <div>
               <h3>Owner tools menunggu Login ke System</h3>
-              <p>Manual add inventory akan aktif setelah Auth.js dan Supabase dikonfigurasi. Pengunjung tidak melihat tombol tambah item.</p>
+              <p>Manual add inventory memakai Auth.js dan Convex. Pengunjung tidak melihat tombol tambah item.</p>
             </div>
             <LoginButton />
           </div>

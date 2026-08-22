@@ -44,7 +44,7 @@ export async function POST(request) {
       payload: body.payload,
       visibility: body.visibility,
       slug: body.slug,
-      ownerEmail: actor.email,
+      actor,
     });
 
     return NextResponse.json({ ok: true, record }, { status: 201 });

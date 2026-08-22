@@ -27,7 +27,7 @@ export default async function ContactPage() {
           canManage={canManage}
         />
       </PageHeader>
-      {warnings?.length > 0 && <p className="backend-warning" role="status">Sebagian shard Contact belum merespons, kanal lokal faktual tetap dipakai sebagai cadangan baca.</p>}
+      {warnings?.length > 0 && <p className="backend-warning" role="status">Convex belum merespons, kanal lokal faktual tetap dipakai sebagai cadangan baca.</p>}
       <ContactCards channels={channels} source={source} />
     </div>
   );
