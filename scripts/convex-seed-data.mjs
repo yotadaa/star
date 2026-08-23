@@ -1,5 +1,6 @@
 import crypto from "node:crypto";
 import { caelestiaBlogPayload } from "./publish-caelestia-blog.mjs";
+import { genbiRebrandingBlogPayload } from "./publish-genbi-rebranding-blog.mjs";
 import { portfolioReadmeBlogPayload } from "./publish-portfolio-readme-blog.mjs";
 
 const SHARDS = ["s1", "s2", "s3"];
@@ -113,6 +114,11 @@ export function buildSeedTables(data) {
       publishedAt: "2026-08-23",
       ...portfolioReadmeBlogPayload,
     },
+    {
+      id: "blog-genbi-rebranding",
+      publishedAt: "2026-08-23",
+      ...genbiRebrandingBlogPayload,
+    },
   ];
   const blogPosts = sourceBlogPosts.map((post, index) => {
     const shard = SHARDS[index % SHARDS.length];
@@ -213,7 +219,7 @@ export function buildSeedTables(data) {
 }
 
 export const expectedSeedCounts = {
-  blogPosts: 5,
+  blogPosts: 6,
   inventoryItems: 14,
   contentEntries: 6,
   contactChannels: 5,

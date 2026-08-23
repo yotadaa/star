@@ -10,10 +10,12 @@
 
 ## Someday
 
+- [ ] **Format Blog publication timestamps for readers** - replace the raw ISO string in the shared Blog detail metadata row with the existing human-readable date style; evidence: `validation/genbi-rebranding-blog/desktop-top.png`, `mobile-top.png`.
 - [ ] **Align the existing Player Status popup with the neobrutalist system** - remove its older rounded/gradient treatment observed during Player HUD shortcut validation; evidence: `screenshots/player-hud-2026-07-04/desktop-inventory-shortcut.png`.
 
 ## Done
 
+- [x] ~~**Publish the GenBI Jambi rebranding project review** - published a 40-block Indonesian review grounded in the supplied repository snapshot, uploaded seven unique PNG captures to Convex Storage, preserved stable asset keys in the six-post deterministic seed, and validated both image galleries on desktop and mobile.~~ (2026-08-23; plan: `plans/genbi-rebranding-blog.md`; evidence: `validation/genbi-rebranding-blog/`)
 - [x] ~~**Make the production sitemap independently fetchable by Google** - replaced the database-coupled single sitemap with a static sitemap index, a static public-pages sitemap, and an isolated Blog sitemap; emitted explicit XML headers and kept `robots.txt` pointed at the stable index.~~ (2026-08-23; evidence: `validation/sitemap-2026-08-23/`)
 - [x] ~~**Publish the portfolio README, store its images in Convex, and repair the renamed environment boundary** - published 95 native blocks, uploaded four checksum-deduplicated screenshots to Convex Storage, persisted storage IDs plus indexed asset keys, added protected image upload support to the block editor, and moved both server and reactive clients to the normalized `CONVEX_CLOUD_URL` contract while keeping the HTTP Actions origin separate.~~ (2026-08-23; plan: `plans/portfolio-readme-blog.md`; evidence: `validation/mukhtadas-portfolio-blog/`)
 - [x] ~~**Publish the Caelestia Island Suite README as a block-level Blog post** - added real image source/alt/caption fields to the editor contract, published the current README as 54 native blocks with six rendered screenshots, preserved it in the deterministic four-post Convex seed, and fixed mobile table/SHA overflow.~~ (2026-08-23; plan: `plans/caelestia-island-suite-blog.md`; evidence: `validation/caelestia-island-suite-blog/`)

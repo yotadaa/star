@@ -11,6 +11,7 @@ const sourceFiles = [
   "README.md",
   "lib/data.js",
   "scripts/publish-caelestia-blog.mjs",
+  "scripts/publish-genbi-rebranding-blog.mjs",
   "scripts/publish-portfolio-readme-blog.mjs",
   "scripts/convex-seed-data.mjs",
   "scripts/build-convex-seed.mjs",
@@ -18,6 +19,13 @@ const sourceFiles = [
   "validation/convex-world-chat/desktop-live.png",
   "validation/manage-world-chat-nala-seo/nala-live/desktop-happy-live.png",
   "validation/manage-world-chat-nala-seo/manage-unlocked/desktop-nala-config.png",
+  "docs/blogs/genbi-rebranding/Pasted image.png",
+  "docs/blogs/genbi-rebranding/Pasted image (2).png",
+  "docs/blogs/genbi-rebranding/Pasted image (3).png",
+  "docs/blogs/genbi-rebranding/Pasted image (4).png",
+  "docs/blogs/genbi-rebranding/Pasted image (6).png",
+  "docs/blogs/genbi-rebranding/Pasted image (7).png",
+  "docs/blogs/genbi-rebranding/Pasted image (8).png",
 ];
 
 function fail(message) {

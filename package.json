@@ -17,6 +17,7 @@
     "convex:migrate:prod": "npm run convex:seed:build && node scripts/import-convex-seed.mjs --prod",
     "blog:publish:caelestia": "node scripts/publish-caelestia-blog.mjs",
     "blog:publish:portfolio": "node scripts/publish-portfolio-readme-blog.mjs",
+    "blog:publish:genbi-rebranding": "node scripts/publish-genbi-rebranding-blog.mjs",
     "convex:typecheck": "tsc --noEmit"
   },
   "dependencies": {
