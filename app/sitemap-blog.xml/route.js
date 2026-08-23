@@ -2,7 +2,8 @@ import { listBlogPosts } from "@/lib/backend/featureStore";
 import { absoluteUrl } from "@/lib/seo";
 import { renderUrlSet, sitemapResponse } from "@/lib/sitemapXml";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function GET() {
   const { posts } = await listBlogPosts({ limit: 100 });
@@ -19,5 +20,7 @@ export async function GET() {
       };
     });
 
-  return sitemapResponse(renderUrlSet(entries));
+  const response = sitemapResponse(renderUrlSet(entries));
+  response.headers.set("Cache-Control", "no-store, max-age=0");
+  return response;
 }
