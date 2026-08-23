@@ -236,6 +236,10 @@ The carousel advances every 3.6 seconds, pauses while pointer/focus interaction 
 ### 5.4 Global progress and feedback
 
 - The top XP bar is scroll-derived, 3 px high, fixed, non-interactive, and layered above the navigation island.
+- A separate 4 px route rail temporarily covers the top edge while an internal
+  pathname is prepared. It is indeterminate rather than a fake percentage,
+  uses a solid gold fill with an aurora pixel cap, and clears after the pathname
+  changes. Reduced motion shows a static full-width band. **[CODE][SHOT]**
 - Toasts are queued with at most one visible at a time, appear above the Nala FAB zone, and use `aria-live="polite"`.
 - The custom cursor appears only on fine pointers. Coarse pointers retain the platform cursor/touch behavior.
 
@@ -258,7 +262,7 @@ Primary references:
 ```mermaid
 flowchart TD
   A["Root layout: Indonesian document + font variables"] --> B["SiteProvider"]
-  B --> C["Global feedback: Toast + XP scroll bar"]
+  B --> C["Global feedback: Toast + scroll XP + route progress"]
   B --> D["Top-left utility bar / Player HUD"]
   B --> E["Centered navigation island"]
   B --> F["Lazy global overlays"]
@@ -280,6 +284,7 @@ flowchart TD
 | World Chat               | Right, top 88 px to bottom 22 px |            320 | Full-height desktop side panel                               |
 | Command palette          | Centered overlay                 |            300 | Functional Cmd/Ctrl-K palette                                |
 | Toast                    | Right, above FAB                 |            280 | Pointer-events disabled; one visible at a time               |
+| Route progress rail      | Top edge while navigating        |            270 | Indeterminate; temporarily covers the scroll rail             |
 | XP scroll bar            | Top edge                         |            260 | Above navigation island                                      |
 | Utility bar / Player HUD | Top-left                         |            210 | Collapses at narrower desktop widths                         |
 | Navigation island        | Top-center                       |            200 | Hidden at ≤800 px                                            |
@@ -1128,6 +1133,7 @@ The following is implementation-derived unless a screenshot is explicitly named.
 - Build side cards are hidden.
 - Multi-column content collapses according to available minimum card widths.
 - XP bar, HUD strip, and fixed overlays require explicit overflow checks.
+- Route progress is validated at 768 px as a fixed 4 px strip with no overflow.
 - Desktop navigation island is hidden at ≤800 px, so an equivalent route-access mechanism must remain available.
 - Data Management moves its status rail above the tab panel and distributes the
   live channel, provider, and model facts across the available width.
@@ -1141,6 +1147,7 @@ The following is implementation-derived unless a screenshot is explicitly named.
 - Custom cursor is disabled through coarse-pointer behavior.
 - Hover-only details require tap/touch equivalents.
 - No new horizontal scrolling is acceptable.
+- Route progress stays within the 375 px viewport and does not create a focus target.
 - Data Management stacks its rail facts and tabs; the back action fills the
   workbench width, controls remain label-first, and long OpenRouter slugs wrap.
 
@@ -1204,6 +1211,8 @@ Use this distinction consistently:
 ### 16.2 Motion
 
 - All loops stop under reduced motion; duration reduction alone is insufficient.
+- Route progress becomes a static full-width pending band under reduced motion;
+  its stepped fill and opacity transitions are removed completely.
 - Revealed content remains visible as its static final state.
 - Scroll behavior must not force smooth animation when reduced motion is requested.
 - Entity interaction, current-location pulse, toast motion, build unlock, and carousel transitions must each be tested.
@@ -1287,6 +1296,7 @@ A change remains faithful to MB · NST only if all applicable statements are tru
 ### Global shell
 
 - [ ] XP bar is 3 px, accurate, non-interactive, and above navigation.
+- [ ] Route progress is indeterminate, non-interactive, above XP, and static under reduced motion.
 - [ ] Navigation and utility controls remain readable across scene and parchment surfaces.
 - [ ] Overlay focus, Escape, outside-click, and focus return are coherent.
 - [ ] At most one right-edge conversation surface dominates at a time.

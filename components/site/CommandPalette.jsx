@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Home, User, FolderGit2, FlaskConical, Mail, Github, Linkedin, GraduationCap, PenLine, Sun } from "lucide-react";
 import { navLinks, socials } from "@/lib/data";
 import { useSite } from "./SiteProvider";
+import { beginRouteProgress } from "./RouteProgressBar";
 
 const NAV_ICONS = { "/": Home, "/about": User, "/projects": FolderGit2, "/research": FlaskConical, "/blog": PenLine, "/contact": Mail };
 const LINK_ICONS = { linkedin: Linkedin, github: Github, scholar: GraduationCap, blog: PenLine };
@@ -13,7 +14,11 @@ export default function CommandPalette() {
   const { paletteOpen, setPaletteOpen, phase, cycleTheme } = useSite();
   const router = useRouter();
 
-  const go = (href) => { setPaletteOpen(false); router.push(href); };
+  const go = (href) => {
+    beginRouteProgress(href);
+    setPaletteOpen(false);
+    router.push(href);
+  };
   const open = (href) => { setPaletteOpen(false); window.open(href, "_blank", "noopener,noreferrer"); };
 
   if (!paletteOpen) return null;

@@ -172,6 +172,49 @@ a {
   box-shadow: 0 0 14px rgba(236, 182, 63, 0.32);
 }
 
+.route-progress-track {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 270;
+  height: 4px;
+  overflow: hidden;
+  background: var(--ink);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  contain: layout paint style;
+  transition: opacity 120ms linear, visibility 0s linear 120ms;
+}
+
+.route-progress-track.is-running,
+.route-progress-track.is-settling {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.route-progress-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gold);
+  transform-origin: left center;
+  transition: transform 260ms steps(12, end);
+}
+
+.route-progress-cap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: clamp(0px, calc(var(--route-progress-position) - 8px), calc(100% - 8px));
+  width: 8px;
+  background: var(--aurora);
+  transition: left 260ms steps(12, end);
+}
+
 .toast-stack {
   position: fixed;
   right: 24px;
@@ -6138,6 +6181,22 @@ footer.site-footer .foot-copy a {
 
   .xp-bar-fill {
     transition: none;
+  }
+
+  .route-progress-track,
+  .route-progress-fill,
+  .route-progress-cap {
+    transition: none !important;
+  }
+
+  .route-progress-track.is-running .route-progress-fill,
+  .route-progress-track.is-settling .route-progress-fill {
+    transform: scaleX(1) !important;
+  }
+
+  .route-progress-track.is-running .route-progress-cap,
+  .route-progress-track.is-settling .route-progress-cap {
+    left: calc(100% - 8px);
   }
 
   .glimpse-slide.active {

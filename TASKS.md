@@ -15,6 +15,8 @@
 
 ## Done
 
+- [x] ~~**Add honest route-transition feedback** - kept the real scroll XP rail and added a distinct indeterminate top-edge navigation rail for internal links, browser history, and command-palette routing, with token-only styling and a static reduced-motion state.~~ (2026-08-23; plan: `plans/route-transition-progress.md`; evidence: `validation/route-transition-progress-2026-08-23/`)
+
 - [x] ~~**Publish the E-Ticket TNKS project review** - published a 30-block Indonesian review grounded in the `struktur3` repository, uploaded four unique captures to Convex Storage, grouped them into two landscape carousels, preserved the eighth deterministic seed post, and validated desktop/mobile plus the existing portrait gallery.~~ (2026-08-23; plan: `plans/tnks-web-booking-blog.md`; evidence: `validation/tnks-web-booking-blog/`)
 
 - [x] ~~**Publish the Stok Toko project review** - published an evidence-based Indonesian review with six Convex Storage images, two grouped carousels, bounded portrait rendering, deterministic seed support, and desktop/mobile evidence.~~ (2026-08-23; plan: `plans/stok-toko-review-blog.md`; evidence: `validation/stok-toko-review-blog/`)

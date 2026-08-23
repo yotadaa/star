@@ -5,6 +5,7 @@ import { createContext, useContext, useState, useEffect, useCallback } from "rea
 import { usePathname } from "next/navigation";
 import TopNav from "./TopNav";
 import UtilityBar from "./UtilityBar";
+import RouteProgressBar from "./RouteProgressBar";
 import Footer from "@/components/Footer";
 import { ToastProvider, XpScrollBar } from "@/components/claude";
 
@@ -61,6 +62,7 @@ export default function SiteProvider({ children }) {
     <SiteCtx.Provider value={{ phase, night, cycleTheme, toggleNight, paletteOpen, setPaletteOpen, playerOpen, setPlayerOpen, playerTab, openPlayerStatus, chatOpen, setChatOpen }}>
       <ToastProvider>
         <XpScrollBar />
+        <RouteProgressBar />
         {!isManageRoute && <UtilityBar />}
         <TopNav />
         {!isManageRoute && paletteOpen && <CommandPalette />}
