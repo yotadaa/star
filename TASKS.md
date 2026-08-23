@@ -15,6 +15,7 @@
 
 ## Done
 
+- [x] ~~**Prevent Home crashes when WebGL is disabled or lost** - capability-gated the R3F renderer, added phase-aware static scenery from the existing local assets, handled runtime context loss without retries, and kept the normal path free of hidden fallback duplicates.~~ (2026-08-23; plan: `plans/hero-webgl-fallback.md`; evidence: `validation/hero-webgl-fallback-2026-08-23/`)
 - [x] ~~**Repair Contact and Research night contrast** - restored Portal Card CTA labels, the locked publication slot, and shared footer copyright with surface-aware fixed/phase foreground roles.~~ (2026-08-23; plan: `plans/contact-research-night-contrast.md`; evidence: `validation/contact-research-night-contrast-2026-08-23/`)
 - [x] ~~**Repair remaining Home night contrast defects** - restored the Hero scroll cue, all Quest Log labels, and the Build Glimpses shell by separating fixed scenic foreground/frame roles from phase-remapped page surfaces.~~ (2026-08-23; plan: `plans/home-night-contrast-audit.md`; evidence: `validation/home-night-contrast-2026-08-23/`)
 - [x] ~~**Repair night-phase Hero copy contrast** - separated the scenic Hero foreground from phase-remapped surface aliases, restoring the full headline and lede in night mode without changing its unboxed composition or light phases.~~ (2026-08-23; plan: `plans/hero-night-copy-contrast.md`; evidence: `validation/hero-night-copy-contrast-2026-08-23/`)

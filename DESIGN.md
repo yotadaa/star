@@ -383,6 +383,8 @@ suggestions, sitemap entries, or other discovery surfaces. **[CODE][SHOT]**
 **Interaction and constraints [CODE][SOURCE]**
 
 - The parallax/WebGL scene and entities are performance-sensitive because “Improve Home performance” remains active in `TASKS.md`.
+- WebGL is a progressive enhancement, not a prerequisite for reading or navigating Home. Before mounting R3F, the client probes WebGL2 with the same renderer attributes. Unsupported/sandboxed browsers receive a phase-aware static composition built from the existing local sun, moon, cloud, mountain, hill, and meadow assets; it occupies the same `.hero-canvas` layer and remains decorative to assistive technology. **[CODE][SHOT]**
+- A direct `webglcontextlost` listener swaps an already-running scene to the same static composition without a retry loop. An outer boundary covers late renderer faults. Development-only `hero-renderer=static` and `hero-renderer=context-loss` query modes provide deterministic visual/transition validation and are ignored by production builds. **[CODE][SOURCE]**
 - Entities respond to deliberate click/tap/keyboard input, not hover.
 - Reduced-motion must preserve a legible final composition with no looping travel.
 - No text or control may rely on the scenic background alone for contrast at every theme phase.

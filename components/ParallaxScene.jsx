@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Component, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
 const ASSETS = {
@@ -10,6 +10,7 @@ const ASSETS = {
   meadow: "/assets/parallax/meadow.png",
   cloud: "/assets/parallax/cloud.png",
   moon: "/assets/parallax/moon.png",
+  sun: "/assets/parallax/sun.png",
 };
 
 const THEMES = {
@@ -477,22 +478,123 @@ function SceneContent({ themeName, pointer, mobile }) {
   );
 }
 
+function canCreateWebGLRenderer() {
+  if (typeof document === "undefined" || typeof window.WebGL2RenderingContext === "undefined") return false;
+
+  const canvas = document.createElement("canvas");
+  let context = null;
+
+  try {
+    context = canvas.getContext("webgl2", {
+      alpha: true,
+      depth: true,
+      stencil: false,
+      antialias: true,
+      premultipliedAlpha: true,
+      preserveDrawingBuffer: false,
+      powerPreference: "high-performance",
+      failIfMajorPerformanceCaveat: false,
+    });
+    return Boolean(context && !context.isContextLost());
+  } catch {
+    return false;
+  } finally {
+    if (context) {
+      canvas.addEventListener("webglcontextlost", (event) => event.preventDefault(), { once: true });
+      context.getExtension("WEBGL_lose_context")?.loseContext();
+    }
+  }
+}
+
+function StaticParallaxScene({ themeName }) {
+  return (
+    <div
+      className="parallax-static-scene"
+      data-phase={themeName}
+      data-renderer="static"
+      data-testid="parallax-static-scene"
+      aria-hidden="true"
+    >
+      <div className="parallax-static-sky" />
+      {themeName === "night" ? (
+        <img className="parallax-static-orb parallax-static-moon" src={ASSETS.moon} alt="" />
+      ) : (
+        <img className="parallax-static-orb parallax-static-sun" src={ASSETS.sun} alt="" />
+      )}
+      <img className="parallax-static-cloud parallax-static-cloud-far" src={ASSETS.cloud} alt="" />
+      <img className="parallax-static-cloud parallax-static-cloud-near" src={ASSETS.cloud} alt="" />
+      <img className="parallax-static-landscape parallax-static-mountains" src={ASSETS.mountains} alt="" />
+      <img className="parallax-static-landscape parallax-static-hills" src={ASSETS.hills} alt="" />
+      <img className="parallax-static-landscape parallax-static-meadow" src={ASSETS.meadow} alt="" />
+      <div className="parallax-static-wash" />
+    </div>
+  );
+}
+
+class WebGLSceneBoundary extends Component {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  render() {
+    if (this.state.failed) return this.props.fallback;
+    return this.props.children;
+  }
+}
+
+function WebGLContextGuard({ onContextLost, simulateContextLoss = false }) {
+  const renderer = useThree((state) => state.gl);
+
+  useEffect(() => {
+    const canvas = renderer?.domElement;
+    if (!canvas) return undefined;
+
+    const handleContextLost = (event) => {
+      event.preventDefault();
+      onContextLost();
+    };
+
+    canvas.addEventListener("webglcontextlost", handleContextLost, { once: true });
+    const diagnosticTimer = simulateContextLoss
+      ? window.setTimeout(() => renderer.getContext().getExtension("WEBGL_lose_context")?.loseContext(), 120)
+      : null;
+
+    return () => {
+      canvas.removeEventListener("webglcontextlost", handleContextLost);
+      if (diagnosticTimer) window.clearTimeout(diagnosticTimer);
+    };
+  }, [onContextLost, renderer, simulateContextLoss]);
+
+  return null;
+}
+
 export default function ParallaxScene({ phase = "morning", night = false }) {
   const pointer = useRef({ x: 0, y: 0 });
-  const [ready, setReady] = useState(false);
+  const diagnosticMode = useRef("auto");
   const [mobile, setMobile] = useState(false);
+  const [rendererMode, setRendererMode] = useState("checking");
   const themeName = phase || (night ? "night" : "morning");
+
+  const showStaticScene = useCallback(() => setRendererMode("static"), []);
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 639px)");
     const apply = () => setMobile(media.matches);
+    diagnosticMode.current = process.env.NODE_ENV !== "production"
+      ? new URLSearchParams(window.location.search).get("hero-renderer") || "auto"
+      : "auto";
+
     apply();
-    setReady(true);
+    setRendererMode(diagnosticMode.current === "static" || !canCreateWebGLRenderer() ? "static" : "webgl");
     media.addEventListener("change", apply);
     return () => media.removeEventListener("change", apply);
   }, []);
 
   useEffect(() => {
+    if (rendererMode !== "webgl") return undefined;
+
     const onScroll = () => {
       if (!mobile) return;
       const h = window.innerHeight || 1;
@@ -513,20 +615,31 @@ export default function ParallaxScene({ phase = "morning", night = false }) {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointermove", onMove);
     };
-  }, [mobile]);
+  }, [mobile, rendererMode]);
 
-  if (!ready) return null;
+  if (rendererMode === "checking") return null;
+
+  const staticScene = <StaticParallaxScene themeName={themeName} />;
+
+  if (rendererMode === "static") return staticScene;
 
   return (
-    <Canvas
-      frameloop="always"
-      dpr={mobile ? [1, 1.5] : [1, 2]}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      camera={{ position: [0, 0, 12], fov: 45, near: 0.1, far: 100 }}
-      style={{ width: "100%", height: "100%" }}
-      data-testid="parallax-canvas"
-    >
-      <SceneContent themeName={themeName} pointer={pointer} mobile={mobile} />
-    </Canvas>
+    <WebGLSceneBoundary fallback={staticScene}>
+      <Canvas
+        frameloop="always"
+        dpr={mobile ? [1, 1.5] : [1, 2]}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        camera={{ position: [0, 0, 12], fov: 45, near: 0.1, far: 100 }}
+        style={{ width: "100%", height: "100%" }}
+        data-renderer="webgl"
+        data-testid="parallax-canvas"
+      >
+        <WebGLContextGuard
+          onContextLost={showStaticScene}
+          simulateContextLoss={diagnosticMode.current === "context-loss"}
+        />
+        <SceneContent themeName={themeName} pointer={pointer} mobile={mobile} />
+      </Canvas>
+    </WebGLSceneBoundary>
   );
 }

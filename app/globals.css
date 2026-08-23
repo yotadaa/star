@@ -1266,6 +1266,191 @@ a.hud-chip:focus-visible {
   z-index: 1;
 }
 
+.parallax-static-scene,
+.parallax-static-sky,
+.parallax-static-wash {
+  position: absolute;
+  inset: 0;
+}
+
+.parallax-static-scene {
+  --static-sky-top: var(--sky-1);
+  --static-sky-mid: var(--sky-3);
+  --static-sky-horizon: var(--sky-6);
+  --static-landscape-tint: none;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.parallax-static-scene[data-phase="noon"] {
+  --static-sky-top: color-mix(in srgb, var(--sky-2) 74%, var(--sky-1));
+  --static-sky-mid: color-mix(in srgb, var(--sky-3) 64%, var(--sky-6));
+  --static-sky-horizon: var(--palette-cream);
+}
+
+.parallax-static-scene[data-phase="sunset"] {
+  --static-sky-top: color-mix(in srgb, var(--palette-ink) 62%, var(--palette-coral-dark));
+  --static-sky-mid: color-mix(in srgb, var(--palette-coral) 72%, var(--palette-gold));
+  --static-sky-horizon: color-mix(in srgb, var(--palette-gold) 66%, var(--sky-6));
+}
+
+.parallax-static-scene[data-phase="night"] {
+  --static-sky-top: color-mix(in srgb, var(--palette-ink) 92%, var(--sky-1));
+  --static-sky-mid: color-mix(in srgb, var(--palette-ink) 78%, var(--sky-1));
+  --static-sky-horizon: color-mix(in srgb, var(--palette-ink) 64%, var(--sky-2));
+  --static-landscape-tint: brightness(.48) saturate(.76) hue-rotate(8deg);
+}
+
+.parallax-static-sky {
+  z-index: -5;
+  background: linear-gradient(180deg, var(--static-sky-top), var(--static-sky-mid) 58%, var(--static-sky-horizon));
+}
+
+.parallax-static-orb,
+.parallax-static-cloud,
+.parallax-static-landscape {
+  position: absolute;
+  display: block;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.parallax-static-orb {
+  z-index: -4;
+  width: clamp(104px, 15vw, 220px);
+  opacity: 0;
+}
+
+.parallax-static-sun {
+  top: 7%;
+  right: 15%;
+}
+
+.parallax-static-moon {
+  top: 9%;
+  right: 17%;
+}
+
+.parallax-static-scene[data-phase="morning"] .parallax-static-sun,
+.parallax-static-scene[data-phase="noon"] .parallax-static-sun,
+.parallax-static-scene[data-phase="sunset"] .parallax-static-sun,
+.parallax-static-scene[data-phase="night"] .parallax-static-moon {
+  opacity: .86;
+}
+
+.parallax-static-scene[data-phase="noon"] .parallax-static-sun {
+  top: 2%;
+  right: 41%;
+}
+
+.parallax-static-scene[data-phase="sunset"] .parallax-static-sun {
+  top: 35%;
+  right: 8%;
+  opacity: .72;
+}
+
+.parallax-static-cloud {
+  z-index: -3;
+  width: clamp(360px, 42vw, 720px);
+  opacity: .52;
+  filter: saturate(.72);
+}
+
+.parallax-static-cloud-far {
+  top: 11%;
+  left: -9%;
+}
+
+.parallax-static-cloud-near {
+  top: 23%;
+  right: -13%;
+  transform: scaleX(-1);
+  opacity: .36;
+}
+
+.parallax-static-scene[data-phase="night"] .parallax-static-cloud {
+  opacity: .12;
+  filter: brightness(.6) saturate(.64);
+}
+
+.parallax-static-landscape {
+  left: 50%;
+  width: max(112vw, 1280px);
+  transform: translateX(-50%);
+  transform-origin: center bottom;
+  filter: var(--static-landscape-tint);
+}
+
+.parallax-static-mountains {
+  z-index: -2;
+  bottom: 3%;
+}
+
+.parallax-static-hills {
+  z-index: -1;
+  bottom: -5%;
+  width: max(108vw, 1240px);
+}
+
+.parallax-static-meadow {
+  z-index: 0;
+  bottom: -13%;
+  width: max(110vw, 1260px);
+}
+
+.parallax-static-wash {
+  z-index: 1;
+  background: color-mix(in srgb, var(--static-sky-top) 8%, transparent);
+}
+
+.parallax-static-scene[data-phase="night"] .parallax-static-wash {
+  background: color-mix(in srgb, var(--palette-ink) 44%, transparent);
+}
+
+@media (max-width: 639px) {
+  .parallax-static-orb {
+    width: clamp(92px, 31vw, 148px);
+  }
+
+  .parallax-static-sun,
+  .parallax-static-moon {
+    right: 8%;
+  }
+
+  .parallax-static-cloud {
+    width: 96vw;
+  }
+
+  .parallax-static-cloud-far {
+    top: 12%;
+    left: -34%;
+  }
+
+  .parallax-static-cloud-near {
+    top: 31%;
+    right: -42%;
+  }
+
+  .parallax-static-landscape {
+    width: max(178vw, 760px);
+  }
+
+  .parallax-static-mountains {
+    bottom: 7%;
+  }
+
+  .parallax-static-hills {
+    bottom: -2%;
+    width: max(166vw, 720px);
+  }
+
+  .parallax-static-meadow {
+    bottom: -8%;
+    width: max(172vw, 740px);
+  }
+}
+
 /* -------- Touchable flying entities -------- */
 .hero-entity-layer {
   position: absolute;
