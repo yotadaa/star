@@ -1666,7 +1666,7 @@ a.hud-chip:focus-visible {
 
 .hero h1 {
   font-size: clamp(2rem, 5vw, 3.3rem);
-  color: var(--cream);
+  color: var(--hero-title-color, var(--cream));
   line-height: 1.08;
   text-shadow: 0 3px 0 rgba(0, 0, 0, 0.22);
   font-weight: 600;
@@ -1674,13 +1674,13 @@ a.hud-chip:focus-visible {
 
 .hero h1 em {
   font-style: italic;
-  color: var(--sky-6);
+  color: var(--hero-emphasis-color, var(--sky-6));
 }
 
 .hero .lede {
   max-width: 52ch;
   margin: 18px auto 0;
-  color: var(--parchment);
+  color: var(--hero-body-color, var(--parchment));
   font-size: 1.02rem;
   line-height: 1.6;
 }
@@ -1694,6 +1694,9 @@ a.hud-chip:focus-visible {
 }
 
 .hero-copy {
+  --hero-title-color: var(--cream);
+  --hero-emphasis-color: var(--sky-6);
+  --hero-body-color: var(--parchment);
   --lore-bg: color-mix(in srgb, var(--cream) 82%, transparent);
   --lore-text: var(--ink);
   --lore-border: var(--sky-6);
@@ -1722,6 +1725,10 @@ a.hud-chip:focus-visible {
 }
 
 .hero-copy[data-hero-phase="night"] {
+  /* Hero copy is foreground over scenery; do not inherit dark surface aliases. */
+  --hero-title-color: var(--palette-cream);
+  --hero-emphasis-color: var(--sky-6);
+  --hero-body-color: var(--palette-parchment);
   --lore-bg: color-mix(in srgb, var(--sky-6) 78%, var(--aurora));
   --lore-text: var(--ink);
   --lore-border: var(--gold);

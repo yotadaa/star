@@ -15,6 +15,7 @@
 
 ## Done
 
+- [x] ~~**Repair night-phase Hero copy contrast** - separated the scenic Hero foreground from phase-remapped surface aliases, restoring the full headline and lede in night mode without changing its unboxed composition or light phases.~~ (2026-08-23; plan: `plans/hero-night-copy-contrast.md`; evidence: `validation/hero-night-copy-contrast-2026-08-23/`)
 - [x] ~~**Repair Blog prose semantics and inline Markdown** - restored native disc/decimal lists, table headers, labelled code, safe relative/external links, emphasis/inline code, and every visible `.md` token across prose and code without raw HTML.~~ (2026-08-23; plan: `plans/blog-reading-theme-engagement.md`; evidence: `validation/blog-reading-theme-engagement-2026-08-23/renderer/`)
 - [x] ~~**Render supported Blog flowcharts as diagrams** - added a bounded, injection-resistant Mermaid-like parser and accessible static SVG for the project-used directions, node shapes, and edges, with honest source fallback.~~ (2026-08-23; evidence: `validation/blog-reading-theme-engagement-2026-08-23/renderer/`)
 - [x] ~~**Add enlarged Blog image preview** - made standalone and carousel images keyboard/click/touch-openable through a native-dialog lightbox with explicit close, backdrop/Escape behavior, focus return, and reduced-motion styling.~~ (2026-08-23; evidence: `validation/blog-reading-theme-engagement-2026-08-23/lightbox/`)
