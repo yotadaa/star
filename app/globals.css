@@ -1805,7 +1805,7 @@ a.hud-chip:focus-visible {
   transform: translateX(-50%);
   font-family: var(--font-pixel), monospace;
   font-size: 10px;
-  color: var(--parchment);
+  color: var(--palette-parchment);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1834,9 +1834,11 @@ a.hud-chip:focus-visible {
 
 /* ================= QUEST LOG STRIP ================= */
 .questlog {
-  background: var(--pine-deep);
-  border-top: 4px solid var(--ink);
-  border-bottom: 4px solid var(--ink);
+  --questlog-frame: var(--palette-ink);
+  --questlog-foreground: var(--palette-cream);
+  background: var(--palette-pine-deep);
+  border-top: 4px solid var(--questlog-frame);
+  border-bottom: 4px solid var(--questlog-frame);
   padding: 18px 24px;
   display: flex;
   justify-content: center;
@@ -1854,11 +1856,11 @@ a.hud-chip:focus-visible {
   justify-content: flex-start;
   padding: 7px 12px;
   border-width: 2px;
-  border-color: color-mix(in srgb, var(--hud-accent, var(--gold)) 70%, var(--cream));
+  border-color: color-mix(in srgb, var(--hud-accent, var(--gold)) 70%, var(--questlog-foreground));
   border-radius: 2px;
   background: rgba(22, 36, 31, 0.44);
-  color: var(--cream);
-  box-shadow: 3px 3px 0 var(--ink), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: var(--questlog-foreground);
+  box-shadow: 3px 3px 0 var(--questlog-frame), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   font-size: 11px;
@@ -1980,10 +1982,13 @@ a.hud-chip:focus-visible {
 
 /* ---- home glimpse previews ---- */
 .glimpse-band {
+  --glimpse-shell-background: var(--palette-pine-deep);
+  --glimpse-shell-foreground: var(--palette-cream);
+  --glimpse-shell-frame: var(--palette-ink);
   position: relative;
   background:
-    linear-gradient(180deg, var(--pine-deep) 0%, var(--ink) 76%, var(--ink) 100%);
-  color: var(--cream);
+    linear-gradient(180deg, var(--glimpse-shell-background) 0%, var(--glimpse-shell-frame) 76%, var(--glimpse-shell-frame) 100%);
+  color: var(--glimpse-shell-foreground);
   overflow-x: clip;
   isolation: isolate;
 }
@@ -1997,7 +2002,7 @@ a.hud-chip:focus-visible {
   height: 120px;
   pointer-events: none;
   z-index: 0;
-  background: linear-gradient(180deg, transparent 0%, var(--pine-deep) 78%, var(--pine-deep) 100%);
+  background: linear-gradient(180deg, transparent 0%, var(--glimpse-shell-background) 78%, var(--glimpse-shell-background) 100%);
 }
 
 .glimpse-band .content {
@@ -2011,11 +2016,11 @@ a.hud-chip:focus-visible {
 }
 
 .glimpse-band .section-head h2 {
-  color: var(--cream);
+  color: var(--glimpse-shell-foreground);
 }
 
 .glimpse-band .section-head p {
-  color: rgba(245, 236, 216, 0.76);
+  color: color-mix(in srgb, var(--glimpse-shell-foreground) 76%, transparent);
 }
 
 .glimpse-slider {
@@ -2042,9 +2047,9 @@ a.hud-chip:focus-visible {
   z-index: var(--slide-z);
   opacity: var(--slide-opacity);
   background: color-mix(in srgb, var(--pine-deep) 84%, var(--cream));
-  border: 2px solid var(--ink);
+  border: 2px solid var(--glimpse-shell-frame);
   border-radius: 8px;
-  box-shadow: 6px 6px 0 var(--ink);
+  box-shadow: 6px 6px 0 var(--glimpse-shell-frame);
   overflow: hidden;
   pointer-events: none;
   transition:
@@ -2060,32 +2065,32 @@ a.hud-chip:focus-visible {
   pointer-events: auto;
   filter: saturate(1) brightness(1);
   border-color: var(--gold);
-  box-shadow: 6px 6px 0 var(--ink);
+  box-shadow: 6px 6px 0 var(--glimpse-shell-frame);
   animation: glimpse-unlock 380ms var(--ease-pixel) both;
 }
 
 @keyframes glimpse-unlock {
   0% {
     border-color: var(--gold);
-    box-shadow: 3px 3px 0 var(--gold), 6px 6px 0 var(--ink);
+    box-shadow: 3px 3px 0 var(--gold), 6px 6px 0 var(--glimpse-shell-frame);
   }
 
   65% {
     border-color: var(--gold);
-    box-shadow: 6px 6px 0 var(--gold), 10px 10px 0 var(--ink);
+    box-shadow: 6px 6px 0 var(--gold), 10px 10px 0 var(--glimpse-shell-frame);
   }
 
   100% {
     border-color: var(--gold);
-    box-shadow: 6px 6px 0 var(--ink);
+    box-shadow: 6px 6px 0 var(--glimpse-shell-frame);
   }
 }
 
 .glimpse-frame {
   position: relative;
   aspect-ratio: 16 / 9;
-  background: var(--ink);
-  border-bottom: 2px solid var(--ink);
+  background: var(--glimpse-shell-frame);
+  border-bottom: 2px solid var(--glimpse-shell-frame);
   overflow: hidden;
 }
 
@@ -2137,9 +2142,9 @@ a.hud-chip:focus-visible {
 }
 
 .glimpse-dot {
-  border: 2px solid color-mix(in srgb, var(--cream) 70%, var(--ink));
+  border: 2px solid color-mix(in srgb, var(--glimpse-shell-foreground) 70%, var(--glimpse-shell-frame));
   background: transparent;
-  color: var(--cream);
+  color: var(--glimpse-shell-foreground);
   cursor: pointer;
 }
 
