@@ -19,6 +19,7 @@
     "blog:publish:portfolio": "node scripts/publish-portfolio-readme-blog.mjs",
     "blog:publish:stok-toko": "node scripts/publish-stok-toko-review-blog.mjs",
     "blog:publish:genbi-rebranding": "node scripts/publish-genbi-rebranding-blog.mjs",
+    "blog:publish:tnks": "node scripts/publish-tnks-web-booking-blog.mjs",
     "convex:typecheck": "tsc --noEmit"
   },
   "dependencies": {

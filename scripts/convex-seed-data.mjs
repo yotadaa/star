@@ -3,6 +3,7 @@ import { caelestiaBlogPayload } from "./publish-caelestia-blog.mjs";
 import { genbiRebrandingBlogPayload } from "./publish-genbi-rebranding-blog.mjs";
 import { portfolioReadmeBlogPayload } from "./publish-portfolio-readme-blog.mjs";
 import { stokTokoReviewBlogPayload } from "./publish-stok-toko-review-blog.mjs";
+import { tnksWebBookingBlogPayload } from "./publish-tnks-web-booking-blog.mjs";
 
 const SHARDS = ["s1", "s2", "s3"];
 
@@ -125,6 +126,11 @@ export function buildSeedTables(data) {
       publishedAt: "2026-08-23",
       ...genbiRebrandingBlogPayload,
     },
+    {
+      id: "blog-e-ticket-tnks-project-review",
+      publishedAt: "2026-08-23",
+      ...tnksWebBookingBlogPayload,
+    },
   ];
   const blogPosts = sourceBlogPosts.map((post, index) => {
     const shard = SHARDS[index % SHARDS.length];
@@ -225,7 +231,7 @@ export function buildSeedTables(data) {
 }
 
 export const expectedSeedCounts = {
-  blogPosts: 7,
+  blogPosts: 8,
   inventoryItems: 14,
   contentEntries: 6,
   contactChannels: 5,

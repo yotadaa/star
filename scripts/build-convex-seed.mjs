@@ -14,6 +14,7 @@ const sourceFiles = [
   "scripts/publish-genbi-rebranding-blog.mjs",
   "scripts/publish-portfolio-readme-blog.mjs",
   "scripts/publish-stok-toko-review-blog.mjs",
+  "scripts/publish-tnks-web-booking-blog.mjs",
   "scripts/convex-seed-data.mjs",
   "scripts/build-convex-seed.mjs",
   "validation/hero-entities-2026-07-30/desktop-sunset.png",
@@ -33,6 +34,10 @@ const sourceFiles = [
   "docs/blogs/genbi-rebranding/Pasted image (6).png",
   "docs/blogs/genbi-rebranding/Pasted image (7).png",
   "docs/blogs/genbi-rebranding/Pasted image (8).png",
+  "docs/blogs/tnks-web-booking/Pasted image.png",
+  "docs/blogs/tnks-web-booking/Pasted image (2).png",
+  "docs/blogs/tnks-web-booking/Pasted image (3).png",
+  "docs/blogs/tnks-web-booking/Pasted image (5).png",
 ];
 
 function fail(message) {

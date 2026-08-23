@@ -1,25 +1,51 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 export default function BlogImageCarousel({ images = [] }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [orientation, setOrientation] = useState("unknown");
+  const imageRef = useRef(null);
   const viewportId = useId();
   const safeIndex = Math.min(activeIndex, Math.max(0, images.length - 1));
   const image = images[safeIndex];
+  const source = String(image?.src || "").trim();
+
+  useEffect(() => {
+    const element = imageRef.current;
+    if (!element) return undefined;
+
+    const syncOrientation = () => {
+      setOrientation(element.naturalWidth >= element.naturalHeight ? "landscape" : "portrait");
+    };
+
+    setOrientation("unknown");
+    if (element.complete && element.naturalWidth > 0) syncOrientation();
+    element.addEventListener("load", syncOrientation);
+
+    return () => element.removeEventListener("load", syncOrientation);
+  }, [source]);
 
   if (!image) return null;
 
-  const source = String(image.src || "").trim();
   const canRender = (source.startsWith("/") && !source.startsWith("//")) || source.startsWith("https://");
   const description = String(image.alt || image.text || "").trim();
 
   return (
-    <section className="blog-image-carousel" aria-label={`Galeri ${images.length} gambar`}>
+    <section
+      className={`blog-image-carousel is-${orientation}`}
+      aria-label={`Galeri ${images.length} gambar`}
+    >
       <div className="blog-image-carousel-viewport" id={viewportId} aria-live="polite">
         <figure>
           {canRender ? (
-            <img src={source} alt={description} loading="lazy" decoding="async" />
+            <img
+              ref={imageRef}
+              src={source}
+              alt={description}
+              loading="lazy"
+              decoding="async"
+            />
           ) : (
             <span className="blog-image-carousel-missing">Gambar tidak tersedia</span>
           )}

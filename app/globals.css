@@ -5244,6 +5244,10 @@ footer.site-footer .foot-copy a {
   margin: 22px auto;
 }
 
+.blog-image-carousel.is-landscape {
+  width: min(100%, 820px);
+}
+
 .blog-image-carousel-viewport {
   overflow: hidden;
   border: 2px solid var(--ink);

@@ -15,6 +15,8 @@
 
 ## Done
 
+- [x] ~~**Publish the E-Ticket TNKS project review** - published a 30-block Indonesian review grounded in the `struktur3` repository, uploaded four unique captures to Convex Storage, grouped them into two landscape carousels, preserved the eighth deterministic seed post, and validated desktop/mobile plus the existing portrait gallery.~~ (2026-08-23; plan: `plans/tnks-web-booking-blog.md`; evidence: `validation/tnks-web-booking-blog/`)
+
 - [x] ~~**Publish the Stok Toko project review** - published an evidence-based Indonesian review with six Convex Storage images, two grouped carousels, bounded portrait rendering, deterministic seed support, and desktop/mobile evidence.~~ (2026-08-23; plan: `plans/stok-toko-review-blog.md`; evidence: `validation/stok-toko-review-blog/`)
 
 - [x] ~~**Publish the GenBI Jambi rebranding project review** - published a 40-block Indonesian review grounded in the supplied repository snapshot, uploaded seven unique PNG captures to Convex Storage, preserved stable asset keys in the six-post deterministic seed, and validated both image galleries on desktop and mobile.~~ (2026-08-23; plan: `plans/genbi-rebranding-blog.md`; evidence: `validation/genbi-rebranding-blog/`)
