@@ -1,4 +1,5 @@
 import { SpriteIcon } from "@/components/claude";
+import { isRenderableBlogImageSource } from "@/lib/blog/featuredImage";
 import BlogImageCarousel from "./BlogImageCarousel";
 
 function groupConsecutiveImages(blocks) {
@@ -62,7 +63,7 @@ export default function BlogPostRenderer({ blocks = [] }) {
         }
         if (block.type === "image") {
           const source = String(block.src || "").trim();
-          const canRender = (source.startsWith("/") && !source.startsWith("//")) || source.startsWith("https://");
+          const canRender = isRenderableBlogImageSource(source);
           const description = String(block.alt || block.text || "").trim();
           return (
             <figure className={`blog-renderer-image${canRender ? " has-image" : ""}`} key={`${block.type}-${index}`}>

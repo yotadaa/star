@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { isRenderableBlogImageSource } from "@/lib/blog/featuredImage";
 
 export default function BlogImageCarousel({ images = [] }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -28,7 +29,7 @@ export default function BlogImageCarousel({ images = [] }) {
 
   if (!image) return null;
 
-  const canRender = (source.startsWith("/") && !source.startsWith("//")) || source.startsWith("https://");
+  const canRender = isRenderableBlogImageSource(source);
   const description = String(image.alt || image.text || "").trim();
 
   return (

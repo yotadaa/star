@@ -4999,13 +4999,32 @@ footer.site-footer .foot-copy a {
 }
 
 .blog-card-cover {
+  position: relative;
   min-height: 138px;
   display: grid;
   place-items: center;
+  overflow: hidden;
   color: var(--cream);
   background: linear-gradient(135deg, var(--pine-deep), var(--aurora-deep));
   border-bottom: 2px solid var(--ink);
   text-decoration: none;
+}
+
+.blog-cover-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.blog-cover-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .blog-card-web .blog-card-cover {
@@ -5105,10 +5124,12 @@ footer.site-footer .foot-copy a {
 }
 
 .blog-row-thumb {
+  position: relative;
   width: 52px;
   height: 52px;
   display: grid;
   place-items: center;
+  overflow: hidden;
   flex-shrink: 0;
   border-radius: 3px;
   background: linear-gradient(135deg, var(--pine-deep), var(--aurora-deep));

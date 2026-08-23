@@ -518,6 +518,13 @@ Their date labels are still CMS-oriented placeholders/pending labels in seed dat
 - Public listing is a Convex query.
 - Slug detail is also a public Convex query.
 - List/grid choice is presentation state, not a database mutation.
+- Grid covers and list thumbnails first honor a valid explicit
+  `featuredImage`/`coverImage` value if a data source supplies one. Otherwise
+  they derive the cover from the first valid image block in stored order. This
+  is presentation-only: the selected block remains in the article body.
+- A post with no renderable image keeps the existing tone panel and document
+  sprite. A failed cover request hides only the image layer, exposing that same
+  fallback instead of a broken-image glyph. **[CODE][SHOT]**
 - Owner editing routes through Auth.js-protected Next.js endpoints and an internal Convex bridge.
 - A local factual fallback exists for selected public reads if Convex is unavailable; fallback content must remain visibly consistent with seeded source data.
 
@@ -757,6 +764,7 @@ The command palette is functional, despite older report uncertainty. Cmd/Ctrl-K 
 | Component       | Visual signature                                         | Content/data role                            | Required states                                         |
 | --------------- | -------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------- |
 | Hard card       | Solid surface, 2 px border, 2–4 px corner, offset shadow | Projects, experience, publication, blog rows | Default, hover/focus, press, mobile                     |
+| Blog cover      | Cropped real image over the existing tone/sprite fallback | Visual identity for a published article       | Explicit source, first-block derived, missing/failed    |
 | Pixel label     | Silkscreen uppercase, spaced letters                     | Kicker, tier, system state                   | Must remain legible at small sizes                      |
 | Rarity tag      | Clipped top-left colored block plus text                 | Real rarity classification                   | Common/rare/epic, never color-only                      |
 | HUD chip        | Compact icon + label/value                               | Real stat/status                             | Static, responsive wrap; decorative icon hidden from AT |
@@ -840,7 +848,13 @@ Indexes:
 - `by_status_and_publishedAt`
 - `by_legacyId`
 
-Public reads return published posts only. Owner/backend functions create, update, or archive. Seeded posts currently lack a confirmed machine publish date, so order/date presentation must not imply precision absent from data. **[CODE][LIVE]**
+Public reads return published posts only. Owner/backend functions create,
+update, or archive. The schema does not currently persist a dedicated featured
+image. The Blog presentation therefore derives a cover from the first valid
+resolved image block unless an upstream record supplies a valid explicit cover
+property. Seeded posts currently lack a confirmed machine publish date, so
+order/date presentation must not imply precision absent from data.
+**[CODE][LIVE]**
 
 #### `worldChatMessages`
 
@@ -1028,7 +1042,7 @@ Convex mutations provide transactional write behavior, so related database updat
 | Player Status inventory grid | Convex `inventoryItems` after fetch                  | Protected inventory route                          | Initially/local-derived content may flash or differ | Split summary/body contract                             |
 | Research stats/publications  | Local portfolio/research data                        | None in current surface                            | Inventory scrolls mirror some publications          | No dedicated Convex publications table                  |
 | Contact portals              | Convex `contactChannels` or local factual fallback   | Public `contactEvents` route                       | Fixed local channels can render                     | Public arbitrary event metadata                         |
-| Blog list/detail             | Convex `blogPosts`                                   | Auth.js route → bridge → internal functions        | Local seeded factual fallback for selected reads    | Seed dates are not all final                            |
+| Blog list/detail             | Convex `blogPosts`                                   | Auth.js route → bridge → internal functions        | Explicit cover, else first valid resolved image block; tone/sprite if none | Derived cover never removes or reorders article blocks; seed dates are not all final |
 | World Chat                   | Reactive Convex public query + resolved parent quote | Authenticated send; owner/backend soft delete       | No polling fallback                                 | Latest 40; deleted parent quote is unavailable          |
 | Nala                         | Session history + locally selected factual tool + plain live OpenRouter completion | Public rate-limited `/api/nala/chat` | Honest retryable error only; no successful template fallback | No durable Convex memory/history; model need not support tool calling |
 | Data Management             | Chat query + Convex `nalaSettings` singleton         | Owner page/API → bridge → internal mutations        | Config read can show explicit warning/default       | Route hidden from discovery and guarded server-side     |
@@ -1325,6 +1339,8 @@ A change remains faithful to MB · NST only if all applicable statements are tru
 - [ ] External navigation remains keyboard/touch accessible.
 - [ ] Contact event payload is minimal.
 - [ ] Blog publish labels match actual stored dates.
+- [ ] Blog cover remains a real source image or the documented tone/sprite
+      fallback; never fabricate a decorative project image.
 - [ ] Empty, loading, backend-offline, and error states are honest.
 
 ### World Chat / Nala / Player
@@ -1364,6 +1380,8 @@ A change remains faithful to MB · NST only if all applicable statements are tru
 - `app/sitemap.js`, `app/robots.js`, `app/manifest.js`, `app/opengraph-image.js`, `app/icon.svg` — crawl, canonical, sharing, and install metadata surfaces.
 - `app/manage/` — owner workbench, route metadata, final server guard, reactive moderation, and Nala configuration UI.
 - `components/` — global shell, route components, overlays, icon system, and client interactions.
+- `lib/blog/featuredImage.js` — shared explicit-cover/first-image resolver and
+  Blog image-source boundary.
 - `lib/data.js`, `lib/playerProgress.js` — local factual portfolio and derived player progression.
 - `convex/schema.ts`, `convex/worldChat.ts`, `convex/nalaSettings.ts`, `convex/bridge.ts` — current reply/moderation relation, Nala config singleton, public queries, internal mutations, and protected bridge.
 - `docs/supabase/schema.sql`, `docs/supabase/README.md` — retired Supabase recovery/audit model.
@@ -1372,6 +1390,10 @@ A change remains faithful to MB · NST only if all applicable statements are tru
 - `docs/screenshots/*.png` — rendered desktop evidence enumerated in §3.
 - `plans/manage-world-chat-nala-seo.md` — executed acceptance criteria and validation record for the 2026-08-23 extension.
 - `validation/manage-world-chat-nala-seo/` — desktop/tablet/mobile/API/crawl evidence named in §3.
+- `plans/blog-featured-image-fallback.md` and
+  `validation/blog-featured-image-2026-08-23/` — derived-cover contract,
+  desktop/mobile measurements, fallback fixtures, and article-preservation
+  evidence.
 
 ### Primary external references
 

@@ -1,11 +1,31 @@
+"use client";
+
 import Link from "next/link";
 import { RarityTag, SpriteIcon } from "@/components/claude";
+import { getBlogFeaturedImage } from "@/lib/blog/featuredImage";
 
 export default function BlogPostCard({ post, canManageBlog = false }) {
+  const featuredImage = getBlogFeaturedImage(post);
+
   return (
     <article className={`blog-card hardcard blog-card-${post.coverTone}`}>
       <Link href={`/blog/${post.slug}`} className="blog-card-cover" aria-label={`Baca ${post.title}`}>
-        <SpriteIcon id="icon-blog-page" size={34} />
+        <span className="blog-cover-fallback" aria-hidden="true">
+          <SpriteIcon id="icon-blog-page" size={34} />
+        </span>
+        {featuredImage && (
+          <img
+            className="blog-cover-image"
+            src={featuredImage.src}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+            onError={(event) => {
+              event.currentTarget.hidden = true;
+            }}
+          />
+        )}
       </Link>
       <div className="blog-card-body">
         <RarityTag rarity="common" label={post.status === "local-preview" ? "LOCAL PREVIEW" : post.status} className="blog-status-tag" />

@@ -15,6 +15,8 @@
 
 ## Done
 
+- [x] ~~**Use the first Blog image as its featured-image fallback** - kept future explicit cover fields authoritative, otherwise derived grid/list covers from the first valid stored image block, preserved the same image in the article body, and retained the tone/icon fallback for missing or failed sources.~~ (2026-08-23; plan: `plans/blog-featured-image-fallback.md`; evidence: `validation/blog-featured-image-2026-08-23/`)
+
 - [x] ~~**Add honest route-transition feedback** - kept the real scroll XP rail and added a distinct indeterminate top-edge navigation rail for internal links, browser history, and command-palette routing, with token-only styling and a static reduced-motion state.~~ (2026-08-23; plan: `plans/route-transition-progress.md`; evidence: `validation/route-transition-progress-2026-08-23/`)
 
 - [x] ~~**Publish the E-Ticket TNKS project review** - published a 30-block Indonesian review grounded in the `struktur3` repository, uploaded four unique captures to Convex Storage, grouped them into two landscape carousels, preserved the eighth deterministic seed post, and validated desktop/mobile plus the existing portrait gallery.~~ (2026-08-23; plan: `plans/tnks-web-booking-blog.md`; evidence: `validation/tnks-web-booking-blog/`)

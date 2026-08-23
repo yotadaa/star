@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { PixelButton, SpriteIcon } from "@/components/claude";
+import { getBlogFeaturedImage } from "@/lib/blog/featuredImage";
 import BlogPostCard from "./BlogPostCard";
 
 function primaryTag(post) {
@@ -93,28 +94,46 @@ export default function BlogPostList({ posts, canManageBlog = false }) {
         </div>
       ) : (
         <div className="blog-list hardcard">
-          {visiblePosts.map((post) => (
-            <article className="blog-row" key={post.id}>
-              <Link href={`/blog/${post.slug}`} className={`blog-row-thumb blog-row-thumb-${post.coverTone || "research"}`} aria-label={`Baca ${post.title}`}>
-                <SpriteIcon id="icon-blog-page" size={18} />
-              </Link>
-              <div className="blog-row-content">
-                <h2><Link href={`/blog/${post.slug}`}>{post.title}</Link></h2>
-                <p>{post.excerpt}</p>
-              </div>
-              <div className="blog-row-meta">{post.readTime} · {primaryTag(post)}</div>
-              {canManageBlog && (
-                <div className="blog-row-actions">
-                  <Link href={`/blog/admin/${post.id}/edit`} aria-label={`Edit ${post.title}`}>
-                    <SpriteIcon id="icon-pencil" size={13} />
-                  </Link>
-                  <button type="button" aria-label={`Archive ${post.title}`} onClick={() => archivePost(post)}>
-                    <SpriteIcon id="icon-trash" size={13} />
-                  </button>
+          {visiblePosts.map((post) => {
+            const featuredImage = getBlogFeaturedImage(post);
+            return (
+              <article className="blog-row" key={post.id}>
+                <Link href={`/blog/${post.slug}`} className={`blog-row-thumb blog-row-thumb-${post.coverTone || "research"}`} aria-label={`Baca ${post.title}`}>
+                  <span className="blog-cover-fallback" aria-hidden="true">
+                    <SpriteIcon id="icon-blog-page" size={18} />
+                  </span>
+                  {featuredImage && (
+                    <img
+                      className="blog-cover-image"
+                      src={featuredImage.src}
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      decoding="async"
+                      onError={(event) => {
+                        event.currentTarget.hidden = true;
+                      }}
+                    />
+                  )}
+                </Link>
+                <div className="blog-row-content">
+                  <h2><Link href={`/blog/${post.slug}`}>{post.title}</Link></h2>
+                  <p>{post.excerpt}</p>
                 </div>
-              )}
-            </article>
-          ))}
+                <div className="blog-row-meta">{post.readTime} · {primaryTag(post)}</div>
+                {canManageBlog && (
+                  <div className="blog-row-actions">
+                    <Link href={`/blog/admin/${post.id}/edit`} aria-label={`Edit ${post.title}`}>
+                      <SpriteIcon id="icon-pencil" size={13} />
+                    </Link>
+                    <button type="button" aria-label={`Archive ${post.title}`} onClick={() => archivePost(post)}>
+                      <SpriteIcon id="icon-trash" size={13} />
+                    </button>
+                  </div>
+                )}
+              </article>
+            );
+          })}
         </div>
       )}
     </section>
