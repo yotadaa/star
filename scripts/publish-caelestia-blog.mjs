@@ -235,9 +235,9 @@ export async function publishCaelestiaBlog() {
   loadLocalEnv();
   validatePayload(caelestiaBlogPayload);
 
-  const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL || process.env.CONVEX_CLOUD_URL;
+  const convexUrl = String(process.env.CONVEX_CLOUD_URL || "").trim().replace(/\/+$/, "");
   const secret = process.env.CONVEX_INTERNAL_API_KEY;
-  if (!convexUrl) throw new Error("NEXT_PUBLIC_CONVEX_URL is not configured");
+  if (!convexUrl) throw new Error("CONVEX_CLOUD_URL is not configured");
   if (!secret) throw new Error("CONVEX_INTERNAL_API_KEY is not configured");
 
   const client = new ConvexHttpClient(convexUrl);

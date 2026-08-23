@@ -242,6 +242,17 @@ JSONL checksums, then imports with `--replace` into `blogPosts`,
 Running it against a database that already contains later edits can overwrite
 those edits.
 
+The portfolio README post uses four Convex Storage files. On a fresh
+deployment, run the idempotent publisher after the seed import:
+
+```bash
+npm run blog:publish:portfolio
+```
+
+The publisher uploads changed binaries, reuses matching SHA-256 records, and
+stores `_storage` references in the image blocks. It does not copy Blog images
+into `public/`.
+
 Production has separate commands so it cannot happen by accident:
 
 ```bash
@@ -314,6 +325,7 @@ npm run convex:bridge:configure      synchronize the development bridge key
 npm run convex:seed:build            generate deterministic JSONL and checksums
 npm run convex:seed:import           replace and audit development seed tables
 npm run convex:migrate               build, replace, and audit the dev seed
+npm run blog:publish:portfolio       upload README images and upsert its Blog post
 npm run convex:bridge:configure:prod synchronize the production bridge key
 npm run convex:migrate:prod          build and replace the production seed
 npm run convex:env:prune-legacy      remove named legacy database env entries

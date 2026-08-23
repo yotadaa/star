@@ -133,7 +133,9 @@ export default function BlockEditorPreview({ post }) {
       sourceHref,
       readTime: post?.readTime ?? "4 min baca",
       coverTone: post?.coverTone ?? "research",
-      blocks: blocks.filter((block) => block.type === "divider" || block.text || block.src || block.rows?.length),
+      blocks: blocks.filter(
+        (block) => block.type === "divider" || block.text || block.src || block.storageId || block.assetKey || block.rows?.length,
+      ),
     };
 
     try {
@@ -277,6 +279,36 @@ export default function BlockEditorPreview({ post }) {
 }
 
 function BlockInput({ block, onChange }) {
+  const [uploadState, setUploadState] = useState({ status: "idle", message: "" });
+
+  async function uploadImage(file) {
+    if (!file) return;
+    setUploadState({ status: "uploading", message: "Uploading to Convex Storage..." });
+    const form = new FormData();
+    form.append("file", file);
+    form.append("metadata", JSON.stringify({ purpose: "blog-image-block" }));
+    try {
+      const response = await fetch("/api/backend/files", {
+        method: "POST",
+        credentials: "same-origin",
+        body: form,
+      });
+      const data = await response.json();
+      if (!response.ok || !data.ok || !data.file?.storage_id || !data.file?.url) {
+        throw new Error(data.message || data.error || "Image upload failed");
+      }
+      onChange({
+        storageId: data.file.storage_id,
+        assetKey: undefined,
+        src: data.file.url,
+        alt: block.alt || file.name,
+      });
+      setUploadState({ status: "uploaded", message: "Stored in Convex" });
+    } catch (error) {
+      setUploadState({ status: "error", message: error.message });
+    }
+  }
+
   if (block.type === "divider") {
     return (
       <div className="writer-divider" role="separator">
@@ -328,11 +360,23 @@ function BlockInput({ block, onChange }) {
           <SpriteIcon id="icon-image" size={18} />
         )}
         <label>
-          Image URL
+          Upload image
+          <input
+            type="file"
+            accept="image/*"
+            disabled={uploadState.status === "uploading"}
+            onChange={(event) => uploadImage(event.target.files?.[0])}
+          />
+        </label>
+        <span className={`writer-image-upload-state ${uploadState.status}`} aria-live="polite">
+          {uploadState.message}
+        </span>
+        <label>
+          External image URL
           <input
             value={block.src || ""}
-            onChange={(event) => onChange({ src: event.target.value })}
-            placeholder="/assets/blog/image.png atau https://..."
+            onChange={(event) => onChange({ src: event.target.value, storageId: undefined, assetKey: undefined })}
+            placeholder="https://..."
             aria-invalid={Boolean(source) && !canPreview}
           />
         </label>

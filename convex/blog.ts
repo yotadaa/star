@@ -1,7 +1,7 @@
 import { v } from "convex/values";
 import type { Doc } from "./_generated/dataModel";
 import { internalMutation, internalQuery, query } from "./_generated/server";
-import type { MutationCtx } from "./_generated/server";
+import type { MutationCtx, QueryCtx } from "./_generated/server";
 import { actorSnapshot, blogInput, publicBlogPost } from "./validators";
 
 function cleanText(value: string | undefined, fallback = "") {
@@ -20,7 +20,42 @@ function cleanTags(value: string[] | undefined) {
   return (value ?? []).map((tag) => cleanText(tag)).filter(Boolean).slice(0, 12);
 }
 
-function toPublic(post: Doc<"blogPosts">) {
+function cleanBlocks(blocks: Doc<"blogPosts">["blocks"] | undefined) {
+  return (blocks ?? []).map((block) => {
+    if (!block.storageId && !block.assetKey) return block;
+    const stored = { ...block };
+    delete stored.src;
+    return stored;
+  });
+}
+
+async function resolveBlocks(
+  ctx: QueryCtx | MutationCtx,
+  blocks: Doc<"blogPosts">["blocks"],
+) {
+  return await Promise.all(
+    blocks.map(async (block) => {
+      const resolved = { ...block };
+      if (block.storageId || block.assetKey) delete resolved.src;
+
+      let storageId = block.storageId;
+      let url = storageId ? await ctx.storage.getUrl(storageId) : null;
+      if (!url && block.assetKey) {
+        const file = await ctx.db
+          .query("files")
+          .withIndex("by_sourceKey", (q) => q.eq("sourceKey", block.assetKey))
+          .unique();
+        storageId = file?.storageId;
+        url = storageId ? await ctx.storage.getUrl(storageId) : null;
+        if (storageId) resolved.storageId = storageId;
+      }
+      if (url) resolved.src = url;
+      return resolved;
+    }),
+  );
+}
+
+async function toPublic(ctx: QueryCtx | MutationCtx, post: Doc<"blogPosts">) {
   return {
     id: post._id,
     slug: post.slug,
@@ -32,7 +67,7 @@ function toPublic(post: Doc<"blogPosts">) {
     readTime: post.readTime,
     coverTone: post.coverTone,
     sourceHref: post.sourceHref,
-    blocks: post.blocks,
+    blocks: await resolveBlocks(ctx, post.blocks),
     updatedAt: post.updatedAt,
   };
 }
@@ -65,7 +100,7 @@ export const listPublished = query({
       .withIndex("by_status_and_publishedAt", (q) => q.eq("status", "published"))
       .order("desc")
       .take(limit);
-    return { posts: rows.map(toPublic), source: "convex" as const, warnings: [] };
+    return { posts: await Promise.all(rows.map((post) => toPublic(ctx, post))), source: "convex" as const, warnings: [] };
   },
 });
 
@@ -77,7 +112,7 @@ export const getPublishedBySlug = query({
       .query("blogPosts")
       .withIndex("by_slug", (q) => q.eq("slug", cleanSlug(args.slug)))
       .unique();
-    return post?.status === "published" ? toPublic(post) : null;
+    return post?.status === "published" ? await toPublic(ctx, post) : null;
   },
 });
 
@@ -87,7 +122,7 @@ export const listAdmin = internalQuery({
   handler: async (ctx, args) => {
     const limit = Math.max(1, Math.min(100, Math.floor(args.limit ?? 48)));
     const rows = await ctx.db.query("blogPosts").order("desc").take(limit);
-    return rows.map(toPublic);
+    return await Promise.all(rows.map((post) => toPublic(ctx, post)));
   },
 });
 
@@ -96,7 +131,7 @@ export const getAdminById = internalQuery({
   returns: v.union(publicBlogPost, v.null()),
   handler: async (ctx, args) => {
     const post = await ctx.db.get(args.id);
-    return post ? toPublic(post) : null;
+    return post ? await toPublic(ctx, post) : null;
   },
 });
 
@@ -120,7 +155,7 @@ export const create = internalMutation({
       readTime: cleanText(args.payload.readTime || args.payload.read_time, "4 min baca"),
       coverTone: cleanText(args.payload.coverTone || args.payload.cover_tone, "research"),
       sourceHref: cleanText(args.payload.sourceHref || args.payload.source_href, "/blog"),
-      blocks: args.payload.blocks ?? [],
+      blocks: cleanBlocks(args.payload.blocks),
       ownerKey: args.actor.key,
       createdAt: now,
       updatedAt: now,
@@ -128,7 +163,7 @@ export const create = internalMutation({
     });
     const post = await ctx.db.get(id);
     if (!post) throw new Error("BLOG_CREATE_FAILED");
-    return toPublic(post);
+    return await toPublic(ctx, post);
   },
 });
 
@@ -152,7 +187,7 @@ export const update = internalMutation({
       coverTone: cleanText(args.payload.coverTone || args.payload.cover_tone, existing.coverTone),
       sourceHref: cleanText(args.payload.sourceHref || args.payload.source_href, existing.sourceHref),
       readTime: cleanText(args.payload.readTime || args.payload.read_time, existing.readTime),
-      blocks: args.payload.blocks ?? existing.blocks,
+      blocks: args.payload.blocks ? cleanBlocks(args.payload.blocks) : existing.blocks,
       ownerKey: args.actor.key,
       publishedAt: status === "published" ? existing.publishedAt ?? now : undefined,
       publishedAtLabel:
@@ -163,6 +198,6 @@ export const update = internalMutation({
       schemaVersion: 1,
     });
     const post = await ctx.db.get(existing._id);
-    return post ? toPublic(post) : null;
+    return post ? await toPublic(ctx, post) : null;
   },
 });

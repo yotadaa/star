@@ -12,13 +12,13 @@ The seed builder only transforms factual repository data:
 
 | Table | Rows in seed |
 |---|---:|
-| `blogPosts` | 3 |
+| `blogPosts` | 5 |
 | `inventoryItems` | 14 |
 | `contentEntries` | 6 |
 | `contactChannels` | 5 |
 
-The verified seed is `convex-seed-v1-e5d4a727b15e`, with content hash
-`e5d4a727b15e728090d5d1624f645345c233c2f0f1b54edc430ba316b32b0bc9`.
+The verified seed is `convex-seed-v1-619099a654b6`, with content hash
+`619099a654b6ff278855e8e3ad9f87d1b015dd787703db17ed6f77ece7d3ed8c`.
 World Chat, contact events, generic records/files, and old Nala conversations
 start empty because no auditable backup exists. New data created after cutover
 is preserved normally.
@@ -32,6 +32,7 @@ part of the replaceable seed. The OpenRouter key is never stored in Convex.
 ```bash
 npm run convex:bridge:configure
 npm run convex:migrate
+npm run blog:publish:portfolio
 npm run convex:typecheck
 npm run build
 ```
@@ -47,6 +48,13 @@ point. It performs these steps in order:
 5. Polls the internal migration audit and fails on count mismatches, duplicate
    business keys, or missing `schemaVersion` values.
 
+The portfolio Blog seed stores stable asset keys, not deployment-specific file
+URLs. `blog:publish:portfolio` uploads the four repository screenshots to the
+selected deployment, stores their `_storage` IDs, and upserts the post. The
+publisher is safe to rerun: an unchanged SHA-256 reuses the existing file.
+The `files` table is outside the replaceable seed, so later content imports can
+resolve the same assets by their indexed keys.
+
 The four seeded tables are deliberately replaceable. Do not run this command
 after allowing production edits to those tables unless the seed strategy has
 first been changed from `--replace` to a reviewed merge/upsert migration.
@@ -60,11 +68,19 @@ At an approved maintenance window:
 npx convex deploy
 npm run convex:bridge:configure:prod
 npm run convex:migrate:prod
+npm run blog:publish:portfolio
 ```
+
+Run the publisher only after `CONVEX_CLOUD_URL` and the server-only
+`CONVEX_INTERNAL_API_KEY` point to the production deployment.
 
 Then configure the production Next.js host with:
 
-- `NEXT_PUBLIC_CONVEX_URL` from the production Convex deployment.
+- `CONVEX_CLOUD_URL` (`.convex.cloud`) from the production deployment. The
+  root server layout passes this public address to `ConvexReactClient`, while
+  server reads and writes use `ConvexHttpClient` directly.
+- `CONVEX_HTTP_URL` (`.convex.site`) for the deployment's HTTP Actions origin.
+  It remains distinct from the cloud URL and is not supplied to either client.
 - The same server-only `CONVEX_INTERNAL_API_KEY` configured by the production
   bridge command.
 - Existing Auth.js values (`AUTH_SECRET`, `AUTH_URL`, Google credentials,

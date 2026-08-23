@@ -38,6 +38,8 @@ export const editorBlock = v.object({
   ),
   text: v.string(),
   rows: v.optional(v.array(v.array(v.string()))),
+  storageId: v.optional(v.id("_storage")),
+  assetKey: v.optional(v.string()),
   src: v.optional(v.string()),
   alt: v.optional(v.string()),
 });
@@ -208,6 +210,8 @@ export const publicRecord = v.object({
 export const publicFile = v.object({
   id: v.string(),
   record_id: v.optional(v.string()),
+  storage_id: v.id("_storage"),
+  source_key: v.optional(v.string()),
   original_name: v.string(),
   content_type: v.string(),
   size_bytes: v.number(),

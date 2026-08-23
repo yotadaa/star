@@ -8,10 +8,16 @@ import { buildSeedTables, expectedSeedCounts } from "./convex-seed-data.mjs";
 const root = process.cwd();
 const outputDir = path.join(root, ".migration", "convex-seed");
 const sourceFiles = [
+  "README.md",
   "lib/data.js",
   "scripts/publish-caelestia-blog.mjs",
+  "scripts/publish-portfolio-readme-blog.mjs",
   "scripts/convex-seed-data.mjs",
   "scripts/build-convex-seed.mjs",
+  "validation/hero-entities-2026-07-30/desktop-sunset.png",
+  "validation/convex-world-chat/desktop-live.png",
+  "validation/manage-world-chat-nala-seo/nala-live/desktop-happy-live.png",
+  "validation/manage-world-chat-nala-seo/manage-unlocked/desktop-nala-config.png",
 ];
 
 function fail(message) {
@@ -30,6 +36,14 @@ function validHref(value) {
   } catch {
     return false;
   }
+}
+
+function validImageSource(value) {
+  return value.startsWith("https://");
+}
+
+function validAssetKey(value) {
+  return /^blog:[a-z0-9-]+:[a-z0-9-]+$/.test(value);
 }
 
 function assertUnique(rows, key, table) {
@@ -54,7 +68,10 @@ function validate(tables) {
       if (!["heading", "paragraph", "quote", "list", "code", "image", "divider", "table", "icon"].includes(block.type)) {
         fail(`blogPosts ${post.slug} has unsupported block type ${block.type}`);
       }
-      if (block.type === "image" && (!block.src?.startsWith("https://") || !block.alt)) {
+      if (
+        block.type === "image"
+        && (!block.alt || (!validAssetKey(block.assetKey || "") && !validImageSource(block.src || "")))
+      ) {
         fail(`blogPosts ${post.slug} has invalid image block`);
       }
       if (block.type === "table" && !block.rows?.length) fail(`blogPosts ${post.slug} has invalid table block`);

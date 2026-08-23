@@ -148,6 +148,7 @@ export default defineSchema({
 
   files: defineTable({
     recordId: v.optional(v.id("records")),
+    sourceKey: v.optional(v.string()),
     storageId: v.id("_storage"),
     originalName: v.string(),
     contentType: v.string(),
@@ -155,7 +156,9 @@ export default defineSchema({
     metadata: v.any(),
     createdAt: v.number(),
     schemaVersion: v.number(),
-  }).index("by_recordId_and_createdAt", ["recordId", "createdAt"]),
+  })
+    .index("by_recordId_and_createdAt", ["recordId", "createdAt"])
+    .index("by_sourceKey", ["sourceKey"]),
 
   seedManifests: defineTable({
     version: v.string(),

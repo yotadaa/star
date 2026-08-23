@@ -90,6 +90,8 @@ type RecordResult = {
 type FileResult = {
   id: string;
   record_id?: string;
+  storage_id: Id<"_storage">;
+  source_key?: string;
   original_name: string;
   content_type: string;
   size_bytes: number;
@@ -336,6 +338,7 @@ export const commitFile = action({
     secret: v.string(),
     storageId: v.id("_storage"),
     recordId: v.optional(v.id("records")),
+    sourceKey: v.optional(v.string()),
     originalName: v.string(),
     contentType: v.string(),
     sizeBytes: v.number(),
@@ -347,7 +350,8 @@ export const commitFile = action({
     requireBridgeSecret(args.secret);
     return await ctx.runMutation(internal.files.commit, {
       storageId: args.storageId,
-      recordId: args.recordId,
+      ...(args.recordId ? { recordId: args.recordId } : {}),
+      ...(args.sourceKey ? { sourceKey: args.sourceKey } : {}),
       originalName: args.originalName,
       contentType: args.contentType,
       sizeBytes: args.sizeBytes,
@@ -363,5 +367,14 @@ export const getFile = action({
   handler: async (ctx, args): Promise<FileResult | null> => {
     requireBridgeSecret(args.secret);
     return await ctx.runQuery(internal.files.getById, { id: args.id });
+  },
+});
+
+export const findFileBySourceKey = action({
+  args: { secret: v.string(), sourceKey: v.string() },
+  returns: v.union(publicFile, v.null()),
+  handler: async (ctx, args): Promise<FileResult | null> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runQuery(internal.files.getBySourceKey, { sourceKey: args.sourceKey });
   },
 });
