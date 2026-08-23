@@ -9,5 +9,6 @@ yarn-error.log*
 .DS_Store
 screenshots
 docs/supabase/database-*.md
+docs/blogs/
 .migration/
 *.tsbuildinfo

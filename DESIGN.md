@@ -107,6 +107,7 @@ Additional current-state evidence:
 | `validation/nala-reliability-2026-08-23/` | Desktop provider failure/retry-in-place, 393 px live navigation answer, 1280 px reflow, and route handoff |
 | `validation/manage-world-chat-nala-seo/manage-locked/` | Anonymous redirect state after the final owner guard |
 | `validation/manage-world-chat-nala-seo/seo/` | Generated 1200 × 630 social card and parsed production-response audit |
+| `validation/blog-reading-theme-engagement-2026-08-23/` | Rich Blog prose/flowchart/lightbox, four application phases, 375 px containment, upvote state, signed-out comments, and browser image-compression proof |
 
 ---
 
@@ -313,7 +314,30 @@ At ≤1100 px the expanded card collapses to its icon/compact trigger. **[CODE][
 
 ### 6.5 Theme phases
 
-The shell stores a `cockpit-phase` preference in local storage and supports morning, noon, sunset, and night phases. This phase system changes environmental presentation rather than changing the information architecture. **[CODE]**
+The shell stores a validated `cockpit-phase` preference in local storage and
+supports morning, noon, sunset, and night. `SiteProvider` mirrors the active
+value to `data-cockpit-phase` on both `<html>` and `.site-main`; every route
+therefore inherits the same phase after navigation and refresh. The phase never
+changes information architecture or content. **[CODE][SHOT]**
+
+The four phases remap semantic aliases rather than introducing a parallel set
+of component colors:
+
+| Phase | Page/surface character | Signal behavior |
+| --- | --- | --- |
+| Morning | Original parchment and dark ink | Aurora is the primary live signal |
+| Noon | Brighter cream/parchment separation | Gold carries the strongest active mark |
+| Sunset | Deeper warm parchment and moss balance | Coral/gold accents become more prominent |
+| Night | Ink/pine page with cream text and dark layered panels | Aurora/gold retain state contrast |
+
+Cards, tables, code, diagrams, forms, footer, filters, fixed shell controls, and
+the private management workbench consume those aliases. The navigation island
+remains a dark cockpit anchor, but its signal colors follow the selected phase.
+The transition is removed under `prefers-reduced-motion: reduce`. Desktop
+captures of all four phases plus a cross-route night capture live in
+`validation/blog-reading-theme-engagement-2026-08-23/themes/`. The first night
+pass exposed cream HUD chips on a cream foreground; the chip mix was remapped
+and re-captured before validation closed. **[CODE][SHOT]**
 
 ### 6.6 Footer
 
@@ -527,6 +551,56 @@ Their date labels are still CMS-oriented placeholders/pending labels in seed dat
   fallback instead of a broken-image glyph. **[CODE][SHOT]**
 - Owner editing routes through Auth.js-protected Next.js endpoints and an internal Convex bridge.
 - A local factual fallback exists for selected public reads if Convex is unavailable; fallback content must remain visibly consistent with seeded source data.
+
+**Long-form reader [CODE][SHOT][WEB]**
+
+- List blocks infer ordered versus unordered source, remove stored list prefixes,
+  and render native `<ol>`/`<ul>` elements with visible decimal/disc markers.
+- Paragraphs, headings, list items, table cells, and captions use a bounded
+  React-node tokenizer for links, emphasis, inline code, and visible `.md`
+  filenames. Code listings highlight `.md` tokens without interpreting the rest
+  of the listing as markup. Relative repository links resolve to the post's
+  GitHub source; unsafe URL schemes remain plain text. No raw HTML path or
+  `dangerouslySetInnerHTML` was added.
+- Table blocks expose a real header row with `<th scope="col">`. Code blocks
+  have visible labels. The stored `flowchart`/`graph` subset renders as an
+  accessible static SVG for LR/RL/TD/TB/BT directions, supported node shapes,
+  and the project's five recorded edge forms. Unsupported syntax falls back to
+  its source plus an honest reason instead of guessing a graph.
+- Standalone and carousel images are labelled buttons. A native `<dialog>`
+  displays the full asset within the viewport and supports close control,
+  backdrop, Escape, and focus return. Reduced-motion removes dialog transforms.
+- Desktop and 375 px checks found no document overflow. At 375 px a wide
+  flowchart scrolls only inside its bounded canvas; the page itself remains
+  fixed to the viewport. **[SHOT]**
+
+**Reader engagement [CODE][LIVE][SHOT]**
+
+- Upvote is account-free and reversible. A random HttpOnly `SameSite=Lax`
+  browser token stays in the Next.js layer; only its SHA-256 digest reaches
+  Convex. One indexed relation per post and a denormalized count change in one
+  transaction. Toggling does not modify the post's content `updatedAt` value.
+- Comments are readable publicly and writable only with an Auth.js session (or
+  the protected backend actor path). Author identity comes from the trusted
+  session, while public rows expose only display name, body, timestamp, and a
+  scoped delete capability. Text is normalized, limited to 800 characters,
+  rendered as escaped text, and guarded by an indexed 15-second cooldown plus a
+  process-local request window.
+- Active comments are the latest bounded 60 rows, returned chronologically for
+  reading. Owner or original author can soft-delete; the mutation verifies both
+  the actor and the post slug. Test votes were toggled back to zero, and test
+  comments were soft-deleted after validation. **[LIVE]**
+
+**Editor image path [CODE][SHOT][WEB]**
+
+JPEG, PNG, and WebP editor files are decoded in the browser with image
+orientation applied. Only images above 2560 px on their longest side are scaled;
+the result uses high-quality canvas smoothing and WebP quality `0.90`. The
+original survives when conversion is unsupported or produces a larger file.
+The server independently enforces a 12 MiB post-compression ceiling and checks
+the JPEG/PNG/WebP magic signature before storage. The browser proof converted a
+3200×1800 PNG from 113.8 KB to a 2560×1440, 22.1 KB WebP; malformed signature,
+SVG, and over-limit probes were rejected before storage. **[CODE][SHOT]**
 
 ### 8.7 Data Management — `/manage`
 
@@ -765,6 +839,10 @@ The command palette is functional, despite older report uncertainty. Cmd/Ctrl-K 
 | --------------- | -------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------- |
 | Hard card       | Solid surface, 2 px border, 2–4 px corner, offset shadow | Projects, experience, publication, blog rows | Default, hover/focus, press, mobile                     |
 | Blog cover      | Cropped real image over the existing tone/sprite fallback | Visual identity for a published article       | Explicit source, first-block derived, missing/failed    |
+| Blog prose      | Editorial rhythm, native markers, ruled tables, labelled code | Long-form structured reading                | Prose/link/code/table, `.md` token, mobile wrap          |
+| Flowchart       | Static token-colored SVG inside a ruled technical figure    | Project architecture and process relations   | Supported graph, accessible summary, explicit fallback  |
+| Image preview   | Hard-framed native dialog over an ink-mixed backdrop         | Inspect source screenshots without leaving article | Open, close, Escape/backdrop, focus return, mobile fit |
+| Reader ledger   | Asymmetric vote counter plus ruled comment field notes       | Real Blog engagement                         | Loading, voted, signed-out, composing, error, delete     |
 | Pixel label     | Silkscreen uppercase, spaced letters                     | Kicker, tier, system state                   | Must remain legible at small sizes                      |
 | Rarity tag      | Clipped top-left colored block plus text                 | Real rarity classification                   | Common/rare/epic, never color-only                      |
 | HUD chip        | Compact icon + label/value                               | Real stat/status                             | Static, responsive wrap; decorative icon hidden from AT |
@@ -787,6 +865,8 @@ The command palette is functional, despite older report uncertainty. Cmd/Ctrl-K 
 - Locked decorative slots must not be focusable.
 - Custom clickable cards need native links/buttons or complete keyboard semantics.
 - Status roles should be reserved for state that can change or needs announcement; static decoration should not spam assistive technology.
+- Article images open from native buttons; their modal uses native dialog semantics, an explicit name, a close button, and focus return.
+- Flowcharts expose both a concise SVG name and a screen-reader relation summary; visual arrows are not the only representation.
 
 ---
 
@@ -841,6 +921,7 @@ Key fields:
 - Taxonomy/presentation: `tags`, `readTime`, `coverTone`, `sourceHref`.
 - Date fields: optional machine `publishedAt` and display `publishedAtLabel`.
 - Ownership/audit: optional `ownerKey`, timestamps, optional schema version.
+- Engagement aggregate: optional numeric `upvoteCount`, defaulted to zero in public output for rows created before this extension.
 
 Indexes:
 
@@ -854,6 +935,33 @@ image. The Blog presentation therefore derives a cover from the first valid
 resolved image block unless an upstream record supplies a valid explicit cover
 property. Seeded posts currently lack a confirmed machine publish date, so
 order/date presentation must not imply precision absent from data.
+**[CODE][LIVE]**
+
+#### `blogVotes`
+
+Purpose: one anonymous-browser support relation per Blog post.
+
+Fields are `postId`, SHA-256 `voterHash`, `createdAt`, and `schemaVersion`.
+The composite `by_postId_and_voterHash` index provides the lookup and uniqueness
+boundary used by the toggle mutation. The raw cookie, account identity, and IP
+address are not stored. Insert/delete plus the aggregate `upvoteCount` patch are
+one Convex transaction, so optimistic-concurrency retries cannot commit half a
+vote. **[CODE][LIVE]**
+
+#### `blogComments`
+
+Purpose: authenticated plain-text discussion beneath a Blog post.
+
+Fields are the `postId` relation, opaque `actorKey` and `authorToken`, public
+`authorName` and `body`, `active | deleted` status, timestamps/deletion actor,
+and `schemaVersion`. Indexes:
+
+- `by_postId_and_status_and_createdAt` for the bounded reactive public list;
+- `by_actorKey_and_createdAt` for the write cooldown.
+
+The public query never returns email, actor key, author token, or deleted text.
+Create and delete enter through bridge-secret actions; deletion then checks the
+server-derived actor and the route's post slug again inside the mutation.
 **[CODE][LIVE]**
 
 #### `worldChatMessages`
@@ -979,9 +1087,19 @@ Purpose: metadata for objects uploaded to Convex file storage.
 
 Key fields: optional linked record ID, Convex `_storage` ID, original name, MIME type, byte size, arbitrary metadata, creation time, schema version.
 
-Index: `by_recordId_and_createdAt`.
+Indexes:
 
-There were zero live file rows. Upload flow uses a short-lived URL, direct storage upload, then a protected commit that can link the file to a record and increment `fileCount`. No matching delete/decrement lifecycle was found in the audited path. See [Convex file upload flow](https://docs.convex.dev/file-storage/upload-files). **[CODE][LIVE][WEB][GAP]**
+- `by_recordId_and_createdAt`
+- `by_sourceKey`
+
+The protected Blog editor now compresses accepted browser images before this
+upload flow and the server checks type, byte limit, and file signature before
+requesting storage. Other protected file purposes retain the generic path.
+Upload uses a short-lived URL, direct storage upload, then a protected commit
+that can link the file to a record and increment `fileCount`. No matching
+delete/decrement lifecycle was found in the audited path. See [Convex file
+upload flow](https://docs.convex.dev/file-storage/upload-files).
+**[CODE][LIVE][WEB][GAP]**
 
 #### `seedManifests`
 
@@ -1000,15 +1118,17 @@ five contact channels. **[CODE][SOURCE]**
 
 | Table               | Live rows | Audit result                                   |
 | ------------------- | --------: | ---------------------------------------------- |
-| `blogPosts`         |         3 | No duplicate seed keys; schema version present |
-| `worldChatMessages` |         1 | Original active public message preserved; test rows soft-deleted |
+| `blogPosts`         |         8 | No duplicate seed keys; schema version present; 5 published |
+| `blogVotes`         |         0 | Reversible validation vote removed              |
+| `blogComments`      |         2 | Both validation rows soft-deleted; 0 active      |
+| `worldChatMessages` |         7 | One active public message; validation rows retained as soft-deleted audit data |
 | `nalaSettings`      |         1 | Persisted enabled singleton; owner-managed model/config          |
 | `inventoryItems`    |        14 | No duplicate seed keys; schema version present |
 | `contentEntries`    |         6 | No duplicate seed keys; schema version present |
 | `contactChannels`   |         5 | Ordered active channel set present             |
 | `contactEvents`     |         0 | Empty                                          |
 | `records`           |         0 | Empty                                          |
-| `files`             |         0 | Empty                                          |
+| `files`             |        21 | Stored Blog evidence assets                    |
 | `seedManifests`     |         1 | Current import manifest present                |
 
 This is a point-in-time audit, not a fixture guarantee. Dynamic counts should be queried, not copied into UI constants. **[LIVE]**
@@ -1017,7 +1137,7 @@ This is a point-in-time audit, not a fixture guarantee. Dynamic counts should be
 
 Seed generation is deterministic and derived from repository facts. The build/import scripts generate records and a manifest with checksums, source file list, commit, and a content hash. This design supports auditability and avoids manually invented counts. **[CODE]**
 
-`nalaSettings`, World Chat rows, and all event/record/file rows are operational
+`nalaSettings`, Blog votes/comments, World Chat rows, and all event/record/file rows are operational
 post-cutover data and are not replaced by the deterministic content seed. Nala
 conversation history is not recoverable and is not represented by a seed or a
 runtime table. **[CODE][SOURCE]**
@@ -1042,13 +1162,15 @@ Convex mutations provide transactional write behavior, so related database updat
 | Player Status inventory grid | Convex `inventoryItems` after fetch                  | Protected inventory route                          | Initially/local-derived content may flash or differ | Split summary/body contract                             |
 | Research stats/publications  | Local portfolio/research data                        | None in current surface                            | Inventory scrolls mirror some publications          | No dedicated Convex publications table                  |
 | Contact portals              | Convex `contactChannels` or local factual fallback   | Public `contactEvents` route                       | Fixed local channels can render                     | Public arbitrary event metadata                         |
-| Blog list/detail             | Convex `blogPosts`                                   | Auth.js route → bridge → internal functions        | Explicit cover, else first valid resolved image block; tone/sprite if none | Derived cover never removes or reorders article blocks; seed dates are not all final |
+| Blog list/detail             | Convex `blogPosts`                                   | Auth.js route → bridge → internal functions        | Explicit cover, else first valid resolved image block; tone/sprite if none | Semantic block renderer supports bounded inline Markdown and flowcharts; seed dates are not all final |
+| Blog upvotes                 | Convex `blogPosts.upvoteCount` + `blogVotes`         | Same-origin Next.js route → bridge → transactional toggle | HttpOnly browser token; numeric zero for old rows | Process-local burst window is not a distributed anti-abuse system |
+| Blog comments                | Reactive active `blogComments` index                 | Auth.js session → same-origin route → bridge → internal mutation | Signed-out readers see login path; latest 60 active rows | Soft-deleted rows remain private audit data |
 | World Chat                   | Reactive Convex public query + resolved parent quote | Authenticated send; owner/backend soft delete       | No polling fallback                                 | Latest 40; deleted parent quote is unavailable          |
 | Nala                         | Session history + locally selected factual tool + plain live OpenRouter completion | Public rate-limited `/api/nala/chat` | Honest retryable error only; no successful template fallback | No durable Convex memory/history; model need not support tool calling |
 | Data Management             | Chat query + Convex `nalaSettings` singleton         | Owner page/API → bridge → internal mutations        | Config read can show explicit warning/default       | Route hidden from discovery and guarded server-side     |
 | SEO discovery               | Local profile facts + published Convex Blog rows     | Build/runtime metadata routes                       | Static public routes survive backend failure; local previews stay excluded | Unknown Blog timestamps omit `lastmod`; never use epoch |
 | Generic records              | Convex `records`                                     | Protected routes                                   | Compatibility abstraction                           | Live set empty                                          |
-| File upload                  | Convex `_storage` + `files`                          | Protected URL generation and commit                | None                                                | Delete/decrement lifecycle unresolved                   |
+| File upload                  | Convex `_storage` + `files`                          | Protected URL generation and commit                | Blog images keep an allowed original when recompression is not beneficial | Blog path validates compression result/type/signature; delete lifecycle unresolved |
 
 ---
 
@@ -1082,6 +1204,11 @@ No secret values are reproduced here. These are configuration-hygiene findings, 
 - Contact event creation is intentionally public but needs documented metadata limits, retention, and abuse controls.
 - World Chat sends are not anonymous public writes in the current route; they require a valid session or backend key.
 - World Chat delete and both Nala-settings methods are owner/backend-only.
+- Blog upvote is an anonymous same-origin toggle keyed by a hashed HttpOnly
+  browser token. Blog comments require a server-derived authenticated actor;
+  author fields in request JSON are ignored. Both routes have bounded
+  process-local request windows, while comments also enforce a transactional
+  indexed cooldown.
 - Nala accepts public chat requests but applies 12 requests per IP per minute and
   a 60-request process-wide ceiling. Both counters reset with process lifecycle
   and do not coordinate globally.
@@ -1161,6 +1288,8 @@ The following is implementation-derived unless a screenshot is explicitly named.
 - Custom cursor is disabled through coarse-pointer behavior.
 - Hover-only details require tap/touch equivalents.
 - No new horizontal scrolling is acceptable.
+- Blog prose, engagement, and image dialogs fit the 375 px page. A wide
+  flowchart may scroll inside its own canvas, never at document level.
 - Route progress stays within the 375 px viewport and does not create a focus target.
 - Data Management stacks its rail facts and tabs; the back action fills the
   workbench width, controls remain label-first, and long OpenRouter slugs wrap.
@@ -1169,7 +1298,9 @@ The following is implementation-derived unless a screenshot is explicitly named.
 
 Before treating this responsive description as visually validated, capture at minimum:
 
-- 375 × 812: every still-unvalidated inner page, navigation substitute, and Player Status. World Chat, Nala, and Data Management now have task-specific 375 px evidence.
+- 375 × 812: every still-unvalidated inner page, navigation substitute, and
+  Player Status. World Chat, Nala, Data Management, and the Blog
+  reader/engagement/lightbox now have task-specific 375 px evidence.
 - 768 × 1024: HUD/status strips, XP bar, Build Glimpses, portal grid, chat coexistence.
 - Reduced-motion equivalents for hero, build unlock, journey marker, toast, and overlay transitions.
 - Keyboard-focus screenshots for primary CTA, filters, tabs, portal cards, chat composer, Nala quick prompts, and close controls.
@@ -1243,7 +1374,9 @@ Use this distinction consistently:
 - Decorative sprite icons, dividers, scenery, rarity ornament when duplicated by text, and locked ornaments use appropriate hidden semantics.
 - Toasts use a polite live region.
 - Changing chat status should avoid repeated noisy announcements.
-- Dialog-like panels need names, clear close mechanisms, and sensible focus return.
+- Dialog-like panels need names, clear close mechanisms, and sensible focus
+  return. Blog image preview satisfies this with native `<dialog>` plus explicit
+  close/backdrop behavior.
 
 ### 16.5 Visual validation contract
 
@@ -1278,7 +1411,7 @@ For any component change, evidence must include:
 | P2 configuration      | A misspelled Convex key residue, optional backend key gap, and legacy Supabase secrets remain locally | Environment audit                         | Remove obsolete local residues after recovery needs are confirmed; keep tracked docs aligned with the pinned owner rule |
 | P2 token drift        | Root `themeColor` uses `#0c1f2b`, outside the documented root palette                           | `app/layout.js`                                 | Map to an approved token/value or document the browser-chrome exception                     |
 | P3 performance        | Home hero/WebGL/parallax work remains an active performance concern                             | `TASKS.md`, hero implementation                 | Benchmark before/after future hero or global fixed-layer changes                            |
-| Evidence gap          | Supplied screenshots contain no mobile/focus/error states; new feature folders cover only World Chat, Nala, Data Management, and SEO | Supplied plus validation inventory | Complete the remaining route and reduced-motion matrix in §14.4                             |
+| Evidence gap          | Supplied screenshots contain no mobile/focus/error states; task folders now cover World Chat, Nala, Data Management, SEO, and Blog reading/engagement/theme states | Supplied plus validation inventory | Complete the remaining route and reduced-motion matrix in §14.4                             |
 
 No item in this table should be silently “fixed” while implementing an unrelated component. Follow the repository’s discover → plan → confirm → implement → validate → log workflow. **[SOURCE]**
 
@@ -1341,6 +1474,16 @@ A change remains faithful to MB · NST only if all applicable statements are tru
 - [ ] Blog publish labels match actual stored dates.
 - [ ] Blog cover remains a real source image or the documented tone/sprite
       fallback; never fabricate a decorative project image.
+- [ ] Lists retain semantic ordered/unordered markers; tables expose column
+      headers; visible `.md` tokens remain highlighted without raw HTML.
+- [ ] Supported flowcharts expose an accessible summary and unsupported syntax
+      retains its source; wide diagrams scroll only inside their figure.
+- [ ] Image preview opens by keyboard/touch/click, closes by explicit control,
+      Escape, and backdrop, then returns focus.
+- [ ] Upvote remains reversible and anonymous at the database layer; comment
+      author identity stays server-derived and deleted text stays private.
+- [ ] Blog image uploads preserve an already-efficient original and reject
+      unsupported MIME/signature/size before storage.
 - [ ] Empty, loading, backend-offline, and error states are honest.
 
 ### World Chat / Nala / Player
@@ -1394,6 +1537,9 @@ A change remains faithful to MB · NST only if all applicable statements are tru
   `validation/blog-featured-image-2026-08-23/` — derived-cover contract,
   desktop/mobile measurements, fallback fixtures, and article-preservation
   evidence.
+- `plans/blog-reading-theme-engagement.md` and
+  `validation/blog-reading-theme-engagement-2026-08-23/` — executed Blog
+  renderer, theme, image-ingestion, upvote, comment, and P0–P4 validation record.
 
 ### Primary external references
 
@@ -1404,6 +1550,10 @@ A change remains faithful to MB · NST only if all applicable statements are tru
 - [Convex indexes](https://docs.convex.dev/database/reading-data/indexes/)
 - [Convex optimistic concurrency and atomicity](https://docs.convex.dev/database/advanced/occ)
 - [Convex file uploads](https://docs.convex.dev/file-storage/upload-files)
+- [Mermaid flowchart syntax](https://mermaid.js.org/syntax/flowchart.html)
+- [MDN `createImageBitmap()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/createImageBitmap)
+- [MDN canvas `toBlob()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob)
+- [MDN `<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog)
 - [OpenRouter chat completions](https://openrouter.ai/docs/api/api-reference/chat/create-a-chat-completion)
 - [OpenRouter errors and debugging](https://openrouter.ai/docs/api_reference/errors-and-debugging)
 - [OpenRouter rate limits](https://openrouter.ai/docs/api_reference/limits)
@@ -1420,6 +1570,6 @@ A change remains faithful to MB · NST only if all applicable statements are tru
 
 ## 21. Audit conclusion
 
-MB · NST already has a distinctive, coherent core: scenic exploration above a warm parchment ledger, expressed through editorial display type, pixel telemetry, hard borders, and real portfolio evidence. The active Convex backend supports reactive public reads, relational World Chat replies, owner-audited soft deletion, and protected server-orchestrated writes. Local repository data still drives player progression and several portfolio surfaces. Nala is live through a configurable OpenRouter model with factual read-only tools, while only its runtime configuration—not conversation history—is persisted.
+MB · NST already has a distinctive, coherent core: scenic exploration above a warm parchment ledger, expressed through editorial display type, pixel telemetry, hard borders, and real portfolio evidence. The active Convex backend supports reactive public reads, relational World Chat replies, transactional Blog votes, authenticated comment moderation, and protected server-orchestrated writes. The Blog reader now preserves document structure, draws bounded architecture diagrams, and lets readers inspect source screenshots without leaving the article. Local repository data still drives player progression and several portfolio surfaces. Nala is live through a configurable OpenRouter model with factual read-only tools, while only its runtime configuration—not conversation history—is persisted.
 
 The most important current design truth is therefore not merely a palette or card style: it is the boundary between **real persisted data**, **real locally derived data**, **live external inference**, and **decorative game framing**. The private workbench makes two of those boundaries operationally legible, and the indexing layer exposes only the public, source-backed portion of the product. Future work should keep sharpening the remaining Player Status, sync-label, Nala-memory, and inventory distinctions without weakening the warm mechanical character or its evidence-first discipline.
