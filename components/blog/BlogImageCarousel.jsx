@@ -2,8 +2,10 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { isRenderableBlogImageSource } from "@/lib/blog/featuredImage";
+import BlogImagePreview from "./BlogImagePreview";
+import BlogInlineText from "./BlogInlineText";
 
-export default function BlogImageCarousel({ images = [] }) {
+export default function BlogImageCarousel({ images = [], sourceHref }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [orientation, setOrientation] = useState("unknown");
   const imageRef = useRef(null);
@@ -13,18 +15,7 @@ export default function BlogImageCarousel({ images = [] }) {
   const source = String(image?.src || "").trim();
 
   useEffect(() => {
-    const element = imageRef.current;
-    if (!element) return undefined;
-
-    const syncOrientation = () => {
-      setOrientation(element.naturalWidth >= element.naturalHeight ? "landscape" : "portrait");
-    };
-
     setOrientation("unknown");
-    if (element.complete && element.naturalWidth > 0) syncOrientation();
-    element.addEventListener("load", syncOrientation);
-
-    return () => element.removeEventListener("load", syncOrientation);
   }, [source]);
 
   if (!image) return null;
@@ -40,17 +31,20 @@ export default function BlogImageCarousel({ images = [] }) {
       <div className="blog-image-carousel-viewport" id={viewportId} aria-live="polite">
         <figure>
           {canRender ? (
-            <img
-              ref={imageRef}
+            <BlogImagePreview
               src={source}
               alt={description}
-              loading="lazy"
-              decoding="async"
+              caption={image.text}
+              imageRef={imageRef}
+              onImageLoad={(event) => {
+                const element = event.currentTarget;
+                setOrientation(element.naturalWidth >= element.naturalHeight ? "landscape" : "portrait");
+              }}
             />
           ) : (
             <span className="blog-image-carousel-missing">Gambar tidak tersedia</span>
           )}
-          {image.text ? <figcaption>{image.text}</figcaption> : null}
+          {image.text ? <figcaption><BlogInlineText baseHref={sourceHref}>{image.text}</BlogInlineText></figcaption> : null}
         </figure>
       </div>
 

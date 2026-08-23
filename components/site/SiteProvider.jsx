@@ -33,6 +33,10 @@ export default function SiteProvider({ children }) {
     if (PHASES.includes(saved)) setPhase(saved);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.dataset.cockpitPhase = phase;
+  }, [phase]);
+
   const cycleTheme = useCallback(() => {
     setPhase((current) => {
       const next = PHASES[(PHASES.indexOf(current) + 1) % PHASES.length];
@@ -69,7 +73,7 @@ export default function SiteProvider({ children }) {
         {!isManageRoute && playerOpen && <PlayerStatusPopup open={playerOpen} initialTab={playerTab} onClose={() => setPlayerOpen(false)} />}
         {!isManageRoute && chatOpen && <WorldChatPanel open={chatOpen} onClose={() => setChatOpen(false)} />}
         {!isManageRoute && <NalaWidget obscured={chatOpen} />}
-        <main className="site-main" id="main">
+        <main className="site-main" id="main" data-cockpit-phase={phase}>
           {children}
         </main>
         {!isManageRoute && <Footer />}

@@ -1,6 +1,9 @@
 import { SpriteIcon } from "@/components/claude";
 import { isRenderableBlogImageSource } from "@/lib/blog/featuredImage";
+import BlogFlowchart from "./BlogFlowchart";
 import BlogImageCarousel from "./BlogImageCarousel";
+import BlogImagePreview from "./BlogImagePreview";
+import BlogInlineText from "./BlogInlineText";
 
 function groupConsecutiveImages(blocks) {
   const grouped = [];
@@ -29,37 +32,58 @@ function groupConsecutiveImages(blocks) {
   return grouped;
 }
 
-export default function BlogPostRenderer({ blocks = [] }) {
+function BlogCodeText({ children }) {
+  return String(children || "").split(/([\w./-]+\.md)\b/gi).map((part, index) => (
+    /\.md$/i.test(part)
+      ? <span className="blog-markdown-file" key={`${part}-${index}`}>{part}</span>
+      : part
+  ));
+}
+
+export default function BlogPostRenderer({ blocks = [], sourceHref }) {
   return (
     <div className="blog-renderer">
       {groupConsecutiveImages(blocks).map((block, index) => {
         if (block.type === "image-carousel") {
-          return <BlogImageCarousel images={block.images} key={`image-carousel-${block.sourceIndex}`} />;
+          return <BlogImageCarousel images={block.images} sourceHref={sourceHref} key={`image-carousel-${block.sourceIndex}`} />;
         }
         if (block.type === "heading") {
-          return <h2 key={`${block.type}-${index}`}>{block.text}</h2>;
+          return <h2 key={`${block.type}-${index}`}><BlogInlineText baseHref={sourceHref}>{block.text}</BlogInlineText></h2>;
         }
         if (block.type === "quote") {
           return (
             <blockquote key={`${block.type}-${index}`}>
               <SpriteIcon id="icon-editor-blocks" size={18} />
-              <span>{block.text}</span>
+              <span><BlogInlineText baseHref={sourceHref}>{block.text}</BlogInlineText></span>
             </blockquote>
           );
         }
         if (block.type === "list") {
+          const items = String(block.text || "")
+            .split(/\n+/)
+            .map((item) => item.trim())
+            .filter(Boolean);
+          const ordered = items.length > 0 && items.every((item) => /^\d+[.)]\s+/.test(item));
+          const List = ordered ? "ol" : "ul";
           return (
-            <ul key={`${block.type}-${index}`}>
-              {String(block.text || "")
-                .split(/\n+/)
-                .map((item) => item.trim())
-                .filter(Boolean)
-                .map((item, itemIndex) => <li key={`${item}-${itemIndex}`}>{item}</li>)}
-            </ul>
+            <List key={`${block.type}-${index}`}>
+              {items.map((item, itemIndex) => {
+                const value = ordered ? item.replace(/^\d+[.)]\s+/, "") : item.replace(/^[-+*]\s+/, "");
+                return <li key={`${item}-${itemIndex}`}><BlogInlineText baseHref={sourceHref}>{value}</BlogInlineText></li>;
+              })}
+            </List>
           );
         }
         if (block.type === "code") {
-          return <pre key={`${block.type}-${index}`}><code>{block.text}</code></pre>;
+          if (/^\s*(?:flowchart|graph)\s+(?:LR|RL|TD|TB|BT)\b/i.test(String(block.text || ""))) {
+            return <BlogFlowchart source={block.text} key={`${block.type}-${index}`} />;
+          }
+          return (
+            <figure className="blog-code-block" key={`${block.type}-${index}`}>
+              <figcaption>Cuplikan kode</figcaption>
+              <pre><code><BlogCodeText>{block.text}</BlogCodeText></code></pre>
+            </figure>
+          );
         }
         if (block.type === "image") {
           const source = String(block.src || "").trim();
@@ -68,16 +92,15 @@ export default function BlogPostRenderer({ blocks = [] }) {
           return (
             <figure className={`blog-renderer-image${canRender ? " has-image" : ""}`} key={`${block.type}-${index}`}>
               {canRender ? (
-                <img
+                <BlogImagePreview
                   src={source}
                   alt={description}
-                  loading="lazy"
-                  decoding="async"
+                  caption={block.text}
                 />
               ) : (
                 <SpriteIcon id="icon-image" size={28} />
               )}
-              {block.text ? <figcaption>{block.text}</figcaption> : null}
+              {block.text ? <figcaption><BlogInlineText baseHref={sourceHref}>{block.text}</BlogInlineText></figcaption> : null}
             </figure>
           );
         }
@@ -88,10 +111,17 @@ export default function BlogPostRenderer({ blocks = [] }) {
           const rows = Array.isArray(block.rows) && block.rows.length ? block.rows : [[block.text || "Kolom 1", "Kolom 2"], ["Isi", "Isi"]];
           return (
             <table className="blog-renderer-table" key={`${block.type}-${index}`}>
+              <thead>
+                <tr>
+                  {rows[0].map((cell, cellIndex) => (
+                    <th scope="col" key={`${cell}-${cellIndex}`}><BlogInlineText baseHref={sourceHref}>{cell}</BlogInlineText></th>
+                  ))}
+                </tr>
+              </thead>
               <tbody>
-                {rows.map((row, rowIndex) => (
-                  <tr key={`row-${rowIndex}`}>
-                    {row.map((cell, cellIndex) => <td key={`${cell}-${cellIndex}`}>{cell}</td>)}
+                {rows.slice(1).map((row, rowIndex) => (
+                  <tr key={`row-${rowIndex + 1}`}>
+                    {row.map((cell, cellIndex) => <td key={`${cell}-${cellIndex}`}><BlogInlineText baseHref={sourceHref}>{cell}</BlogInlineText></td>)}
                   </tr>
                 ))}
               </tbody>
@@ -102,11 +132,11 @@ export default function BlogPostRenderer({ blocks = [] }) {
           return (
             <p className="blog-renderer-iconline" key={`${block.type}-${index}`}>
               <SpriteIcon id="icon-star-level" size={18} />
-              <span>{block.text}</span>
+              <span><BlogInlineText baseHref={sourceHref}>{block.text}</BlogInlineText></span>
             </p>
           );
         }
-        return <p key={`${block.type}-${index}`}>{block.text}</p>;
+        return <p key={`${block.type}-${index}`}><BlogInlineText baseHref={sourceHref}>{block.text}</BlogInlineText></p>;
       })}
     </div>
   );

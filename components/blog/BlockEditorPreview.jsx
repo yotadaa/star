@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import RequireLoginGate from "@/components/auth/RequireLoginGate";
 import { PixelButton, SpriteIcon } from "@/components/claude";
+import { compressBlogImage, formatImageBytes } from "@/lib/blog/compressImage";
 import BlogPostRenderer from "./BlogPostRenderer";
 
 const BLOCK_TYPES = [
@@ -283,11 +284,24 @@ function BlockInput({ block, onChange }) {
 
   async function uploadImage(file) {
     if (!file) return;
-    setUploadState({ status: "uploading", message: "Uploading to Convex Storage..." });
-    const form = new FormData();
-    form.append("file", file);
-    form.append("metadata", JSON.stringify({ purpose: "blog-image-block" }));
+    setUploadState({ status: "uploading", message: "Menyiapkan kompresi berkualitas tinggi..." });
     try {
+      const result = await compressBlogImage(file);
+      const form = new FormData();
+      form.append("file", result.file);
+      form.append("metadata", JSON.stringify({
+        purpose: "blog-image-block",
+        compression: {
+          applied: result.compressed,
+          originalBytes: result.originalBytes,
+          outputBytes: result.outputBytes,
+          originalWidth: result.originalWidth,
+          originalHeight: result.originalHeight,
+          width: result.width,
+          height: result.height,
+        },
+      }));
+      setUploadState({ status: "uploading", message: "Mengunggah hasil ke Convex Storage..." });
       const response = await fetch("/api/backend/files", {
         method: "POST",
         credentials: "same-origin",
@@ -303,7 +317,13 @@ function BlockInput({ block, onChange }) {
         src: data.file.url,
         alt: block.alt || file.name,
       });
-      setUploadState({ status: "uploaded", message: "Stored in Convex" });
+      const savings = result.originalBytes - result.outputBytes;
+      setUploadState({
+        status: "uploaded",
+        message: result.compressed
+          ? `Tersimpan ${formatImageBytes(result.outputBytes)} · hemat ${formatImageBytes(savings)} · ${result.width}×${result.height}px`
+          : `Tersimpan asli ${formatImageBytes(result.outputBytes)} · ${result.reason}`,
+      });
     } catch (error) {
       setUploadState({ status: "error", message: error.message });
     }
@@ -363,7 +383,7 @@ function BlockInput({ block, onChange }) {
           Upload image
           <input
             type="file"
-            accept="image/*"
+            accept="image/jpeg,image/png,image/webp"
             disabled={uploadState.status === "uploading"}
             onChange={(event) => uploadImage(event.target.files?.[0])}
           />

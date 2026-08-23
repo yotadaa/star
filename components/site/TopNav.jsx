@@ -42,7 +42,7 @@ export default function TopNav() {
           ))}
         </div>
 
-        <button type="button" className="island-toggle" onClick={cycleTheme} aria-label={label} title={label} data-testid="daynight-toggle">
+        <button type="button" className="island-toggle" onClick={cycleTheme} aria-label={`${label}. Tema aplikasi saat ini: ${phase}.`} title={label} data-phase={phase} data-testid="daynight-toggle">
           <Icon size={16} />
         </button>
         <button
