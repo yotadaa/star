@@ -134,7 +134,7 @@ same security and data providers but uses its own workbench layout.
 | --- | --- | --- |
 | Repository | Profile, curated projects, research, experience, achievements, initial Blog content, and player rules | Versioned with Git |
 | Browser | Open panels, filters, temporary assistant history, and interaction state | Current browser session or local UI storage |
-| Convex | Blog posts, World Chat, Nala settings, inventory, content, contact data, records, files, and migration manifests | Deployment database |
+| Convex | Blog posts, votes, comments, World Chat, Nala settings, inventory, content, contact data, records, files, and migration manifests | Deployment database |
 | Next.js server | Auth checks, owner guards, secret-bearing bridge calls, OpenRouter requests, and GitHub proxying | Per request |
 | External services | Google identity, OpenRouter completions, and GitHub activity | Owned by each provider |
 
@@ -144,9 +144,13 @@ not import a Supabase client.
 
 ### The Convex schema
 
-[`convex/schema.ts`](convex/schema.ts) defines ten tables:
+[`convex/schema.ts`](convex/schema.ts) defines twelve tables:
 
 - `blogPosts` stores drafts and published posts as structured blocks.
+- `blogVotes` stores one hashed-browser vote relation per post; raw browser
+  tokens and IP addresses never enter Convex.
+- `blogComments` stores authenticated plain-text comments and soft-deletion
+  audit fields without publishing email addresses or actor keys.
 - `worldChatMessages` stores messages, reply links, and deletion audit fields.
 - `nalaSettings` stores one owner-managed assistant configuration, never its
   provider key.

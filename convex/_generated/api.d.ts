@@ -9,6 +9,7 @@
  */
 
 import type * as blog from "../blog.js";
+import type * as blogEngagement from "../blogEngagement.js";
 import type * as bridge from "../bridge.js";
 import type * as contact from "../contact.js";
 import type * as content from "../content.js";
@@ -29,6 +30,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   blog: typeof blog;
+  blogEngagement: typeof blogEngagement;
   bridge: typeof bridge;
   contact: typeof contact;
   content: typeof content;

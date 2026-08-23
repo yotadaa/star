@@ -120,7 +120,7 @@ export default function BlogPostList({ posts, canManageBlog = false }) {
                   <h2><Link href={`/blog/${post.slug}`}>{post.title}</Link></h2>
                   <p>{post.excerpt}</p>
                 </div>
-                <div className="blog-row-meta">{post.readTime} · {primaryTag(post)}</div>
+                <div className="blog-row-meta">{post.readTime} · {primaryTag(post)} · {Math.max(0, Number(post.upvoteCount || 0))} dukungan</div>
                 {canManageBlog && (
                   <div className="blog-row-actions">
                     <Link href={`/blog/admin/${post.id}/edit`} aria-label={`Edit ${post.title}`}>

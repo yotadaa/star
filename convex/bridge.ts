@@ -7,6 +7,7 @@ import type { Id } from "./_generated/dataModel";
 import { action } from "./_generated/server";
 import {
   actorSnapshot,
+  blogVoteState,
   blogInput,
   contactChannelInput,
   contactEventInput,
@@ -14,6 +15,7 @@ import {
   inventoryInput,
   nalaSettingsInput,
   publicBlogPost,
+  publicBlogComment,
   publicChatMessage,
   publicContactChannel,
   publicContentEntry,
@@ -43,8 +45,11 @@ type BlogPost = {
   coverTone: string;
   sourceHref: string;
   blocks: EditorBlock[];
+  upvoteCount: number;
   updatedAt: number;
 };
+type BlogVoteState = { count: number; voted: boolean };
+type BlogComment = { id: string; authorName: string; body: string; createdAt: string; canDelete: boolean };
 type ChatMessage = {
   id: string;
   authorName: string;
@@ -106,6 +111,8 @@ type MigrationStatus = {
   contentEntries: TableAudit;
   contactChannels: TableAudit;
   worldChatMessages: number;
+  blogVotes: number;
+  blogComments: number;
   contactEvents: number;
   records: number;
   files: number;
@@ -123,6 +130,8 @@ const migrationStatus = v.object({
   contentEntries: tableAudit,
   contactChannels: tableAudit,
   worldChatMessages: v.number(),
+  blogVotes: v.number(),
+  blogComments: v.number(),
   contactEvents: v.number(),
   records: v.number(),
   files: v.number(),
@@ -181,6 +190,63 @@ export const updateBlog = action({
   handler: async (ctx, args): Promise<BlogPost | null> => {
     requireBridgeSecret(args.secret);
     return await ctx.runMutation(internal.blog.update, { id: args.id, payload: args.payload, actor: args.actor });
+  },
+});
+
+export const getBlogVoteState = action({
+  args: { secret: v.string(), slug: v.string(), voterHash: v.string() },
+  returns: blogVoteState,
+  handler: async (ctx, args): Promise<BlogVoteState> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runQuery(internal.blogEngagement.getVoteState, {
+      slug: args.slug,
+      voterHash: args.voterHash,
+    });
+  },
+});
+
+export const toggleBlogVote = action({
+  args: { secret: v.string(), slug: v.string(), voterHash: v.string() },
+  returns: blogVoteState,
+  handler: async (ctx, args): Promise<BlogVoteState> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.blogEngagement.toggleVote, {
+      slug: args.slug,
+      voterHash: args.voterHash,
+    });
+  },
+});
+
+export const createBlogComment = action({
+  args: {
+    secret: v.string(),
+    slug: v.string(),
+    body: v.string(),
+    authorToken: v.string(),
+    actor: actorSnapshot,
+  },
+  returns: publicBlogComment,
+  handler: async (ctx, args): Promise<BlogComment> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.blogEngagement.createComment, {
+      slug: args.slug,
+      body: args.body,
+      authorToken: args.authorToken,
+      actor: args.actor,
+    });
+  },
+});
+
+export const deleteBlogComment = action({
+  args: { secret: v.string(), slug: v.string(), id: v.string(), actor: actorSnapshot },
+  returns: v.boolean(),
+  handler: async (ctx, args): Promise<boolean> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.blogEngagement.softDeleteComment, {
+      slug: args.slug,
+      id: args.id,
+      actor: args.actor,
+    });
   },
 });
 

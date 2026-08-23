@@ -10,6 +10,7 @@ export const contentStatus = v.union(v.literal("public"), v.literal("private"));
 export const inventoryStatus = v.union(v.literal("unlocked"), v.literal("hidden"));
 export const recordVisibility = v.union(v.literal("public"), v.literal("private"));
 export const chatStatus = v.union(v.literal("active"), v.literal("deleted"));
+export const blogCommentStatus = v.union(v.literal("active"), v.literal("deleted"));
 export const actorRole = v.union(
   v.literal("owner"),
   v.literal("visitor"),
@@ -145,7 +146,21 @@ export const publicBlogPost = v.object({
   coverTone: v.string(),
   sourceHref: v.string(),
   blocks: v.array(editorBlock),
+  upvoteCount: v.number(),
   updatedAt: v.number(),
+});
+
+export const publicBlogComment = v.object({
+  id: v.string(),
+  authorName: v.string(),
+  body: v.string(),
+  createdAt: v.string(),
+  canDelete: v.boolean(),
+});
+
+export const blogVoteState = v.object({
+  count: v.number(),
+  voted: v.boolean(),
 });
 
 export const publicChatMessage = v.object({

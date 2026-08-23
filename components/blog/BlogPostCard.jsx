@@ -41,6 +41,7 @@ export default function BlogPostCard({ post, canManageBlog = false }) {
         <div className="blog-card-meta">
           <span>{post.publishedAt}</span>
           <span>{post.readTime}</span>
+          <span>{Math.max(0, Number(post.upvoteCount || 0))} dukungan</span>
         </div>
         <div className="blog-card-actions">
           <Link href={`/blog/${post.slug}`}>Baca</Link>

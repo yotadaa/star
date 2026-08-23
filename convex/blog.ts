@@ -68,6 +68,7 @@ async function toPublic(ctx: QueryCtx | MutationCtx, post: Doc<"blogPosts">) {
     coverTone: post.coverTone,
     sourceHref: post.sourceHref,
     blocks: await resolveBlocks(ctx, post.blocks),
+    upvoteCount: Math.max(0, Math.floor(post.upvoteCount ?? 0)),
     updatedAt: post.updatedAt,
   };
 }

@@ -2,6 +2,7 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 import {
   actorRole,
+  blogCommentStatus,
   blogStatus,
   chatStatus,
   contentStatus,
@@ -28,6 +29,7 @@ export default defineSchema({
     sourceHref: v.string(),
     blocks: v.array(editorBlock),
     ownerKey: v.optional(v.string()),
+    upvoteCount: v.optional(v.number()),
     createdAt: v.number(),
     updatedAt: v.number(),
     schemaVersion: v.number(),
@@ -35,6 +37,28 @@ export default defineSchema({
     .index("by_slug", ["slug"])
     .index("by_status_and_publishedAt", ["status", "publishedAt"])
     .index("by_legacyId", ["legacyId"]),
+
+  blogVotes: defineTable({
+    postId: v.id("blogPosts"),
+    voterHash: v.string(),
+    createdAt: v.number(),
+    schemaVersion: v.number(),
+  }).index("by_postId_and_voterHash", ["postId", "voterHash"]),
+
+  blogComments: defineTable({
+    postId: v.id("blogPosts"),
+    actorKey: v.string(),
+    authorToken: v.string(),
+    authorName: v.string(),
+    body: v.string(),
+    status: blogCommentStatus,
+    createdAt: v.number(),
+    deletedAt: v.optional(v.number()),
+    deletedByKey: v.optional(v.string()),
+    schemaVersion: v.number(),
+  })
+    .index("by_postId_and_status_and_createdAt", ["postId", "status", "createdAt"])
+    .index("by_actorKey_and_createdAt", ["actorKey", "createdAt"]),
 
   worldChatMessages: defineTable({
     actorKey: v.string(),

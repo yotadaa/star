@@ -26,19 +26,23 @@ export const seedStatus = internalQuery({
     contentEntries: tableAudit,
     contactChannels: tableAudit,
     worldChatMessages: v.number(),
+    blogVotes: v.number(),
+    blogComments: v.number(),
     contactEvents: v.number(),
     records: v.number(),
     files: v.number(),
     seedManifests: v.number(),
   }),
   handler: async (ctx) => {
-    const [blogPosts, inventoryItems, contentEntries, contactChannels, worldChatMessages, contactEvents, records, files, seedManifests] =
+    const [blogPosts, inventoryItems, contentEntries, contactChannels, worldChatMessages, blogVotes, blogComments, contactEvents, records, files, seedManifests] =
       await Promise.all([
         ctx.db.query("blogPosts").take(201),
         ctx.db.query("inventoryItems").take(201),
         ctx.db.query("contentEntries").take(201),
         ctx.db.query("contactChannels").take(201),
         ctx.db.query("worldChatMessages").take(201),
+        ctx.db.query("blogVotes").take(201),
+        ctx.db.query("blogComments").take(201),
         ctx.db.query("contactEvents").take(201),
         ctx.db.query("records").take(201),
         ctx.db.query("files").take(201),
@@ -53,6 +57,8 @@ export const seedStatus = internalQuery({
       contentEntries: auditRows(contentEntries, (row) => row.entryKey),
       contactChannels: auditRows(contactChannels, (row) => row.channelKey),
       worldChatMessages: worldChatMessages.length,
+      blogVotes: blogVotes.length,
+      blogComments: blogComments.length,
       contactEvents: contactEvents.length,
       records: records.length,
       files: files.length,
