@@ -2475,8 +2475,8 @@ a.hud-chip:focus-visible {
   justify-content: center;
   gap: 10px;
   padding: 24px;
-  border: 2px dashed rgba(22, 36, 31, 0.42);
-  color: rgba(22, 36, 31, 0.56);
+  border: 2px dashed color-mix(in srgb, var(--ink) 48%, transparent);
+  color: color-mix(in srgb, var(--ink) 78%, transparent);
   background: color-mix(in srgb, var(--cream) 28%, transparent);
   font-family: var(--font-pixel), monospace;
   font-size: 11px;
@@ -2529,7 +2529,7 @@ footer.site-footer .foot-links a:hover {
 }
 
 footer.site-footer .foot-copy {
-  color: var(--ink-soft);
+  color: color-mix(in srgb, var(--phase-footer-ink) 72%, transparent);
   letter-spacing: 0.05em;
 }
 
@@ -3488,7 +3488,7 @@ footer.site-footer .foot-copy a {
   font-family: var(--font-pixel);
   font-size: 10px;
   background: rgba(255, 255, 255, 0.9);
-  color: var(--ink);
+  color: var(--palette-ink);
   padding: 8px 12px;
   border-radius: 999px;
   width: max-content;
