@@ -5232,9 +5232,125 @@ footer.site-footer .foot-copy a {
 
 .blog-renderer-image.has-image img {
   display: block;
-  width: 100%;
+  width: auto;
   max-width: 100%;
+  max-height: min(68vh, 640px);
   height: auto;
+  margin-inline: auto;
+}
+
+.blog-image-carousel {
+  width: min(100%, 460px);
+  margin: 22px auto;
+}
+
+.blog-image-carousel-viewport {
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  background: var(--cream);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.blog-image-carousel figure {
+  margin: 0;
+}
+
+.blog-image-carousel img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: min(68vh, 640px);
+  height: auto;
+  margin-inline: auto;
+}
+
+.blog-image-carousel figcaption {
+  padding: 10px 12px;
+  color: var(--ink-soft);
+  font-size: .88rem;
+  line-height: 1.5;
+}
+
+.blog-image-carousel-missing {
+  display: grid;
+  min-height: 220px;
+  place-items: center;
+  color: var(--ink-soft);
+}
+
+.blog-image-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.blog-image-carousel-controls button {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+}
+
+.blog-image-carousel-controls button:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.blog-image-carousel-controls button:focus-visible,
+.blog-image-carousel-dots button:focus-visible {
+  outline: 2px dashed var(--gold);
+  outline-offset: 3px;
+}
+
+.blog-image-carousel-controls button:disabled {
+  cursor: not-allowed;
+  opacity: .38;
+}
+
+.blog-image-carousel-count {
+  min-width: 58px;
+  color: var(--ink-soft);
+  text-align: center;
+  font-family: var(--font-pixel), monospace;
+  font-size: .7rem;
+}
+
+.blog-image-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.blog-image-carousel-dots button {
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  border: 1.5px solid var(--ink);
+  border-radius: 1px;
+  background: var(--cream);
+  cursor: pointer;
+}
+
+.blog-image-carousel-dots button.is-active {
+  background: var(--gold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-image-carousel-controls button {
+    transition: none;
+  }
 }
 
 .blog-renderer-image.has-image figcaption {

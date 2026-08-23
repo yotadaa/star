@@ -1,9 +1,40 @@
 import { SpriteIcon } from "@/components/claude";
+import BlogImageCarousel from "./BlogImageCarousel";
+
+function groupConsecutiveImages(blocks) {
+  const grouped = [];
+  let index = 0;
+
+  while (index < blocks.length) {
+    if (blocks[index]?.type !== "image") {
+      grouped.push({ ...blocks[index], sourceIndex: index });
+      index += 1;
+      continue;
+    }
+
+    const startIndex = index;
+    const images = [];
+    while (index < blocks.length && blocks[index]?.type === "image") {
+      images.push(blocks[index]);
+      index += 1;
+    }
+    grouped.push(
+      images.length > 1
+        ? { type: "image-carousel", images, sourceIndex: startIndex }
+        : { ...images[0], sourceIndex: startIndex },
+    );
+  }
+
+  return grouped;
+}
 
 export default function BlogPostRenderer({ blocks = [] }) {
   return (
     <div className="blog-renderer">
-      {blocks.map((block, index) => {
+      {groupConsecutiveImages(blocks).map((block, index) => {
+        if (block.type === "image-carousel") {
+          return <BlogImageCarousel images={block.images} key={`image-carousel-${block.sourceIndex}`} />;
+        }
         if (block.type === "heading") {
           return <h2 key={`${block.type}-${index}`}>{block.text}</h2>;
         }

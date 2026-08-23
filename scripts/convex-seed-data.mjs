@@ -2,6 +2,7 @@ import crypto from "node:crypto";
 import { caelestiaBlogPayload } from "./publish-caelestia-blog.mjs";
 import { genbiRebrandingBlogPayload } from "./publish-genbi-rebranding-blog.mjs";
 import { portfolioReadmeBlogPayload } from "./publish-portfolio-readme-blog.mjs";
+import { stokTokoReviewBlogPayload } from "./publish-stok-toko-review-blog.mjs";
 
 const SHARDS = ["s1", "s2", "s3"];
 
@@ -115,6 +116,11 @@ export function buildSeedTables(data) {
       ...portfolioReadmeBlogPayload,
     },
     {
+      id: "blog-stok-toko-project-review",
+      publishedAt: "2026-08-23",
+      ...stokTokoReviewBlogPayload,
+    },
+    {
       id: "blog-genbi-rebranding",
       publishedAt: "2026-08-23",
       ...genbiRebrandingBlogPayload,
@@ -219,7 +225,7 @@ export function buildSeedTables(data) {
 }
 
 export const expectedSeedCounts = {
-  blogPosts: 6,
+  blogPosts: 7,
   inventoryItems: 14,
   contentEntries: 6,
   contactChannels: 5,

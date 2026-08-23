@@ -15,6 +15,8 @@
 
 ## Done
 
+- [x] ~~**Publish the Stok Toko project review** - published an evidence-based Indonesian review with six Convex Storage images, two grouped carousels, bounded portrait rendering, deterministic seed support, and desktop/mobile evidence.~~ (2026-08-23; plan: `plans/stok-toko-review-blog.md`; evidence: `validation/stok-toko-review-blog/`)
+
 - [x] ~~**Publish the GenBI Jambi rebranding project review** - published a 40-block Indonesian review grounded in the supplied repository snapshot, uploaded seven unique PNG captures to Convex Storage, preserved stable asset keys in the six-post deterministic seed, and validated both image galleries on desktop and mobile.~~ (2026-08-23; plan: `plans/genbi-rebranding-blog.md`; evidence: `validation/genbi-rebranding-blog/`)
 - [x] ~~**Make the production sitemap independently fetchable by Google** - replaced the database-coupled single sitemap with a static sitemap index, a static public-pages sitemap, and an isolated Blog sitemap; emitted explicit XML headers and kept `robots.txt` pointed at the stable index.~~ (2026-08-23; evidence: `validation/sitemap-2026-08-23/`)
 - [x] ~~**Publish the portfolio README, store its images in Convex, and repair the renamed environment boundary** - published 95 native blocks, uploaded four checksum-deduplicated screenshots to Convex Storage, persisted storage IDs plus indexed asset keys, added protected image upload support to the block editor, and moved both server and reactive clients to the normalized `CONVEX_CLOUD_URL` contract while keeping the HTTP Actions origin separate.~~ (2026-08-23; plan: `plans/portfolio-readme-blog.md`; evidence: `validation/mukhtadas-portfolio-blog/`)
