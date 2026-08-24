@@ -27,8 +27,8 @@ export default function JourneyPath({ embedded = false }) {
       <div className="content">
         <div className="section-head">
           <span className="pixel-label">// Journey Log</span>
-          <h2>Perjalanan riset &amp; akademik</h2>
-          <p>Bukan CV datar - ini level path dari titik mulai sampai posisi sekarang.</p>
+          <h2>Research and academic journey</h2>
+          <p>A level path from the starting point to the current chapter.</p>
         </div>
         <Path />
       </div>

@@ -26,7 +26,7 @@ export default function BlogImageCarousel({ images = [], sourceHref }) {
   return (
     <section
       className={`blog-image-carousel is-${orientation}`}
-      aria-label={`Galeri ${images.length} gambar`}
+      aria-label={`${images.length}-image gallery`}
     >
       <div className="blog-image-carousel-viewport" id={viewportId} aria-live="polite">
         <figure>
@@ -42,7 +42,7 @@ export default function BlogImageCarousel({ images = [], sourceHref }) {
               }}
             />
           ) : (
-            <span className="blog-image-carousel-missing">Gambar tidak tersedia</span>
+            <span className="blog-image-carousel-missing">Image unavailable</span>
           )}
           {image.text ? <figcaption><BlogInlineText baseHref={sourceHref}>{image.text}</BlogInlineText></figcaption> : null}
         </figure>
@@ -54,11 +54,11 @@ export default function BlogImageCarousel({ images = [], sourceHref }) {
           onClick={() => setActiveIndex((index) => Math.max(0, index - 1))}
           disabled={safeIndex === 0}
           aria-controls={viewportId}
-          aria-label="Gambar sebelumnya"
+          aria-label="Previous image"
         >
           <span aria-hidden="true">←</span>
         </button>
-        <span className="blog-image-carousel-count" aria-label={`Gambar ${safeIndex + 1} dari ${images.length}`}>
+        <span className="blog-image-carousel-count" aria-label={`Image ${safeIndex + 1} of ${images.length}`}>
           {safeIndex + 1} / {images.length}
         </span>
         <button
@@ -66,13 +66,13 @@ export default function BlogImageCarousel({ images = [], sourceHref }) {
           onClick={() => setActiveIndex((index) => Math.min(images.length - 1, index + 1))}
           disabled={safeIndex === images.length - 1}
           aria-controls={viewportId}
-          aria-label="Gambar berikutnya"
+          aria-label="Next image"
         >
           <span aria-hidden="true">→</span>
         </button>
       </div>
 
-      <div className="blog-image-carousel-dots" aria-label="Pilih gambar">
+      <div className="blog-image-carousel-dots" aria-label="Choose an image">
         {images.map((item, index) => (
           <button
             type="button"
@@ -80,7 +80,7 @@ export default function BlogImageCarousel({ images = [], sourceHref }) {
             className={index === safeIndex ? "is-active" : ""}
             onClick={() => setActiveIndex(index)}
             aria-controls={viewportId}
-            aria-label={`Tampilkan gambar ${index + 1}`}
+            aria-label={`Show image ${index + 1}`}
             aria-current={index === safeIndex ? "true" : undefined}
           />
         ))}

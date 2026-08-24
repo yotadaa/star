@@ -12,7 +12,7 @@ import PlayerAvatar from "./PlayerAvatar";
 const summaryItems = [
   { key: "inventory", label: "Item", icon: "icon-artifact" },
   { key: "achievements", label: "Achievement", icon: "icon-medal-outline" },
-  { key: "missions", label: "Misi aktif", icon: "icon-target" },
+  { key: "missions", label: "Active missions", icon: "icon-target" },
 ];
 
 export default function PlayerHUDCard({
@@ -28,11 +28,11 @@ export default function PlayerHUDCard({
     missions: progress.missions.filter((mission) => mission.status === "active").length,
   };
   const integrityLabel = isMax
-    ? "Level maksimum tercapai"
-    : `${progress.level.progress}/${progress.level.target} PP ke Lv.${progress.level.next.number}`;
+    ? "Maximum level reached"
+    : `${progress.level.progress}/${progress.level.target} PP to Lv.${progress.level.next.number}`;
   const integrityNote = isMax
     ? progress.level.current.label
-    : `Menuju ${progress.level.next.label}`;
+    : `Progressing toward ${progress.level.next.label}`;
 
   return (
     <section
@@ -67,13 +67,13 @@ export default function PlayerHUDCard({
         <p className="player-integrity-note">{integrityNote}</p>
       </div>
 
-      <div className="player-hud-summary" aria-label="Ringkasan progres pemain">
+      <div className="player-hud-summary" aria-label="Player progress summary">
         {summaryItems.map((item) => (
           <button
             type="button"
             key={item.key}
             onClick={() => onOpenPlayerTab(item.key)}
-            aria-label={`Buka ${item.label}: ${values[item.key]}`}
+            aria-label={`Open ${item.label}: ${values[item.key]}`}
           >
             <SpriteIcon id={item.icon} size={17} />
             <strong>{values[item.key]}</strong>
@@ -89,7 +89,7 @@ export default function PlayerHUDCard({
         </PixelButton>
 
         {isLoading ? (
-          <div className="player-hud-account-skeleton" aria-label="Memuat akun">
+          <div className="player-hud-account-skeleton" aria-label="Loading account">
             <span />
             <span />
           </div>

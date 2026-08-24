@@ -186,8 +186,8 @@ export const gpt6AstraRumorBlogPayload = {
       text: "Primary-source timeline",
       rows: [
         ["Time", "Source", "What the source actually said"],
-        ["Jul 8, 9:05 p.m. WIB", "Chris @ChrisGPT", "A hint that OpenAI was not finished for the summer or July; no mention of GPT-6."],
-        ["Jul 8, 11:00 p.m. WIB", "Leo @synthwavedd", "An explicit GPT-6 rumor, a new pretrain, and a launch estimate of roughly one month."],
+        ["Jul 8, 9:05 p.m. UTC+7", "Chris @ChrisGPT", "A hint that OpenAI was not finished for the summer or July; no mention of GPT-6."],
+        ["Jul 8, 11:00 p.m. UTC+7", "Leo @synthwavedd", "An explicit GPT-6 rumor, a new pretrain, and a launch estimate of roughly one month."],
         ["Jul 31", "The Information", "Astra was tentative; the GPT-6 versus GPT-5.x label had reportedly not been decided."],
         ["Aug 1", "OpenAI", "Astra was called the next major model and linked to ten mathematics results."],
         ["Aug 6", "Leo @synthwavedd", "A claim that Astra targeted the following week and that mewfour was a release candidate."],

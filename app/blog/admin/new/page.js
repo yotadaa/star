@@ -11,8 +11,8 @@ export default async function NewBlogPostPage() {
 
   return (
     <div className="page-wrap blog-editor-page">
-      <PageHeader label="// NEW LORE ENTRY" title="Tulis Baru">
-        Native block editor untuk CMS blog. Publish menyimpan ke Convex melalui jalur owner yang terautentikasi.
+      <PageHeader label="// NEW LORE ENTRY" title="New Article">
+        A native block editor for the Blog CMS. Publishing writes to Convex through the authenticated owner path.
       </PageHeader>
       <BlockEditorPreview />
     </div>

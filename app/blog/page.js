@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Blog",
   description:
-    "Catatan proses riset, pengembangan web, AI tooling, dan kerja komunitas dari Mukhtada Billah NST.",
+    "Notes on research, web development, AI tooling, and community work by Mukhtada Billah NST.",
   path: "/blog",
 });
 
@@ -19,7 +19,7 @@ export default async function BlogPage() {
   const session = await auth();
   const [{ posts, source, warnings }, { entries }] = await Promise.all([listBlogPosts(), listAboutEntries()]);
   const canManageBlog = session?.user?.role === "owner";
-  const fallbackCaption = "Catatan proses riset, web build, dan community work. Konten disimpan di Convex dengan fallback lokal faktual saat backend tidak tersedia.";
+  const fallbackCaption = "Notes on research, web builds, and community work. Content is stored in Convex with a factual local fallback when the backend is unavailable.";
   const blogCaption = entries.find((entry) => entry.entryKey === "blog-caption")?.body || fallbackCaption;
 
   return (
@@ -34,19 +34,19 @@ export default async function BlogPage() {
       </PageHeader>
 
       {canManageBlog && (
-        <div className="blog-admin-access hardcard" aria-label="Akses CMS Blog">
+        <div className="blog-admin-access hardcard" aria-label="Blog CMS access">
           <div>
             <span className="pixel-label">// CMS ACCESS</span>
-            <p>{source === "convex" ? "CMS Convex aktif" : "Mode baca cadangan lokal"} · {posts.length} entry</p>
+            <p>{source === "convex" ? "Convex CMS online" : "Local fallback mode"} · {posts.length} entries</p>
           </div>
           <div className="blog-admin-access-actions">
             <PixelButton as="a" href="/blog/admin">
               <SpriteIcon id="icon-admin-shield" size={15} />
-              Kelola CMS
+              Manage CMS
             </PixelButton>
             <PixelButton as="a" href="/blog/admin/new" className="blog-new-button">
               <SpriteIcon id="icon-editor-blocks" size={15} />
-              Tulis Baru
+              New article
             </PixelButton>
           </div>
         </div>
@@ -54,7 +54,7 @@ export default async function BlogPage() {
 
       {warnings?.length > 0 && (
         <p className="backend-warning" role="status">
-          Convex belum merespons, konten lokal faktual tetap dipakai sebagai cadangan baca.
+          Convex is not responding, so the factual local copy is being used as a reading fallback.
         </p>
       )}
 

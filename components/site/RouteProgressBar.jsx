@@ -162,8 +162,8 @@ export default function RouteProgressBar() {
       data-testid="route-progress"
       role={active ? "progressbar" : undefined}
       aria-hidden={active ? undefined : "true"}
-      aria-label={active ? "Memuat halaman" : undefined}
-      aria-valuetext={active ? (state === "settling" ? "Halaman siap" : "Berpindah halaman") : undefined}
+      aria-label={active ? "Loading page" : undefined}
+      aria-valuetext={active ? (state === "settling" ? "Page ready" : "Changing page") : undefined}
       style={{ "--route-progress-position": position }}
     >
       <span

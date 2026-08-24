@@ -53,7 +53,7 @@ export default function PlayerHUD() {
 
     previousLevelRef.current = currentLevel;
     setLevelFlash(true);
-    showToast(`Level naik ke Lv.${currentLevel} · ${progress.level.current.label}`, {
+    showToast(`Level increased to Lv.${currentLevel} · ${progress.level.current.label}`, {
       icon: <SpriteIcon id="icon-level-badge" size={16} />,
     });
     const timeoutId = window.setTimeout(() => setLevelFlash(false), 480);
@@ -82,7 +82,7 @@ export default function PlayerHUD() {
         ref={triggerRef}
         type="button"
         className="player-hud-trigger"
-        aria-label={`Buka Player HUD Mukhtada, level ${progress.level.current.number}`}
+        aria-label={`Open Mukhtada's Player HUD, level ${progress.level.current.number}`}
         aria-expanded={open}
         aria-controls="player-hud-card"
         onClick={() => setOpen((current) => !current)}

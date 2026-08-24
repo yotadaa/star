@@ -11,9 +11,9 @@ import { listAboutEntries } from "@/lib/backend/featureStore";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Tentang Mukhtada",
+  title: "About Mukhtada",
   description:
-    "Profil, pengalaman, perjalanan akademik, keahlian, dan pencapaian Mukhtada Billah NST di fullstack web, AI tooling, serta riset data.",
+    "Mukhtada Billah NST's profile, experience, academic journey, skills, and achievements across fullstack web development, AI tooling, and data research.",
   path: "/about",
 });
 export const dynamic = "force-dynamic";
@@ -23,14 +23,14 @@ export default async function AboutPage() {
   const introEntry = entries.find((entry) => entry.entryKey === "intro");
   const fallbackCaption = `${profile.affiliation} · ${profile.location}`;
   const fallbackIntro =
-    "Aku Mukhtada Billah NST - mahasiswa Sistem Informasi Universitas Jambi yang senang mengubah riset jadi produk yang benar-benar jalan. Fokusku di fullstack web, AI tooling, dan data science. Aku suka mengajar, menulis riset, dan membangun hal-hal kecil yang berguna untuk komunitas.";
+    "I am Mukhtada Billah NST, an Information Systems student at the University of Jambi who enjoys turning research into working products. My focus spans fullstack web development, AI tooling, and data science, alongside teaching, research writing, and useful community projects.";
   const caption = entries.find((entry) => entry.entryKey === "about-caption")?.body || fallbackCaption;
   const intro = introEntry?.body || fallbackIntro;
   const canManage = session?.user?.role === "owner";
 
   return (
     <div className="page-wrap">
-      <PageHeader label="// Save File · Profile" title="Tentang Mukhtada">
+      <PageHeader label="// Save File · Profile" title="About Mukhtada">
         <EditablePageCaption
           entryKey="about-caption"
           title="About caption"
@@ -41,14 +41,14 @@ export default async function AboutPage() {
 
       <EditablePageCaption
         entryKey="intro"
-        title="Tentang Mukhtada"
+        title="About Mukhtada"
         initialText={intro}
         canManage={canManage}
         className="intro-editable"
         textClassName="intro-prose"
         payload={{ ...introEntry?.payload, type: "profile-intro" }}
-        editLabel="Edit paragraf profil"
-        textareaLabel="Paragraf profil"
+        editLabel="Edit profile paragraph"
+        textareaLabel="Profile paragraph"
       />
       <HudStatusStrip
         className="profile-hud"
@@ -59,33 +59,33 @@ export default async function AboutPage() {
           { label: source === "local-fallback" ? "About local fallback" : "About DB synced", accent: "ink", icon: <SpriteIcon id={source === "local-fallback" ? "icon-database-offline" : "icon-database-online"} size={14} /> },
         ]}
       />
-      {warnings?.length > 0 && <p className="backend-warning" role="status">Convex belum merespons, profil lokal faktual tetap dipakai sebagai cadangan baca.</p>}
+      {warnings?.length > 0 && <p className="backend-warning" role="status">Convex is not responding, so the factual local profile is being used as a fallback.</p>}
 
       <div className="page-divider" style={{ marginTop: 48 }} />
       <div className="section-head" style={{ textAlign: "left", margin: "0 0 28px", maxWidth: "none" }}>
         <span className="pixel-label" style={{ color: "var(--coral-dark)" }}>// Experience Log</span>
-        <h2 style={{ color: "var(--ink)" }}>Pengalaman</h2>
+        <h2 style={{ color: "var(--ink)" }}>Experience</h2>
       </div>
       <ExperienceTimeline />
 
       <div className="page-divider" style={{ marginTop: 56 }} />
       <div className="section-head" style={{ textAlign: "left", margin: "0 0 28px", maxWidth: "none" }}>
         <span className="pixel-label" style={{ color: "var(--coral-dark)" }}>// Journey Log</span>
-        <h2 style={{ color: "var(--ink)" }}>Perjalanan akademik</h2>
+        <h2 style={{ color: "var(--ink)" }}>Academic journey</h2>
       </div>
       <JourneyPath embedded />
 
       <div className="page-divider" style={{ marginTop: 56 }} />
       <div className="section-head" style={{ textAlign: "left", margin: "0 0 28px", maxWidth: "none" }}>
         <span className="pixel-label" style={{ color: "var(--coral-dark)" }}>// Skill Tree</span>
-        <h2 style={{ color: "var(--ink)" }}>Keahlian</h2>
+        <h2 style={{ color: "var(--ink)" }}>Skills</h2>
       </div>
       <SkillsGrid />
 
       <div className="page-divider" style={{ marginTop: 56 }} />
       <div className="section-head" style={{ textAlign: "left", margin: "0 0 28px", maxWidth: "none" }}>
         <span className="pixel-label" style={{ color: "var(--coral-dark)" }}>// Achievements</span>
-        <h2 style={{ color: "var(--ink)" }}>Pencapaian</h2>
+        <h2 style={{ color: "var(--ink)" }}>Achievements</h2>
       </div>
       <Achievements />
     </div>

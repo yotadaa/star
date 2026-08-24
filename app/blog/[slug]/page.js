@@ -17,7 +17,7 @@ export async function generateMetadata({ params }) {
   const { post } = await getBlogPostBySlug(slug);
   if (!post) {
     return {
-      title: "Blog entry tidak ditemukan",
+      title: "Blog entry not found",
       robots: { index: false, follow: false },
     };
   }
@@ -62,9 +62,9 @@ export default async function BlogPostPage({ params }) {
       <div className="blog-post-actions">
         <PixelButton as="a" href={post.sourceHref || "/blog"} className="blog-source-link">
           <SpriteIcon id="icon-portal-ring" size={15} />
-          Buka sumber
+          Open source
         </PixelButton>
-        <Link href="/blog" className="blog-back-link">Kembali ke Blog</Link>
+        <Link href="/blog" className="blog-back-link">Back to Blog</Link>
       </div>
     </article>
   );

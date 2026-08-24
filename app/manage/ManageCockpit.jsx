@@ -12,17 +12,17 @@ const TABS = [
 ];
 
 const EXPRESSIONS = [
-  { id: "greeting", label: "Greeting", trigger: "Panel pertama dibuka" },
-  { id: "thinking", label: "Thinking", trigger: "Provider sedang bekerja" },
-  { id: "happy", label: "Happy", trigger: "Tool menemukan data" },
-  { id: "pointing", label: "Pointing", trigger: "Kontak atau navigasi" },
-  { id: "confused", label: "Confused", trigger: "Kosong atau gagal" },
-  { id: "idle", label: "Idle", trigger: "Ringkasan umum" },
+  { id: "greeting", label: "Greeting", trigger: "The panel first opens" },
+  { id: "thinking", label: "Thinking", trigger: "The provider is working" },
+  { id: "happy", label: "Happy", trigger: "A tool finds a result" },
+  { id: "pointing", label: "Pointing", trigger: "Contact or navigation" },
+  { id: "confused", label: "Confused", trigger: "No result or an error" },
+  { id: "idle", label: "Idle", trigger: "General summary" },
 ];
 
 function formatTimestamp(value) {
-  if (!value) return "Belum disimpan";
-  return new Intl.DateTimeFormat("id-ID", {
+  if (!value) return "Not saved yet";
+  return new Intl.DateTimeFormat("en-US", {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(value));
@@ -57,8 +57,8 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
   const [configStatus, setConfigStatus] = useState(configWarning || "");
   const [saving, setSaving] = useState(false);
   const messages = chatResult?.messages || [];
-  const providerLabel = keyConfigured ? "Key terpasang" : "Key belum ada";
-  const chatLabel = chatResult === undefined ? "Menyambung" : `${messages.length} pesan aktif`;
+  const providerLabel = keyConfigured ? "Key configured" : "Key missing";
+  const chatLabel = chatResult === undefined ? "Connecting" : `${messages.length} active ${messages.length === 1 ? "message" : "messages"}`;
 
   const settingsChanged = useMemo(
     () => JSON.stringify(settings) !== JSON.stringify(baselineSettings),
@@ -84,16 +84,16 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
 
   async function deleteMessage(id) {
     setDeleting(true);
-    setChatStatus("Menghapus pesan melalui jalur owner...");
+    setChatStatus("Deleting the message through the owner route...");
     try {
       const response = await fetch(`/api/chat/messages?id=${encodeURIComponent(id)}`, {
         method: "DELETE",
         credentials: "same-origin",
       });
       const data = await response.json();
-      if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Pesan gagal dihapus.");
+      if (!response.ok || !data.ok) throw new Error(data.message || data.error || "The message could not be deleted.");
       setPendingDelete(null);
-      setChatStatus("Pesan dihapus. Subscription Convex sudah diperbarui.");
+      setChatStatus("Message deleted. The Convex subscription is up to date.");
     } catch (error) {
       setChatStatus(error.message);
     } finally {
@@ -108,7 +108,7 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
   async function saveSettings(event) {
     event.preventDefault();
     setSaving(true);
-    setConfigStatus("Menyimpan konfigurasi ke Convex...");
+    setConfigStatus("Saving the configuration to Convex...");
     try {
       const response = await fetch("/api/manage/nala", {
         method: "PUT",
@@ -117,10 +117,10 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
         body: JSON.stringify(settings),
       });
       const data = await response.json();
-      if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Konfigurasi gagal disimpan.");
+      if (!response.ok || !data.ok) throw new Error(data.message || data.error || "The configuration could not be saved.");
       setSettings(data.settings);
       setBaselineSettings(data.settings);
-      setConfigStatus("Konfigurasi tersimpan. Request Nala berikutnya memakai nilai ini.");
+      setConfigStatus("Configuration saved. Nala will use it for the next request.");
     } catch (error) {
       setConfigStatus(error.message);
     } finally {
@@ -134,16 +134,16 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
         <div>
           <span className="pixel-label">// OWNER DATA CONSOLE</span>
           <h1>Data Management</h1>
-          <p>Moderasi channel publik dan kendali runtime Nala dalam satu workbench.</p>
+          <p>Moderate the public channel and control Nala's runtime from one workbench.</p>
         </div>
         <Link href="/" className="manage-exit-link">
           <SpriteIcon id="icon-route-redirect" size={15} />
-          Kembali ke situs
+          Back to site
         </Link>
       </header>
 
       <div className="manage-console">
-        <aside className="manage-status-rail" aria-label="Status sistem">
+        <aside className="manage-status-rail" aria-label="System status">
           <div className="manage-rail-heading">
             <SpriteIcon id="icon-admin-shield" size={20} />
             <div>
@@ -168,7 +168,7 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
           </dl>
 
           <p className="manage-rail-note">
-            API key tetap di server. Chat publik hanya menampilkan pesan aktif. Penghapusan memakai soft delete.
+            The API key stays on the server. Public chat shows active messages only. Deletions use soft delete.
           </p>
         </aside>
 
@@ -195,18 +195,18 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
               </div>
 
               <p className="manage-panel-intro">
-                Pesan aktif diurutkan seperti panel publik. Delete menyembunyikan isi dari feed dan kutipan balasan tanpa menghapus audit row.
+                Active messages follow the same order as the public panel. Delete hides content from the feed and reply quotes without removing the audit row.
               </p>
 
               <div className="manage-inline-status" aria-live="polite">
-                {chatStatus || (chatResult === undefined ? "Membuka subscription Convex..." : "Channel siap dimoderasi.")}
+                {chatStatus || (chatResult === undefined ? "Opening the Convex subscription..." : "The channel is ready for moderation.")}
               </div>
 
-              <div className="manage-chat-list" aria-label="Pesan World Chat aktif">
+              <div className="manage-chat-list" aria-label="Active World Chat messages">
                 {chatResult === undefined ? (
-                  <div className="manage-empty-state" role="status">Memuat pesan aktif...</div>
+                  <div className="manage-empty-state" role="status">Loading active messages...</div>
                 ) : messages.length === 0 ? (
-                  <div className="manage-empty-state">Tidak ada pesan aktif untuk dimoderasi.</div>
+                  <div className="manage-empty-state">There are no active messages to moderate.</div>
                 ) : messages.map((message) => (
                   <article className="manage-chat-row" key={message.id}>
                     <div className="manage-chat-meta">
@@ -219,7 +219,7 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
 
                     {message.replyTo && (
                       <div className="manage-chat-reply">
-                        <span>Membalas {message.replyTo.authorName}</span>
+                        <span>Replying to {message.replyTo.authorName}</span>
                         <p>{message.replyTo.body}</p>
                       </div>
                     )}
@@ -228,12 +228,12 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
 
                     <div className="manage-chat-actions">
                       {pendingDelete === message.id ? (
-                        <div className="manage-delete-confirm" role="group" aria-label={`Konfirmasi hapus pesan ${message.authorName}`}>
-                          <span>Hapus dari channel publik?</span>
+                        <div className="manage-delete-confirm" role="group" aria-label={`Confirm deletion of ${message.authorName}'s message`}>
+                          <span>Delete from the public channel?</span>
                           <PixelButton onClick={() => deleteMessage(message.id)} disabled={deleting} className="manage-delete-final">
-                            {deleting ? "Menghapus" : "Ya, hapus"}
+                            {deleting ? "Deleting" : "Yes, delete"}
                           </PixelButton>
-                          <PixelButton onClick={() => setPendingDelete(null)} disabled={deleting}>Batal</PixelButton>
+                          <PixelButton onClick={() => setPendingDelete(null)} disabled={deleting}>Cancel</PixelButton>
                         </div>
                       ) : (
                         <PixelButton className="manage-delete-trigger" onClick={() => setPendingDelete(message.id)}>
@@ -266,7 +266,7 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
               </div>
 
               <p className="manage-panel-intro">
-                Pengaturan ini berlaku pada request berikutnya. Credential tidak pernah dikirim ke browser atau disimpan di Convex.
+                These settings apply to the next request. Credentials are never sent to the browser or stored in Convex.
               </p>
 
               <form className="manage-nala-form" onSubmit={saveSettings}>
@@ -274,7 +274,7 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
                   <label className="manage-switch-field">
                     <span>
                       <strong>Nala live</strong>
-                      <small>Kill switch tanpa menghapus konfigurasi.</small>
+                      <small>Kill switch that preserves the configuration.</small>
                     </span>
                     <input
                       type="checkbox"
@@ -292,7 +292,7 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
                       required
                       spellCheck="false"
                     />
-                    <small>Slug OpenRouter; default-nya Nemotron 3 Ultra, tetapi tetap bisa diganti di sini.</small>
+                    <small>OpenRouter slug. Nemotron 3 Ultra is the default, but you can change it here.</small>
                   </label>
 
                   <label className="manage-field">
@@ -320,30 +320,30 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
                   </label>
 
                   <label className="manage-field manage-field-wide">
-                    <span>Instruksi tambahan owner</span>
+                    <span>Additional owner instructions</span>
                     <textarea
                       value={settings.systemPromptSupplement}
                       onChange={(event) => updateSetting("systemPromptSupplement", event.target.value)}
                       maxLength={2400}
                       rows={6}
-                      placeholder="Kosong berarti memakai prompt inti Nala."
+                      placeholder="Leave blank to use Nala's core prompt."
                     />
-                    <small>{settings.systemPromptSupplement.length}/2400 karakter. Guardrail faktual tetap berlaku.</small>
+                    <small>{settings.systemPromptSupplement.length}/2400 characters. Factual guardrails still apply.</small>
                   </label>
                 </div>
 
                 <div className="manage-form-footer">
                   <div>
-                    <span>Terakhir disimpan</span>
+                    <span>Last saved</span>
                     <strong>{formatTimestamp(settings.updatedAt)}</strong>
                   </div>
                   <PixelButton type="submit" disabled={saving || !settingsChanged}>
                     <SpriteIcon id="icon-database-online" size={14} />
-                    {saving ? "Menyimpan" : "Simpan config"}
+                    {saving ? "Saving" : "Save config"}
                   </PixelButton>
                 </div>
                 <p className="manage-inline-status" aria-live="polite">
-                  {configStatus || (settings.persisted ? "Konfigurasi aktif dibaca dari Convex." : "Runtime memakai nilai default; belum ada row konfigurasi.")}
+                  {configStatus || (settings.persisted ? "The active configuration is loaded from Convex." : "The runtime is using defaults; no configuration row exists yet.")}
                 </p>
               </form>
 

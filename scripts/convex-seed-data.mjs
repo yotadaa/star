@@ -18,7 +18,7 @@ function compactInventoryName(name) {
     .replace(/\s*\([^)]{24,}\)/g, "")
     .trim();
   const known = [
-    [/Analisis Prediktif Tren Pendidikan/i, "KNN Pendidikan"],
+    [/Analisis Prediktif Tren Pendidikan/i, "KNN Education"],
     [/Prototype Sistem Informasi Terintegrasi/i, "E-Ticket TNKS"],
     [/Integrasi Agrowisata dan UMKM/i, "Virtual Tour UMKM"],
     [/Analisis Implementasi Algoritma Genetika/i, "GA Scheduler"],
@@ -26,14 +26,14 @@ function compactInventoryName(name) {
     [/GenBI CMS/i, "GenBI CMS"],
     [/Word AI Draft/i, "Word AI Add-in"],
     [/IDR\/USD/i, "IDR/USD Forecast"],
-    [/4 Publikasi/i, "4 Publikasi Scholar"],
+    [/4 Publikasi/i, "4 Scholar Publications"],
     [/Vice President/i, "VP English Club"],
     [/Repo GitHub/i, "50+ GitHub Repos"],
-    [/Finalis OSN-P/i, "Finalis OSN-P"],
+    [/Finalis OSN-P/i, "OSN-P Finalist"],
     [/DIGDAYA/i, "DIGDAYA Hackathon"],
-    [/PEDAS/i, "PEDAS Nasional"],
+    [/PEDAS/i, "PEDAS National"],
     [/JICEST/i, "JICEST Committee"],
-    [/Sitasi pertama/i, "Sitasi Pertama"],
+    [/Sitasi pertama/i, "First Citation"],
     [/h-index/i, "h-index 2"],
   ];
   for (const [pattern, label] of known) {
@@ -150,7 +150,7 @@ export function buildSeedTables(data) {
       tags: post.tags || [],
       publishedAt: Number.isFinite(Date.parse(post.publishedAt)) ? Date.parse(post.publishedAt) : index,
       publishedAtLabel: post.publishedAt || "CMS pending",
-      readTime: post.readTime || "4 min baca",
+      readTime: post.readTime || "4 min read",
       coverTone: post.coverTone || "research",
       sourceHref: post.sourceHref || "/blog",
       blocks: cleanBlocks(post.blocks),
@@ -187,9 +187,9 @@ export function buildSeedTables(data) {
     legacyId: routedId("s1", "about", "intro"),
     legacyShardId: "s1",
     entryKey: "intro",
-    title: "Tentang Mukhtada",
+    title: "About Mukhtada",
     body:
-      "Aku Mukhtada Billah NSTs - mahasiswa Sistem Informasi Universitas Jambi yang senang mengubah riset jadi produk yang benar-benar jalan. Fokusku di fullstack web, AI tooling, dan data science. Aku suka mengajar, menulis riset, dan membangun hal-hal kecil yang berguna untuk komunitas.",
+      "I am Mukhtada Billah NSTs, an Information Systems student at the University of Jambi who enjoys turning research into products that work in practice. I focus on full-stack web development, AI tooling, and data science. I also enjoy teaching, writing research, and building useful things for the community.",
     payload: { affiliation: data.profile.affiliation, location: data.profile.location, type: "profile-intro" },
     status: "public",
     createdAt: 0,
@@ -199,10 +199,10 @@ export function buildSeedTables(data) {
 
   const captions = [
     ["about-caption", "About caption", `${data.profile.affiliation} · ${data.profile.location}`],
-    ["projects-caption", "Projects caption", "Proyek pilihan lintas web, AI, dan data science. Saring berdasarkan tipe atau kategori - 57 repo selengkapnya ada di GitHub."],
-    ["research-caption", "Research caption", "Riset yang benar-benar terbit, terindeks, dan tersitasi di Google Scholar."],
-    ["blog-caption", "Blog caption", "Catatan proses riset, web build, dan community work. Konten sekarang disimpan dan disinkronkan melalui Convex."],
-    ["contact-caption", "Contact caption", "Punya proyek, riset, atau sekadar mau menyapa? Pilih kanal yang paling nyaman buatmu."],
+    ["projects-caption", "Projects caption", "Selected work across web development, AI, and data science. Filter by type or category, or browse all 57 repositories on GitHub."],
+    ["research-caption", "Research caption", "Published, indexed research with verified Google Scholar citations."],
+    ["blog-caption", "Blog caption", "Notes on research, web builds, and community work, stored and synchronized through Convex."],
+    ["contact-caption", "Contact caption", "Have a project, a research question, or simply want to say hello? Choose the channel that suits you."],
   ].map(([entryKey, title, body], index) => ({
     entryKey,
     title,

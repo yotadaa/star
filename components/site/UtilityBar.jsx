@@ -14,14 +14,14 @@ export default function UtilityBar() {
   return (
     <nav
       className="utility-bar"
-      aria-label="World Chat dan Player HUD"
+      aria-label="World Chat and Player HUD"
       data-testid="utility-bar"
     >
       <div className="utility-actions">
         <PixelButton
           className="utility-chat-button"
           onClick={openChat}
-          aria-label="Buka World Chat"
+          aria-label="Open World Chat"
           data-testid="open-world-chat"
         >
           <SpriteIcon id="icon-chat-bubble" size={16} />

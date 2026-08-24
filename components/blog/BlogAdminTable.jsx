@@ -10,7 +10,7 @@ export default function BlogAdminTable({ posts, source = "local", warnings = [] 
   const [actionState, setActionState] = useState({ id: null, message: "" });
 
   async function updateStatus(post, status) {
-    setActionState({ id: post.id, message: "Menyimpan..." });
+    setActionState({ id: post.id, message: "Saving..." });
     try {
       const response = await fetch(`/api/blog/posts/${post.id}`, {
         method: "PATCH",
@@ -29,8 +29,8 @@ export default function BlogAdminTable({ posts, source = "local", warnings = [] 
 
   return (
     <RequireLoginGate
-      title="Login ke System"
-      description="Admin CMS membutuhkan autentikasi owner untuk mengelola draft dan published post di Convex."
+      title="Sign in to the system"
+      description="The CMS requires owner authentication to manage drafts and published posts in Convex."
     >
       <section className="blog-admin-panel hardcard">
         <div className="blog-admin-topbar">
@@ -41,17 +41,17 @@ export default function BlogAdminTable({ posts, source = "local", warnings = [] 
           </div>
           <PixelButton as="a" href="/blog/admin/new" className="blog-new-button">
             <SpriteIcon id="icon-editor-blocks" size={15} />
-            Tulis Baru
+            New article
           </PixelButton>
         </div>
         <div className="blog-admin-table-wrap">
           <table className="blog-admin-table">
             <thead>
               <tr>
-                <th>Judul</th>
+                <th>Title</th>
                 <th>Status</th>
                 <th>Tags</th>
-                <th>Aksi</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>

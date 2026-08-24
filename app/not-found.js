@@ -4,12 +4,12 @@ export default function NotFound() {
   return (
     <RouteStatePage
       code="404"
-      label="// ROUTE TIDAK DITEMUKAN"
-      title="Jalur ini berhenti di sini."
-      description="Alamat yang dibuka tidak terhubung ke bagian mana pun dalam sistem Mukhtada."
+      label="// ROUTE NOT FOUND"
+      title="This path ends here."
+      description="The address does not connect to any part of Mukhtada's system."
       icon="icon-route-lost"
       secondaryHref="/projects"
-      secondaryLabel="Buka Projects"
+      secondaryLabel="Open Projects"
     />
   );
 }

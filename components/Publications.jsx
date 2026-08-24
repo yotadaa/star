@@ -7,8 +7,8 @@ export default function Publications() {
       <div className="content">
         <div className="section-head">
           <span className="pixel-label">// Lab Notes &amp; Research</span>
-          <h2>Publikasi terindeks</h2>
-          <p>Riset yang benar-benar terbit dan tersitasi di Google Scholar.</p>
+          <h2>Indexed publications</h2>
+          <p>Research that is published and cited on Google Scholar.</p>
         </div>
         <div className="pub-grid">
           {publications.map((p, i) => (

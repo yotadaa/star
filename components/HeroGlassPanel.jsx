@@ -14,15 +14,15 @@ export default function HeroGlassPanel({ phase = "morning" }) {
         <span className="live-dot" /> SYSTEM ONLINE - SAVE FILE: MUKHTADA.NST
       </span>
       <h1>
-        Membangun sistem, <br></br> <em>satu quest</em> pada satu waktu.
+        Building systems, <br></br> <em>one quest</em> at a time.
       </h1>
       <p className="lede">{profile.lede_id}</p>
       <div className="hero-actions">
         <a href="#quests" className="btn primary" data-testid="cta-quests">
-          ▶ Mulai Quest
+          ▶ Start a Quest
         </a>
         <a href="#journey" className="btn secondary" data-testid="cta-journey">
-          Baca Lore
+          Read the Lore
         </a>
       </div>
     </div>

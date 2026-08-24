@@ -27,10 +27,10 @@ export default function CommandPalette() {
     <div className="cmdk-overlay" onClick={() => setPaletteOpen(false)} data-testid="command-palette">
       <div className="cmdk-box" onClick={(e) => e.stopPropagation()}>
         <Command label="Command Menu">
-          <Command.Input placeholder="Cari halaman, tautan, atau aksi…" autoFocus />
+          <Command.Input placeholder="Search pages, links, or actions…" autoFocus />
           <Command.List>
-            <Command.Empty className="cmdk-empty">Tidak ada hasil.</Command.Empty>
-            <Command.Group heading="Halaman">
+            <Command.Empty className="cmdk-empty">No results.</Command.Empty>
+            <Command.Group heading="Pages">
               {navLinks.map((l) => {
                 const Ic = NAV_ICONS[l.href] || Home;
                 return (
@@ -40,7 +40,7 @@ export default function CommandPalette() {
                 );
               })}
             </Command.Group>
-            <Command.Group heading="Tautan">
+            <Command.Group heading="Links">
               {socials.map((s) => {
                 const Ic = LINK_ICONS[s.key] || Mail;
                 return (
@@ -50,10 +50,10 @@ export default function CommandPalette() {
                 );
               })}
             </Command.Group>
-            <Command.Group heading="Aksi">
+            <Command.Group heading="Actions">
               <Command.Item className="cmdk-item" value="toggle sky theme morning noon sunset night" onSelect={() => { cycleTheme(); setPaletteOpen(false); }}>
                 <span className="ic"><Sun size={16} /></span>
-                Ganti theme langit ({phase})
+                Change sky theme ({phase})
               </Command.Item>
             </Command.Group>
           </Command.List>

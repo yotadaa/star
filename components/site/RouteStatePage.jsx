@@ -8,7 +8,7 @@ export default function RouteStatePage({
   description,
   icon,
   primaryHref = "/",
-  primaryLabel = "Kembali ke Home",
+  primaryLabel = "Back to Home",
   secondaryHref,
   secondaryLabel,
   children,

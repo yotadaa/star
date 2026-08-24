@@ -5705,15 +5705,26 @@ footer.site-footer .foot-copy a {
   position: absolute;
   right: 10px;
   bottom: 10px;
-  padding: 6px 8px;
-  border: 1.5px solid var(--cream);
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 2px solid var(--cream);
   background: var(--ink);
   color: var(--cream);
-  font-family: var(--font-pixel), monospace;
-  font-size: .56rem;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  box-shadow: 2px 2px 0 var(--gold);
+  box-shadow: 3px 3px 0 var(--gold);
+  transition: transform 160ms cubic-bezier(.22, 1, .36, 1), box-shadow 160ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.blog-image-preview-trigger:hover .blog-image-preview-hint,
+.blog-image-preview-trigger:focus-visible .blog-image-preview-hint {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--gold);
+}
+
+.blog-image-preview-trigger:active .blog-image-preview-hint {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--gold);
 }
 
 .blog-image-preview-dialog {
@@ -5924,30 +5935,87 @@ footer.site-footer .foot-copy a {
   line-height: 1.5;
 }
 
+.blog-table-shell {
+  max-width: 100%;
+  margin: 26px 0 30px;
+  overflow-x: auto;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  background: var(--cream);
+  box-shadow: 5px 5px 0 var(--ink);
+  scrollbar-color: var(--gold) var(--parchment-dark);
+  scrollbar-width: thin;
+}
+
+.blog-table-shell:focus-visible {
+  outline: 3px dashed var(--aurora-deep);
+  outline-offset: 4px;
+}
+
 .blog-renderer-table {
   width: 100%;
-  max-width: 100%;
-  margin: 20px 0;
-  border-collapse: collapse;
-  table-layout: fixed;
+  min-width: 620px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: auto;
   background: var(--cream);
+}
+
+.blog-renderer-table caption {
+  padding: 11px 14px;
+  border-bottom: 2px solid var(--ink);
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-pixel), monospace;
+  font-size: .66rem;
+  letter-spacing: .05em;
+  text-align: left;
+  text-transform: uppercase;
 }
 
 .blog-renderer-table th,
 .blog-renderer-table td {
-  padding: 10px;
-  border: 1.5px solid var(--ink);
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  padding: 13px 14px;
+  border-right: 1.5px solid color-mix(in srgb, var(--ink) 72%, transparent);
+  border-bottom: 1.5px solid color-mix(in srgb, var(--ink) 72%, transparent);
+  vertical-align: top;
+}
+
+.blog-renderer-table tr > :last-child {
+  border-right: 0;
+}
+
+.blog-renderer-table tbody tr:last-child > * {
+  border-bottom: 0;
 }
 
 .blog-renderer-table th {
-  background: color-mix(in srgb, var(--gold) 34%, var(--cream));
+  background: color-mix(in srgb, var(--gold) 58%, var(--cream));
   color: var(--ink);
   font-family: var(--font-pixel), monospace;
-  font-size: .68rem;
-  letter-spacing: .03em;
+  font-size: .64rem;
+  line-height: 1.5;
+  letter-spacing: .04em;
   text-align: left;
+  text-transform: uppercase;
+}
+
+.blog-renderer-table td {
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+.blog-renderer-table tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--aurora) 7%, var(--cream));
+}
+
+.blog-renderer-table tbody tr:hover td {
+  background: color-mix(in srgb, var(--gold) 16%, var(--cream));
+}
+
+.blog-renderer-table tbody td:first-child {
+  color: var(--ink);
+  font-weight: 850;
 }
 
 .blog-flowchart {
@@ -6049,10 +6117,6 @@ footer.site-footer .foot-copy a {
     min-width: 620px;
   }
 
-  .blog-image-preview-hint {
-    font-size: .5rem;
-  }
-
   .blog-image-preview-shell {
     max-width: 92vw;
     padding: 8px;
@@ -6065,6 +6129,16 @@ footer.site-footer .foot-copy a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .blog-image-preview-hint {
+    transition: none;
+  }
+
+  .blog-image-preview-trigger:hover .blog-image-preview-hint,
+  .blog-image-preview-trigger:focus-visible .blog-image-preview-hint,
+  .blog-image-preview-trigger:active .blog-image-preview-hint {
+    transform: none;
+  }
+
   .blog-image-preview-dialog,
   .blog-image-preview-dialog::backdrop {
     animation: none;

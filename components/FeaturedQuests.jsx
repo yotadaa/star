@@ -7,10 +7,10 @@ export default function FeaturedQuests() {
       <div className="content">
         <div className="section-head">
           <span className="pixel-label">// Featured Quests</span>
-          <h2>Proyek pilihan, bukan daftar penuh</h2>
+          <h2>Selected work, not a repository dump</h2>
           <p>
-            Setiap kartu adalah quest yang sudah dijalani - lengkap dengan stack,
-            peran, dan dampaknya. 57 repo lainnya menunggu di GitHub.
+            Each card is a completed quest with its stack, role, and impact.
+            The remaining 57 repositories are available on GitHub.
           </p>
         </div>
         <div className="quest-grid">

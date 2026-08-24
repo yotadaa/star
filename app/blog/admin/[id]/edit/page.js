@@ -23,7 +23,7 @@ export default async function EditBlogPostPage({ params }) {
   return (
     <div className="page-wrap blog-editor-page">
       <PageHeader label="// EDIT LORE ENTRY" title={`Edit: ${post.title}`}>
-        Route edit membaca {source}; update tersedia untuk post yang sudah tersimpan di Convex.
+        This editor reads from {source}; updates are available for posts already stored in Convex.
       </PageHeader>
       <BlockEditorPreview post={post} />
     </div>

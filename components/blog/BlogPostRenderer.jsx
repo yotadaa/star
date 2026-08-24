@@ -80,7 +80,7 @@ export default function BlogPostRenderer({ blocks = [], sourceHref }) {
           }
           return (
             <figure className="blog-code-block" key={`${block.type}-${index}`}>
-              <figcaption>Cuplikan kode</figcaption>
+              <figcaption>Code excerpt</figcaption>
               <pre><code><BlogCodeText>{block.text}</BlogCodeText></code></pre>
             </figure>
           );
@@ -108,24 +108,27 @@ export default function BlogPostRenderer({ blocks = [], sourceHref }) {
           return <hr key={`${block.type}-${index}`} />;
         }
         if (block.type === "table") {
-          const rows = Array.isArray(block.rows) && block.rows.length ? block.rows : [[block.text || "Kolom 1", "Kolom 2"], ["Isi", "Isi"]];
+          const rows = Array.isArray(block.rows) && block.rows.length ? block.rows : [["Column 1", "Column 2"], ["Value", "Value"]];
           return (
-            <table className="blog-renderer-table" key={`${block.type}-${index}`}>
-              <thead>
-                <tr>
-                  {rows[0].map((cell, cellIndex) => (
-                    <th scope="col" key={`${cell}-${cellIndex}`}><BlogInlineText baseHref={sourceHref}>{cell}</BlogInlineText></th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {rows.slice(1).map((row, rowIndex) => (
-                  <tr key={`row-${rowIndex + 1}`}>
-                    {row.map((cell, cellIndex) => <td key={`${cell}-${cellIndex}`}><BlogInlineText baseHref={sourceHref}>{cell}</BlogInlineText></td>)}
+            <div className="blog-table-shell" key={`${block.type}-${index}`} tabIndex={0} role="region" aria-label={block.text || "Article data table"}>
+              <table className="blog-renderer-table">
+                {block.text ? <caption><BlogInlineText baseHref={sourceHref}>{block.text}</BlogInlineText></caption> : null}
+                <thead>
+                  <tr>
+                    {rows[0].map((cell, cellIndex) => (
+                      <th scope="col" key={`${cell}-${cellIndex}`}><BlogInlineText baseHref={sourceHref}>{cell}</BlogInlineText></th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {rows.slice(1).map((row, rowIndex) => (
+                    <tr key={`row-${rowIndex + 1}`}>
+                      {row.map((cell, cellIndex) => <td key={`${cell}-${cellIndex}`}><BlogInlineText baseHref={sourceHref}>{cell}</BlogInlineText></td>)}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           );
         }
         if (block.type === "icon") {

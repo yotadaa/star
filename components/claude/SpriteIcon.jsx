@@ -177,6 +177,11 @@ const ICON_PATHS = {
       <path d="M5 17 L10 12 L13 15 L16 12 L20 16" strokeLinejoin="round" />
     </>
   ),
+  "icon-fullscreen": (
+    <>
+      <path d="M4.5 9 V4.5 H9 M15 4.5 H19.5 V9 M19.5 15 V19.5 H15 M9 19.5 H4.5 V15" strokeLinecap="square" strokeLinejoin="round" />
+    </>
+  ),
   "icon-divider": <path d="M4 12 H20" strokeLinecap="square" strokeDasharray="3 3" />,
   "icon-table": (
     <>

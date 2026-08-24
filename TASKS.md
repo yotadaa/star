@@ -2,7 +2,7 @@
 
 ## Active
 
-- [ ] **Improve Home performance** - real-image/R3F hero is currently laggy and heavy.
+- [ ] **Improve Home performance** - real-image/R3F hero is currently laggy and heavy. Reproducible baseline, root-cause evidence, budgets, and the phased repair plan are in `plans/performance-audit-2026-08-24.md`.
 - [ ] **Commit every completed work unit** - after a coherent implementation + validation pass, create a git commit before starting the next unrelated unit. See `plans/commit-validation-workflow.md`.
 - [ ] **Replace native dropdowns with custom controls** - later, scan all built-in HTML dropdowns/selects and replace them with design-system custom dropdowns.
 
@@ -10,12 +10,14 @@
 
 ## Someday
 
-- [ ] **Keep the Nala mobile FAB clear of Blog media captions and carousel controls** - the existing global assistant trigger covers a small lower-right area at 375 px; evidence: `validation/gpt-6-astra-rumor-blog/mobile-top.jpg`, `mobile-carousel-controls.jpg`.
+- [ ] **Keep the Nala mobile FAB clear of Blog media captions, table rows, carousel controls, and reader forms** - the existing global assistant trigger covers a small lower-right area at 375 px; evidence: `validation/gpt-6-astra-rumor-blog/mobile-top.jpg`, `mobile-carousel-controls.jpg`, and `validation/blog-english-reader-polish-2026-08-24/`.
 - [ ] **Format Blog publication timestamps for readers** - replace the raw ISO string in the shared Blog detail metadata row with the existing human-readable date style; evidence: `validation/genbi-rebranding-blog/desktop-top.png`, `mobile-top.png`.
 - [ ] **Align the existing Player Status popup with the neobrutalist system** - remove its older rounded/gradient treatment observed during Player HUD shortcut validation; evidence: `screenshots/player-hud-2026-07-04/desktop-inventory-shortcut.png`.
 
 ## Done
 
+- [x] ~~**Audit Player Status and page performance** - reproduced popup scroll escape on desktop/mobile, isolated the Home stall to the always-running R3F path, measured asset/GPU/network/provider costs, and wrote ordered repair phases with objective interaction and rendering budgets.~~ (2026-08-24; plan: `plans/performance-audit-2026-08-24.md`)
+- [x] ~~**Finish the English site and polish the Blog reader** - translated shared/public/admin/Nala/player copy and all published Blog payloads, kept factual Indonesian quotations intact, replaced the image-size label with a 44 px fullscreen sprite control, upgraded semantic tables with local mobile scrolling, and validated live Convex readback plus desktop/mobile rendering.~~ (2026-08-24; plan: `plans/blog-english-reader-polish.md`; evidence: `validation/blog-english-reader-polish-2026-08-24/`)
 - [x] ~~**Research and publish the GPT-6 Astra rumor chronology** - separated the earliest traceable explicit GPT-6 post from the later Astra/GPT-6 report, labeled official facts versus repeated claims, published 42 warm third-person English blocks with a sharper hook and source-led CTA, uploaded nine Browser-captured sources and two generated editorial images to Convex Storage, preserved the nine-post deterministic seed, and validated desktop/mobile carousels, tables, image ownership, and overflow.~~ (2026-08-24; plan: `plans/gpt-6-astra-rumor-blog.md`; evidence: `validation/gpt-6-astra-rumor-blog/`)
 - [x] ~~**Prevent Home crashes when WebGL is disabled or lost** - capability-gated the R3F renderer, added phase-aware static scenery from the existing local assets, handled runtime context loss without retries, and kept the normal path free of hidden fallback duplicates.~~ (2026-08-23; plan: `plans/hero-webgl-fallback.md`; evidence: `validation/hero-webgl-fallback-2026-08-23/`)
 - [x] ~~**Repair Contact and Research night contrast** - restored Portal Card CTA labels, the locked publication slot, and shared footer copyright with surface-aware fixed/phase foreground roles.~~ (2026-08-23; plan: `plans/contact-research-night-contrast.md`; evidence: `validation/contact-research-night-contrast-2026-08-23/`)

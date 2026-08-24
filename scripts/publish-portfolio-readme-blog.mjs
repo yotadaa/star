@@ -205,10 +205,10 @@ export const portfolioReadmeBlogPayload = {
   title: "Mukhtada's Portfolio",
   slug,
   excerpt:
-    "An Indonesian-language record of fullstack work, AI experiments, data research, publications, and community projects, presented as a factual game world.",
+    "A record of fullstack work, AI experiments, data research, publications, and community projects, presented as a factual game world.",
   status: "published",
   tags: ["Portfolio", "Next.js", "Convex", "AI"],
-  readTime: "11 min baca",
+  readTime: "11 min read",
   coverTone: "research",
   sourceHref: repositoryUrl,
   blocks: readPortfolioReadmeBlocks(),

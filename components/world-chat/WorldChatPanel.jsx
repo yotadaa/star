@@ -41,7 +41,7 @@ export default function WorldChatPanel({ open, onClose }) {
     const body = draft.trim();
     if (!body) return;
     setSending(true);
-    setSendStatus("Mengirim melalui Convex...");
+    setSendStatus("Sending through Convex...");
     try {
       const response = await fetch("/api/chat/messages", {
         method: "POST",
@@ -53,7 +53,7 @@ export default function WorldChatPanel({ open, onClose }) {
       if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Send failed");
       setDraft("");
       setReplyTo(null);
-      setSendStatus("Terkirim · sinkron realtime aktif");
+      setSendStatus("Sent · live sync active");
     } catch (error) {
       setSendStatus(error.message);
     } finally {
@@ -63,19 +63,19 @@ export default function WorldChatPanel({ open, onClose }) {
 
   function selectReply(message) {
     setReplyTo({ id: message.id, authorName: message.authorName, body: message.body });
-    setSendStatus(`Membalas ${message.authorName}`);
+    setSendStatus(`Replying to ${message.authorName}`);
     window.requestAnimationFrame(() => textareaRef.current?.focus());
   }
 
   if (!open) return null;
 
   const connectionLabel = result === undefined
-    ? "Memuat channel Convex..."
+    ? "Loading the Convex channel..."
     : connection.isWebSocketConnected
-      ? "Realtime Convex aktif"
+      ? "Convex realtime active"
       : connection.hasEverConnected
-        ? "Koneksi terputus · mencoba menyambung ulang"
-        : "Menghubungkan ke Convex...";
+        ? "Connection lost · reconnecting"
+        : "Connecting to Convex...";
 
   return (
     <aside
@@ -98,7 +98,7 @@ export default function WorldChatPanel({ open, onClose }) {
           </div>
         </div>
         <PixelButton className="world-chat-close" onClick={onClose}>
-          Tutup
+          Close
         </PixelButton>
       </header>
 
@@ -107,46 +107,46 @@ export default function WorldChatPanel({ open, onClose }) {
         <span>{sendStatus || connectionLabel}</span>
       </div>
 
-      <div className="world-chat-messages" aria-label="Riwayat world chat">
+      <div className="world-chat-messages" aria-label="World Chat history">
         {result === undefined ? (
           <article className="world-chat-empty">
             <SpriteIcon id="icon-chat-bubble" size={32} />
-            <h3>Memuat channel</h3>
-            <p>Convex sedang membuka subscription realtime.</p>
+            <h3>Loading channel</h3>
+            <p>Convex is opening the realtime subscription.</p>
           </article>
         ) : messages.length === 0 ? (
           <article className="world-chat-empty">
             <SpriteIcon id="icon-chat-bubble" size={32} />
-            <h3>Channel baru siap</h3>
-            <p>Database lama tidak tersedia, jadi riwayat dimulai dari sini tanpa pesan buatan.</p>
+            <h3>A new channel is ready</h3>
+            <p>The old database is unavailable, so history begins here without fabricated messages.</p>
           </article>
         ) : (
           messages.map((message) => (
             <article className="world-chat-message" key={message.id}>
               {message.replyTo && (
                 <div className="world-chat-reply-quote">
-                  <span>Membalas {message.replyTo.authorName}</span>
+                  <span>Replying to {message.replyTo.authorName}</span>
                   <p>{message.replyTo.body}</p>
                 </div>
               )}
               {message.replyUnavailable && (
                 <div className="world-chat-reply-quote is-unavailable">
-                  <span>Pesan rujukan sudah dihapus</span>
+                  <span>The referenced message was deleted</span>
                 </div>
               )}
               <div className="world-chat-message-header">
                 <span className="world-chat-message-identity">
                   <strong>{message.authorName}</strong>
-                  <time dateTime={message.createdAt}>{new Date(message.createdAt).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}</time>
+                  <time dateTime={message.createdAt}>{new Date(message.createdAt).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}</time>
                 </span>
                 {(!user?.name || user.name !== message.authorName) && (
                   <PixelButton
                     className="world-chat-reply-button"
                     onClick={() => selectReply(message)}
-                    aria-label={`Balas pesan ${message.authorName}`}
+                    aria-label={`Reply to ${message.authorName}`}
                   >
                     <SpriteIcon id="icon-chat-bubble" size={13} />
-                    Balas
+                    Reply
                   </PixelButton>
                 )}
               </div>
@@ -158,38 +158,38 @@ export default function WorldChatPanel({ open, onClose }) {
 
       <div className="world-chat-input-shell">
         <RequireLoginGate
-          title="Login ke System"
-          description="Login dibutuhkan sebelum ikut mengirim pesan ke World Chat."
+          title="Sign in to the system"
+          description="Sign in before posting to World Chat."
         >
           <form className="world-chat-form" onSubmit={handleSubmit}>
             {replyTo && (
               <div className="world-chat-compose-reply" role="status">
                 <div>
-                  <span>Membalas {replyTo.authorName}</span>
+                  <span>Replying to {replyTo.authorName}</span>
                   <p>{replyTo.body}</p>
                 </div>
                 <PixelButton
                   type="button"
                   className="world-chat-cancel-reply"
                   onClick={() => setReplyTo(null)}
-                  aria-label="Batalkan balasan"
+                  aria-label="Cancel reply"
                 >
-                  Batal
+                  Cancel
                 </PixelButton>
               </div>
             )}
-            <label htmlFor="world-chat-message">Pesan</label>
+            <label htmlFor="world-chat-message">Message</label>
             <textarea
               ref={textareaRef}
               id="world-chat-message"
               maxLength={280}
-              placeholder="Ketik pesan ke semua penjelajah..."
+              placeholder="Write a message to every explorer..."
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
             />
             <PixelButton type="submit" disabled={sending || !draft.trim() || !isLive}>
               <SpriteIcon id="icon-send" size={15} />
-              {sending ? "Mengirim" : "Kirim"}
+              {sending ? "Sending" : "Send"}
             </PixelButton>
           </form>
         </RequireLoginGate>

@@ -92,7 +92,7 @@ export default function OpenGraphImage() {
 
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: "monospace", fontSize: 19 }}>
             <span style={{ width: 120, height: 8, background: "#45b8a4", display: "flex" }} />
-            UNIVERSITAS JAMBI · SISTEM INFORMASI
+            UNIVERSITY OF JAMBI · INFORMATION SYSTEMS
           </div>
         </div>
       </div>

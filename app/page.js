@@ -33,7 +33,7 @@ export default function Home() {
         <HeroEntityLayer phase={phase} />
         <HeroGlassPanel phase={phase} />
         <div className="scroll-cue">
-          GULIR <span className="chev">▾</span>
+          SCROLL <span className="chev">▾</span>
         </div>
       </section>
 
@@ -43,8 +43,8 @@ export default function Home() {
         <div className="content">
           <div className="section-head">
             <span className="pixel-label">// Build Glimpses</span>
-            <h2>Header yang pernah dibangun</h2>
-            <p>Beberapa first-screen dari proyek web, riset, community platform, hackathon, dan thesis build.</p>
+            <h2>Interfaces built along the way</h2>
+            <p>A selection of opening screens from web projects, research, community platforms, hackathons, and thesis work.</p>
           </div>
           <Reveal>
             <HomeGlimpseSlider items={homeGlimpses} />
@@ -56,8 +56,8 @@ export default function Home() {
         <div className="content">
           <div className="section-head">
             <span className="pixel-label">// Featured Quests</span>
-            <h2>Quest unggulan</h2>
-            <p>Cuplikan proyek pilihan. Filter lengkap dari 57 repo ada di halaman Projects.</p>
+            <h2>Featured quests</h2>
+            <p>A selection of completed work. The Projects page filters the full set drawn from 57 repositories.</p>
           </div>
           <div className="quest-grid">
             {featured.map((q, i) => (
@@ -74,8 +74,8 @@ export default function Home() {
             ))}
           </div>
           <div className="home-cta">
-            <Link href="/projects" className="btn primary" data-testid="cta-projects">▶ Semua Projects</Link>
-            <Link href="/research" className="btn secondary" data-testid="cta-research">Baca Research</Link>
+            <Link href="/projects" className="btn primary" data-testid="cta-projects">▶ All Projects</Link>
+            <Link href="/research" className="btn secondary" data-testid="cta-research">Read Research</Link>
           </div>
         </div>
       </section>

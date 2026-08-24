@@ -153,7 +153,7 @@ export const create = internalMutation({
       tags: cleanTags(args.payload.tags),
       publishedAt: status === "published" ? now : undefined,
       publishedAtLabel: status === "published" ? new Date(now).toISOString() : "Draft",
-      readTime: cleanText(args.payload.readTime || args.payload.read_time, "4 min baca"),
+      readTime: cleanText(args.payload.readTime || args.payload.read_time, "4 min read"),
       coverTone: cleanText(args.payload.coverTone || args.payload.cover_tone, "research"),
       sourceHref: cleanText(args.payload.sourceHref || args.payload.source_href, "/blog"),
       blocks: cleanBlocks(args.payload.blocks),

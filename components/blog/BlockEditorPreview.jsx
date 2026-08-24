@@ -28,13 +28,13 @@ function slugify(value) {
 }
 
 function newBlock(type = "paragraph") {
-  if (type === "heading") return { type, text: "Subjudul baru" };
-  if (type === "quote") return { type, text: "Catatan penting dari proses build." };
-  if (type === "list") return { type, text: "Poin pertama\nPoin kedua" };
+  if (type === "heading") return { type, text: "New subheading" };
+  if (type === "quote") return { type, text: "An important note from the build process." };
+  if (type === "list") return { type, text: "First point\nSecond point" };
   if (type === "code") return { type, text: "const quest = 'build';" };
   if (type === "image") return { type, text: "", src: "", alt: "" };
-  if (type === "table") return { type, text: "Table", rows: [["Kolom 1", "Kolom 2"], ["Isi", "Isi"]] };
-  if (type === "icon") return { type, text: "Milestone penting" };
+  if (type === "table") return { type, text: "Table", rows: [["Column 1", "Column 2"], ["Value", "Value"]] };
+  if (type === "icon") return { type, text: "Important milestone" };
   if (type === "divider") return { type, text: "" };
   return { type, text: "" };
 }
@@ -58,7 +58,7 @@ export default function BlockEditorPreview({ post }) {
           { type: "paragraph", text: "" },
         ]
   );
-  const [saveState, setSaveState] = useState({ status: "idle", message: "Tersimpan lokal" });
+  const [saveState, setSaveState] = useState({ status: "idle", message: "Saved locally" });
   const isPersisted = Boolean(post?.id && post?.status !== "local-preview");
   const endpoint = isPersisted ? `/api/blog/posts/${post.id}` : "/api/blog/posts";
   const method = isPersisted ? "PATCH" : "POST";
@@ -123,7 +123,7 @@ export default function BlockEditorPreview({ post }) {
   }
 
   async function savePost(nextStatus = status) {
-    setSaveState({ status: "saving", message: "Menyimpan ke Convex..." });
+    setSaveState({ status: "saving", message: "Saving to Convex..." });
 
     const payload = {
       title: title || "Untitled Lore",
@@ -132,7 +132,7 @@ export default function BlockEditorPreview({ post }) {
       tags: tags.split(",").map((tag) => tag.trim()).filter(Boolean),
       status: nextStatus,
       sourceHref,
-      readTime: post?.readTime ?? "4 min baca",
+      readTime: post?.readTime ?? "4 min read",
       coverTone: post?.coverTone ?? "research",
       blocks: blocks.filter(
         (block) => block.type === "divider" || block.text || block.src || block.storageId || block.assetKey || block.rows?.length,
@@ -161,8 +161,8 @@ export default function BlockEditorPreview({ post }) {
 
   return (
     <RequireLoginGate
-      title="Login ke System"
-      description="Editor block membutuhkan autentikasi owner sebelum menyimpan ke CMS."
+      title="Sign in to the system"
+      description="The block editor requires owner authentication before it can save to the CMS."
     >
       <section className="medium-editor" aria-label="Blog block editor">
         <div className="medium-editor-topbar">
@@ -172,10 +172,10 @@ export default function BlockEditorPreview({ post }) {
           </span>
           <div className="medium-editor-actions">
             <button type="button" className="settings-link" onClick={() => setSettingsOpen((open) => !open)}>
-              Pengaturan cerita
+              Story settings
             </button>
             <PixelButton type="button" className="blog-publish-button" onClick={() => savePost("draft")} disabled={saveState.status === "saving"}>
-              Simpan Draft
+              Save draft
             </PixelButton>
             <PixelButton type="button" className="blog-publish-button" onClick={() => savePost("published")} disabled={saveState.status === "saving"}>
               Publish
@@ -187,7 +187,7 @@ export default function BlockEditorPreview({ post }) {
           <div className="story-settings-drawer hardcard">
             <label>
               Slug
-              <input value={slug} onChange={(event) => setSlug(slugify(event.target.value))} placeholder="auto-dari-judul" />
+              <input value={slug} onChange={(event) => setSlug(slugify(event.target.value))} placeholder="generated-from-title" />
             </label>
             <label>
               Tags
@@ -206,7 +206,7 @@ export default function BlockEditorPreview({ post }) {
             </label>
             <label className="story-settings-wide">
               Excerpt
-              <textarea rows={3} value={excerpt} onChange={(event) => setExcerpt(event.target.value)} placeholder="Ringkasan singkat artikel..." />
+              <textarea rows={3} value={excerpt} onChange={(event) => setExcerpt(event.target.value)} placeholder="Short article summary..." />
             </label>
           </div>
         )}
@@ -217,10 +217,10 @@ export default function BlockEditorPreview({ post }) {
             value={title}
             rows={1}
             onChange={(event) => setTitle(event.target.value)}
-            placeholder="Judul artikel..."
-            aria-label="Judul artikel"
+            placeholder="Article title..."
+            aria-label="Article title"
           />
-          <p className="subtitle-hint">Ketik "/" atau klik "+" di kiri baris kosong untuk menyisipkan block.</p>
+          <p className="subtitle-hint">Type "/" or select "+" beside an empty row to insert a block.</p>
 
           <div className="editor-body">
             {blocks.map((block, index) => (
@@ -229,7 +229,7 @@ export default function BlockEditorPreview({ post }) {
                   type="button"
                   className="block-plus"
                   onClick={() => setActiveMenu(activeMenu === index ? null : index)}
-                  aria-label={`Tambah block setelah baris ${index + 1}`}
+                  aria-label={`Add a block after row ${index + 1}`}
                 >
                   <SpriteIcon id="icon-plus" size={13} />
                 </button>
@@ -246,7 +246,7 @@ export default function BlockEditorPreview({ post }) {
                 )}
 
                 <BlockInput block={block} onChange={(patch) => updateBlock(index, patch)} />
-                <button type="button" className="writer-block-remove" onClick={() => removeBlock(index)} aria-label={`Hapus block ${index + 1}`}>
+                <button type="button" className="writer-block-remove" onClick={() => removeBlock(index)} aria-label={`Delete block ${index + 1}`}>
                   <SpriteIcon id="icon-trash" size={13} />
                 </button>
               </div>
@@ -284,7 +284,7 @@ function BlockInput({ block, onChange }) {
 
   async function uploadImage(file) {
     if (!file) return;
-    setUploadState({ status: "uploading", message: "Menyiapkan kompresi berkualitas tinggi..." });
+    setUploadState({ status: "uploading", message: "Preparing a high-quality compressed image..." });
     try {
       const result = await compressBlogImage(file);
       const form = new FormData();
@@ -301,7 +301,7 @@ function BlockInput({ block, onChange }) {
           height: result.height,
         },
       }));
-      setUploadState({ status: "uploading", message: "Mengunggah hasil ke Convex Storage..." });
+      setUploadState({ status: "uploading", message: "Uploading the result to Convex Storage..." });
       const response = await fetch("/api/backend/files", {
         method: "POST",
         credentials: "same-origin",
@@ -321,8 +321,8 @@ function BlockInput({ block, onChange }) {
       setUploadState({
         status: "uploaded",
         message: result.compressed
-          ? `Tersimpan ${formatImageBytes(result.outputBytes)} · hemat ${formatImageBytes(savings)} · ${result.width}×${result.height}px`
-          : `Tersimpan asli ${formatImageBytes(result.outputBytes)} · ${result.reason}`,
+          ? `Saved ${formatImageBytes(result.outputBytes)} · reduced by ${formatImageBytes(savings)} · ${result.width}×${result.height}px`
+          : `Original saved at ${formatImageBytes(result.outputBytes)} · ${result.reason}`,
       });
     } catch (error) {
       setUploadState({ status: "error", message: error.message });
@@ -350,7 +350,7 @@ function BlockInput({ block, onChange }) {
             rows: event.target.value.split(/\n+/).map((row) => row.split("|").map((cell) => cell.trim())),
           })
         }
-        placeholder="Kolom 1 | Kolom 2&#10;Isi | Isi"
+        placeholder="Column 1 | Column 2&#10;Value | Value"
       />
     );
   }
@@ -358,7 +358,7 @@ function BlockInput({ block, onChange }) {
   const props = {
     value: block.text || "",
     onChange: (event) => onChange({ text: event.target.value }),
-    placeholder: block.type === "heading" ? "Subjudul..." : block.type === "quote" ? "Quote..." : block.type === "list" ? "Satu item per baris..." : block.type === "code" ? "Tempel kode..." : block.type === "image" ? "Caption gambar..." : block.type === "icon" ? "Label milestone..." : "I write here",
+    placeholder: block.type === "heading" ? "Subheading..." : block.type === "quote" ? "Quote..." : block.type === "list" ? "One item per line..." : block.type === "code" ? "Paste code..." : block.type === "image" ? "Image caption..." : block.type === "icon" ? "Milestone label..." : "Write here",
   };
 
   if (block.type === "heading") return <input className="writer-heading-input" {...props} />;
@@ -405,12 +405,12 @@ function BlockInput({ block, onChange }) {
           <input
             value={block.alt || ""}
             onChange={(event) => onChange({ alt: event.target.value })}
-            placeholder="Jelaskan isi gambar"
+            placeholder="Describe the image"
           />
         </label>
         <label>
           Caption
-          <input {...props} placeholder="Caption opsional" />
+          <input {...props} placeholder="Optional caption" />
         </label>
       </div>
     );

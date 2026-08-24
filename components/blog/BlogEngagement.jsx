@@ -9,7 +9,7 @@ import { PixelButton, SpriteIcon } from "@/components/claude";
 
 function readableDate(value) {
   try {
-    return new Intl.DateTimeFormat("id-ID", {
+    return new Intl.DateTimeFormat("en-US", {
       day: "numeric",
       month: "short",
       year: "numeric",
@@ -31,7 +31,7 @@ export default function BlogEngagement({ slug, initialUpvoteCount = 0, viewerTok
   const comments = result?.comments || [];
   const [upvote, setUpvote] = useState({ count: Math.max(0, Number(initialUpvoteCount || 0)), voted: false });
   const [voteBusy, setVoteBusy] = useState(false);
-  const [voteStatus, setVoteStatus] = useState("Memeriksa dukungan browser ini...");
+  const [voteStatus, setVoteStatus] = useState("Checking this browser's vote...");
   const [draft, setDraft] = useState("");
   const [commentBusy, setCommentBusy] = useState(false);
   const [commentStatus, setCommentStatus] = useState("");
@@ -41,10 +41,10 @@ export default function BlogEngagement({ slug, initialUpvoteCount = 0, viewerTok
     fetch(`/api/blog/posts/${encodeURIComponent(slug)}/upvote`, { credentials: "same-origin", cache: "no-store" })
       .then(async (response) => {
         const data = await response.json();
-        if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Status upvote tidak tersedia");
+        if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Vote status is unavailable");
         if (active) {
           setUpvote({ count: data.count, voted: data.voted });
-          setVoteStatus(data.voted ? "Browser ini sudah mendukung tulisan." : "Belum ada dukungan dari browser ini.");
+          setVoteStatus(data.voted ? "This browser has upvoted the article." : "This browser has not upvoted yet.");
         }
       })
       .catch((error) => {
@@ -57,16 +57,16 @@ export default function BlogEngagement({ slug, initialUpvoteCount = 0, viewerTok
 
   async function toggleUpvote() {
     setVoteBusy(true);
-    setVoteStatus("Menyinkronkan dukungan...");
+    setVoteStatus("Syncing vote...");
     try {
       const response = await fetch(`/api/blog/posts/${encodeURIComponent(slug)}/upvote`, {
         method: "POST",
         credentials: "same-origin",
       });
       const data = await response.json();
-      if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Upvote gagal");
+      if (!response.ok || !data.ok) throw new Error(data.message || data.error || "The vote could not be updated");
       setUpvote({ count: data.count, voted: data.voted });
-      setVoteStatus(data.voted ? "Dukungan tercatat." : "Dukungan dibatalkan.");
+      setVoteStatus(data.voted ? "Vote recorded." : "Vote removed.");
     } catch (error) {
       setVoteStatus(error.message);
     } finally {
@@ -79,7 +79,7 @@ export default function BlogEngagement({ slug, initialUpvoteCount = 0, viewerTok
     const body = draft.trim();
     if (!body) return;
     setCommentBusy(true);
-    setCommentStatus("Mengirim catatan pembaca...");
+    setCommentStatus("Publishing your comment...");
     try {
       const response = await fetch(`/api/blog/posts/${encodeURIComponent(slug)}/comments`, {
         method: "POST",
@@ -88,9 +88,9 @@ export default function BlogEngagement({ slug, initialUpvoteCount = 0, viewerTok
         body: JSON.stringify({ body }),
       });
       const data = await response.json();
-      if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Komentar gagal dikirim");
+      if (!response.ok || !data.ok) throw new Error(data.message || data.error || "The comment could not be published");
       setDraft("");
-      setCommentStatus("Komentar terbit dan tersinkron lewat Convex.");
+      setCommentStatus("Comment published and synced through Convex.");
     } catch (error) {
       setCommentStatus(error.message);
     } finally {
@@ -99,7 +99,7 @@ export default function BlogEngagement({ slug, initialUpvoteCount = 0, viewerTok
   }
 
   async function deleteComment(id) {
-    setCommentStatus("Menghapus komentar...");
+    setCommentStatus("Deleting comment...");
     try {
       const response = await fetch(`/api/blog/posts/${encodeURIComponent(slug)}/comments`, {
         method: "DELETE",
@@ -108,8 +108,8 @@ export default function BlogEngagement({ slug, initialUpvoteCount = 0, viewerTok
         body: JSON.stringify({ id }),
       });
       const data = await response.json();
-      if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Komentar gagal dihapus");
-      setCommentStatus("Komentar dihapus dari ruang baca.");
+      if (!response.ok || !data.ok) throw new Error(data.message || data.error || "The comment could not be deleted");
+      setCommentStatus("Comment removed from the reader thread.");
     } catch (error) {
       setCommentStatus(error.message);
     }
@@ -120,16 +120,16 @@ export default function BlogEngagement({ slug, initialUpvoteCount = 0, viewerTok
       <header className="blog-engagement-heading">
         <div>
           <span className="pixel-label">// READER SIGNAL</span>
-          <h2 id="blog-engagement-title">Jejak pembaca</h2>
+          <h2 id="blog-engagement-title">Reader notes</h2>
         </div>
-        <span className="blog-comment-total">{comments.length} komentar</span>
+        <span className="blog-comment-total">{comments.length} {comments.length === 1 ? "comment" : "comments"}</span>
       </header>
 
       <div className="blog-engagement-ledger">
-        <aside className="blog-upvote-panel" aria-label="Dukungan tulisan">
-          <span className="blog-upvote-kicker">Apresiasi tanpa akun</span>
+        <aside className="blog-upvote-panel" aria-label="Article votes">
+          <span className="blog-upvote-kicker">No account required</span>
           <strong>{upvote.count}</strong>
-          <span>dukungan tercatat</span>
+          <span>{upvote.count === 1 ? "vote recorded" : "votes recorded"}</span>
           <PixelButton
             type="button"
             className={`blog-upvote-button${upvote.voted ? " is-voted" : ""}`}
@@ -138,7 +138,7 @@ export default function BlogEngagement({ slug, initialUpvoteCount = 0, viewerTok
             aria-pressed={upvote.voted}
           >
             <SpriteIcon id="icon-chevron-up" size={16} />
-            {voteBusy ? "Sinkron" : upvote.voted ? "Didukung" : "Dukung"}
+            {voteBusy ? "Syncing" : upvote.voted ? "Upvoted" : "Upvote"}
           </PixelButton>
           <p aria-live="polite">{voteStatus}</p>
         </aside>
@@ -147,35 +147,35 @@ export default function BlogEngagement({ slug, initialUpvoteCount = 0, viewerTok
           <div className="blog-comment-intro">
             <div>
               <span className="pixel-label">// FIELD NOTES</span>
-              <h3>Komentar</h3>
+              <h3>Comments</h3>
             </div>
-            {user?.name ? <span>Masuk sebagai {user.name}</span> : null}
+            {user?.name ? <span>Signed in as {user.name}</span> : null}
           </div>
 
           {userLoading ? (
-            <p className="blog-comment-auth-note">Memeriksa sesi...</p>
+            <p className="blog-comment-auth-note">Checking your session...</p>
           ) : isAuthenticated ? (
             <form className="blog-comment-form" onSubmit={submitComment}>
-              <label htmlFor="blog-comment-body">Tambahkan catatan</label>
+              <label htmlFor="blog-comment-body">Add a comment</label>
               <textarea
                 id="blog-comment-body"
                 rows={4}
                 maxLength={800}
                 value={draft}
                 onChange={(event) => setDraft(event.target.value)}
-                placeholder="Tulis tanggapan yang spesifik dan relevan..."
+                placeholder="Write a specific, relevant response..."
               />
               <div>
                 <span>{draft.length} / 800</span>
                 <PixelButton type="submit" disabled={commentBusy || !draft.trim()}>
                   <SpriteIcon id="icon-send" size={14} />
-                  {commentBusy ? "Mengirim" : "Kirim komentar"}
+                  {commentBusy ? "Publishing" : "Post comment"}
                 </PixelButton>
               </div>
             </form>
           ) : (
             <div className="blog-comment-login">
-              <p>Komentar memakai identitas Google yang aktif; alamat email tidak dipublikasikan.</p>
+              <p>Comments use your signed-in Google identity. Your email address is never published.</p>
               <LoginButton compact />
             </div>
           )}
@@ -184,9 +184,9 @@ export default function BlogEngagement({ slug, initialUpvoteCount = 0, viewerTok
 
           <div className="blog-comment-list" aria-busy={result === undefined}>
             {result === undefined ? (
-              <p className="blog-comment-empty">Membuka catatan pembaca...</p>
+              <p className="blog-comment-empty">Loading reader comments...</p>
             ) : comments.length === 0 ? (
-              <p className="blog-comment-empty">Belum ada komentar. Ruang ini masih bersih.</p>
+              <p className="blog-comment-empty">No comments yet. Start the conversation.</p>
             ) : comments.map((comment, index) => (
               <article className="blog-comment-row" key={comment.id}>
                 <span className="blog-comment-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
@@ -198,7 +198,7 @@ export default function BlogEngagement({ slug, initialUpvoteCount = 0, viewerTok
                   <p>{comment.body}</p>
                 </div>
                 {(canModerate || comment.canDelete) && (
-                  <button type="button" onClick={() => deleteComment(comment.id)} aria-label={`Hapus komentar ${comment.authorName}`}>
+                  <button type="button" onClick={() => deleteComment(comment.id)} aria-label={`Delete comment by ${comment.authorName}`}>
                     <SpriteIcon id="icon-trash" size={13} />
                   </button>
                 )}

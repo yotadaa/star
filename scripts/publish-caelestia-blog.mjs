@@ -38,7 +38,7 @@ export const caelestiaBlogPayload = {
     "An integrated Caelestia Shell overlay for Hyprland that combines the Dynamic Island, Bottom Notch, enhanced settings, and native Task Manager in one repository.",
   status: "published",
   tags: ["Hyprland", "Quickshell", "Linux", "Open Source"],
-  readTime: "9 min baca",
+  readTime: "9 min read",
   coverTone: "web",
   sourceHref: repositoryUrl,
   blocks: [

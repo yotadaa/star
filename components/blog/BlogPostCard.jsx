@@ -9,7 +9,7 @@ export default function BlogPostCard({ post, canManageBlog = false }) {
 
   return (
     <article className={`blog-card hardcard blog-card-${post.coverTone}`}>
-      <Link href={`/blog/${post.slug}`} className="blog-card-cover" aria-label={`Baca ${post.title}`}>
+      <Link href={`/blog/${post.slug}`} className="blog-card-cover" aria-label={`Read ${post.title}`}>
         <span className="blog-cover-fallback" aria-hidden="true">
           <SpriteIcon id="icon-blog-page" size={34} />
         </span>
@@ -41,10 +41,10 @@ export default function BlogPostCard({ post, canManageBlog = false }) {
         <div className="blog-card-meta">
           <span>{post.publishedAt}</span>
           <span>{post.readTime}</span>
-          <span>{Math.max(0, Number(post.upvoteCount || 0))} dukungan</span>
+          <span>{Math.max(0, Number(post.upvoteCount || 0))} votes</span>
         </div>
         <div className="blog-card-actions">
-          <Link href={`/blog/${post.slug}`}>Baca</Link>
+          <Link href={`/blog/${post.slug}`}>Read</Link>
           {canManageBlog && <Link href={`/blog/admin/${post.id}/edit`}>Edit</Link>}
         </div>
       </div>

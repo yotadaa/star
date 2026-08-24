@@ -45,7 +45,7 @@ export default function EditablePageCaption({
   textClassName = "",
   payload = { type: "page-caption" },
   editLabel = "Edit caption",
-  textareaLabel = "Caption halaman",
+  textareaLabel = "Page caption",
 }) {
   const textRef = useRef(null);
   const [text, setText] = useState(initialText || "");
@@ -60,7 +60,7 @@ export default function EditablePageCaption({
     if (!input) return;
     const start = input.selectionStart;
     const end = input.selectionEnd;
-    const selected = draft.slice(start, end) || "teks";
+    const selected = draft.slice(start, end) || "text";
     const next = `${draft.slice(0, start)}${prefix}${selected}${suffix}${draft.slice(end)}`;
     setDraft(next);
     requestAnimationFrame(() => {
@@ -70,7 +70,7 @@ export default function EditablePageCaption({
   }
 
   async function saveCaption() {
-    setStatus("Menyimpan caption...");
+    setStatus("Saving caption...");
     try {
       const response = await fetch("/api/about/entries", {
         method: "PUT",
@@ -88,7 +88,7 @@ export default function EditablePageCaption({
       if (!response.ok || !data.ok) throw new Error(data.message || data.error || "Save failed");
       setText(draft);
       setEditing(false);
-      setStatus("Caption tersimpan");
+      setStatus("Caption saved");
     } catch (error) {
       setStatus(error.message);
     }
@@ -110,7 +110,7 @@ export default function EditablePageCaption({
         </>
       ) : (
         <div className="caption-inline-editor">
-          <div className="caption-inline-toolbar" aria-label="Toolbar caption">
+          <div className="caption-inline-toolbar" aria-label="Caption toolbar">
             <button type="button" onClick={() => wrapSelection("**")} title="Bold">
               <SpriteIcon id="icon-bold" size={13} />
             </button>
@@ -123,8 +123,8 @@ export default function EditablePageCaption({
           </div>
           <textarea ref={textRef} value={draft} onChange={(event) => setDraft(event.target.value)} aria-label={textareaLabel} />
           <div className="caption-inline-actions">
-            <PixelButton type="button" onClick={saveCaption}>Simpan</PixelButton>
-            <PixelButton type="button" onClick={() => { setDraft(text); setEditing(false); }}>Batal</PixelButton>
+            <PixelButton type="button" onClick={saveCaption}>Save</PixelButton>
+            <PixelButton type="button" onClick={() => { setDraft(text); setEditing(false); }}>Cancel</PixelButton>
           </div>
           {status && <span className="caption-save-status" role="status">{status}</span>}
         </div>

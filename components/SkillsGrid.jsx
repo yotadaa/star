@@ -8,7 +8,7 @@ export default function SkillsGrid() {
         <Reveal key={s.group} className="skill-group" delay={i * 60}>
           <div className="skill-head">
             <h4>{s.group}</h4>
-            <span className="skill-meter" aria-label={`${s.group} level ${s.level} dari 8`}>
+            <span className="skill-meter" aria-label={`${s.group} level ${s.level} of 8`}>
               {Array.from({ length: 8 }, (_, index) => (
                 <i key={index} className={index < s.level ? "filled" : ""} />
               ))}

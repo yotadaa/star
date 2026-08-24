@@ -11,7 +11,7 @@ export default function IntegrityBar({
   const filled = isMax
     ? safeSegments
     : Math.min(safeSegments, Math.max(0, Math.round((safeCurrent / safeTarget) * safeSegments)));
-  const accessibleLabel = label || (isMax ? "Level maksimum tercapai" : `${safeCurrent} dari ${safeTarget} Player Points`);
+  const accessibleLabel = label || (isMax ? "Maximum level reached" : `${safeCurrent} of ${safeTarget} Player Points`);
 
   return (
     <div

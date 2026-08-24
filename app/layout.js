@@ -97,7 +97,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html
-      lang="id"
+      lang="en"
       className={`${fraunces.variable} ${silkscreen.variable} ${nunito.variable}`}
     >
       <body>
@@ -105,7 +105,7 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: structuredData }}
         />
-        <a href="#main" className="skip-link">Loncat ke konten utama</a>
+        <a href="#main" className="skip-link">Skip to main content</a>
         <AuthProvider>
           <ConvexClientProvider deploymentUrl={convexDeploymentUrl}>
             <SiteProvider>{children}</SiteProvider>

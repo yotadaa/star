@@ -13,11 +13,11 @@ export default function LoginButton({ compact = false, className = "" }) {
       className={`login-system-button ${compact ? "compact" : ""} ${className}`.trim()}
       onClick={() => signIn("google", { callbackUrl, redirectTo: callbackUrl })}
       disabled={!isConfigured || isLoading}
-      aria-label="Login ke System"
+      aria-label="Sign in to the system"
       data-testid="login-system-button"
     >
       <SpriteIcon id="icon-login-key" size={compact ? 15 : 17} />
-      <span>{isLoading ? "Memuat" : compact ? "Login" : "Login ke System"}</span>
+      <span>{isLoading ? "Loading" : compact ? "Sign in" : "Sign in to the system"}</span>
     </PixelButton>
   );
 }

@@ -10,20 +10,20 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Research",
   description:
-    "Publikasi ilmiah Mukhtada Billah NST yang terindeks Google Scholar, mencakup pendidikan, optimasi, data, dan sistem informasi.",
+    "Mukhtada Billah NST's Google Scholar-indexed publications across education, optimization, data, and information systems.",
   path: "/research",
 });
 export const dynamic = "force-dynamic";
 
 export default async function ResearchPage() {
   const [session, { entries }] = await Promise.all([auth(), listAboutEntries()]);
-  const fallbackCaption = "Riset yang benar-benar terbit, terindeks, dan tersitasi di Google Scholar.";
+  const fallbackCaption = "Published, indexed, and cited research verified through Google Scholar.";
   const caption = entries.find((entry) => entry.entryKey === "research-caption")?.body || fallbackCaption;
   const canManage = session?.user?.role === "owner";
 
   return (
     <div className="page-wrap">
-      <PageHeader label="// Lab Notes & Research" title="Publikasi">
+      <PageHeader label="// Lab Notes & Research" title="Publications">
         <EditablePageCaption
           entryKey="research-caption"
           title="Research caption"
@@ -34,9 +34,9 @@ export default async function ResearchPage() {
       <HudStatusStrip
         className="research-hud"
         items={[
-          { label: "5 sitasi", accent: "gold", icon: <SpriteIcon id="icon-star-level" size={14} /> },
+          { label: "5 citations", accent: "gold", icon: <SpriteIcon id="icon-star-level" size={14} /> },
           { label: "H-index 2", accent: "gold", icon: <SpriteIcon id="icon-trophy" size={14} /> },
-          { label: "4 publikasi", accent: "aurora", icon: <SpriteIcon id="icon-command" size={14} /> },
+          { label: "4 publications", accent: "aurora", icon: <SpriteIcon id="icon-command" size={14} /> },
         ]}
       />
       <div className="pub-grid">
@@ -59,7 +59,7 @@ export default async function ResearchPage() {
           </Reveal>
         ))}
         <Reveal className="pub-card locked-pub-card" delay={publications.length * 70}>
-          <LockedSlot label="Publikasi berikutnya - in progress" />
+          <LockedSlot label="Next publication - in progress" />
         </Reveal>
       </div>
     </div>

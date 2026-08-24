@@ -24,7 +24,7 @@ export default function MissionList({ missions }) {
             label={`${mission.current}/${mission.target}`}
           />
           <span className="player-meta">
-            {mission.status === "completed" ? "Reward claimed" : "Reward saat target tercapai"}
+            {mission.status === "completed" ? "Reward claimed" : "Reward unlocks when the target is reached"}
           </span>
         </article>
       ))}

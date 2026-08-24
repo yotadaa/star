@@ -38,7 +38,7 @@ export default function InventoryGrid({ items }) {
   async function handleCreate(event) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    setFormState({ status: "saving", message: "Menyimpan item..." });
+    setFormState({ status: "saving", message: "Saving item..." });
 
     try {
       const response = await fetch("/api/inventory/items", {
@@ -70,7 +70,7 @@ export default function InventoryGrid({ items }) {
           <>
             <PixelButton className="inventory-add-toggle" onClick={() => setFormOpen((value) => !value)}>
               <SpriteIcon id="icon-admin-shield" size={15} />
-              Tambah Item
+              Add item
             </PixelButton>
             {formOpen && (
               <form
@@ -78,16 +78,16 @@ export default function InventoryGrid({ items }) {
                 onSubmit={handleCreate}
               >
                 <label>
-                  Nama Item
-                  <input name="name" type="text" required placeholder="Scroll: Riset terbaru" />
+                  Item name
+                  <input name="name" type="text" required placeholder="Scroll: Latest research" />
                 </label>
                 <label>
-                  Tipe
+                  Type
                   <select name="type" defaultValue="scroll">
-                    <option value="scroll">Scroll - riset</option>
+                    <option value="scroll">Scroll - research</option>
                     <option value="tool">Tool - skill</option>
-                    <option value="artifact">Artifact - proyek</option>
-                    <option value="medal">Medal - kompetisi/organisasi</option>
+                    <option value="artifact">Artifact - project</option>
+                    <option value="medal">Medal - competition/organization</option>
                     <option value="key">Key - milestone</option>
                   </select>
                 </label>
@@ -104,12 +104,12 @@ export default function InventoryGrid({ items }) {
                   <input name="linkTo" type="url" placeholder="https://..." />
                 </label>
                 <label className="inventory-add-wide">
-                  Deskripsi
-                  <textarea name="description" rows={3} placeholder="Konteks singkat item ini" />
+                  Description
+                  <textarea name="description" rows={3} placeholder="A short description of this item" />
                 </label>
                 <PixelButton disabled={formState.status === "saving"}>
                   <SpriteIcon id={formState.status === "saved" ? "icon-database-online" : "icon-database-offline"} size={15} />
-                  {formState.status === "saving" ? "Menyimpan" : "Simpan Item"}
+                  {formState.status === "saving" ? "Saving" : "Save item"}
                 </PixelButton>
                 {formState.message && <span className="inventory-form-status">{formState.message}</span>}
               </form>
@@ -119,8 +119,8 @@ export default function InventoryGrid({ items }) {
           <div className="inventory-owner-setup">
             <SpriteIcon id="icon-admin-shield" size={24} />
             <div>
-              <h3>Owner tools menunggu Login ke System</h3>
-              <p>Manual add inventory memakai Auth.js dan Convex. Pengunjung tidak melihat tombol tambah item.</p>
+              <h3>Owner tools require system sign-in</h3>
+              <p>Manual inventory entry uses Auth.js and Convex. Visitors never see the add-item control.</p>
             </div>
             <LoginButton />
           </div>
@@ -145,7 +145,7 @@ export default function InventoryGrid({ items }) {
       </div>
 
       {visibleItems.length === 0 ? (
-        <div className="player-empty">Inventory masih kosong untuk tipe ini. Selesaikan mission pertama untuk membuka item.</div>
+        <div className="player-empty">No inventory items match this type. Complete the first mission to unlock an item.</div>
       ) : (
         <div className="inventory-grid">
           {visibleItems.map((item) => (
@@ -173,7 +173,7 @@ export default function InventoryGrid({ items }) {
           <span className="player-meta">Acquired: {selected.acquiredAt}</span>
           {selected.linkTo && (
             <a className="inventory-link" href={selected.linkTo} target={selected.linkTo.startsWith("http") ? "_blank" : undefined} rel={selected.linkTo.startsWith("http") ? "noopener noreferrer" : undefined}>
-              Buka sumber
+              Open source
             </a>
           )}
         </article>

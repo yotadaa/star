@@ -22,7 +22,7 @@ export default async function ManagePage() {
   try {
     settings = await getNalaSettings();
   } catch {
-    configWarning = "Konfigurasi Convex belum dapat dibaca. Nilai runtime default ditampilkan tanpa menyimpan data baru.";
+    configWarning = "The Convex configuration could not be loaded. Runtime defaults are shown without saving new data.";
   }
 
   return (

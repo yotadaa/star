@@ -18,12 +18,12 @@ function responseError(error, status = 500) {
 async function requireOwnerActor(request) {
   const actor = await getApiActor(request);
   if (!actor) {
-    const error = new Error("Login dibutuhkan untuk membuka konfigurasi Nala.");
+    const error = new Error("Sign-in is required to open Nala's configuration.");
     error.code = "LOGIN_REQUIRED";
     return { error: responseError(error, 401) };
   }
   if (actor.role !== "owner" && actor.role !== "backend") {
-    const error = new Error("Konfigurasi Nala hanya tersedia untuk owner.");
+    const error = new Error("Nala's configuration is available only to the owner.");
     error.code = "NALA_CONFIG_FORBIDDEN";
     return { error: responseError(error, 403) };
   }

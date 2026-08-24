@@ -8,7 +8,7 @@ export default function ProgressBarSegmented({
   const filled = Math.min(segments, Math.max(0, Math.ceil((current / safeTarget) * segments)));
 
   return (
-    <div className="segmented-progress" aria-label={label ?? `${current} dari ${target}`}>
+    <div className="segmented-progress" aria-label={label ?? `${current} of ${target}`}>
       <div className="segmented-track" aria-hidden="true">
         {Array.from({ length: segments }).map((_, index) => (
           <span key={index} className={`segment ${index < filled ? "filled" : ""}`} />

@@ -32,7 +32,7 @@ export async function POST(request) {
       {
         ok: false,
         error: "LOGIN_REQUIRED",
-        message: "Login ke System dibutuhkan sebelum mengirim pesan. GET chat tetap bisa 200 karena membaca channel publik.",
+        message: "System sign-in is required before posting. Chat reads remain public.",
       },
       { status: 401 }
     );
@@ -51,17 +51,17 @@ export async function POST(request) {
 export async function DELETE(request) {
   const actor = await getApiActor(request);
   if (!actor) {
-    return errorResponse(Object.assign(new Error("Login dibutuhkan sebelum menghapus pesan."), { code: "LOGIN_REQUIRED" }), 401);
+    return errorResponse(Object.assign(new Error("Sign-in is required before deleting a message."), { code: "LOGIN_REQUIRED" }), 401);
   }
   if (actor.role !== "owner" && actor.role !== "backend") {
-    return errorResponse(Object.assign(new Error("Hanya owner yang dapat menghapus World Chat."), { code: "CHAT_FORBIDDEN" }), 403);
+    return errorResponse(Object.assign(new Error("Only the owner can delete World Chat messages."), { code: "CHAT_FORBIDDEN" }), 403);
   }
 
   try {
     const { searchParams } = new URL(request.url);
     const deleted = await deleteChatMessage({ id: searchParams.get("id"), actor });
     if (!deleted) {
-      return errorResponse(Object.assign(new Error("Pesan tidak ditemukan."), { code: "CHAT_NOT_FOUND" }), 404);
+      return errorResponse(Object.assign(new Error("Message not found."), { code: "CHAT_NOT_FOUND" }), 404);
     }
     return NextResponse.json({ ok: true, deleted: true, source: "convex" });
   } catch (error) {

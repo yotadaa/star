@@ -5,14 +5,14 @@ import LoginButton from "./LoginButton";
 import useCurrentUser from "./useCurrentUser";
 
 export default function RequireLoginGate({
-  title = "Login ke System",
-  description = "Fitur ini membutuhkan autentikasi Google sebelum bisa dipakai.",
+  title = "Sign in to the system",
+  description = "This feature requires Google authentication.",
   children,
 }) {
   const { isAuthenticated, isLoading } = useCurrentUser();
 
   if (isAuthenticated) return children;
-  if (isLoading) return <div className="login-gate" role="status">Memeriksa session...</div>;
+  if (isLoading) return <div className="login-gate" role="status">Checking session...</div>;
 
   return (
     <div className="login-gate" role="status">

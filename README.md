@@ -1,9 +1,9 @@
 # Mukhtada's Portfolio
 
-> Membangun sistem, satu quest pada satu waktu.
+> Building systems, one quest at a time.
 
-[Mukhtada's portfolio](https://me.mukhtada.my.id) is an Indonesian-language
-record of fullstack work, AI experiments, data research, publications, and
+[Mukhtada's portfolio](https://me.mukhtada.my.id) is a record of fullstack
+work, AI experiments, data research, publications, and
 community projects. It takes the shape of a small game world, but the work
 inside it stays factual. Projects link to source, research links to
 publications, and progress is calculated from real portfolio data.

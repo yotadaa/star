@@ -79,8 +79,8 @@ export default function PlayerStatusPopup({ open, onClose, initialTab = "invento
   if (!open) return null;
 
   const nextLabel = progress.level.next
-    ? `${progress.totalPP}/${progress.level.next.points} menuju Lv.${progress.level.next.number}`
-    : `${progress.totalPP} PP - level maksimum`;
+    ? `${progress.totalPP}/${progress.level.next.points} toward Lv.${progress.level.next.number}`
+    : `${progress.totalPP} PP - maximum level`;
 
   return (
     <div
@@ -113,7 +113,7 @@ export default function PlayerStatusPopup({ open, onClose, initialTab = "invento
               </PixelButton>
             ))}
           </div>
-          <PixelButton className="player-close" onClick={onClose} aria-label="Tutup player status">
+          <PixelButton className="player-close" onClick={onClose} aria-label="Close Player Status">
             X
           </PixelButton>
         </header>
@@ -135,7 +135,7 @@ export default function PlayerStatusPopup({ open, onClose, initialTab = "invento
               },
               {
                 icon: <SpriteIcon id="icon-backpack" size={14} />,
-                label: `${progress.inventory.length} item`,
+                label: `${progress.inventory.length} items`,
                 accent: "ink",
               },
             ]}

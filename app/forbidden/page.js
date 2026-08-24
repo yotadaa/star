@@ -2,7 +2,7 @@ import LoginButton from "@/components/auth/LoginButton";
 import RouteStatePage from "@/components/site/RouteStatePage";
 
 export const metadata = {
-  title: "Akses Ditolak",
+  title: "Access Denied",
   robots: {
     index: false,
     follow: false,
@@ -17,16 +17,16 @@ export default async function ForbiddenPage({ searchParams }) {
   return (
     <RouteStatePage
       code="403"
-      label="// AKSES TERBATAS"
-      title={needsLogin ? "Login diperlukan." : "Route ini khusus owner."}
+      label="// RESTRICTED ACCESS"
+      title={needsLogin ? "Sign-in required." : "This route is owner-only."}
       description={
         needsLogin
-          ? "Masuk dengan Google untuk memeriksa izin akses route ini."
-          : "Session aktif tidak memiliki role owner untuk membuka area pengelolaan."
+          ? "Sign in with Google so the system can check access to this route."
+          : "The active session does not have the owner role required for the management area."
       }
       icon="icon-forbidden-shield"
       secondaryHref="/blog"
-      secondaryLabel="Baca Blog"
+      secondaryLabel="Read Blog"
     >
       {needsLogin && (
         <div className="route-state-login">

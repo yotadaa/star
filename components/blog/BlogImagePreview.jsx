@@ -1,12 +1,13 @@
 "use client";
 
 import { useId, useRef } from "react";
+import { SpriteIcon } from "@/components/claude";
 
 export default function BlogImagePreview({ src, alt, caption, onImageLoad, imageRef }) {
   const dialogRef = useRef(null);
   const triggerRef = useRef(null);
   const titleId = useId();
-  const description = String(alt || caption || "Gambar artikel").trim();
+  const description = String(alt || caption || "Article image").trim();
 
   const openPreview = () => {
     if (dialogRef.current && !dialogRef.current.open) dialogRef.current.showModal();
@@ -24,7 +25,7 @@ export default function BlogImagePreview({ src, alt, caption, onImageLoad, image
         onClick={openPreview}
         ref={triggerRef}
         aria-haspopup="dialog"
-        aria-label={`Perbesar gambar: ${description}`}
+        aria-label={`Open image fullscreen: ${description}`}
       >
         <img
           ref={imageRef}
@@ -34,12 +35,18 @@ export default function BlogImagePreview({ src, alt, caption, onImageLoad, image
           decoding="async"
           onLoad={onImageLoad}
         />
-        <span className="blog-image-preview-hint" aria-hidden="true">Buka ukuran besar</span>
+        <span className="blog-image-preview-hint" aria-hidden="true">
+          <SpriteIcon id="icon-fullscreen" size={19} />
+        </span>
       </button>
       <dialog
         className="blog-image-preview-dialog"
         ref={dialogRef}
         aria-labelledby={titleId}
+        onCancel={(event) => {
+          event.preventDefault();
+          closePreview();
+        }}
         onClose={() => triggerRef.current?.focus()}
         onClick={(event) => {
           if (event.target === event.currentTarget) closePreview();
@@ -48,7 +55,7 @@ export default function BlogImagePreview({ src, alt, caption, onImageLoad, image
         <div className="blog-image-preview-shell">
           <header>
             <p id={titleId}>{description}</p>
-            <button type="button" onClick={closePreview} autoFocus aria-label="Tutup pratinjau gambar">×</button>
+            <button type="button" onClick={closePreview} autoFocus aria-label="Close image preview">×</button>
           </header>
           <img src={src} alt="" />
           {caption ? <p className="blog-image-preview-caption">{caption}</p> : null}

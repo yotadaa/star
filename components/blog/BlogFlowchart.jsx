@@ -44,7 +44,7 @@ export default function BlogFlowchart({ source }) {
   if (!chart.ok) {
     return (
       <figure className="blog-flowchart-fallback">
-        <figcaption>Diagram belum dapat dirender — {chart.reason}</figcaption>
+        <figcaption>The diagram could not be rendered: {chart.reason}</figcaption>
         <pre><code>{source}</code></pre>
       </figure>
     );
@@ -52,20 +52,20 @@ export default function BlogFlowchart({ source }) {
 
   const horizontal = chart.direction === "LR" || chart.direction === "RL";
   const summary = chart.edges
-    .map((edge) => `${edge.from} ${edge.type === "<-->" ? "terhubung dua arah dengan" : "menuju"} ${edge.to}`)
+    .map((edge) => `${edge.from} ${edge.type === "<-->" ? "connects both ways with" : "leads to"} ${edge.to}`)
     .join("; ");
 
   return (
     <figure className="blog-flowchart">
       <figcaption>
-        <span>Peta sistem</span>
-        <small>{chart.direction} · {chart.nodes.length} node · {chart.edges.length} relasi</small>
+        <span>System map</span>
+        <small>{chart.direction} · {chart.nodes.length} nodes · {chart.edges.length} connections</small>
       </figcaption>
       <div className="blog-flowchart-canvas">
         <svg
           viewBox={`0 0 ${chart.width} ${chart.height}`}
           role="img"
-          aria-label={`Flowchart arah ${chart.direction}. ${summary}`}
+          aria-label={`Flowchart direction ${chart.direction}. ${summary}`}
           preserveAspectRatio="xMidYMid meet"
         >
           <defs>

@@ -40,11 +40,11 @@ export default function Footer() {
         </a>
       </div>
       <p className={`foot-complete ${complete ? "visible" : ""}`}>
-        Level complete - seluruh peta sudah dijelajahi.
+        Level complete - the entire map has been explored.
       </p>
       <p className="foot-copy">
         © 2026 {profile.name.toUpperCase()} - BUILT WITH COFFEE &amp; PIXELS ·{" "}
-        <a href="/#hero">↑ KEMBALI KE ATAS</a>
+        <a href="/#hero">↑ BACK TO TOP</a>
       </p>
     </footer>
   );

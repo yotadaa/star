@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Contact",
   description:
-    "Hubungi Mukhtada Billah NST melalui kanal profesional, kode sumber, publikasi ilmiah, blog, atau media sosial yang terverifikasi.",
+    "Contact Mukhtada Billah NST through verified professional channels, source code, scientific publications, Blog, or social media.",
   path: "/contact",
 });
 export const dynamic = "force-dynamic";
@@ -19,13 +19,13 @@ export default async function ContactPage() {
     listContactChannels(),
     listAboutEntries(),
   ]);
-  const fallbackCaption = "Punya proyek, riset, atau sekadar mau menyapa? Pilih kanal yang paling nyaman buatmu.";
+  const fallbackCaption = "Have a project, a research idea, or just want to say hello? Choose the channel that suits you.";
   const caption = entries.find((entry) => entry.entryKey === "contact-caption")?.body || fallbackCaption;
   const canManage = session?.user?.role === "owner";
 
   return (
     <div className="page-wrap">
-      <PageHeader label="// Open Comms" title="Ayo terhubung">
+      <PageHeader label="// Open Comms" title="Let's connect">
         <EditablePageCaption
           entryKey="contact-caption"
           title="Contact caption"
@@ -33,7 +33,7 @@ export default async function ContactPage() {
           canManage={canManage}
         />
       </PageHeader>
-      {warnings?.length > 0 && <p className="backend-warning" role="status">Convex belum merespons, kanal lokal faktual tetap dipakai sebagai cadangan baca.</p>}
+      {warnings?.length > 0 && <p className="backend-warning" role="status">Convex is not responding, so the factual local contact channels are being used as a fallback.</p>}
       <ContactCards channels={channels} source={source} />
     </div>
   );

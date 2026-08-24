@@ -13,10 +13,10 @@ const SPRITES = {
 };
 
 const INITIAL_CHIPS = [
-  "Ceritain proyek AI tooling-nya",
-  "Publikasi apa aja?",
-  "Level sekarang berapa?",
-  "Cara hubungi Mukhtada?",
+  "Show me the AI tooling projects",
+  "What has Mukhtada published?",
+  "What is the current level?",
+  "How can I contact Mukhtada?",
 ];
 
 function createId(prefix = "nala") {
@@ -61,33 +61,33 @@ function requestHistory(messages, omittedUserId) {
 function errorPresentation(error) {
   const presentations = {
     NALA_DISABLED: {
-      status: "Nala sedang dinonaktifkan oleh owner",
-      message: "Nala sedang tidak menerima quest baru. Pesanmu belum diproses.",
+      status: "Nala is disabled by the owner",
+      message: "Nala is not accepting new quests. Your message was not processed.",
     },
     NALA_KEY_MISSING: {
-      status: "Koneksi OpenRouter belum dikonfigurasi",
-      message: "Koneksi live Nala belum tersedia. Pesanmu belum diproses.",
+      status: "OpenRouter is not configured",
+      message: "Nala's live connection is unavailable. Your message was not processed.",
     },
     NALA_RATE_LIMITED: {
-      status: "Batas pesan tercapai · tunggu sebentar",
-      message: "Terlalu banyak quest masuk bersamaan. Coba lagi setelah jeda singkat.",
+      status: "Message limit reached · wait a moment",
+      message: "Too many quests arrived at once. Try again after a short pause.",
     },
     OPENROUTER_RATE_LIMIT: {
-      status: "OpenRouter sedang membatasi permintaan",
-      message: "Penyedia model sedang penuh. Pesanmu tetap utuh dan bisa dicoba lagi.",
+      status: "OpenRouter is rate-limiting requests",
+      message: "The model provider is busy. Your message is intact and can be retried.",
     },
     OPENROUTER_TIMEOUT: {
-      status: "OpenRouter belum menjawab tepat waktu",
-      message: "Jawaban live belum selesai tepat waktu. Coba lagi tanpa mengirim ulang pesanmu.",
+      status: "OpenRouter did not respond in time",
+      message: "The live response timed out. Retry without sending your message again.",
     },
     OPENROUTER_UPSTREAM: {
-      status: "Penyedia model sedang bermasalah",
-      message: "OpenRouter belum berhasil menyelesaikan jawaban. Pesanmu tetap utuh dan bisa dicoba lagi.",
+      status: "The model provider is having trouble",
+      message: "OpenRouter could not complete the response. Your message is intact and can be retried.",
     },
   };
   return presentations[error.code] || {
-    status: String(error.message || "Koneksi live Nala terputus").slice(0, 180),
-    message: "Koneksi live terputus sebelum jawaban selesai. Pesanmu tetap utuh dan bisa dicoba lagi.",
+    status: String(error.message || "Nala's live connection was interrupted").slice(0, 180),
+    message: "The live connection ended before the response finished. Your message is intact and can be retried.",
   };
 }
 
@@ -117,7 +117,7 @@ export default function NalaWidget({ obscured = false }) {
   const [chips, setChips] = useState(INITIAL_CHIPS);
   const [draft, setDraft] = useState("");
   const [pending, setPending] = useState(false);
-  const [status, setStatus] = useState("Siap untuk koneksi live OpenRouter");
+  const [status, setStatus] = useState("Ready for a live OpenRouter connection");
 
   useEffect(() => {
     document.documentElement.dataset.nalaPanel = open ? "open" : "closed";
@@ -170,7 +170,7 @@ export default function NalaWidget({ obscured = false }) {
           role: "assistant",
           expression: "greeting",
           content:
-            "Halo, aku Nala. Aku pemandu quest untuk portofolio Mukhtada, terpisah dari World Chat. Aku bisa bantu cari proyek, publikasi, statistik level, blog, atau kanal kontak.",
+            "Hi, I'm Nala, the quest guide for Mukhtada's portfolio. I can help you find projects, publications, player statistics, Blog posts, or contact channels.",
         },
       ]);
     }
@@ -196,7 +196,7 @@ export default function NalaWidget({ obscured = false }) {
       setDraft("");
       setPending(true);
       setExpression("thinking");
-      setStatus("Nala membaca data portofolio...");
+      setStatus("Nala is reading verified portfolio data...");
 
       try {
         const response = await fetch("/api/nala/chat", {
@@ -212,7 +212,7 @@ export default function NalaWidget({ obscured = false }) {
         });
         const data = await response.json().catch(() => ({}));
         if (!response.ok || !data.ok) {
-          const apiError = new Error(data.message || "Nala belum bisa menjawab.");
+          const apiError = new Error(data.message || "Nala could not answer.");
           apiError.code = data.error || "NALA_API_ERROR";
           throw apiError;
         }
@@ -232,7 +232,7 @@ export default function NalaWidget({ obscured = false }) {
           },
         ]);
         setChips(Array.isArray(data.suggestedChips) && data.suggestedChips.length ? data.suggestedChips.slice(0, 3) : INITIAL_CHIPS);
-        setStatus(data.source === "openrouter" ? "OpenRouter live · data tool terverifikasi" : "Sumber respons tidak dikenali");
+        setStatus(data.source === "openrouter" ? "OpenRouter live · verified tool data" : "Unrecognized response source");
       } catch (error) {
         const presentation = errorPresentation(error);
         setExpression("confused");
@@ -267,12 +267,12 @@ export default function NalaWidget({ obscured = false }) {
     if (!action) return;
     if (action.type === "copy" && action.text) {
       await navigator.clipboard?.writeText(action.text);
-      showToast("Teks disalin ke clipboard.", { icon: <SpriteIcon id="icon-clipboard" size={15} /> });
+      showToast("Text copied to the clipboard.", { icon: <SpriteIcon id="icon-clipboard" size={15} /> });
     }
   }
 
   function prepareNavigation() {
-    showToast("Nala membuka rute yang relevan.", { icon: <SpriteIcon id="icon-route-redirect" size={15} /> });
+    showToast("Opening the relevant route.", { icon: <SpriteIcon id="icon-route-redirect" size={15} /> });
     setOpen(false);
   }
 
@@ -295,9 +295,9 @@ export default function NalaWidget({ obscured = false }) {
             </span>
             <div className="nala-title-group">
               <h2 id="nala-title">Nala</h2>
-              <p>Pemandu Quest</p>
+              <p>Quest Guide</p>
             </div>
-            <PixelButton className="nala-close" onClick={() => setOpen(false)} aria-label="Tutup Nala">
+            <PixelButton className="nala-close" onClick={() => setOpen(false)} aria-label="Close Nala">
               <SpriteIcon id="icon-plus" className="nala-close-icon" size={15} />
             </PixelButton>
           </header>
@@ -307,7 +307,7 @@ export default function NalaWidget({ obscured = false }) {
             <span>{status}</span>
           </div>
 
-          <div ref={threadRef} className="nala-thread" aria-label="Percakapan Nala" aria-live="polite" aria-busy={pending}>
+          <div ref={threadRef} className="nala-thread" aria-label="Nala conversation" aria-live="polite" aria-busy={pending}>
             {messages.map((message) => (
               <article className={`nala-message ${message.role === "user" ? "is-user" : "is-nala"}`} key={message.id}>
                 {message.role !== "user" && (
@@ -325,13 +325,13 @@ export default function NalaWidget({ obscured = false }) {
                       onClick={prepareNavigation}
                     >
                       <SpriteIcon id="icon-route-redirect" size={14} />
-                      Bawa saya ke sana
+                      Take me there
                     </PixelButton>
                   )}
                   {message.action?.type === "copy" && message.role !== "user" && (
                     <PixelButton className="nala-action-chip" onClick={() => executeAction(message.action)}>
                       <SpriteIcon id="icon-clipboard" size={14} />
-                      Salin
+                      Copy
                     </PixelButton>
                   )}
                   {message.failed && message.role !== "user" && (
@@ -343,7 +343,7 @@ export default function NalaWidget({ obscured = false }) {
                       })}
                       disabled={pending}
                     >
-                      Coba lagi
+                      Try again
                     </PixelButton>
                   )}
                 </div>
@@ -355,7 +355,7 @@ export default function NalaWidget({ obscured = false }) {
                   <NalaPortrait expression="thinking" />
                 </span>
                 <div className="nala-bubble">
-                  <div className="nala-typing" aria-label="Nala sedang berpikir">
+                  <div className="nala-typing" aria-label="Nala is thinking">
                     <span />
                     <span />
                     <span />
@@ -366,7 +366,7 @@ export default function NalaWidget({ obscured = false }) {
           </div>
 
           {!pending && (
-            <div className="nala-chips" aria-label="Prompt cepat Nala">
+            <div className="nala-chips" aria-label="Nala quick prompts">
               {chips.slice(0, 3).map((chip) => (
                 <PixelButton className="nala-chip" key={chip} onClick={() => sendMessage(chip)}>
                   {chip}
@@ -376,19 +376,19 @@ export default function NalaWidget({ obscured = false }) {
           )}
 
           <form className="nala-input-row" onSubmit={handleSubmit}>
-            <label htmlFor="nala-message">Tanya Nala</label>
+            <label htmlFor="nala-message">Ask Nala</label>
             <input
               ref={inputRef}
               id="nala-message"
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
-              placeholder="Tanya Nala..."
+              placeholder="Ask Nala..."
               disabled={pending}
               maxLength={1000}
             />
             <PixelButton type="submit" className="nala-send" disabled={pending || !draft.trim()}>
               <SpriteIcon id="icon-send" size={15} />
-              {pending ? "Tunggu" : "Kirim"}
+              {pending ? "Wait" : "Send"}
             </PixelButton>
           </form>
         </aside>
@@ -398,7 +398,7 @@ export default function NalaWidget({ obscured = false }) {
         ref={fabRef}
         type="button"
         className={`nala-fab ${open ? "is-open" : ""}`}
-        aria-label="Buka Nala, pemandu quest"
+        aria-label="Open Nala, the quest guide"
         aria-haspopup="dialog"
         aria-expanded={open}
         onClick={open ? () => setOpen(false) : openPanel}

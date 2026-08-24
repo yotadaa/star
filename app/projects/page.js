@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Projects",
   description:
-    "Proyek pilihan Mukhtada Billah NST di web, AI, data science, riset, dan kerja komunitas, lengkap dengan stack serta tautan sumber.",
+    "Selected projects by Mukhtada Billah NST across web development, AI, data science, research, and community work, with stacks and source links.",
   path: "/projects",
 });
 export const dynamic = "force-dynamic";
@@ -16,7 +16,7 @@ export const dynamic = "force-dynamic";
 export default async function ProjectsPage() {
   const [session, { entries }] = await Promise.all([auth(), listAboutEntries()]);
   const fallbackCaption =
-    "Proyek pilihan lintas web, AI, dan data science. Saring berdasarkan tipe atau kategori - 57 repo selengkapnya ada di GitHub.";
+    "Selected work across web development, AI, and data science. Filter by type or category; all 57 repositories are available on GitHub.";
   const caption = entries.find((entry) => entry.entryKey === "projects-caption")?.body || fallbackCaption;
   const canManage = session?.user?.role === "owner";
 

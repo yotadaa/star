@@ -60,12 +60,12 @@ export async function POST(request) {
     const conversationId = cleanText(payload.conversationId);
 
     if (!message) {
-      return errorResponse(Object.assign(new Error("Pertanyaan Nala tidak boleh kosong."), { code: "NALA_EMPTY_PROMPT" }), 400);
+      return errorResponse(Object.assign(new Error("Nala's question cannot be empty."), { code: "NALA_EMPTY_PROMPT" }), 400);
     }
 
     const clientKey = getClientKey(request);
     if (isRateLimited(clientKey)) {
-      return errorResponse(Object.assign(new Error("Terlalu banyak pesan ke Nala dalam satu menit. Coba lagi sebentar."), { code: "NALA_RATE_LIMITED" }), 429);
+      return errorResponse(Object.assign(new Error("Too many messages were sent to Nala in one minute. Try again shortly."), { code: "NALA_RATE_LIMITED" }), 429);
     }
 
     const answer = await getNalaReply({ message, history: payload.history });

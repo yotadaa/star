@@ -9,10 +9,10 @@ import { navLinks, profile } from "@/lib/data";
 import { useSite } from "./SiteProvider";
 
 const PHASE_META = {
-  morning: { label: "Ganti ke mode siang", Icon: Sunrise },
-  noon: { label: "Ganti ke mode sunset", Icon: Sun },
-  sunset: { label: "Ganti ke mode malam", Icon: Sunset },
-  night: { label: "Ganti ke mode pagi", Icon: Moon },
+  morning: { label: "Switch to noon", Icon: Sunrise },
+  noon: { label: "Switch to sunset", Icon: Sun },
+  sunset: { label: "Switch to night", Icon: Sunset },
+  night: { label: "Switch to morning", Icon: Moon },
 };
 
 export default function TopNav() {
@@ -24,7 +24,7 @@ export default function TopNav() {
 
   return (
     <div className="island-wrap">
-      <nav className="island" aria-label="Navigasi utama" data-testid="top-nav">
+      <nav className="island" aria-label="Primary navigation" data-testid="top-nav">
         <Link href="/" className="island-logo" data-testid="nav-brand">
           <span className="dot" /> {profile.handle}
         </Link>
@@ -42,21 +42,21 @@ export default function TopNav() {
           ))}
         </div>
 
-        <button type="button" className="island-toggle" onClick={cycleTheme} aria-label={`${label}. Tema aplikasi saat ini: ${phase}.`} title={label} data-phase={phase} data-testid="daynight-toggle">
+        <button type="button" className="island-toggle" onClick={cycleTheme} aria-label={`${label}. Current application theme: ${phase}.`} title={label} data-phase={phase} data-testid="daynight-toggle">
           <Icon size={16} />
         </button>
         <button
           type="button"
           className="island-toggle island-player-toggle"
           onClick={() => openPlayerStatus("inventory")}
-          aria-label={`Buka inventory pemain, level ${progress.level.current.number}`}
+          aria-label={`Open player inventory, level ${progress.level.current.number}`}
           title="Inventory, Achievement, Mission"
           data-testid="open-player-status"
         >
           <SpriteIcon id="icon-backpack" size={16} />
           <span className="island-level-badge">Lv.{progress.level.current.number}</span>
         </button>
-        <button type="button" className="island-toggle" onClick={() => setPaletteOpen(true)} aria-label="Buka command palette" data-testid="open-palette">
+        <button type="button" className="island-toggle" onClick={() => setPaletteOpen(true)} aria-label="Open command palette" data-testid="open-palette">
           <Command size={16} />
         </button>
       </nav>

@@ -59,7 +59,7 @@ export const createChannel = internalMutation({
       channelKey,
       label: cleanText(args.payload.label, "Contact"),
       sub: cleanText(args.payload.sub),
-      cta: cleanText(args.payload.cta, "Buka"),
+      cta: cleanText(args.payload.cta, "Open"),
       href: cleanText(args.payload.href, "/contact"),
       tone: cleanText(args.payload.tone, "default"),
       sortOrder: Math.trunc(args.payload.sortOrder ?? args.payload.sort_order ?? 0),
