@@ -58,7 +58,10 @@ export default async function BlogPostPage({ params }) {
   const canModerate = session?.user?.role === "owner";
   const articleSeo = buildBlogArticleSeo(post);
   const publishedLabel = formatArticleDate(articleSeo.publishedTime);
-  const { recentPosts, relatedPosts } = buildBlogReadingContext(post, posts);
+  const { recentPosts, relatedPosts } = buildBlogReadingContext(post, posts, {
+    recentLimit: 4,
+    relatedLimit: 3,
+  });
 
   return (
     <div className="page-wrap blog-post-page">
@@ -103,8 +106,7 @@ export default async function BlogPostPage({ params }) {
             <BlogPostRenderer blocks={post.blocks} sourceHref={post.sourceHref} />
           </div>
 
-          <BlogRecentRail post={recentPosts[0]} side="left" index={1} />
-          <BlogRecentRail post={recentPosts[1]} side="right" index={2} />
+          <BlogRecentRail posts={recentPosts} />
         </div>
 
         <div className="blog-post-tail">

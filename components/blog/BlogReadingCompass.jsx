@@ -29,21 +29,31 @@ function ReadingCover({ post, className = "" }) {
   );
 }
 
-export function BlogRecentRail({ post, side, index }) {
-  if (!post) return null;
+export function BlogRecentRail({ posts }) {
+  if (!posts?.length) return null;
 
   return (
-    <aside className={`blog-recent-rail is-${side}`} aria-label={`Recent article ${index}`}>
-      <Link href={`/blog/${post.slug}`} className="blog-recent-card">
-        <span className="blog-recent-index">Recent {String(index).padStart(2, "0")}</span>
-        <ReadingCover post={post} />
-        <span className="blog-recent-title">{post.title}</span>
-        <span className="blog-recent-meta">{post.readTime} · {voteLabel(post)}</span>
-        <span className="blog-recent-action">
-          <SpriteIcon id="icon-chevron-up" size={14} aria-hidden="true" />
-          Read article
-        </span>
-      </Link>
+    <aside className="blog-recent-rail" aria-labelledby="blog-recent-title">
+      <div className="blog-recent-list">
+        <header className="blog-recent-list-head">
+          <h2 id="blog-recent-title">Recent articles</h2>
+          <Link href="/blog">View all</Link>
+        </header>
+        <ol>
+          {posts.map((post, index) => (
+            <li key={post.slug}>
+              <Link href={`/blog/${post.slug}`}>
+                <span className="blog-recent-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                <span className="blog-recent-copy">
+                  <span className="blog-recent-title">{post.title}</span>
+                  <span className="blog-recent-meta">{post.readTime} · {voteLabel(post)}</span>
+                </span>
+                <SpriteIcon id="icon-chevron-up" size={14} className="blog-recent-arrow" aria-hidden="true" />
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </div>
     </aside>
   );
 }
@@ -54,7 +64,6 @@ function topicLabel(item) {
 
 export function BlogReadingTrail({ items }) {
   if (!items?.length) return null;
-  const [featured, ...compactItems] = items;
 
   return (
     <section className="blog-reading-trail" aria-labelledby="blog-reading-trail-title">
@@ -66,36 +75,20 @@ export function BlogReadingTrail({ items }) {
         <Link href="/blog" className="blog-reading-trail-all">View all articles</Link>
       </header>
 
-      <div className="blog-reading-trail-layout">
-        <article className="blog-reading-trail-feature">
-          <Link href={`/blog/${featured.post.slug}`}>
-            <ReadingCover post={featured.post} className="is-featured" />
-            <span className="blog-reading-trail-feature-body">
-              <span className="blog-reading-topic">{topicLabel(featured)}</span>
-              <span className="blog-reading-feature-title">{featured.post.title}</span>
-              <span className="blog-reading-feature-excerpt">{featured.post.excerpt}</span>
-              <span className="blog-reading-feature-meta">{featured.post.readTime} · {voteLabel(featured.post)}</span>
-            </span>
-          </Link>
-        </article>
-
-        {compactItems.length ? (
-          <div className="blog-reading-trail-compact-list">
-            {compactItems.map((item, index) => (
-              <article className="blog-reading-trail-compact" key={item.post.slug}>
-                <Link href={`/blog/${item.post.slug}`}>
-                  <span className="blog-reading-trail-number" aria-hidden="true">{String(index + 2).padStart(2, "0")}</span>
-                  <span className="blog-reading-trail-compact-copy">
-                    <span className="blog-reading-topic">{topicLabel(item)}</span>
-                    <span className="blog-reading-compact-title">{item.post.title}</span>
-                    <span className="blog-reading-compact-meta">{item.post.readTime} · {voteLabel(item.post)}</span>
-                  </span>
-                  <SpriteIcon id="icon-chevron-up" size={16} className="blog-reading-trail-arrow" aria-hidden="true" />
-                </Link>
-              </article>
-            ))}
-          </div>
-        ) : null}
+      <div className="blog-reading-trail-carousel" role="list" aria-label="Related articles">
+        {items.map((item) => (
+          <article className="blog-reading-card" role="listitem" key={item.post.slug}>
+            <Link href={`/blog/${item.post.slug}`}>
+              <ReadingCover post={item.post} className="is-carousel" />
+              <span className="blog-reading-card-body">
+                <span className="blog-reading-topic">{topicLabel(item)}</span>
+                <span className="blog-reading-card-title">{item.post.title}</span>
+                <span className="blog-reading-card-excerpt">{item.post.excerpt}</span>
+                <span className="blog-reading-card-meta">{item.post.readTime} · {voteLabel(item.post)}</span>
+              </span>
+            </Link>
+          </article>
+        ))}
       </div>
     </section>
   );
