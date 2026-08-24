@@ -3,7 +3,7 @@
 import { useId, useRef } from "react";
 import { SpriteIcon } from "@/components/claude";
 
-export default function BlogImagePreview({ src, alt, caption, onImageLoad, imageRef }) {
+export default function BlogImagePreview({ src, alt, caption, width, height, onImageLoad, imageRef }) {
   const dialogRef = useRef(null);
   const triggerRef = useRef(null);
   const titleId = useId();
@@ -33,6 +33,8 @@ export default function BlogImagePreview({ src, alt, caption, onImageLoad, image
           alt={description}
           loading="lazy"
           decoding="async"
+          width={width}
+          height={height}
           onLoad={onImageLoad}
         />
         <span className="blog-image-preview-hint" aria-hidden="true">
@@ -57,7 +59,7 @@ export default function BlogImagePreview({ src, alt, caption, onImageLoad, image
             <p id={titleId}>{description}</p>
             <button type="button" onClick={closePreview} autoFocus aria-label="Close image preview">×</button>
           </header>
-          <img src={src} alt="" />
+          <img src={src} alt="" width={width} height={height} />
           {caption ? <p className="blog-image-preview-caption">{caption}</p> : null}
         </div>
       </dialog>

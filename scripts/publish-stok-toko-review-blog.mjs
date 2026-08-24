@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { ConvexHttpClient } from "convex/browser";
 import { makeFunctionReference } from "convex/server";
+import { completeBlogSeoData } from "./blog-seo-data.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const slug = "stok-toko-project-review";
@@ -335,7 +336,9 @@ export async function publishStokTokoReviewBlog() {
     role: "backend",
   };
   const uploads = await uploadImageAssets(client, secret, actor);
-  const publishPayload = attachStorageIds(stokTokoReviewBlogPayload, uploads.storedByAssetKey);
+  const publishPayload = completeBlogSeoData(
+    attachStorageIds(stokTokoReviewBlogPayload, uploads.storedByAssetKey),
+  );
   validatePayload(publishPayload, { requireStorage: true });
   const posts = await client.action(listBlogAdmin, { secret, limit: 100 });
   const existing = posts.find((post) => post.slug === slug);

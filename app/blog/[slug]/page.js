@@ -28,8 +28,8 @@ export async function generateMetadata({ params }) {
   }
   const articleSeo = buildBlogArticleSeo(post);
   return pageMetadata({
-    title: post.title,
-    description: post.excerpt,
+    title: articleSeo.seoTitle,
+    description: articleSeo.seoDescription,
     path: articleSeo.path,
     type: "article",
     images: articleSeo.image ? [articleSeo.image] : undefined,
@@ -38,6 +38,8 @@ export async function generateMetadata({ params }) {
     authors: [articleSeo.authorUrl],
     section: articleSeo.section,
     tags: articleSeo.tags,
+    titleSuffix: "Mukhtada",
+    absoluteTitle: true,
   });
 }
 

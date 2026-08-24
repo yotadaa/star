@@ -7,6 +7,7 @@ import { tnksWebBookingBlogPayload } from "./publish-tnks-web-booking-blog.mjs";
 import { gpt6AstraRumorBlogPayload } from "./publish-gpt-6-astra-rumor-blog.mjs";
 import { oxAlphaInvestigationBlogPayload } from "./publish-ox-alpha-investigation-blog.mjs";
 import { dshStuckInstallationBlogPayload } from "./publish-dsh-stuck-installation-blog.mjs";
+import { completeBlogSeoData } from "./blog-seo-data.mjs";
 
 const SHARDS = ["s1", "s2", "s3"];
 
@@ -59,6 +60,8 @@ function cleanBlocks(blocks) {
           ...(type === "image" && block?.assetKey ? { assetKey: String(block.assetKey).trim() } : {}),
           ...(type === "image" && block?.src ? { src: String(block.src).trim() } : {}),
           ...(type === "image" && block?.alt ? { alt: String(block.alt).trim() } : {}),
+          ...(type === "image" && Number(block?.width) > 0 ? { width: Math.floor(Number(block.width)) } : {}),
+          ...(type === "image" && Number(block?.height) > 0 ? { height: Math.floor(Number(block.height)) } : {}),
         };
       })
       .filter((block) => block.type === "divider" || block.text || block.assetKey || block.src || block.rows?.length)
@@ -152,23 +155,37 @@ export function buildSeedTables(data) {
   ];
   const blogPosts = sourceBlogPosts.map((post, index) => {
     const shard = SHARDS[index % SHARDS.length];
+    const status = post.status === "published" ? "published" : "draft";
+    const completed = completeBlogSeoData(
+      { ...post, status },
+      { requirePublishedImage: status === "published" },
+    );
+    const publishedAt = status === "published" && Number.isFinite(Date.parse(post.publishedAt))
+      ? Date.parse(post.publishedAt)
+      : undefined;
     return {
       legacyId: routedId(shard, "blog", post.id),
       legacyShardId: shard,
-      slug: post.slug,
-      title: post.title,
-      excerpt: post.excerpt || "",
-      status: "published",
-      tags: post.tags || [],
-      publishedAt: Number.isFinite(Date.parse(post.publishedAt)) ? Date.parse(post.publishedAt) : index,
-      publishedAtLabel: post.publishedAt || "CMS pending",
-      readTime: post.readTime || "4 min read",
-      coverTone: post.coverTone || "research",
-      sourceHref: post.sourceHref || "/blog",
-      blocks: cleanBlocks(post.blocks),
-      createdAt: 0,
-      updatedAt: 0,
-      schemaVersion: 1,
+      slug: completed.slug,
+      title: completed.title,
+      excerpt: completed.excerpt || "",
+      status,
+      tags: completed.tags || [],
+      ...(publishedAt ? { publishedAt } : {}),
+      publishedAtLabel: publishedAt ? new Date(publishedAt).toISOString() : "Draft",
+      readTime: completed.readTime || "4 min read",
+      coverTone: completed.coverTone || "research",
+      sourceHref: completed.sourceHref || "/blog",
+      seoTitle: completed.seoTitle,
+      seoDescription: completed.seoDescription,
+      language: completed.language,
+      author: completed.author,
+      articleSection: completed.articleSection,
+      ...(completed.featuredImage ? { featuredImage: completed.featuredImage } : {}),
+      blocks: cleanBlocks(completed.blocks),
+      createdAt: publishedAt ?? index + 1,
+      updatedAt: publishedAt ?? index + 1,
+      schemaVersion: 2,
     };
   });
 

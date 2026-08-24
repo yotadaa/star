@@ -3,6 +3,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { ConvexHttpClient } from "convex/browser";
 import { makeFunctionReference } from "convex/server";
+import { completeBlogSeoData } from "./blog-seo-data.mjs";
 
 const root = process.cwd();
 const slug = "caelestia-island-suite";
@@ -234,6 +235,7 @@ function validatePayload(payload) {
 export async function publishCaelestiaBlog() {
   loadLocalEnv();
   validatePayload(caelestiaBlogPayload);
+  const publishPayload = completeBlogSeoData(caelestiaBlogPayload);
 
   const convexUrl = String(process.env.CONVEX_CLOUD_URL || "").trim().replace(/\/+$/, "");
   const secret = process.env.CONVEX_INTERNAL_API_KEY;
@@ -253,12 +255,12 @@ export async function publishCaelestiaBlog() {
     ? await client.action(updateBlog, {
         secret,
         id: existing.id,
-        payload: caelestiaBlogPayload,
+        payload: publishPayload,
         actor,
       })
     : await client.action(createBlog, {
         secret,
-        payload: caelestiaBlogPayload,
+        payload: publishPayload,
         actor,
       });
 

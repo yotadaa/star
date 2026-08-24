@@ -19,6 +19,38 @@ const BLOCK_TYPES = [
   { type: "divider", label: "Divider", icon: "icon-divider" },
 ];
 
+const DEFAULT_AUTHOR = {
+  id: "https://me.mukhtada.my.id/#person",
+  name: "Mukhtada Billah NST",
+  url: "https://me.mukhtada.my.id/",
+};
+
+function imageReference(image = {}) {
+  return String(image.assetKey || image.storageId || image.src || "").trim();
+}
+
+function featuredImageForBlocks(blocks, existing) {
+  const existingReference = imageReference(existing);
+  const isMeasuredImage = (block) => (
+    block.type === "image"
+    && Number(block.width) > 0
+    && Number(block.height) > 0
+    && (block.storageId || block.assetKey || block.src)
+  );
+  const image = blocks.find((block) => (
+    isMeasuredImage(block) && existingReference && imageReference(block) === existingReference
+  )) || blocks.find(isMeasuredImage);
+  if (!image) return undefined;
+  return {
+    ...(image.storageId ? { storageId: image.storageId } : {}),
+    ...(image.assetKey ? { assetKey: image.assetKey } : {}),
+    ...(!image.storageId && !image.assetKey && image.src ? { src: image.src } : {}),
+    alt: image.alt || image.text || "Article image",
+    width: Math.floor(Number(image.width)),
+    height: Math.floor(Number(image.height)),
+  };
+}
+
 function slugify(value) {
   return String(value || "")
     .toLowerCase()
@@ -48,6 +80,13 @@ export default function BlockEditorPreview({ post }) {
   const [tags, setTags] = useState(post?.tags?.join(", ") ?? "");
   const [status, setStatus] = useState(post?.status === "published" ? "published" : "draft");
   const [sourceHref, setSourceHref] = useState(post?.sourceHref ?? "/blog");
+  const [seoTitle, setSeoTitle] = useState(post?.seoTitle ?? post?.title ?? "");
+  const [seoDescription, setSeoDescription] = useState(post?.seoDescription ?? post?.excerpt ?? "");
+  const [language, setLanguage] = useState(post?.language ?? "en-US");
+  const [articleSection, setArticleSection] = useState(post?.articleSection ?? "Blog");
+  const [authorId, setAuthorId] = useState(post?.author?.id ?? DEFAULT_AUTHOR.id);
+  const [authorName, setAuthorName] = useState(post?.author?.name ?? DEFAULT_AUTHOR.name);
+  const [authorUrl, setAuthorUrl] = useState(post?.author?.url ?? DEFAULT_AUTHOR.url);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [bubble, setBubble] = useState(null);
@@ -76,9 +115,18 @@ export default function BlockEditorPreview({ post }) {
       tags: tags.split(",").map((tag) => tag.trim()).filter(Boolean),
       status,
       sourceHref,
+      seoTitle,
+      seoDescription,
+      language,
+      articleSection,
+      author: {
+        id: authorId,
+        name: authorName,
+        url: authorUrl,
+      },
       blocks,
     }),
-    [blocks, excerpt, post, slug, sourceHref, status, tags, title]
+    [articleSection, authorId, authorName, authorUrl, blocks, excerpt, language, post, seoDescription, seoTitle, slug, sourceHref, status, tags, title]
   );
 
   function insertBlock(afterIndex, type) {
@@ -125,6 +173,9 @@ export default function BlockEditorPreview({ post }) {
   async function savePost(nextStatus = status) {
     setSaveState({ status: "saving", message: "Saving to Convex..." });
 
+    const savedBlocks = blocks.filter(
+      (block) => block.type === "divider" || block.text || block.src || block.storageId || block.assetKey || block.rows?.length,
+    );
     const payload = {
       title: title || "Untitled Lore",
       excerpt,
@@ -132,11 +183,19 @@ export default function BlockEditorPreview({ post }) {
       tags: tags.split(",").map((tag) => tag.trim()).filter(Boolean),
       status: nextStatus,
       sourceHref,
+      seoTitle: seoTitle || title || "Untitled Lore",
+      seoDescription: seoDescription || excerpt,
+      language,
+      articleSection,
+      author: {
+        id: authorId,
+        name: authorName,
+        url: authorUrl,
+      },
       readTime: post?.readTime ?? "4 min read",
       coverTone: post?.coverTone ?? "research",
-      blocks: blocks.filter(
-        (block) => block.type === "divider" || block.text || block.src || block.storageId || block.assetKey || block.rows?.length,
-      ),
+      featuredImage: featuredImageForBlocks(savedBlocks, post?.featuredImage),
+      blocks: savedBlocks,
     };
 
     try {
@@ -198,6 +257,26 @@ export default function BlockEditorPreview({ post }) {
               <input value={sourceHref} onChange={(event) => setSourceHref(event.target.value)} placeholder="/blog" />
             </label>
             <label>
+              Language
+              <input value={language} onChange={(event) => setLanguage(event.target.value)} placeholder="en-US" />
+            </label>
+            <label>
+              Article section
+              <input value={articleSection} onChange={(event) => setArticleSection(event.target.value)} placeholder="Project Review" />
+            </label>
+            <label>
+              Author
+              <input value={authorName} onChange={(event) => setAuthorName(event.target.value)} placeholder="Author name" />
+            </label>
+            <label className="story-settings-wide">
+              Author ID
+              <input value={authorId} onChange={(event) => setAuthorId(event.target.value)} placeholder="https://example.com/#person" />
+            </label>
+            <label className="story-settings-wide">
+              Author URL
+              <input type="url" value={authorUrl} onChange={(event) => setAuthorUrl(event.target.value)} placeholder="https://example.com/" />
+            </label>
+            <label>
               Status
               <select value={status} onChange={(event) => setStatus(event.target.value)}>
                 <option value="draft">Draft</option>
@@ -207,6 +286,14 @@ export default function BlockEditorPreview({ post }) {
             <label className="story-settings-wide">
               Excerpt
               <textarea rows={3} value={excerpt} onChange={(event) => setExcerpt(event.target.value)} placeholder="Short article summary..." />
+            </label>
+            <label className="story-settings-wide">
+              SEO title
+              <input value={seoTitle} maxLength={70} onChange={(event) => setSeoTitle(event.target.value)} placeholder="Search title, up to 70 characters" />
+            </label>
+            <label className="story-settings-wide">
+              SEO description
+              <textarea rows={3} value={seoDescription} maxLength={180} onChange={(event) => setSeoDescription(event.target.value)} placeholder="Search description, up to 180 characters" />
             </label>
           </div>
         )}
@@ -316,6 +403,8 @@ function BlockInput({ block, onChange }) {
         assetKey: undefined,
         src: data.file.url,
         alt: block.alt || file.name,
+        width: result.width,
+        height: result.height,
       });
       const savings = result.originalBytes - result.outputBytes;
       setUploadState({
@@ -375,6 +464,15 @@ function BlockInput({ block, onChange }) {
             alt={block.alt || block.text || "Preview image block"}
             loading="lazy"
             decoding="async"
+            width={block.width}
+            height={block.height}
+            onLoad={(event) => {
+              const width = event.currentTarget.naturalWidth;
+              const height = event.currentTarget.naturalHeight;
+              if (width > 0 && height > 0 && (block.width !== width || block.height !== height)) {
+                onChange({ width, height });
+              }
+            }}
           />
         ) : (
           <SpriteIcon id="icon-image" size={18} />
@@ -395,7 +493,7 @@ function BlockInput({ block, onChange }) {
           External image URL
           <input
             value={block.src || ""}
-            onChange={(event) => onChange({ src: event.target.value, storageId: undefined, assetKey: undefined })}
+            onChange={(event) => onChange({ src: event.target.value, storageId: undefined, assetKey: undefined, width: undefined, height: undefined })}
             placeholder="https://..."
             aria-invalid={Boolean(source) && !canPreview}
           />

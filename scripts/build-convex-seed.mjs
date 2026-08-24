@@ -19,6 +19,9 @@ const sourceFiles = [
   "scripts/publish-ox-alpha-investigation-blog.mjs",
   "scripts/publish-dsh-stuck-installation-blog.mjs",
   "scripts/blog-payloads/dsh-stuck-installation.json",
+  "scripts/blog-seo-data.mjs",
+  "scripts/image-dimensions.mjs",
+  "scripts/backfill-blog-seo-data.mjs",
   "scripts/convex-seed-data.mjs",
   "scripts/build-convex-seed.mjs",
   "validation/hero-entities-2026-07-30/desktop-sunset.png",
@@ -110,13 +113,29 @@ function validate(tables) {
   for (const post of tables.blogPosts) {
     if (!post.slug || !post.title || !post.excerpt) fail(`blogPosts ${post.slug || "unknown"} has empty required text`);
     if (!validHref(post.sourceHref)) fail(`blogPosts ${post.slug} has invalid sourceHref`);
+    if (!post.seoTitle || post.seoTitle.length > 70) fail(`blogPosts ${post.slug} has invalid seoTitle`);
+    if (!post.seoDescription || post.seoDescription.length > 180) fail(`blogPosts ${post.slug} has invalid seoDescription`);
+    if (!/^[a-z]{2,3}(?:-[A-Z]{2})?$/.test(post.language || "")) fail(`blogPosts ${post.slug} has invalid language`);
+    if (!post.author?.id || !post.author?.name || !validHref(post.author?.url || "")) fail(`blogPosts ${post.slug} has invalid author`);
+    if (!post.articleSection) fail(`blogPosts ${post.slug} has no articleSection`);
+    if (post.status === "published" && (!post.publishedAt || !post.featuredImage)) {
+      fail(`blogPosts ${post.slug} lacks a publication date or featured image`);
+    }
+    if (post.featuredImage && (!post.featuredImage.alt || post.featuredImage.width <= 0 || post.featuredImage.height <= 0)) {
+      fail(`blogPosts ${post.slug} has invalid featuredImage metadata`);
+    }
     for (const block of post.blocks) {
       if (!["heading", "paragraph", "quote", "list", "code", "image", "divider", "table", "icon"].includes(block.type)) {
         fail(`blogPosts ${post.slug} has unsupported block type ${block.type}`);
       }
       if (
         block.type === "image"
-        && (!block.alt || (!validAssetKey(block.assetKey || "") && !validImageSource(block.src || "")))
+        && (
+          !block.alt
+          || block.width <= 0
+          || block.height <= 0
+          || (!validAssetKey(block.assetKey || "") && !validImageSource(block.src || ""))
+        )
       ) {
         fail(`blogPosts ${post.slug} has invalid image block`);
       }
@@ -160,8 +179,8 @@ try {
 
 const contentHash = sha256(Object.entries(checksums).sort().map(([table, checksum]) => `${table}:${checksum}`).join("\n"));
 const manifest = {
-  version: `convex-seed-v1-${contentHash.slice(0, 12)}`,
-  schemaVersion: 1,
+  version: `convex-seed-v2-${contentHash.slice(0, 12)}`,
+  schemaVersion: 2,
   commit,
   generatedAt: new Date().toISOString(),
   sourceFiles,

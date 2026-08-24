@@ -2,7 +2,9 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 import {
   actorRole,
+  blogAuthor,
   blogCommentStatus,
+  blogFeaturedImage,
   blogStatus,
   chatStatus,
   contentStatus,
@@ -27,6 +29,12 @@ export default defineSchema({
     readTime: v.string(),
     coverTone: v.string(),
     sourceHref: v.string(),
+    seoTitle: v.optional(v.string()),
+    seoDescription: v.optional(v.string()),
+    language: v.optional(v.string()),
+    author: v.optional(blogAuthor),
+    articleSection: v.optional(v.string()),
+    featuredImage: v.optional(blogFeaturedImage),
     blocks: v.array(editorBlock),
     ownerKey: v.optional(v.string()),
     upvoteCount: v.optional(v.number()),

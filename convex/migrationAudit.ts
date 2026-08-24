@@ -2,6 +2,13 @@ import { v } from "convex/values";
 import { internalQuery } from "./_generated/server";
 
 const tableAudit = v.object({ count: v.number(), schemaVersionMissing: v.number(), duplicateKeys: v.array(v.string()) });
+const blogTableAudit = v.object({
+  count: v.number(),
+  schemaVersionMissing: v.number(),
+  duplicateKeys: v.array(v.string()),
+  seoDataMissing: v.number(),
+  imageDimensionsMissing: v.number(),
+});
 
 function auditRows<T extends { schemaVersion?: number }>(rows: T[], keyOf: (row: T) => string) {
   const seen = new Set<string>();
@@ -18,10 +25,43 @@ function auditRows<T extends { schemaVersion?: number }>(rows: T[], keyOf: (row:
   };
 }
 
+function auditBlogRows(rows: Array<{
+  slug: string;
+  status: "draft" | "published" | "archived";
+  schemaVersion?: number;
+  seoTitle?: string;
+  seoDescription?: string;
+  language?: string;
+  author?: { id: string; name: string; url: string };
+  articleSection?: string;
+  featuredImage?: { width: number; height: number };
+  blocks: Array<{ type: string; width?: number; height?: number }>;
+}>) {
+  return {
+    ...auditRows(rows, (row) => row.slug),
+    seoDataMissing: rows.filter((row) => (
+      !row.seoTitle
+      || !row.seoDescription
+      || !row.language
+      || !row.author?.id
+      || !row.author?.name
+      || !row.author?.url
+      || !row.articleSection
+      || (row.status === "published" && !row.featuredImage)
+    )).length,
+    imageDimensionsMissing: rows.reduce(
+      (count, row) => count + row.blocks.filter(
+        (block) => block.type === "image" && (!block.width || !block.height),
+      ).length,
+      0,
+    ),
+  };
+}
+
 export const seedStatus = internalQuery({
   args: {},
   returns: v.object({
-    blogPosts: tableAudit,
+    blogPosts: blogTableAudit,
     inventoryItems: tableAudit,
     contentEntries: tableAudit,
     contactChannels: tableAudit,
@@ -52,7 +92,7 @@ export const seedStatus = internalQuery({
       throw new Error("SEED_AUDIT_LIMIT_EXCEEDED");
     }
     return {
-      blogPosts: auditRows(blogPosts, (row) => row.slug),
+      blogPosts: auditBlogRows(blogPosts),
       inventoryItems: auditRows(inventoryItems, (row) => row.sourceKey),
       contentEntries: auditRows(contentEntries, (row) => row.entryKey),
       contactChannels: auditRows(contactChannels, (row) => row.channelKey),

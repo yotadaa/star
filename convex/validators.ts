@@ -25,6 +25,21 @@ export const inventoryType = v.union(
 );
 export const rarity = v.union(v.literal("common"), v.literal("rare"), v.literal("epic"));
 
+export const blogAuthor = v.object({
+  id: v.string(),
+  name: v.string(),
+  url: v.string(),
+});
+
+export const blogFeaturedImage = v.object({
+  storageId: v.optional(v.id("_storage")),
+  assetKey: v.optional(v.string()),
+  src: v.optional(v.string()),
+  alt: v.string(),
+  width: v.number(),
+  height: v.number(),
+});
+
 export const editorBlock = v.object({
   type: v.union(
     v.literal("heading"),
@@ -43,6 +58,8 @@ export const editorBlock = v.object({
   assetKey: v.optional(v.string()),
   src: v.optional(v.string()),
   alt: v.optional(v.string()),
+  width: v.optional(v.number()),
+  height: v.optional(v.number()),
 });
 
 export const actorSnapshot = v.object({
@@ -66,6 +83,12 @@ export const blogInput = v.object({
   source_href: v.optional(v.string()),
   readTime: v.optional(v.string()),
   read_time: v.optional(v.string()),
+  seoTitle: v.optional(v.string()),
+  seoDescription: v.optional(v.string()),
+  language: v.optional(v.string()),
+  author: v.optional(blogAuthor),
+  articleSection: v.optional(v.string()),
+  featuredImage: v.optional(blogFeaturedImage),
   blocks: v.optional(v.array(editorBlock)),
 });
 
@@ -142,9 +165,17 @@ export const publicBlogPost = v.object({
   status: blogStatus,
   tags: v.array(v.string()),
   publishedAt: v.string(),
+  datePublished: v.union(v.number(), v.null()),
+  dateModified: v.number(),
   readTime: v.string(),
   coverTone: v.string(),
   sourceHref: v.string(),
+  seoTitle: v.optional(v.string()),
+  seoDescription: v.optional(v.string()),
+  language: v.optional(v.string()),
+  author: v.optional(blogAuthor),
+  articleSection: v.optional(v.string()),
+  featuredImage: v.optional(blogFeaturedImage),
   blocks: v.array(editorBlock),
   upvoteCount: v.number(),
   updatedAt: v.number(),

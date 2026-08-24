@@ -96,6 +96,8 @@ export default function BlogPostRenderer({ blocks = [], sourceHref }) {
                   src={source}
                   alt={description}
                   caption={block.text}
+                  width={block.width}
+                  height={block.height}
                 />
               ) : (
                 <SpriteIcon id="icon-image" size={28} />

@@ -10,7 +10,7 @@ export async function GET() {
   const entries = posts
     .filter((post) => post.status === "published" && post.slug)
     .map((post) => {
-      const updatedAt = Number(post.updatedAt);
+      const updatedAt = Number(post.dateModified ?? post.updatedAt);
       const hasKnownTimestamp = Number.isFinite(updatedAt) && updatedAt >= Date.UTC(2020, 0, 1);
       return {
         url: absoluteUrl(`/blog/${encodeURIComponent(post.slug)}`),

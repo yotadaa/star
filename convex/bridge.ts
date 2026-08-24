@@ -30,8 +30,21 @@ type EditorBlock = {
   type: "heading" | "paragraph" | "quote" | "list" | "code" | "image" | "divider" | "table" | "icon";
   text: string;
   rows?: string[][];
+  storageId?: Id<"_storage">;
+  assetKey?: string;
   src?: string;
   alt?: string;
+  width?: number;
+  height?: number;
+};
+type BlogAuthor = { id: string; name: string; url: string };
+type BlogFeaturedImage = {
+  storageId?: Id<"_storage">;
+  assetKey?: string;
+  src?: string;
+  alt: string;
+  width: number;
+  height: number;
 };
 type BlogPost = {
   id: string;
@@ -41,9 +54,17 @@ type BlogPost = {
   status: "draft" | "published" | "archived";
   tags: string[];
   publishedAt: string;
+  datePublished: number | null;
+  dateModified: number;
   readTime: string;
   coverTone: string;
   sourceHref: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  language?: string;
+  author?: BlogAuthor;
+  articleSection?: string;
+  featuredImage?: BlogFeaturedImage;
   blocks: EditorBlock[];
   upvoteCount: number;
   updatedAt: number;
@@ -105,8 +126,9 @@ type FileResult = {
   url?: string;
 };
 type TableAudit = { count: number; schemaVersionMissing: number; duplicateKeys: string[] };
+type BlogTableAudit = TableAudit & { seoDataMissing: number; imageDimensionsMissing: number };
 type MigrationStatus = {
-  blogPosts: TableAudit;
+  blogPosts: BlogTableAudit;
   inventoryItems: TableAudit;
   contentEntries: TableAudit;
   contactChannels: TableAudit;
@@ -124,8 +146,15 @@ const tableAudit = v.object({
   schemaVersionMissing: v.number(),
   duplicateKeys: v.array(v.string()),
 });
+const blogTableAudit = v.object({
+  count: v.number(),
+  schemaVersionMissing: v.number(),
+  duplicateKeys: v.array(v.string()),
+  seoDataMissing: v.number(),
+  imageDimensionsMissing: v.number(),
+});
 const migrationStatus = v.object({
-  blogPosts: tableAudit,
+  blogPosts: blogTableAudit,
   inventoryItems: tableAudit,
   contentEntries: tableAudit,
   contactChannels: tableAudit,

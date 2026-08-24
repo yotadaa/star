@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { ConvexHttpClient } from "convex/browser";
 import { makeFunctionReference } from "convex/server";
+import { completeBlogSeoData } from "./blog-seo-data.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const payloadPath = path.join(root, "scripts", "blog-payloads", "dsh-stuck-installation.json");
@@ -253,9 +254,11 @@ export async function publishDshStuckInstallationBlog() {
     role: "backend",
   };
   const uploads = await uploadImageAssets(client, secret, actor);
-  const publishPayload = attachStorageIds(
-    dshStuckInstallationBlogPayload,
-    uploads.storedByAssetKey,
+  const publishPayload = completeBlogSeoData(
+    attachStorageIds(
+      dshStuckInstallationBlogPayload,
+      uploads.storedByAssetKey,
+    ),
   );
   validatePayload(publishPayload, { requireStorage: true });
 

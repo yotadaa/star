@@ -110,6 +110,8 @@ export default function BlogPostList({ posts, canManageBlog = false }) {
                       aria-hidden="true"
                       loading="lazy"
                       decoding="async"
+                      width={featuredImage.width}
+                      height={featuredImage.height}
                       onError={(event) => {
                         event.currentTarget.hidden = true;
                       }}

@@ -35,6 +35,8 @@ export default function BlogImageCarousel({ images = [], sourceHref }) {
                   src={source}
                   alt={description}
                   caption={image.text}
+                  width={image.width}
+                  height={image.height}
                   onImageLoad={(event) => {
                     const element = event.currentTarget;
                     const nextOrientation = element.naturalWidth >= element.naturalHeight
