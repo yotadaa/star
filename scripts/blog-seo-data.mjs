@@ -14,6 +14,60 @@ export const BLOG_SEO_RECORDS = Object.freeze({
     articleSection: "Technical Case Study",
     featuredImageKey: "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:featured-runner-workbench",
   }),
+  "niu-lai-worst-animation-human-made": Object.freeze({
+    seoTitle: "Why Niu Lai's Human-Made Roughness Mattered",
+    seoDescription:
+      "Niu Lai went viral through mockery; its reported two-person origin later changed how viewers read the rough animation, with clear evidence limits.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Community Story",
+    featuredImageKey: "blog:niu-lai-worst-animation-human-made:feature-handmade-frames",
+  }),
+  "anthropic-watermark-removers": Object.freeze({
+    seoTitle: "Anthropic AI Watermarks and What Removers Actually Do",
+    seoDescription:
+      "An evidence-led audit of Anthropic's invisible marks, viral removal tools, what they can verify, and why no public test yet proves Claude's mark is gone.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "AI Investigation",
+    featuredImageKey: "blog:anthropic-watermark-removers:feature-ink-signal",
+  }),
+  "x-original-content-rewards-repost-economy": Object.freeze({
+    seoTitle: "X Original Content Rewards and the Repost Economy",
+    seoDescription:
+      "X is replacing revenue sharing with Original Content Rewards. Here is what the policy changes, why repost incentives matter, and what enforcement must prove.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Community Story",
+    featuredImageKey: "blog:x-original-content-rewards-repost-economy:feature-pasteup-ledger",
+  }),
+  "moltbook-ai-agents-social-network": Object.freeze({
+    seoTitle: "Moltbook and What AI Agents Do on Social Media",
+    seoDescription:
+      "A 361,605-post Moltbook study found 47.9% of comments formulaic. Here is what the agent network reveals about activity, memory, attention, and slop.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "AI Investigation",
+    featuredImageKey: "blog:moltbook-ai-agents-social-network:feature-index-card-network",
+  }),
+  "human-made-ai-slop-selling-point": Object.freeze({
+    seoTitle: "Why Human-Made Is Becoming a Selling Point",
+    seoDescription:
+      "Platforms, creators, and audiences increasingly use human authorship as a trust signal, but badges cannot prove quality or provenance on their own.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "AI Investigation",
+    featuredImageKey: "blog:human-made-ai-slop-selling-point:feature-process-traces",
+  }),
+  "instagram-real-content-labeled-ai": Object.freeze({
+    seoTitle: "Why Instagram Labels Real Human Content as AI",
+    seoDescription:
+      "Meta's AI labels can reflect minor edits or provenance signals, not full synthetic authorship. Reported creator cases show why that distinction matters.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Community Story",
+    featuredImageKey: "blog:instagram-real-content-labeled-ai:feature-contact-sheet-stamp",
+  }),
   "harness-more-important-than-model": Object.freeze({
     seoTitle: "Why the Agent Harness Can Matter More Than the Model",
     seoDescription:
@@ -172,6 +226,18 @@ export const BLOG_IMAGE_DIMENSIONS = Object.freeze({
   "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:source-npm-verbose": { width: 842, height: 540 },
   "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:source-npx-stall": { width: 749, height: 384 },
   "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:supporting-command-bridge": { width: 1536, height: 1024 },
+  "blog:niu-lai-worst-animation-human-made:feature-handmade-frames": { width: 1672, height: 941 },
+  "blog:niu-lai-worst-animation-human-made:evidence-red-star-report": { width: 1265, height: 850 },
+  "blog:anthropic-watermark-removers:feature-ink-signal": { width: 1672, height: 941 },
+  "blog:anthropic-watermark-removers:evidence-repository-limits": { width: 1265, height: 712 },
+  "blog:x-original-content-rewards-repost-economy:feature-pasteup-ledger": { width: 1672, height: 941 },
+  "blog:x-original-content-rewards-repost-economy:evidence-x-originality-policy": { width: 1265, height: 712 },
+  "blog:moltbook-ai-agents-social-network:feature-index-card-network": { width: 1672, height: 941 },
+  "blog:moltbook-ai-agents-social-network:evidence-arxiv-comment-classification": { width: 1280, height: 720 },
+  "blog:human-made-ai-slop-selling-point:feature-process-traces": { width: 1672, height: 941 },
+  "blog:human-made-ai-slop-selling-point:evidence-human-only-flyers": { width: 1265, height: 712 },
+  "blog:instagram-real-content-labeled-ai:feature-contact-sheet-stamp": { width: 1672, height: 941 },
+  "blog:instagram-real-content-labeled-ai:evidence-meta-minor-edits": { width: 1265, height: 712 },
   "blog:harness-more-important-than-model:evidence-deepseek-plugin-claim": { width: 1280, height: 720 },
   "blog:harness-more-important-than-model:featured-execution-system": { width: 1672, height: 941 },
   "blog:pay-to-rank-websites-attention-auction:evidence-outoutbid-research-20260824": { width: 1265, height: 712 },

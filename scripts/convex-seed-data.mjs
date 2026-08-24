@@ -20,6 +20,12 @@ const GROUNDED_BLOG_PAYLOAD_PATHS = [
   "validation/model-switch-prompt-cache-2026-08-24/payload.json",
   "validation/claude-compact-quality-2026-08-24/payload.json",
   "validation/claude-code-limit-burn-2026-08-24/payload.json",
+  "validation/niu-lai-worst-animation-human-made-2026-08-24/payload.json",
+  "validation/anthropic-watermark-removers-2026-08-24/payload.json",
+  "validation/x-original-content-rewards-repost-economy-2026-08-24/payload.json",
+  "validation/moltbook-ai-agents-social-network-2026-08-24/payload.json",
+  "validation/human-made-ai-slop-selling-point-2026-08-24/payload.json",
+  "validation/instagram-real-content-labeled-ai-2026-08-24/payload.json",
 ];
 
 function readGroundedBlogPayloads() {
@@ -286,7 +292,7 @@ export function buildSeedTables(data) {
 }
 
 export const expectedSeedCounts = {
-  blogPosts: 18,
+  blogPosts: 24,
   inventoryItems: 14,
   contentEntries: 6,
   contactChannels: 5,

@@ -1,0 +1,12 @@
+# Source Ledger
+
+| ID | Source | Class | Published | Opened | What it supports | Screenshot |
+|---|---|---|---|---|---|---|
+| S01 | [Associated Press: Chinese animated film *Niu Lai* becomes a box-office hit](https://apnews.com/article/china-movie-animation-niulai-80a25ad38005f5c6200715a37b704bea) | Primary reporting with direct cinema observation and Maoyan figures | 18 Aug 2026 | 24 Aug 2026 | Box-office chronology, audience reactions, handmade posters, verification limit on the production story | `sources/S01-ap-niulai-report.jpg` |
+| S02 | [Creative Bloq: China's viral “worst animation ever”](https://www.creativebloq.com/art/animation/the-story-of-chinas-viral-worst-animation-ever-just-keeps-getting-weirder) | Animation trade reporting/synthesis | 18 Aug 2026 | 24 Aug 2026 | English-language anti-AI framing, viral clips, promotion gap, industry criticism | `sources/S02-creative-bloq-niulai.jpg` |
+| S03 | [Red Star Capital via Eastmoney](https://finance.eastmoney.com/a/202608153842434740.html) | Chinese named reporting based on Lighthouse and business records | 15 Aug 2026 | 24 Aug 2026 | Release/runtime, public credits, early box office, company history, failed outreach | `sources/S03-red-star-capital-niulai.jpg` |
+| S04 | [First Financial: *Niu Lai* passes ten million yuan](https://m.yicai.com/news/103320989.html) | Chinese named original reporting and audience interview | 17 Aug 2026 | 24 Aug 2026 | Group-screening behavior, chronology of circulated clips, handcrafted/AI-era interpretation | `sources/S04-yicai-niulai.jpg` |
+| S05 | [The Guardian: derided low-tech animation rivals blockbusters](https://www.theguardian.com/world/2026/aug/17/niu-lai-derided-animated-film-challenges-blockbusters-at-chinese-box-office) | Named international reporting | 17 Aug 2026 | 24 Aug 2026 | Early admissions, two-person/five-year report, Douban anti-AI response, industry countercriticism | `sources/S05-guardian-niulai.jpg` |
+| S06 | [Reddit audience discussion](https://www.reddit.com/r/shittymoviedetails/comments/1vts0rg/in_niu_lai_2026_a_boy_and_his_mom_voice_cows_with/) | Traceable firsthand social discussion | 20 Aug 2026 | 24 Aug 2026 | Visible pro-human framing and direct counterargument against treating provenance as quality | `sources/S06-reddit-human-effort-reaction.jpg` |
+
+All six used sources were opened, read beyond snippets, and captured through the in-app Browser. Later box-office claims found in secondary sites were rejected because the cutoff article does not need a closing total and figures were changing daily.

@@ -1,0 +1,113 @@
+{
+  "name": "six-internet-culture-blogs-2026-08-24",
+  "articles": [
+    {
+      "slug": "niu-lai-worst-animation-human-made",
+      "payloadPath": "validation/niu-lai-worst-animation-human-made-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:niu-lai-worst-animation-human-made:feature-handmade-frames",
+          "sourcePath": "validation/niu-lai-worst-animation-human-made-2026-08-24/assets/niu-lai-human-roughness-feature.png",
+          "fileName": "niu-lai-handmade-animation-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:niu-lai-worst-animation-human-made:evidence-red-star-report",
+          "sourcePath": "validation/niu-lai-worst-animation-human-made-2026-08-24/assets/red-star-niulai-report-evidence.jpg",
+          "fileName": "niu-lai-red-star-report-evidence.jpg",
+          "evidenceKind": "attributed-source-evidence"
+        }
+      ]
+    },
+    {
+      "slug": "anthropic-watermark-removers",
+      "payloadPath": "validation/anthropic-watermark-removers-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:anthropic-watermark-removers:feature-ink-signal",
+          "sourcePath": "validation/anthropic-watermark-removers-2026-08-24/assets/watermark-removers-feature.png",
+          "fileName": "anthropic-watermark-removers-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:anthropic-watermark-removers:evidence-repository-limits",
+          "sourcePath": "validation/anthropic-watermark-removers-2026-08-24/sources/W03-crop-repository-limits.jpg",
+          "fileName": "watermark-remover-repository-limits-evidence.jpg",
+          "evidenceKind": "attributed-source-evidence"
+        }
+      ]
+    },
+    {
+      "slug": "x-original-content-rewards-repost-economy",
+      "payloadPath": "validation/x-original-content-rewards-repost-economy-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:x-original-content-rewards-repost-economy:feature-pasteup-ledger",
+          "sourcePath": "validation/x-original-content-rewards-repost-economy-2026-08-24/assets/x-originality-pasteup-feature.png",
+          "fileName": "x-original-content-rewards-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:x-original-content-rewards-repost-economy:evidence-x-originality-policy",
+          "sourcePath": "validation/x-original-content-rewards-repost-economy-2026-08-24/sources/S01-crop-originality-rules.jpg",
+          "fileName": "x-original-content-rewards-policy-evidence.jpg",
+          "evidenceKind": "attributed-first-party-source-evidence"
+        }
+      ]
+    },
+    {
+      "slug": "moltbook-ai-agents-social-network",
+      "payloadPath": "validation/moltbook-ai-agents-social-network-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:moltbook-ai-agents-social-network:feature-index-card-network",
+          "sourcePath": "validation/moltbook-ai-agents-social-network-2026-08-24/assets/moltbook-index-card-network-feature.png",
+          "fileName": "moltbook-agent-network-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:moltbook-ai-agents-social-network:evidence-arxiv-comment-classification",
+          "sourcePath": "validation/moltbook-ai-agents-social-network-2026-08-24/sources/S01-crop-paper-formulaic-comments.jpg",
+          "fileName": "moltbook-formulaic-comments-paper-evidence.jpg",
+          "evidenceKind": "attributed-primary-research-source-evidence"
+        }
+      ]
+    },
+    {
+      "slug": "human-made-ai-slop-selling-point",
+      "payloadPath": "validation/human-made-ai-slop-selling-point-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:human-made-ai-slop-selling-point:feature-process-traces",
+          "sourcePath": "validation/human-made-ai-slop-selling-point-2026-08-24/assets/human-made-process-feature.png",
+          "fileName": "human-made-process-traces-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:human-made-ai-slop-selling-point:evidence-human-only-flyers",
+          "sourcePath": "validation/human-made-ai-slop-selling-point-2026-08-24/assets/axios-human-only-flyers-evidence.jpg",
+          "fileName": "human-only-flyers-evidence.jpg",
+          "evidenceKind": "attributed-source-evidence"
+        }
+      ]
+    },
+    {
+      "slug": "instagram-real-content-labeled-ai",
+      "payloadPath": "validation/instagram-real-content-labeled-ai-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:instagram-real-content-labeled-ai:feature-contact-sheet-stamp",
+          "sourcePath": "validation/instagram-real-content-labeled-ai-2026-08-24/assets/instagram-ai-label-feature.png",
+          "fileName": "instagram-ai-label-contact-sheet-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:instagram-real-content-labeled-ai:evidence-meta-minor-edits",
+          "sourcePath": "validation/instagram-real-content-labeled-ai-2026-08-24/sources/I02-crop-meta-minor-modifications.jpg",
+          "fileName": "meta-minor-ai-edits-label-evidence.jpg",
+          "evidenceKind": "attributed-first-party-source-evidence"
+        }
+      ]
+    }
+  ]
+}

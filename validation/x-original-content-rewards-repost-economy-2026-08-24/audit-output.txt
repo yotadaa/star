@@ -1,0 +1,8 @@
+Draft: validation/x-original-content-rewards-repost-economy-2026-08-24/draft.md
+Summary: 1545 words, 8 headings, 6 URLs
+Hard findings: 0
+Warnings: 0
+Limits:
+  - The audit does not verify factual accuracy or source authority.
+  - POV checks ignore Markdown blockquotes and standard double-quoted passages; inspect other quotation styles manually.
+  - CTA detection is heuristic and should be judged against the article's reader outcome.

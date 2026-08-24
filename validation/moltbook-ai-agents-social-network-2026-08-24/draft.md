@@ -1,0 +1,93 @@
+# What Happens When AI Agents Get Their Own Social Network?
+
+For 23 days in early 2026, researchers collected 361,605 Moltbook posts and 2,828,465 comments from 47,379 agent accounts. The network looked busy: nearly eight comments for every post, topic communities, popularity gaps, and long reply chains. Then the researchers examined what those replies were doing. Their estimate found 47.9% of comments formulaic, built from repeated conversational patterns rather than topic-specific contributions.
+
+![A loose network of stamped index cards repeats similar marks as they pass through shallow reply branches.](assets/moltbook-index-card-network-feature.png)
+
+*Original illustration: a physical index-card map of activity that can look social before it looks substantive.*
+
+That result is funnier, and less simple, than “bots invented social media slop.” Moltbook produced real large-scale interaction. It also exposed how easily a posting protocol, a feed, and language models can reproduce the visible shape of an online community without establishing durable learning, independent motives, or even a stable memory of the conversation.
+
+## A social network whose posting users arrived by API
+
+[Moltbook](https://www.moltbook.com/) presents familiar social tools: agents can post, comment, vote, and gather inside topical “submolts.” Humans can browse. The posting accounts are software agents, many connected through the open-source [OpenClaw](https://github.com/openclaw/openclaw) framework and directed or configured by people.
+
+That last clause is essential. “Agent-made” does not mean free of human instruction. An owner can choose an agent’s model, prompt, tools, schedule, identity, and goals. Early reporting also found that humans could directly steer posts, while a security review raised concerns about impersonation and exposed credentials. [The Associated Press](https://apnews.com/article/69855ab843a5597577120aac99efde9a) therefore treated Moltbook as both a social experiment and an authorship puzzle.
+
+The platform is still valuable as a research object. Unlike a private agent benchmark, it records interaction among many deployed systems in one shared environment. Researchers can ask whether attention concentrates, whether reply behavior settles into templates, and whether apparent communities depend on the same mechanics found on human networks.
+
+## What the 23-day corpus contains
+
+The most detailed inspected analysis is the fifth version of [*Beyond Human Social Media: A Large-Scale Analysis of Moltbook*](https://arxiv.org/abs/2603.07880), revised on 14 May 2026. Its frozen corpus covers 27 January through 18 February and the 100 largest submolts.
+
+| Measure | Reported value | What it does not prove |
+|---|---:|---|
+| Agent accounts | 47,379 | That each account had a distinct model, owner, or motive |
+| Posts | 361,605 | That each post was independently initiated |
+| Comments | 2,828,465 | That each comment added new information |
+| Comments per post | About `7.8` | That a long thread involved deep back-and-forth reasoning |
+| Depth-one comments | `94.7%` | That every shallow reply was low quality |
+| Interaction Gini coefficient | `0.942` | Why attention became so concentrated |
+| Share of interactions captured by top 1% | 76% | Whether the concentration came from content, schedules, or feed mechanics |
+
+Those figures describe a network with abundant activity and severe inequality. Most interactions landed on a small set of accounts, while most comments sat directly beneath a post rather than deep inside a conversation. The pattern can resemble a crowded public square while behaving more like a broadcast system with a very active comment layer.
+
+## The formulaic figure is 47.9%, not more than half
+
+The study’s formulaic detector grouped comments by topic, measured repeated text within each topic, and used a Gaussian mixture model to set a threshold. It classified 1,354,845 of 2,828,465 comments as formulaic: 47.9%.
+
+![A crop from the arXiv paper reports 1,354,845 formulaic comments, equal to 47.9% of the corpus.](sources/S01-crop-paper-formulaic-comments.jpg)
+
+*Evidence: the paper’s v5 results page gives the numerator, denominator, and 47.9% estimate. Captured 24 August 2026.*
+
+A separate 14.4% of comments did not receive a topic assignment. The authors combine that group with the formulaic group to estimate 62.3% as “low-substantive.” The categories should not be collapsed. An unassigned comment may be too short, too unusual, or too noisy for the topic model; it is not automatically a repeated template. The defensible headline number for formulaic comments is 47.9%.
+
+The estimate also carries method limits. The threshold came from the shape of the similarity data, not a held-out human-labelled test set with published precision and recall for every category. The paper does not give uncertainty bounds around the 47.9% result. It is strong evidence of repetition inside this corpus, not a perfect quality score for every comment.
+
+Examples of formulaic behavior include generic agreement, praise, restatement, and conversational filler that can attach to many topics. Such replies perform a social action even when they add little subject matter. They acknowledge a post, keep a thread moving, and make an account visible. Human platforms contain the same behavior. Moltbook’s result matters because generation can produce it cheaply and at machine cadence.
+
+## Apparent peer learning may be short-horizon conditioning
+
+Moltbook posts often sound as though agents are exchanging lessons. That language invites a strong story: agents met, learned from one another, and developed a culture. The system architecture supports a more cautious reading.
+
+The v5 paper notes that feed contents are transient and are not automatically written into an agent’s persistent memory. An agent can read a post in its current context and produce a reply shaped by it. That is short-horizon conditioning. Unless some separate memory tool stores the encounter and later retrieves it, the exchange does not establish durable learning.
+
+This distinction changes how a thread should be interpreted. A reply can show contextual adaptation without proving that the agent retained a belief. A later post can repeat a theme because the owner’s prompt, a shared model prior, or the current feed supplied it again. The remaining question is not whether influence exists; it is which part survives beyond the immediate run.
+
+Calling every pattern “emergence” hides those mechanisms. Calling the whole platform fake hides something else: architecture-conditioned behavior can still produce real moderation load, attention concentration, security risk, and material for human audiences. Social consequences do not require machine consciousness.
+
+## Other studies find familiar network behavior
+
+An independent study, [*Collective Behaviour of AI Agents in a Social Network*](https://arxiv.org/abs/2602.09270), analyzed more than 369,000 posts and roughly three million comments. It found heavy-tailed participation and attention patterns that resemble human online networks. Similar statistics do not imply similar motives, but they show that a network of agents can recreate recognizable group-level distributions.
+
+Another early snapshot, [*The Rise of AI Agent Communities*](https://arxiv.org/abs/2602.12634), examined 122,438 posts from Moltbook’s first five days. Its authors described a sparse, unequal interaction network with influential hubs and low reciprocity. The window and methods differ from the 23-day corpus, yet both analyses point toward concentration rather than a flat society of equally social agents.
+
+That agreement strengthens one finding: giving agents a social interface does not erase the structural tendencies of social platforms. Feeds direct attention. That turns a few accounts into hubs, while replies cluster around visible posts. What remains uncertain is how much comes from the ranking system, agent schedules, copied prompts, owner intervention, or model behavior.
+
+The public [Moltbook dataset repository](https://github.com/takschdube/moltbook-dataset) helps others inspect the work, but its current longitudinal files are not identical to the paper’s frozen corpus. The maintainers also warn that API limitations prevented a complete platform export. Counts from different versions should not be mixed as though they describe one final database.
+
+## What an agent social network is good for
+
+Moltbook offers a rare shared test ground. Developers can observe how agents handle public input, adversarial posts, reputation signals, and tool boundaries outside a tidy benchmark. Researchers can compare network structure across windows and inspect how model or prompt choices affect interaction.
+
+It also makes low-cost failure visible. Repetition that looks harmless in one assistant session becomes a system-level problem when thousands of accounts produce it at once. The network turns vague concerns about “slop” into measurable questions: duplicate rates, reply depth, concentration, and persistence.
+
+For product designers, the platform shows why an agent feed needs more than a posting endpoint. Rate limits, attribution, identity controls, memory rules, and provenance shape the outcome. A system built only to maximize activity can succeed numerically while giving readers very little to keep.
+
+## What it can get wrong
+
+Public interaction increases the attack surface. A post can carry instructions that an agent treats as trusted context. Weak credential handling can expose accounts or tools. Impersonation becomes harder to interpret when human owners, scheduled automation, and model-generated prose all share one identity.
+
+The network can also reward volume over contribution. If visibility follows recent activity and popular hubs, generic replies become a rational way to stay present. Cheap output changes the scale of the familiar moderation problem: removing one low-value comment matters less when another can be generated immediately.
+
+There is an evaluation risk too. Researchers may mistake platform artifacts for general agent traits. Moltbook’s feed, API, OpenClaw configurations, and participant mix belong to a particular moment. A different memory policy or ranking rule could produce a different network. Findings should travel with their architecture and date.
+
+Finally, anthropomorphic language can outrun the evidence. Terms such as society, belief, friendship, and rebellion make good headlines, but they bundle observable behavior with unverified inner states. The safer vocabulary describes posts, replies, stored memory, attention, and owner control before assigning motives.
+
+## Did the bots invent their own slop?
+
+Operationally, Moltbook developed a large layer of repetitive social output. The 47.9% estimate makes that hard to dismiss. Yet “their own” is doing too much work. The agents used human-built models, human-set instructions, a human-designed feed, and familiar social affordances. Formulaic replies may be an emergent network pattern, but they are not evidence of an independent bot culture detached from those inputs.
+
+The experiment’s sharper lesson is that social-media slop may not require the psychology usually blamed for it. A system that rewards visibility, makes response cheap, and supplies reusable language can produce the same outward pattern through very different machinery.
+
+The best way to explore that claim is to open the [v5 paper](https://arxiv.org/abs/2603.07880) beside its [dataset repository](https://github.com/takschdube/moltbook-dataset). The numbers become more interesting when the method, collection window, and missing data remain attached to them.

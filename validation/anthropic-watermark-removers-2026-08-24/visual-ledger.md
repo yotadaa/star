@@ -1,0 +1,17 @@
+# Visual Ledger
+
+| ID | Narrative job | Owner/source and visual lesson | Rights | Publish? | Asset key / path | Alt and caption | Dimensions / checksum | Status |
+|---|---|---|---|---|---|---|---|---|
+| W-VR01 | Reference: make the verifier/remover tension legible | W03 GitHub repository: public code shown as a flat working surface, limitation text more important than star count. | Third-party reference only | No | `sources/W03-watermarks-remover-repository.jpg` | n/a | Measured capture retained privately | Captured |
+| W-VR02 | Reference: treat provenance as printed matter, not futuristic machinery | W02 European Commission page: institutional blue and document hierarchy, used only for restrained color and paper order. | Third-party reference only | No | `sources/W02-eu-transparency-code.jpg` | n/a | Measured capture retained privately | Captured |
+| W-VR03 | Reference: show attack as a change in wording | W06 ICML paper page: sparse academic typesetting and margin whitespace, not its layout or figures. | Third-party reference only | No | `sources/W06-icml-sira-paper.jpg` | n/a | Measured capture retained privately | Captured |
+| W-V01 | Feature: a physical signal being repeatedly altered but never declared gone | Original generated editorial collage; publishable. | Generated original for this article | Yes | `blog:anthropic-watermark-removers:feature-ink-signal` / `assets/watermark-removers-feature.png` | Alt: `A rough letterpress sheet passes through cut paper rollers, leaving a faint pattern that a hand-cut scraper disrupts but does not fully erase.` Caption: `The easy operations remove visible carriers; the model-level signal remains a claim until the detector can test it.` | 1672×941; SHA-256 `87450d67821f605abc8a88233cd84f7871f7d1494f4310dc2c4ef1768a257081` | Generated, copied into project, visually accepted |
+| W-V02 | Evidence: show the remover's own limit beside its three operations | Public GitHub repository screenshot, tightly bounded and attributed in the caption. | Source evidence excerpt for criticism and analysis | Yes | `blog:anthropic-watermark-removers:evidence-repository-limits` / `sources/W03-crop-repository-limits.jpg` | Alt: `The watermarks-remover README separates Unicode cleanup, statistical rewriting, and file metadata stripping, then says no tool can certify the official check without vendor detectors.` Caption: `The project's own README draws the line: two layers are directly inspectable, while official watermark removal cannot yet be certified. Source: guillaumemeyer/watermarks-remover on GitHub, captured 24 August 2026.` | 1265×712; SHA-256 `f3031bd860954ee9856a29ac4de099ac2bc221b7916df18d2cc744dd12531cbf` | Captured and visually accepted |
+
+## Feature art direction
+
+- Use case: `stylized-concept`; wide editorial feature.
+- Medium: hand-pulled letterpress, torn security-paper fibers, coarse halftone, misregistered black and muted ultramarine ink, visible paste edges.
+- Composition: one long sheet crosses uneven cut-paper rollers; a crude metal scraper interrupts a faint woven pattern, with the pattern still visible beyond it. Strong asymmetry and a generous raw-paper margin for crop safety.
+- Light: flat copy-table daylight, no cinematic rim light.
+- Exclusions: no screens, locks, fingerprints, circuit boards, glowing lines, robots, code, labels, readable text, logos, official documents, perfect geometry, glossy 3D, or polished SaaS imagery.

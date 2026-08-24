@@ -1,0 +1,116 @@
+# AI Slop Made “Human-Made” a Selling Point
+
+A Salt Lake City venue asked promoters to hire a local artist, cut up magazines, or ask for help. It would no longer share AI flyers.
+
+That request, documented by [Axios](https://www.axios.com/local/salt-lake-city/2026/08/03/ai-flyers-utah-businesses-boycott-customer-complaints), turned production method into part of the pitch. A handmade flyer could be ugly. The venue still preferred an object whose maker, effort, and mistakes could be named.
+
+Similar signals now appear in platform controls, monetization rules, and voluntary badges. Those examples do not establish a universal preference or price premium. They show something narrower: after a flood of synthetic and repetitive content, provenance has become useful information.
+
+“Made by a human” is becoming a selling point because it promises responsibility and a production history that can be inspected. It cannot certify quality or authorship without supporting evidence.
+
+![Layered paper proofs show pencil marks, tape, torn edges, uneven ink, and a blank machine-cut sheet.](assets/human-made-process-feature.png)
+
+*Provenance becomes meaningful when the work leaves a trace that a buyer can inspect.*
+
+## Abundance changed what audiences need to know
+
+Generative systems made it cheap to produce another image, clip, voice, or paragraph. Distribution systems already rewarded frequency. Put the two together and the viewer faces a sorting problem before judging the work itself: is this one considered object, or one unit from a production line?
+
+One 2025 snapshot illustrates the pressure without measuring the whole internet. A study reported by [The Guardian](https://www.theguardian.com/technology/2025/dec/27/more-than-20-of-videos-shown-to-new-youtube-users-are-ai-slop-study-finds) created a fresh YouTube account and classified 104 of its first 500 recommended videos as AI slop. The same report said the identified channels had accumulated 63 billion views, based on estimates from Kapwing.
+
+Those figures carry limits. One new account cannot represent every feed, and a marketing company's classification is not an official YouTube census. The result still captures the experience behind the backlash: synthetic clips can occupy enough of a feed that audiences start looking for a filter.
+
+[WIRED's August 2026 reporting](https://www.wired.com/story/the-ai-slop-backlash-is-actually-having-an-impact/) found that filter taking several forms. LinkedIn added a report option for material that “seems like AI slop,” Snapchat made fully generated videos ineligible for one discovery surface, and public pressure helped end short-lived generative features at Meta and Google. Each response had its own rule and history. Together, they show companies responding to irritation rather than waiting for universal agreement on what slop means.
+
+## A human label sells accountability before aesthetics
+
+A human-made claim works differently from “high quality.” Quality asks whether the result succeeds. Provenance asks who made the choices and who can answer for them.
+
+That distinction matters when two outputs look competent but interchangeable. A named illustrator can discuss source material, show how a draft changed, answer a client, and stand behind an error after publication. An anonymous content farm can replace one generated post with another before criticism catches up. The label names a relationship, not polish.
+
+The [Human-Made Project](https://thehumanmade.org/) turns that idea into a small badge and a line naming the creator. Its site says artists may apply the mark to work made without generative AI and argues that brands can use it to show that they hired a person. It requires no account and relies on public scrutiny when someone misuses the mark.
+
+That simplicity is a feature and a weakness. A self-applied badge costs almost nothing, so a small artist can use it. The same low barrier means the symbol cannot verify itself. Its meaning depends on a credible name, process artifacts, and consequences for lying.
+
+Minor tools complicate the claim. A photographer may reject image generation but accept camera denoising. A writer may avoid generated sentences while keeping ordinary spellcheck. A designer may use automated background removal without treating the result as machine-authored. “Human-made” becomes useful only when the maker states the rule behind it.
+
+## Platforms are rewarding originality, not banning tools
+
+The platform evidence needs careful wording. YouTube did not announce a blanket ban on AI videos in July 2025. Its [creator-policy clarification](https://support.google.com/youtube/thread/356734251?hl=en&msgid=363363137) said mass-produced or repetitive content had long been ineligible for monetization and that the update clarified its “original and authentic” standard.
+
+That output-focused rule leaves room for tools. A creator can use automation inside a work that contains reporting, performance, editing, or analysis. A fully human production can still fail the rule if it repeats a template at scale. This is a more useful dividing line than human versus machine because it asks what the work contributes.
+
+Pinterest has taken a different approach. Its [current AI help page](https://help.pinterest.com/en/article/ai-at-pinterest) says it labels an image Pin when an owner identifies AI modification and may also label content detected by its systems. The platform lets people request less AI content in selected feed categories.
+
+“Less” is doing honest work there. Pinterest does not promise perfect detection or a pure human feed. The control registers a preference while leaving room for uncertain labels, mixed processes, and system errors.
+
+These rules create a commercial opening for human work without declaring it superior in every case. Originality can earn access to monetization. A declared process can give a buyer a concrete basis for choosing one commission over a cheaper but anonymous alternative. A platform can let a person reduce synthetic recommendations. None of those mechanisms converts provenance, on its own, into a reliable judgment about whether the result deserves attention.
+
+## The demand signal is real but smaller than a premium market
+
+Public opinion supplies context, not a sales chart. In July 2026, [Gallup reported](https://news.gallup.com/poll/712751/americans-cool-toward.aspx) that 39% of U.S. adults believed AI did more harm than good, up from 31% in 2025. Among adults aged 18 to 29, the 2026 figure reached 47%. Only 27% of adults said they trusted businesses “a lot” or “some” to use AI responsibly.
+
+Those answers cover AI across work and daily life. They do not reveal which poster, book, song, or advertisement a respondent would purchase. Still, low trust changes how a production claim lands. “Human-made” can reassure a customer who suspects that a company replaced paid creative labor, scraped unlicensed work, or published without meaningful review.
+
+Axios found that language in local practice. Aces High Saloon said it would stop sharing AI event flyers. A Utah political candidate promised not to use AI slop in campaign ads. The report also included the practical objection: some artists and small businesses cannot afford professional design.
+
+That tension keeps the story honest. Generative tools can lower the entry cost for a neighborhood shop that has no design budget. A human-only norm can protect paid creative work, but it can also become a status test available mainly to organizations with money or spare time.
+
+![Axios reporting shows a Utah venue refusing AI flyers and political campaigns making similar promises.](assets/axios-human-only-flyers-evidence.jpg)
+
+*Source evidence: [Axios Salt Lake City](https://www.axios.com/local/salt-lake-city/2026/08/03/ai-flyers-utah-businesses-boycott-customer-complaints) documented both the human-only promises and the affordability objection.*
+
+## What the label can add
+
+A credible human-made claim has concrete advantages.
+
+- It names responsibility. A customer knows which person or team made the consequential decisions.
+- It makes labor visible. Credits, sketches, revisions, recordings, and source files connect the final object to paid time.
+- It differentiates work that might otherwise appear beside hundreds of near-identical outputs.
+- It gives buyers a way to support a production method, even when another method could produce a smoother result.
+- It can protect context. A journalist, documentary maker, or campaign may need readers to know that a scene or testimony was not synthesized.
+
+The label works best when those advantages matter to the specific object. A handmade concert poster can connect a show to its local art community. A reported essay benefits from named judgment and traceable interviews. A routine product-background edit may gain little from a grand declaration of human purity.
+
+Selling the process can also improve the work's story. Drafts and corrections show decisions rather than merely asserting care. That proof is harder to mass-produce convincingly because it must agree with the final object and with the creator's account.
+
+## What the label can damage
+
+Suspicion spreads faster than verification. A June 2026 [preprint analyzing 25 million Reddit and Hacker News comments](https://arxiv.org/abs/2606.12073) found that the pejorative share of AI-use accusations rose more than tenfold on both platforms. Its matched-control test produced the more troubling result: prose features that statistically separated AI from human text did not predict which human-written comments received accusations.
+
+The study is a preprint focused on text in two communities, not a universal detector audit. Its result still exposes the danger of turning “human-made” into a moral sorting hat. Once AI suspicion becomes a way to police belonging, ordinary stylistic habits can be treated as evidence and a false label can damage a creator's standing.
+
+Axios notes that some local AI accusations proved false. Pinterest's own help language says content detected by its systems *may* be modified with AI. Both details argue for an appeal path and careful wording. A platform badge should describe evidence, not announce guilt.
+
+A human-only claim can create other distortions:
+
+- It can reward process theater, where staged drafts exist mainly to sell authenticity.
+- It can hide poor treatment of human workers behind a warm badge.
+- It can frame any automation as deception even when the creator discloses it and remains responsible for the result.
+
+Worst of all, it can excuse weak work. Humans made bad ads before image generators. Provenance answers who; criticism still has to answer whether the result deserves time or money.
+
+## Proof should sit behind the promise
+
+A useful authorship statement can stay short on the surface and specific underneath it.
+
+| Public claim | Supporting material | Honest limit |
+|---|---|---|
+| Made without generative images | Layer files, sketches, source photography, dated exports | Ordinary editing and camera automation should be disclosed if relevant |
+| Written by a named person | Notes, drafts, source interviews, revision history | Spellcheck or research tools may still have assisted |
+| Human performance | Session credits, recording files, production notes | Mixing, restoration, or synthetic correction may be part of the chain |
+| Human-led mixed process | Named model/tool use plus the decisions made by people | The phrase should not be shortened to “AI-free” |
+
+This standard does not require publishing every private file. It requires enough consistency that an editor, commissioner, or customer can ask a precise question and receive a precise answer.
+
+Badges can help people find that answer. They should never replace the underlying drafts, credits, or process evidence.
+
+## Human-made is becoming valuable because trust is scarce
+
+The evidence supports a bounded selling point. Audiences have complained loudly enough to change local advertising choices and platform controls. YouTube states a preference for original, authentic work over mass production. Pinterest lets people reduce AI recommendations. Badge projects now package human provenance for creators and brands.
+
+No selected source proves a universal price premium. The stronger conclusion concerns trust: as production becomes easier to automate and harder to inspect, a named human process can distinguish one object from the pile.
+
+The promise must remain modest. A human-made label means people performed the stated work under a rule clear enough for an editor or customer to inspect. It does not mean flawless, original, ethical, or worth buying. Those judgments still belong to the work and the evidence around it.
+
+The next useful check is the [Human-Made Project's public rule set](https://thehumanmade.org/), followed by the drafts, credits, or source artifacts behind any badge that asks for trust.

@@ -1,0 +1,9 @@
+# Terminology Ledger
+
+| Term | Accepted meaning | Direct source | Rejected alternatives | Article wording |
+|---|---|---|---|---|
+| AI slop | A pejorative label for content perceived as AI-made, generic, repetitive, low-effort, or spam-like; its social use is wider and less accurate than a technical detector. | [arXiv 2606.12073](https://arxiv.org/abs/2606.12073); WIRED reporting | Every AI-assisted work; an objective quality class. | Attribute the label to audiences, platforms, or a study; define its unstable boundary. |
+| Human-made | A claim that people performed the meaningful creative work under a stated rule set. Different badges permit different minor tool use. | [Human-Made Project](https://thehumanmade.org/), rules and badge description | A universal certification standard; proof of artistic merit. | “human-made claim,” “process label,” or the exact project name. |
+| Original and authentic | YouTube Partner Program language for work that is not mass-produced or repetitive and materially belongs to the creator. | [YouTube policy clarification](https://support.google.com/youtube/thread/356734251?hl=en&msgid=363363137) | A blanket ban on generative AI. | Preserve YouTube's wording and explain the output-focused boundary. |
+| AI label | A disclosure derived from owner metadata or platform detection; Pinterest says detected content “may” be AI-modified. | [Pinterest AI help](https://help.pinterest.com/en/article/ai-at-pinterest) | Conclusive authorship proof. | “platform label” and preserve “may” where detection is involved. |
+| Selling point | A differentiating claim used to attract trust, attention, or preference. It does not necessarily mean a verified price premium. | Axios examples and Human-Made Project's stated brand use | A proven universal willingness to pay more. | “differentiator” or “selling point,” followed by the evidence boundary. |

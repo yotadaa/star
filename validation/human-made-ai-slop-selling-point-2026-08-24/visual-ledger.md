@@ -1,0 +1,10 @@
+# Visual Ledger
+
+| ID | Narrative job | Owner/source | Rights status | Source artifact | Durable asset key | Alt text | Caption | Width × height | SHA-256 | Publish? |
+|---|---|---|---|---|---|---|---|---|---|---|
+| V01 | Carry the feature image by presenting human authorship as a visible process trace rather than a glossy badge. | Original generated asset from a written, multi-reference direction | Original project asset | `assets/human-made-process-feature.png` | `blog:human-made-ai-slop-selling-point:feature-process-traces` | Layered paper proofs show pencil marks, tape, torn edges, uneven ink, and a blank machine-cut sheet | Provenance becomes meaningful when the work leaves a trace that a buyer can inspect. | 1672 × 941 | `f7c39235a4921c22bc30f0b0da8b4f3e945f177593c0d9dee4837ca208023dc0` | Yes |
+| V02 | Ground the cultural claim in a real reported example of organizations publicly rejecting AI-made flyers. | Bounded screenshot of the opened Axios article | Attributed source evidence under the repository's bounded-evidence pattern; the publisher identity and passage remain visible | `assets/axios-human-only-flyers-evidence.jpg` | `blog:human-made-ai-slop-selling-point:evidence-human-only-flyers` | Axios report showing a Utah venue's refusal to share AI flyers and campaigns making similar promises | A Utah venue asked promoters to hire local artists or cut up magazines, turning process into part of the pitch. | 1265 × 712 | `23e86bf526183f02b127562a794beb457301be0173da673fd15a4232b162fb22` | Yes, as bounded attributed evidence |
+
+## Visual direction
+
+The approved feature looks like an independent printmaker's proof table, shot almost flat: rough deckled paper, grease-pencil corrections, misregistered ink, tape shadows, and one clean machine-cut blank pushed to the edge. It keeps a soot-black, paper-cream, faded-vermilion, and muted-cobalt palette. Visual inspection found no badge, seal, logo, readable slogan, person, perfect synthetic hand, UI, fake metric, or fake source page.

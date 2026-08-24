@@ -1,0 +1,14 @@
+# Source Ledger
+
+| ID | Source | Class | Published | Opened | What it supports | Screenshot |
+|---|---|---|---|---|---|---|
+| S01 | [WIRED: The AI Slop Backlash Is Actually Having an Impact](https://www.wired.com/story/the-ai-slop-backlash-is-actually-having-an-impact/) | Named reporting | 10 Aug 2026 | 24 Aug 2026 | Platform controls, feature rollbacks, marketing backlash, named expert context | `sources/S01-wired-ai-slop-backlash.jpg` |
+| S02 | [Axios Salt Lake City: businesses promise human-only advertising](https://www.axios.com/local/salt-lake-city/2026/08/03/ai-flyers-utah-businesses-boycott-customer-complaints) | Named local reporting with linked firsthand posts | 3 Aug 2026 | 24 Aug 2026 | Venue and political campaign pledges, affordability counterpoint, false-accusation caveat | `sources/S02-axios-human-only-flyers.jpg` |
+| S03 | [Gallup: Americans Cool Toward AI](https://news.gallup.com/poll/712751/americans-cool-toward.aspx) | Primary polling publication | 28 Jul 2026 | 24 Aug 2026 | Familiarity, harm/good views, trust, age splits | `sources/S03-gallup-americans-cool-ai.jpg` |
+| S04 | [YouTube: response to creator questions about YPP policy](https://support.google.com/youtube/thread/356734251?hl=en&msgid=363363137) | First-party platform statement | Jul 2025 | 24 Aug 2026 | Mass-produced/repetitive clarification and original/authentic standard | `sources/S04-youtube-original-authentic-policy.jpg` |
+| S05 | [Pinterest: AI at Pinterest](https://help.pinterest.com/en/article/ai-at-pinterest) | First-party platform documentation | Current at cutoff | 24 Aug 2026 | Gen-AI labels, detection wording, and “see less AI” feed control | `sources/S05-pinterest-ai-controls.jpg` |
+| S06 | [arXiv 2606.12073: AI-slop accusations and credibility](https://arxiv.org/abs/2606.12073) | Primary research preprint | Jun 2026 | 24 Aug 2026 | 25-million-comment analysis, tenfold pejorative growth, matched-control false-positive finding | `sources/S06-arxiv-ai-slop-accusations.jpg` |
+| S07 | [Guardian: more than 20% of videos shown to a new YouTube user were classified as AI slop](https://www.theguardian.com/technology/2025/dec/27/more-than-20-of-videos-shown-to-new-youtube-users-are-ai-slop-study-finds) | Named reporting on Kapwing research | 27 Dec 2025 | 24 Aug 2026 | One-account recommendation snapshot, estimated channel scale, platform response | `sources/S07-guardian-youtube-ai-slop-study.jpg` |
+| S08 | [The Human-Made Project](https://thehumanmade.org/) | Direct project artifact | Current at cutoff | 24 Aug 2026 | Self-applied badge, rules, brand pitch, and public-enforcement model | `sources/S08-human-made-project.jpg` |
+
+Each used page was opened and captured in the in-app Browser. The WIRED article functions as reporting and synthesis, not as proof of every linked platform claim; YouTube and Pinterest carry their own policy facts.

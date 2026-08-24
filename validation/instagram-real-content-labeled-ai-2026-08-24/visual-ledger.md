@@ -1,0 +1,17 @@
+# Visual Ledger
+
+| ID | Narrative job | Owner/source and visual lesson | Rights | Publish? | Asset key / path | Alt and caption | Dimensions / checksum | Status |
+|---|---|---|---|---|---|---|---|---|
+| I-VR01 | Reference: place policy language beside ordinary creative work | I02 Meta policy: clean public statement and an example UI; lesson limited to the contrast between broad policy and a small label. | Third-party reference only | No | `sources/I02-meta-labeling-policy.jpg` | n/a | Measured capture retained privately | Captured |
+| I-VR02 | Reference: retain the materiality of photography | I03 PetaPixel test: dust-removal example suggests contact sheet, grease pencil, and a tiny marked edit rather than a synthetic portrait. | Third-party reference only | No | `sources/I03-petapixel-generative-fill-test.jpg` | n/a | Measured capture retained privately | Captured |
+| I-VR03 | Reference: human work can be visibly handmade | I01 reporting: collages, physical photo scans, and paintings; lesson limited to mismatched materials, never copied composition or images. | Third-party reference only | No | `sources/I01-business-insider-creators.jpg` | n/a | Measured capture retained privately | Captured |
+| I-V01 | Feature: show one tiny edit swallowing the identity of an entire handmade work | Original generated editorial collage; publishable. | Generated original for this article | Yes | `blog:instagram-real-content-labeled-ai:feature-contact-sheet-stamp` / `assets/instagram-ai-label-feature.png` | Alt: `A handmade photographic contact sheet and painted paper scraps sit under one oversized ambiguous rubber-stamp impression.` Caption: `A platform badge can compress a long human workflow and one small machine-assisted edit into the same blunt signal.` | 1672×941; SHA-256 `d7e5f0d8046111849012d2d258e1072e8ac63bfa96787ad85aa94110f1b588c2` | Generated, copied into project, visually accepted |
+| I-V02 | Evidence: Meta's admission about minor modifications | Public Meta policy screenshot, tightly bounded and attributed in the caption. | Source evidence excerpt for criticism and analysis | Yes | `blog:instagram-real-content-labeled-ai:evidence-meta-minor-edits` / `sources/I02-crop-meta-minor-modifications.jpg` | Alt: `Meta's July 2024 policy update says minor AI modifications such as retouching could trigger a Made with AI label that did not match people's expectations.` Caption: `Meta changed the wording after acknowledging that an industry signal from a small retouch could make the label overstate the work's synthetic share. Source: Meta policy update, captured 24 August 2026.` | 1265×712; SHA-256 `53dc48c06102190d58f3b885cbae8197d6776e295056e0d24569c65f105f3f90` | Captured and visually accepted |
+
+## Feature art direction
+
+- Use case: `stylized-concept`; wide editorial feature.
+- Medium: photocopied zine collage using matte fiber paper, a scratched 35mm contact strip, paint daubs, masking tape, red grease-pencil circles, and one imperfect black rubber-stamp smear with no letters.
+- Composition: asymmetrical tabletop crop; handmade materials fill the left and lower area while one oversized blank stamp shadow intrudes from the upper right. A single tiny retouch mark is circled on one frame.
+- Palette: warm newsprint, charcoal, faded oxide red, weak teal; flat daylight and visible paper warp.
+- Exclusions: no Instagram logo or UI, phones, human faces, readable labels, fake photos, text, perfect hands, glowing effects, gradients, glossy 3D, neon, or cinematic product lighting.
