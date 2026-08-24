@@ -6,6 +6,7 @@ import { stokTokoReviewBlogPayload } from "./publish-stok-toko-review-blog.mjs";
 import { tnksWebBookingBlogPayload } from "./publish-tnks-web-booking-blog.mjs";
 import { gpt6AstraRumorBlogPayload } from "./publish-gpt-6-astra-rumor-blog.mjs";
 import { oxAlphaInvestigationBlogPayload } from "./publish-ox-alpha-investigation-blog.mjs";
+import { dshStuckInstallationBlogPayload } from "./publish-dsh-stuck-installation-blog.mjs";
 
 const SHARDS = ["s1", "s2", "s3"];
 
@@ -143,6 +144,11 @@ export function buildSeedTables(data) {
       publishedAt: "2026-08-24",
       ...oxAlphaInvestigationBlogPayload,
     },
+    {
+      id: "blog-deepseek-harness-npx-stuck-pnpm-dlx-wrapper",
+      publishedAt: "2026-08-24",
+      ...dshStuckInstallationBlogPayload,
+    },
   ];
   const blogPosts = sourceBlogPosts.map((post, index) => {
     const shard = SHARDS[index % SHARDS.length];
@@ -243,7 +249,7 @@ export function buildSeedTables(data) {
 }
 
 export const expectedSeedCounts = {
-  blogPosts: 10,
+  blogPosts: 11,
   inventoryItems: 14,
   contentEntries: 6,
   contactChannels: 5,

@@ -1,0 +1,242 @@
+{
+  "title": "DeepSeek Harness Stuck After npx: The pnpm dlx Wrapper That Worked",
+  "slug": "deepseek-harness-npx-stuck-pnpm-dlx-wrapper",
+  "excerpt": "A grounded troubleshooting case study on the stalled npx prompt, the pnpm dlx route that worked on one machine, and the pinned wrapper that made dsh discoverable.",
+  "status": "published",
+  "tags": [
+    "DeepSeek Harness",
+    "CLI",
+    "npm",
+    "pnpm",
+    "Troubleshooting"
+  ],
+  "readTime": "7 min read",
+  "coverTone": "research",
+  "sourceHref": "https://github.com/deepseek-ai/deepseek-harness",
+  "blocks": [
+    {
+      "type": "image",
+      "assetKey": "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:featured-runner-workbench",
+      "alt": "A dark mechanical workbench with one stalled package route and another passing through a brass relay",
+      "text": "Two package routes, one paused and one carried through a small relay, frame the repair before the terminal logs begin."
+    },
+    {
+      "type": "paragraph",
+      "text": "The command documented in the [DeepSeek Harness README](https://github.com/deepseek-ai/deepseek-harness#run) reached its installation prompt on one Linux/zsh machine, accepted \u0060y\u0060, and then went quiet. A second run ended at the same blank cursor. \u0060pnpm dlx\u0060 later crossed that bootstrap boundary, while a 67-byte wrapper turned the temporary runner into a normal \u0060dsh\u0060 command."
+    },
+    {
+      "type": "paragraph",
+      "text": "That result is useful because it is narrow. The captured evidence does not reveal why \u0060npx\u0060 appeared to stall, and it does not show that npm's runner is generally broken. It shows what worked on this machine, why the wrapper was needed, and how later plugin failures could be separated from the original package-runner problem."
+    },
+    {
+      "type": "divider",
+      "text": ""
+    },
+    {
+      "type": "heading",
+      "text": "The quiet prompt was not the whole diagnosis"
+    },
+    {
+      "type": "paragraph",
+      "text": "The first attempt looked simple: npm asked permission to fetch \u0060@deepseek-ai/dsh\u0060, the terminal received \u0060y\u0060, and no further progress appeared. Ctrl+Z then made the situation less obvious. [Bash's job-control manual](https://www.gnu.org/software/bash/manual/html_node/Job-Control-Basics.html) explains that Ctrl+Z normally suspends a foreground process; it does not terminate it."
+    },
+    {
+      "type": "code",
+      "text": "jobs -l\nkill %1 %2\njobs"
+    },
+    {
+      "type": "paragraph",
+      "text": "\u0060jobs -l\u0060 exposed the result. One \u0060npx\u0060 process still ran while another sat suspended. Before another installer test, the shell needed a clean slate."
+    },
+    {
+      "type": "image",
+      "assetKey": "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:source-npx-stall",
+      "alt": "Terminal showing two npx DeepSeek Harness attempts, one suspended after Ctrl+Z and one waiting after the install prompt",
+      "text": "The first capture shows the quiet prompt and the suspended job that remained after Ctrl+Z."
+    },
+    {
+      "type": "image",
+      "assetKey": "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:source-npm-verbose",
+      "alt": "Verbose npm output showing repeated HTTP 200 fetches for DeepSeek Harness dependencies",
+      "text": "Successful registry fetches narrowed the problem without revealing the resolver's exact wait."
+    },
+    {
+      "type": "paragraph",
+      "text": "The captured verbose run added another clue. Registry requests returned HTTP 200 responses, which ruled out a total DNS failure or completely unreachable npm registry. It did not identify the internal wait. Dependency resolution, cache state, a lifecycle script, or another local condition could still have been involved; the available log never settled that question. Calling the event an “npm bug” would therefore claim more than the record supports."
+    },
+    {
+      "type": "heading",
+      "text": "npx and pnpm dlx are temporary runners, not permanent installs"
+    },
+    {
+      "type": "paragraph",
+      "text": "[npm describes \u0060npx\u0060](https://docs.npmjs.com/cli/v11/commands/npx/) as a way to run a binary from a local or remotely fetched package. When the package is absent from the project, npm places it in a cache-backed execution environment and may show the confirmation prompt seen in the terminal."
+    },
+    {
+      "type": "paragraph",
+      "text": "[pnpm documents \u0060pnpm dlx\u0060](https://pnpm.io/cli/pnx) under its \u0060pnx\u0060 command. It also fetches and hotloads a package without adding that package as a project dependency, and it accepts an exact version. The two commands serve a similar job even though their stores and resolution paths differ."
+    },
+    {
+      "type": "paragraph",
+      "text": "On this machine, the alternate path moved farther:"
+    },
+    {
+      "type": "code",
+      "text": "pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 web"
+    },
+    {
+      "type": "paragraph",
+      "text": "That was an observed result, not a package-manager contest; DeepSeek still documents \u0060npx @deepseek-ai/dsh web\u0060 as the ordinary run command, and another machine may complete that path without trouble."
+    },
+    {
+      "type": "paragraph",
+      "text": "The successful \u0060pnpm dlx\u0060 run also created a predictable inconvenience. It launched the package binary for that invocation, but it did not place a permanent \u0060dsh\u0060 executable in the shell's usual search path. External software that called \u0060command -v dsh\u0060, or simply tried to execute \u0060dsh\u0060, still had nothing durable to find."
+    },
+    {
+      "type": "heading",
+      "text": "A pinned wrapper made dsh discoverable"
+    },
+    {
+      "type": "paragraph",
+      "text": "The smallest useful repair was a shell script at \u0060~/.local/bin/dsh\u0060:"
+    },
+    {
+      "type": "code",
+      "text": "#!/usr/bin/env bash\nexec pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 \"$@\""
+    },
+    {
+      "type": "paragraph",
+      "text": "The surrounding setup stayed ordinary:"
+    },
+    {
+      "type": "code",
+      "text": "mkdir -p \"$HOME/.local/bin\"\nchmod +x \"$HOME/.local/bin/dsh\"\nexport PATH=\"$HOME/.local/bin:$PATH\"\nrehash"
+    },
+    {
+      "type": "paragraph",
+      "text": "The same \u0060export PATH=...\u0060 line belongs in \u0060.zshrc\u0060 when that directory is not already present. After the shell reloads its configuration, three checks tell the story without starting the Web server:"
+    },
+    {
+      "type": "code",
+      "text": "command -v dsh\ndsh --version\ndsh --help"
+    },
+    {
+      "type": "paragraph",
+      "text": "On August 24, 2026, the live checks returned \u0060/home/tada/.local/bin/dsh\u0060, version \u00600.1.1-rc.2\u0060, and the CLI help successfully. The [published DSH package manifest](https://github.com/deepseek-ai/deepseek-harness/blob/master/apps/cli/package.json) maps its package binary to the name \u0060dsh\u0060, so the wrapper forwards arguments into the command surface that the package already exposes."
+    },
+    {
+      "type": "paragraph",
+      "text": "The exact version matters. DeepSeek labels Harness a developer preview and warns that compatibility-breaking changes will occur. A wrapper containing \u0060@latest\u0060 can change behavior even when the wrapper file itself has not changed. Pinning \u00600.1.1-rc.2\u0060, the tested and current npm release at the research cutoff, keeps the runner and profile relationship stable until an update is chosen deliberately."
+    },
+    {
+      "type": "paragraph",
+      "text": "The wrapper still depends on \u0060pnpm\u0060, its package store, and whatever network access a cold fetch needs. It is a command bridge, not an offline binary installation."
+    },
+    {
+      "type": "image",
+      "assetKey": "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:supporting-command-bridge",
+      "alt": "Abstract package modules flowing through a small brass relay into a stable command port",
+      "text": "The wrapper's job is deliberately small: pass every argument to the tested package runner and give the shell a stable name to find."
+    },
+    {
+      "type": "heading",
+      "text": "The profile survived because it lived somewhere else"
+    },
+    {
+      "type": "paragraph",
+      "text": "Temporary package execution did not make the DSH profile temporary. The [official CLI reference](https://github.com/deepseek-ai/deepseek-harness/blob/master/apps/cli/reference/README.md) places named profiles under \u0060$DSH_HOME/profiles/<name>\u0060 and runs plugin-management operations from that directory; in the captured setup, the \u0060web\u0060 profile stayed under \u0060~/.dsh/profiles/web\u0060 while the CLI arrived through \u0060pnpm dlx\u0060."
+    },
+    {
+      "type": "paragraph",
+      "text": "That separation explains why the wrapper could be replaced or repinned without recreating the profile. It also explains why an old profile could boot far enough to reveal a different class of failure."
+    },
+    {
+      "type": "heading",
+      "text": "A successful bootstrap can still fail in the plugin tree"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once \u0060dsh web\u0060 reached the loader, the installation question had changed. The CLI existed, the profile had been found, and bundles had begun to load."
+    },
+    {
+      "type": "table",
+      "text": "How the captured failures separated by layer",
+      "rows": [
+        [
+          "Layer",
+          "Captured symptom",
+          "What the evidence supports",
+          "Next check"
+        ],
+        [
+          "Shell job",
+          "jobs showed running and suspended npx processes",
+          "Ctrl+Z left work behind",
+          "Clean the job table before another run"
+        ],
+        [
+          "Package runner",
+          "Prompt appeared idle; verbose fetches returned HTTP 200",
+          "The registry was reachable, but the wait's exact cause stayed unknown",
+          "Try a pinned alternate runner and keep the claim machine-specific"
+        ],
+        [
+          "DSH command",
+          "dsh --help and dsh --version succeeded through the wrapper",
+          "Package bootstrap and command discovery worked",
+          "Stop treating later loader errors as installer errors"
+        ],
+        [
+          "Profile/plugin boot",
+          "Schema validation, missing package, and missing build-file messages appeared",
+          "DSH had progressed into its composed plugin tree",
+          "Back up the profile and repair one entry at a time"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The remaining errors belonged to plugins or their build artifacts: three historical plugins, \u0060dsh-plugin-academic-writing\u0060, \u0060dsh-plugin-education\u0060, and \u0060dsh-plugin-translation\u0060, reached schema validation before failing on \u0060additionalProperties\u0060. \u0060dsh-web-search-ext\u0060 could not be found, while \u0060dsh-skill-hub\u0060 lacked its expected \u0060lib/index.js\u0060 build output. Those messages did not indict the wrapper; they showed that it had carried execution far enough for DSH to inspect the profile."
+    },
+    {
+      "type": "paragraph",
+      "text": "The current local profile no longer contains that failed plugin set, so those errors belong to the troubleshooting record rather than the machine's present state."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Design exposed one more useful boundary. pnpm first blocked a Git dependency's lifecycle script; after build approval, the script actually started and then failed at \u0060tsx: command not found\u0060. The inspected [Open Design source manifest](https://github.com/nexu-io/open-design/blob/main/package.json) targets Node \u0060~24\u0060 and declares its source tooling, while the captured machine ran Node \u0060v26.7.0\u0060. Build permission had been repaired, but source-build compatibility had not. The log showed both conditions without proving that either one alone caused every failure."
+    },
+    {
+      "type": "heading",
+      "text": "The safer repair order names the failing layer"
+    },
+    {
+      "type": "paragraph",
+      "text": "A repeatable troubleshooting sequence came out of the mess:"
+    },
+    {
+      "type": "list",
+      "text": "1. Record the last visible stage, command, and version.\n2. Check \u0060jobs -l\u0060 after Ctrl+Z; end or resume every suspended process before another package-runner test begins.\n3. Use verbose registry output as a clue, never as proof of a specific resolver defect.\n4. Test an alternate runner with an exact package version.\n5. Verify \u0060command -v dsh\u0060, \u0060dsh --version\u0060, and \u0060dsh --help\u0060 before touching the profile.\n6. Back up \u0060$DSH_HOME/profiles/<name>\u0060, then handle schema, package, and build failures one entry at a time."
+    },
+    {
+      "type": "paragraph",
+      "text": "This order keeps a working bootstrap from being thrown away because the next subsystem is broken. It also keeps a plugin error from being retold as “DeepSeek Harness will not install,” which was no longer true once the wrapper returned valid CLI help."
+    },
+    {
+      "type": "heading",
+      "text": "The working result was small, and deliberately limited"
+    },
+    {
+      "type": "paragraph",
+      "text": "The final setup did not force a global npm installation. A pinned \u0060pnpm dlx\u0060 invocation supplied the CLI, a tiny executable made its name discoverable, and the persistent profile stayed in \u0060~/.dsh\u0060. That solved the runner and command-discovery problem on the captured system."
+    },
+    {
+      "type": "paragraph",
+      "text": "It did not explain the original \u0060npx\u0060 wait, repair every third-party plugin, or promise that release-candidate behavior will remain fixed. Those limits make the result more useful, not less: each failure now has a layer and a next check."
+    },
+    {
+      "type": "paragraph",
+      "text": "Before changing the pinned version or adding another Git-hosted plugin, the next useful step is to inspect DeepSeek's current [run instructions](https://github.com/deepseek-ai/deepseek-harness#run) and [\u0060dsh\u0060 CLI behavior reference](https://github.com/deepseek-ai/deepseek-harness/blob/master/apps/cli/reference/README.md). The project is moving quickly, and its own record should decide what changes next."
+    }
+  ]
+}

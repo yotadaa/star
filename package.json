@@ -22,6 +22,7 @@
     "blog:publish:tnks": "node scripts/publish-tnks-web-booking-blog.mjs",
     "blog:publish:gpt-6-astra": "node scripts/publish-gpt-6-astra-rumor-blog.mjs",
     "blog:publish:ox-alpha": "node scripts/publish-ox-alpha-investigation-blog.mjs",
+    "blog:publish:dsh-install": "node scripts/publish-dsh-stuck-installation-blog.mjs",
     "convex:typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -17,6 +17,8 @@ const sourceFiles = [
   "scripts/publish-tnks-web-booking-blog.mjs",
   "scripts/publish-gpt-6-astra-rumor-blog.mjs",
   "scripts/publish-ox-alpha-investigation-blog.mjs",
+  "scripts/publish-dsh-stuck-installation-blog.mjs",
+  "scripts/blog-payloads/dsh-stuck-installation.json",
   "scripts/convex-seed-data.mjs",
   "scripts/build-convex-seed.mjs",
   "validation/hero-entities-2026-07-30/desktop-sunset.png",
@@ -58,6 +60,10 @@ const sourceFiles = [
   "docs/blogs/ox-alpha-investigation/source/02-fingerprint-archive.jpg",
   "docs/blogs/ox-alpha-investigation/source/03-full-deepswe-run.jpg",
   "docs/blogs/ox-alpha-investigation/source/04-deepswe-leaderboard.jpg",
+  "docs/blogs/dsh-problem-stuck-installation/image-1.png",
+  "docs/blogs/dsh-problem-stuck-installation/image-2.png",
+  "docs/blogs/dsh-problem-stuck-installation/generated/dsh-package-runner-feature.png",
+  "docs/blogs/dsh-problem-stuck-installation/generated/dsh-command-wrapper-bridge.png",
 ];
 
 function fail(message) {
