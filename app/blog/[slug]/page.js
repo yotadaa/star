@@ -3,9 +3,10 @@ import { notFound } from "next/navigation";
 import { auth } from "@/auth";
 import BlogEngagement from "@/components/blog/BlogEngagement";
 import BlogPostRenderer from "@/components/blog/BlogPostRenderer";
+import { BlogReadingTrail, BlogRecentRail } from "@/components/blog/BlogReadingCompass";
 import PageHeader from "@/components/PageHeader";
 import { PixelButton, SpriteIcon } from "@/components/claude";
-import { getBlogPostBySlug } from "@/lib/backend/featureStore";
+import { getBlogPostBySlug, listBlogPostSummaries } from "@/lib/backend/featureStore";
 import { commentActorToken } from "@/lib/backend/blogEngagementAuth";
 import { actorKeyForEmail } from "@/lib/backend/routeAuth";
 import {
@@ -13,6 +14,7 @@ import {
   formatArticleDate,
   serializeStructuredData,
 } from "@/lib/blog/articleSeo";
+import { buildBlogReadingContext } from "@/lib/blog/readingContext";
 import { pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
@@ -45,67 +47,85 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
-  const [{ post, source }, session] = await Promise.all([getBlogPostBySlug(slug), auth()]);
+  const [{ post, source }, { posts }, session] = await Promise.all([
+    getBlogPostBySlug(slug),
+    listBlogPostSummaries({ limit: 48 }),
+    auth(),
+  ]);
   if (!post) notFound();
   const actorKey = actorKeyForEmail(session?.user?.email);
   const viewerToken = actorKey ? commentActorToken(actorKey) : undefined;
   const canModerate = session?.user?.role === "owner";
   const articleSeo = buildBlogArticleSeo(post);
   const publishedLabel = formatArticleDate(articleSeo.publishedTime);
+  const { recentPosts, relatedPosts } = buildBlogReadingContext(post, posts);
 
   return (
-    <article className="page-wrap blog-post-page">
+    <div className="page-wrap blog-post-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: serializeStructuredData(articleSeo.structuredData),
         }}
       />
-      <PageHeader label="// LORE ENTRY" title={post.title}>
-        {post.excerpt}
-      </PageHeader>
+      <article className="blog-post-article">
+        <div className="blog-reading-layout">
+          <div className="blog-post-column">
+            <PageHeader label="// LORE ENTRY" title={post.title}>
+              {post.excerpt}
+            </PageHeader>
 
-      <dl className="blog-post-meta hardcard" aria-label="Article details">
-        <div>
-          <dt className="sr-only">Status</dt>
-          <dd><SpriteIcon id="icon-blog-page" size={15} /> {post.status}</dd>
-        </div>
-        {publishedLabel ? (
-          <div>
-            <dt className="sr-only">Published</dt>
-            <dd><time dateTime={articleSeo.publishedTime}>{publishedLabel}</time></dd>
+            <dl className="blog-post-meta hardcard" aria-label="Article details">
+              <div>
+                <dt className="sr-only">Status</dt>
+                <dd><SpriteIcon id="icon-blog-page" size={15} /> {post.status}</dd>
+              </div>
+              {publishedLabel ? (
+                <div>
+                  <dt className="sr-only">Published</dt>
+                  <dd><time dateTime={articleSeo.publishedTime}>{publishedLabel}</time></dd>
+                </div>
+              ) : null}
+              <div>
+                <dt className="sr-only">Author</dt>
+                <dd>By <Link href={articleSeo.authorUrl}>{articleSeo.authorName}</Link></dd>
+              </div>
+              <div>
+                <dt className="sr-only">Estimated reading time</dt>
+                <dd>{post.readTime}</dd>
+              </div>
+              <div>
+                <dt className="sr-only">Content source</dt>
+                <dd><SpriteIcon id={source === "convex" ? "icon-database-online" : "icon-database-offline"} size={15} /> {source}</dd>
+              </div>
+            </dl>
+
+            <BlogPostRenderer blocks={post.blocks} sourceHref={post.sourceHref} />
           </div>
-        ) : null}
-        <div>
-          <dt className="sr-only">Author</dt>
-          <dd>By <Link href={articleSeo.authorUrl}>{articleSeo.authorName}</Link></dd>
-        </div>
-        <div>
-          <dt className="sr-only">Estimated reading time</dt>
-          <dd>{post.readTime}</dd>
-        </div>
-        <div>
-          <dt className="sr-only">Content source</dt>
-          <dd><SpriteIcon id={source === "convex" ? "icon-database-online" : "icon-database-offline"} size={15} /> {source}</dd>
-        </div>
-      </dl>
 
-      <BlogPostRenderer blocks={post.blocks} sourceHref={post.sourceHref} />
+          <BlogRecentRail post={recentPosts[0]} side="left" index={1} />
+          <BlogRecentRail post={recentPosts[1]} side="right" index={2} />
+        </div>
 
-      <BlogEngagement
-        slug={post.slug}
-        initialUpvoteCount={post.upvoteCount}
-        viewerToken={viewerToken}
-        canModerate={canModerate}
-      />
+        <div className="blog-post-tail">
+          <BlogReadingTrail items={relatedPosts} />
 
-      <div className="blog-post-actions">
-        <PixelButton as="a" href={post.sourceHref || "/blog"} className="blog-source-link">
-          <SpriteIcon id="icon-portal-ring" size={15} />
-          Open source
-        </PixelButton>
-        <Link href="/blog" className="blog-back-link">Back to Blog</Link>
-      </div>
-    </article>
+          <BlogEngagement
+            slug={post.slug}
+            initialUpvoteCount={post.upvoteCount}
+            viewerToken={viewerToken}
+            canModerate={canModerate}
+          />
+
+          <div className="blog-post-actions">
+            <PixelButton as="a" href={post.sourceHref || "/blog"} className="blog-source-link">
+              <SpriteIcon id="icon-portal-ring" size={15} />
+              Open source
+            </PixelButton>
+            <Link href="/blog" className="blog-back-link">Back to Blog</Link>
+          </div>
+        </div>
+      </article>
+    </div>
   );
 }

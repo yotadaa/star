@@ -181,6 +181,19 @@ export const publicBlogPost = v.object({
   updatedAt: v.number(),
 });
 
+export const publicBlogPostSummary = v.object({
+  slug: v.string(),
+  title: v.string(),
+  excerpt: v.string(),
+  status: blogStatus,
+  tags: v.array(v.string()),
+  publishedAt: v.string(),
+  datePublished: v.union(v.number(), v.null()),
+  readTime: v.string(),
+  featuredImage: v.optional(blogFeaturedImage),
+  upvoteCount: v.number(),
+});
+
 export const publicBlogComment = v.object({
   id: v.string(),
   authorName: v.string(),

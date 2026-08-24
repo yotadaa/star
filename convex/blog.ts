@@ -2,7 +2,7 @@ import { v } from "convex/values";
 import type { Doc, Id } from "./_generated/dataModel";
 import { internalMutation, internalQuery, query } from "./_generated/server";
 import type { MutationCtx, QueryCtx } from "./_generated/server";
-import { actorSnapshot, blogInput, publicBlogPost } from "./validators";
+import { actorSnapshot, blogInput, publicBlogPost, publicBlogPostSummary } from "./validators";
 
 const BLOG_SCHEMA_VERSION = 2;
 const DEFAULT_LANGUAGE = "en-US";
@@ -273,6 +273,38 @@ export const listPublished = query({
       .order("desc")
       .take(limit);
     return { posts: await Promise.all(rows.map((post) => toPublic(ctx, post))), source: "convex" as const, warnings: [] };
+  },
+});
+
+export const listPublishedSummaries = query({
+  args: { limit: v.optional(v.number()) },
+  returns: v.object({
+    posts: v.array(publicBlogPostSummary),
+    source: v.literal("convex"),
+    warnings: v.array(v.string()),
+  }),
+  handler: async (ctx, args) => {
+    const limit = Math.max(1, Math.min(100, Math.floor(args.limit ?? 24)));
+    const rows = await ctx.db
+      .query("blogPosts")
+      .withIndex("by_status_and_publishedAt", (q) => q.eq("status", "published"))
+      .order("desc")
+      .take(limit);
+
+    const posts = await Promise.all(rows.map(async (post) => ({
+      slug: post.slug,
+      title: post.title,
+      excerpt: post.excerpt,
+      status: post.status,
+      tags: post.tags,
+      publishedAt: post.publishedAtLabel,
+      datePublished: post.publishedAt ?? null,
+      readTime: post.readTime,
+      ...(post.featuredImage ? { featuredImage: await resolveImage(ctx, post.featuredImage) } : {}),
+      upvoteCount: Math.max(0, Math.floor(post.upvoteCount ?? 0)),
+    })));
+
+    return { posts, source: "convex" as const, warnings: [] };
   },
 });
 
