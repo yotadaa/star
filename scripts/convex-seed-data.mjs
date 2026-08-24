@@ -19,6 +19,7 @@ const GROUNDED_BLOG_PAYLOAD_PATHS = [
   "validation/why-100-agent-skills-can-be-worse-than-5-2026-08-24/payload.json",
   "validation/model-switch-prompt-cache-2026-08-24/payload.json",
   "validation/claude-compact-quality-2026-08-24/payload.json",
+  "validation/claude-code-limit-burn-2026-08-24/payload.json",
 ];
 
 function readGroundedBlogPayloads() {
@@ -285,7 +286,7 @@ export function buildSeedTables(data) {
 }
 
 export const expectedSeedCounts = {
-  blogPosts: 17,
+  blogPosts: 18,
   inventoryItems: 14,
   contentEntries: 6,
   contactChannels: 5,

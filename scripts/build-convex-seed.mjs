@@ -20,6 +20,7 @@ const sourceFiles = [
   "scripts/publish-dsh-stuck-installation-blog.mjs",
   "scripts/blog-payloads/dsh-stuck-installation.json",
   "scripts/blog-batches/six-grounded-blogs-2026-08-24.json",
+  "scripts/blog-batches/claude-code-limit-burn-2026-08-24.json",
   "scripts/publish-grounded-blog-batch.mjs",
   "scripts/blog-seo-data.mjs",
   "scripts/image-dimensions.mjs",
@@ -87,6 +88,9 @@ const sourceFiles = [
   "validation/claude-compact-quality-2026-08-24/payload.json",
   "validation/claude-compact-quality-2026-08-24/assets/claude-compact-handoff-feature.png",
   "validation/claude-compact-quality-2026-08-24/sources/S01-crop-compact-clear-guidance.jpg",
+  "validation/claude-code-limit-burn-2026-08-24/payload.json",
+  "validation/claude-code-limit-burn-2026-08-24/assets/claude-code-four-meters-feature.png",
+  "validation/claude-code-limit-burn-2026-08-24/sources/S10-crop-usage-mcp-attribution.png",
 ];
 
 function fail(message) {

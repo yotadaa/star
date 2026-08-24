@@ -130,7 +130,3 @@ Not secretly, and not by default on the evidence available here. By replacing ex
 In this proxy, a focused manual compact retained enough state to score 10/10. A curated handoff matched it. A fresh session without the chat-only contract failed eight checks. The forced automatic arm never reached implementation and remains unresolved.
 
 The useful question is therefore not whether compaction is good or bad in the abstract. It is whether the task's important state is named, inspectable, and tested after the boundary. Teams can copy the protocol pattern, replace F01–F10 with a real project's decisions, and compare the result on their own Claude Code version. Anthropic's [official task-boundary guidance](https://support.claude.com/en/articles/14552983-models-usage-and-limits-in-claude-code) supplies the starting rule; a project-specific verifier supplies the answer that matters.
-
----
-
-**Research note:** Sources were checked through 24 August 2026, 23:59 Asia/Jakarta. X supplied one attributable opinion; no accessible Threads post met the evidence gate. Community reports are presented as reports. The benchmark used one run per usable arm, a non-public account route, and zero reported cache activity; it does not estimate general quality, cost, or failure frequency.

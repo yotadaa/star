@@ -68,6 +68,15 @@ export const BLOG_SEO_RECORDS = Object.freeze({
     articleSection: "AI Investigation",
     featuredImageKey: "blog:does-compact-make-claude-code-worse:feature-summary-handoff",
   }),
+  "why-claude-code-users-hit-limits-faster": Object.freeze({
+    seoTitle: "Why Claude Code Users Hit Usage Limits Faster",
+    seoDescription:
+      "An evidence-led audit separates plan usage, context, MCP attribution, and prompt-cache misses to explain sudden Claude Code limit burn.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "AI Investigation",
+    featuredImageKey: "blog:why-claude-code-users-hit-limits-faster:feature-four-meters",
+  }),
   "ox-alpha-api-left-a-trail": Object.freeze({
     seoTitle: "Who Is Behind Ox Alpha? The API Left a Trail",
     seoDescription:
@@ -173,6 +182,8 @@ export const BLOG_IMAGE_DIMENSIONS = Object.freeze({
   "blog:changing-ai-model-mid-session-cost:featured-cache-junction": { width: 1672, height: 941 },
   "blog:does-compact-make-claude-code-worse:feature-summary-handoff": { width: 1672, height: 941 },
   "blog:does-compact-make-claude-code-worse:source-anthropic-compact-clear": { width: 1265, height: 712 },
+  "blog:why-claude-code-users-hit-limits-faster:feature-four-meters": { width: 1672, height: 941 },
+  "blog:why-claude-code-users-hit-limits-faster:evidence-usage-attribution-fix": { width: 1280, height: 720 },
   "blog:xiaomi-xring-o3-official-claims-pros-cons:feature-control-dependency": { width: 1672, height: 941 },
   "blog:xiaomi-xring-o3-official-claims-pros-cons:source-xiaomi-weibo-o3-launch": { width: 1265, height: 712 },
   "blog:e-ticket-tnks-project-review:destination-list": { width: 1920, height: 1080 },

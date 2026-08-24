@@ -1,0 +1,41 @@
+{
+  "name": "claude-code-limit-burn-2026-08-24",
+  "articles": [
+    {
+      "slug": "does-compact-make-claude-code-worse",
+      "payloadPath": "validation/claude-compact-quality-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:does-compact-make-claude-code-worse:feature-summary-handoff",
+          "sourcePath": "validation/claude-compact-quality-2026-08-24/assets/claude-compact-handoff-feature.png",
+          "fileName": "claude-compact-handoff-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:does-compact-make-claude-code-worse:source-anthropic-compact-clear",
+          "sourcePath": "validation/claude-compact-quality-2026-08-24/sources/S01-crop-compact-clear-guidance.jpg",
+          "fileName": "anthropic-compact-clear-guidance.jpg",
+          "evidenceKind": "attributed-first-party-source-evidence"
+        }
+      ]
+    },
+    {
+      "slug": "why-claude-code-users-hit-limits-faster",
+      "payloadPath": "validation/claude-code-limit-burn-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:why-claude-code-users-hit-limits-faster:feature-four-meters",
+          "sourcePath": "validation/claude-code-limit-burn-2026-08-24/assets/claude-code-four-meters-feature.png",
+          "fileName": "claude-code-four-meters-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:why-claude-code-users-hit-limits-faster:evidence-usage-attribution-fix",
+          "sourcePath": "validation/claude-code-limit-burn-2026-08-24/sources/S10-crop-usage-mcp-attribution.png",
+          "fileName": "claude-code-usage-attribution-fix.jpg",
+          "evidenceKind": "attributed-first-party-source-evidence"
+        }
+      ]
+    }
+  ]
+}

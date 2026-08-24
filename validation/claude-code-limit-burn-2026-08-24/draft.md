@@ -1,0 +1,109 @@
+# Why Are Some Claude Code Users Suddenly Burning Through Their Limits Faster?
+
+One report says the same Claude Code workflow started hitting its limit early. Another records 1,364,156 tokens inside a 1,000,000-token window, a value the model could not actually have accepted.
+
+The second number comes from [Claude Code issue #82863](https://github.com/anthropics/claude-code/issues/82863). Its reporter extracted a sequence of usage readings from a session transcript: roughly doubled totals that returned to normal on the next request, followed by a quadrupled total and premature auto-compaction. That is strong evidence that at least one client-side context counter could become wrong. It is not evidence that a subscription meter deducted 1,364,156 tokens.
+
+That distinction sits at the center of the investigation. A user can run out of plan usage, fill one conversation's context window, see a misleading `/usage` attribution, or pay for a cold prompt prefix. All four can feel like “Claude burned the limit.” They are different failures with different tests.
+
+![Four analog instruments separately measure context, cache continuity, tool output, and model choice as one conversation ribbon passes through them.](assets/claude-code-four-meters-feature.png)
+
+## What issue #84750 actually establishes
+
+[Issue #84750](https://github.com/anthropics/claude-code/issues/84750), opened on 7 August 2026, says token consumption had risen compared with two or three weeks earlier. The reporter describes the workflow as unchanged, says simple sessions filled context unusually fast, and places the onset between mid-July and early August.
+
+It is a useful lead. It is not a controlled comparison. The issue provides no last-working Claude Code version, no request-level usage table, no cache counters, and no before-and-after configuration. Its version field mixes model labels and numbers rather than naming one tested client build. The report also moves between “session limits,” “token usage,” and “context window” without proving that the same meter produced each symptom.
+
+The cited cluster is weaker than it first appears. Three principal references, [#13552](https://github.com/anthropics/claude-code/issues/13552), [#13536](https://github.com/anthropics/claude-code/issues/13536), and [#13551](https://github.com/anthropics/claude-code/issues/13551), were all opened on 10 December 2025 against Claude Code 2.0.64. Those earlier complaints may describe real experiences, but they cannot independently confirm a new July–August 2026 regression.
+
+The honest reading is narrow: some users have reported sudden usage changes, and one August issue gathers those reports under a new date claim. The selected evidence does not show how common the symptom is or where the first bad change occurred.
+
+## Four meters can hide behind one percentage
+
+Anthropic's current guide on [usage and length limits](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work) separates a plan's usage allowance from a conversation's length. It also says plan usage depends on conversation length and complexity, the selected model and effort, enabled features, and activity across Claude surfaces.
+
+| Meter | What it measures | Useful signal | Common mistake |
+|---|---|---|---|
+| Plan usage | Allowance over a rolling or weekly period | Settings usage bars, `/usage`, limit-reset message | Treating it as one session's context size |
+| Context occupancy | Material active in one conversation | `/context`, auto-compact boundary | Treating 100% context as 100% plan usage |
+| Tool attribution | Which requests `/usage` assigns to MCP servers or features | Per-server share | Treating an attribution bug as proof of total overcharging |
+| Cache accounting | Prefix tokens created or read from cache | `cache_creation_input_tokens`, `cache_read_input_tokens` | Treating a cold turn as a quota-policy change |
+
+Authentication adds another split. Anthropic's [Claude Code usage guide](https://support.claude.com/en/articles/14552983-models-usage-and-limits-in-claude-code) distinguishes subscription usage from API-key billing. `/cost` describes API spend; a subscription reaches a time-based allowance. Converting one into the other without provider data creates a number that looks precise and explains nothing.
+
+## An unchanged task can carry a changed prompt
+
+The most ordinary explanation is session age. Claude Code sends the conversation so far, project context, and the new prompt on every turn. Prompt caching reduces the processing cost of repeated material, but the material still occupies the context window. A login fix performed after three unrelated debugging threads is not the same request as that login fix in a fresh session, even if the last sentence typed is identical.
+
+Long sessions have a real advantage: decisions, rejected approaches, and tool results remain available. They also make every later turn depend on a prefix that keeps growing as more tools and files are read. Anthropic recommends `/clear` between distinct tasks and `/compact` when the same task must continue. The gain is continuity; the cost is carrying history and occasionally summarizing it.
+
+Model and effort can change underneath a familiar workflow too. A higher-effort turn spends more reasoning tokens. Opus uses more of a subscription allowance than Sonnet for routine work, according to Anthropic's guide. A user who remembers “the same task” but not the selected model, effort, or automatic plan-mode transition has not held the workload constant.
+
+Shared usage matters as well. Claude.ai, Claude Desktop, and Claude Code draw from the same usage limit on supported personal plans. A busy research chat in one surface can make a coding session appear to start with less headroom, even when the repository workflow did not change.
+
+## MCP is usually light at rest and heavy when used
+
+MCP is often blamed because it is visible and configurable. Current [Claude Code MCP documentation](https://code.claude.com/docs/en/mcp#scale-with-mcp-tool-search) gives a more precise account. Tool search defers full tool definitions by default; only tool names and server instructions load at session start. Idle servers therefore do not necessarily inject every schema into every prompt.
+
+The cost can arrive later. Once a tool is selected, its definition and output enter context. Claude Code warns when an MCP result exceeds 10,000 tokens and sets a 25,000-token default maximum for tools that do not declare their own limit. A database dump, issue list, or untrimmed search response can quietly become part of the conversation carried into later turns.
+
+There is a practical upside. MCP lets Claude retrieve the exact record instead of asking a user to paste it, and tool search keeps unused schemas deferred. The downside is less obvious: large results persist in the session, and a connecting or disconnecting server can alter the loaded tool set. The right diagnostic is not “MCP on or off.” It is which server, which result, how many tokens, and whether the connection stayed stable.
+
+## Cache continuity explains sudden cold turns
+
+[Claude Code's prompt-caching documentation](https://code.claude.com/docs/en/prompt-caching) says reuse depends on an exact prefix. Every model and effort level has its own cache. A model or effort switch, a change in loaded tools, compaction, or a Claude Code upgrade can force some or all of the next request to be processed again.
+
+That makes timing deceptive. Auto-update applies a new version on the next launch. Resuming a long conversation after that upgrade can produce a large cold first turn because the system prompt or tool definitions changed. The visible workflow is “continue yesterday's task”; the computational workflow is “rebuild a different prefix around yesterday's full history.”
+
+Cache behavior is measurable. A high `cache_read_input_tokens` count relative to `cache_creation_input_tokens` means the prefix is being reused. Repeated cache creation suggests that something near the start of the request keeps changing. These counters do not reveal a subscriber's exact quota formula, but they can separate “the same long prefix was cheap to reread” from “the prefix was rebuilt every turn.”
+
+Caching offers the best case for long sessions: semantic continuity without paying the full input rate repeatedly. Its limitation is fragility. A cache is not memory; it is an exact-match optimization with a lifetime and a key.
+
+## The concrete bugs are real, but narrower than the rumor
+
+Issue #82863 is the strongest selected report because it includes a version, model window, timestamps, and transcript-derived values. On Claude Code 2.1.220, the reported total moved from 101,778 to 211,034 and back to 108,228. Later pairs followed the same near-doubling pattern. The final sequence jumped from 334,316 to 1,359,713, after which auto-compact recorded `preTokens: 1364156` and dropped the conversation to 22,154 tokens.
+
+That sequence is consistent with a duplicated or accumulated reading, although the cause was not independently reproduced here. Its direct consequence was premature compaction and lost usable context. Whether the subscription meter charged the same impossible total is not shown.
+
+Anthropic's official [Claude Code changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md?plain=1#L452-L460) supplies another concrete boundary. Version 2.1.222 fixed `/usage` overattributing usage to MCP servers: a server's share had included every turn after a tool call rather than only requests that consumed its result.
+
+![Claude Code changelog lines for version 2.1.222, including the fix for MCP server overattribution in the usage display.](sources/S10-crop-usage-mcp-attribution.png)
+
+That was a real attribution defect. The changelog does not say the total plan quota was overcharged. It shows why a suspicious display deserves investigation and why the display alone cannot identify the billing path.
+
+## Larger context buys continuity and increases exposure
+
+Claude Code's [context-window guide](https://code.claude.com/docs/en/context-window) shows what loads before the first prompt and what accumulates afterward: project instructions, memory, tool names, skill descriptions, file reads, rules, responses, and tool results. A 1M window lets a large job continue longer before compaction. It also permits more history to accumulate before a user notices that late turns are heavy.
+
+The tradeoffs are concrete:
+
+- A long session preserves decisions, but unrelated history follows every later request.
+- A large context window delays compaction, but it can hold more expensive tool output and stale work.
+- MCP reduces manual copying, but used schemas and results add context.
+- Prompt caching makes repeated prefixes cheaper, but a cold prefix can make one turn suddenly expensive.
+- Auto-compaction frees future context, but it adds a summary boundary and can misfire when the counter feeding it is wrong.
+- Subagents isolate large reads from the main conversation, but each begins a separate context and cache unless it is an exact fork.
+
+None of these costs makes the feature bad. Each feature exchanges one resource for another: continuity for context, capability for tool output, isolation for another session, or speed for cache stability.
+
+## A comparison worth filing takes seven records
+
+A useful reproduction can be small. It must be controlled.
+
+1. **Name the meter.** Record whether the symptom is a plan usage bar, `/context`, `/usage` attribution, a limit message, or API `/cost`.
+2. **Freeze the client and workload.** Record the exact Claude Code version, model, effort, authentication path, repository commit, task prompt, and enabled MCP servers.
+3. **Record the starting state.** Capture plan usage, `/context`, `/usage`, session age, and whether the session was fresh, resumed, compacted, or opened after an update.
+4. **Capture cache signals.** Log cache creation and read tokens for every tested turn. A screenshot of one final percentage cannot show when the change began.
+5. **Run the same bounded task twice.** Compare a fresh session with a deliberately long or resumed session while keeping model, effort, tools, and task fixed. Repeat before drawing a conclusion from one noisy turn.
+6. **Isolate one suspected tool.** Start a new controlled arm with the nonessential MCP server disabled. Do not reconnect it mid-session and then call the resulting cache miss proof of MCP overhead.
+7. **Attach the evidence.** A good issue includes timestamps, the first bad version if known, sanitized transcript usage rows, exact commands, reset-window state, and a result that another user can attempt.
+
+The protocol can reveal three very different outcomes. If only the long session burns faster, accumulated context is the leading explanation. If cache creation remains high in both arms, prefix instability deserves attention. If a usage or context display jumps to an impossible value while raw request sizes remain stable, the client counter is the bug candidate.
+
+## The verdict: investigate the meter, not the mood
+
+Some Claude Code users may be seeing genuine defects. Issue #82863 documents a plausible context-accounting failure; Anthropic's version `2.1.222` changelog independently confirms that the `/usage` display needed an MCP attribution fix. Dismissing every report as user error would ignore that evidence.
+
+Issue #84750 still does not prove a universal, secret reduction in subscription limits. Its timing is unmeasured, its principal references are months older than the claimed onset, and it does not separate plan usage from context occupancy or cache behavior. Repeating the headline cannot repair those gaps.
+
+The productive next move is an evidence packet, not another percentage without a denominator. A user who can show the same task, same version, same model and effort, same tools, stable cache signals, and a different plan-usage result has a regression report worth escalating. Until then, the honest answer is conditional: some faster burn is expected from heavier hidden state, and some of it may be a bug. The meters have to be separated before either claim wins.

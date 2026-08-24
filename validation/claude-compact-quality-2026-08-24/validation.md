@@ -1,6 +1,6 @@
 # Validation
 
-Validated on 24 August 2026, Asia/Jakarta. Package status: self-contained draft; not published.
+Validated on 24 August 2026, Asia/Jakarta. Package status: published and corrected in place.
 
 ## Deliverables
 
@@ -18,7 +18,7 @@ All eleven required top-level files are present:
 10. `payload.json`
 11. `validation.md`
 
-No shared manifest, publisher, Convex function, seed, task plan, or production source file was edited for this package. No upload, mutation, publication, commit, or push was performed by this task.
+The original package was published through the repository's idempotent grounded-blog publisher. On 24 August 2026, the owner rejected the closing research-note paragraph; it and its preceding divider were removed from both `draft.md` and `payload.json`, then the same live slug was updated without creating a duplicate post or re-uploading its two assets.
 
 ## Editorial result
 
@@ -28,7 +28,7 @@ No shared manifest, publisher, Convex function, seed, task plan, or production s
 - Official boundary: `/compact` for continuing the same long task; `/clear` between distinct tasks.
 - Direct experiment boundary: one small fixture, one valid run per usable arm, Claude Code 2.1.233, a non-public account route, `medium` effort, and no useful prompt-cache telemetry.
 - Auto arm: inconclusive. The deliberately artificial 5% threshold compacted twice during the first preparation call and exhausted the cap before implementation.
-- Read-time rule: 2,168 audited prose words at 225 words per minute, rounded up to `10 min read`.
+- Read-time rule: 2,109 audited prose words at 225 words per minute, rounded up to `10 min read`.
 
 ## Experiment checks
 
@@ -74,9 +74,9 @@ python /home/tada/.codex/skills/write-grounded-blogs/scripts/audit_blog.py \
   validation/claude-compact-quality-2026-08-24/draft.md --third-person
 ```
 
-Final result:
+Final result after the requested deletion:
 
-- 2,168 words
+- 2,109 words
 - 11 Markdown headings
 - 10 URL occurrences
 - 0 hard findings
@@ -85,8 +85,8 @@ Final result:
 Native-payload validation:
 
 - Valid JSON.
-- `status: "draft"`; no fabricated `publishedAt`.
-- 55 supported native blocks.
+- `status: "published"`; truthful `publishedAt: "2026-08-24T20:36:48+07:00"`.
+- 53 supported native blocks.
 - 10 heading blocks, 2 measured image blocks, and 1 real comparison table.
 - Featured-image identity matches the first image block.
 - Every image has a stable asset key, alt text, caption, and positive intrinsic dimensions.
@@ -97,10 +97,10 @@ Native-payload validation:
 
 The same prose audit run on JSON reports one mechanical `long_draft_has_few_headings` warning because the generic auditor looks for Markdown `#` markers after extracting JSON text. It is a parser mismatch, not a missing-structure finding: the payload contains 10 verified native `heading` blocks. The Markdown draft, which the heading heuristic is designed to inspect, passes with zero warnings.
 
-## Publication blockers
+## Publication and correction checks
 
-1. Rights review for the bounded Anthropic Support crop.
-2. Convex upload and durable `storageId` assignment for both payload images.
-3. Normal repository metadata manifest, idempotent publisher, type, build, render, mobile, keyboard, and reduced-motion gates.
-
-Those steps were outside this task's authorization. The package must remain a draft until they are completed.
+- First correction run: the existing post was updated; both existing assets were reused and no upload occurred.
+- Duplicate correction run: the post was updated again with the same 53 blocks; both assets were reused and no duplicate row or asset was created.
+- Package-source and rendered-route scans found none of the four distinctive rejected phrases.
+- The corrected local route remained indexable, contained two JSON-LD scripts, used the canonical production URL, and rendered the SEO title suffix as `· Mukhtada`.
+- Visual evidence: `../claude-code-limit-burn-2026-08-24/routes/compact-corrected-desktop.jpg`.
