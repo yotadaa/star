@@ -16,6 +16,7 @@ const sourceFiles = [
   "scripts/publish-stok-toko-review-blog.mjs",
   "scripts/publish-tnks-web-booking-blog.mjs",
   "scripts/publish-gpt-6-astra-rumor-blog.mjs",
+  "scripts/publish-ox-alpha-investigation-blog.mjs",
   "scripts/convex-seed-data.mjs",
   "scripts/build-convex-seed.mjs",
   "validation/hero-entities-2026-07-30/desktop-sunset.png",
@@ -50,6 +51,13 @@ const sourceFiles = [
   "docs/blogs/gpt-6-astra-rumor/source/06-leo-astra-delay-retraction.jpg",
   "docs/blogs/gpt-6-astra-rumor/source/07-tibo-codex-will-have-astra.jpg",
   "docs/blogs/gpt-6-astra-rumor/source/08-openai-latest-astra-status.jpg",
+  "docs/blogs/ox-alpha-investigation/generated/featured-ox-alpha-trail.png",
+  "docs/blogs/ox-alpha-investigation/generated/tokenizer-fingerprint.png",
+  "docs/blogs/ox-alpha-investigation/generated/serving-layer-trace.png",
+  "docs/blogs/ox-alpha-investigation/source/01-openrouter-model-card.jpg",
+  "docs/blogs/ox-alpha-investigation/source/02-fingerprint-archive.jpg",
+  "docs/blogs/ox-alpha-investigation/source/03-full-deepswe-run.jpg",
+  "docs/blogs/ox-alpha-investigation/source/04-deepswe-leaderboard.jpg",
 ];
 
 function fail(message) {
