@@ -52,6 +52,8 @@ Every route was rendered at a desktop override and a mobile override in the in-a
 
 The responsive override exposed a 360-pixel content viewport inside the requested 375-pixel browser surface. `scrollWidth` remained 360 for every route. A keyboard pass moved focus to an author link with a visible 2-pixel solid outline (`rgb(69, 184, 164)`).
 
+A final production-domain check opened `https://me.mukhtada.my.id/blog/moltbook-ai-agents-social-network` after the push. It returned the expected H1, `· Mukhtada` title, production canonical, `index, follow`, two JSON-LD scripts, and both 1672×941 / 1280×720 Blog images with their semantic alt text. The viewport capture is `routes/moltbook-ai-agents-social-network-live.jpg`.
+
 ## Screenshot evidence
 
 Desktop and mobile viewport captures for every slug are stored under `routes/`:
