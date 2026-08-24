@@ -20,6 +20,7 @@
     "blog:publish:stok-toko": "node scripts/publish-stok-toko-review-blog.mjs",
     "blog:publish:genbi-rebranding": "node scripts/publish-genbi-rebranding-blog.mjs",
     "blog:publish:tnks": "node scripts/publish-tnks-web-booking-blog.mjs",
+    "blog:publish:gpt-6-astra": "node scripts/publish-gpt-6-astra-rumor-blog.mjs",
     "convex:typecheck": "tsc --noEmit"
   },
   "dependencies": {

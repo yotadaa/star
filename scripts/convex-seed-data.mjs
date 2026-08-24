@@ -4,6 +4,7 @@ import { genbiRebrandingBlogPayload } from "./publish-genbi-rebranding-blog.mjs"
 import { portfolioReadmeBlogPayload } from "./publish-portfolio-readme-blog.mjs";
 import { stokTokoReviewBlogPayload } from "./publish-stok-toko-review-blog.mjs";
 import { tnksWebBookingBlogPayload } from "./publish-tnks-web-booking-blog.mjs";
+import { gpt6AstraRumorBlogPayload } from "./publish-gpt-6-astra-rumor-blog.mjs";
 
 const SHARDS = ["s1", "s2", "s3"];
 
@@ -131,6 +132,11 @@ export function buildSeedTables(data) {
       publishedAt: "2026-08-23",
       ...tnksWebBookingBlogPayload,
     },
+    {
+      id: "blog-gpt-6-astra-rumor-origin",
+      publishedAt: "2026-08-24",
+      ...gpt6AstraRumorBlogPayload,
+    },
   ];
   const blogPosts = sourceBlogPosts.map((post, index) => {
     const shard = SHARDS[index % SHARDS.length];
@@ -231,7 +237,7 @@ export function buildSeedTables(data) {
 }
 
 export const expectedSeedCounts = {
-  blogPosts: 8,
+  blogPosts: 9,
   inventoryItems: 14,
   contentEntries: 6,
   contactChannels: 5,

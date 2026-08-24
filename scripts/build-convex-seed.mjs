@@ -15,6 +15,7 @@ const sourceFiles = [
   "scripts/publish-portfolio-readme-blog.mjs",
   "scripts/publish-stok-toko-review-blog.mjs",
   "scripts/publish-tnks-web-booking-blog.mjs",
+  "scripts/publish-gpt-6-astra-rumor-blog.mjs",
   "scripts/convex-seed-data.mjs",
   "scripts/build-convex-seed.mjs",
   "validation/hero-entities-2026-07-30/desktop-sunset.png",
@@ -38,6 +39,17 @@ const sourceFiles = [
   "docs/blogs/tnks-web-booking/Pasted image (2).png",
   "docs/blogs/tnks-web-booking/Pasted image (3).png",
   "docs/blogs/tnks-web-booking/Pasted image (5).png",
+  "docs/blogs/gpt-6-astra-rumor/generated/featured-astra-rumor-archive.jpg",
+  "docs/blogs/gpt-6-astra-rumor/generated/rumor-chain-visualization.jpg",
+  "docs/blogs/gpt-6-astra-rumor/source/00-chris-earlier-unnamed-hint.jpg",
+  "docs/blogs/gpt-6-astra-rumor/source/01-leo-first-explicit-gpt6-rumor.jpg",
+  "docs/blogs/gpt-6-astra-rumor/source/02-the-information-astra-report.jpg",
+  "docs/blogs/gpt-6-astra-rumor/source/03-openai-astra-math-announcement.jpg",
+  "docs/blogs/gpt-6-astra-rumor/source/04-leo-astra-next-week-rumor.jpg",
+  "docs/blogs/gpt-6-astra-rumor/source/05-openai-astra-critical-cyber-statement.jpg",
+  "docs/blogs/gpt-6-astra-rumor/source/06-leo-astra-delay-retraction.jpg",
+  "docs/blogs/gpt-6-astra-rumor/source/07-tibo-codex-will-have-astra.jpg",
+  "docs/blogs/gpt-6-astra-rumor/source/08-openai-latest-astra-status.jpg",
 ];
 
 function fail(message) {

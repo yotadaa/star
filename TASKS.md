@@ -10,11 +10,13 @@
 
 ## Someday
 
+- [ ] **Keep the Nala mobile FAB clear of Blog media captions and carousel controls** - the existing global assistant trigger covers a small lower-right area at 375 px; evidence: `validation/gpt-6-astra-rumor-blog/mobile-top.jpg`, `mobile-carousel-controls.jpg`.
 - [ ] **Format Blog publication timestamps for readers** - replace the raw ISO string in the shared Blog detail metadata row with the existing human-readable date style; evidence: `validation/genbi-rebranding-blog/desktop-top.png`, `mobile-top.png`.
 - [ ] **Align the existing Player Status popup with the neobrutalist system** - remove its older rounded/gradient treatment observed during Player HUD shortcut validation; evidence: `screenshots/player-hud-2026-07-04/desktop-inventory-shortcut.png`.
 
 ## Done
 
+- [x] ~~**Research and publish the GPT-6 Astra rumor chronology** - separated the earliest traceable explicit GPT-6 post from the later Astra/GPT-6 report, labeled official facts versus repeated claims, published 42 warm third-person English blocks with a sharper hook and source-led CTA, uploaded nine Browser-captured sources and two generated editorial images to Convex Storage, preserved the nine-post deterministic seed, and validated desktop/mobile carousels, tables, image ownership, and overflow.~~ (2026-08-24; plan: `plans/gpt-6-astra-rumor-blog.md`; evidence: `validation/gpt-6-astra-rumor-blog/`)
 - [x] ~~**Prevent Home crashes when WebGL is disabled or lost** - capability-gated the R3F renderer, added phase-aware static scenery from the existing local assets, handled runtime context loss without retries, and kept the normal path free of hidden fallback duplicates.~~ (2026-08-23; plan: `plans/hero-webgl-fallback.md`; evidence: `validation/hero-webgl-fallback-2026-08-23/`)
 - [x] ~~**Repair Contact and Research night contrast** - restored Portal Card CTA labels, the locked publication slot, and shared footer copyright with surface-aware fixed/phase foreground roles.~~ (2026-08-23; plan: `plans/contact-research-night-contrast.md`; evidence: `validation/contact-research-night-contrast-2026-08-23/`)
 - [x] ~~**Repair remaining Home night contrast defects** - restored the Hero scroll cue, all Quest Log labels, and the Build Glimpses shell by separating fixed scenic foreground/frame roles from phase-remapped page surfaces.~~ (2026-08-23; plan: `plans/home-night-contrast-audit.md`; evidence: `validation/home-night-contrast-2026-08-23/`)
