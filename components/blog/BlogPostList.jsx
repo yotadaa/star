@@ -1,22 +1,102 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { PixelButton, SpriteIcon } from "@/components/claude";
 import { getBlogFeaturedImage } from "@/lib/blog/featuredImage";
 import BlogPostCard from "./BlogPostCard";
+
+const PRIMARY_TOPIC_LIMIT = 3;
 
 function primaryTag(post) {
   return post.tags?.[0] || "Lore";
 }
 
+function rankTopics(posts) {
+  const topics = new Map();
+  let firstSeen = 0;
+
+  posts.forEach((post) => {
+    const postTopics = new Set();
+
+    (post.tags || []).forEach((value) => {
+      const topic = String(value || "").trim();
+      if (!topic || postTopics.has(topic)) return;
+      postTopics.add(topic);
+
+      if (!topics.has(topic)) {
+        topics.set(topic, { name: topic, count: 0, firstSeen: firstSeen++ });
+      }
+      topics.get(topic).count += 1;
+    });
+  });
+
+  return Array.from(topics.values()).sort((left, right) => {
+    return right.count - left.count || left.firstSeen - right.firstSeen || left.name.localeCompare(right.name);
+  });
+}
+
 export default function BlogPostList({ posts, canManageBlog = false }) {
   const [items, setItems] = useState(posts);
   const [actionState, setActionState] = useState("");
-  const tags = useMemo(() => ["All", ...Array.from(new Set(items.flatMap((post) => post.tags || [])))], [items]);
   const [activeTag, setActiveTag] = useState("All");
+  const [showMoreTopics, setShowMoreTopics] = useState(false);
+  const [topicQuery, setTopicQuery] = useState("");
   const [view, setView] = useState("list");
-  const visiblePosts = activeTag === "All" ? items : items.filter((post) => (post.tags || []).includes(activeTag));
+  const moreTopicsId = useId();
+  const moreTopicsButtonRef = useRef(null);
+  const primaryTopicsRef = useRef(null);
+  const rankedTopics = useMemo(() => rankTopics(items), [items]);
+  const featuredTopics = useMemo(() => rankedTopics.slice(0, PRIMARY_TOPIC_LIMIT).map((topic) => topic.name), [rankedTopics]);
+  const primaryTopics = useMemo(() => {
+    if (showMoreTopics || activeTag === "All" || featuredTopics.includes(activeTag)) return featuredTopics;
+    return [...featuredTopics.slice(0, Math.max(0, PRIMARY_TOPIC_LIMIT - 1)), activeTag];
+  }, [activeTag, featuredTopics, showMoreTopics]);
+  const primaryTopicSet = useMemo(() => new Set(primaryTopics), [primaryTopics]);
+  const moreTopics = useMemo(() => rankedTopics.filter((topic) => !primaryTopicSet.has(topic.name)), [primaryTopicSet, rankedTopics]);
+  const filteredMoreTopics = useMemo(() => {
+    const query = topicQuery.trim().toLocaleLowerCase();
+    if (!query) return moreTopics;
+    return moreTopics.filter((topic) => topic.name.toLocaleLowerCase().includes(query));
+  }, [moreTopics, topicQuery]);
+  const visiblePosts = useMemo(
+    () => (activeTag === "All" ? items : items.filter((post) => (post.tags || []).includes(activeTag))),
+    [activeTag, items]
+  );
+  const hasMoreTopics = rankedTopics.length > PRIMARY_TOPIC_LIMIT;
+
+  useEffect(() => {
+    if (activeTag !== "All" && !rankedTopics.some((topic) => topic.name === activeTag)) {
+      setActiveTag("All");
+    }
+  }, [activeTag, rankedTopics]);
+
+  useEffect(() => {
+    if (showMoreTopics) return;
+    const rail = primaryTopicsRef.current;
+    const selectedTopic = rail?.querySelector('[aria-pressed="true"]');
+    if (!rail || !selectedTopic) return;
+
+    const railBounds = rail.getBoundingClientRect();
+    const topicBounds = selectedTopic.getBoundingClientRect();
+    if (topicBounds.left < railBounds.left) rail.scrollLeft += topicBounds.left - railBounds.left;
+    if (topicBounds.right > railBounds.right) rail.scrollLeft += topicBounds.right - railBounds.right;
+  }, [activeTag, primaryTopics, showMoreTopics]);
+
+  function selectTopic(topic) {
+    setActiveTag(topic);
+  }
+
+  function toggleMoreTopics() {
+    if (showMoreTopics) setTopicQuery("");
+    setShowMoreTopics(!showMoreTopics);
+  }
+
+  function closeMoreTopics() {
+    setShowMoreTopics(false);
+    setTopicQuery("");
+    requestAnimationFrame(() => moreTopicsButtonRef.current?.focus());
+  }
 
   async function archivePost(post) {
     setActionState(`Archiving ${post.title}...`);
@@ -39,51 +119,116 @@ export default function BlogPostList({ posts, canManageBlog = false }) {
   return (
     <section className="blog-list-section" aria-label="Lore entries">
       <div className="blog-toolbar">
-        <div className="cat-filters" role="tablist" aria-label="Filter Blog categories">
-          {tags.map((tag) => (
-            <PixelButton
-              key={tag}
-              className="blog-filter-button"
-              selected={activeTag === tag}
-              onClick={() => setActiveTag(tag)}
-              role="tab"
-              aria-selected={activeTag === tag}
-            >
-              {tag}
-            </PixelButton>
-          ))}
-        </div>
-
-        <div className="toolbar-right">
-          {actionState && <span className="blog-toolbar-status">{actionState}</span>}
-          <div className="blog-view-toggle" aria-label="Change Blog layout">
-            <button
-              type="button"
-              className={view === "grid" ? "active" : ""}
-              onClick={() => setView("grid")}
-              aria-pressed={view === "grid"}
-              title="Grid view"
-            >
-              <SpriteIcon id="icon-grid" size={15} />
-            </button>
-            <button
-              type="button"
-              className={view === "list" ? "active" : ""}
-              onClick={() => setView("list")}
-              aria-pressed={view === "list"}
-              title="List view"
-            >
-              <SpriteIcon id="icon-list" size={15} />
-            </button>
+        <div className="blog-toolbar-head">
+          <div className="blog-filter-summary">
+            <span className="pixel-label">// FILTER ARTICLES</span>
+            <span className="blog-filter-result" role="status" aria-live="polite">
+              {visiblePosts.length} {visiblePosts.length === 1 ? "article" : "articles"} · {activeTag === "All" ? "All topics" : activeTag}
+            </span>
           </div>
 
-          {canManageBlog && (
-            <PixelButton as="a" href="/blog/admin/new" className="blog-new-button">
-              <SpriteIcon id="icon-plus" size={14} />
-              New article
-            </PixelButton>
+          <div className="toolbar-right">
+            {actionState && <span className="blog-toolbar-status">{actionState}</span>}
+            <div className="blog-view-toggle" role="group" aria-label="Change Blog layout">
+              <button
+                type="button"
+                className={view === "grid" ? "active" : ""}
+                onClick={() => setView("grid")}
+                aria-pressed={view === "grid"}
+                title="Grid view"
+              >
+                <SpriteIcon id="icon-grid" size={15} />
+              </button>
+              <button
+                type="button"
+                className={view === "list" ? "active" : ""}
+                onClick={() => setView("list")}
+                aria-pressed={view === "list"}
+                title="List view"
+              >
+                <SpriteIcon id="icon-list" size={15} />
+              </button>
+            </div>
+
+            {canManageBlog && (
+              <PixelButton as="a" href="/blog/admin/new" className="blog-new-button">
+                <SpriteIcon id="icon-plus" size={14} />
+                New article
+              </PixelButton>
+            )}
+          </div>
+        </div>
+
+        <div className="blog-filter-primary-row">
+          <div ref={primaryTopicsRef} className="cat-filters blog-filter-primary" role="group" aria-label="Frequent Blog topics">
+            {["All", ...primaryTopics].map((tag) => (
+              <PixelButton
+                key={tag}
+                className="blog-filter-button"
+                selected={activeTag === tag}
+                onClick={() => selectTopic(tag)}
+                aria-pressed={activeTag === tag}
+              >
+                {tag}
+              </PixelButton>
+            ))}
+          </div>
+
+          {hasMoreTopics && (
+            <button
+              ref={moreTopicsButtonRef}
+              type="button"
+              className={`pixel-button blog-more-topics-button ${showMoreTopics ? "selected" : ""}`}
+              onClick={toggleMoreTopics}
+              aria-expanded={showMoreTopics}
+              aria-controls={moreTopicsId}
+              aria-label={showMoreTopics ? "Hide more Blog topics" : `Show ${moreTopics.length} more Blog topics`}
+            >
+              <span>More</span>
+              <span className="blog-more-topics-copy">topics</span>
+              <span aria-hidden="true">· {moreTopics.length}</span>
+              <SpriteIcon id="icon-chevron-up" size={13} className="blog-more-topics-chevron" />
+            </button>
           )}
         </div>
+
+        {showMoreTopics && (
+          <div
+            id={moreTopicsId}
+            className="blog-more-topics"
+            onKeyDown={(event) => {
+              if (event.key === "Escape") closeMoreTopics();
+            }}
+          >
+            <label className="blog-topic-search">
+              <span>Find a topic</span>
+              <input
+                type="search"
+                value={topicQuery}
+                onChange={(event) => setTopicQuery(event.target.value)}
+                placeholder={`Search ${moreTopics.length} topics`}
+                autoComplete="off"
+              />
+            </label>
+
+            <div className="cat-filters blog-more-topic-list" role="group" aria-label="More Blog topics">
+              {filteredMoreTopics.map((topic) => (
+                <PixelButton
+                  key={topic.name}
+                  className="blog-filter-button"
+                  selected={activeTag === topic.name}
+                  onClick={() => selectTopic(topic.name)}
+                  aria-pressed={activeTag === topic.name}
+                >
+                  {topic.name}
+                </PixelButton>
+              ))}
+              {filteredMoreTopics.length === 0 && (
+                <p className="blog-topic-empty" role="status">No matching topics.</p>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       {view === "grid" ? (
