@@ -23,6 +23,7 @@
     "blog:publish:gpt-6-astra": "node scripts/publish-gpt-6-astra-rumor-blog.mjs",
     "blog:publish:ox-alpha": "node scripts/publish-ox-alpha-investigation-blog.mjs",
     "blog:publish:dsh-install": "node scripts/publish-dsh-stuck-installation-blog.mjs",
+    "blog:publish:grounded-batch": "node scripts/publish-grounded-blog-batch.mjs",
     "blog:seo-data": "node scripts/backfill-blog-seo-data.mjs",
     "blog:seo-data:apply": "node scripts/backfill-blog-seo-data.mjs --apply",
     "blog:seo-data:verify-images": "node scripts/backfill-blog-seo-data.mjs --verify-dimensions",

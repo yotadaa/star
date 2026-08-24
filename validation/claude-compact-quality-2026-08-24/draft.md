@@ -1,0 +1,136 @@
+# Does `/compact` Secretly Make Claude Code Worse?
+
+A focused `/compact` removed 8,993 tokens from the active transcript in one local test. Claude then changed three files without rereading one of them, and a hidden checker found that all ten agreed decisions survived.
+
+That is the surprising result, but it is not a universal acquittal. The test was one small proxy, run once per usable arm on Claude Code 2.1.233 through a non-public account route. It cannot measure a multi-hour production project or estimate a failure rate. It can answer a narrower question: when a task depends on decisions made in chat, which session boundary leaves enough state to finish the work?
+
+The result does not support the claim that `/compact` secretly makes Claude Code worse. It shows a real tradeoff. Compaction replaces exact conversational history with selected state. A focused summary can be enough; a durable handoff makes that state inspectable; a blank session cannot recover decisions that never reached the repository.
+
+![A mechanical press turns a long trail of notes into a short checklist beside an organized handoff folder and an empty workbench](./assets/claude-compact-handoff-feature.png)
+
+*Compaction and handoff both reduce what crosses a session boundary. One leaves the selection to a summary; the other leaves an inspectable file. Original editorial illustration.*
+
+## Anthropic's rule is about the task boundary
+
+Anthropic's current advice is more specific than “compact when the bar looks full.” Its [support guide says to use `/compact` when continuing the same long task and `/clear` when switching to a distinct task](https://support.claude.com/en/articles/14552983-models-usage-and-limits-in-claude-code). The guide also warns that quality can drop as a context window fills.
+
+Those commands solve different problems. `/compact` asks Claude Code to summarize the current conversation and continue. `/clear` starts an empty conversation, while project files and project-level instructions remain on disk. Clearing a session therefore removes irrelevant chat, but it also removes any useful decision that existed only in chat.
+
+Anthropic's newer [session-management guide](https://claude.com/blog/maximizing-the-value-of-your-claude-code-sessions) adds two practical details. A manual compact can be told what to preserve, and a project can store compact instructions in `CLAUDE.md`. It also says the old prompt-cache prefix no longer matches after compaction because the conversation has been replaced. A shorter summary may cost less on later turns, but compacting while a long prefix is still cached can discard that temporary advantage.
+
+![Anthropic Support guidance distinguishing compact for the same long task from clear for a different task](./sources/S01-crop-compact-clear-guidance.jpg)
+
+*Anthropic's own boundary rule: compact to continue a long task; clear when the work changes. [Source](https://support.claude.com/en/articles/14552983-models-usage-and-limits-in-claude-code). Bounded first-party evidence capture.*
+
+## Compaction keeps a summary, not a miniature transcript
+
+Claude Code's [context documentation](https://code.claude.com/docs/en/context-window) describes `/compact` as a structured summary that replaces the active conversation. Several sources of state are then added again according to their own loading rules. Project-root `CLAUDE.md` instructions, unscoped rules, and auto memory return. Invoked skills can return within token caps.
+
+Other state is conditional. Path-scoped rules and a nested `CLAUDE.md` are absent until Claude reads a matching file again. That distinction can matter in a large repository: a summary may remember the requested change while a directory-specific testing rule stays offstage until the relevant path is reopened.
+
+The local transcript is a separate object. A [GitHub report about pre-compact history](https://github.com/anthropics/claude-code/issues/27242) notes that older entries can remain in session JSONL even when the interface does not make them easy to revisit. Stored history is useful for forensics. That does not mean every old turn remains available to the model verbatim after the boundary.
+
+This produces three kinds of continuity:
+
+1. **Summary continuity.** `/compact` carries a selected account of the task into the next turn.
+2. **Repository continuity.** Code, tests, notes, and project instructions survive because they live outside chat.
+3. **Transcript recoverability.** Earlier events may remain on disk for a human investigation even when they are no longer active model context.
+
+Confusing those layers turns a precise question into folklore. A compact summary can omit a decision without deleting the transcript, and a fresh session can succeed without the transcript when the repository already contains the decision.
+
+## A small test made the hidden state visible
+
+The experiment used a disposable ESM shipment package with three source files, a visible baseline test, and no dependencies. The task was to add `buildDeliveryBrief(records, { asOf })`. Ten decisions covered the export surface, stable ordering, UTC calendar-day handling, missing ETAs, attention rules, an exact headline, input immutability, existing formatter behavior, status errors, and dependency policy.
+
+The hidden checker lived outside each fixture. That separation mattered because the work was supposed to preserve the agreed rules, not reverse-engineer the answer from the verifier.
+
+Four arms used the same Claude Code build, account-default route, `medium` effort, safe mode, no browser, no MCP configuration, and the same allowed tools:
+
+| Arm | State supplied at implementation | Result |
+|---|---|---|
+| Forced auto-compact | An artificially low 5% threshold during preparation | Inconclusive; two compactions occurred before a plan returned, then the call cap ended |
+| Focused manual `/compact` | A summary focused on F01–F10, rejected alternatives, files, and checks | Visible tests passed; hidden verifier 10/10 |
+| Fresh session | Repository only; the implementation prompt did not restate requirements | Visible baseline passed; hidden verifier 2/10 |
+| Fresh session + curated handoff | `HANDOFF.md` containing the fixed decisions and file plan | Visible tests passed; hidden verifier 10/10 |
+
+The full protocol and result record in the research packet preserve the commands, boundary telemetry, session identifiers, corrections, and limits.
+
+## Focused compact preserved the decisions in this fixture
+
+The manual compact reduced 14,044 pre-summary tokens to 5,051. All ten checklist identifiers appeared in the summary. The next turn edited `src/brief.js`, `src/index.js`, and `test.mjs` without rereading a repository file after the boundary. The strengthened hidden verifier scored every decision as correct.
+
+That outcome supports two modest conclusions. First, a compact summary can retain detailed procedural state when the focus instruction names what matters. Second, an agent does not always need to reread the repository after compaction if the summary already contains both the file map and the decisions.
+
+It does not show that the summary retained every sentence, rejected idea, or piece of evidence. The checker asked ten specific questions. A different task might depend on an architectural caveat that was never named, an image inspected much earlier, or a path-scoped instruction that is not reloaded. Compaction succeeded here because the acceptance state was explicit enough to summarize and test.
+
+Claude Code itself has changed around that boundary. The official [release history](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) says version `2.1.198` made context compaction inherit the session's extended-thinking setting, while version `2.1.233`, used in this experiment, included an apps-gateway auto-compact fix. Later releases adjusted context reporting, history display, and post-compaction reminders. A result tied to one build should stay tied to that build.
+
+## The fresh session failed for a useful reason
+
+The valid fresh-session arm read six fixture files and passed the existing visible test. It still scored 2/10. The agent created a different public function because neither the repository nor the short implementation prompt contained the approved API, accounting rule, or UTC and ordering decisions.
+
+That is not evidence that fresh sessions are weak. It is evidence that a new session cannot infer a chat-only contract from an unchanged codebase. A fresh session with a complete prompt would be a different arm. So would a project whose plan and tests already encoded all ten decisions.
+
+The failure also exposes a common testing trap. A visible baseline can stay green while the requested feature is wrong or missing. Compaction debates that rely only on “the build passed” risk measuring compatibility with old tests instead of survival of the new task state.
+
+A discarded fresh trial was not scored because its directory layout let the agent discover the hidden verifier in a sibling path. The corrected arm used an isolated parent directory. That incident also led to a stricter verifier for four rules already in the protocol. Manual and handoff outputs remained 10/10 under the corrected checker.
+
+## A handoff traded convenience for inspectability
+
+The handoff arm also reached 10/10. Its new session read `HANDOFF.md` plus six repository files, then implemented the same three-file change. The handoff was written by the benchmark author from the pre-registered checklist, so the result measures a good handoff's value rather than Claude's skill at authoring one.
+
+That caveat is also the handoff's main benefit. A developer can inspect the file before the new session begins. Missing decisions, stale paths, and unresolved questions are visible. The document can be reviewed, committed when appropriate, or replaced after the task ends.
+
+The cost is friction. Writing and maintaining a handoff takes time. A stale handoff can be more dangerous than a focused summary because its authority looks durable. Sensitive or temporary details may not belong in the repository. For a short continuation, a compact instruction can be the smaller move.
+
+Some public practitioners have arrived at similar habits, though their posts remain anecdotes and their workloads cannot be treated as controlled comparisons. An [X post by Thomas Ip](https://x.com/_thomasip/status/2033291853102002532) argues that summaries can lose detail. The claim motivates a test; it does not supply a failure rate.
+
+## The auto-compact arm did not answer the quality question
+
+The automatic arm deliberately lowered the documented threshold override to 5% and selected a 100K window. It compacted twice inside the first preparation call. The first boundary dropped 13,978 active tokens; the second dropped 13,717. The fixed call cap ended before an implementation began.
+
+This is useful operational evidence and poor comparative evidence. It shows that a synthetic low threshold can change the shape of a single agentic turn, repeatedly charging for summary work before the turn produces its requested artifact. It does not resemble a normal default threshold, and it cannot say whether the eventual code would have been correct.
+
+Community issue reports show other operational edges. One [large-session report](https://github.com/anthropics/claude-code/issues/74544) describes `/compact` failing with a connection reset on version `2.1.197`. Another [report alleges an unexpectedly early automatic compact and lost decisions](https://github.com/anthropics/claude-code/issues/34332). Both deserve attribution and reproduction on current builds. Neither can establish that compaction usually lowers quality across current Claude Code sessions.
+
+## The pros and cons are asymmetric
+
+Manual compact has clear advantages:
+
+1. **It creates room without abandoning the task.** The same session can continue after old detail is condensed.
+2. **It accepts a focus instruction.** Named decisions, files, failures, and next checks can be made summary targets.
+3. **It keeps project-level state in play.** Root instructions and memory are re-injected according to the current documentation.
+4. **It can work without a separate planning artifact.** The local proxy finished correctly from the summary alone.
+
+The drawbacks are different in kind:
+
+1. **Selection is lossy.** An omitted caveat does not announce itself after the boundary.
+2. **Some instructions return only after rereading files.** Nested and path-scoped state can be temporarily absent.
+3. **The cache prefix changes.** Compacting can surrender reuse of a still-cached long prefix.
+4. **Automatic timing can be opaque or version-sensitive.** Threshold settings, model windows, gateways, and releases affect when the boundary occurs.
+5. **The summary is harder to audit than a handoff.** A durable document gives a developer a reviewable contract before the next session acts.
+
+These costs do not point to a single winner. They point to task-boundary discipline.
+
+## A practical rule for long Claude Code work
+
+A team can treat session state like any other engineering state:
+
+1. **Continue the same bounded task with focused `/compact`.** The instruction should name decisions, rejected alternatives, affected files, unresolved risks, and the next verifier.
+2. **Use `/clear` or a fresh session for a genuinely different task.** Old debugging turns and unrelated tool output then stop competing for context.
+3. **Write a handoff when a mistake would be expensive.** Architecture, migrations, release steps, security decisions, and multi-day work benefit from reviewable state.
+4. **Put durable truth in durable places.** Tests, plan files, issue links, and repository instructions survive session boundaries more reliably than an implicit chat agreement.
+5. **Reopen path-specific files after compaction.** That gives nested instructions and conditional rules a chance to return.
+6. **Verify the feature, not merely the old build.** A hidden or independent acceptance checklist is the fastest way to detect state that went missing.
+
+## So, does `/compact` make Claude Code worse?
+
+Not secretly, and not by default on the evidence available here. By replacing exact history with a summary, `/compact` makes the active context smaller and can make a continuation cheaper in context and easier to finish. It can also omit information that the next turn needs.
+
+In this proxy, a focused manual compact retained enough state to score 10/10. A curated handoff matched it. A fresh session without the chat-only contract failed eight checks. The forced automatic arm never reached implementation and remains unresolved.
+
+The useful question is therefore not whether compaction is good or bad in the abstract. It is whether the task's important state is named, inspectable, and tested after the boundary. Teams can copy the protocol pattern, replace F01–F10 with a real project's decisions, and compare the result on their own Claude Code version. Anthropic's [official task-boundary guidance](https://support.claude.com/en/articles/14552983-models-usage-and-limits-in-claude-code) supplies the starting rule; a project-specific verifier supplies the answer that matters.
+
+---
+
+**Research note:** Sources were checked through 24 August 2026, 23:59 Asia/Jakarta. X supplied one attributable opinion; no accessible Threads post met the evidence gate. Community reports are presented as reports. The benchmark used one run per usable arm, a non-public account route, and zero reported cache activity; it does not estimate general quality, cost, or failure frequency.

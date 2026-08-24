@@ -1,4 +1,6 @@
 import crypto from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
 import { caelestiaBlogPayload } from "./publish-caelestia-blog.mjs";
 import { genbiRebrandingBlogPayload } from "./publish-genbi-rebranding-blog.mjs";
 import { portfolioReadmeBlogPayload } from "./publish-portfolio-readme-blog.mjs";
@@ -10,6 +12,22 @@ import { dshStuckInstallationBlogPayload } from "./publish-dsh-stuck-installatio
 import { completeBlogSeoData } from "./blog-seo-data.mjs";
 
 const SHARDS = ["s1", "s2", "s3"];
+const GROUNDED_BLOG_PAYLOAD_PATHS = [
+  "validation/harness-more-important-than-model-2026-08-24/payload.json",
+  "validation/bid-slot-websites-2026-08-24/payload.json",
+  "validation/xiaomi-xring-o3-2026-08-24/payload.json",
+  "validation/why-100-agent-skills-can-be-worse-than-5-2026-08-24/payload.json",
+  "validation/model-switch-prompt-cache-2026-08-24/payload.json",
+  "validation/claude-compact-quality-2026-08-24/payload.json",
+];
+
+function readGroundedBlogPayloads() {
+  return GROUNDED_BLOG_PAYLOAD_PATHS.map((relativePath) => {
+    const payload = JSON.parse(fs.readFileSync(path.resolve(relativePath), "utf8"));
+    if (!payload.slug) throw new Error(`Grounded blog payload has no slug: ${relativePath}`);
+    return { id: `blog-${payload.slug}`, ...payload };
+  });
+}
 
 function routedId(shardId, namespace, sourceId) {
   return `${shardId}_${crypto.createHash("sha256").update(`${namespace}:${sourceId}`).digest("hex").slice(0, 32)}`;
@@ -152,6 +170,7 @@ export function buildSeedTables(data) {
       publishedAt: "2026-08-24",
       ...dshStuckInstallationBlogPayload,
     },
+    ...readGroundedBlogPayloads(),
   ];
   const blogPosts = sourceBlogPosts.map((post, index) => {
     const shard = SHARDS[index % SHARDS.length];
@@ -266,7 +285,7 @@ export function buildSeedTables(data) {
 }
 
 export const expectedSeedCounts = {
-  blogPosts: 11,
+  blogPosts: 17,
   inventoryItems: 14,
   contentEntries: 6,
   contactChannels: 5,

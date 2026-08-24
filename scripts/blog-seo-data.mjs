@@ -14,6 +14,60 @@ export const BLOG_SEO_RECORDS = Object.freeze({
     articleSection: "Technical Case Study",
     featuredImageKey: "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:featured-runner-workbench",
   }),
+  "harness-more-important-than-model": Object.freeze({
+    seoTitle: "Why the Agent Harness Can Matter More Than the Model",
+    seoDescription:
+      "Benchmarks and DeepSeek Harness show how tools, context, recovery, tracing, and safety can change an agent's cost and results without changing its model.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Research Note",
+    featuredImageKey: "blog:harness-more-important-than-model:featured-execution-system",
+  }),
+  "pay-to-rank-websites-attention-auction": Object.freeze({
+    seoTitle: "Pay-to-Rank Websites: What Advertisers Are Really Buying",
+    seoDescription:
+      "Outbid.lol inspired 395 indexed pay-to-rank boards. This evidence-led review compares mechanics, advertiser value, revenue concentration, disclosure, and risk.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Research Note",
+    featuredImageKey: "blog:pay-to-rank-websites-attention-auction:feature-attention-board",
+  }),
+  "xiaomi-xring-o3-official-claims-pros-cons": Object.freeze({
+    seoTitle: "Xiaomi XRING O3: Official Claims, Benefits, and Limits",
+    seoDescription:
+      "Xiaomi officially announced XRING O3, but its speed and efficiency figures remain launch claims. Here is what is known, measured, and still missing.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Research Note",
+    featuredImageKey: "blog:xiaomi-xring-o3-official-claims-pros-cons:feature-control-dependency",
+  }),
+  "why-100-agent-skills-can-be-worse-than-5": Object.freeze({
+    seoTitle: "Why 100 Agent Skills Can Be Worse Than 5",
+    seoDescription:
+      "A study found exact skill-use precision falling from 29.6% to 3.3% as pools grew from five to 100, while task success stayed roughly flat.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Research Note",
+    featuredImageKey: "blog:why-100-agent-skills-can-be-worse-than-5:featured-skill-router",
+  }),
+  "changing-ai-model-mid-session-cost": Object.freeze({
+    seoTitle: "When Switching Claude Models Mid-Session Costs More",
+    seoDescription:
+      "A cache-aware break-even model shows when an Opus-to-Sonnet switch saves money, when it costs more, and why preserving a conversation does not preserve its cache.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Research Note",
+    featuredImageKey: "blog:changing-ai-model-mid-session-cost:featured-cache-junction",
+  }),
+  "does-compact-make-claude-code-worse": Object.freeze({
+    seoTitle: "Does /compact Make Claude Code Worse? A Controlled Test",
+    seoDescription:
+      "A controlled Claude Code test compares focused /compact, a fresh session, and a written handoff, with verifier results and clear limits.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "AI Investigation",
+    featuredImageKey: "blog:does-compact-make-claude-code-worse:feature-summary-handoff",
+  }),
   "ox-alpha-api-left-a-trail": Object.freeze({
     seoTitle: "Who Is Behind Ox Alpha? The API Left a Trail",
     seoDescription:
@@ -109,6 +163,18 @@ export const BLOG_IMAGE_DIMENSIONS = Object.freeze({
   "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:source-npm-verbose": { width: 842, height: 540 },
   "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:source-npx-stall": { width: 749, height: 384 },
   "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:supporting-command-bridge": { width: 1536, height: 1024 },
+  "blog:harness-more-important-than-model:evidence-deepseek-plugin-claim": { width: 1280, height: 720 },
+  "blog:harness-more-important-than-model:featured-execution-system": { width: 1672, height: 941 },
+  "blog:pay-to-rank-websites-attention-auction:evidence-outoutbid-research-20260824": { width: 1265, height: 712 },
+  "blog:pay-to-rank-websites-attention-auction:feature-attention-board": { width: 1672, height: 941 },
+  "blog:why-100-agent-skills-can-be-worse-than-5:featured-skill-router": { width: 1672, height: 941 },
+  "blog:why-100-agent-skills-can-be-worse-than-5:source-table-4": { width: 1253, height: 705 },
+  "blog:changing-ai-model-mid-session-cost:evidence-model-specific-cache": { width: 1265, height: 712 },
+  "blog:changing-ai-model-mid-session-cost:featured-cache-junction": { width: 1672, height: 941 },
+  "blog:does-compact-make-claude-code-worse:feature-summary-handoff": { width: 1672, height: 941 },
+  "blog:does-compact-make-claude-code-worse:source-anthropic-compact-clear": { width: 1265, height: 712 },
+  "blog:xiaomi-xring-o3-official-claims-pros-cons:feature-control-dependency": { width: 1672, height: 941 },
+  "blog:xiaomi-xring-o3-official-claims-pros-cons:source-xiaomi-weibo-o3-launch": { width: 1265, height: 712 },
   "blog:e-ticket-tnks-project-review:destination-list": { width: 1920, height: 1080 },
   "blog:e-ticket-tnks-project-review:home-destination-stats": { width: 1920, height: 1080 },
   "blog:e-ticket-tnks-project-review:home-hero": { width: 1920, height: 1080 },

@@ -1,0 +1,113 @@
+{
+  "name": "six-grounded-blogs-2026-08-24",
+  "articles": [
+    {
+      "slug": "harness-more-important-than-model",
+      "payloadPath": "validation/harness-more-important-than-model-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:harness-more-important-than-model:evidence-deepseek-plugin-claim",
+          "sourcePath": "validation/harness-more-important-than-model-2026-08-24/sources/crops/e01-deepseek-everything-is-plugin.jpg",
+          "fileName": "deepseek-everything-is-a-plugin-evidence.jpg",
+          "evidenceKind": "attributed-first-party-source-evidence"
+        },
+        {
+          "assetKey": "blog:harness-more-important-than-model:featured-execution-system",
+          "sourcePath": "validation/harness-more-important-than-model-2026-08-24/generated/harness-system-feature.png",
+          "fileName": "harness-execution-system-feature.png",
+          "evidenceKind": "generated-editorial"
+        }
+      ]
+    },
+    {
+      "slug": "pay-to-rank-websites-attention-auction",
+      "payloadPath": "validation/bid-slot-websites-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:pay-to-rank-websites-attention-auction:feature-attention-board",
+          "sourcePath": "validation/bid-slot-websites-2026-08-24/generated/pay-to-rank-attention-board-feature.png",
+          "fileName": "pay-to-rank-attention-board-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:pay-to-rank-websites-attention-auction:evidence-outoutbid-research-20260824",
+          "sourcePath": "validation/bid-slot-websites-2026-08-24/generated/outoutbid-research-summary-evidence.jpg",
+          "fileName": "outoutbid-research-summary-evidence.jpg",
+          "evidenceKind": "attributed-cc-by-4.0-source-evidence"
+        }
+      ]
+    },
+    {
+      "slug": "xiaomi-xring-o3-official-claims-pros-cons",
+      "payloadPath": "validation/xiaomi-xring-o3-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:xiaomi-xring-o3-official-claims-pros-cons:feature-control-dependency",
+          "sourcePath": "validation/xiaomi-xring-o3-2026-08-24/feature-xring-control-dependency.png",
+          "fileName": "xiaomi-xring-o3-control-dependency-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:xiaomi-xring-o3-official-claims-pros-cons:source-xiaomi-weibo-o3-launch",
+          "sourcePath": "validation/xiaomi-xring-o3-2026-08-24/sources/S15-xiaomi-weibo-post.jpg",
+          "fileName": "xiaomi-weibo-xring-o3-launch.jpg",
+          "evidenceKind": "attributed-first-party-source-evidence"
+        }
+      ]
+    },
+    {
+      "slug": "why-100-agent-skills-can-be-worse-than-5",
+      "payloadPath": "validation/why-100-agent-skills-can-be-worse-than-5-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:why-100-agent-skills-can-be-worse-than-5:featured-skill-router",
+          "sourcePath": "validation/why-100-agent-skills-can-be-worse-than-5-2026-08-24/figures/skill-router-feature.png",
+          "fileName": "agent-skill-router-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:why-100-agent-skills-can-be-worse-than-5:source-table-4",
+          "sourcePath": "validation/why-100-agent-skills-can-be-worse-than-5-2026-08-24/sources/03-demystifying-agent-skills-table-4.jpg",
+          "fileName": "agent-skills-pool-table-4-evidence.jpg",
+          "evidenceKind": "attributed-primary-research-source-evidence"
+        }
+      ]
+    },
+    {
+      "slug": "changing-ai-model-mid-session-cost",
+      "payloadPath": "validation/model-switch-prompt-cache-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:changing-ai-model-mid-session-cost:featured-cache-junction",
+          "sourcePath": "validation/model-switch-prompt-cache-2026-08-24/generated/model-switch-cache-feature.png",
+          "fileName": "model-switch-cache-junction-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:changing-ai-model-mid-session-cost:evidence-model-specific-cache",
+          "sourcePath": "validation/model-switch-prompt-cache-2026-08-24/sources/s02-crop-model-switch-cache.jpg",
+          "fileName": "claude-model-specific-cache-evidence.jpg",
+          "evidenceKind": "attributed-first-party-source-evidence"
+        }
+      ]
+    },
+    {
+      "slug": "does-compact-make-claude-code-worse",
+      "payloadPath": "validation/claude-compact-quality-2026-08-24/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:does-compact-make-claude-code-worse:feature-summary-handoff",
+          "sourcePath": "validation/claude-compact-quality-2026-08-24/assets/claude-compact-handoff-feature.png",
+          "fileName": "claude-compact-handoff-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:does-compact-make-claude-code-worse:source-anthropic-compact-clear",
+          "sourcePath": "validation/claude-compact-quality-2026-08-24/sources/S01-crop-compact-clear-guidance.jpg",
+          "fileName": "anthropic-compact-clear-guidance.jpg",
+          "evidenceKind": "attributed-first-party-source-evidence"
+        }
+      ]
+    }
+  ]
+}
