@@ -5504,13 +5504,18 @@ footer.site-footer .foot-copy a {
 .blog-post-meta {
   align-items: center;
   padding: 12px;
-  margin-bottom: 24px;
+  margin: 0 0 24px;
 }
 
-.blog-post-meta span {
+.blog-post-meta > div,
+.blog-post-meta dd {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+}
+
+.blog-post-meta dd {
+  margin: 0;
 }
 
 .blog-renderer {
@@ -5831,6 +5836,10 @@ footer.site-footer .foot-copy a {
   margin: 0;
 }
 
+.blog-image-carousel figure[hidden] {
+  display: none;
+}
+
 .blog-image-carousel img {
   display: block;
   width: auto;
@@ -5864,8 +5873,8 @@ footer.site-footer .foot-copy a {
 
 .blog-image-carousel-controls button {
   display: inline-grid;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   place-items: center;
   border: 2px solid var(--ink);
   border-radius: 3px;
@@ -5903,22 +5912,33 @@ footer.site-footer .foot-copy a {
 
 .blog-image-carousel-dots {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  gap: 0;
   margin-top: 10px;
 }
 
 .blog-image-carousel-dots button {
-  width: 11px;
-  height: 11px;
+  display: inline-grid;
+  width: 44px;
+  height: 44px;
   padding: 0;
-  border: 1.5px solid var(--ink);
-  border-radius: 1px;
-  background: var(--cream);
+  place-items: center;
+  border: 0;
+  background: transparent;
   cursor: pointer;
 }
 
-.blog-image-carousel-dots button.is-active {
+.blog-image-carousel-dots button::before {
+  width: 11px;
+  height: 11px;
+  border: 1.5px solid var(--ink);
+  border-radius: 1px;
+  background: var(--cream);
+  content: "";
+}
+
+.blog-image-carousel-dots button.is-active::before {
   background: var(--gold);
 }
 

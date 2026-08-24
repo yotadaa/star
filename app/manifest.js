@@ -1,4 +1,4 @@
-import { DEFAULT_DESCRIPTION, SITE_NAME } from "@/lib/seo";
+import { DEFAULT_DESCRIPTION, DEFAULT_LANGUAGE, SITE_NAME } from "@/lib/seo";
 
 export default function manifest() {
   return {
@@ -11,7 +11,7 @@ export default function manifest() {
     display: "standalone",
     background_color: "#16241f",
     theme_color: "#16241f",
-    lang: "id-ID",
+    lang: DEFAULT_LANGUAGE,
     icons: [
       {
         src: "/icon.svg",

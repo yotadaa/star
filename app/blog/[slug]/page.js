@@ -8,6 +8,11 @@ import { PixelButton, SpriteIcon } from "@/components/claude";
 import { getBlogPostBySlug } from "@/lib/backend/featureStore";
 import { commentActorToken } from "@/lib/backend/blogEngagementAuth";
 import { actorKeyForEmail } from "@/lib/backend/routeAuth";
+import {
+  buildBlogArticleSeo,
+  formatArticleDate,
+  serializeStructuredData,
+} from "@/lib/blog/articleSeo";
 import { pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
@@ -21,11 +26,18 @@ export async function generateMetadata({ params }) {
       robots: { index: false, follow: false },
     };
   }
+  const articleSeo = buildBlogArticleSeo(post);
   return pageMetadata({
     title: post.title,
     description: post.excerpt,
-    path: `/blog/${encodeURIComponent(post.slug)}`,
+    path: articleSeo.path,
     type: "article",
+    images: articleSeo.image ? [articleSeo.image] : undefined,
+    publishedTime: articleSeo.publishedTime,
+    modifiedTime: articleSeo.modifiedTime,
+    authors: [articleSeo.authorUrl],
+    section: articleSeo.section,
+    tags: articleSeo.tags,
   });
 }
 
@@ -36,19 +48,45 @@ export default async function BlogPostPage({ params }) {
   const actorKey = actorKeyForEmail(session?.user?.email);
   const viewerToken = actorKey ? commentActorToken(actorKey) : undefined;
   const canModerate = session?.user?.role === "owner";
+  const articleSeo = buildBlogArticleSeo(post);
+  const publishedLabel = formatArticleDate(articleSeo.publishedTime);
 
   return (
     <article className="page-wrap blog-post-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeStructuredData(articleSeo.structuredData),
+        }}
+      />
       <PageHeader label="// LORE ENTRY" title={post.title}>
         {post.excerpt}
       </PageHeader>
 
-      <div className="blog-post-meta hardcard">
-        <span><SpriteIcon id="icon-blog-page" size={15} /> {post.status}</span>
-        <span>{post.publishedAt}</span>
-        <span>{post.readTime}</span>
-        <span><SpriteIcon id={source === "convex" ? "icon-database-online" : "icon-database-offline"} size={15} /> {source}</span>
-      </div>
+      <dl className="blog-post-meta hardcard" aria-label="Article details">
+        <div>
+          <dt className="sr-only">Status</dt>
+          <dd><SpriteIcon id="icon-blog-page" size={15} /> {post.status}</dd>
+        </div>
+        {publishedLabel ? (
+          <div>
+            <dt className="sr-only">Published</dt>
+            <dd><time dateTime={articleSeo.publishedTime}>{publishedLabel}</time></dd>
+          </div>
+        ) : null}
+        <div>
+          <dt className="sr-only">Author</dt>
+          <dd>By <Link href={articleSeo.authorUrl}>{articleSeo.authorName}</Link></dd>
+        </div>
+        <div>
+          <dt className="sr-only">Estimated reading time</dt>
+          <dd>{post.readTime}</dd>
+        </div>
+        <div>
+          <dt className="sr-only">Content source</dt>
+          <dd><SpriteIcon id={source === "convex" ? "icon-database-online" : "icon-database-offline"} size={15} /> {source}</dd>
+        </div>
+      </dl>
 
       <BlogPostRenderer blocks={post.blocks} sourceHref={post.sourceHref} />
 

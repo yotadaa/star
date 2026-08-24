@@ -5,6 +5,8 @@ import ConvexClientProvider from "@/components/ConvexClientProvider";
 import SiteProvider from "@/components/site/SiteProvider";
 import {
   DEFAULT_DESCRIPTION,
+  DEFAULT_LANGUAGE,
+  DEFAULT_OG_LOCALE,
   DEFAULT_TITLE,
   SITE_NAME,
   SITE_URL,
@@ -52,7 +54,7 @@ export const metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    locale: "id_ID",
+    locale: DEFAULT_OG_LOCALE,
     url: "/",
     siteName: SITE_NAME,
     title: DEFAULT_TITLE,
@@ -97,7 +99,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html
-      lang="en"
+      lang={DEFAULT_LANGUAGE}
       className={`${fraunces.variable} ${silkscreen.variable} ${nunito.variable}`}
     >
       <body>

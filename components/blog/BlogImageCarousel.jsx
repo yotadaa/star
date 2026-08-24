@@ -1,27 +1,18 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useId, useState } from "react";
 import { isRenderableBlogImageSource } from "@/lib/blog/featuredImage";
 import BlogImagePreview from "./BlogImagePreview";
 import BlogInlineText from "./BlogInlineText";
 
 export default function BlogImageCarousel({ images = [], sourceHref }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [orientation, setOrientation] = useState("unknown");
-  const imageRef = useRef(null);
+  const [orientations, setOrientations] = useState({});
   const viewportId = useId();
   const safeIndex = Math.min(activeIndex, Math.max(0, images.length - 1));
-  const image = images[safeIndex];
-  const source = String(image?.src || "").trim();
+  const orientation = orientations[safeIndex] || "unknown";
 
-  useEffect(() => {
-    setOrientation("unknown");
-  }, [source]);
-
-  if (!image) return null;
-
-  const canRender = isRenderableBlogImageSource(source);
-  const description = String(image.alt || image.text || "").trim();
+  if (!images.length) return null;
 
   return (
     <section
@@ -29,23 +20,38 @@ export default function BlogImageCarousel({ images = [], sourceHref }) {
       aria-label={`${images.length}-image gallery`}
     >
       <div className="blog-image-carousel-viewport" id={viewportId} aria-live="polite">
-        <figure>
-          {canRender ? (
-            <BlogImagePreview
-              src={source}
-              alt={description}
-              caption={image.text}
-              imageRef={imageRef}
-              onImageLoad={(event) => {
-                const element = event.currentTarget;
-                setOrientation(element.naturalWidth >= element.naturalHeight ? "landscape" : "portrait");
-              }}
-            />
-          ) : (
-            <span className="blog-image-carousel-missing">Image unavailable</span>
-          )}
-          {image.text ? <figcaption><BlogInlineText baseHref={sourceHref}>{image.text}</BlogInlineText></figcaption> : null}
-        </figure>
+        {images.map((image, index) => {
+          const source = String(image?.src || "").trim();
+          const canRender = isRenderableBlogImageSource(source);
+          const description = String(image?.alt || image?.text || "").trim();
+
+          return (
+            <figure
+              key={image?.assetKey || source || index}
+              hidden={index !== safeIndex}
+            >
+              {canRender ? (
+                <BlogImagePreview
+                  src={source}
+                  alt={description}
+                  caption={image.text}
+                  onImageLoad={(event) => {
+                    const element = event.currentTarget;
+                    const nextOrientation = element.naturalWidth >= element.naturalHeight
+                      ? "landscape"
+                      : "portrait";
+                    setOrientations((current) => current[index] === nextOrientation
+                      ? current
+                      : { ...current, [index]: nextOrientation });
+                  }}
+                />
+              ) : (
+                <span className="blog-image-carousel-missing">Image unavailable</span>
+              )}
+              {image.text ? <figcaption><BlogInlineText baseHref={sourceHref}>{image.text}</BlogInlineText></figcaption> : null}
+            </figure>
+          );
+        })}
       </div>
 
       <div className="blog-image-carousel-controls">
