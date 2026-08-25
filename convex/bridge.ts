@@ -116,14 +116,43 @@ type RecordResult = {
 type FileResult = {
   id: string;
   record_id?: string;
-  storage_id: Id<"_storage">;
+  storage_id?: Id<"_storage">;
+  storage_provider: "convex" | "r2";
+  access: "public" | "private";
   source_key?: string;
+  sha256?: string;
   original_name: string;
   content_type: string;
   size_bytes: number;
   metadata: unknown;
   created_at: string;
   url?: string;
+};
+type FileDownload = {
+  url: string;
+  contentType: string;
+  originalName: string;
+  sizeBytes: number;
+  storageProvider: "convex" | "r2";
+};
+type FileMigrationResult = {
+  fileId: Id<"files">;
+  status: "already_verified" | "verified";
+  targetKey: string;
+  sha256: string;
+  sizeBytes: number;
+};
+type FileMigrationAudit = {
+  totalFiles: number;
+  legacyObjectsRetained: number;
+  r2VerifiedFiles: number;
+  pendingFiles: number;
+  failedJobs: number;
+  verifiedJobs: number;
+  blogImageOccurrences: number;
+  blogStorageIdReferences: number;
+  blogAssetKeyReferences: number;
+  unresolvedBlogAssets: number;
 };
 type TableAudit = { count: number; schemaVersionMissing: number; duplicateKeys: string[] };
 type BlogTableAudit = TableAudit & { seoDataMissing: number; imageDimensionsMissing: number };
@@ -420,18 +449,31 @@ export const removeRecord = action({
 });
 
 export const createFileUploadUrl = action({
-  args: { secret: v.string(), actor: actorSnapshot },
-  returns: v.string(),
-  handler: async (ctx, args): Promise<string> => {
+  args: {
+    secret: v.string(),
+    actor: actorSnapshot,
+    sha256: v.string(),
+    contentType: v.string(),
+  },
+  returns: v.object({ key: v.string(), url: v.string(), method: v.literal("PUT") }),
+  handler: async (ctx, args): Promise<{ key: string; url: string; method: "PUT" }> => {
     requireBridgeSecret(args.secret);
-    return await ctx.runMutation(internal.files.createUploadUrl, { actor: args.actor });
+    if (args.actor.role !== "owner" && args.actor.role !== "backend") {
+      throw new Error("FILE_FORBIDDEN");
+    }
+    return await ctx.runAction(internal.r2Storage.generateUploadUrl, {
+      sha256: args.sha256,
+      contentType: args.contentType,
+    });
   },
 });
 
 export const commitFile = action({
   args: {
     secret: v.string(),
-    storageId: v.id("_storage"),
+    r2Key: v.string(),
+    sha256: v.string(),
+    access: v.union(v.literal("public"), v.literal("private")),
     recordId: v.optional(v.id("records")),
     sourceKey: v.optional(v.string()),
     originalName: v.string(),
@@ -443,8 +485,10 @@ export const commitFile = action({
   returns: v.id("files"),
   handler: async (ctx, args): Promise<Id<"files">> => {
     requireBridgeSecret(args.secret);
-    return await ctx.runMutation(internal.files.commit, {
-      storageId: args.storageId,
+    return await ctx.runAction(internal.r2Storage.commitUploadedFile, {
+      r2Key: args.r2Key,
+      sha256: args.sha256,
+      access: args.access,
       ...(args.recordId ? { recordId: args.recordId } : {}),
       ...(args.sourceKey ? { sourceKey: args.sourceKey } : {}),
       originalName: args.originalName,
@@ -471,5 +515,80 @@ export const findFileBySourceKey = action({
   handler: async (ctx, args): Promise<FileResult | null> => {
     requireBridgeSecret(args.secret);
     return await ctx.runQuery(internal.files.getBySourceKey, { sourceKey: args.sourceKey });
+  },
+});
+
+export const getFileDownloadUrl = action({
+  args: { secret: v.string(), id: v.id("files"), publicOnly: v.boolean() },
+  returns: v.union(v.object({
+    url: v.string(),
+    contentType: v.string(),
+    originalName: v.string(),
+    sizeBytes: v.number(),
+    storageProvider: v.union(v.literal("convex"), v.literal("r2")),
+  }), v.null()),
+  handler: async (ctx, args): Promise<FileDownload | null> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runAction(internal.r2Storage.getDownloadUrl, {
+      fileId: args.id,
+      publicOnly: args.publicOnly,
+    });
+  },
+});
+
+export const listPendingFileMigrations = action({
+  args: { secret: v.string(), limit: v.number() },
+  returns: v.array(v.id("files")),
+  handler: async (ctx, args): Promise<Id<"files">[]> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runQuery(internal.files.listPendingMigration, { limit: args.limit });
+  },
+});
+
+export const migrateFileToR2 = action({
+  args: { secret: v.string(), id: v.id("files") },
+  returns: v.object({
+    fileId: v.id("files"),
+    status: v.union(v.literal("already_verified"), v.literal("verified")),
+    targetKey: v.string(),
+    sha256: v.string(),
+    sizeBytes: v.number(),
+  }),
+  handler: async (ctx, args): Promise<FileMigrationResult> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runAction(internal.r2Storage.migrateLegacyFile, { fileId: args.id });
+  },
+});
+
+export const getFileMigrationAudit = action({
+  args: { secret: v.string() },
+  returns: v.object({
+    totalFiles: v.number(),
+    legacyObjectsRetained: v.number(),
+    r2VerifiedFiles: v.number(),
+    pendingFiles: v.number(),
+    failedJobs: v.number(),
+    verifiedJobs: v.number(),
+    blogImageOccurrences: v.number(),
+    blogStorageIdReferences: v.number(),
+    blogAssetKeyReferences: v.number(),
+    unresolvedBlogAssets: v.number(),
+  }),
+  handler: async (ctx, args): Promise<FileMigrationAudit> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runQuery(internal.files.migrationAudit, {});
+  },
+});
+
+export const rewriteBlogFileReferences = action({
+  args: { secret: v.string() },
+  returns: v.object({ postsUpdated: v.number(), imageReferencesRewritten: v.number() }),
+  handler: async (ctx, args): Promise<{ postsUpdated: number; imageReferencesRewritten: number }> => {
+    requireBridgeSecret(args.secret);
+    const audit = await ctx.runQuery(internal.files.migrationAudit, {});
+    if (audit.pendingFiles || audit.unresolvedBlogAssets) {
+      throw new Error("R2_REFERENCE_REWRITE_PRECONDITION_FAILED");
+    }
+    return await ctx.runMutation(internal.blog.rewriteR2ImageReferences, {});
   },
 });

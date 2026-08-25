@@ -269,8 +269,11 @@ export const publicRecord = v.object({
 export const publicFile = v.object({
   id: v.string(),
   record_id: v.optional(v.string()),
-  storage_id: v.id("_storage"),
+  storage_id: v.optional(v.id("_storage")),
+  storage_provider: v.union(v.literal("convex"), v.literal("r2")),
+  access: v.union(v.literal("public"), v.literal("private")),
   source_key: v.optional(v.string()),
+  sha256: v.optional(v.string()),
   original_name: v.string(),
   content_type: v.string(),
   size_bytes: v.number(),

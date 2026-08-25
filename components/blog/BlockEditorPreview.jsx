@@ -388,19 +388,19 @@ function BlockInput({ block, onChange }) {
           height: result.height,
         },
       }));
-      setUploadState({ status: "uploading", message: "Uploading the result to Convex Storage..." });
+      setUploadState({ status: "uploading", message: "Uploading the compressed image to R2..." });
       const response = await fetch("/api/backend/files", {
         method: "POST",
         credentials: "same-origin",
         body: form,
       });
       const data = await response.json();
-      if (!response.ok || !data.ok || !data.file?.storage_id || !data.file?.url) {
+      if (!response.ok || !data.ok || data.file?.storage_provider !== "r2" || !data.file?.source_key || !data.file?.url) {
         throw new Error(data.message || data.error || "Image upload failed");
       }
       onChange({
-        storageId: data.file.storage_id,
-        assetKey: undefined,
+        storageId: undefined,
+        assetKey: data.file.source_key,
         src: data.file.url,
         alt: block.alt || file.name,
         width: result.width,

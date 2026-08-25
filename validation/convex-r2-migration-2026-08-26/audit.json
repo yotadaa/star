@@ -1,0 +1,35 @@
+{
+  "date": "2026-08-26",
+  "deployment": "dev:impartial-basilisk-364",
+  "productionChanged": false,
+  "backup": {
+    "path": "/home/tada/Backups/star/convex-dev-pre-r2-2026-08-26.zip",
+    "sizeBytes": 65741187,
+    "sha256": "3b7c6f9c597090a17c4bbe387e028a1087fdb012a760be631c66c289100a1486"
+  },
+  "finalAudit": {
+    "totalFiles": 69,
+    "legacyObjectsRetained": 69,
+    "r2VerifiedFiles": 69,
+    "pendingFiles": 0,
+    "failedJobs": 0,
+    "verifiedJobs": 69,
+    "blogImageOccurrences": 96,
+    "blogStorageIdReferences": 0,
+    "blogAssetKeyReferences": 89,
+    "unresolvedBlogAssets": 0
+  },
+  "r2": {
+    "prefix": "objects/sha256/",
+    "objectCount": 69,
+    "totalBytes": 66351372
+  },
+  "publishedReadback": {
+    "publishedPosts": 21,
+    "imageOccurrences": 96,
+    "stableR2Urls": 89,
+    "externalUrls": 7,
+    "legacyConvexUrls": 0,
+    "publicStorageIds": 0
+  }
+}

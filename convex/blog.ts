@@ -80,7 +80,12 @@ function cleanFeaturedImage(value: Doc<"blogPosts">["featuredImage"] | undefined
   if (!width || !height || !alt) throw new Error("BLOG_FEATURED_IMAGE_INVALID");
 
   const cleaned = { ...value, width, height, alt };
-  if (cleaned.storageId || cleaned.assetKey) delete cleaned.src;
+  if (cleaned.assetKey) {
+    delete cleaned.storageId;
+    delete cleaned.src;
+  } else if (cleaned.storageId) {
+    delete cleaned.src;
+  }
   if (!cleaned.storageId && !cleanText(cleaned.assetKey) && !cleanText(cleaned.src)) {
     throw new Error("BLOG_FEATURED_IMAGE_SOURCE_MISSING");
   }
@@ -113,7 +118,12 @@ function cleanBlocks(blocks: Doc<"blogPosts">["blocks"] | undefined) {
       delete stored.width;
       delete stored.height;
     }
-    if (block.storageId || block.assetKey) delete stored.src;
+    if (block.assetKey) {
+      delete stored.storageId;
+      delete stored.src;
+    } else if (block.storageId) {
+      delete stored.src;
+    }
     return stored;
   });
 }
@@ -122,8 +132,8 @@ function featuredImageFromBlocks(blocks: Doc<"blogPosts">["blocks"]) {
   const block = blocks.find((item) => item.type === "image" && item.width && item.height);
   if (!block) return undefined;
   return cleanFeaturedImage({
-    ...(block.storageId ? { storageId: block.storageId } : {}),
     ...(block.assetKey ? { assetKey: block.assetKey } : {}),
+    ...(!block.assetKey && block.storageId ? { storageId: block.storageId } : {}),
     ...(!block.storageId && !block.assetKey && block.src ? { src: block.src } : {}),
     alt: cleanText(block.alt || block.text, "Article image"),
     width: block.width as number,
@@ -191,20 +201,101 @@ async function resolveImage<T extends {
   const resolved = { ...image } as T;
   if (image.storageId || image.assetKey) delete resolved.src;
 
-  let storageId = image.storageId;
-  let url = storageId ? await ctx.storage.getUrl(storageId) : null;
-  if (!url && image.assetKey) {
-    const file = await ctx.db
+  let file = image.assetKey
+    ? await ctx.db
       .query("files")
       .withIndex("by_sourceKey", (q) => q.eq("sourceKey", image.assetKey))
+      .unique()
+    : null;
+  if (!file && image.storageId) {
+    file = await ctx.db
+      .query("files")
+      .withIndex("by_storageId", (q) => q.eq("storageId", image.storageId))
       .unique();
-    storageId = file?.storageId;
-    url = storageId ? await ctx.storage.getUrl(storageId) : null;
-    if (storageId) resolved.storageId = storageId;
   }
+
+  if (file?.storageProvider === "r2" && file.r2Key && file.r2VerifiedAt) {
+    if (file.sourceKey) resolved.assetKey = file.sourceKey;
+    delete resolved.storageId;
+    resolved.src = `/api/media/${file._id}`;
+    return resolved;
+  }
+
+  const storageId = file?.storageId ?? image.storageId;
+  const url = storageId ? await ctx.storage.getUrl(storageId) : null;
+  if (storageId) resolved.storageId = storageId;
   if (url) resolved.src = url;
   return resolved;
 }
+
+async function canonicalR2Image<T extends {
+  storageId?: Id<"_storage">;
+  assetKey?: string;
+  src?: string;
+}>(ctx: MutationCtx, image: T): Promise<T> {
+  let file = image.assetKey
+    ? await ctx.db
+        .query("files")
+        .withIndex("by_sourceKey", (q) => q.eq("sourceKey", image.assetKey))
+        .unique()
+    : null;
+  if (!file && image.storageId) {
+    file = await ctx.db
+      .query("files")
+      .withIndex("by_storageId", (q) => q.eq("storageId", image.storageId))
+      .unique();
+  }
+  if (!file?.sourceKey || file.storageProvider !== "r2" || !file.r2Key || !file.r2VerifiedAt) {
+    throw new Error(`BLOG_R2_ASSET_UNRESOLVED:${image.assetKey || image.storageId || "missing"}`);
+  }
+  const canonical = { ...image, assetKey: file.sourceKey } as T;
+  delete canonical.storageId;
+  delete canonical.src;
+  return canonical;
+}
+
+export const rewriteR2ImageReferences = internalMutation({
+  args: {},
+  returns: v.object({ postsUpdated: v.number(), imageReferencesRewritten: v.number() }),
+  handler: async (ctx) => {
+    const posts = await ctx.db.query("blogPosts").take(501);
+    if (posts.length > 500) throw new Error("BLOG_R2_REWRITE_LIMIT_EXCEEDED");
+    let postsUpdated = 0;
+    let imageReferencesRewritten = 0;
+    for (const post of posts) {
+      let changed = false;
+      const blocks = await Promise.all(post.blocks.map(async (block) => {
+        if (block.type !== "image" || (!block.assetKey && !block.storageId)) return block;
+        const canonical = await canonicalR2Image(ctx, block);
+        const blockChanged = Boolean(block.storageId || block.src || block.assetKey !== canonical.assetKey);
+        if (blockChanged) {
+          changed = true;
+          imageReferencesRewritten += 1;
+        }
+        return canonical;
+      }));
+      const featuredImage = post.featuredImage?.assetKey || post.featuredImage?.storageId
+        ? await canonicalR2Image(ctx, post.featuredImage)
+        : post.featuredImage;
+      if (
+        post.featuredImage
+        && (post.featuredImage.assetKey || post.featuredImage.storageId)
+        && (post.featuredImage.storageId || post.featuredImage.src || post.featuredImage.assetKey !== featuredImage?.assetKey)
+      ) {
+        changed = true;
+        imageReferencesRewritten += 1;
+      }
+      if (changed) {
+        await ctx.db.patch(post._id, {
+          blocks,
+          ...(featuredImage ? { featuredImage } : {}),
+        });
+        postsUpdated += 1;
+      }
+    }
+    return { postsUpdated, imageReferencesRewritten };
+  },
+});
 
 async function resolveBlocks(
   ctx: QueryCtx | MutationCtx,

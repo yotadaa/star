@@ -215,7 +215,7 @@ export const portfolioReadmeBlogPayload = {
   blocks: readPortfolioReadmeBlocks(),
 };
 
-function validatePayload(payload, { requireStorage = false } = {}) {
+function validatePayload(payload, { requireProviderNeutral = false } = {}) {
   const images = payload.blocks.filter((block) => block.type === "image");
   if (images.length !== imageAssets.size) {
     throw new Error(`Expected ${imageAssets.size} image blocks, received ${images.length}`);
@@ -224,8 +224,8 @@ function validatePayload(payload, { requireStorage = false } = {}) {
     if (!image.assetKey?.startsWith(`blog:${slug}:`)) {
       throw new Error(`Invalid Convex image asset key: ${image.assetKey || "missing"}`);
     }
-    if (requireStorage && !image.storageId) {
-      throw new Error(`Missing Convex storage ID for ${image.assetKey}`);
+    if (requireProviderNeutral && image.storageId) {
+      throw new Error(`Legacy Convex storage ID must not be persisted for ${image.assetKey}`);
     }
     if (image.src) throw new Error(`Image payload must not persist a storage URL: ${image.assetKey}`);
     if (!image.alt?.trim()) throw new Error(`Missing alt text for ${image.assetKey}`);
@@ -273,22 +273,25 @@ async function uploadImageAssets(client, secret, actor) {
     });
 
     let stored = existing;
-    if (!existing?.storage_id || !existing?.url || existing.metadata?.sha256 !== sha256) {
-      const uploadUrl = await client.action(createFileUploadUrl, { secret, actor });
-      const uploadResponse = await fetch(uploadUrl, {
-        method: "POST",
-        headers: { "Content-Type": contentType },
+    if (existing?.storage_provider !== "r2" || !existing?.url || existing.sha256 !== sha256) {
+      const upload = await client.action(createFileUploadUrl, { secret, actor, sha256, contentType });
+      const uploadResponse = await fetch(upload.url, {
+        method: upload.method,
+        headers: {
+          "Content-Type": contentType,
+          "Cache-Control": "public, max-age=31536000, immutable",
+        },
         body: bytes,
       });
       if (!uploadResponse.ok) {
-        throw new Error(`Convex upload failed for ${readmeSource}: ${uploadResponse.status}`);
+        throw new Error(`R2 upload failed for ${readmeSource}: ${uploadResponse.status}`);
       }
-      const upload = await uploadResponse.json();
-      if (!upload.storageId) throw new Error(`Convex did not return a storage ID for ${readmeSource}`);
 
       const fileId = await client.action(commitFile, {
         secret,
-        storageId: upload.storageId,
+        r2Key: upload.key,
+        sha256,
+        access: "public",
         sourceKey: asset.sourceKey,
         originalName: asset.fileName,
         contentType,
@@ -307,8 +310,8 @@ async function uploadImageAssets(client, secret, actor) {
       reused += 1;
     }
 
-    if (!stored?.storage_id || !stored?.url) {
-      throw new Error(`Convex storage verification failed for ${asset.sourceKey}`);
+    if (stored?.storage_provider !== "r2" || !stored?.source_key || !stored?.url) {
+      throw new Error(`R2 storage verification failed for ${asset.sourceKey}`);
     }
     storedByAssetKey.set(asset.sourceKey, stored);
   }
@@ -316,14 +319,17 @@ async function uploadImageAssets(client, secret, actor) {
   return { storedByAssetKey, uploaded, reused };
 }
 
-function attachStorageIds(payload, storedByAssetKey) {
+function attachStoredAssetKeys(payload, storedByAssetKey) {
   return {
     ...payload,
     blocks: payload.blocks.map((block) => {
       if (block.type !== "image") return block;
       const stored = storedByAssetKey.get(block.assetKey);
-      if (!stored?.storage_id) throw new Error(`Missing uploaded file for ${block.assetKey}`);
-      return { ...block, storageId: stored.storage_id };
+      if (stored?.storage_provider !== "r2" || !stored?.source_key) {
+        throw new Error(`Missing uploaded file for ${block.assetKey}`);
+      }
+      const { storageId: _legacyStorageId, src: _legacyUrl, ...rest } = block;
+      return { ...rest, assetKey: stored.source_key };
     }),
   };
 }
@@ -346,9 +352,9 @@ export async function publishPortfolioReadmeBlog() {
   };
   const uploads = await uploadImageAssets(client, secret, actor);
   const publishPayload = completeBlogSeoData(
-    attachStorageIds(portfolioReadmeBlogPayload, uploads.storedByAssetKey),
+    attachStoredAssetKeys(portfolioReadmeBlogPayload, uploads.storedByAssetKey),
   );
-  validatePayload(publishPayload, { requireStorage: true });
+  validatePayload(publishPayload, { requireProviderNeutral: true });
   const posts = await client.action(listBlogAdmin, { secret, limit: 100 });
   const existing = posts.find((post) => post.slug === slug);
   const post = existing

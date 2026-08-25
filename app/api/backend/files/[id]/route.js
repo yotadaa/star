@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { canWriteBackend } from "@/lib/backend/routeAuth";
-import { getFileById, streamFileById } from "@/lib/backend/store";
+import { getFileById, getFileDownloadById } from "@/lib/backend/store";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -32,20 +32,11 @@ export async function GET(request, context) {
       return NextResponse.json({ ok: true, file });
     }
 
-    const result = await streamFileById(id);
-    if (!result) return NextResponse.json({ ok: false, error: "NOT_FOUND" }, { status: 404 });
-
-    const headers = {
-      "Content-Type": result.file.content_type || "application/octet-stream",
-      "Content-Disposition": `inline; filename="${encodeURIComponent(result.file.original_name || result.file.id)}"`,
-      "Cache-Control": "private, max-age=60",
-    };
-
-    if (result.file.size_bytes) {
-      headers["Content-Length"] = String(result.file.size_bytes);
-    }
-
-    return new Response(result.response.body, { headers });
+    const download = await getFileDownloadById(id);
+    if (!download) return NextResponse.json({ ok: false, error: "NOT_FOUND" }, { status: 404 });
+    const response = NextResponse.redirect(download.url, 307);
+    response.headers.set("Cache-Control", "private, no-store");
+    return response;
   } catch (error) {
     return errorResponse(error);
   }

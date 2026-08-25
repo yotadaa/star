@@ -119,7 +119,7 @@ function validateBatch(batch) {
   }
 }
 
-function validatePayload(payload, article, { requireStorage = false } = {}) {
+function validatePayload(payload, article, { requireProviderNeutral = false } = {}) {
   if (payload.slug !== article.slug || payload.status !== "published") {
     throw new Error(`Published payload identity is invalid for ${article.slug}`);
   }
@@ -168,8 +168,8 @@ function validatePayload(payload, article, { requireStorage = false } = {}) {
       throw new Error(`Image alt text or caption is missing for ${image.assetKey}`);
     }
     if (image.src) throw new Error(`Stored Blog image cannot persist src: ${image.assetKey}`);
-    if (requireStorage && !image.storageId) {
-      throw new Error(`Stored Blog image lacks storageId: ${image.assetKey}`);
+    if (requireProviderNeutral && image.storageId) {
+      throw new Error(`Stored Blog image retains a legacy Convex storageId: ${image.assetKey}`);
     }
   }
 }
@@ -210,22 +210,30 @@ async function uploadAssets(client, secret, actor, article, assets) {
     });
     let stored = existing;
 
-    if (!existing?.storage_id || !existing?.url || existing.metadata?.sha256 !== asset.checksum) {
-      const uploadUrl = await client.action(createFileUploadUrl, { secret, actor });
-      const response = await fetch(uploadUrl, {
-        method: "POST",
-        headers: { "Content-Type": asset.contentType },
+    if (existing?.storage_provider !== "r2" || !existing?.url || existing.sha256 !== asset.checksum) {
+      const upload = await client.action(createFileUploadUrl, {
+        secret,
+        actor,
+        sha256: asset.checksum,
+        contentType: asset.contentType,
+      });
+      const response = await fetch(upload.url, {
+        method: upload.method,
+        headers: {
+          "Content-Type": asset.contentType,
+          "Cache-Control": "public, max-age=31536000, immutable",
+        },
         body: asset.bytes,
       });
       if (!response.ok) {
-        throw new Error(`Convex upload failed for ${asset.sourcePath}: ${response.status}`);
+        throw new Error(`R2 upload failed for ${asset.sourcePath}: ${response.status}`);
       }
-      const upload = await response.json();
-      if (!upload.storageId) throw new Error(`Convex omitted storageId for ${asset.assetKey}`);
 
       const fileId = await client.action(commitFile, {
         secret,
-        storageId: upload.storageId,
+        r2Key: upload.key,
+        sha256: asset.checksum,
+        access: "public",
         sourceKey: asset.assetKey,
         originalName: asset.fileName,
         contentType: asset.contentType,
@@ -245,8 +253,8 @@ async function uploadAssets(client, secret, actor, article, assets) {
       reused += 1;
     }
 
-    if (!stored?.storage_id || !stored?.url) {
-      throw new Error(`Convex storage verification failed for ${asset.assetKey}`);
+    if (stored?.storage_provider !== "r2" || !stored?.source_key || !stored?.url) {
+      throw new Error(`R2 storage verification failed for ${asset.assetKey}`);
     }
     storedByAssetKey.set(asset.assetKey, stored);
   }
@@ -254,14 +262,17 @@ async function uploadAssets(client, secret, actor, article, assets) {
   return { storedByAssetKey, uploaded, reused };
 }
 
-function attachStorageIds(payload, storedByAssetKey) {
+function attachStoredAssetKeys(payload, storedByAssetKey) {
   return {
     ...payload,
     blocks: payload.blocks.map((block) => {
       if (block.type !== "image") return block;
       const stored = storedByAssetKey.get(block.assetKey);
-      if (!stored?.storage_id) throw new Error(`Uploaded asset is missing: ${block.assetKey}`);
-      return { ...block, storageId: stored.storage_id };
+      if (stored?.storage_provider !== "r2" || !stored?.source_key) {
+        throw new Error(`Uploaded asset is missing: ${block.assetKey}`);
+      }
+      const { storageId: _legacyStorageId, src: _legacyUrl, ...rest } = block;
+      return { ...rest, assetKey: stored.source_key };
     }),
   };
 }
@@ -279,9 +290,9 @@ async function publishArticle(client, secret, article) {
   };
   const uploads = await uploadAssets(client, secret, actor, article, loaded.assets);
   const publishPayload = completeBlogSeoData(
-    attachStorageIds(loaded.payload, uploads.storedByAssetKey),
+    attachStoredAssetKeys(loaded.payload, uploads.storedByAssetKey),
   );
-  validatePayload(publishPayload, article, { requireStorage: true });
+  validatePayload(publishPayload, article, { requireProviderNeutral: true });
 
   const posts = await client.action(listBlogAdmin, { secret, limit: 200 });
   const existing = posts.find((post) => post.slug === article.slug);

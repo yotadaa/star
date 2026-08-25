@@ -15,6 +15,8 @@
     "convex:seed:import": "node scripts/import-convex-seed.mjs",
     "convex:migrate": "npm run convex:seed:build && npm run convex:seed:import",
     "convex:migrate:prod": "npm run convex:seed:build && node scripts/import-convex-seed.mjs --prod",
+    "convex:files:r2:audit": "node scripts/migrate-convex-files-to-r2.mjs --audit-only",
+    "convex:files:r2:migrate": "node scripts/migrate-convex-files-to-r2.mjs",
     "blog:publish:caelestia": "node scripts/publish-caelestia-blog.mjs",
     "blog:publish:portfolio": "node scripts/publish-portfolio-readme-blog.mjs",
     "blog:publish:stok-toko": "node scripts/publish-stok-toko-review-blog.mjs",
@@ -31,6 +33,7 @@
   },
   "dependencies": {
     "@convex-dev/migrations": "^0.3.6",
+    "@convex-dev/r2": "^0.10.2",
     "@react-three/fiber": "9.6.1",
     "cmdk": "1.1.1",
     "convex": "^1.45.0",

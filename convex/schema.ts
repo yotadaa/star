@@ -181,16 +181,50 @@ export default defineSchema({
   files: defineTable({
     recordId: v.optional(v.id("records")),
     sourceKey: v.optional(v.string()),
-    storageId: v.id("_storage"),
+    storageId: v.optional(v.id("_storage")),
+    storageProvider: v.optional(v.union(v.literal("convex"), v.literal("r2"))),
+    access: v.optional(v.union(v.literal("public"), v.literal("private"))),
+    r2Key: v.optional(v.string()),
+    sha256: v.optional(v.string()),
+    r2VerifiedAt: v.optional(v.number()),
     originalName: v.string(),
     contentType: v.string(),
     sizeBytes: v.number(),
     metadata: v.any(),
     createdAt: v.number(),
+    updatedAt: v.optional(v.number()),
     schemaVersion: v.number(),
   })
     .index("by_recordId_and_createdAt", ["recordId", "createdAt"])
-    .index("by_sourceKey", ["sourceKey"]),
+    .index("by_sourceKey", ["sourceKey"])
+    .index("by_storageId", ["storageId"])
+    .index("by_r2Key", ["r2Key"])
+    .index("by_storageProvider_and_createdAt", ["storageProvider", "createdAt"]),
+
+  fileMigrationJobs: defineTable({
+    fileId: v.id("files"),
+    legacyStorageId: v.optional(v.id("_storage")),
+    targetKey: v.optional(v.string()),
+    status: v.union(
+      v.literal("inventoried"),
+      v.literal("copying"),
+      v.literal("verified"),
+      v.literal("failed"),
+    ),
+    sourceSha256: v.optional(v.string()),
+    targetSha256: v.optional(v.string()),
+    sourceSizeBytes: v.optional(v.number()),
+    targetSizeBytes: v.optional(v.number()),
+    attempts: v.number(),
+    lastError: v.optional(v.string()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+    verifiedAt: v.optional(v.number()),
+    schemaVersion: v.number(),
+  })
+    .index("by_fileId", ["fileId"])
+    .index("by_legacyStorageId", ["legacyStorageId"])
+    .index("by_status_and_updatedAt", ["status", "updatedAt"]),
 
   seedManifests: defineTable({
     version: v.string(),
