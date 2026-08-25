@@ -27,7 +27,8 @@
   "publishedReadback": {
     "publishedPosts": 21,
     "imageOccurrences": 96,
-    "stableR2Urls": 89,
+    "directR2PublicUrls": 89,
+    "sameOriginMediaUrls": 0,
     "externalUrls": 7,
     "legacyConvexUrls": 0,
     "publicStorageIds": 0

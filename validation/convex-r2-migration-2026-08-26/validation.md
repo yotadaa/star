@@ -34,9 +34,9 @@ Each migrated object was downloaded from Convex, hashed, copied to a content-add
 
 ## Delivery and write gates
 
-- Canary stable route returned HTTP 307 with a 120-second cache boundary, followed by HTTP 200 from R2.
+- Direct public URL returned HTTP 200 from R2; the legacy `/api/media/{fileId}` route now returns HTTP 307 to that same unsigned public URL with a 120-second compatibility cache boundary.
 - Canary response: `image/png`, 623,420 bytes, SHA-256 `261627fc63429eec9c761daa0108f7ee7abab8cbb589718ee76aae4191a81a3f`.
-- Published Blog query: 21 posts, 96 image occurrences, 89 `/api/media/` sources, seven external GitHub sources, zero Convex Storage URLs, and zero exposed `storageId` fields.
+- Published Blog query: 21 posts, 96 image occurrences, 89 direct `R2_PUBLIC_DOMAIN` sources, zero same-origin media sources, seven external GitHub sources, zero Convex Storage URLs, and zero exposed `storageId` fields.
 - Idempotent new-write canary: signed R2 PUT returned HTTP 200, committed to the same logical file row, retained the legacy Convex reference, and returned the stable media URL.
 - Idempotent full migration rerun: zero pending copies, zero Blog references rewritten, and zero posts updated.
 - Final audit after the write canary remained 69 verified, zero pending, zero failed, and zero Blog storage-ID references.
@@ -46,7 +46,8 @@ Each migrated object was downloaded from Convex, hashed, copied to a content-add
 - `npm run convex:typecheck`: pass
 - Convex component/schema deployment: pass
 - Publisher and migration scripts `node --check`: pass
-- `npm run build`: pass; `/api/media/[id]` included as a dynamic route
+- `npm run build`: pass; `/api/media/[id]` remains a compatibility-only dynamic route
+- Direct-domain desktop/mobile browser validation and DNS notes: `validation/r2-public-domain-2026-08-26/`
 - Desktop Blog render at 1440 × 900 with reduced motion: [blog-desktop.png](blog-desktop.png)
 - Mobile Blog render at 375 × 812 with reduced motion: [blog-mobile.png](blog-mobile.png)
 - Media-related failed browser requests in both visual runs: zero

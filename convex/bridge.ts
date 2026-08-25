@@ -454,6 +454,7 @@ export const createFileUploadUrl = action({
     actor: actorSnapshot,
     sha256: v.string(),
     contentType: v.string(),
+    access: v.optional(v.union(v.literal("public"), v.literal("private"))),
   },
   returns: v.object({ key: v.string(), url: v.string(), method: v.literal("PUT") }),
   handler: async (ctx, args): Promise<{ key: string; url: string; method: "PUT" }> => {
@@ -464,6 +465,7 @@ export const createFileUploadUrl = action({
     return await ctx.runAction(internal.r2Storage.generateUploadUrl, {
       sha256: args.sha256,
       contentType: args.contentType,
+      access: args.access,
     });
   },
 });

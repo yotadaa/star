@@ -2,6 +2,7 @@ import { v } from "convex/values";
 import type { Doc } from "./_generated/dataModel";
 import { internalMutation, internalQuery } from "./_generated/server";
 import type { MutationCtx, QueryCtx } from "./_generated/server";
+import { r2PublicUrl } from "./r2PublicUrl";
 import { actorSnapshot, publicFile } from "./validators";
 
 const storageAccess = v.union(v.literal("public"), v.literal("private"));
@@ -21,7 +22,9 @@ async function toPublic(
   const storageProvider = isVerifiedR2(file) ? "r2" as const : "convex" as const;
   const access = effectiveAccess(file);
   const url = storageProvider === "r2"
-    ? (access === "public" ? `/api/media/${file._id}` : `/api/backend/files/${file._id}`)
+    ? (access === "public"
+        ? r2PublicUrl(file.r2Key as string)
+        : `/api/backend/files/${file._id}`)
     : (file.storageId ? await ctx.storage.getUrl(file.storageId) : null);
 
   return {

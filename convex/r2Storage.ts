@@ -6,6 +6,7 @@ import { v } from "convex/values";
 import { components, internal } from "./_generated/api";
 import type { Id } from "./_generated/dataModel";
 import { internalAction } from "./_generated/server";
+import { r2PublicUrl } from "./r2PublicUrl";
 import { actorSnapshot } from "./validators";
 
 const uploadTicket = v.object({
@@ -103,9 +104,14 @@ async function verifyTarget(
 }
 
 export const generateUploadUrl = internalAction({
-  args: { sha256: v.string(), contentType: v.string() },
+  args: {
+    sha256: v.string(),
+    contentType: v.string(),
+    access: v.optional(v.union(v.literal("public"), v.literal("private"))),
+  },
   returns: uploadTicket,
   handler: async (_ctx, args) => {
+    if (args.access === "private") throw new Error("R2_PRIVATE_BUCKET_NOT_CONFIGURED");
     const r2 = configuredR2();
     const key = objectKey(args.sha256, args.contentType);
     const ticket = await r2.generateUploadUrl(key);
@@ -128,6 +134,7 @@ export const commitUploadedFile = internalAction({
   },
   returns: v.id("files"),
   handler: async (ctx, args): Promise<Id<"files">> => {
+    if (args.access === "private") throw new Error("R2_PRIVATE_BUCKET_NOT_CONFIGURED");
     const r2 = configuredR2();
     const expectedSha256 = cleanSha256(args.sha256);
     const expectedKey = objectKey(expectedSha256, args.contentType);
@@ -243,7 +250,9 @@ export const getDownloadUrl = internalAction({
     if (args.publicOnly && file.access !== "public") throw new Error("FILE_NOT_PUBLIC");
 
     if (file.storageProvider === "r2" && file.r2Key && file.r2VerifiedAt) {
-      const url = await configuredR2().getUrl(file.r2Key, { expiresIn: 900 });
+      const url = file.access === "public"
+        ? r2PublicUrl(file.r2Key)
+        : await configuredR2().getUrl(file.r2Key, { expiresIn: 900 });
       return {
         url,
         contentType: file.contentType,

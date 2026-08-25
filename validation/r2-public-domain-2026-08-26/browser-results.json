@@ -1,0 +1,207 @@
+{
+  "publicDomain": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev",
+  "results": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pageUrl": "http://127.0.0.1:3123/blog/mukhtadas-portfolio",
+      "directR2ImageElements": 11,
+      "loadedR2Images": 6,
+      "images": [
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/26/261627fc63429eec9c761daa0108f7ee7abab8cbb589718ee76aae4191a81a3f.png",
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 900
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/26/261627fc63429eec9c761daa0108f7ee7abab8cbb589718ee76aae4191a81a3f.png",
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 900
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/dd/ddbccdba1b2020fcc66afcdab6e58cd14e31805e55700dbbd1d440d20b5fd073.jpg",
+          "complete": true,
+          "naturalWidth": 1265,
+          "naturalHeight": 712
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/dd/ddbccdba1b2020fcc66afcdab6e58cd14e31805e55700dbbd1d440d20b5fd073.jpg",
+          "complete": true,
+          "naturalWidth": 1265,
+          "naturalHeight": 712
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/c1/c1df56ff139a57f9fcbf1ae85952d5720996a044c46d87d205e556cbbed9e57a.jpg",
+          "complete": false,
+          "naturalWidth": 1425,
+          "naturalHeight": 990
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/c1/c1df56ff139a57f9fcbf1ae85952d5720996a044c46d87d205e556cbbed9e57a.jpg",
+          "complete": true,
+          "naturalWidth": 1425,
+          "naturalHeight": 990
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/df/df0937b7467d3c4a970087b450263a19113b6f03eb23fab53af364cc79c1197b.jpg",
+          "complete": false,
+          "naturalWidth": 1440,
+          "naturalHeight": 1000
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/df/df0937b7467d3c4a970087b450263a19113b6f03eb23fab53af364cc79c1197b.jpg",
+          "complete": true,
+          "naturalWidth": 1440,
+          "naturalHeight": 1000
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/d7/d7e5f0d8046111849012d2d258e1072e8ac63bfa96787ad85aa94110f1b588c2.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/f7/f7c39235a4921c22bc30f0b0da8b4f3e945f177593c0d9dee4837ca208023dc0.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/4c/4ce707d49a31786a61e3d76f3efa7fc47cbe3dca6115bf19143df6cd6e19f0ca.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        }
+      ],
+      "r2Responses": [
+        {
+          "url": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/26/261627fc63429eec9c761daa0108f7ee7abab8cbb589718ee76aae4191a81a3f.png",
+          "status": 200,
+          "contentType": "image/png"
+        },
+        {
+          "url": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/dd/ddbccdba1b2020fcc66afcdab6e58cd14e31805e55700dbbd1d440d20b5fd073.jpg",
+          "status": 200,
+          "contentType": "image/jpeg"
+        },
+        {
+          "url": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/df/df0937b7467d3c4a970087b450263a19113b6f03eb23fab53af364cc79c1197b.jpg",
+          "status": 200,
+          "contentType": "image/jpeg"
+        },
+        {
+          "url": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/c1/c1df56ff139a57f9fcbf1ae85952d5720996a044c46d87d205e556cbbed9e57a.jpg",
+          "status": 200,
+          "contentType": "image/jpeg"
+        }
+      ],
+      "r2Failures": [],
+      "horizontalOverflow": false
+    },
+    {
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "pageUrl": "http://127.0.0.1:3123/blog/mukhtadas-portfolio",
+      "directR2ImageElements": 11,
+      "loadedR2Images": 5,
+      "images": [
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/26/261627fc63429eec9c761daa0108f7ee7abab8cbb589718ee76aae4191a81a3f.png",
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 900
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/26/261627fc63429eec9c761daa0108f7ee7abab8cbb589718ee76aae4191a81a3f.png",
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 900
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/dd/ddbccdba1b2020fcc66afcdab6e58cd14e31805e55700dbbd1d440d20b5fd073.jpg",
+          "complete": false,
+          "naturalWidth": 1265,
+          "naturalHeight": 712
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/dd/ddbccdba1b2020fcc66afcdab6e58cd14e31805e55700dbbd1d440d20b5fd073.jpg",
+          "complete": true,
+          "naturalWidth": 1265,
+          "naturalHeight": 712
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/c1/c1df56ff139a57f9fcbf1ae85952d5720996a044c46d87d205e556cbbed9e57a.jpg",
+          "complete": false,
+          "naturalWidth": 1425,
+          "naturalHeight": 990
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/c1/c1df56ff139a57f9fcbf1ae85952d5720996a044c46d87d205e556cbbed9e57a.jpg",
+          "complete": true,
+          "naturalWidth": 1425,
+          "naturalHeight": 990
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/df/df0937b7467d3c4a970087b450263a19113b6f03eb23fab53af364cc79c1197b.jpg",
+          "complete": false,
+          "naturalWidth": 1440,
+          "naturalHeight": 1000
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/df/df0937b7467d3c4a970087b450263a19113b6f03eb23fab53af364cc79c1197b.jpg",
+          "complete": true,
+          "naturalWidth": 1440,
+          "naturalHeight": 1000
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/d7/d7e5f0d8046111849012d2d258e1072e8ac63bfa96787ad85aa94110f1b588c2.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/f7/f7c39235a4921c22bc30f0b0da8b4f3e945f177593c0d9dee4837ca208023dc0.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/4c/4ce707d49a31786a61e3d76f3efa7fc47cbe3dca6115bf19143df6cd6e19f0ca.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        }
+      ],
+      "r2Responses": [
+        {
+          "url": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/26/261627fc63429eec9c761daa0108f7ee7abab8cbb589718ee76aae4191a81a3f.png",
+          "status": 200,
+          "contentType": "image/png"
+        },
+        {
+          "url": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/c1/c1df56ff139a57f9fcbf1ae85952d5720996a044c46d87d205e556cbbed9e57a.jpg",
+          "status": 200,
+          "contentType": "image/jpeg"
+        },
+        {
+          "url": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/dd/ddbccdba1b2020fcc66afcdab6e58cd14e31805e55700dbbd1d440d20b5fd073.jpg",
+          "status": 200,
+          "contentType": "image/jpeg"
+        },
+        {
+          "url": "https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev/objects/sha256/df/df0937b7467d3c4a970087b450263a19113b6f03eb23fab53af364cc79c1197b.jpg",
+          "status": 200,
+          "contentType": "image/jpeg"
+        }
+      ],
+      "r2Failures": [],
+      "horizontalOverflow": false
+    }
+  ]
+}

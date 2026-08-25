@@ -2,6 +2,7 @@ import { v } from "convex/values";
 import type { Doc, Id } from "./_generated/dataModel";
 import { internalMutation, internalQuery, query } from "./_generated/server";
 import type { MutationCtx, QueryCtx } from "./_generated/server";
+import { r2PublicUrl } from "./r2PublicUrl";
 import { actorSnapshot, blogInput, publicBlogPost, publicBlogPostSummary } from "./validators";
 
 const BLOG_SCHEMA_VERSION = 2;
@@ -217,7 +218,7 @@ async function resolveImage<T extends {
   if (file?.storageProvider === "r2" && file.r2Key && file.r2VerifiedAt) {
     if (file.sourceKey) resolved.assetKey = file.sourceKey;
     delete resolved.storageId;
-    resolved.src = `/api/media/${file._id}`;
+    resolved.src = r2PublicUrl(file.r2Key);
     return resolved;
   }
 

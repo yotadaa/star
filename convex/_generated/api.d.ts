@@ -18,6 +18,7 @@ import type * as inventory from "../inventory.js";
 import type * as migrationAudit from "../migrationAudit.js";
 import type * as migrations from "../migrations.js";
 import type * as nalaSettings from "../nalaSettings.js";
+import type * as r2PublicUrl from "../r2PublicUrl.js";
 import type * as r2Storage from "../r2Storage.js";
 import type * as records from "../records.js";
 import type * as validators from "../validators.js";
@@ -40,6 +41,7 @@ declare const fullApi: ApiFromModules<{
   migrationAudit: typeof migrationAudit;
   migrations: typeof migrations;
   nalaSettings: typeof nalaSettings;
+  r2PublicUrl: typeof r2PublicUrl;
   r2Storage: typeof r2Storage;
   records: typeof records;
   validators: typeof validators;

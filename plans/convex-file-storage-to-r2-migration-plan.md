@@ -9,7 +9,7 @@
 
 The configured target was `dev:impartial-basilisk-364`. A complete Convex export, including File Storage, was created before schema deployment and preserved at `/home/tada/Backups/star/convex-dev-pre-r2-2026-08-26.zip` (65,741,187 bytes; SHA-256 `3b7c6f9c597090a17c4bbe387e028a1087fdb012a760be631c66c289100a1486`). Production was not targeted because the available deploy key is development-scoped.
 
-Discovery reduced the required topology: all 69 stored objects were public Blog media, every `_storage` object had exactly one logical `files` row, every row had a `sourceKey`, and there were no record attachments or private files. The implementation therefore uses one private R2 bucket with signed GET delivery and logical `public`/`private` access on file rows. Published media receives a stable same-origin `/api/media/{fileId}` URL that issues a cache-bounded signed redirect. This avoids R2 metadata calls in Blog queries and avoids proxying image bytes through Next.js. A public custom domain can replace the redirect later without another Blog database rewrite.
+Discovery reduced the required topology: all 69 stored objects were public Blog media, every `_storage` object had exactly one logical `files` row, every row had a `sourceKey`, and there were no record attachments or private files. The configured development bucket is therefore a public-media bucket. Published media now resolves directly through `R2_PUBLIC_DOMAIN` at `https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev`; the same-origin `/api/media/{fileId}` route remains only as a cache-bounded compatibility redirect. This avoids R2 metadata calls in Blog queries and avoids proxying image bytes through Next.js. Because `r2.dev` exposes the whole bucket, private uploads fail closed until a separate non-public bucket is configured.
 
 The migration completed with these final invariants:
 
@@ -18,7 +18,7 @@ The migration completed with these final invariants:
 - All 69 legacy Convex `storageId` values remain on file rows for rollback; no Convex object was deleted.
 - All 69 migration jobs are `verified`; zero are pending or failed.
 - Blog documents retain provider-neutral `assetKey` references and contain zero `storageId` references.
-- Published output contains 89 stable R2 media references, seven intentionally external GitHub image references, zero legacy Convex URLs, and zero public `storageId` fields.
+- Published output contains 89 direct `R2_PUBLIC_DOMAIN` media references, seven intentionally external GitHub image references, zero same-origin media references, zero legacy Convex URLs, and zero public `storageId` fields.
 - New editor and publishing-script writes use signed R2 PUTs, full post-upload verification, and logical file commits. Replacing a `sourceKey` no longer deletes the Convex rollback object.
 
 Validation evidence is recorded in `validation/convex-r2-migration-2026-08-26/`. A production migration requires a separate production-scoped export, R2 environment configuration, canary, full copy, and reconciliation run; development completion must not be treated as production cutover.
@@ -56,7 +56,7 @@ These gates must be resolved before implementation. No default should silently b
 |---|---|---|---|
 | G1 | Add `@convex-dev/r2` | Approve the official component | Project guardrails prohibit new npm dependencies without explicit approval |
 | G2 | Public treatment of Blog drafts | Treat uploaded Blog media as public publication assets; use private staging only if drafts can contain confidential material | A public bucket makes an object public even before a post is published |
-| G3 | Public media hostname | Use a production custom domain such as `media.mukhtada.my.id` | Published Blog images need stable, CDN-cached URLs; `r2.dev` must not be used in production |
+| G3 | Public media hostname | Development uses the owner-supplied `r2.dev` domain; use a production custom domain such as `media.mukhtada.my.id` before production cutover | Published Blog images need stable, CDN-cached URLs, while a custom hostname avoids provider-host and local-DNS constraints |
 | G4 | Legacy retention | Keep Convex objects for 30 days after R2 write cutover and at least 7 days after the last fallback hit, whichever is later | Defines the rollback window and storage overlap cost |
 | G5 | Upload cutover strategy | Use a short owner-upload maintenance window for the final delta; do not implement dual writes | Uploads are owner-only and low-volume; a brief pause is simpler and safer than cross-provider pseudo-transactions |
 | G6 | Direct browser uploads | Defer to a separate optimization after migration | Preserves current byte validation and limits migration scope |
@@ -210,7 +210,7 @@ If content-addressed private keys would reveal a known-file hash in a leaked URL
 
 ### 6.3 Public delivery
 
-Build public URLs from a trusted server-side base such as `https://media.mukhtada.my.id` plus the generated R2 key. Do not persist the whole URL. This allows a domain change without rewriting every Blog record.
+Build public URLs from the deployment-scoped `R2_PUBLIC_DOMAIN` plus the generated R2 key. Development currently uses `https://pub-5447936c636f46cd8c8aaf2d17cde93c.r2.dev`; production should use a custom hostname such as `https://media.mukhtada.my.id`. Do not persist the whole URL. This allows a domain change without rewriting every Blog record.
 
 Set immutable caching only because keys are content-addressed:
 
@@ -220,7 +220,7 @@ Cache-Control: public, max-age=31536000, immutable
 
 ### 6.4 Private delivery
 
-After the existing authorization check, return either:
+Private delivery is not enabled on the current public-media bucket. Upload attempts classified as private fail with `R2_PRIVATE_BUCKET_NOT_CONFIGURED`, because a signed URL cannot make an object private when the bucket-wide `r2.dev` endpoint is enabled. After a separate non-public bucket is configured, the existing authorization check may return either:
 
 - a `303 See Other` redirect to a signed GET URL; or
 - JSON containing a signed URL when a caller explicitly requests metadata.
@@ -235,7 +235,7 @@ Use deployment-scoped, server-only flags:
 STORAGE_READ_MODE=convex_only | r2_first_with_convex_fallback | r2_only
 STORAGE_WRITE_PROVIDER=convex | r2
 STORAGE_UPLOADS_PAUSED=false | true
-R2_PUBLIC_BASE_URL=https://media.example.com
+R2_PUBLIC_DOMAIN=https://media.example.com
 ```
 
 Flags must be parsed through one module, fail closed on invalid values, and be included without secrets in the migration audit output.
@@ -549,7 +549,7 @@ Tasks:
 Acceptance gate:
 
 - Production private object is not anonymously readable.
-- Public test object loads through the custom domain, not `r2.dev` or the S3 API hostname.
+- Development public test objects load through the configured `R2_PUBLIC_DOMAIN`; production must use the approved custom hostname rather than the S3 API hostname.
 - Credentials cannot access unrelated buckets.
 - No credentials appear in source, logs, client bundles, or screenshots.
 
