@@ -1,4 +1,4 @@
-import { absoluteUrl, SITE_URL } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/seo";
 
 export default function robots() {
   return {
@@ -14,6 +14,5 @@ export default function robots() {
       ],
     },
     sitemap: absoluteUrl("/sitemap.xml"),
-    host: SITE_URL,
   };
 }

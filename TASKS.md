@@ -18,6 +18,8 @@
 
 ## Done
 
+- [x] ~~**Remove unsupported robots.txt Host directive**~~ (2026-08-26) - removed the non-standard `Host:` line flagged by Bing while preserving every allow/disallow rule and the absolute sitemap declaration. Evidence: `validation/robots-host-directive-2026-08-26/validation.md`.
+
 - [x] ~~**Implement Bing IndexNow for Blog changes**~~ (2026-08-26) - added the server-only key route, same-host/batched protocol client, automatic Blog admin and grounded-publisher notifications, guarded deployment CLI, and secret-safe local validation. Production activation is tracked separately under Waiting On. Evidence: `validation/blog-alt-indexnow-2026-08-26/`.
 - [x] ~~**Resolve Bing Blog image ALT warnings**~~ (2026-08-26) - all 22 rendered public Blog routes now have zero missing/empty image alt values; client-only and decorative fallbacks were covered without reintroducing screen-reader duplication. Evidence: `validation/blog-alt-indexnow-2026-08-26/`.
 
