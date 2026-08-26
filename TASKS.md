@@ -8,6 +8,8 @@
 
 ## Waiting On
 
+- [ ] **Activate IndexNow in Vercel production** - `https://me.mukhtada.my.id/indexnow-key.txt` is deployed but returns HTTP 503 because the Vercel production runtime does not have `INDEXNOW_API_KEY`. Add the existing server-only value to the Production environment and redeploy; then run the guarded IndexNow submission CLI and verify Bing acknowledgement. Evidence: `validation/blog-alt-indexnow-2026-08-26/validation.md`.
+
 ## Someday
 
 - [ ] **Upgrade the pre-existing vulnerable web/auth dependency paths** - `npm audit --omit=dev` currently reports two critical and four high findings across pinned Next.js 15.5.19, Auth.js beta.31, PostCSS 8.5.10, Sharp, and NanoID; test auth semantics and image optimization before applying the available upgrades. Evidence: `validation/convex-r2-migration-2026-08-26/validation.md`.
@@ -16,7 +18,7 @@
 
 ## Done
 
-- [x] ~~**Implement Bing IndexNow for Blog changes**~~ (2026-08-26) - added the server-only key route, same-host/batched protocol client, automatic Blog admin and grounded-publisher notifications, guarded deployment CLI, and secret-safe validation. Evidence: `validation/blog-alt-indexnow-2026-08-26/`.
+- [x] ~~**Implement Bing IndexNow for Blog changes**~~ (2026-08-26) - added the server-only key route, same-host/batched protocol client, automatic Blog admin and grounded-publisher notifications, guarded deployment CLI, and secret-safe local validation. Production activation is tracked separately under Waiting On. Evidence: `validation/blog-alt-indexnow-2026-08-26/`.
 - [x] ~~**Resolve Bing Blog image ALT warnings**~~ (2026-08-26) - all 22 rendered public Blog routes now have zero missing/empty image alt values; client-only and decorative fallbacks were covered without reintroducing screen-reader duplication. Evidence: `validation/blog-alt-indexnow-2026-08-26/`.
 
 - [x] ~~**Serve public Blog media directly from the R2 public domain** - configured the development deployment's `R2_PUBLIC_DOMAIN`, changed all verified public file and Blog resolvers to emit direct content-addressed `r2.dev` URLs, retained `/api/media/{id}` only as a compatibility redirect, and fail closed for private uploads until a separate non-public bucket exists.~~ (2026-08-26; evidence: `validation/r2-public-domain-2026-08-26/`)

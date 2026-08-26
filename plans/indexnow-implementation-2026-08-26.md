@@ -1,6 +1,6 @@
 # IndexNow implementation plan
 
-Status: complete
+Status: code complete; production activation waiting on Vercel environment configuration
 
 ## Evidence
 

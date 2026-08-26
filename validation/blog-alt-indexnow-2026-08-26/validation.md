@@ -30,6 +30,7 @@ Screenshots:
 - Deployment CLI dry-run finds 22 current Blog/index URLs and reports only host, key location, and count.
 - Secret audit confirms the key is absent from the rendered Blog HTML and all 90 generated client assets.
 - The local validation intentionally did not send a live IndexNow request before `/indexnow-key.txt` is deployed. The production CLI verifies that the deployed key file matches before it transmits URLs.
+- Post-push production check: Vercel serves the new route, but `/indexnow-key.txt` returns HTTP 503 because `INDEXNOW_API_KEY` is absent from the Vercel Production environment. Live submission is blocked until that existing server-only value is added and the deployment is refreshed.
 
 ## Commands
 
