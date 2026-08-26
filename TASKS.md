@@ -18,6 +18,8 @@
 
 ## Done
 
+- [x] ~~**Document the agent-only Blog upload workflow**~~ (2026-08-26) - added a copy-ready runbook covering grounded research packages, provider-neutral R2 assets, native payload and batch parameters, SEO/seed registration, explicit script publishing, checksum reuse, live audits, IndexNow, route validation, update rules, and common failures without using the web editor. Plan: `plans/agent-blog-upload-runbook-2026-08-26.md`; evidence: `validation/agent-blog-upload-runbook-2026-08-26/validation.md`.
+
 - [x] ~~**Remove unsupported robots.txt Host directive**~~ (2026-08-26) - removed the non-standard `Host:` line flagged by Bing while preserving every allow/disallow rule and the absolute sitemap declaration. Evidence: `validation/robots-host-directive-2026-08-26/validation.md`.
 
 - [x] ~~**Implement Bing IndexNow for Blog changes**~~ (2026-08-26) - added the server-only key route, same-host/batched protocol client, automatic Blog admin and grounded-publisher notifications, guarded deployment CLI, and secret-safe local validation. Production activation is tracked separately under Waiting On. Evidence: `validation/blog-alt-indexnow-2026-08-26/`.

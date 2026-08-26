@@ -2,6 +2,8 @@
 
 This document defines what an automated Blog-writing agent must prepare before it can create or update an article in this repository. A writing request is not a publish instruction until every required input and gate below is complete.
 
+For the current agent-only Convex/R2 upload commands, file templates, batch parameters, duplicate-run check, and IndexNow procedure, follow [`docs/blog-agent-upload-runbook.md`](blog-agent-upload-runbook.md). This contract defines the evidence and editorial gates; the runbook defines the repository operation.
+
 ## 1. Assignment packet
 
 The automation must receive or establish these items before research starts:
@@ -70,13 +72,8 @@ Every article payload must contain these fields:
     url: "<canonical HTTPS profile URL>"
   },
   articleSection: "<editorial section, not coverTone>",
-  featuredImage: {
-    storageId: "<Convex Storage ID when stored>",
-    assetKey: "blog:<slug>:<semantic-key>",
-    alt: "<contextual alt text>",
-    width: 0,
-    height: 0
-  },
+  // The grounded publisher derives featuredImage from the checked-in
+  // featuredImageKey and its matching provider-neutral image block.
   blocks: []
 }
 ```
@@ -117,7 +114,7 @@ The Convex Blog model accepts these block types only:
 | `quote` | `text` and a verifiable speaker/source in nearby prose | none |
 | `list` | newline-separated `text` | numeric prefixes for an ordered list |
 | `code` | `text` | a supported flowchart declaration |
-| `image` | `text`, `alt`, `width`, `height`, and a durable source | `storageId`, `assetKey`, or stable external `src` |
+| `image` | `text`, `alt`, `width`, `height`, and a durable `assetKey` | none for grounded batch input |
 | `divider` | empty `text` | none |
 | `table` | `text` caption and `rows` | none |
 | `icon` | `text` | none |
@@ -145,12 +142,12 @@ Every image needs a visual-ledger row:
 
 Collected third-party web images are research references, not publishable Blog assets. The agent may publish an original generated illustration, authorized user-owned media, a first-party repository asset, or source evidence whose publication rights have been established. Generated art cannot impersonate a real screenshot, person, document, result, benchmark, or event.
 
-For a Convex-stored image:
+For an image published through the grounded batch uploader:
 
-- Upload the final encoded file once.
-- Reuse an existing file when its stable asset key and checksum match.
-- Persist `storageId` and `assetKey` in the write payload.
-- Do not persist the resolved Convex delivery URL; it is generated at read time.
+- Declare the final local file once in the explicit batch manifest.
+- Reuse an existing R2-backed file when its stable asset key and checksum match.
+- Keep the input payload provider-neutral: persist `assetKey`, not `storageId` or `src`.
+- Let the protected publisher resolve and verify the R2-backed delivery record.
 - Measure `width` and `height` from the encoded bytes, not from CSS or the intended crop.
 - Write brief alt text that describes the image's role. A caption should add evidence or context rather than repeat the alt text.
 
