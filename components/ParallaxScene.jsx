@@ -517,15 +517,15 @@ function StaticParallaxScene({ themeName }) {
     >
       <div className="parallax-static-sky" />
       {themeName === "night" ? (
-        <img className="parallax-static-orb parallax-static-moon" src={ASSETS.moon} alt="" />
+        <img className="parallax-static-orb parallax-static-moon" src={ASSETS.moon} alt="Pixel moon above the landscape" />
       ) : (
-        <img className="parallax-static-orb parallax-static-sun" src={ASSETS.sun} alt="" />
+        <img className="parallax-static-orb parallax-static-sun" src={ASSETS.sun} alt="Pixel sun above the landscape" />
       )}
-      <img className="parallax-static-cloud parallax-static-cloud-far" src={ASSETS.cloud} alt="" />
-      <img className="parallax-static-cloud parallax-static-cloud-near" src={ASSETS.cloud} alt="" />
-      <img className="parallax-static-landscape parallax-static-mountains" src={ASSETS.mountains} alt="" />
-      <img className="parallax-static-landscape parallax-static-hills" src={ASSETS.hills} alt="" />
-      <img className="parallax-static-landscape parallax-static-meadow" src={ASSETS.meadow} alt="" />
+      <img className="parallax-static-cloud parallax-static-cloud-far" src={ASSETS.cloud} alt="Distant pixel cloud" />
+      <img className="parallax-static-cloud parallax-static-cloud-near" src={ASSETS.cloud} alt="Nearby pixel cloud" />
+      <img className="parallax-static-landscape parallax-static-mountains" src={ASSETS.mountains} alt="Pixel mountain range" />
+      <img className="parallax-static-landscape parallax-static-hills" src={ASSETS.hills} alt="Pixel hillside" />
+      <img className="parallax-static-landscape parallax-static-meadow" src={ASSETS.meadow} alt="Pixel meadow" />
       <div className="parallax-static-wash" />
     </div>
   );

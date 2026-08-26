@@ -5,6 +5,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { ConvexHttpClient } from "convex/browser";
 import { makeFunctionReference } from "convex/server";
 import { completeBlogSeoData } from "./blog-seo-data.mjs";
+import { submitIndexNowUrls } from "../lib/indexNowCore.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const defaultBatchPath = path.join(
@@ -345,7 +346,32 @@ export async function publishGroundedBlogBatch(batchPath = defaultBatchPath) {
   for (const article of batch.articles) {
     results.push(await publishArticle(client, secret, article));
   }
-  console.log(JSON.stringify({ batch: batch.name || path.basename(batchPath), results }, null, 2));
+
+  let indexNow;
+  try {
+    const siteOrigin = process.env.NEXT_PUBLIC_SITE_URL || "https://me.mukhtada.my.id";
+    indexNow = await submitIndexNowUrls({
+      key: process.env.INDEXNOW_API_KEY,
+      siteOrigin,
+      urls: [
+        new URL("/blog", `${siteOrigin}/`).toString(),
+        ...results.map((result) => new URL(`/blog/${encodeURIComponent(result.slug)}`, `${siteOrigin}/`).toString()),
+      ],
+    });
+  } catch (error) {
+    indexNow = {
+      ok: false,
+      code: error?.code || "INDEXNOW_ERROR",
+      ...(error?.status ? { status: error.status } : {}),
+    };
+    console.error("[indexnow] Grounded Blog batch notification failed", indexNow);
+  }
+
+  console.log(JSON.stringify({
+    batch: batch.name || path.basename(batchPath),
+    results,
+    indexNow,
+  }, null, 2));
   return results;
 }
 

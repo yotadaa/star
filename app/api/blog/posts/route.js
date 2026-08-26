@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { canWriteBackend, getApiActor } from "@/lib/backend/routeAuth";
 import { createBlogPost, listBlogPosts } from "@/lib/backend/featureStore";
+import { notifyBlogChange } from "@/lib/indexNow";
 
 export const dynamic = "force-dynamic";
 
@@ -40,7 +41,8 @@ export async function POST(request) {
   try {
     const payload = await request.json();
     const post = await createBlogPost({ payload, actor });
-    return NextResponse.json({ ok: true, post, source: "convex" }, { status: 201 });
+    const indexNow = await notifyBlogChange({ post });
+    return NextResponse.json({ ok: true, post, source: "convex", indexNow }, { status: 201 });
   } catch (error) {
     return errorResponse(error, 400);
   }

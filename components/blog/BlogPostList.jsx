@@ -251,7 +251,7 @@ export default function BlogPostList({ posts, canManageBlog = false }) {
                     <img
                       className="blog-cover-image"
                       src={featuredImage.src}
-                      alt=""
+                      alt={featuredImage.alt || `Featured image for ${post.title}`}
                       aria-hidden="true"
                       loading="lazy"
                       decoding="async"

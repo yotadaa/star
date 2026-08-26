@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { canWriteBackend, getApiActor } from "@/lib/backend/routeAuth";
 import { getBlogPostById, updateBlogPost } from "@/lib/backend/featureStore";
+import { notifyBlogChange } from "@/lib/indexNow";
 
 export const dynamic = "force-dynamic";
 
@@ -38,12 +39,14 @@ export async function PATCH(request, { params }) {
   try {
     const { id } = await params;
     const payload = await request.json();
+    const { post: previousPost } = await getBlogPostById(id);
     const post = await updateBlogPost(id, { payload, actor });
     if (!post) {
       return NextResponse.json({ ok: false, error: "NOT_FOUND_OR_LOCAL_FALLBACK" }, { status: 404 });
     }
 
-    return NextResponse.json({ ok: true, post, source: "convex" });
+    const indexNow = await notifyBlogChange({ post, previousPost });
+    return NextResponse.json({ ok: true, post, source: "convex", indexNow });
   } catch (error) {
     return errorResponse(error, 400);
   }

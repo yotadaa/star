@@ -355,7 +355,11 @@ export default function ManageCockpit({ initialSettings, keyConfigured, configWa
                 <div className="manage-expression-grid">
                   {EXPRESSIONS.map((expression) => (
                     <article key={expression.id}>
-                      <img src={`/assets/nala/nala-${expression.id}-pixel.png`} alt="" aria-hidden="true" />
+                      <img
+                        src={`/assets/nala/nala-${expression.id}-pixel.png`}
+                        alt={`Nala ${expression.id} expression preview`}
+                        aria-hidden="true"
+                      />
                       <div>
                         <strong>{expression.label}</strong>
                         <span>{expression.trigger}</span>

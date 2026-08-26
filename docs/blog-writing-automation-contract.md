@@ -213,6 +213,13 @@ Run the read-only command again. A correct second pass reports zero required upd
 npm run build
 ```
 
+The grounded batch publisher also notifies IndexNow for `/blog` and every changed article URL when `INDEXNOW_API_KEY` is configured. Its output must show `indexNow.ok: true` with HTTP 200 or 202. That acknowledgement means the URL update was received, not that the page has been crawled or indexed. If deployment-time catch-up is required, inspect the URL count first and submit only after the deployed key route matches:
+
+```bash
+npm run indexnow:submit -- --dry-run
+npm run indexnow:submit
+```
+
 The final evidence folder must contain the claim ledger, terminology ledger when used, visual ledger, publisher output, no-op rerun output, rendered metadata assertions, and desktop/mobile/reduced-motion screenshots.
 
 ## 9. Stop conditions

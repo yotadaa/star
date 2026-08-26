@@ -97,7 +97,7 @@ function NalaPortrait({ expression = "idle", className = "" }) {
     <img
       className={`nala-sprite ${className}`.trim()}
       src={src}
-      alt=""
+      alt={`Pixel portrait of Nala with a ${expression} expression`}
       aria-hidden="true"
       decoding="async"
       draggable="false"

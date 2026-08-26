@@ -21,7 +21,12 @@ export default function UserAvatarMenu() {
         onClick={() => setOpen((current) => !current)}
       >
         {user.image ? (
-          <img src={user.image} alt="" referrerPolicy="no-referrer" />
+          <img
+            src={user.image}
+            alt={`Profile picture for ${user.name || "the signed-in user"}`}
+            aria-hidden="true"
+            referrerPolicy="no-referrer"
+          />
         ) : (
           <SpriteIcon id="icon-user-chip" size={17} />
         )}

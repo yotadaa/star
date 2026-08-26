@@ -18,7 +18,7 @@ function ReadingCover({ post, className = "" }) {
       {image ? (
         <img
           src={image.src}
-          alt=""
+          alt={image.alt || `Featured image for ${post.title}`}
           loading="lazy"
           decoding="async"
           width={image.width}

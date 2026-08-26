@@ -18,7 +18,7 @@ export default function PlayerAvatar({ size = "sm" }) {
     <span className={`player-avatar player-avatar-${size}`} aria-hidden="true">
       <img
         src="/assets/avatar-pixelated.png"
-        alt=""
+        alt="Pixel portrait of Mukhtada"
         width={size === "lg" ? 64 : 34}
         height={size === "lg" ? 64 : 34}
         onError={() => setFailed(true)}

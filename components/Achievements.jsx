@@ -6,7 +6,12 @@ export default function Achievements() {
     <div className="ach-grid" data-testid="achievements-grid">
       {achievements.map((a, i) => (
         <Reveal key={a.title} className="ach-card" delay={i * 60}>
-          <img src={`/assets/svg/medal-${a.medal}.svg`} alt="" aria-hidden="true" className="ach-medal" />
+          <img
+            src={`/assets/svg/medal-${a.medal}.svg`}
+            alt={`${a.medal} medal for ${a.title}`}
+            aria-hidden="true"
+            className="ach-medal"
+          />
           <span className="ach-year">{a.year}</span>
           <span className="ach-tag">{a.tag}</span>
           <h3>{a.title}</h3>
