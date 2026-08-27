@@ -5,7 +5,7 @@ This is the operational tutorial for an agent that prepares, uploads, publishes,
 Use this together with:
 
 - [`docs/blog-writing-automation-contract.md`](blog-writing-automation-contract.md) for the editorial and evidence contract;
-- `$write-grounded-blogs` at `/home/tada/.codex/skills/write-grounded-blogs/SKILL.md` for the research-first writing procedure;
+- `$write-grounded-blogs` at `~/.agents/skills/write-grounded-blogs/SKILL.md` for the shared research-first writing procedure;
 - [`scripts/publish-grounded-blog-batch.mjs`](../scripts/publish-grounded-blog-batch.mjs) as the only normal agent-side publisher for grounded Blog packages.
 
 ## 1. What this workflow does
@@ -153,12 +153,12 @@ For grounded investigations, the usual package contains one original editorial f
 
 The article should be readable as a standalone English article before conversion to blocks. Use warm third-person editorial voice unless the assignment explicitly requires another voice. Discuss meaningful advantages, drawbacks, uncertainties, and counterexamples.
 
-Do not add a generic “Research note,” source-count summary, cutoff disclaimer, or methodology paragraph at the end. Put material limitations next to the affected claims and resolve the article's opening question before the CTA.
+Do not add a generic "Research note," source-count summary, cutoff disclaimer, or methodology paragraph at the end. Put material limitations next to the affected claims and resolve the article's opening question before the CTA.
 
 Audit the draft:
 
 ```bash
-python /home/tada/.codex/skills/write-grounded-blogs/scripts/audit_blog.py \
+python ~/.agents/skills/write-grounded-blogs/scripts/audit_blog.py \
   validation/<slug>-YYYY-MM-DD/draft.md \
   --third-person
 ```
@@ -558,7 +558,7 @@ The dry run reports the host, key location, and URL count without submitting. Th
 - Remaining blocker: none / exact blocker
 ```
 
-Do not write “all checks passed” without the underlying counts and paths.
+Do not write "all checks passed" without the underlying counts and paths.
 
 ## 15. Common failures
 

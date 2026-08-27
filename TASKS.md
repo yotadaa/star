@@ -18,6 +18,8 @@
 
 ## Done
 
+- [x] ~~**Install `write-grounded-blogs` as a global cross-agent skill**~~ (2026-08-27) - promoted one canonical Agent Skills package under `~/.agents/skills`, linked Codex and Claude Code to it, bundled the Star Blog automation contract and agent-only upload runbook, preserved the former Codex package as a recoverable backup, and passed structural, script, Claude discovery, installer-idempotency, and independent-agent boundary checks. Plan: `plans/global-write-grounded-blogs-skill-2026-08-27.md`; evidence: `validation/global-write-grounded-blogs-skill-2026-08-27/validation.md`.
+
 - [x] ~~**Document the agent-only Blog upload workflow**~~ (2026-08-26) - added a copy-ready runbook covering grounded research packages, provider-neutral R2 assets, native payload and batch parameters, SEO/seed registration, explicit script publishing, checksum reuse, live audits, IndexNow, route validation, update rules, and common failures without using the web editor. Plan: `plans/agent-blog-upload-runbook-2026-08-26.md`; evidence: `validation/agent-blog-upload-runbook-2026-08-26/validation.md`.
 
 - [x] ~~**Remove unsupported robots.txt Host directive**~~ (2026-08-26) - removed the non-standard `Host:` line flagged by Bing while preserving every allow/disallow rule and the absolute sitemap declaration. Evidence: `validation/robots-host-directive-2026-08-26/validation.md`.

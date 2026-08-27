@@ -4,6 +4,8 @@ This document defines what an automated Blog-writing agent must prepare before i
 
 For the current agent-only Convex/R2 upload commands, file templates, batch parameters, duplicate-run check, and IndexNow procedure, follow [`docs/blog-agent-upload-runbook.md`](blog-agent-upload-runbook.md). This contract defines the evidence and editorial gates; the runbook defines the repository operation.
 
+This contract and its upload runbook are also bundled into the global `write-grounded-blogs` Agent Skills package. The live repository copies remain authoritative for Star Blog work; refresh the global bundle with `npm run skill:write-grounded-blogs:install` after changing either document.
+
 ## 1. Assignment packet
 
 The automation must receive or establish these items before research starts:
