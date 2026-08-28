@@ -140,6 +140,15 @@ export const BLOG_SEO_RECORDS = Object.freeze({
     articleSection: "AI Investigation",
     featuredImageKey: "blog:ox-alpha-api-left-a-trail:featured-trail",
   }),
+  "openai-bel-rumor-one-source-no-confirmation": Object.freeze({
+    seoTitle: "OpenAI Bel Rumor: One Source, No Confirmation",
+    seoDescription:
+      "The viral Bel roadmap traces to one X post. OpenAI confirms Astra and live Stargate training—but not Bel, Doug, 10T parameters, or a GPT-6 lineage.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "AI Investigation",
+    featuredImageKey: "blog:openai-bel-rumor-one-source-no-confirmation:feature-source-gap",
+  }),
   "gpt-6-astra-rumor-origin": Object.freeze({
     seoTitle: "GPT-6 Astra Rumor: Origin and Verified Facts",
     seoDescription:
@@ -285,6 +294,9 @@ export const BLOG_IMAGE_DIMENSIONS = Object.freeze({
   "blog:ox-alpha-api-left-a-trail:openrouter-model-card": { width: 1265, height: 712 },
   "blog:ox-alpha-api-left-a-trail:serving-layer-trace": { width: 1672, height: 941 },
   "blog:ox-alpha-api-left-a-trail:tokenizer-fingerprint": { width: 1672, height: 941 },
+  "blog:openai-bel-rumor-one-source-no-confirmation:feature-source-gap": { width: 1672, height: 941 },
+  "blog:openai-bel-rumor-one-source-no-confirmation:evidence-original-bel-post": { width: 1265, height: 500 },
+  "blog:openai-bel-rumor-one-source-no-confirmation:claim-status-matrix": { width: 1600, height: 1080 },
   "blog:stok-toko-project-review:assistant": { width: 612, height: 1360 },
   "blog:stok-toko-project-review:barcode-scanner": { width: 612, height: 1360 },
   "blog:stok-toko-project-review:catalog": { width: 612, height: 1360 },

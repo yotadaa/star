@@ -1,0 +1,77 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080">
+  <rect width="1600" height="1080" fill="#F3EFE7" />
+  <rect x="40" y="40" width="1520" height="1000" rx="10" fill="#F8F5EE" stroke="#BBB2A2" stroke-width="2" />
+  <circle cx="66" cy="96" r="10" fill="#A94B3F" />
+  <text x="92" y="128" class="title">What the public record can support</text>
+  <text x="92" y="168" class="subtitle">A claim-by-claim check of the OpenAI ‘Bel’ rumor</text>
+  <text x="1508" y="168" text-anchor="end" class="date">Checked 28 Aug 2026 · Asia/Jakarta</text>
+
+    <g transform="translate(0 218)">
+      <line x1="92" y1="0" x2="1508" y2="0" stroke="#CFC8BB" stroke-width="1" />
+      <text x="92" y="31" class="claim">Astra is an upcoming OpenAI model</text>
+      <rect x="92" y="46" rx="17" ry="17" width="142" height="34" fill="#DDE7DB" stroke="#91A98F" />
+      <text x="110" y="69" class="verdict" fill="#27432B">VERIFIED</text>
+      <text x="390" y="67" class="detail">OpenAI calls Astra its next major and upcoming model.</text>
+    </g>
+    <g transform="translate(0 314)">
+      <line x1="92" y1="0" x2="1508" y2="0" stroke="#CFC8BB" stroke-width="1" />
+      <text x="92" y="31" class="claim">OpenAI finished a pretrain called Bel</text>
+      <rect x="92" y="46" rx="17" ry="17" width="142" height="34" fill="#EFE3C7" stroke="#B49A62" />
+      <text x="110" y="69" class="verdict" fill="#624B19">CLAIMED</text>
+      <text x="390" y="67" class="detail">One X post says so; no OpenAI artifact or independent confirmation.</text>
+    </g>
+    <g transform="translate(0 410)">
+      <line x1="92" y1="0" x2="1508" y2="0" stroke="#CFC8BB" stroke-width="1" />
+      <text x="92" y="31" class="claim">Doug becomes Astra or GPT-6 after RL</text>
+      <rect x="92" y="46" rx="17" ry="17" width="142" height="34" fill="#E1E3E6" stroke="#A3A7AD" />
+      <text x="110" y="69" class="verdict" fill="#3F444B">UNKNOWN</text>
+      <text x="390" y="67" class="detail">The lineage appears only in the same social post.</text>
+    </g>
+    <g transform="translate(0 506)">
+      <line x1="92" y1="0" x2="1508" y2="0" stroke="#CFC8BB" stroke-width="1" />
+      <text x="92" y="31" class="claim">Bel has more than 10T parameters</text>
+      <rect x="92" y="46" rx="17" ry="17" width="142" height="34" fill="#EFE3C7" stroke="#B49A62" />
+      <text x="110" y="69" class="verdict" fill="#624B19">CLAIMED</text>
+      <text x="390" y="67" class="detail">The source says parameters, not training tokens; no technical record.</text>
+    </g>
+    <g transform="translate(0 602)">
+      <line x1="92" y1="0" x2="1508" y2="0" stroke="#CFC8BB" stroke-width="1" />
+      <text x="92" y="31" class="claim">Bel is the same size class as GPT-4.5</text>
+      <rect x="92" y="46" rx="17" ry="17" width="198" height="34" fill="#E1E3E6" stroke="#A3A7AD" />
+      <text x="110" y="69" class="verdict" fill="#3F444B">NOT CHECKABLE</text>
+      <text x="390" y="67" class="detail">OpenAI did not publish GPT-4.5’s parameter count.</text>
+    </g>
+    <g transform="translate(0 698)">
+      <line x1="92" y1="0" x2="1508" y2="0" stroke="#CFC8BB" stroke-width="1" />
+      <text x="92" y="31" class="claim">Stargate already runs training workloads</text>
+      <rect x="92" y="46" rx="17" ry="17" width="142" height="34" fill="#DDE7DB" stroke="#91A98F" />
+      <text x="110" y="69" class="verdict" fill="#27432B">VERIFIED</text>
+      <text x="390" y="67" class="detail">OpenAI says early training ran at its Abilene campus.</text>
+    </g>
+    <g transform="translate(0 794)">
+      <line x1="92" y1="0" x2="1508" y2="0" stroke="#CFC8BB" stroke-width="1" />
+      <text x="92" y="31" class="claim">Stargate trained Bel</text>
+      <rect x="92" y="46" rx="17" ry="17" width="174" height="34" fill="#EAD8D3" stroke="#B77A6F" />
+      <text x="110" y="69" class="verdict" fill="#6C2C24">UNSUPPORTED</text>
+      <text x="390" y="67" class="detail">No checked source connects the infrastructure to that codename.</text>
+    </g>
+    <g transform="translate(0 890)">
+      <line x1="92" y1="0" x2="1508" y2="0" stroke="#CFC8BB" stroke-width="1" />
+      <text x="92" y="31" class="claim">Anthropic accepted a weak 2026 and 2027 comeback</text>
+      <rect x="92" y="46" rx="17" ry="17" width="174" height="34" fill="#EAD8D3" stroke="#B77A6F" />
+      <text x="110" y="69" class="verdict" fill="#6C2C24">UNSUPPORTED</text>
+      <text x="390" y="67" class="detail">No named speaker, document, or direct report supports the claim.</text>
+    </g>
+  <line x1="92" y1="986" x2="1508" y2="986" stroke="#CFC8BB" stroke-width="1" />
+  <text x="92" y="1020" class="footer">Sources: OpenAI, Anthropic, Reuters, and the traced X source chain</text>
+  <style>
+    .title { font-family: Inter, Arial, sans-serif; font-size: 48px; font-weight: 700; fill: #252321; }
+    .subtitle { font-family: Inter, Arial, sans-serif; font-size: 24px; fill: #625E57; }
+    .date { font-family: Inter, Arial, sans-serif; font-size: 18px; fill: #7B756C; }
+    .claim { font-family: Inter, Arial, sans-serif; font-size: 24px; font-weight: 650; fill: #252321; }
+    .verdict { font-family: Inter, Arial, sans-serif; font-size: 17px; font-weight: 750; letter-spacing: 1.2px; }
+    .detail { font-family: Inter, Arial, sans-serif; font-size: 20px; fill: #4C4944; }
+    .footer { font-family: Inter, Arial, sans-serif; font-size: 17px; fill: #6B655D; }
+  </style>
+</svg>

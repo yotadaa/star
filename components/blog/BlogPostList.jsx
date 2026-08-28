@@ -8,6 +8,22 @@ import BlogPostCard from "./BlogPostCard";
 
 const PRIMARY_TOPIC_LIMIT = 3;
 
+function pageHref(page) {
+  return page > 1 ? `/blog?page=${page}` : "/blog";
+}
+
+function paginationRange(totalPages, currentPage) {
+  if (totalPages <= 7) return Array.from({ length: totalPages }, (_, index) => index + 1);
+  const pages = new Set([1, totalPages, currentPage - 1, currentPage, currentPage + 1]);
+  const ordered = [...pages].filter((page) => page > 0 && page <= totalPages).sort((a, b) => a - b);
+  const result = [];
+  ordered.forEach((page, index) => {
+    if (index > 0 && page - ordered[index - 1] > 1) result.push(`gap-${page}`);
+    result.push(page);
+  });
+  return result;
+}
+
 function primaryTag(post) {
   return post.tags?.[0] || "Lore";
 }
@@ -36,13 +52,14 @@ function rankTopics(posts) {
   });
 }
 
-export default function BlogPostList({ posts, canManageBlog = false }) {
+export default function BlogPostList({ posts, canManageBlog = false, initialPage = 1, pageSize = 10 }) {
   const [items, setItems] = useState(posts);
   const [actionState, setActionState] = useState("");
   const [activeTag, setActiveTag] = useState("All");
   const [showMoreTopics, setShowMoreTopics] = useState(false);
   const [topicQuery, setTopicQuery] = useState("");
   const [view, setView] = useState("list");
+  const [currentPage, setCurrentPage] = useState(initialPage);
   const moreTopicsId = useId();
   const moreTopicsButtonRef = useRef(null);
   const primaryTopicsRef = useRef(null);
@@ -63,7 +80,22 @@ export default function BlogPostList({ posts, canManageBlog = false }) {
     () => (activeTag === "All" ? items : items.filter((post) => (post.tags || []).includes(activeTag))),
     [activeTag, items]
   );
+  const totalPages = Math.max(1, Math.ceil(visiblePosts.length / pageSize));
+  const safePage = Math.min(currentPage, totalPages);
+  const paginatedPosts = useMemo(() => {
+    const start = (safePage - 1) * pageSize;
+    return visiblePosts.slice(start, start + pageSize);
+  }, [pageSize, safePage, visiblePosts]);
+  const pageItems = useMemo(() => paginationRange(totalPages, safePage), [safePage, totalPages]);
   const hasMoreTopics = rankedTopics.length > PRIMARY_TOPIC_LIMIT;
+
+  useEffect(() => {
+    setItems(posts);
+  }, [posts]);
+
+  useEffect(() => {
+    setCurrentPage(initialPage);
+  }, [initialPage]);
 
   useEffect(() => {
     if (activeTag !== "All" && !rankedTopics.some((topic) => topic.name === activeTag)) {
@@ -85,6 +117,7 @@ export default function BlogPostList({ posts, canManageBlog = false }) {
 
   function selectTopic(topic) {
     setActiveTag(topic);
+    setCurrentPage(1);
   }
 
   function toggleMoreTopics() {
@@ -124,6 +157,7 @@ export default function BlogPostList({ posts, canManageBlog = false }) {
             <span className="pixel-label">// FILTER ARTICLES</span>
             <span className="blog-filter-result" role="status" aria-live="polite">
               {visiblePosts.length} {visiblePosts.length === 1 ? "article" : "articles"} · {activeTag === "All" ? "All topics" : activeTag}
+              {totalPages > 1 ? ` · Page ${safePage} of ${totalPages}` : ""}
             </span>
           </div>
 
@@ -233,13 +267,13 @@ export default function BlogPostList({ posts, canManageBlog = false }) {
 
       {view === "grid" ? (
         <div className="blog-grid">
-          {visiblePosts.map((post) => (
+          {paginatedPosts.map((post) => (
             <BlogPostCard key={post.id} post={post} canManageBlog={canManageBlog} />
           ))}
         </div>
       ) : (
         <div className="blog-list hardcard">
-          {visiblePosts.map((post) => {
+          {paginatedPosts.map((post) => {
             const featuredImage = getBlogFeaturedImage(post);
             return (
               <article className="blog-row" key={post.id}>
@@ -282,6 +316,73 @@ export default function BlogPostList({ posts, canManageBlog = false }) {
             );
           })}
         </div>
+      )}
+
+      {totalPages > 1 && (
+        <nav className="blog-pagination" aria-label="Blog pages">
+          {safePage > 1 ? (
+            activeTag === "All" ? (
+              <Link className="blog-pagination-step" href={pageHref(safePage - 1)} rel="prev">
+                <span aria-hidden="true">←</span> Previous
+              </Link>
+            ) : (
+              <button className="blog-pagination-step" type="button" onClick={() => setCurrentPage(safePage - 1)}>
+                <span aria-hidden="true">←</span> Previous
+              </button>
+            )
+          ) : (
+            <span className="blog-pagination-step is-disabled" aria-disabled="true">
+              <span aria-hidden="true">←</span> Previous
+            </span>
+          )}
+
+          <div className="blog-pagination-pages" aria-label={`Page ${safePage} of ${totalPages}`}>
+            {pageItems.map((page) => (
+              typeof page === "number" ? (
+                activeTag === "All" ? (
+                  <Link
+                    key={page}
+                    href={pageHref(page)}
+                    className={page === safePage ? "is-current" : ""}
+                    aria-current={page === safePage ? "page" : undefined}
+                    aria-label={`Page ${page}`}
+                  >
+                    {page}
+                  </Link>
+                ) : (
+                  <button
+                    key={page}
+                    type="button"
+                    className={page === safePage ? "is-current" : ""}
+                    aria-current={page === safePage ? "page" : undefined}
+                    aria-label={`Page ${page}`}
+                    onClick={() => setCurrentPage(page)}
+                  >
+                    {page}
+                  </button>
+                )
+              ) : (
+                <span key={page} className="blog-pagination-gap" aria-hidden="true">…</span>
+              )
+            ))}
+          </div>
+
+          {safePage < totalPages ? (
+            activeTag === "All" ? (
+              <Link className="blog-pagination-step" href={pageHref(safePage + 1)} rel="next">
+                Next <span aria-hidden="true">→</span>
+              </Link>
+            ) : (
+              <button className="blog-pagination-step" type="button" onClick={() => setCurrentPage(safePage + 1)}>
+                Next <span aria-hidden="true">→</span>
+              </button>
+            )
+          ) : (
+            <span className="blog-pagination-step is-disabled" aria-disabled="true">
+              Next <span aria-hidden="true">→</span>
+            </span>
+          )}
+        </nav>
       )}
     </section>
   );

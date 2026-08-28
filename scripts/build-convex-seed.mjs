@@ -22,6 +22,7 @@ const sourceFiles = [
   "scripts/blog-batches/six-grounded-blogs-2026-08-24.json",
   "scripts/blog-batches/claude-code-limit-burn-2026-08-24.json",
   "scripts/blog-batches/six-internet-culture-blogs-2026-08-24.json",
+  "scripts/blog-batches/openai-bel-rumor-2026-08-28.json",
   "scripts/publish-grounded-blog-batch.mjs",
   "scripts/blog-seo-data.mjs",
   "scripts/image-dimensions.mjs",
@@ -110,6 +111,10 @@ const sourceFiles = [
   "validation/instagram-real-content-labeled-ai-2026-08-24/payload.json",
   "validation/instagram-real-content-labeled-ai-2026-08-24/assets/instagram-ai-label-feature.png",
   "validation/instagram-real-content-labeled-ai-2026-08-24/sources/I02-crop-meta-minor-modifications.jpg",
+  "validation/openai-bel-rumor-investigation-2026-08-28/payload.json",
+  "validation/openai-bel-rumor-investigation-2026-08-28/assets/feature-bel-source-gap.png",
+  "validation/openai-bel-rumor-investigation-2026-08-28/assets/evidence-original-bel-post.jpg",
+  "validation/openai-bel-rumor-investigation-2026-08-28/assets/claim-status-matrix.png",
 ];
 
 function fail(message) {

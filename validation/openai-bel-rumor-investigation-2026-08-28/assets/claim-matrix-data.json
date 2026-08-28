@@ -1,0 +1,48 @@
+{
+  "title": "What the public record can support",
+  "subtitle": "A claim-by-claim check of the OpenAI ‘Bel’ rumor",
+  "checked": "Checked 28 Aug 2026 · Asia/Jakarta",
+  "rows": [
+    {
+      "claim": "Astra is an upcoming OpenAI model",
+      "verdict": "VERIFIED",
+      "detail": "OpenAI calls Astra its next major and upcoming model."
+    },
+    {
+      "claim": "OpenAI finished a pretrain called Bel",
+      "verdict": "CLAIMED",
+      "detail": "One X post says so; no OpenAI artifact or independent confirmation."
+    },
+    {
+      "claim": "Doug becomes Astra or GPT-6 after RL",
+      "verdict": "UNKNOWN",
+      "detail": "The lineage appears only in the same social post."
+    },
+    {
+      "claim": "Bel has more than 10T parameters",
+      "verdict": "CLAIMED",
+      "detail": "The source says parameters, not training tokens; no technical record."
+    },
+    {
+      "claim": "Bel is the same size class as GPT-4.5",
+      "verdict": "NOT CHECKABLE",
+      "detail": "OpenAI did not publish GPT-4.5’s parameter count."
+    },
+    {
+      "claim": "Stargate already runs training workloads",
+      "verdict": "VERIFIED",
+      "detail": "OpenAI says early training ran at its Abilene campus."
+    },
+    {
+      "claim": "Stargate trained Bel",
+      "verdict": "UNSUPPORTED",
+      "detail": "No checked source connects the infrastructure to that codename."
+    },
+    {
+      "claim": "Anthropic accepted a weak 2026 and 2027 comeback",
+      "verdict": "UNSUPPORTED",
+      "detail": "No named speaker, document, or direct report supports the claim."
+    }
+  ],
+  "sourceLine": "Sources: OpenAI, Anthropic, Reuters, and the traced X source chain"
+}

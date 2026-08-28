@@ -5565,6 +5565,88 @@ footer.site-footer .foot-copy a {
   border-bottom: 0;
 }
 
+.blog-pagination {
+  display: grid;
+  grid-template-columns: minmax(116px, auto) minmax(0, 1fr) minmax(116px, auto);
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1.5px solid color-mix(in srgb, var(--ink) 28%, transparent);
+  font-family: var(--font-pixel), monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.blog-pagination-step,
+.blog-pagination-pages a,
+.blog-pagination-pages button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  font: inherit;
+  text-decoration: none;
+  text-transform: inherit;
+}
+
+button.blog-pagination-step,
+.blog-pagination-pages button {
+  cursor: pointer;
+}
+
+.blog-pagination-step:focus-visible,
+.blog-pagination-pages a:focus-visible,
+.blog-pagination-pages button:focus-visible {
+  outline: 3px dashed var(--aurora-deep);
+  outline-offset: 4px;
+}
+
+.blog-pagination-step:not(.is-disabled):active,
+.blog-pagination-pages a:active,
+.blog-pagination-pages button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.blog-pagination-step.is-disabled {
+  opacity: .48;
+  box-shadow: none;
+}
+
+.blog-pagination-pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.blog-pagination-pages a,
+.blog-pagination-pages button {
+  width: 44px;
+  padding: 0;
+}
+
+.blog-pagination-pages .is-current {
+  background: var(--ink);
+  color: var(--gold);
+  box-shadow: 3px 3px 0 var(--gold);
+}
+
+.blog-pagination-gap {
+  display: inline-grid;
+  width: 28px;
+  place-items: center;
+  color: var(--ink-soft);
+}
+
 .blog-row-thumb {
   position: relative;
   width: 52px;
@@ -7774,6 +7856,20 @@ footer.site-footer .foot-copy a {
   .blog-row-meta,
   .blog-row-actions {
     grid-column: 2;
+  }
+
+  .blog-pagination {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 10px;
+  }
+
+  .blog-pagination-pages {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .blog-pagination-step {
+    grid-row: 2;
   }
 
   .caption-edit-trigger {

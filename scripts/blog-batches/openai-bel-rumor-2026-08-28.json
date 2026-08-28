@@ -1,0 +1,29 @@
+{
+  "name": "openai-bel-rumor-2026-08-28",
+  "articles": [
+    {
+      "slug": "openai-bel-rumor-one-source-no-confirmation",
+      "payloadPath": "validation/openai-bel-rumor-investigation-2026-08-28/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:openai-bel-rumor-one-source-no-confirmation:feature-source-gap",
+          "sourcePath": "validation/openai-bel-rumor-investigation-2026-08-28/assets/feature-bel-source-gap.png",
+          "fileName": "openai-bel-rumor-feature-source-gap.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:openai-bel-rumor-one-source-no-confirmation:evidence-original-bel-post",
+          "sourcePath": "validation/openai-bel-rumor-investigation-2026-08-28/assets/evidence-original-bel-post.jpg",
+          "fileName": "openai-bel-rumor-original-post-evidence.jpg",
+          "evidenceKind": "attributed-firsthand-social-source-evidence"
+        },
+        {
+          "assetKey": "blog:openai-bel-rumor-one-source-no-confirmation:claim-status-matrix",
+          "sourcePath": "validation/openai-bel-rumor-investigation-2026-08-28/assets/claim-status-matrix.png",
+          "fileName": "openai-bel-rumor-claim-status-matrix.png",
+          "evidenceKind": "deterministic-factual-graphic"
+        }
+      ]
+    }
+  ]
+}

@@ -26,6 +26,7 @@ const GROUNDED_BLOG_PAYLOAD_PATHS = [
   "validation/moltbook-ai-agents-social-network-2026-08-24/payload.json",
   "validation/human-made-ai-slop-selling-point-2026-08-24/payload.json",
   "validation/instagram-real-content-labeled-ai-2026-08-24/payload.json",
+  "validation/openai-bel-rumor-investigation-2026-08-28/payload.json",
 ];
 
 function readGroundedBlogPayloads() {
@@ -292,7 +293,7 @@ export function buildSeedTables(data) {
 }
 
 export const expectedSeedCounts = {
-  blogPosts: 24,
+  blogPosts: 25,
   inventoryItems: 14,
   contentEntries: 6,
   contactChannels: 5,
