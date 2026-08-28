@@ -1,37 +1,21 @@
-import crypto from "node:crypto";
 import { NextResponse } from "next/server";
 import { getBlogVoteState, toggleBlogVote } from "@/lib/backend/featureStore";
+import {
+  applyBlogReaderCookie,
+  blogReaderIdentity,
+  blogVoterHash,
+} from "@/lib/backend/blogReaderIdentity";
 import { consumeRequestWindow, requestOriginAllowed } from "@/lib/backend/requestRateLimit";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
-
-const VOTER_COOKIE = "mb_blog_voter";
-
-function voterToken(request) {
-  const existing = request.cookies.get(VOTER_COOKIE)?.value || "";
-  return /^[a-f0-9-]{36}$/i.test(existing) ? { token: existing, fresh: false } : { token: crypto.randomUUID(), fresh: true };
-}
-
-function voterHash(token) {
-  return crypto.createHash("sha256").update(token).digest("hex");
-}
 
 function responseWithToken(payload, token, fresh, status = 200) {
   const response = NextResponse.json(payload, {
     status,
     headers: { "Cache-Control": "private, no-store, max-age=0" },
   });
-  if (fresh) {
-    response.cookies.set(VOTER_COOKIE, token, {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      path: "/",
-      maxAge: 60 * 60 * 24 * 365,
-    });
-  }
-  return response;
+  return applyBlogReaderCookie(response, { token, fresh });
 }
 
 function errorResponse(error, token, fresh, status = 400) {
@@ -45,9 +29,9 @@ function errorResponse(error, token, fresh, status = 400) {
 
 export async function GET(request, { params }) {
   const { id: slug } = await params;
-  const identity = voterToken(request);
+  const identity = blogReaderIdentity(request);
   try {
-    const state = await getBlogVoteState({ slug, voterHash: voterHash(identity.token) });
+    const state = await getBlogVoteState({ slug, voterHash: blogVoterHash(identity.token) });
     return responseWithToken({ ok: true, ...state }, identity.token, identity.fresh);
   } catch (error) {
     return errorResponse(error, identity.token, identity.fresh);
@@ -55,11 +39,11 @@ export async function GET(request, { params }) {
 }
 
 export async function POST(request, { params }) {
-  const identity = voterToken(request);
+  const identity = blogReaderIdentity(request);
   if (!requestOriginAllowed(request)) {
     return responseWithToken({ ok: false, error: "CROSS_ORIGIN_REQUEST" }, identity.token, identity.fresh, 403);
   }
-  const hash = voterHash(identity.token);
+  const hash = blogVoterHash(identity.token);
   const rate = consumeRequestWindow("blog-upvote", hash, { limit: 12, windowMs: 60_000 });
   if (!rate.allowed) {
     const response = responseWithToken({ ok: false, error: "BLOG_UPVOTE_RATE_LIMIT" }, identity.token, identity.fresh, 429);

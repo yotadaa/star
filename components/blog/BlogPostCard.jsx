@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { RarityTag, SpriteIcon } from "@/components/claude";
 import { getBlogFeaturedImage } from "@/lib/blog/featuredImage";
+import { compactReadingLabel } from "@/lib/blog/readingMetrics.mjs";
 
 export default function BlogPostCard({ post, canManageBlog = false }) {
   const featuredImage = getBlogFeaturedImage(post);
@@ -42,7 +43,7 @@ export default function BlogPostCard({ post, canManageBlog = false }) {
         <p>{post.excerpt}</p>
         <div className="blog-card-meta">
           <span>{post.publishedAt}</span>
-          <span>{post.readTime}</span>
+          <span>{compactReadingLabel(post)}</span>
           <span>{Math.max(0, Number(post.upvoteCount || 0))} votes</span>
         </div>
         <div className="blog-card-actions">

@@ -18,6 +18,8 @@
 
 ## Done
 
+- [x] ~~**Add privacy-preserving Blog views and engaged reading time**~~ (2026-08-28) - preserved editorial reading estimates, added daily anonymous view deduplication, qualified engaged reads, five-reader-gated average active time, owner-only completion diagnostics, per-slug HMAC identities, 90-day bounded retention, seed-safe Convex aggregates, and responsive public/admin presentation without volatile structured data. Plan: `plans/blog-view-reading-analytics-2026-08-28.md`; evidence: `validation/blog-view-reading-analytics-2026-08-28/validation.md`.
+
 - [x] ~~**Install `write-grounded-blogs` as a global cross-agent skill**~~ (2026-08-27) - promoted one canonical Agent Skills package under `~/.agents/skills`, linked Codex and Claude Code to it, bundled the Star Blog automation contract and agent-only upload runbook, preserved the former Codex package as a recoverable backup, and passed structural, script, Claude discovery, installer-idempotency, and independent-agent boundary checks. Plan: `plans/global-write-grounded-blogs-skill-2026-08-27.md`; evidence: `validation/global-write-grounded-blogs-skill-2026-08-27/validation.md`.
 
 - [x] ~~**Document the agent-only Blog upload workflow**~~ (2026-08-26) - added a copy-ready runbook covering grounded research packages, provider-neutral R2 assets, native payload and batch parameters, SEO/seed registration, explicit script publishing, checksum reuse, live audits, IndexNow, route validation, update rules, and common failures without using the web editor. Plan: `plans/agent-blog-upload-runbook-2026-08-26.md`; evidence: `validation/agent-blog-upload-runbook-2026-08-26/validation.md`.

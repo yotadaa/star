@@ -9,10 +9,12 @@
  */
 
 import type * as blog from "../blog.js";
+import type * as blogAnalytics from "../blogAnalytics.js";
 import type * as blogEngagement from "../blogEngagement.js";
 import type * as bridge from "../bridge.js";
 import type * as contact from "../contact.js";
 import type * as content from "../content.js";
+import type * as crons from "../crons.js";
 import type * as files from "../files.js";
 import type * as inventory from "../inventory.js";
 import type * as migrationAudit from "../migrationAudit.js";
@@ -32,10 +34,12 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   blog: typeof blog;
+  blogAnalytics: typeof blogAnalytics;
   blogEngagement: typeof blogEngagement;
   bridge: typeof bridge;
   contact: typeof contact;
   content: typeof content;
+  crons: typeof crons;
   files: typeof files;
   inventory: typeof inventory;
   migrationAudit: typeof migrationAudit;

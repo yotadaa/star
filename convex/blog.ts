@@ -310,6 +310,22 @@ async function resolveBlocks(
   );
 }
 
+async function publicReadingStats(ctx: QueryCtx | MutationCtx, slug: string) {
+  const stats = await ctx.db
+    .query("blogReadStats")
+    .withIndex("by_slug", (q) => q.eq("slug", slug))
+    .unique();
+  const engagedReadCount = Math.max(0, Math.floor(stats?.engagedReadCount ?? 0));
+  return {
+    slug,
+    viewCount: Math.max(0, Math.floor(stats?.viewCount ?? 0)),
+    engagedReadCount,
+    averageActiveReadMs: stats && engagedReadCount >= 5
+      ? Math.max(0, Math.floor(stats.totalEngagedReadMs / engagedReadCount))
+      : null,
+  };
+}
+
 async function toPublic(ctx: QueryCtx | MutationCtx, post: Doc<"blogPosts">) {
   return {
     id: post._id,
@@ -332,6 +348,7 @@ async function toPublic(ctx: QueryCtx | MutationCtx, post: Doc<"blogPosts">) {
     ...(post.featuredImage ? { featuredImage: await resolveImage(ctx, post.featuredImage) } : {}),
     blocks: await resolveBlocks(ctx, post.blocks),
     upvoteCount: Math.max(0, Math.floor(post.upvoteCount ?? 0)),
+    readingStats: await publicReadingStats(ctx, post.slug),
     updatedAt: post.updatedAt,
   };
 }
@@ -394,6 +411,7 @@ export const listPublishedSummaries = query({
       readTime: post.readTime,
       ...(post.featuredImage ? { featuredImage: await resolveImage(ctx, post.featuredImage) } : {}),
       upvoteCount: Math.max(0, Math.floor(post.upvoteCount ?? 0)),
+      readingStats: await publicReadingStats(ctx, post.slug),
     })));
 
     return { posts, source: "convex" as const, warnings: [] };
@@ -532,6 +550,19 @@ export const update = internalMutation({
       blocks,
     });
     await ensureUniqueSlug(ctx, slug, existing._id);
+    if (slug !== existing.slug) {
+      const [stats, windows] = await Promise.all([
+        ctx.db
+          .query("blogReadStats")
+          .withIndex("by_slug", (q) => q.eq("slug", existing.slug))
+          .take(1),
+        ctx.db
+          .query("blogReadWindows")
+          .withIndex("by_slug_and_readerHash_and_dayKey", (q) => q.eq("slug", existing.slug))
+          .take(1),
+      ]);
+      if (stats.length || windows.length) throw new Error("BLOG_SLUG_HAS_READING_ANALYTICS");
+    }
     await ctx.db.patch(existing._id, {
       title,
       slug,

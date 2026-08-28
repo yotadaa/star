@@ -68,6 +68,32 @@ export default defineSchema({
     .index("by_postId_and_status_and_createdAt", ["postId", "status", "createdAt"])
     .index("by_actorKey_and_createdAt", ["actorKey", "createdAt"]),
 
+  blogReadStats: defineTable({
+    slug: v.string(),
+    viewCount: v.number(),
+    engagedReadCount: v.number(),
+    totalEngagedReadMs: v.number(),
+    completionCount: v.number(),
+    startedAt: v.number(),
+    updatedAt: v.number(),
+    schemaVersion: v.number(),
+  }).index("by_slug", ["slug"]),
+
+  blogReadWindows: defineTable({
+    slug: v.string(),
+    readerHash: v.string(),
+    dayKey: v.string(),
+    viewRecordedAt: v.number(),
+    activeReadMs: v.number(),
+    maxProgressBps: v.number(),
+    engagedAt: v.optional(v.number()),
+    completedAt: v.optional(v.number()),
+    lastActiveAt: v.number(),
+    schemaVersion: v.number(),
+  })
+    .index("by_slug_and_readerHash_and_dayKey", ["slug", "readerHash", "dayKey"])
+    .index("by_lastActiveAt", ["lastActiveAt"]),
+
   worldChatMessages: defineTable({
     actorKey: v.string(),
     actorRole,

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SpriteIcon } from "@/components/claude";
 import { getBlogFeaturedImage } from "@/lib/blog/featuredImage";
+import { compactReadingLabel } from "@/lib/blog/readingMetrics.mjs";
 
 function voteLabel(post) {
   const count = Math.max(0, Number(post?.upvoteCount || 0));
@@ -46,7 +47,7 @@ export function BlogRecentRail({ posts }) {
                 <span className="blog-recent-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                 <span className="blog-recent-copy">
                   <span className="blog-recent-title">{post.title}</span>
-                  <span className="blog-recent-meta">{post.readTime} · {voteLabel(post)}</span>
+                  <span className="blog-recent-meta">{compactReadingLabel(post)} · {voteLabel(post)}</span>
                 </span>
                 <SpriteIcon id="icon-chevron-up" size={14} className="blog-recent-arrow" aria-hidden="true" />
               </Link>
@@ -84,7 +85,7 @@ export function BlogReadingTrail({ items }) {
                 <span className="blog-reading-topic">{topicLabel(item)}</span>
                 <span className="blog-reading-card-title">{item.post.title}</span>
                 <span className="blog-reading-card-excerpt">{item.post.excerpt}</span>
-                <span className="blog-reading-card-meta">{item.post.readTime} · {voteLabel(item.post)}</span>
+                <span className="blog-reading-card-meta">{compactReadingLabel(item.post)} · {voteLabel(item.post)}</span>
               </span>
             </Link>
           </article>

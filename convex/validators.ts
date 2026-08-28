@@ -157,6 +157,24 @@ export const publicNalaSettings = v.object({
   persisted: v.boolean(),
 });
 
+export const publicBlogReadStats = v.object({
+  slug: v.string(),
+  viewCount: v.number(),
+  engagedReadCount: v.number(),
+  averageActiveReadMs: v.union(v.number(), v.null()),
+});
+
+export const adminBlogReadStats = v.object({
+  slug: v.string(),
+  viewCount: v.number(),
+  engagedReadCount: v.number(),
+  averageActiveReadMs: v.union(v.number(), v.null()),
+  completionCount: v.number(),
+  completionRateBps: v.number(),
+  startedAt: v.union(v.number(), v.null()),
+  updatedAt: v.union(v.number(), v.null()),
+});
+
 export const publicBlogPost = v.object({
   id: v.string(),
   slug: v.string(),
@@ -178,6 +196,7 @@ export const publicBlogPost = v.object({
   featuredImage: v.optional(blogFeaturedImage),
   blocks: v.array(editorBlock),
   upvoteCount: v.number(),
+  readingStats: publicBlogReadStats,
   updatedAt: v.number(),
 });
 
@@ -192,6 +211,7 @@ export const publicBlogPostSummary = v.object({
   readTime: v.string(),
   featuredImage: v.optional(blogFeaturedImage),
   upvoteCount: v.number(),
+  readingStats: publicBlogReadStats,
 });
 
 export const publicBlogComment = v.object({

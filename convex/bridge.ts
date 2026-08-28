@@ -7,6 +7,7 @@ import type { Id } from "./_generated/dataModel";
 import { action } from "./_generated/server";
 import {
   actorSnapshot,
+  adminBlogReadStats,
   blogVoteState,
   blogInput,
   contactChannelInput,
@@ -22,6 +23,7 @@ import {
   publicFile,
   publicInventoryItem,
   publicNalaSettings,
+  publicBlogReadStats,
   publicRecord,
   recordVisibility,
 } from "./validators";
@@ -67,7 +69,20 @@ type BlogPost = {
   featuredImage?: BlogFeaturedImage;
   blocks: EditorBlock[];
   upvoteCount: number;
+  readingStats: PublicBlogReadStats;
   updatedAt: number;
+};
+type PublicBlogReadStats = {
+  slug: string;
+  viewCount: number;
+  engagedReadCount: number;
+  averageActiveReadMs: number | null;
+};
+type AdminBlogReadStats = PublicBlogReadStats & {
+  completionCount: number;
+  completionRateBps: number;
+  startedAt: number | null;
+  updatedAt: number | null;
 };
 type BlogVoteState = { count: number; voted: boolean };
 type BlogComment = { id: string; authorName: string; body: string; createdAt: string; canDelete: boolean };
@@ -164,6 +179,8 @@ type MigrationStatus = {
   worldChatMessages: number;
   blogVotes: number;
   blogComments: number;
+  blogReadStats: number;
+  blogReadWindows: number;
   contactEvents: number;
   records: number;
   files: number;
@@ -190,6 +207,8 @@ const migrationStatus = v.object({
   worldChatMessages: v.number(),
   blogVotes: v.number(),
   blogComments: v.number(),
+  blogReadStats: v.number(),
+  blogReadWindows: v.number(),
   contactEvents: v.number(),
   records: v.number(),
   files: v.number(),
@@ -248,6 +267,35 @@ export const updateBlog = action({
   handler: async (ctx, args): Promise<BlogPost | null> => {
     requireBridgeSecret(args.secret);
     return await ctx.runMutation(internal.blog.update, { id: args.id, payload: args.payload, actor: args.actor });
+  },
+});
+
+export const listBlogAdminReadingStats = action({
+  args: { secret: v.string(), slugs: v.array(v.string()) },
+  returns: v.array(adminBlogReadStats),
+  handler: async (ctx, args): Promise<AdminBlogReadStats[]> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runQuery(internal.blogAnalytics.listAdminStats, { slugs: args.slugs });
+  },
+});
+
+export const recordBlogReading = action({
+  args: {
+    secret: v.string(),
+    slug: v.string(),
+    readerHash: v.string(),
+    activeMsDelta: v.number(),
+    progressBps: v.number(),
+  },
+  returns: publicBlogReadStats,
+  handler: async (ctx, args): Promise<PublicBlogReadStats> => {
+    requireBridgeSecret(args.secret);
+    return await ctx.runMutation(internal.blogAnalytics.recordReadingWindow, {
+      slug: args.slug,
+      readerHash: args.readerHash,
+      activeMsDelta: args.activeMsDelta,
+      progressBps: args.progressBps,
+    });
   },
 });
 

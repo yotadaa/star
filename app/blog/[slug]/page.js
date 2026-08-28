@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { auth } from "@/auth";
 import BlogEngagement from "@/components/blog/BlogEngagement";
 import BlogPostRenderer from "@/components/blog/BlogPostRenderer";
+import BlogReadMetrics from "@/components/blog/BlogReadMetrics";
 import { BlogReadingTrail, BlogRecentRail } from "@/components/blog/BlogReadingCompass";
 import PageHeader from "@/components/PageHeader";
 import { PixelButton, SpriteIcon } from "@/components/claude";
@@ -93,9 +94,15 @@ export default async function BlogPostPage({ params }) {
                 <dt className="sr-only">Author</dt>
                 <dd>By <Link href={articleSeo.authorUrl}>{articleSeo.authorName}</Link></dd>
               </div>
-              <div>
-                <dt className="sr-only">Estimated reading time</dt>
-                <dd>{post.readTime}</dd>
+              <div className="blog-post-meta-reading">
+                <dt className="sr-only">Article readership</dt>
+                <dd>
+                  <BlogReadMetrics
+                    slug={post.slug}
+                    estimatedReadTime={post.readTime}
+                    initialStats={post.readingStats}
+                  />
+                </dd>
               </div>
               <div>
                 <dt className="sr-only">Content source</dt>
@@ -103,7 +110,9 @@ export default async function BlogPostPage({ params }) {
               </div>
             </dl>
 
-            <BlogPostRenderer blocks={post.blocks} sourceHref={post.sourceHref} />
+            <div id="blog-article-content">
+              <BlogPostRenderer blocks={post.blocks} sourceHref={post.sourceHref} />
+            </div>
           </div>
 
           <BlogRecentRail posts={recentPosts} />

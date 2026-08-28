@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { PixelButton, SpriteIcon } from "@/components/claude";
 import { getBlogFeaturedImage } from "@/lib/blog/featuredImage";
+import { compactReadingLabel } from "@/lib/blog/readingMetrics.mjs";
 import BlogPostCard from "./BlogPostCard";
 
 const PRIMARY_TOPIC_LIMIT = 3;
@@ -301,7 +302,7 @@ export default function BlogPostList({ posts, canManageBlog = false, initialPage
                   <h2><Link href={`/blog/${post.slug}`}>{post.title}</Link></h2>
                   <p>{post.excerpt}</p>
                 </div>
-                <div className="blog-row-meta">{post.readTime} · {primaryTag(post)} · {Math.max(0, Number(post.upvoteCount || 0))} votes</div>
+                <div className="blog-row-meta">{compactReadingLabel(post)} · {primaryTag(post)} · {Math.max(0, Number(post.upvoteCount || 0))} votes</div>
                 {canManageBlog && (
                   <div className="blog-row-actions">
                     <Link href={`/blog/admin/${post.id}/edit`} aria-label={`Edit ${post.title}`}>
