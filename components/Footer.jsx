@@ -35,7 +35,7 @@ export default function Footer() {
         <a href={profile.links.scholar} target="_blank" rel="noopener noreferrer" data-testid="foot-scholar">
           SCHOLAR
         </a>
-        <a href={profile.links.blog} target="_blank" rel="noopener noreferrer" data-testid="foot-blog">
+        <a href={profile.links.blog} data-testid="foot-blog">
           BLOG
         </a>
       </div>
