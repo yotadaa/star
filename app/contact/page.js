@@ -3,13 +3,16 @@ import PageHeader from "@/components/PageHeader";
 import ContactCards from "@/components/ContactCards";
 import EditablePageCaption from "@/components/EditablePageCaption";
 import { listAboutEntries, listContactChannels } from "@/lib/backend/featureStore";
+import { publicPageCopy } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Contact",
-  description:
-    "Contact Mukhtada Billah NST through verified professional channels, source code, scientific publications, Blog, or social media.",
+  title: publicPageCopy.contact.metadataTitle,
+  description: publicPageCopy.contact.metadataDescription,
   path: "/contact",
+  tags: publicPageCopy.contact.keywords,
+  titleSuffix: "",
+  absoluteTitle: true,
 });
 export const dynamic = "force-dynamic";
 
@@ -19,13 +22,13 @@ export default async function ContactPage() {
     listContactChannels(),
     listAboutEntries(),
   ]);
-  const fallbackCaption = "Have a project, a research idea, or just want to say hello? Choose the channel that suits you.";
+  const fallbackCaption = publicPageCopy.contact.caption;
   const caption = entries.find((entry) => entry.entryKey === "contact-caption")?.body || fallbackCaption;
   const canManage = session?.user?.role === "owner";
 
   return (
     <div className="page-wrap">
-      <PageHeader label="// Open Comms" title="Let's connect">
+      <PageHeader label={publicPageCopy.contact.label} title={publicPageCopy.contact.title}>
         <EditablePageCaption
           entryKey="contact-caption"
           title="Contact caption"

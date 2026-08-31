@@ -14,7 +14,7 @@ export default function QuestLog() {
     <div
       className="questlog"
       role="list"
-      aria-label="Bukti cepat"
+      aria-label="Profile highlights"
       data-testid="quest-log"
     >
       <HudStatusStrip items={items} />

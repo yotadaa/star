@@ -3,12 +3,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const ENTITY_COPY = {
-  "butterfly-terracotta": "kupu-kupu jingga",
-  "butterfly-moss": "kupu-kupu lumut",
-  sparrow: "pipit kecil",
-  "migration-v": "formasi burung migrasi",
-  bat: "kelelawar kecil",
-  firefly: "kunang-kunang",
+  "butterfly-terracotta": "orange butterfly",
+  "butterfly-moss": "moss-green butterfly",
+  sparrow: "small sparrow",
+  "migration-v": "migrating bird formation",
+  bat: "small bat",
+  firefly: "firefly",
 };
 
 const PHASE_ENTITIES = {
@@ -352,7 +352,7 @@ export default function HeroEntityLayer({ phase = "morning" }) {
     };
 
   return (
-    <div className="hero-entity-layer" ref={layerRef} aria-label="Makhluk terbang interaktif">
+    <div className="hero-entity-layer" ref={layerRef} aria-label="Interactive flying creatures">
       {spark && (
         <span
           className="hero-entity-spark"
@@ -375,7 +375,7 @@ export default function HeroEntityLayer({ phase = "morning" }) {
           <button
             className={`hero-entity-target${encounter.pair ? " is-pair" : ""}`}
             type="button"
-            aria-label={`Sentuh ${ENTITY_COPY[encounter.entity]}; ia akan menghindar.`}
+            aria-label={`Activate the ${ENTITY_COPY[encounter.entity]} to make it dodge.`}
             data-testid={`hero-entity-${encounter.entity}`}
             onClick={handleInteract}
             onKeyDown={handleKeyDown}

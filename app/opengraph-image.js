@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Mukhtada Billah NST — Fullstack, AI, and data research portfolio";
+export const alt = "Mukhtada Billah NST — Full-stack developer, AI tooling, and data research portfolio";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -44,7 +44,7 @@ export default function OpenGraphImage() {
               }}
             >
               <span style={{ width: 16, height: 16, background: "#ecb63f", display: "flex" }} />
-              Player portfolio
+              Developer portfolio
             </div>
             <div
               style={{
@@ -72,7 +72,7 @@ export default function OpenGraphImage() {
                 marginBottom: 18,
               }}
             >
-              // SYSTEMS BUILDER
+              // FULL-STACK · AI · DATA
             </div>
             <div style={{ display: "flex", fontSize: 76, lineHeight: 1.02, letterSpacing: -2 }}>
               Mukhtada Billah NST
@@ -86,7 +86,7 @@ export default function OpenGraphImage() {
                 color: "#47584f",
               }}
             >
-              Fullstack builder · AI tinkerer · data researcher
+              Full-stack developer · AI tooling · data research
             </div>
           </div>
 

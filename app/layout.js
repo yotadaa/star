@@ -5,6 +5,7 @@ import ConvexClientProvider from "@/components/ConvexClientProvider";
 import SiteProvider from "@/components/site/SiteProvider";
 import {
   DEFAULT_DESCRIPTION,
+  DEFAULT_KEYWORDS,
   DEFAULT_LANGUAGE,
   DEFAULT_OG_LOCALE,
   DEFAULT_TITLE,
@@ -44,13 +45,7 @@ export const metadata = {
   creator: SITE_NAME,
   publisher: SITE_NAME,
   category: "portfolio",
-  keywords: [
-    "Mukhtada Billah NST",
-    "fullstack developer Indonesia",
-    "AI tooling",
-    "data science",
-    "Universitas Jambi",
-  ],
+  keywords: DEFAULT_KEYWORDS,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",

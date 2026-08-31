@@ -49,7 +49,7 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
-  const [{ post, source }, { posts }, session] = await Promise.all([
+  const [{ post }, { posts }, session] = await Promise.all([
     getBlogPostBySlug(slug),
     listBlogPostSummaries({ limit: 48 }),
     auth(),
@@ -80,7 +80,7 @@ export default async function BlogPostPage({ params }) {
       <article className="blog-post-article" lang={articleSeo.language}>
         <div className="blog-reading-layout">
           <div className="blog-post-column">
-            <PageHeader label="// LORE ENTRY" title={post.title}>
+            <PageHeader label="// ARTICLE" title={post.title}>
               {post.excerpt}
             </PageHeader>
 
@@ -120,10 +120,6 @@ export default async function BlogPostPage({ params }) {
                   />
                 </dd>
               </div>
-              <div>
-                <dt className="sr-only">Content source</dt>
-                <dd><SpriteIcon id={source === "convex" ? "icon-database-online" : "icon-database-offline"} size={15} /> {source}</dd>
-              </div>
             </dl>
 
             <div id="blog-article-content">
@@ -149,7 +145,7 @@ export default async function BlogPostPage({ params }) {
               <SpriteIcon id="icon-portal-ring" size={15} />
               Open source
             </PixelButton>
-            <Link href="/blog" className="blog-back-link">Back to Blog</Link>
+            <Link href="/blog" className="blog-back-link">Back to all articles</Link>
           </div>
         </div>
       </article>

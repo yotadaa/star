@@ -4,26 +4,31 @@ import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import { HudStatusStrip, LockedSlot, SpriteIcon } from "@/components/claude";
 import { listAboutEntries } from "@/lib/backend/featureStore";
-import { publications } from "@/lib/data";
+import { publicPageCopy, publications } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Research",
-  description:
-    "Mukhtada Billah NST's Google Scholar-indexed publications across education, optimization, data, and information systems.",
+  title: publicPageCopy.research.metadataTitle,
+  description: publicPageCopy.research.metadataDescription,
   path: "/research",
+  tags: publicPageCopy.research.keywords,
 });
 export const dynamic = "force-dynamic";
 
 export default async function ResearchPage() {
   const [session, { entries }] = await Promise.all([auth(), listAboutEntries()]);
-  const fallbackCaption = "Published, indexed, and cited research verified through Google Scholar.";
+  const fallbackCaption = publicPageCopy.research.caption;
   const caption = entries.find((entry) => entry.entryKey === "research-caption")?.body || fallbackCaption;
   const canManage = session?.user?.role === "owner";
+  const citationCount = publications.reduce((total, publication) => total + Math.max(0, Number(publication.citedBy || 0)), 0);
+  const hIndex = [...publications]
+    .map((publication) => Math.max(0, Number(publication.citedBy || 0)))
+    .sort((left, right) => right - left)
+    .reduce((value, citations, index) => (citations >= index + 1 ? index + 1 : value), 0);
 
   return (
     <div className="page-wrap">
-      <PageHeader label="// Lab Notes & Research" title="Publications">
+      <PageHeader label={publicPageCopy.research.label} title={publicPageCopy.research.title}>
         <EditablePageCaption
           entryKey="research-caption"
           title="Research caption"
@@ -34,9 +39,9 @@ export default async function ResearchPage() {
       <HudStatusStrip
         className="research-hud"
         items={[
-          { label: "5 citations", accent: "gold", icon: <SpriteIcon id="icon-star-level" size={14} /> },
-          { label: "H-index 2", accent: "gold", icon: <SpriteIcon id="icon-trophy" size={14} /> },
-          { label: "4 publications", accent: "aurora", icon: <SpriteIcon id="icon-command" size={14} /> },
+          { label: `${citationCount} citations`, accent: "gold", icon: <SpriteIcon id="icon-star-level" size={14} /> },
+          { label: `h-index ${hIndex}`, accent: "gold", icon: <SpriteIcon id="icon-trophy" size={14} /> },
+          { label: `${publications.length} publications`, accent: "aurora", icon: <SpriteIcon id="icon-command" size={14} /> },
         ]}
       />
       <div className="pub-grid">

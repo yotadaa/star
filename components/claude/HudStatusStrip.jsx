@@ -45,7 +45,7 @@ export default function HudStatusStrip({ items = [], className = "" }) {
     <div
       className={`hud-strip ${className}`}
       role="status"
-      aria-label="Status ringkas"
+      aria-label="Profile summary"
     >
       {items.map((item, i) => (
         <HudChip key={i} {...item} />

@@ -1957,6 +1957,63 @@ a.hud-chip:focus-visible {
   box-shadow: 2px 2px 0 var(--ink);
 }
 
+/* Lore document route only: semantic CV surface, native dialog, and responsive records. */
+.lore-document { max-width: 1120px; margin: 0 auto; padding: 112px 24px 96px; color: var(--ink); }
+.lore-cover { display: grid; grid-template-columns: 220px 1fr; gap: 36px; align-items: center; padding: 40px; border: 2px solid var(--ink); background: var(--parchment); box-shadow: 8px 8px 0 var(--ink); }
+.lore-cover-photo { aspect-ratio: 1; border: 2px solid var(--ink); background: var(--coral-dark); overflow: hidden; }
+.lore-cover-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lore-cover h1 { margin: 10px 0 8px; font-family: var(--font-display), serif; font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: .92; }
+.lore-role { font-family: var(--font-pixel), monospace; font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; }
+.lore-cover-copy > p:not(.lore-role) { max-width: 68ch; line-height: 1.7; }
+.lore-contact-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 24px 0; font-size: .9rem; }
+.lore-contact-grid a, .lore-contact-grid span { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); }
+.lore-actions, .lore-evidence-links { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.lore-actions .btn { display: inline-flex; align-items: center; gap: 8px; }
+.lore-index { position: sticky; top: 12px; z-index: 5; display: flex; flex-wrap: wrap; gap: 8px; margin: 32px 0; padding: 10px; border: 1.5px solid var(--ink); background: var(--parchment); box-shadow: 3px 3px 0 var(--ink); }
+.lore-index a, .lore-evidence-links a { color: var(--ink); font-family: var(--font-pixel), monospace; font-size: .72rem; text-decoration: underline; text-underline-offset: 3px; }
+.lore-index a { padding: 8px 10px; }
+.lore-section { margin: 54px 0; scroll-margin-top: 96px; }
+.lore-section-heading { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 24px; }
+.lore-section-heading h2, .lore-section > h2 { margin: 6px 0 0; font-family: var(--font-display), serif; font-size: clamp(2rem, 4vw, 3.3rem); }
+.lore-section > p { max-width: 72ch; font-size: 1.08rem; line-height: 1.8; }
+.lore-record-list { display: grid; gap: 16px; }
+.lore-record, .lore-skill-card, .lore-evidence { border: 1.5px solid var(--ink); background: var(--parchment); padding: 22px; box-shadow: 4px 4px 0 color-mix(in srgb, var(--ink) 24%, transparent); }
+.lore-record-heading { display: flex; justify-content: space-between; gap: 20px; }
+.lore-record h3, .lore-skill-card h3 { margin: 0; font-size: 1.15rem; }
+.lore-record-heading p, .lore-record time { margin: 5px 0 0; color: var(--ink-soft); font-size: .92rem; }
+.lore-record time { flex: 0 0 auto; font-family: var(--font-pixel), monospace; font-size: .7rem; text-align: right; }
+.lore-record-summary, .lore-skill-card p { line-height: 1.65; }
+.lore-detail-trigger { margin-top: 6px; border: 0; padding: 0; background: transparent; color: var(--ink); font: inherit; font-size: .82rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.lore-detail-trigger:focus-visible, .lore-index a:focus-visible, .lore-contact-grid a:focus-visible, .lore-evidence-links a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.lore-skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.lore-skill-card > svg { margin-bottom: 14px; }
+.lore-skill-card ul { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; }
+.lore-skill-card li { border: 1px solid var(--ink); padding: 5px 8px; font-size: .78rem; }
+.lore-evidence { display: flex; gap: 16px; align-items: flex-start; margin-top: 72px; }
+.lore-evidence h2 { margin: 5px 0; font-family: var(--font-display), serif; }
+.lore-evidence p { margin: 6px 0 16px; }
+.lore-dialog { width: min(92vw, 620px); border: 2px solid var(--ink); padding: 0; color: var(--ink); background: var(--parchment); box-shadow: 8px 8px 0 var(--ink); }
+.lore-dialog::backdrop { background: color-mix(in srgb, var(--ink) 64%, transparent); }
+.lore-dialog-card { position: relative; padding: 32px; }
+.lore-dialog-card h3 { margin: 12px 32px 6px 0; font-family: var(--font-display), serif; font-size: 2rem; }
+.lore-dialog-card p:last-child { line-height: 1.75; }
+.lore-dialog-meta { color: var(--ink-soft); font-size: .9rem; }
+.lore-dialog-close { position: absolute; top: 14px; right: 14px; display: grid; place-items: center; width: 36px; height: 36px; border: 1.5px solid var(--ink); background: var(--parchment); color: var(--ink); cursor: pointer; }
+.lore-dialog-close:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+@media (max-width: 720px) {
+  .lore-document { padding: 92px 16px 64px; }
+  .lore-cover { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
+  .lore-cover-photo { width: min(190px, 60vw); }
+  .lore-record-heading { display: block; }
+  .lore-record time { display: block; margin-top: 10px; text-align: left; }
+  .lore-skills-grid { grid-template-columns: 1fr; }
+  .lore-index { position: static; }
+  .lore-dialog-card { padding: 26px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lore-document *, .lore-document *::before, .lore-document *::after { scroll-behavior: auto !important; transition-duration: 0s !important; animation-duration: 0s !important; }
+}
+
 .hero-copy .btn.secondary {
   background: var(--lore-bg);
   color: var(--lore-text);
@@ -5505,12 +5562,12 @@ footer.site-footer .foot-copy a {
   background: var(--gold);
 }
 
-.blog-card h2 {
+.blog-card .blog-card-title {
   font-size: 1.12rem;
   margin: 0 0 8px;
 }
 
-.blog-card h2 a {
+.blog-card .blog-card-title a {
   text-decoration: none;
 }
 

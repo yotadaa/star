@@ -4,12 +4,12 @@ import EditablePageCaption from "@/components/EditablePageCaption";
 import PageHeader from "@/components/PageHeader";
 import { PixelButton, SpriteIcon } from "@/components/claude";
 import { listAboutEntries, listBlogPosts } from "@/lib/backend/featureStore";
+import { publicPageCopy } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
 import { redirect } from "next/navigation";
 
 const BLOG_PAGE_SIZE = 10;
-const BLOG_DESCRIPTION =
-  "Notes on research, web development, AI tooling, and community work by Mukhtada Billah NST.";
+const BLOG_DESCRIPTION = publicPageCopy.blog.metadataDescription;
 
 function pageNumber(value) {
   const parsed = Number.parseInt(String(value || "1"), 10);
@@ -24,9 +24,10 @@ export async function generateMetadata({ searchParams }) {
   const params = await searchParams;
   const page = pageNumber(params?.page);
   return pageMetadata({
-    title: page > 1 ? `Blog — Page ${page}` : "Blog",
-    description: page > 1 ? `${BLOG_DESCRIPTION} Page ${page}.` : BLOG_DESCRIPTION,
+    title: page > 1 ? `${publicPageCopy.blog.metadataTitle} — Page ${page}` : publicPageCopy.blog.metadataTitle,
+    description: page > 1 ? `Browse page ${page} of ${BLOG_DESCRIPTION}` : BLOG_DESCRIPTION,
     path: pageHref(page),
+    tags: publicPageCopy.blog.keywords,
   });
 }
 
@@ -43,12 +44,12 @@ export default async function BlogPage({ searchParams }) {
   const totalPages = Math.max(1, Math.ceil(posts.length / BLOG_PAGE_SIZE));
   if (requestedPage > totalPages) redirect(pageHref(totalPages));
   const canManageBlog = session?.user?.role === "owner";
-  const fallbackCaption = "Notes on research, web builds, and community work. Content is stored in Convex with a factual local fallback when the backend is unavailable.";
+  const fallbackCaption = publicPageCopy.blog.caption;
   const blogCaption = entries.find((entry) => entry.entryKey === "blog-caption")?.body || fallbackCaption;
 
   return (
     <div className="page-wrap blog-page">
-      <PageHeader label="// LORE ENTRIES" title="Blog">
+      <PageHeader label={publicPageCopy.blog.label} title={publicPageCopy.blog.title}>
         <EditablePageCaption
           entryKey="blog-caption"
           title="Blog caption"

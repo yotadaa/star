@@ -26,7 +26,7 @@ function paginationRange(totalPages, currentPage) {
 }
 
 function primaryTag(post) {
-  return post.tags?.[0] || "Lore";
+  return post.tags?.[0] || "Article";
 }
 
 function rankTopics(posts) {
@@ -151,7 +151,7 @@ export default function BlogPostList({ posts, canManageBlog = false, initialPage
   }
 
   return (
-    <section className="blog-list-section" aria-label="Lore entries">
+    <section className="blog-list-section" aria-label="Published Blog articles">
       <div className="blog-toolbar">
         <div className="blog-toolbar-head">
           <div className="blog-filter-summary">

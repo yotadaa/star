@@ -1,0 +1,231 @@
+[
+  {
+    "route": "/",
+    "label": "home-desktop",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "title": "Mukhtada Billah NST — Full-Stack Developer, AI & Data",
+    "canonical": "https://me.mukhtada.my.id/"
+  },
+  {
+    "route": "/",
+    "label": "home-mobile",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "title": "Mukhtada Billah NST — Full-Stack Developer, AI & Data",
+    "canonical": "https://me.mukhtada.my.id/"
+  },
+  {
+    "route": "/about",
+    "label": "about-desktop",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "title": "About Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/about"
+  },
+  {
+    "route": "/about",
+    "label": "about-mobile",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "title": "About Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/about"
+  },
+  {
+    "route": "/projects",
+    "label": "projects-desktop",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "title": "Web, AI & Data Projects · Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/projects"
+  },
+  {
+    "route": "/projects",
+    "label": "projects-mobile",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "title": "Web, AI & Data Projects · Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/projects"
+  },
+  {
+    "route": "/research",
+    "label": "research-desktop",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "title": "Information Systems Research · Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/research"
+  },
+  {
+    "route": "/research",
+    "label": "research-mobile",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "title": "Information Systems Research · Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/research"
+  },
+  {
+    "route": "/blog",
+    "label": "blog-desktop",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "title": "Web Development, AI & Research Blog · Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/blog"
+  },
+  {
+    "route": "/blog",
+    "label": "blog-mobile",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "title": "Web Development, AI & Research Blog · Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/blog"
+  },
+  {
+    "route": "/contact",
+    "label": "contact-desktop",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "title": "Contact Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/contact"
+  },
+  {
+    "route": "/contact",
+    "label": "contact-mobile",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "title": "Contact Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/contact"
+  },
+  {
+    "route": "/",
+    "label": "home-tablet",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "title": "Mukhtada Billah NST — Full-Stack Developer, AI & Data",
+    "canonical": "https://me.mukhtada.my.id/"
+  },
+  {
+    "route": "/",
+    "label": "home-reduced-motion",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "title": "Mukhtada Billah NST — Full-Stack Developer, AI & Data",
+    "canonical": "https://me.mukhtada.my.id/"
+  },
+  {
+    "route": "/lore",
+    "label": "lore-desktop",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "title": "Interactive CV · Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/lore"
+  },
+  {
+    "route": "/lore",
+    "label": "lore-tablet",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "title": "Interactive CV · Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/lore"
+  },
+  {
+    "route": "/lore",
+    "label": "lore-mobile",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "title": "Interactive CV · Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/lore"
+  },
+  {
+    "route": "/lore",
+    "label": "lore-reduced-motion",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "title": "Interactive CV · Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/lore"
+  },
+  {
+    "route": "/lore",
+    "label": "lore-no-javascript",
+    "status": 200,
+    "consoleErrors": [],
+    "h1Count": 1,
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "title": "Interactive CV · Mukhtada Billah NST",
+    "canonical": "https://me.mukhtada.my.id/lore"
+  },
+  {
+    "label": "lore-interactions",
+    "openedByKeyboard": true,
+    "escapedClosed": true,
+    "focusReturnedAfterEscape": true,
+    "backdropClosed": true,
+    "closeButtonClosed": true,
+    "consoleErrors": [],
+    "mobileDialogBox": {
+      "x": 19,
+      "y": 213.6875,
+      "width": 337,
+      "height": 384.609375
+    },
+    "homeChecks": {
+      "loreLink": true,
+      "loreInPrimaryNavigation": false,
+      "featuredBlogLinks": 3
+    }
+  }
+]

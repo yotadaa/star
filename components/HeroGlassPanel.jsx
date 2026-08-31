@@ -11,17 +11,17 @@ export default function HeroGlassPanel({ phase = "morning" }) {
       data-hero-phase={phase}
     >
       <span className="kicker">
-        <span className="live-dot" /> SYSTEM ONLINE - SAVE FILE: MUKHTADA.NST
+        <span className="live-dot" /> SYSTEM ONLINE · MUKHTADA.NST · JAMBI, INDONESIA
       </span>
       <h1>
-        Building systems, <br></br> <em>one quest</em> at a time.
+        Full-stack developer building <br /> <em>web, AI, and data systems.</em>
       </h1>
       <p className="lede">{profile.lede_id}</p>
       <div className="hero-actions">
-        <a href="#quests" className="btn primary" data-testid="cta-quests">
-          ▶ Start a Quest
+        <a href="#featured-projects" className="btn primary" data-testid="cta-quests">
+          View featured projects
         </a>
-        <a href="#journey" className="btn secondary" data-testid="cta-journey">
+        <a href="/lore" className="btn secondary" data-testid="cta-journey">
           Read the Lore
         </a>
       </div>

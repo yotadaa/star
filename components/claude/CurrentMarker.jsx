@@ -15,7 +15,7 @@ export default function CurrentMarker({ className = "" }) {
         <span className="current-marker-ring" />
         <span className="current-marker-core" />
       </span>
-      <span className="current-marker-label">Kamu di sini</span>
+      <span className="current-marker-label">Current chapter</span>
     </span>
   );
 }
