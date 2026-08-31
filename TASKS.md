@@ -18,6 +18,8 @@
 
 ## Done
 
+- [x] ~~**Preserve and optimize `/blog/{slug}` SEO metadata**~~ (2026-09-01) - retained every canonical, article, social, and structured-data field; aligned per-article language and Open Graph locale; localized publication/update dates; exposed real `dateModified` values visibly; and passed all 37 published routes, 35 unique featured images, an unknown-slug noindex probe, and desktop/mobile overflow gates. Plan: `plans/blog-slug-seo-audit-2026-09-01.md`; evidence: `validation/blog-slug-seo-2026-09-01/validation.md`.
+
 - [x] ~~**Add privacy-preserving Blog views and engaged reading time**~~ (2026-08-28) - preserved editorial reading estimates, added daily anonymous view deduplication, qualified engaged reads, five-reader-gated average active time, owner-only completion diagnostics, per-slug HMAC identities, 90-day bounded retention, seed-safe Convex aggregates, and responsive public/admin presentation without volatile structured data. Plan: `plans/blog-view-reading-analytics-2026-08-28.md`; evidence: `validation/blog-view-reading-analytics-2026-08-28/validation.md`.
 
 - [x] ~~**Install `write-grounded-blogs` as a global cross-agent skill**~~ (2026-08-27) - promoted one canonical Agent Skills package under `~/.agents/skills`, linked Codex and Claude Code to it, bundled the Star Blog automation contract and agent-only upload runbook, preserved the former Codex package as a recoverable backup, and passed structural, script, Claude discovery, installer-idempotency, and independent-agent boundary checks. Plan: `plans/global-write-grounded-blogs-skill-2026-08-27.md`; evidence: `validation/global-write-grounded-blogs-skill-2026-08-27/validation.md`.

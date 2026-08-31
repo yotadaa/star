@@ -43,6 +43,7 @@ export async function generateMetadata({ params }) {
     tags: articleSeo.tags,
     titleSuffix: "Mukhtada",
     absoluteTitle: true,
+    language: articleSeo.language,
   });
 }
 
@@ -58,7 +59,11 @@ export default async function BlogPostPage({ params }) {
   const viewerToken = actorKey ? commentActorToken(actorKey) : undefined;
   const canModerate = session?.user?.role === "owner";
   const articleSeo = buildBlogArticleSeo(post);
-  const publishedLabel = formatArticleDate(articleSeo.publishedTime);
+  const publishedLabel = formatArticleDate(articleSeo.publishedTime, articleSeo.language);
+  const modifiedLabel = articleSeo.modifiedTime !== articleSeo.publishedTime
+    ? formatArticleDate(articleSeo.modifiedTime, articleSeo.language)
+    : null;
+  const isIndonesian = articleSeo.language.toLowerCase().startsWith("id");
   const { recentPosts, relatedPosts } = buildBlogReadingContext(post, posts, {
     recentLimit: 4,
     relatedLimit: 3,
@@ -72,7 +77,7 @@ export default async function BlogPostPage({ params }) {
           __html: serializeStructuredData(articleSeo.structuredData),
         }}
       />
-      <article className="blog-post-article">
+      <article className="blog-post-article" lang={articleSeo.language}>
         <div className="blog-reading-layout">
           <div className="blog-post-column">
             <PageHeader label="// LORE ENTRY" title={post.title}>
@@ -88,6 +93,17 @@ export default async function BlogPostPage({ params }) {
                 <div>
                   <dt className="sr-only">Published</dt>
                   <dd><time dateTime={articleSeo.publishedTime}>{publishedLabel}</time></dd>
+                </div>
+              ) : null}
+              {modifiedLabel ? (
+                <div>
+                  <dt className="sr-only">
+                    {isIndonesian ? "Terakhir diperbarui" : "Last updated"}
+                  </dt>
+                  <dd>
+                    {isIndonesian ? "Diperbarui" : "Updated"}{" "}
+                    <time dateTime={articleSeo.modifiedTime}>{modifiedLabel}</time>
+                  </dd>
                 </div>
               ) : null}
               <div>
