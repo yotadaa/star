@@ -1,7 +1,9 @@
 {
-  "measurementId": "G-HE7CQBY895",
+  "measurementId": "[configured-ga-measurement-id]",
   "home": {
     "status": 200,
+    "measurementId": "[configured-ga-measurement-id]",
+    "measurementIdIsValid": true,
     "externalScriptCount": 1,
     "inlineScriptCount": 1,
     "configCount": 1,
@@ -9,21 +11,23 @@
     "commands": [
       [
         "js",
-        "2026-09-01T13:30:36.293Z"
+        "2026-09-01T13:48:45.110Z"
       ],
       [
         "config",
-        "G-HE7CQBY895"
+        "[configured-ga-measurement-id]"
       ]
     ],
     "scrollWidth": 1440,
     "clientWidth": 1440,
     "requests": [
-      "https://www.googletagmanager.com/gtag/js?id=G-HE7CQBY895"
+      "https://www.googletagmanager.com/gtag/js?id=[configured-ga-measurement-id]"
     ],
     "consoleErrors": []
   },
   "aboutAfterClientNavigation": {
+    "measurementId": "[configured-ga-measurement-id]",
+    "measurementIdIsValid": true,
     "externalScriptCount": 1,
     "inlineScriptCount": 1,
     "configCount": 1,
@@ -31,11 +35,11 @@
     "commands": [
       [
         "js",
-        "2026-09-01T13:30:36.293Z"
+        "2026-09-01T13:48:45.110Z"
       ],
       [
         "config",
-        "G-HE7CQBY895"
+        "[configured-ga-measurement-id]"
       ]
     ],
     "scrollWidth": 1440,
@@ -43,6 +47,8 @@
   },
   "aboutMobile": {
     "status": 200,
+    "measurementId": "[configured-ga-measurement-id]",
+    "measurementIdIsValid": true,
     "externalScriptCount": 1,
     "inlineScriptCount": 1,
     "configCount": 1,
@@ -50,21 +56,23 @@
     "commands": [
       [
         "js",
-        "2026-09-01T13:30:44.255Z"
+        "2026-09-01T13:48:51.357Z"
       ],
       [
         "config",
-        "G-HE7CQBY895"
+        "[configured-ga-measurement-id]"
       ]
     ],
     "scrollWidth": 375,
     "clientWidth": 375,
     "requests": [
-      "https://www.googletagmanager.com/gtag/js?id=G-HE7CQBY895"
+      "https://www.googletagmanager.com/gtag/js?id=[configured-ga-measurement-id]"
     ],
     "consoleErrors": []
   },
   "assertions": {
+    "configuredMeasurementIdIsValid": true,
+    "sameMeasurementIdAcrossRoutes": true,
     "homeHasOneLoader": true,
     "homeHasOneConfigScript": true,
     "homeHasOneConfigCommand": true,

@@ -4,6 +4,7 @@ import AuthProvider from "@/components/auth/AuthProvider";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import SiteProvider from "@/components/site/SiteProvider";
+import { siteVerificationMetadata } from "@/lib/seoVerification.mjs";
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_KEYWORDS,
@@ -72,9 +73,7 @@ export const metadata = {
       "max-video-preview": -1,
     },
   },
-  ...(process.env.GOOGLE_SITE_VERIFICATION
-    ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
-    : {}),
+  ...siteVerificationMetadata(),
   icons: {
     icon: "/icon.svg",
   },

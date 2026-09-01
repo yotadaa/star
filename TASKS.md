@@ -7,8 +7,6 @@
 
 ## Waiting On
 
-- [ ] **Activate IndexNow in Vercel production** - `https://me.mukhtada.my.id/indexnow-key.txt` is deployed but returns HTTP 503 because the Vercel production runtime does not have `INDEXNOW_API_KEY`. Add the existing server-only value to the Production environment and redeploy; then run the guarded IndexNow submission CLI and verify Bing acknowledgement. Evidence: `validation/blog-alt-indexnow-2026-08-26/validation.md`.
-
 ## Someday
 
 - [ ] **Upgrade the pre-existing vulnerable web/auth dependency paths** - `npm audit --omit=dev` currently reports two critical and four high findings across pinned Next.js 15.5.19, Auth.js beta.31, PostCSS 8.5.10, Sharp, and NanoID; test auth semantics and image optimization before applying the available upgrades. Evidence: `validation/convex-r2-migration-2026-08-26/validation.md`.
@@ -17,7 +15,11 @@
 
 ## Done
 
-- [x] ~~**Install Google Analytics 4 globally**~~ (2026-09-01) - applied measurement ID `G-HE7CQBY895` from `ganalytics4.md` once through the App Router root layout with deferred `next/script` loading, no dependency or manual duplicate pageview path, and intercepted browser validation that sent no test traffic to GA4. Plan: `plans/google-analytics-4-2026-09-01.md`; evidence: `validation/google-analytics-4-2026-09-01/validation.md`.
+- [x] ~~**Harden public SEO tooling and credential boundaries**~~ (2026-09-01) - moved the GA4 property ID to env, added env-only optional Google/Bing/Ahrefs verification metadata, sanitized the configured ID from all 2,391 tracked files, documented the exact public/server-only boundary, and added a Googlebot-style audit proving 44/44 sitemap URLs are 200, self-canonical, indexable, structured, and discoverable from Home with 0 failures or warnings. Plan: `plans/public-seo-credentials-tooling-2026-09-01.md`; evidence: `validation/public-seo-credentials-tooling-2026-09-01/validation.md`.
+
+- [x] ~~**Activate IndexNow in Vercel production**~~ (2026-09-01) - confirmed the live key route returns 200, timing-safe verification matched the ignored local server key, and IndexNow accepted the Blog index plus all 37 published articles (38 URLs total) with HTTP 200. This confirms submission receipt, not indexing. Evidence: `validation/public-seo-credentials-tooling-2026-09-01/indexnow-submission.json`.
+
+- [x] ~~**Install Google Analytics 4 globally**~~ (2026-09-01) - applied the env-configured GA4 measurement ID from `ganalytics4.md` once through the App Router root layout with deferred `next/script` loading, no dependency or manual duplicate pageview path, and intercepted browser validation that sent no test traffic to GA4. Plan: `plans/google-analytics-4-2026-09-01.md`; evidence: `validation/google-analytics-4-2026-09-01/validation.md`.
 
 - [x] ~~**Remove the morning Hero rabbit**~~ (2026-09-01) - deleted the rabbit SVG and production branch, retained one decorative noon cat, and confirmed phase roots `morning 0 / noon 1 / sunset 0 / night 0`, reduced-motion static behavior, zero overflow, and full Hero lifecycle regression. Sol Extra High final verdict: READY with no P0–P3 findings. Evidence: `validation/hero-ambient-life-2026-09-01/ground-fauna/README.md`.
 

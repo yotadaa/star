@@ -2,7 +2,6 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { chromium } from "playwright-core";
 
 const baseUrl = process.env.AUDIT_BASE_URL || "http://127.0.0.1:3126";
-const measurementId = "G-HE7CQBY895";
 const outputDir = new URL("./screenshots/", import.meta.url);
 await mkdir(outputDir, { recursive: true });
 
@@ -20,20 +19,26 @@ async function installMeasurementInterception(page, requestLog) {
 }
 
 async function analyticsState(page) {
-  return page.evaluate((gaId) => {
+  return page.evaluate(() => {
     const commands = (window.dataLayer || []).map((entry) => Array.from(entry, (value) => (
       value instanceof Date ? value.toISOString() : value
     )));
+    const externalScripts = [...document.querySelectorAll('script[src^="https://www.googletagmanager.com/gtag/js?"]')];
+    const measurementId = externalScripts.length === 1
+      ? new URL(externalScripts[0].src).searchParams.get("id")
+      : "";
     return {
-      externalScriptCount: document.querySelectorAll(`script[src="https://www.googletagmanager.com/gtag/js?id=${gaId}"]`).length,
+      measurementId,
+      measurementIdIsValid: /^G-[A-Z0-9]{6,20}$/.test(measurementId),
+      externalScriptCount: externalScripts.length,
       inlineScriptCount: document.querySelectorAll("script#google-analytics").length,
-      configCount: commands.filter((entry) => entry[0] === "config" && entry[1] === gaId).length,
+      configCount: commands.filter((entry) => entry[0] === "config" && entry[1] === measurementId).length,
       hasJsCommand: commands.some((entry) => entry[0] === "js"),
       commands,
       scrollWidth: document.documentElement.scrollWidth,
       clientWidth: document.documentElement.clientWidth,
     };
-  }, measurementId);
+  });
 }
 
 const desktopContext = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
@@ -47,9 +52,9 @@ desktopPage.on("console", (message) => {
 desktopPage.on("pageerror", (error) => desktopErrors.push(error.message));
 
 const homeResponse = await desktopPage.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
-await desktopPage.waitForFunction((gaId) => (
-  (window.dataLayer || []).some((entry) => entry[0] === "config" && entry[1] === gaId)
-), measurementId);
+await desktopPage.waitForFunction(() => (
+  (window.dataLayer || []).some((entry) => entry[0] === "config" && /^G-[A-Z0-9]{6,20}$/.test(entry[1]))
+));
 const homeState = await analyticsState(desktopPage);
 await desktopPage.screenshot({ path: new URL("home-desktop.png", outputDir).pathname });
 
@@ -68,14 +73,14 @@ mobilePage.on("console", (message) => {
 });
 mobilePage.on("pageerror", (error) => mobileErrors.push(error.message));
 const aboutResponse = await mobilePage.goto(`${baseUrl}/about`, { waitUntil: "networkidle" });
-await mobilePage.waitForFunction((gaId) => (
-  (window.dataLayer || []).some((entry) => entry[0] === "config" && entry[1] === gaId)
-), measurementId);
+await mobilePage.waitForFunction(() => (
+  (window.dataLayer || []).some((entry) => entry[0] === "config" && /^G-[A-Z0-9]{6,20}$/.test(entry[1]))
+));
 const aboutMobileState = await analyticsState(mobilePage);
 await mobilePage.screenshot({ path: new URL("about-mobile.png", outputDir).pathname });
 
 const result = {
-  measurementId,
+  measurementId: homeState.measurementId,
   home: {
     status: homeResponse?.status(),
     ...homeState,
@@ -90,6 +95,9 @@ const result = {
     consoleErrors: mobileErrors,
   },
   assertions: {
+    configuredMeasurementIdIsValid: homeState.measurementIdIsValid && aboutMobileState.measurementIdIsValid,
+    sameMeasurementIdAcrossRoutes: homeState.measurementId === aboutAfterClientNavigation.measurementId
+      && homeState.measurementId === aboutMobileState.measurementId,
     homeHasOneLoader: homeState.externalScriptCount === 1,
     homeHasOneConfigScript: homeState.inlineScriptCount === 1,
     homeHasOneConfigCommand: homeState.configCount === 1,
@@ -104,8 +112,14 @@ const result = {
   },
 };
 
-await writeFile(new URL("./browser-results.json", import.meta.url), `${JSON.stringify(result, null, 2)}\n`);
-console.log(JSON.stringify(result, null, 2));
+const redactedResult = JSON.parse(JSON.stringify(result, (_key, value) => (
+  typeof value === "string"
+    ? value.replace(/G-[A-Z0-9]{6,20}/g, "[configured-ga-measurement-id]")
+    : value
+)));
+
+await writeFile(new URL("./browser-results.json", import.meta.url), `${JSON.stringify(redactedResult, null, 2)}\n`);
+console.log(JSON.stringify(redactedResult, null, 2));
 
 await desktopContext.close();
 await mobileContext.close();

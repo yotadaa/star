@@ -32,6 +32,9 @@
     "blog:seo-data:verify-images": "node scripts/backfill-blog-seo-data.mjs --verify-dimensions",
     "blog:seo-alt": "node scripts/audit-blog-image-alt.mjs",
     "blog:analytics:verify": "node scripts/verify-blog-reading-analytics.mjs",
+    "credentials:audit": "node scripts/audit-tracked-credentials.mjs",
+    "seo:env:verify": "node scripts/verify-seo-environment.mjs",
+    "seo:audit": "node scripts/audit-public-seo.mjs",
     "indexnow:verify": "node scripts/verify-indexnow.mjs",
     "indexnow:submit": "node scripts/submit-indexnow.mjs",
     "convex:typecheck": "tsc --noEmit"

@@ -3,7 +3,7 @@
 ## Result
 
 Passed. The App Router root layout now loads one Google tag and initializes one
-GA4 config command for measurement ID `G-HE7CQBY895` on every route. The
+GA4 config command for the env-configured measurement ID on every route. The
 implementation uses the existing `next/script` API and adds no package, CSS,
 database field, cookie implementation, or custom event.
 
@@ -12,10 +12,10 @@ database field, cookie implementation, or custom event.
 - User-supplied source: `ganalytics4.md`.
 - Global boundary: `app/layout.js`.
 - Tag component: `components/GoogleAnalytics.jsx`.
-- External loader:
-  `https://www.googletagmanager.com/gtag/js?id=G-HE7CQBY895`.
+- External loader uses
+  `https://www.googletagmanager.com/gtag/js?id=<configured-id>`.
 - Initialization keeps the supplied `dataLayer`, `gtag('js', ...)`, and
-  `gtag('config', 'G-HE7CQBY895')` contract.
+  `gtag('config', ...)` contract.
 - Both scripts use Next.js `afterInteractive`, matching the framework's
   deferred third-party-script behavior.
 - No manual route-change pageview is emitted. GA4 Enhanced Measurement is the
@@ -35,7 +35,7 @@ database field, cookie implementation, or custom event.
 | External GA loader count | Exactly 1 per document |
 | Inline config script count | Exactly 1 per document |
 | `dataLayer` `js` command | Present |
-| `dataLayer` config command | Exactly 1 for `G-HE7CQBY895` |
+| `dataLayer` config command | Exactly 1 for the configured ID |
 | Client navigation Home → About | Loader and config remained singletons |
 | Desktop/mobile console errors | 0 |
 | Desktop/mobile horizontal overflow | 0 |
@@ -68,7 +68,8 @@ Visual inspection found no changed layout, clipping, or overflow.
 
 ## Deployment boundary
 
-The code installs the tag. GA4 Realtime or DebugView confirmation requires the
+The code installs the tag when `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` is configured
+in the build environment. GA4 Realtime or DebugView confirmation requires the
 deployed production site and access to the user's Google Analytics property.
 Enhanced Measurement's browser-history option should remain enabled in the GA4
 web data stream so App Router navigations are counted without custom duplicate

@@ -3,14 +3,14 @@
 ## Goal
 
 Install the supplied Google tag globally in the Next.js 15 App Router site so
-GA4 property `G-HE7CQBY895` can receive page-view data from every public route
+the env-configured GA4 property can receive page-view data from every public route
 without changing the visual interface or the existing Convex Blog-reading
 analytics.
 
 ## Evidence and boundary
 
 - User source: `ganalytics4.md` contains the standard `gtag.js` loader and
-  `gtag('config', 'G-HE7CQBY895')` call.
+  `gtag('config', ...)` contract.
 - `app/layout.js` is the global App Router boundary and currently has no
   analytics component.
 - No Content Security Policy is configured in `next.config.js` or the app.
@@ -29,7 +29,7 @@ analytics.
 ## Implementation
 
 1. Add `components/GoogleAnalytics.jsx` with two `afterInteractive` scripts:
-   - async `gtag.js` loader for `G-HE7CQBY895`;
+   - async `gtag.js` loader for `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID`;
    - the supplied `dataLayer`, `gtag('js', ...)`, and `gtag('config', ...)`
      initialization.
 2. Render the component once from `app/layout.js`, after the application body
@@ -40,7 +40,7 @@ analytics.
 ## Acceptance criteria
 
 1. Production HTML/browser hydration results in exactly one external Google
-   tag script and one inline config script with ID `G-HE7CQBY895`.
+   tag script and one inline config script for the env-configured ID.
 2. `window.dataLayer` contains the `js` and `config` commands after hydration.
 3. Client-side navigation does not duplicate either script or the config
    command.
