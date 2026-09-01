@@ -17,6 +17,8 @@
 
 ## Done
 
+- [x] ~~**Install Google Analytics 4 globally**~~ (2026-09-01) - applied measurement ID `G-HE7CQBY895` from `ganalytics4.md` once through the App Router root layout with deferred `next/script` loading, no dependency or manual duplicate pageview path, and intercepted browser validation that sent no test traffic to GA4. Plan: `plans/google-analytics-4-2026-09-01.md`; evidence: `validation/google-analytics-4-2026-09-01/validation.md`.
+
 - [x] ~~**Remove the morning Hero rabbit**~~ (2026-09-01) - deleted the rabbit SVG and production branch, retained one decorative noon cat, and confirmed phase roots `morning 0 / noon 1 / sunset 0 / night 0`, reduced-motion static behavior, zero overflow, and full Hero lifecycle regression. Sol Extra High final verdict: READY with no P0–P3 findings. Evidence: `validation/hero-ambient-life-2026-09-01/ground-fauna/README.md`.
 
 - [x] ~~**Complete the approved Hero Ambient Life continuation**~~ (2026-09-01) - added an explicit 1/6 night firefly branch rendered as one accessible 2–3-sprite cluster, a decorative morning rabbit/noon cat ground slot, compact-firefly navigation-safe horizontal dodge fallback, and assertion-bearing mobile/lifecycle evidence without new WebGL work, assets, dependencies, or color tokens. Sol Extra High final verdict: READY with no P0–P3 findings. Plan: `plans/hero-ambient-life-continuation-2026-09-01.md`; evidence: `validation/hero-ambient-life-2026-09-01/README.md`.

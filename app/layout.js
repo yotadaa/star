@@ -2,6 +2,7 @@ import { Fraunces, Silkscreen, Nunito } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/auth/AuthProvider";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import SiteProvider from "@/components/site/SiteProvider";
 import {
   DEFAULT_DESCRIPTION,
@@ -108,6 +109,7 @@ export default function RootLayout({ children }) {
             <SiteProvider>{children}</SiteProvider>
           </ConvexClientProvider>
         </AuthProvider>
+        <GoogleAnalytics />
       </body>
     </html>
   );

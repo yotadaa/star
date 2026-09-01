@@ -1,0 +1,80 @@
+{
+  "measurementId": "G-HE7CQBY895",
+  "home": {
+    "status": 200,
+    "externalScriptCount": 1,
+    "inlineScriptCount": 1,
+    "configCount": 1,
+    "hasJsCommand": true,
+    "commands": [
+      [
+        "js",
+        "2026-09-01T13:27:27.312Z"
+      ],
+      [
+        "config",
+        "G-HE7CQBY895"
+      ]
+    ],
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "requests": [
+      "https://www.googletagmanager.com/gtag/js?id=G-HE7CQBY895"
+    ],
+    "consoleErrors": []
+  },
+  "aboutAfterClientNavigation": {
+    "externalScriptCount": 1,
+    "inlineScriptCount": 1,
+    "configCount": 1,
+    "hasJsCommand": true,
+    "commands": [
+      [
+        "js",
+        "2026-09-01T13:27:27.312Z"
+      ],
+      [
+        "config",
+        "G-HE7CQBY895"
+      ]
+    ],
+    "scrollWidth": 1440,
+    "clientWidth": 1440
+  },
+  "aboutMobile": {
+    "status": 200,
+    "externalScriptCount": 1,
+    "inlineScriptCount": 1,
+    "configCount": 1,
+    "hasJsCommand": true,
+    "commands": [
+      [
+        "js",
+        "2026-09-01T13:27:33.157Z"
+      ],
+      [
+        "config",
+        "G-HE7CQBY895"
+      ]
+    ],
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "requests": [
+      "https://www.googletagmanager.com/gtag/js?id=G-HE7CQBY895"
+    ],
+    "consoleErrors": []
+  },
+  "assertions": {
+    "homeHasOneLoader": true,
+    "homeHasOneConfigScript": true,
+    "homeHasOneConfigCommand": true,
+    "homeHasJsCommand": true,
+    "clientNavigationDidNotDuplicateLoader": true,
+    "clientNavigationDidNotDuplicateConfig": true,
+    "mobileHasOneLoaderAndConfig": true,
+    "noDesktopOverflow": true,
+    "noMobileOverflow": true,
+    "noConsoleErrors": true,
+    "onlyInterceptedGoogleRequests": true
+  }
+}
