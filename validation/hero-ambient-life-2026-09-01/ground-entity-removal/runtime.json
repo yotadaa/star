@@ -1,0 +1,82 @@
+{
+  "productionGroundEntityReferences": {
+    "className": 0,
+    "componentName": 0,
+    "catSpecies": 0
+  },
+  "phases": [
+    {
+      "phase": "morning",
+      "groundRootCount": 0,
+      "grassBladeCount": 24,
+      "grassAnimationNames": [
+        "hero-grass-sway"
+      ],
+      "ambientAriaHidden": "true",
+      "renderer": "static",
+      "scrollWidth": 375,
+      "clientWidth": 375
+    },
+    {
+      "phase": "noon",
+      "groundRootCount": 0,
+      "grassBladeCount": 24,
+      "grassAnimationNames": [
+        "hero-grass-sway"
+      ],
+      "ambientAriaHidden": "true",
+      "renderer": "static",
+      "scrollWidth": 375,
+      "clientWidth": 375
+    },
+    {
+      "phase": "noon",
+      "groundRootCount": 0,
+      "grassBladeCount": 24,
+      "grassAnimationNames": [
+        "hero-grass-sway"
+      ],
+      "ambientAriaHidden": "true",
+      "renderer": "static",
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    {
+      "phase": "sunset",
+      "groundRootCount": 0,
+      "grassBladeCount": 24,
+      "grassAnimationNames": [
+        "hero-grass-sway"
+      ],
+      "ambientAriaHidden": "true",
+      "renderer": "static",
+      "scrollWidth": 375,
+      "clientWidth": 375
+    },
+    {
+      "phase": "night",
+      "groundRootCount": 0,
+      "grassBladeCount": 24,
+      "grassAnimationNames": [
+        "hero-grass-sway"
+      ],
+      "ambientAriaHidden": "true",
+      "renderer": "static",
+      "scrollWidth": 375,
+      "clientWidth": 375
+    },
+    {
+      "phase": "noon",
+      "groundRootCount": 0,
+      "grassBladeCount": 24,
+      "grassAnimationNames": [
+        "none"
+      ],
+      "ambientAriaHidden": "true",
+      "renderer": "static",
+      "scrollWidth": 375,
+      "clientWidth": 375
+    }
+  ],
+  "consoleErrors": []
+}

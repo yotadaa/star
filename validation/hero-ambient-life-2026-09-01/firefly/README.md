@@ -25,9 +25,8 @@
 - A focused night cluster changed to morning through a programmatic phase
   activation that did not steal focus. Focus moved to `cta-quests` before the
   firefly root was removed.
-- A controlled `document.visibilityState` change paused both the flyer WAAPI
-  root and ground CSS animation at unchanged current times for 560 ms, then
-  resumed both by more than 100 ms.
+- A controlled `document.visibilityState` change paused the flyer WAAPI root at
+  an unchanged current time for 560 ms, then resumed it by more than 100 ms.
 - Reduced motion uses the static renderer, a `102×68 px` two-sprite target,
   one static encounter, zero scoped running animations, and no overflow.
 - Desktop width remained `1440 / 1440`; mobile remained `375 / 375`.
@@ -55,5 +54,4 @@ assertions cover navigation and Hero content, not decorative celestial art.
 The final mobile screenshots use the production static fallback by disabling
 WebGL capability in the audit page. This keeps the captured scene deterministic
 while exercising the same Hero entity DOM, phase context, accessibility, and
-lifecycle code used with the WebGL renderer. Existing WebGL handoff evidence is
-recorded in the ground-fauna runtime artifact.
+lifecycle code used with the WebGL renderer.

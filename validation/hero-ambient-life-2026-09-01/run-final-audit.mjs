@@ -16,19 +16,14 @@ function intersects(a, b) {
 
 async function makePage({ phase = "night", clusterSize = 3, reducedMotion = "no-preference", hasTouch = true } = {}) {
   const context = await browser.newContext({ viewport, reducedMotion, hasTouch });
-  await context.addInitScript(({ savedPhase, wantedClusterSize, isReduced }) => {
+  const bootstrapPhase = phase === "night" ? "sunset" : phase;
+  await context.addInitScript((savedPhase) => {
     localStorage.setItem("cockpit-phase", savedPhase);
     Object.defineProperty(window, "WebGL2RenderingContext", {
       configurable: true,
       value: undefined,
     });
-    window.setTimeout(() => {
-      const heroSequence = [0.05, 0.8, 0.2, 0.4, 0.25, 0.65, wantedClusterSize === 2 ? 0.25 : 0.75];
-      const sequence = isReduced ? [0.4, 0.4, 0.4, ...heroSequence] : heroSequence;
-      let index = 0;
-      Math.random = () => sequence[index++ % sequence.length];
-    }, isReduced ? 0 : 350);
-  }, { savedPhase: phase, wantedClusterSize: clusterSize, isReduced: reducedMotion === "reduce" });
+  }, bootstrapPhase);
 
   const page = await context.newPage();
   page.on("console", (message) => {
@@ -37,6 +32,24 @@ async function makePage({ phase = "night", clusterSize = 3, reducedMotion = "no-
   page.on("pageerror", (error) => consoleErrors.push(error.message));
   await page.goto(`${baseUrl}/`, { waitUntil: "domcontentloaded" });
   await page.waitForLoadState("networkidle");
+  await page.waitForFunction((expectedPhase) => (
+    document.querySelector("#main")?.dataset.cockpitPhase === expectedPhase
+  ), bootstrapPhase);
+  if (phase === "night") {
+    await page.evaluate((wantedClusterSize) => {
+      const sequence = [0.05, 0.8, 0.2, 0.4, 0.25, 0.65, wantedClusterSize === 2 ? 0.25 : 0.75];
+      let index = 0;
+      let previousCall = 0;
+      Math.random = () => {
+        const now = performance.now();
+        if (now - previousCall > 40) index = 0;
+        previousCall = now;
+        return sequence[index++ % sequence.length];
+      };
+    }, clusterSize);
+    await page.locator('[data-testid="daynight-toggle"]').evaluate((node) => node.click());
+    await page.waitForFunction(() => document.querySelector("#main")?.dataset.cockpitPhase === "night");
+  }
   return { context, page };
 }
 
@@ -321,9 +334,7 @@ async function auditFocusedPhaseHandoff() {
 async function auditVisibilityLifecycle() {
   const { context, page } = await makePage({ phase: "noon", clusterSize: 2 });
   const encounter = page.locator('[data-testid="hero-entity-encounter"]');
-  const fauna = page.locator('[data-testid="hero-ground-fauna"]');
   await encounter.waitFor({ state: "attached", timeout: 7000 });
-  await fauna.waitFor({ state: "attached" });
 
   await page.evaluate(() => {
     window.__auditVisibilityState = "visible";
@@ -341,12 +352,9 @@ async function auditVisibilityLifecycle() {
 
   const readTimes = () => page.evaluate(() => {
     const flyer = document.querySelector('[data-testid="hero-entity-encounter"]');
-    const ground = document.querySelector('[data-testid="hero-ground-fauna"]');
     return {
       flyerTime: Number(flyer?.getAnimations()[0]?.currentTime || 0),
       flyerPlayState: flyer?.getAnimations()[0]?.playState || "missing",
-      groundTime: Number(ground?.getAnimations()[0]?.currentTime || 0),
-      groundPlayState: ground?.getAnimations()[0]?.playState || "missing",
       shellActive: document.querySelector(".parallax-scene-shell")?.dataset.renderActive,
       layerPaused: document.querySelector(".hero-entity-layer")?.dataset.motionPaused,
     };
@@ -369,9 +377,7 @@ async function auditVisibilityLifecycle() {
     hiddenEnd,
     resumed,
     flyerFrozen: Math.abs(hiddenEnd.flyerTime - hiddenStart.flyerTime) < 5,
-    groundFrozen: Math.abs(hiddenEnd.groundTime - hiddenStart.groundTime) < 5,
     flyerResumed: resumed.flyerTime - hiddenEnd.flyerTime > 100,
-    groundResumed: resumed.groundTime - hiddenEnd.groundTime > 100,
   };
 }
 
@@ -437,9 +443,7 @@ try {
   });
   assert.equal(result.focusedPhaseHandoff.focusMovedToFirstHeroCta, true);
   assert.equal(result.visibilityLifecycle.flyerFrozen, true);
-  assert.equal(result.visibilityLifecycle.groundFrozen, true);
   assert.equal(result.visibilityLifecycle.flyerResumed, true);
-  assert.equal(result.visibilityLifecycle.groundResumed, true);
   assert.equal(result.reducedMotion.scopedRunningAnimations, 0);
   assert.equal(result.reducedMotion.scrollWidth, result.reducedMotion.clientWidth);
   assert.deepEqual(result.consoleErrors, []);

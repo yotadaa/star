@@ -18,8 +18,8 @@
       },
       "focusEnvelope": {
         "sampleCount": 30,
-        "minTop": 73.11659240722656,
-        "maxBottom": 157.10716247558594,
+        "minTop": 73.11572265625,
+        "maxBottom": 157.1072998046875,
         "collisions": []
       },
       "obstacles": {
@@ -70,8 +70,8 @@
       },
       "focusEnvelope": {
         "sampleCount": 30,
-        "minTop": 73.11369323730469,
-        "maxBottom": 157.11349487304688,
+        "minTop": 73.11674499511719,
+        "maxBottom": 157.1072998046875,
         "collisions": []
       },
       "obstacles": {
@@ -124,15 +124,15 @@
       "focusedFlightPlayState": "paused",
       "focusedFlightTime": 0,
       "beforeBlurRect": {
-        "left": 118,
-        "top": 79.19377899169922,
-        "right": 220,
-        "bottom": 147.19378662109375
+        "left": 117,
+        "top": 79.73636627197266,
+        "right": 219,
+        "bottom": 147.73635864257812
       },
       "postDodgeFocusEnvelope": {
         "sampleCount": 30,
-        "minTop": 71.18757629394531,
-        "maxBottom": 155.16488647460938,
+        "minTop": 71.19410705566406,
+        "maxBottom": 155.17184448242188,
         "collisions": []
       },
       "blurResume": {
@@ -141,25 +141,25 @@
           "flightPlayState": "running",
           "flightTime": 0,
           "rect": {
-            "left": 118,
-            "top": 79.37687683105469,
-            "right": 220,
-            "bottom": 147.3768768310547
+            "left": 117,
+            "top": 79.90872955322266,
+            "right": 219,
+            "bottom": 147.90872192382812
           }
         },
         "resumed": {
           "flightPlayState": "running",
-          "flightTime": 333.35599999947794,
+          "flightTime": 366.71400000216715,
           "rect": {
-            "left": 49.42487335205078,
-            "top": 82.82396697998047,
-            "right": 151.42486572265625,
-            "bottom": 150.823974609375
+            "left": 46.3621711730957,
+            "top": 82.79660034179688,
+            "right": 148.3621711730957,
+            "bottom": 150.79660034179688
           }
         },
-        "positionJump": 0.18309783935546875,
+        "positionJump": 0.17236328125,
         "noMaterialPositionJump": true,
-        "timeAdvance": 333.35599999947794,
+        "timeAdvance": 366.71400000216715,
         "resumedRunning": true
       }
     },
@@ -178,15 +178,15 @@
       "focusedFlightPlayState": "paused",
       "focusedFlightTime": 0,
       "beforeBlurRect": {
-        "left": 118,
-        "top": 81.00174713134766,
-        "right": 220,
-        "bottom": 149.00173950195312
+        "left": 117,
+        "top": 80.84283447265625,
+        "right": 219,
+        "bottom": 148.84283447265625
       },
       "postDodgeFocusEnvelope": {
         "sampleCount": 30,
-        "minTop": 71.18757629394531,
-        "maxBottom": 155.17425537109375,
+        "minTop": 71.18952941894531,
+        "maxBottom": 155.1742401123047,
         "collisions": []
       },
       "blurResume": {
@@ -195,25 +195,25 @@
           "flightPlayState": "running",
           "flightTime": 0,
           "rect": {
-            "left": 118,
-            "top": 81.06261444091797,
-            "right": 220,
-            "bottom": 149.0626220703125
+            "left": 117,
+            "top": 80.92842102050781,
+            "right": 219,
+            "bottom": 148.9284210205078
           }
         },
         "resumed": {
           "flightPlayState": "running",
-          "flightTime": 333.2989999991494,
+          "flightTime": 350.02600000013473,
           "rect": {
-            "left": 49.43659210205078,
-            "top": 82.46672058105469,
-            "right": 151.43658447265625,
-            "bottom": 150.4667205810547
+            "left": 46.07267761230469,
+            "top": 82.59801483154297,
+            "right": 148.0726776123047,
+            "bottom": 150.5980224609375
           }
         },
-        "positionJump": 0.0608673095703125,
+        "positionJump": 0.0855865478515625,
         "noMaterialPositionJump": true,
-        "timeAdvance": 333.2989999991494,
+        "timeAdvance": 350.02600000013473,
         "resumedRunning": true
       }
     },
@@ -232,15 +232,15 @@
       "focusedFlightPlayState": "paused",
       "focusedFlightTime": 0,
       "beforeBlurRect": {
-        "left": 117,
-        "top": 79.0092544555664,
-        "right": 219,
-        "bottom": 147.00924682617188
+        "left": 118,
+        "top": 81.18547821044922,
+        "right": 220,
+        "bottom": 149.18548583984375
       },
       "postDodgeFocusEnvelope": {
         "sampleCount": 30,
-        "minTop": 71.18952178955078,
-        "maxBottom": 155.17425537109375,
+        "minTop": 71.1905517578125,
+        "maxBottom": 155.16482543945312,
         "collisions": []
       },
       "blurResume": {
@@ -249,25 +249,25 @@
           "flightPlayState": "running",
           "flightTime": 0,
           "rect": {
-            "left": 117,
-            "top": 79.37772369384766,
-            "right": 219,
-            "bottom": 147.37771606445312
+            "left": 118,
+            "top": 81.18113708496094,
+            "right": 220,
+            "bottom": 149.18113708496094
           }
         },
         "resumed": {
           "flightPlayState": "running",
-          "flightTime": 349.99899999906427,
+          "flightTime": 366.6100000004118,
           "rect": {
-            "left": 46.07219314575195,
-            "top": 82.87555694580078,
-            "right": 148.07219314575195,
-            "bottom": 150.87554931640625
+            "left": 47.37320327758789,
+            "top": 82.18795013427734,
+            "right": 149.3732032775879,
+            "bottom": 150.18795776367188
           }
         },
-        "positionJump": 0.36846923828125,
+        "positionJump": 0.00434112548828125,
         "noMaterialPositionJump": true,
-        "timeAdvance": 349.99899999906427,
+        "timeAdvance": 366.6100000004118,
         "resumedRunning": true
       }
     },
@@ -286,15 +286,15 @@
       "focusedFlightPlayState": "paused",
       "focusedFlightTime": 0,
       "beforeBlurRect": {
-        "left": 117,
-        "top": 78.82722473144531,
-        "right": 219,
-        "bottom": 146.8272247314453
+        "left": 118,
+        "top": 79.55863189697266,
+        "right": 220,
+        "bottom": 147.55862426757812
       },
       "postDodgeFocusEnvelope": {
         "sampleCount": 30,
-        "minTop": 71.19415283203125,
-        "maxBottom": 155.18112182617188,
+        "minTop": 71.194091796875,
+        "maxBottom": 155.17196655273438,
         "collisions": []
       },
       "blurResume": {
@@ -303,25 +303,25 @@
           "flightPlayState": "running",
           "flightTime": 0,
           "rect": {
-            "left": 117,
-            "top": 79.00955200195312,
-            "right": 219,
-            "bottom": 147.00955200195312
+            "left": 118,
+            "top": 79.73678588867188,
+            "right": 220,
+            "bottom": 147.73678588867188
           }
         },
         "resumed": {
           "flightPlayState": "running",
-          "flightTime": 333.29200000086524,
+          "flightTime": 349.95400000338606,
           "rect": {
-            "left": 48.57567596435547,
-            "top": 82.83808898925781,
-            "right": 150.57568359375,
-            "bottom": 150.8380889892578
+            "left": 47.083621978759766,
+            "top": 82.84596252441406,
+            "right": 149.08362197875977,
+            "bottom": 150.84596252441406
           }
         },
-        "positionJump": 0.1823272705078125,
+        "positionJump": 0.17815399169921875,
         "noMaterialPositionJump": true,
-        "timeAdvance": 333.29200000086524,
+        "timeAdvance": 349.95400000338606,
         "resumedRunning": true
       }
     }
@@ -341,33 +341,25 @@
   "visibilityLifecycle": {
     "method": "controlled document.visibilityState override plus native visibilitychange event",
     "hiddenStart": {
-      "flyerTime": 83.33500000071648,
+      "flyerTime": 1300.0149999986802,
       "flyerPlayState": "paused",
-      "groundTime": 833.3049999996554,
-      "groundPlayState": "paused",
       "shellActive": "false",
       "layerPaused": "true"
     },
     "hiddenEnd": {
-      "flyerTime": 83.33500000071648,
+      "flyerTime": 1300.0149999986802,
       "flyerPlayState": "paused",
-      "groundTime": 833.3049999996554,
-      "groundPlayState": "paused",
       "shellActive": "false",
       "layerPaused": "true"
     },
     "resumed": {
-      "flyerTime": 433.37200000078326,
+      "flyerTime": 1650.0139999972125,
       "flyerPlayState": "running",
-      "groundTime": 1183.3419999997218,
-      "groundPlayState": "running",
       "shellActive": "true",
       "layerPaused": "false"
     },
     "flyerFrozen": true,
-    "groundFrozen": true,
-    "flyerResumed": true,
-    "groundResumed": true
+    "flyerResumed": true
   },
   "reducedMotion": {
     "renderer": "static",

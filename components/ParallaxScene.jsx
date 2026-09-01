@@ -11,35 +11,6 @@ const AMBIENT_GRASS_BLADES = Array.from({ length: 24 }, (_, index) => ({
   lean: -7 + ((index * 11) % 15),
 }));
 
-function GroundCatSprite() {
-  return (
-    <svg className="hero-ground-fauna-sprite" viewBox="0 0 64 40" aria-hidden="true">
-      <path className="hero-ground-fauna-stroke" d="M16 25 C6 24 7 11 15 9 C11 18 18 18 22 20" />
-      <rect className="hero-ground-fauna-fill" x="18" y="17" width="30" height="15" rx="3" />
-      <rect className="hero-ground-fauna-fill" x="42" y="11" width="15" height="16" rx="3" />
-      <path className="hero-ground-fauna-fill" d="M43 13 L46 4 L50 13 Z" />
-      <path className="hero-ground-fauna-fill" d="M50 13 L55 5 L56 15 Z" />
-      <rect className="hero-ground-fauna-fill" x="22" y="29" width="5" height="8" rx="1.5" />
-      <rect className="hero-ground-fauna-fill" x="42" y="28" width="5" height="9" rx="1.5" />
-      <rect className="hero-ground-fauna-eye" x="52" y="16" width="2.5" height="2.5" />
-    </svg>
-  );
-}
-
-function GroundFaunaEncounter({ phase }) {
-  if (phase !== "noon") return null;
-
-  return (
-    <span
-      className="hero-ground-fauna"
-      data-species="cat"
-      data-testid="hero-ground-fauna"
-    >
-      <GroundCatSprite />
-    </span>
-  );
-}
-
 function supportsWebGL2() {
   return typeof window !== "undefined" && typeof window.WebGL2RenderingContext !== "undefined";
 }
@@ -286,7 +257,6 @@ function StaticParallaxScene({ phase, mobile, active = true, reduced = false, lo
 function AmbientLife({ phase, mobile }) {
   return (
     <div className="hero-ambient-life" data-phase={phase} aria-hidden="true">
-      <GroundFaunaEncounter phase={phase} key={`fauna-${phase}`} />
       <div className="hero-ambient-grass">
         {AMBIENT_GRASS_BLADES.map((blade, index) => (
           <span

@@ -4,20 +4,19 @@
 - **Route:** `/` — Hero cockpit
 - **Source:** user-supplied `Hero Ambient Life — Feature Spec`
 - **Architecture review:** Sol Extra High, read-only, before implementation
-- **Status:** rabbit removal validated — Sol Extra High final verdict READY
+- **Status:** ground-entity removal validated — Sol Extra High final verdict READY
 
 ## Scope decision
 
 The already validated Tier 1 grass, independent cloud drift, and night cloud
 relocation remain unchanged. This continuation adds the two remaining behaviors
-that have a verified place in the current scene without expanding WebGL:
+that have a verified place in the current scene without expanding WebGL. The
+night firefly encounter remains a stable 2–3-sprite cluster. The later owner
+adjustment removes the decorative ground-fauna slot completely.
 
-1. one decorative ground-fauna slot (cat at noon only); and
-2. one night firefly encounter rendered as a stable 2–3-sprite cluster.
-
-Concurrency is structural: at most one interactive airborne encounter plus at
-most one decorative ground encounter. Child sprites inside a sparrow pair or
-firefly cluster are one logical encounter, not additional encounters.
+Concurrency is structural: at most one interactive airborne encounter. Child
+sprites inside a sparrow pair or firefly cluster are one logical encounter,
+not additional encounters.
 
 The following proposal items remain deliberately deferred:
 
@@ -41,6 +40,22 @@ The following proposal items remain deliberately deferred:
 - **Validation:** production build, deterministic phase DOM counts, noon visual
   screenshot at desktop/mobile, reduced-motion cat state, Sol Extra High final
   diff review, then a scoped commit and push.
+- **Status:** validated — Sol Extra High READY, no P0–P3 findings
+
+## Owner adjustment — remove all ground entities
+
+- **Source:** explicit user request on 2026-09-01: “hilangkan semua ground
+  entities”.
+- **Production change:** delete the remaining noon-cat SVG/component, its DOM
+  root, and the dedicated CSS motion/reduced-motion/lifecycle rules. Ambient
+  grass remains because it is environmental scenery, not an entity.
+- **Acceptance criteria:** morning, noon, sunset, and night each report zero
+  ground roots; production Hero source/CSS contain no ground-fauna contract;
+  all 24 grass blades remain; no flying-entity, celestial, cloud, renderer,
+  dependency, or color-token change; no overflow or console errors.
+- **Validation:** production build, deterministic phase DOM/source assertions,
+  desktop/mobile/reduced-motion screenshots, final flying-entity lifecycle
+  audit, and Sol Extra High final diff review.
 - **Status:** validated — Sol Extra High READY, no P0–P3 findings
 
 ## Task 1 — Night firefly cluster
@@ -69,32 +84,25 @@ The following proposal items remain deliberately deferred:
   `validation/hero-ambient-life-2026-09-01/firefly/`
 - **Status:** validated after mobile focus/evidence remediation
 
-## Task 2 — Decorative ground fauna
+## Task 2 — Decorative ground fauna (superseded and removed)
 
-- **Source specification:** supplied feature spec Tier 2, Ground fauna; explicit
-  owner adjustment removes the morning rabbit and retains the noon cat
-- **Exact location:** foreground meadow within `AmbientLife`
-- **Structure:** one `aria-hidden` ground encounter root using inline SVG pixel
-  geometry and a CSS transform/opacity timeline. Noon maps to cat; morning,
-  sunset, and night render no ground encounter.
+- **Source specification:** supplied feature spec Tier 2, Ground fauna; later
+  owner instruction removes the feature completely.
+- **Exact location:** former foreground meadow slot within `AmbientLife`.
+- **Structure:** no ground-entity DOM, SVG, CSS selector, or animation remains.
 - **Dependency required?:** no
 - **New color token required?:** no
 - **Acceptance criteria:**
-  1. Exactly zero or one ground encounter exists, so total logical encounters
-     never exceed two.
-  2. Motion walks slowly, pauses once, then exits; it uses transform/opacity
-     only and has no JS timer, RAF, listener, WebGL call, or image request.
-  3. The lane remains below the Hero copy/CTA and inside the meadow at 1440,
-     768, and 375 px with zero horizontal overflow.
-  4. The encounter is nonfocusable, pointer-inert, and hidden from assistive
-     technology.
-  5. Offscreen/overlay/hidden states pause it; reduced motion retains one static
-     visible frame with no running animation.
-- **Guardrails:** existing color tokens only; no asset, audio, fabricated data,
-  UI card, or full-surface `will-change`.
+  1. Every phase renders zero ground encounter roots.
+  2. Production source/CSS contains zero references to the removed contract.
+  3. Ambient grass remains and the Hero has zero horizontal overflow at 1440,
+     768, and 375 px.
+  4. Flying entities and their lifecycle remain unchanged.
+- **Guardrails:** no asset, audio, dependency, color, WebGL, or flying-entity
+  change.
 - **Screenshot evidence:**
-  `validation/hero-ambient-life-2026-09-01/ground-fauna/`
-- **Status:** validated
+  `validation/hero-ambient-life-2026-09-01/ground-entity-removal/`
+- **Status:** removed and validated
 
 ## Validation matrix
 
@@ -104,13 +112,11 @@ The following proposal items remain deliberately deferred:
   change while focused.
 - Lifecycle: overlay, offscreen, hidden tab, repeated pause/resume, runtime
   reduced-motion change; no animation or DOM-count leaks.
-- Visual: desktop 1440 and mobile 375; noon cat, morning/sunset/night without
-  ground fauna, night firefly cluster, focused cluster, post-dodge, and reduced
-  motion.
-- Geometry: no fauna/copy/CTA overlap; no horizontal overflow.
+- Visual: desktop 1440 and mobile 375; all phases without ground entities,
+  night firefly cluster, focused cluster, post-dodge, and reduced motion.
+- Geometry: no horizontal overflow; existing flyer/copy/CTA contract retained.
 - Performance: no package/lock change, no new image request, zero WebGL scene or
-  draw-call change, bounded DOM additions (one fauna root, at most three cluster
-  children).
+  draw-call change, and fewer DOM/CSS animation nodes than before.
 
 ## Sol guardrails adopted
 
@@ -118,9 +124,8 @@ The following proposal items remain deliberately deferred:
 2. Keep parent flight/dodge transform ownership unchanged.
 3. Child sprites are decorative and pointer-inert.
 4. Random species/cluster values are generated once during encounter creation.
-5. A phase change may restart ground ambience but must never queue missed
-   cycles.
-6. Firefly and ground-fauna changes are independently reversible.
+5. Ambient grass stays decorative and hidden from assistive technology.
+6. Firefly behavior remains independently reversible from scenery changes.
 
 ## Final review
 
@@ -136,3 +141,13 @@ The later owner-requested rabbit removal received a separate Sol Extra High
 review after the production branch, SVG, historical rabbit screenshots, and
 validation fixtures were updated. Final adjustment verdict: **READY**, with no
 P0–P3 findings; the noon cat and lifecycle contract remain intact.
+
+That noon-cat contract is now superseded by the later owner request to remove
+all ground entities. The current validation and Sol review target the zero-root
+contract above.
+
+Sol Extra High's first zero-ground review found one P3 evidence-integrity issue:
+the retained historical `ground-fauna/README.md` still described the cat as
+current and linked the deleted runner. The artifact now labels itself
+historical before any result claim and points to the current zero-ground
+evidence. Final re-review verdict: **READY**, with no P0–P3 findings remaining.

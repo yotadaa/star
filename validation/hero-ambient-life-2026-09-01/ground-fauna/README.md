@@ -1,11 +1,16 @@
-# Ground fauna validation
+# Historical ground-fauna validation (superseded)
 
-- **Result:** PASS after owner-requested rabbit removal
-- **Production build:** PASS
-- **Current ground species:** noon cat only
-- **Sol Extra High:** READY, no P0–P3 findings
+> **Historical evidence only.** This directory records the former noon-cat
+> implementation. The owner later removed every ground entity, so none of the
+> behavior below is the current production contract. See
+> `../ground-entity-removal/README.md` for current evidence.
 
-## Final behavior
+- **Historical result:** PASS after the earlier rabbit-only removal
+- **Historical production build:** PASS at capture time
+- **Former ground species:** noon cat only
+- **Historical Sol review:** READY at capture time
+
+## Former behavior
 
 - The rabbit production branch and SVG are deleted. Morning, sunset, and night
   render zero ground roots; noon renders exactly one cat.
@@ -18,6 +23,9 @@
   logical encounters.
 
 ## Runtime gates
+
+The following values describe the retained historical snapshot, not the
+current route:
 
 - Source scan: zero case-insensitive `rabbit` references in
   `components/ParallaxScene.jsx`.
@@ -40,6 +48,11 @@
 - `mobile-reduced-noon.png`
 - `rabbit-removal-contact-sheet.webp`
 - `runtime.json` — assertion-bearing source, phase, accessibility,
-  reduced-motion, and overflow results.
+  reduced-motion, and overflow results for the former implementation.
 - `../firefly/runtime-mobile.json` — full Hero regression and lifecycle audit.
-- `../run-rabbit-removal-audit.mjs` — reproducible targeted audit.
+
+The old rabbit-removal runner was deleted when its noon-cat contract was
+superseded. The current zero-ground contract is reproducible with
+`../run-ground-entity-removal-audit.mjs` and documented in
+`../ground-entity-removal/README.md`; that runner intentionally does not
+reproduce this obsolete cat state.
