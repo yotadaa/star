@@ -1,0 +1,29 @@
+{
+  "attempts": 6,
+  "spriteCount": 3,
+  "focusableCount": 1,
+  "childPointerEvents": [
+    "none",
+    "none",
+    "none"
+  ],
+  "focused": true,
+  "flightPlayState": "paused",
+  "sparkCount": 1,
+  "resumedState": "flying",
+  "targetFocusAfter": true,
+  "before": {
+    "x": 1337.99853515625,
+    "y": 189.111083984375,
+    "width": 102,
+    "height": 76
+  },
+  "after": {
+    "x": 1234,
+    "y": 244,
+    "width": 102,
+    "height": 76
+  },
+  "scrollWidth": 1440,
+  "clientWidth": 1440
+}

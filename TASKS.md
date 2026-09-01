@@ -2,6 +2,7 @@
 
 ## Active
 
+- [ ] **Complete the approved Hero Ambient Life continuation** - add a one-focus-target night firefly cluster and one decorative morning/noon ground-fauna slot without changing the repaired flyer state machine or adding WebGL work; conditional tower/water/audio/sky-breathing proposals remain deferred. Plan: `plans/hero-ambient-life-continuation-2026-09-01.md`.
 - [ ] **Commit every completed work unit** - after a coherent implementation + validation pass, create a git commit before starting the next unrelated unit. See `plans/commit-validation-workflow.md`.
 - [ ] **Replace native dropdowns with custom controls** - later, scan all built-in HTML dropdowns/selects and replace them with design-system custom dropdowns.
 

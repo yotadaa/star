@@ -1931,6 +1931,32 @@ a.hud-chip:focus-visible {
   transform: translate(15px, -4px) scaleX(var(--sprite-flip, 1));
 }
 
+.hero-entity-target.is-firefly-cluster {
+  width: 102px;
+  height: 76px;
+}
+
+.hero-entity-target.is-firefly-cluster .hero-entity-sprite {
+  position: absolute;
+  width: 48px;
+  height: 42px;
+}
+
+.hero-entity-target.is-firefly-cluster .hero-entity-sprite--firefly-1 {
+  transform: translate(-23px, 8px) scale(.78) scaleX(var(--sprite-flip, 1));
+  animation-delay: -170ms;
+}
+
+.hero-entity-target.is-firefly-cluster .hero-entity-sprite--firefly-2 {
+  transform: translate(18px, -10px) scale(.92) scaleX(var(--sprite-flip, 1));
+  animation-delay: -330ms;
+}
+
+.hero-entity-target.is-firefly-cluster .hero-entity-sprite--firefly-3 {
+  transform: translate(3px, 19px) scale(.68) scaleX(var(--sprite-flip, 1));
+  animation-delay: -40ms;
+}
+
 @keyframes hero-entity-body-drift {
   0%,
   100% {

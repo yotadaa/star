@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { selectFireflyClusterSize, selectNightEntity } from "@/components/hero/entityEncounter.mjs";
 
 const ENTITY_COPY = {
   "butterfly-terracotta": "orange butterfly",
@@ -8,14 +9,14 @@ const ENTITY_COPY = {
   sparrow: "small sparrow",
   "migration-v": "migrating bird formation",
   bat: "small bat",
-  firefly: "firefly",
+  firefly: "firefly cluster",
 };
 
 const PHASE_ENTITIES = {
   morning: ["butterfly-terracotta", "butterfly-moss"],
   noon: ["sparrow"],
   sunset: ["migration-v"],
-  night: ["bat", "firefly"],
+  night: ["bat"],
 };
 
 const FLIGHT = {
@@ -97,8 +98,8 @@ function createFlightKeyframes(encounter, layerWidth) {
 }
 
 function createEncounter(phase, reducedMotion) {
-  const entity = phase === "night" && Math.random() < 1 / 6
-    ? "firefly"
+  const entity = phase === "night"
+    ? selectNightEntity(Math.random())
     : pick(PHASE_ENTITIES[phase] || PHASE_ENTITIES.morning);
   const direction = Math.random() > 0.5 ? "right" : "left";
   const profile = FLIGHT[entity];
@@ -119,6 +120,7 @@ function createEncounter(phase, reducedMotion) {
     flap: profile.flap,
     pause: profile.pause,
     pair: entity === "sparrow" && Math.random() > 0.56,
+    clusterSize: entity === "firefly" ? selectFireflyClusterSize(Math.random()) : 1,
     static: reducedMotion,
     status: "flying",
   };
@@ -403,8 +405,10 @@ export default function HeroEntityLayer({ phase = "morning", paused = false }) {
 
   const handleBlur = useCallback(() => {
     focusedRef.current = false;
-    if (!externallyPausedRef.current) flightAnimationRef.current?.play();
-  }, []);
+    if (!externallyPausedRef.current && visible && !reducedMotion) {
+      flightAnimationRef.current?.play();
+    }
+  }, [reducedMotion, visible]);
 
   const encounterStyle = encounter?.status === "dodging"
     ? {
@@ -454,7 +458,7 @@ export default function HeroEntityLayer({ phase = "morning", paused = false }) {
           onAnimationEnd={handleDodgeAnimationEnd}
         >
           <button
-            className={`hero-entity-target${encounter.pair ? " is-pair" : ""}`}
+            className={`hero-entity-target${encounter.pair ? " is-pair" : ""}${encounter.entity === "firefly" ? " is-firefly-cluster" : ""}`}
             type="button"
             aria-label={`Activate the ${ENTITY_COPY[encounter.entity]} to make it dodge.`}
             data-testid={`hero-entity-${encounter.entity}`}
@@ -463,7 +467,15 @@ export default function HeroEntityLayer({ phase = "morning", paused = false }) {
             onFocus={handleFocus}
             onBlur={handleBlur}
           >
-            {encounter.pair ? (
+            {encounter.entity === "firefly" ? (
+              Array.from({ length: encounter.clusterSize }, (_, index) => (
+                <span
+                  className={`hero-entity-sprite hero-entity-sprite--firefly-${index + 1}`}
+                  aria-hidden="true"
+                  key={index}
+                />
+              ))
+            ) : encounter.pair ? (
               <>
                 <span className="hero-entity-sprite hero-entity-sprite--rear" aria-hidden="true" />
                 <span className="hero-entity-sprite hero-entity-sprite--front" aria-hidden="true" />
