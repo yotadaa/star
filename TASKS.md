@@ -2,7 +2,6 @@
 
 ## Active
 
-- [ ] **Improve Home performance** - real-image/R3F hero is currently laggy and heavy. Reproducible baseline, root-cause evidence, budgets, and the phased repair plan are in `plans/performance-audit-2026-08-24.md`.
 - [ ] **Commit every completed work unit** - after a coherent implementation + validation pass, create a git commit before starting the next unrelated unit. See `plans/commit-validation-workflow.md`.
 - [ ] **Replace native dropdowns with custom controls** - later, scan all built-in HTML dropdowns/selects and replace them with design-system custom dropdowns.
 
@@ -17,6 +16,8 @@
 - [ ] **Align the existing Player Status popup with the neobrutalist system** - remove its older rounded/gradient treatment observed during Player HUD shortcut validation; evidence: `screenshots/player-hud-2026-07-04/desktop-inventory-shortcut.png`.
 
 ## Done
+
+- [x] ~~**Restore, harden, and optimize the Home Hero**~~ (2026-09-01) - restored the open-air sky/atmosphere and shining celestial orbit, made the moon rise left and set right, moved/dimmed clouds into their night formation, added cheap CSS grass, preserved entity focus/dodge continuity, paused every renderer/ambient path, removed the duplicate WebGL context, cut desktop scene images by 91.4%, streamed Featured Blog independently, and expanded top-nav targets to 44 px. Sol Extra High final verdict: READY. The requested daylight lede palette remains an explicitly documented sub-AA limitation. Plan: `plans/hero-audit-remediation-2026-09-01.md`; evidence: `validation/hero-audit-remediation-2026-09-01/README.md`.
 
 - [x] ~~**Repair Hero entity dodge movement**~~ (2026-09-01) - captured the live flight position before cancellation, converted the dodge endpoint back to lane-relative flight coordinates, kept desktop/mobile dodges above the Hero copy, and verified pointer/touch/keyboard/reduced-motion behavior with zero post-build handoff jump. Plan: `plans/hero-entity-dodge-continuity-2026-09-01.md`; evidence: `validation/hero-entity-dodge-2026-09-01/README.md`.
 

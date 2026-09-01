@@ -135,22 +135,28 @@ function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
 
-export default function HeroEntityLayer({ phase = "morning" }) {
+export default function HeroEntityLayer({ phase = "morning", paused = false }) {
   const layerRef = useRef(null);
   const spawnTimerRef = useRef(null);
-  const finishTimerRef = useRef(null);
+  const spawnDeadlineRef = useRef(0);
+  const spawnRemainingRef = useRef(null);
   const sparkTimerRef = useRef(null);
   const flightAnimationRef = useRef(null);
   const interactingRef = useRef(false);
+  const focusedRef = useRef(false);
   const encounterNodeRef = useRef(null);
   const [visible, setVisible] = useState(false);
+  const [documentVisible, setDocumentVisible] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [encounter, setEncounter] = useState(null);
   const [spark, setSpark] = useState(null);
+  const externallyPaused = paused || !documentVisible;
+  const externallyPausedRef = useRef(externallyPaused);
 
   const clearTimers = useCallback(() => {
     clearTimer(spawnTimerRef);
-    clearTimer(finishTimerRef);
+    spawnDeadlineRef.current = 0;
+    spawnRemainingRef.current = null;
     clearTimer(sparkTimerRef);
   }, []);
 
@@ -163,12 +169,23 @@ export default function HeroEntityLayer({ phase = "morning" }) {
 
   const scheduleSpawn = useCallback((delay) => {
     clearTimer(spawnTimerRef);
+    const remainingDelay = Math.max(0, Number(delay) || 0);
+    spawnRemainingRef.current = remainingDelay;
     if (!visible) return;
+    if (externallyPausedRef.current) return;
 
+    spawnDeadlineRef.current = performance.now() + remainingDelay;
     spawnTimerRef.current = window.setTimeout(() => {
+      spawnTimerRef.current = null;
+      spawnDeadlineRef.current = 0;
+      if (externallyPausedRef.current) {
+        spawnRemainingRef.current = 0;
+        return;
+      }
+      spawnRemainingRef.current = null;
       interactingRef.current = false;
       setEncounter(createEncounter(phase, reducedMotion));
-    }, delay);
+    }, remainingDelay);
   }, [phase, reducedMotion, visible]);
 
   useEffect(() => {
@@ -178,6 +195,35 @@ export default function HeroEntityLayer({ phase = "morning" }) {
     motion.addEventListener("change", syncMotion);
     return () => motion.removeEventListener("change", syncMotion);
   }, []);
+
+  useEffect(() => {
+    const syncVisibility = () => setDocumentVisible(document.visibilityState === "visible");
+    syncVisibility();
+    document.addEventListener("visibilitychange", syncVisibility);
+    return () => document.removeEventListener("visibilitychange", syncVisibility);
+  }, []);
+
+  useEffect(() => {
+    externallyPausedRef.current = externallyPaused;
+    const animation = flightAnimationRef.current;
+    if (animation) {
+      if (externallyPaused || focusedRef.current) animation.pause();
+      else animation.play();
+    }
+
+    if (externallyPaused) {
+      if (spawnTimerRef.current) {
+        spawnRemainingRef.current = Math.max(0, spawnDeadlineRef.current - performance.now());
+        clearTimer(spawnTimerRef);
+        spawnDeadlineRef.current = 0;
+      }
+      return;
+    }
+
+    if (visible && spawnRemainingRef.current !== null && !spawnTimerRef.current) {
+      scheduleSpawn(spawnRemainingRef.current);
+    }
+  }, [externallyPaused, scheduleSpawn, visible]);
 
   useEffect(() => {
     const hero = layerRef.current?.closest(".hero");
@@ -192,6 +238,10 @@ export default function HeroEntityLayer({ phase = "morning" }) {
   }, []);
 
   useEffect(() => {
+    const focusedEntity = encounterNodeRef.current?.contains(document.activeElement);
+    if (focusedEntity) {
+      layerRef.current?.closest(".hero")?.querySelector(".hero-actions a")?.focus();
+    }
     clearTimers();
     stopFlight();
     setSpark(null);
@@ -229,6 +279,9 @@ export default function HeroEntityLayer({ phase = "morning" }) {
       }
     );
     flightAnimationRef.current = animation;
+    if (externallyPausedRef.current || focusedRef.current || node.contains(document.activeElement)) {
+      animation.pause();
+    }
     animation.finished.then(() => {
       if (flightAnimationRef.current !== animation) return;
       flightAnimationRef.current = null;
@@ -307,6 +360,9 @@ export default function HeroEntityLayer({ phase = "morning" }) {
     }
     const laneOffsetY = layerRect.height * (encounter.lane / 100);
     const flightResumeY = Math.round(dodgeEndY - laneOffsetY);
+    const baseline = getFlightPosition(encounter, layerRect.width, resumeProgress);
+    const courseOffsetX = Math.round(dodgeEndX - baseline.x);
+    const courseOffsetY = Math.round(flightResumeY - baseline.y);
     setEncounter((current) => {
       if (!current || current.id !== encounter.id) return current;
       return {
@@ -319,30 +375,36 @@ export default function HeroEntityLayer({ phase = "morning" }) {
         dodgeEndY: Math.round(dodgeEndY),
         flightResumeY,
         resumeProgress,
+        courseOffsetX,
+        courseOffsetY,
       };
     });
-
-    clearTimer(finishTimerRef);
-    finishTimerRef.current = window.setTimeout(() => {
-      const baseline = getFlightPosition(encounter, layerRect.width, resumeProgress);
-      setEncounter((current) => {
-        if (current?.id !== encounter.id) return current;
-        return {
-          ...current,
-          status: "flying",
-          courseOffsetX: Math.round(dodgeEndX - baseline.x),
-          courseOffsetY: Math.round(flightResumeY - baseline.y),
-        };
-      });
-      interactingRef.current = false;
-    }, dodgeDuration + 30);
   }, [encounter, reducedMotion, stopFlight]);
+
+  const handleDodgeAnimationEnd = useCallback((event) => {
+    if (event.target !== event.currentTarget || event.animationName !== "hero-entity-dodge") return;
+    setEncounter((current) => {
+      if (!current || current.status !== "dodging") return current;
+      return { ...current, status: "flying" };
+    });
+    interactingRef.current = false;
+  }, []);
 
   const handleKeyDown = useCallback((event) => {
     if (event.key !== "Enter" && event.key !== " ") return;
     event.preventDefault();
     handleInteract(event);
   }, [handleInteract]);
+
+  const handleFocus = useCallback(() => {
+    focusedRef.current = true;
+    flightAnimationRef.current?.pause();
+  }, []);
+
+  const handleBlur = useCallback(() => {
+    focusedRef.current = false;
+    if (!externallyPausedRef.current) flightAnimationRef.current?.play();
+  }, []);
 
   const encounterStyle = encounter?.status === "dodging"
     ? {
@@ -365,7 +427,12 @@ export default function HeroEntityLayer({ phase = "morning" }) {
     };
 
   return (
-    <div className="hero-entity-layer" ref={layerRef} aria-label="Interactive flying creatures">
+    <div
+      className="hero-entity-layer"
+      ref={layerRef}
+      aria-label="Interactive flying creatures"
+      data-motion-paused={externallyPaused ? "true" : "false"}
+    >
       {spark && (
         <span
           className="hero-entity-spark"
@@ -384,6 +451,7 @@ export default function HeroEntityLayer({ phase = "morning" }) {
           data-testid="hero-entity-encounter"
           style={encounterStyle}
           ref={encounterNodeRef}
+          onAnimationEnd={handleDodgeAnimationEnd}
         >
           <button
             className={`hero-entity-target${encounter.pair ? " is-pair" : ""}`}
@@ -392,6 +460,8 @@ export default function HeroEntityLayer({ phase = "morning" }) {
             data-testid={`hero-entity-${encounter.entity}`}
             onClick={handleInteract}
             onKeyDown={handleKeyDown}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           >
             {encounter.pair ? (
               <>

@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import BlogPostCard from "@/components/blog/BlogPostCard";
 import HeroGlassPanel from "@/components/HeroGlassPanel";
 import HeroEntityLayer from "@/components/HeroEntityLayer";
 import QuestLog from "@/components/QuestLog";
@@ -20,8 +19,8 @@ const ParallaxScene = dynamic(() => import("@/components/ParallaxScene"), {
   loading: () => null,
 });
 
-export default function HomePageContent({ recentPosts = [] }) {
-  const { phase } = useSite();
+export default function HomePageContent({ featuredBlog = null }) {
+  const { phase, paletteOpen, playerOpen, chatOpen } = useSite();
   const featured = featuredQuests.filter((project) => project.featured);
   const tierRarity = (tier = "") => (tier.includes("TIER S") ? "epic" : tier.includes("TIER A") ? "rare" : "common");
 
@@ -29,9 +28,9 @@ export default function HomePageContent({ recentPosts = [] }) {
     <>
       <section className="hero" id="hero">
         <div className="hero-canvas">
-          <ParallaxScene phase={phase} />
+          <ParallaxScene phase={phase} paused={paletteOpen || playerOpen || chatOpen} />
         </div>
-        <HeroEntityLayer phase={phase} />
+        <HeroEntityLayer phase={phase} paused={paletteOpen || playerOpen || chatOpen} />
         <HeroGlassPanel phase={phase} />
         <div className="scroll-cue">
           SCROLL <span className="chev">▾</span>
@@ -81,25 +80,7 @@ export default function HomePageContent({ recentPosts = [] }) {
         </div>
       </section>
 
-      <section className="section-band alt" id="featured-blog" aria-labelledby="featured-blog-title">
-        <div className="content">
-          <div className="section-head">
-            <span className="pixel-label">// Featured Blog Posts</span>
-            <h2 id="featured-blog-title">Recent articles and technical notes</h2>
-            <p>Writing on web development, AI tooling, open-source software, research, and the decisions behind real projects.</p>
-          </div>
-          {recentPosts.length > 0 && (
-            <div className="blog-grid">
-              {recentPosts.map((post) => (
-                <BlogPostCard key={post.slug} post={post} headingLevel="h3" />
-              ))}
-            </div>
-          )}
-          <div className="home-cta">
-            <Link href="/blog" className="btn primary" data-testid="cta-blog">Read all articles</Link>
-          </div>
-        </div>
-      </section>
+      {featuredBlog}
     </>
   );
 }
