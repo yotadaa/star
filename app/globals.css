@@ -1639,10 +1639,6 @@ a.hud-chip:focus-visible {
   paint-order: stroke fill;
 }
 
-.hero-ground-fauna-fill.is-muted {
-  opacity: .72;
-}
-
 .hero-ground-fauna-stroke {
   fill: none;
   stroke: var(--ink);

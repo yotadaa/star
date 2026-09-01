@@ -11,22 +11,7 @@ const AMBIENT_GRASS_BLADES = Array.from({ length: 24 }, (_, index) => ({
   lean: -7 + ((index * 11) % 15),
 }));
 
-function GroundFaunaSprite({ species }) {
-  if (species === "rabbit") {
-    return (
-      <svg className="hero-ground-fauna-sprite" viewBox="0 0 64 40" aria-hidden="true">
-        <rect className="hero-ground-fauna-fill" x="17" y="17" width="29" height="16" rx="3" />
-        <rect className="hero-ground-fauna-fill" x="40" y="12" width="15" height="16" rx="3" />
-        <rect className="hero-ground-fauna-fill" x="43" y="1" width="4" height="15" rx="2" />
-        <rect className="hero-ground-fauna-fill" x="50" y="3" width="4" height="14" rx="2" />
-        <rect className="hero-ground-fauna-fill is-muted" x="10" y="20" width="11" height="10" rx="5" />
-        <rect className="hero-ground-fauna-fill" x="21" y="30" width="8" height="6" rx="2" />
-        <rect className="hero-ground-fauna-fill" x="42" y="29" width="9" height="6" rx="2" />
-        <rect className="hero-ground-fauna-eye" x="50" y="17" width="2.5" height="2.5" />
-      </svg>
-    );
-  }
-
+function GroundCatSprite() {
   return (
     <svg className="hero-ground-fauna-sprite" viewBox="0 0 64 40" aria-hidden="true">
       <path className="hero-ground-fauna-stroke" d="M16 25 C6 24 7 11 15 9 C11 18 18 18 22 20" />
@@ -42,16 +27,15 @@ function GroundFaunaSprite({ species }) {
 }
 
 function GroundFaunaEncounter({ phase }) {
-  const species = phase === "morning" ? "rabbit" : phase === "noon" ? "cat" : null;
-  if (!species) return null;
+  if (phase !== "noon") return null;
 
   return (
     <span
       className="hero-ground-fauna"
-      data-species={species}
+      data-species="cat"
       data-testid="hero-ground-fauna"
     >
-      <GroundFaunaSprite species={species} />
+      <GroundCatSprite />
     </span>
   );
 }

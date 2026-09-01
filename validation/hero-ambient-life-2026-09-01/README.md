@@ -3,16 +3,16 @@
 - **Date:** 2026-09-01
 - **Route:** `/`
 - **Plan:** `plans/hero-ambient-life-continuation-2026-09-01.md`
-- **Status:** validated — Sol Extra High final verdict READY, no P0–P3 findings
+- **Status:** rabbit removal validated — Sol Extra High final verdict READY
 
 ## Implemented continuation
 
 1. Night fireflies now appear as one 2–3-sprite cluster with one focus target,
    one flight path, and one dodge lifecycle. The night selector is an explicit
    `1/6` firefly / `5/6` bat decision.
-2. Morning rabbit and noon cat share one decorative ground slot. Their inline
-   SVG and CSS timeline add no image request, JavaScript scheduler, focus
-   target, or WebGL work.
+2. The owner-requested adjustment removes the rabbit branch and SVG entirely.
+   Only the noon cat uses the decorative ground slot; morning, sunset, and night
+   render no ground fauna.
 3. Concurrency is structurally capped at one airborne group plus one ground
    group. Pair/cluster children remain part of their parent logical encounter.
 
@@ -40,6 +40,9 @@
   used the static renderer with zero scoped running animations.
 - No package/lock change, dependency, new hex token, emoji, audio, external
   fauna asset, or WebGL scene edit was introduced.
+- The rabbit-removal audit reports zero production `rabbit` references,
+  phase counts `morning 0 / noon 1 / sunset 0 / night 0`, one pointer-inert cat,
+  reduced-motion `animation-name: none`, zero overflow, and no console errors.
 
 Detailed evidence:
 

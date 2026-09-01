@@ -4,7 +4,7 @@
 - **Route:** `/` — Hero cockpit
 - **Source:** user-supplied `Hero Ambient Life — Feature Spec`
 - **Architecture review:** Sol Extra High, read-only, before implementation
-- **Status:** validated — Sol Extra High final verdict READY, no P0–P3 findings
+- **Status:** rabbit removal validated — Sol Extra High final verdict READY
 
 ## Scope decision
 
@@ -12,7 +12,7 @@ The already validated Tier 1 grass, independent cloud drift, and night cloud
 relocation remain unchanged. This continuation adds the two remaining behaviors
 that have a verified place in the current scene without expanding WebGL:
 
-1. one decorative ground-fauna slot (rabbit in morning, cat at noon); and
+1. one decorative ground-fauna slot (cat at noon only); and
 2. one night firefly encounter rendered as a stable 2–3-sprite cluster.
 
 Concurrency is structural: at most one interactive airborne encounter plus at
@@ -27,6 +27,21 @@ The following proposal items remain deliberately deferred:
 - sky breathing — optional continuous full-surface motion with no dependency on
   the requested fauna;
 - ambient audio — requires a separate explicit product decision and mute UX.
+
+## Owner adjustment — remove morning rabbit
+
+- **Source:** explicit user request on 2026-09-01: “remove the rabbit then
+  commit and push”.
+- **Production change:** delete the rabbit SVG branch and render ground fauna
+  only for the noon cat. Morning, sunset, and night render no ground root.
+- **Acceptance criteria:** no `rabbit` production reference remains; morning
+  reports zero fauna roots; noon reports exactly one pointer-inert,
+  `aria-hidden` cat; sunset/night remain zero; no overflow, dependency,
+  renderer, lifecycle, or color-token change.
+- **Validation:** production build, deterministic phase DOM counts, noon visual
+  screenshot at desktop/mobile, reduced-motion cat state, Sol Extra High final
+  diff review, then a scoped commit and push.
+- **Status:** validated — Sol Extra High READY, no P0–P3 findings
 
 ## Task 1 — Night firefly cluster
 
@@ -56,12 +71,12 @@ The following proposal items remain deliberately deferred:
 
 ## Task 2 — Decorative ground fauna
 
-- **Source specification:** supplied feature spec Tier 2, Ground fauna; earlier
-  supplied phase note limits rabbit/cat to morning/noon
+- **Source specification:** supplied feature spec Tier 2, Ground fauna; explicit
+  owner adjustment removes the morning rabbit and retains the noon cat
 - **Exact location:** foreground meadow within `AmbientLife`
 - **Structure:** one `aria-hidden` ground encounter root using inline SVG pixel
-  geometry and a CSS transform/opacity timeline. Morning maps to rabbit, noon
-  maps to cat, and sunset/night render no ground encounter.
+  geometry and a CSS transform/opacity timeline. Noon maps to cat; morning,
+  sunset, and night render no ground encounter.
 - **Dependency required?:** no
 - **New color token required?:** no
 - **Acceptance criteria:**
@@ -89,8 +104,9 @@ The following proposal items remain deliberately deferred:
   change while focused.
 - Lifecycle: overlay, offscreen, hidden tab, repeated pause/resume, runtime
   reduced-motion change; no animation or DOM-count leaks.
-- Visual: desktop 1440, tablet 768, mobile 375; morning rabbit, noon cat, night
-  firefly cluster, focused cluster, post-dodge, overlay-paused, reduced motion.
+- Visual: desktop 1440 and mobile 375; noon cat, morning/sunset/night without
+  ground fauna, night firefly cluster, focused cluster, post-dodge, and reduced
+  motion.
 - Geometry: no fauna/copy/CTA overlap; no horizontal overflow.
 - Performance: no package/lock change, no new image request, zero WebGL scene or
   draw-call change, bounded DOM additions (one fauna root, at most three cluster
@@ -115,3 +131,8 @@ dodge now derives a navigation-safe vertical band and falls back to horizontal
 movement when that band is narrow. All four input paths then passed full-cycle
 post-dodge geometry plus measured blur continuity and WAAPI resumption. Final
 verdict: **READY**, with no P0–P3 findings remaining.
+
+The later owner-requested rabbit removal received a separate Sol Extra High
+review after the production branch, SVG, historical rabbit screenshots, and
+validation fixtures were updated. Final adjustment verdict: **READY**, with no
+P0–P3 findings; the noon cat and lifecycle contract remain intact.

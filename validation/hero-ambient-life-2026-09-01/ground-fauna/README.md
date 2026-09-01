@@ -1,53 +1,45 @@
 # Ground fauna validation
 
-- **Result:** PASS after three visual-triage rounds
+- **Result:** PASS after owner-requested rabbit removal
 - **Production build:** PASS
-- **Render modes:** static fallback and WebGL handoff
+- **Current ground species:** noon cat only
+- **Sol Extra High:** READY, no P0–P3 findings
 
 ## Final behavior
 
-- Morning renders one parchment rabbit; noon renders one gold cat;
-  sunset/night render no ground fauna.
-- The 22–24 second CSS timeline enters from the left, walks within the left
-  quarter of the meadow, pauses, fades, and spends the rest of the cycle
-  invisible. It never crosses the central copy/CTA/scroll corridor.
-- Inline SVG uses existing tokens and creates no image request, WebGL draw
-  call, JavaScript timer, RAF loop, or focus target.
-- One airborne root plus one ground root is the structural maximum of two
+- The rabbit production branch and SVG are deleted. Morning, sunset, and night
+  render zero ground roots; noon renders exactly one cat.
+- The cat's 24-second CSS transform/opacity timeline enters from the left,
+  walks within the left quarter of the meadow, pauses, fades, and spends the
+  rest of the cycle invisible.
+- Inline SVG uses existing tokens and creates no image request, WebGL draw call,
+  JavaScript timer, RAF loop, pointer target, or focus target.
+- One airborne root plus the noon cat remains the structural maximum of two
   logical encounters.
 
 ## Runtime gates
 
-- Desktop 1440, tablet 768, and mobile 375: zero copy, CTA, or scroll-cue
-  intersections and `scrollWidth === clientWidth`.
-- Ambient parent is `aria-hidden=true`; fauna has zero focusable descendants
-  and `pointer-events: none`.
-- Overlay pause froze the CSS timeline at `483.334 ms` for 550 ms, then closing
-  the overlay resumed it. Offscreen pause froze at `1066.710 ms` for 550 ms,
-  then returning resumed it.
-- Reduced motion reports `animation-name: none`, `will-change: auto`, one
-  visible static frame, and zero running animations inside the Hero scene and
-  entity scopes.
-- Normal WebGL mode retained one canvas, one ambient layer, one fauna root,
-  zero overflow, and no additional scene implementation.
-- Repeated morning → noon → sunset → night → morning transitions produced
-  counts `1 → 1 → 0 → 0 → 1`, always with one ambient layer and no stale root.
+- Source scan: zero case-insensitive `rabbit` references in
+  `components/ParallaxScene.jsx`.
+- Phase roots: `morning 0 / noon 1 / sunset 0 / night 0`.
+- Noon cat: `data-species=cat`, ambient parent `aria-hidden=true`, zero focusable
+  descendants, and `pointer-events: none`.
+- Desktop `1440 / 1440` and mobile `375 / 375`: no horizontal overflow.
+- Reduced-motion noon uses the static renderer with `animation-name: none`.
+- The full Hero audit revalidated hidden-state freeze/resume for both the noon
+  cat CSS timeline and flyer WAAPI, plus all firefly interaction assertions.
+- Both browser audits completed with zero console/page errors.
 
 ## Visual evidence
 
-- `desktop-morning.png`
-- `desktop-noon.png`
-- `tablet-morning.png`
+- `mobile-morning-no-rabbit.png`
 - `mobile-noon.png`
-- `mobile-reduced-morning.png`
-- `runtime.json` — geometry, accessibility, lifecycle, reduced-motion, phase,
-  and WebGL handoff measurements.
-
-## Triage record
-
-1. The initial dark silhouettes were technically present but visually lost in
-   the forest texture. Existing parchment/gold tokens and an ink outline fixed
-   legibility without a new color or glow.
-2. The first full-width path could cross the mobile scroll cue. The final path
-   stays within the left 24% of the scene, then pauses and fades; geometry
-   assertions confirm no intersection at any validated viewport.
+- `desktop-noon.png`
+- `mobile-sunset-no-fauna.png`
+- `mobile-night-no-fauna.png`
+- `mobile-reduced-noon.png`
+- `rabbit-removal-contact-sheet.webp`
+- `runtime.json` — assertion-bearing source, phase, accessibility,
+  reduced-motion, and overflow results.
+- `../firefly/runtime-mobile.json` — full Hero regression and lifecycle audit.
+- `../run-rabbit-removal-audit.mjs` — reproducible targeted audit.

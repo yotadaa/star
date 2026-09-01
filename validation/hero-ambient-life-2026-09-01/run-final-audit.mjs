@@ -319,7 +319,7 @@ async function auditFocusedPhaseHandoff() {
 }
 
 async function auditVisibilityLifecycle() {
-  const { context, page } = await makePage({ phase: "morning", clusterSize: 2 });
+  const { context, page } = await makePage({ phase: "noon", clusterSize: 2 });
   const encounter = page.locator('[data-testid="hero-entity-encounter"]');
   const fauna = page.locator('[data-testid="hero-ground-fauna"]');
   await encounter.waitFor({ state: "attached", timeout: 7000 });
