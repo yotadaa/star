@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import HeroGlassPanel from "@/components/HeroGlassPanel";
 import HeroEntityLayer from "@/components/HeroEntityLayer";
+import ParallaxScene from "@/components/ParallaxScene";
 import QuestLog from "@/components/QuestLog";
 import Reveal from "@/components/Reveal";
 import { RarityTag } from "@/components/claude";
@@ -14,11 +15,6 @@ const HomeGlimpseSlider = dynamic(() => import("@/components/HomeGlimpseSlider")
   ssr: false,
   loading: () => null,
 });
-const ParallaxScene = dynamic(() => import("@/components/ParallaxScene"), {
-  ssr: false,
-  loading: () => null,
-});
-
 export default function HomePageContent({ featuredBlog = null }) {
   const { phase, paletteOpen, playerOpen, chatOpen } = useSite();
   const featured = featuredQuests.filter((project) => project.featured);

@@ -44,7 +44,6 @@ export default function HudStatusStrip({ items = [], className = "" }) {
   return (
     <div
       className={`hud-strip ${className}`}
-      role="status"
       aria-label="Profile summary"
     >
       {items.map((item, i) => (

@@ -303,6 +303,13 @@ for (const [url, originalUrl] of sitemapUrlByComparable) {
   }
 }
 
+const discoveredOutsideSitemaps = [...discoveredPages]
+  .filter((url) => !sitemapUrlByComparable.has(url))
+  .sort();
+for (const url of discoveredOutsideSitemaps) {
+  warnings.push({ scope: url, message: "Discoverable HTML URL is missing from the sitemap." });
+}
+
 const elapsedValues = pages.map((page) => page.elapsedMs).filter((value) => Number.isFinite(value));
 const result = {
   auditedAt: new Date().toISOString(),
@@ -314,6 +321,7 @@ const result = {
     publicUrlCount: pageUrls.length,
     indexableUrlCount: pages.filter((page) => page.status === 200).length,
     crawlableHtmlPageCount: discoveredPages.size,
+    discoveredOutsideSitemapCount: discoveredOutsideSitemaps.length,
     maxResponseMs: elapsedValues.length ? Math.max(...elapsedValues) : 0,
     failureCount: failures.length,
     warningCount: warnings.length,
@@ -324,6 +332,7 @@ const result = {
     contentType: child.contentType,
     urlCount: sitemapLocations(child.body).length,
   })),
+  discoveredOutsideSitemaps,
   failures,
   warnings,
 };

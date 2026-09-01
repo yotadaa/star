@@ -1,0 +1,50 @@
+{
+  "auditedAt": "2026-09-01T14:57:05.775Z",
+  "origin": "https://me.mukhtada.my.id",
+  "summary": {
+    "robotsStatus": 200,
+    "sitemapIndexStatus": 200,
+    "childSitemapCount": 2,
+    "publicUrlCount": 44,
+    "indexableUrlCount": 44,
+    "crawlableHtmlPageCount": 47,
+    "discoveredOutsideSitemapCount": 3,
+    "maxResponseMs": 1509,
+    "failureCount": 0,
+    "warningCount": 3
+  },
+  "childSitemaps": [
+    {
+      "url": "https://me.mukhtada.my.id/sitemap-pages.xml",
+      "status": 200,
+      "contentType": "application/xml; charset=utf-8",
+      "urlCount": 7
+    },
+    {
+      "url": "https://me.mukhtada.my.id/sitemap-blog.xml",
+      "status": 200,
+      "contentType": "application/xml; charset=utf-8",
+      "urlCount": 37
+    }
+  ],
+  "discoveredOutsideSitemaps": [
+    "https://me.mukhtada.my.id/blog?page=2",
+    "https://me.mukhtada.my.id/blog?page=3",
+    "https://me.mukhtada.my.id/blog?page=4"
+  ],
+  "failures": [],
+  "warnings": [
+    {
+      "scope": "https://me.mukhtada.my.id/blog?page=2",
+      "message": "Discoverable HTML URL is missing from the sitemap."
+    },
+    {
+      "scope": "https://me.mukhtada.my.id/blog?page=3",
+      "message": "Discoverable HTML URL is missing from the sitemap."
+    },
+    {
+      "scope": "https://me.mukhtada.my.id/blog?page=4",
+      "message": "Discoverable HTML URL is missing from the sitemap."
+    }
+  ]
+}

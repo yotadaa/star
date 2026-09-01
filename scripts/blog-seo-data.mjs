@@ -107,7 +107,7 @@ export const BLOG_SEO_RECORDS = Object.freeze({
   "changing-ai-model-mid-session-cost": Object.freeze({
     seoTitle: "When Switching Claude Models Mid-Session Costs More",
     seoDescription:
-      "A cache-aware break-even model shows when an Opus-to-Sonnet switch saves money, when it costs more, and why preserving a conversation does not preserve its cache.",
+      "A cache-aware model shows when switching from Opus to Sonnet saves money, when it costs more, and how conversation and cache continuity differ.",
     language: "en-US",
     author: BLOG_AUTHOR,
     articleSection: "Research Note",
@@ -141,9 +141,9 @@ export const BLOG_SEO_RECORDS = Object.freeze({
     featuredImageKey: "blog:ox-alpha-api-left-a-trail:featured-trail",
   }),
   "ox-alpha-was-glm-5-3-flash": Object.freeze({
-    seoTitle: "Ox Alpha Was GLM-5.3-Flash: What Z.ai Confirmed and What It Didn't",
+    seoTitle: "Ox Alpha Was GLM-5.3-Flash: What Z.ai Confirmed",
     seoDescription:
-      "Z.ai confirmed that Ox Alpha was GLM-5.3-Flash. Independent measurement, vendor claims and preview-week user reports, with the one question the reveal left open.",
+      "Z.ai confirmed Ox Alpha was GLM-5.3-Flash. Compare independent measurements, vendor claims, preview reports, and what the reveal left unanswered.",
     language: "en-US",
     author: BLOG_AUTHOR,
     articleSection: "AI Investigation",
@@ -361,7 +361,7 @@ export const BLOG_SEO_RECORDS = Object.freeze({
   "did-google-august-2026-spam-update-target-ai-content": Object.freeze({
     seoTitle: "Did Google's August 2026 Spam Update Target AI?",
     seoDescription:
-      "Google did not name AI content as a target of its August 2026 spam update. This evidence-led guide separates policy, SERP volatility, speculation, and diagnosis.",
+      "Google did not name AI content as a target of its August 2026 spam update. Separate official policy, SERP volatility, speculation, and diagnosis.",
     language: "en-US",
     author: BLOG_AUTHOR,
     articleSection: "AI Investigation",

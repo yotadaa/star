@@ -2,7 +2,7 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { PixelButton, RarityTag } from "@/components/claude";
 
 function getOffset(index, active, total) {
@@ -13,8 +13,12 @@ function getOffset(index, active, total) {
 }
 
 export default function HomeGlimpseSlider({ items }) {
+  const sliderRef = useRef(null);
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [inView, setInView] = useState(false);
+  const [documentVisible, setDocumentVisible] = useState(true);
+  const [reducedMotion, setReducedMotion] = useState(false);
   const total = items.length;
 
   const goTo = useCallback((index) => {
@@ -30,13 +34,39 @@ export default function HomeGlimpseSlider({ items }) {
   }, [total]);
 
   useEffect(() => {
-    if (paused || total < 2) return undefined;
+    const slider = sliderRef.current;
+    if (!slider) return undefined;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "180px 0px", threshold: 0.08 }
+    );
+    observer.observe(slider);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const syncMotion = () => setReducedMotion(media.matches);
+    const syncVisibility = () => setDocumentVisible(document.visibilityState === "visible");
+    syncMotion();
+    syncVisibility();
+    media.addEventListener("change", syncMotion);
+    document.addEventListener("visibilitychange", syncVisibility);
+    return () => {
+      media.removeEventListener("change", syncMotion);
+      document.removeEventListener("visibilitychange", syncVisibility);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (paused || !inView || !documentVisible || reducedMotion || total < 2) return undefined;
     const id = window.setInterval(goNext, 3600);
     return () => window.clearInterval(id);
-  }, [goNext, paused, total]);
+  }, [documentVisible, goNext, inView, paused, reducedMotion, total]);
 
   return (
     <div
+      ref={sliderRef}
       className="glimpse-slider"
       onPointerEnter={() => setPaused(true)}
       onPointerLeave={() => setPaused(false)}
@@ -68,14 +98,15 @@ export default function HomeGlimpseSlider({ items }) {
               }}
             >
               <div className="glimpse-frame">
-                <Image
-                  src={item.image}
-                  alt={item.alt}
-                  width={1200}
-                  height={675}
-                  sizes="(max-width: 640px) 92vw, (max-width: 1100px) 76vw, 760px"
-                  priority={isActive}
-                />
+                {visible && (
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    width={1200}
+                    height={675}
+                    sizes="(max-width: 640px) 92vw, (max-width: 1100px) 76vw, 760px"
+                  />
+                )}
               </div>
               <div className="glimpse-copy">
                 <RarityTag rarity="rare" label={item.eyebrow} className="glimpse-rarity" />

@@ -1479,6 +1479,101 @@ a.hud-chip:focus-visible {
   inset: 0;
 }
 
+.parallax-initial-cloud {
+  left: var(--initial-desktop-left);
+  top: var(--initial-desktop-top);
+  width: var(--initial-desktop-width);
+  opacity: var(--initial-desktop-opacity);
+  transform: translate(-50%, -50%) scaleX(var(--initial-desktop-flip));
+  translate: none;
+  transition: none;
+  animation: none;
+}
+
+.parallax-initial-scene[data-render-active="true"] .parallax-initial-cloud {
+  animation: parallax-static-cloud-drift var(--cloud-drift-duration, 42s) ease-in-out var(--cloud-drift-delay, 0s) infinite alternate;
+}
+
+.parallax-initial-layer {
+  top: var(--initial-desktop-top);
+  bottom: auto;
+  width: var(--initial-desktop-width);
+  opacity: var(--initial-desktop-opacity);
+  transform: translate(-50%, -50%);
+}
+
+.parallax-initial-celestial {
+  position: absolute;
+  z-index: -4;
+  left: var(--initial-celestial-left);
+  top: var(--initial-celestial-top);
+  display: block;
+  width: var(--initial-celestial-desktop-size);
+  aspect-ratio: 1;
+  opacity: var(--initial-celestial-opacity);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.parallax-initial-celestial-drift {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.parallax-initial-celestial .parallax-static-aureole {
+  animation: none;
+}
+
+.parallax-initial-scene[data-render-active="true"] .parallax-initial-celestial-drift {
+  animation: celestial-orbit-idle 8s ease-in-out infinite;
+}
+
+.parallax-initial-scene[data-render-active="true"] .parallax-initial-celestial .parallax-static-aureole {
+  animation: celestial-aureole-breathe 7s ease-in-out infinite;
+}
+
+.parallax-initial-orb {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.parallax-webgl-scene[data-webgl-ready="true"] .parallax-initial-cloud,
+.parallax-webgl-scene[data-webgl-ready="true"] .parallax-initial-layer,
+.parallax-webgl-scene[data-webgl-ready="true"] .parallax-initial-celestial,
+.parallax-webgl-scene[data-webgl-ready="true"] .parallax-static-wash {
+  visibility: hidden;
+  opacity: 0;
+  animation: none;
+}
+
+@media (max-width: 639px) {
+  .parallax-initial-cloud {
+    left: var(--initial-mobile-left);
+    top: var(--initial-mobile-top);
+    width: var(--initial-mobile-width);
+    opacity: var(--initial-mobile-opacity);
+    transform: translate(-50%, -50%) scaleX(var(--initial-mobile-flip));
+  }
+
+  .parallax-initial-layer {
+    top: var(--initial-mobile-top);
+    width: var(--initial-mobile-width);
+    opacity: var(--initial-mobile-opacity);
+  }
+
+  .parallax-initial-celestial {
+    width: var(--initial-celestial-mobile-size);
+  }
+}
+
 .parallax-sky-stack {
   position: absolute;
   inset: 0;
@@ -2504,7 +2599,7 @@ a.hud-chip:focus-visible {
 }
 
 .section-head .pixel-label {
-  color: var(--coral-dark);
+  color: var(--ink);
   font-size: 11px;
   display: block;
   margin-bottom: 10px;
@@ -2659,9 +2754,7 @@ a.hud-chip:focus-visible {
   transition:
     transform 820ms cubic-bezier(.2, .8, .2, 1),
     opacity 640ms ease,
-    filter 640ms ease,
-    border-color 220ms ease,
-    box-shadow 220ms var(--ease-pixel);
+    filter 640ms ease;
   filter: saturate(.42) brightness(.58);
 }
 
@@ -2670,24 +2763,6 @@ a.hud-chip:focus-visible {
   filter: saturate(1) brightness(1);
   border-color: var(--gold);
   box-shadow: 6px 6px 0 var(--glimpse-shell-frame);
-  animation: glimpse-unlock 380ms var(--ease-pixel) both;
-}
-
-@keyframes glimpse-unlock {
-  0% {
-    border-color: var(--gold);
-    box-shadow: 3px 3px 0 var(--gold), 6px 6px 0 var(--glimpse-shell-frame);
-  }
-
-  65% {
-    border-color: var(--gold);
-    box-shadow: 6px 6px 0 var(--gold), 10px 10px 0 var(--glimpse-shell-frame);
-  }
-
-  100% {
-    border-color: var(--gold);
-    box-shadow: 6px 6px 0 var(--glimpse-shell-frame);
-  }
 }
 
 .glimpse-frame {
@@ -2777,19 +2852,18 @@ a.hud-chip:focus-visible {
 }
 
 .glimpse-dot {
-  width: 11px;
-  height: 11px;
+  width: 14px;
+  height: 14px;
   padding: 0;
   border-radius: 2px;
-  transition: transform .18s var(--ease-pixel), background .18s ease, border-color .18s ease;
+  transform: scale(.78);
+  transition: transform .18s var(--ease-pixel);
 }
 
 .glimpse-dot.active {
-  width: 14px;
-  height: 14px;
   background: var(--gold);
   border-color: var(--gold);
-  transform: translateY(-1px);
+  transform: translateY(-1px) scale(1);
 }
 
 /* ---- journey timeline ---- */
@@ -3139,7 +3213,9 @@ footer.site-footer .foot-copy {
 
 footer.site-footer .foot-copy a {
   color: var(--aurora);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
 }
 
 @media (max-width: 640px) {
@@ -5947,7 +6023,7 @@ footer.site-footer .foot-copy a {
   gap: 10px;
   font-family: var(--font-pixel), monospace;
   font-size: 9px;
-  color: var(--coral-dark);
+  color: var(--ink-soft);
   text-transform: uppercase;
 }
 
@@ -5961,8 +6037,10 @@ footer.site-footer .foot-copy a {
 .blog-card-actions a {
   font-family: var(--font-pixel), monospace;
   font-size: 9px;
-  color: var(--aurora-deep);
+  color: var(--ink);
   text-transform: uppercase;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
 }
 
 .blog-list {

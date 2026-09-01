@@ -1,0 +1,47 @@
+{
+  "profile": {
+    "viewport": "412x823",
+    "deviceScaleFactor": 1.75,
+    "network": "150 ms RTT, 1.6 Mbps down, 752 Kbps up",
+    "cpuThrottle": "4x"
+  },
+  "renderer": "static",
+  "canvasCount": 0,
+  "overflow": 0,
+  "fcpMs": 2300,
+  "lcp": {
+    "startTime": 2300,
+    "size": 149144,
+    "url": "http://127.0.0.1:3123/assets/parallax/optimized/mobile/mountains.webp",
+    "tagName": "IMG",
+    "className": "parallax-static-landscape parallax-static-mountains parallax-initial-layer",
+    "source": "http://127.0.0.1:3123/assets/parallax/optimized/mobile/mountains.webp"
+  },
+  "cls": 0,
+  "longTaskCount": 10,
+  "longTaskTotalMs": 2124,
+  "blockingTimeAbove50Ms": 1624,
+  "maxLongTaskMs": 534,
+  "transferTotalBytes": 806256,
+  "heroTransferBytes": 182513,
+  "heroTransfers": [
+    {
+      "url": "/assets/parallax/optimized/mobile/cloud.webp",
+      "bytes": 19398
+    },
+    {
+      "url": "/assets/parallax/optimized/mobile/mountains.webp",
+      "bytes": 31040
+    },
+    {
+      "url": "/assets/parallax/optimized/mobile/forest-hills.webp",
+      "bytes": 57640
+    },
+    {
+      "url": "/assets/parallax/optimized/mobile/meadow.webp",
+      "bytes": 74435
+    }
+  ],
+  "webglRequests": [],
+  "consoleErrors": []
+}

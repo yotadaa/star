@@ -15,6 +15,8 @@
 
 ## Done
 
+- [x] ~~**Remediate the supplied PageSpeed and Ahrefs reports**~~ (2026-09-01) - made the Home Hero parser-discoverable and static-only on mobile while retaining desktop WebGL, reduced Nala/Blog/Caelestia image delivery, fixed the reported accessibility/compositing rows, shortened five descriptions and one title, replaced four redirecting links, and added all three Blog pagination URLs to the sitemap. The throttled final trace recorded 2.3 s LCP, 1.62 s observed blocking above 50 ms, zero CLS, zero mobile WebGL requests, and zero console errors. Plan: `plans/pagespeed-mobile-remediation-2026-09-01.md`; evidence: `validation/pagespeed-mobile-remediation-2026-09-01/README.md`.
+
 - [x] ~~**Harden public SEO tooling and credential boundaries**~~ (2026-09-01) - moved the GA4 property ID to env, added env-only optional Google/Bing/Ahrefs verification metadata, sanitized the configured ID from all 2,401 tracked files, documented the exact public/server-only boundary, and added a Googlebot-style audit proving 44/44 sitemap URLs are 200, self-canonical, indexable, structured, and discoverable from Home with 0 failures or warnings. Plan: `plans/public-seo-credentials-tooling-2026-09-01.md`; evidence: `validation/public-seo-credentials-tooling-2026-09-01/validation.md`.
 
 - [x] ~~**Activate IndexNow in Vercel production**~~ (2026-09-01) - confirmed the live key route returns 200, timing-safe verification matched the ignored local server key, and IndexNow accepted the Blog index plus all 37 published articles (38 URLs total) with HTTP 200. This confirms submission receipt, not indexing. Evidence: `validation/public-seo-credentials-tooling-2026-09-01/indexnow-submission.json`.

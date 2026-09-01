@@ -1,15 +1,20 @@
 "use client";
 
-import { useId, useRef } from "react";
+import Image from "next/image";
+import { useId, useRef, useState } from "react";
 import { SpriteIcon } from "@/components/claude";
 
 export default function BlogImagePreview({ src, alt, caption, width, height, onImageLoad, imageRef }) {
   const dialogRef = useRef(null);
   const triggerRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
   const titleId = useId();
   const description = String(alt || caption || "Article image").trim();
+  const imageWidth = Number(width) > 0 ? Number(width) : 1600;
+  const imageHeight = Number(height) > 0 ? Number(height) : 900;
 
   const openPreview = () => {
+    setIsOpen(true);
     if (dialogRef.current && !dialogRef.current.open) dialogRef.current.showModal();
   };
 
@@ -27,14 +32,14 @@ export default function BlogImagePreview({ src, alt, caption, width, height, onI
         aria-haspopup="dialog"
         aria-label={`Open image fullscreen: ${description}`}
       >
-        <img
+        <Image
           ref={imageRef}
           src={src}
           alt={description}
           loading="lazy"
-          decoding="async"
-          width={width}
-          height={height}
+          width={imageWidth}
+          height={imageHeight}
+          sizes="(max-width: 620px) calc(100vw - 40px), (max-width: 960px) 80vw, 820px"
           onLoad={onImageLoad}
         />
         <span className="blog-image-preview-hint" aria-hidden="true">
@@ -49,7 +54,10 @@ export default function BlogImagePreview({ src, alt, caption, width, height, onI
           event.preventDefault();
           closePreview();
         }}
-        onClose={() => triggerRef.current?.focus()}
+        onClose={() => {
+          setIsOpen(false);
+          triggerRef.current?.focus();
+        }}
         onClick={(event) => {
           if (event.target === event.currentTarget) closePreview();
         }}
@@ -59,12 +67,15 @@ export default function BlogImagePreview({ src, alt, caption, width, height, onI
             <p id={titleId}>{description}</p>
             <button type="button" onClick={closePreview} autoFocus aria-label="Close image preview">×</button>
           </header>
-          <img
-            src={src}
-            alt={`Enlarged view: ${description}`}
-            width={width}
-            height={height}
-          />
+          {isOpen ? (
+            <Image
+              src={src}
+              alt={`Enlarged view: ${description}`}
+              width={imageWidth}
+              height={imageHeight}
+              sizes="92vw"
+            />
+          ) : null}
           {caption ? <p className="blog-image-preview-caption">{caption}</p> : null}
         </div>
       </dialog>

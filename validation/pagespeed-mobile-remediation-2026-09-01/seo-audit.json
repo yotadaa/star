@@ -1,0 +1,85 @@
+{
+  "metadata": [
+    {
+      "pathname": "/",
+      "title": "Mukhtada Billah NST — Full-Stack Developer, AI &amp; Data",
+      "titleLength": 57,
+      "description": "Mukhtada Billah NST is an Information Systems student at the University of Jambi who builds full-stack web products, AI tools, data projects, and research.",
+      "descriptionLength": 155
+    },
+    {
+      "pathname": "/about",
+      "title": "About Mukhtada Billah NST",
+      "titleLength": 25,
+      "description": "Mukhtada Billah NST studies Information Systems at the University of Jambi and works on full-stack web development, AI tools, data science, and research.",
+      "descriptionLength": 153
+    },
+    {
+      "pathname": "/blog/did-google-august-2026-spam-update-target-ai-content",
+      "title": "Did Google&#x27;s August 2026 Spam Update Target AI? · Mukhtada",
+      "titleLength": 63,
+      "description": "Google did not name AI content as a target of its August 2026 spam update. Separate official policy, SERP volatility, speculation, and diagnosis.",
+      "descriptionLength": 145
+    },
+    {
+      "pathname": "/blog/changing-ai-model-mid-session-cost",
+      "title": "When Switching Claude Models Mid-Session Costs More · Mukhtada",
+      "titleLength": 62,
+      "description": "A cache-aware model shows when switching from Opus to Sonnet saves money, when it costs more, and how conversation and cache continuity differ.",
+      "descriptionLength": 143
+    },
+    {
+      "pathname": "/blog/ox-alpha-was-glm-5-3-flash",
+      "title": "Ox Alpha Was GLM-5.3-Flash: What Z.ai Confirmed · Mukhtada",
+      "titleLength": 58,
+      "description": "Z.ai confirmed Ox Alpha was GLM-5.3-Flash. Compare independent measurements, vendor claims, preview reports, and what the reveal left unanswered.",
+      "descriptionLength": 145
+    }
+  ],
+  "paginationSitemapUrls": [
+    "https://me.mukhtada.my.id/blog?page=2",
+    "https://me.mukhtada.my.id/blog?page=3",
+    "https://me.mukhtada.my.id/blog?page=4"
+  ],
+  "redirectLinks": {
+    "instagram": [
+      "https://apnews.com/article/meta-adds-labels-to-ai-imagery-deepfakes-415163d053ed915042a04f1ec3d9eafa"
+    ],
+    "moltbook": [
+      "https://apnews.com/article/moltbook-autonomous-ai-agents-openclaw-69855ab843a5597577120aac99efde9a"
+    ],
+    "portfolio": [
+      "https://github.com/yotadaa/star/tree/main/validation/convex-world-chat",
+      "https://github.com/yotadaa/star/tree/main/validation/manage-world-chat-nala-seo"
+    ]
+  },
+  "directLinkStatuses": [
+    {
+      "url": "https://apnews.com/article/meta-adds-labels-to-ai-imagery-deepfakes-415163d053ed915042a04f1ec3d9eafa",
+      "status": 200,
+      "location": ""
+    },
+    {
+      "url": "https://apnews.com/article/moltbook-autonomous-ai-agents-openclaw-69855ab843a5597577120aac99efde9a",
+      "status": 200,
+      "location": ""
+    },
+    {
+      "url": "https://github.com/yotadaa/star/tree/main/validation/convex-world-chat",
+      "status": 200,
+      "location": ""
+    },
+    {
+      "url": "https://github.com/yotadaa/star/tree/main/validation/manage-world-chat-nala-seo",
+      "status": 200,
+      "location": ""
+    }
+  ],
+  "caelestia": {
+    "previewCount": 6,
+    "optimizedPreviews": true,
+    "dialogImageCount": 0,
+    "firstPreviewAlt": "Caelestia Dynamic Island with detached recording and timer Live Activities on workspace 4",
+    "rawClientRequests": []
+  }
+}

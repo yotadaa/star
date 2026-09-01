@@ -1,0 +1,98 @@
+{
+  "initialDocument": {
+    "hasResponsivePicture": true,
+    "hasMobileMountains": true,
+    "hasHighPriorityHero": true,
+    "hasOptimizedBlogImages": true
+  },
+  "mobile": {
+    "renderer": "static",
+    "canvasCount": 0,
+    "overflow": 0,
+    "nalaSource": "http://127.0.0.1:3123/assets/nala/nala-idle-pixel.webp",
+    "questRole": null,
+    "hudRole": null,
+    "readLabels": [
+      "Read article: Did Google's August 2026 Spam Update Target AI Content?",
+      "Read article: Apakah Google August 2026 Spam Update Menargetkan Konten AI?",
+      "Read article: WebMCP vs MCP: Cara Membuat Website Next.js Agent-Ready Tanpa Screen Scraping"
+    ],
+    "footerDecoration": "underline",
+    "glimpseAnimation": "none",
+    "glimpseDotTransition": "transform",
+    "blogSources": [
+      "http://127.0.0.1:3123/_next/image?url=https%3A%2F%2Fr2-2.mukhtada.my.id%2Fobjects%2Fsha256%2F4c%2F4c6ef04310edf71d27823742f54798b64a4292f47230d3524447e14fb0b3943a.png&w=750&q=75",
+      "http://127.0.0.1:3123/_next/image?url=https%3A%2F%2Fr2-2.mukhtada.my.id%2Fobjects%2Fsha256%2F77%2F77c9e90f0caff81b050d85a8de767aaf3d0cba96cc016aab99c055c14efd8fac.png&w=750&q=75"
+    ],
+    "mobileWebglRequests": [],
+    "heroRequestCounts": {
+      "/assets/parallax/optimized/mobile/cloud.webp": 1,
+      "/assets/parallax/optimized/mobile/mountains.webp": 1,
+      "/assets/parallax/optimized/mobile/forest-hills.webp": 1,
+      "/assets/parallax/optimized/mobile/meadow.webp": 1
+    },
+    "contrast": [
+      {
+        "name": "// Featured Projects",
+        "color": "rgb(22, 36, 31)",
+        "background": "rgb(234, 221, 192)",
+        "ratio": 11.94
+      },
+      {
+        "name": "// Featured Blog Posts",
+        "color": "rgb(22, 36, 31)",
+        "background": "rgb(221, 203, 164)",
+        "ratio": 10.07
+      },
+      {
+        "name": "August 31, 202611 min estimated · 2 views0 votes",
+        "color": "rgb(71, 88, 79)",
+        "background": "rgb(245, 236, 216)",
+        "ratio": 6.44
+      },
+      {
+        "name": "Read article",
+        "color": "rgb(22, 36, 31)",
+        "background": "rgb(245, 236, 216)",
+        "ratio": 13.68
+      },
+      {
+        "name": "August 31, 202610 min estimated · 2 views0 votes",
+        "color": "rgb(71, 88, 79)",
+        "background": "rgb(245, 236, 216)",
+        "ratio": 6.44
+      },
+      {
+        "name": "Read article",
+        "color": "rgb(22, 36, 31)",
+        "background": "rgb(245, 236, 216)",
+        "ratio": 13.68
+      },
+      {
+        "name": "August 31, 20267 min estimated · 3 views0 votes",
+        "color": "rgb(71, 88, 79)",
+        "background": "rgb(245, 236, 216)",
+        "ratio": 6.44
+      },
+      {
+        "name": "Read article",
+        "color": "rgb(22, 36, 31)",
+        "background": "rgb(245, 236, 216)",
+        "ratio": 13.68
+      }
+    ],
+    "consoleErrors": []
+  },
+  "reducedMotion": {
+    "renderer": "static",
+    "canvasCount": 0,
+    "runningAnimations": 0,
+    "overflow": 0
+  },
+  "desktop": {
+    "renderer": "webgl",
+    "canvasCount": 1,
+    "webglReady": "true",
+    "overflow": 0
+  }
+}

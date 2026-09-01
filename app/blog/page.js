@@ -4,20 +4,16 @@ import EditablePageCaption from "@/components/EditablePageCaption";
 import PageHeader from "@/components/PageHeader";
 import { PixelButton, SpriteIcon } from "@/components/claude";
 import { listAboutEntries, listBlogPosts } from "@/lib/backend/featureStore";
+import { BLOG_PAGE_SIZE, blogPageCount, blogPageHref } from "@/lib/blog/pagination";
 import { publicPageCopy } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
 import { redirect } from "next/navigation";
 
-const BLOG_PAGE_SIZE = 10;
 const BLOG_DESCRIPTION = publicPageCopy.blog.metadataDescription;
 
 function pageNumber(value) {
   const parsed = Number.parseInt(String(value || "1"), 10);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
-}
-
-function pageHref(page) {
-  return page > 1 ? `/blog?page=${page}` : "/blog";
 }
 
 export async function generateMetadata({ searchParams }) {
@@ -26,7 +22,7 @@ export async function generateMetadata({ searchParams }) {
   return pageMetadata({
     title: page > 1 ? `${publicPageCopy.blog.metadataTitle} — Page ${page}` : publicPageCopy.blog.metadataTitle,
     description: page > 1 ? `Browse page ${page} of ${BLOG_DESCRIPTION}` : BLOG_DESCRIPTION,
-    path: pageHref(page),
+    path: blogPageHref(page),
     tags: publicPageCopy.blog.keywords,
   });
 }
@@ -41,8 +37,8 @@ export default async function BlogPage({ searchParams }) {
     listBlogPosts({ limit: 100 }),
     listAboutEntries(),
   ]);
-  const totalPages = Math.max(1, Math.ceil(posts.length / BLOG_PAGE_SIZE));
-  if (requestedPage > totalPages) redirect(pageHref(totalPages));
+  const totalPages = blogPageCount(posts.length);
+  if (requestedPage > totalPages) redirect(blogPageHref(totalPages));
   const canManageBlog = session?.user?.role === "owner";
   const fallbackCaption = publicPageCopy.blog.caption;
   const blogCaption = entries.find((entry) => entry.entryKey === "blog-caption")?.body || fallbackCaption;

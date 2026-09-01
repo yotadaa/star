@@ -4,12 +4,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { PixelButton, SpriteIcon, useToast } from "@/components/claude";
 
 const SPRITES = {
-  idle: "/assets/nala/nala-idle-pixel.png",
-  thinking: "/assets/nala/nala-thinking-pixel.png",
-  happy: "/assets/nala/nala-happy-pixel.png",
-  confused: "/assets/nala/nala-confused-pixel.png",
-  greeting: "/assets/nala/nala-greeting-pixel.png",
-  pointing: "/assets/nala/nala-pointing-pixel.png",
+  idle: "/assets/nala/nala-idle-pixel.webp",
+  thinking: "/assets/nala/nala-thinking-pixel.webp",
+  happy: "/assets/nala/nala-happy-pixel.webp",
+  confused: "/assets/nala/nala-confused-pixel.webp",
+  greeting: "/assets/nala/nala-greeting-pixel.webp",
+  pointing: "/assets/nala/nala-pointing-pixel.webp",
 };
 
 const INITIAL_CHIPS = [

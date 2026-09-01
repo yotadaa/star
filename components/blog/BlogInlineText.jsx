@@ -2,7 +2,14 @@ import { Fragment } from "react";
 
 const TOKEN_SOURCE = String.raw`(\[[^\]]+\]\([^)]+\)|` + "`[^`]+`" + String.raw`|\*\*[^*]+\*\*|\*[^*]+\*|(?:[\w./-]+\.md)\b)`;
 
-function safeHref(value, baseHref) {
+const REDIRECT_FREE_HREFS = Object.freeze({
+  "https://apnews.com/article/415163d053ed915042a04f1ec3d9eafa":
+    "https://apnews.com/article/meta-adds-labels-to-ai-imagery-deepfakes-415163d053ed915042a04f1ec3d9eafa",
+  "https://apnews.com/article/69855ab843a5597577120aac99efde9a":
+    "https://apnews.com/article/moltbook-autonomous-ai-agents-openclaw-69855ab843a5597577120aac99efde9a",
+});
+
+export function safeHref(value, baseHref) {
   const href = String(value || "").trim();
   if (href.startsWith("/") || href.startsWith("#")) return href;
 
@@ -12,7 +19,10 @@ function safeHref(value, baseHref) {
       const base = new URL(String(baseHref || ""));
       const path = href.replace(/^\.\//, "");
       if (base.hostname === "github.com") {
-        return `${base.origin}${base.pathname.replace(/\/$/, "")}/blob/main/${path}`;
+        const isDirectory = path.endsWith("/");
+        const cleanPath = path.replace(/\/+$/, "");
+        const route = isDirectory ? "tree" : "blob";
+        return `${base.origin}${base.pathname.replace(/\/$/, "")}/${route}/main/${cleanPath}`;
       }
       return new URL(path, `${base.href.replace(/\/$/, "")}/`).href;
     } catch {
@@ -22,7 +32,8 @@ function safeHref(value, baseHref) {
 
   try {
     const url = new URL(href);
-    return url.protocol === "http:" || url.protocol === "https:" ? url.href : "";
+    const directHref = REDIRECT_FREE_HREFS[url.href] || url.href;
+    return url.protocol === "http:" || url.protocol === "https:" ? directHref : "";
   } catch {
     return "";
   }

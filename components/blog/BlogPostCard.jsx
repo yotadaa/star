@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { RarityTag, SpriteIcon } from "@/components/claude";
 import { formatArticleDate, toIsoDate } from "@/lib/blog/articleSeo";
 import { getBlogFeaturedImage } from "@/lib/blog/featuredImage";
@@ -19,15 +20,13 @@ export default function BlogPostCard({ post, canManageBlog = false, headingLevel
           <SpriteIcon id="icon-blog-page" size={34} />
         </span>
         {featuredImage && (
-          <img
+          <Image
             className="blog-cover-image"
             src={featuredImage.src}
             alt={featuredImage.alt || `Featured image for ${post.title}`}
             aria-hidden="true"
-            loading="lazy"
-            decoding="async"
-            width={featuredImage.width}
-            height={featuredImage.height}
+            fill
+            sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1100px) 46vw, 350px"
             onError={(event) => {
               event.currentTarget.hidden = true;
             }}
@@ -51,7 +50,7 @@ export default function BlogPostCard({ post, canManageBlog = false, headingLevel
           <span>{Math.max(0, Number(post.upvoteCount || 0))} votes</span>
         </div>
         <div className="blog-card-actions">
-          <Link href={`/blog/${post.slug}`}>Read article</Link>
+          <Link href={`/blog/${post.slug}`} aria-label={`Read article: ${post.title}`}>Read article</Link>
           {canManageBlog && <Link href={`/blog/admin/${post.id}/edit`}>Edit</Link>}
         </div>
       </div>

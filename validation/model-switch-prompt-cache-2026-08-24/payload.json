@@ -14,7 +14,7 @@
   "coverTone": "research",
   "sourceHref": "https://claude.com/blog/maximizing-the-value-of-your-claude-code-sessions",
   "seoTitle": "When Switching Claude Models Mid-Session Costs More",
-  "seoDescription": "A cache-aware break-even model shows when an Opus-to-Sonnet switch saves money, when it costs more, and why preserving a conversation does not preserve its cache.",
+  "seoDescription": "A cache-aware model shows when switching from Opus to Sonnet saves money, when it costs more, and how conversation and cache continuity differ.",
   "language": "en-US",
   "author": {
     "id": "https://me.mukhtada.my.id/#person",

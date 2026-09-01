@@ -1,7 +1,8 @@
 "use client";
 
-import { startTransition, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { HERO_PHASES, advanceOrbitTarget, getHeroVisualContract, getStaticSceneStyle } from "@/components/hero/visualContract";
+import { startTransition, useCallback, useEffect, useRef, useState } from "react";
+import HeroInitialScene from "@/components/hero/HeroInitialScene";
+import { getHeroVisualContract, getStaticSceneStyle } from "@/components/hero/visualContract";
 
 const AMBIENT_GRASS_BLADES = Array.from({ length: 24 }, (_, index) => ({
   left: (index * 43 + 7) % 101,
@@ -13,245 +14,6 @@ const AMBIENT_GRASS_BLADES = Array.from({ length: 24 }, (_, index) => ({
 
 function supportsWebGL2() {
   return typeof window !== "undefined" && typeof window.WebGL2RenderingContext !== "undefined";
-}
-
-function SkyBackdrop({ phase, mobile }) {
-  return (
-    <span className="parallax-sky-stack" aria-hidden="true">
-      {HERO_PHASES.map((layerPhase) => (
-        <span
-          className={`parallax-static-sky${layerPhase === phase ? " is-visible" : ""}`}
-          data-sky-phase={layerPhase}
-          key={layerPhase}
-          style={getStaticSceneStyle(layerPhase, mobile)}
-        />
-      ))}
-    </span>
-  );
-}
-
-function orbitPosition(angle, kind) {
-  const radiusX = kind === "sun" ? 0.3 : 0.282;
-  const radiusY = kind === "sun" ? 0.39 : 0.3705;
-  return {
-    x: 0.5 + Math.cos(angle) * radiusX,
-    y: 0.5 - Math.sin(angle) * radiusY,
-  };
-}
-
-function orbitOpacity(angle, visibility, kind) {
-  return Math.min(1, Math.max(0, Math.sin(angle)) * visibility * (kind === "sun" ? 1.12 : 1));
-}
-
-function StaticCelestial({ active, contract, kind, reduced }) {
-  const elementRef = useRef(null);
-  const animationRef = useRef(null);
-  const lifecyclePausedRef = useRef(false);
-  const previousPhaseRef = useRef(contract.phase);
-  const rawAngle = kind === "sun" ? contract.theme.sunAngle : contract.theme.moonAngle;
-  const rawVisibility = kind === "sun" ? contract.theme.sunVisibility : contract.theme.moonVisibility;
-  const targetAngleRef = useRef(rawAngle);
-  const targetVisibilityRef = useRef(rawVisibility);
-  const motionRef = useRef({
-    startAngle: rawAngle,
-    targetAngle: rawAngle,
-    startVisibility: rawVisibility,
-    targetVisibility: rawVisibility,
-    duration: 1,
-  });
-  const initialPosition = orbitPosition(rawAngle, kind);
-  const size = kind === "sun" ? contract.profile.celestial.sunSize : contract.profile.celestial.moonSize;
-
-  useLayoutEffect(() => {
-    const element = elementRef.current;
-    if (!element) return;
-
-    const setEndpoint = (angle, visibility) => {
-      const position = orbitPosition(angle, kind);
-      element.style.left = `${position.x * 100}%`;
-      element.style.top = `${position.y * 100}%`;
-      element.style.opacity = String(orbitOpacity(angle, visibility, kind));
-    };
-
-    if (reduced) {
-      animationRef.current?.cancel();
-      animationRef.current = null;
-      lifecyclePausedRef.current = false;
-      targetAngleRef.current = rawAngle;
-      targetVisibilityRef.current = rawVisibility;
-      motionRef.current = {
-        startAngle: rawAngle,
-        targetAngle: rawAngle,
-        startVisibility: rawVisibility,
-        targetVisibility: rawVisibility,
-        duration: 1,
-      };
-      previousPhaseRef.current = contract.phase;
-      setEndpoint(rawAngle, rawVisibility);
-      return;
-    }
-
-    if (previousPhaseRef.current === contract.phase) {
-      if (!animationRef.current) setEndpoint(targetAngleRef.current, targetVisibilityRef.current);
-      return;
-    }
-
-    const previousMotion = motionRef.current;
-    const previousAnimation = animationRef.current;
-    const progress = previousAnimation
-      ? Math.min(1, Math.max(0, Number(previousAnimation.currentTime || 0) / previousMotion.duration))
-      : 1;
-    const startAngle = previousMotion.startAngle + (previousMotion.targetAngle - previousMotion.startAngle) * progress;
-    const startVisibility = previousMotion.startVisibility
-      + (previousMotion.targetVisibility - previousMotion.startVisibility) * progress;
-    const targetAngle = advanceOrbitTarget(targetAngleRef.current, rawAngle);
-    const duration = Math.min(3000, Math.max(900, Math.abs(targetAngle - startAngle) / 0.9 * 1000));
-    const steps = Math.max(18, Math.ceil(duration / 55));
-    const keyframes = Array.from({ length: steps + 1 }, (_, index) => {
-      const progressAtFrame = index / steps;
-      const angle = startAngle + (targetAngle - startAngle) * progressAtFrame;
-      const visibility = startVisibility + (rawVisibility - startVisibility) * progressAtFrame;
-      const position = orbitPosition(angle, kind);
-      return {
-        left: `${position.x * 100}%`,
-        top: `${position.y * 100}%`,
-        opacity: orbitOpacity(angle, visibility, kind),
-        offset: progressAtFrame,
-      };
-    });
-
-    previousAnimation?.cancel();
-    const animation = element.animate(keyframes, {
-      duration,
-      easing: "linear",
-      fill: "forwards",
-    });
-    if (!active) animation.pause();
-    lifecyclePausedRef.current = !active;
-    animationRef.current = animation;
-    targetAngleRef.current = targetAngle;
-    targetVisibilityRef.current = rawVisibility;
-    motionRef.current = {
-      startAngle,
-      targetAngle,
-      startVisibility,
-      targetVisibility: rawVisibility,
-      duration,
-    };
-    previousPhaseRef.current = contract.phase;
-    animation.finished.then(() => {
-      if (animationRef.current === animation) lifecyclePausedRef.current = false;
-    }).catch(() => {});
-  }, [active, contract.phase, kind, rawAngle, rawVisibility, reduced]);
-
-  useEffect(() => {
-    const animation = animationRef.current;
-    if (!animation || reduced) return;
-    if (!active) {
-      if (animation.playState === "finished" || animation.playState === "idle") {
-        lifecyclePausedRef.current = false;
-        return;
-      }
-      if (animation.playState !== "paused") animation.pause();
-      lifecyclePausedRef.current = true;
-      return;
-    }
-    if (lifecyclePausedRef.current && animation.playState === "paused") {
-      lifecyclePausedRef.current = false;
-      animation.play();
-    }
-  }, [active, reduced]);
-
-  useEffect(() => () => animationRef.current?.cancel(), []);
-
-  return (
-    <span
-      className={`parallax-static-celestial is-${kind}`}
-      data-static-celestial={kind}
-      ref={elementRef}
-      style={{
-        left: `${initialPosition.x * 100}%`,
-        top: `${initialPosition.y * 100}%`,
-        width: `${size * 100}vh`,
-        opacity: orbitOpacity(rawAngle, rawVisibility, kind),
-      }}
-    >
-      <span className="parallax-static-celestial-drift">
-        {kind === "sun" ? (
-          <span className="parallax-static-sun-glare" />
-        ) : (
-          <>
-            <span className="parallax-static-aureole is-moon" />
-            <img className="parallax-static-orb parallax-static-moon" src={contract.profile.assets.moon} alt="" />
-          </>
-        )}
-      </span>
-    </span>
-  );
-}
-
-function StaticParallaxScene({ phase, mobile, active = true, reduced = false, loading = false, includeSky = true }) {
-  const contract = getHeroVisualContract(phase, mobile);
-  const { profile } = contract;
-
-  return (
-    <div
-      className={`parallax-static-scene${loading ? " is-loading" : ""}`}
-      data-phase={contract.phase}
-      data-profile={mobile ? "mobile" : "desktop"}
-      data-renderer="static"
-      data-testid="parallax-static-scene"
-      style={getStaticSceneStyle(contract.phase, mobile)}
-      aria-hidden="true"
-    >
-      {includeSky && <SkyBackdrop phase={contract.phase} mobile={mobile} />}
-      {!loading && (
-        <>
-          <StaticCelestial active={active} contract={contract} kind="sun" reduced={reduced} />
-          <StaticCelestial active={active} contract={contract} kind="moon" reduced={reduced} />
-          {profile.clouds.map((cloud, index) => {
-            const anchorX = cloud.x + (contract.phase === "night" ? cloud.nightShiftX || 0 : 0);
-            const anchorY = cloud.y + (contract.phase === "night" ? cloud.nightShiftY || 0 : 0);
-            return (
-              <img
-                className="parallax-static-cloud"
-                src={profile.assets.cloud}
-                alt=""
-                key={`${cloud.x}-${cloud.y}`}
-                style={{
-                  left: `${anchorX * 100}%`,
-                  top: `${anchorY * 100}%`,
-                  width: `${cloud.width * 100}vw`,
-                  opacity: cloud.opacity * (contract.phase === "night" ? 0.22 : 1),
-                  transform: `translate(-50%, -50%) scaleX(${cloud.flip ? -1 : 1})`,
-                  "--cloud-drift-from": `${cloud.drift * -100}vw`,
-                  "--cloud-drift-to": `${cloud.drift * 100}vw`,
-                  "--cloud-drift-duration": `${38 + index * 11}s`,
-                  "--cloud-drift-delay": `${-7 - index * 9}s`,
-                }}
-              />
-            );
-          })}
-          {profile.layers.map((layer) => (
-            <img
-              className={`parallax-static-landscape parallax-static-${layer.key}`}
-              src={profile.assets[layer.key]}
-              alt=""
-              key={layer.key}
-              style={{
-                bottom: "auto",
-                top: `${layer.centerY * 100}%`,
-                width: `${layer.width * 100}vw`,
-                opacity: layer.opacity,
-                transform: "translate(-50%, -50%)",
-              }}
-            />
-          ))}
-          <div className="parallax-static-wash" />
-        </>
-      )}
-    </div>
-  );
 }
 
 function AmbientLife({ phase, mobile }) {
@@ -332,7 +94,7 @@ export default function ParallaxScene({ phase = "morning", night = false, paused
       };
       startTransition(() => setClientState(next));
 
-      if (diagnostic === "static" || next.reduced) {
+      if (diagnostic === "static" || next.reduced || next.mobile) {
         showStaticScene();
         return;
       }
@@ -407,7 +169,7 @@ export default function ParallaxScene({ phase = "morning", night = false, paused
   if (!clientState || rendererMode === "checking") {
     return (
       <div ref={shellRef} className="parallax-scene-shell" data-renderer="checking">
-        <StaticParallaxScene phase={themeName} mobile={false} loading />
+        <HeroInitialScene phase={themeName} active={false} />
       </div>
     );
   }
@@ -420,7 +182,7 @@ export default function ParallaxScene({ phase = "morning", night = false, paused
         data-renderer="static"
         data-render-active={sceneActive ? "true" : "false"}
       >
-        <StaticParallaxScene phase={themeName} mobile={mobile} active={sceneActive} reduced={clientState.reduced} />
+        <HeroInitialScene phase={themeName} active={sceneActive} />
         <AmbientLife phase={themeName} mobile={mobile} />
       </div>
     );
@@ -435,7 +197,7 @@ export default function ParallaxScene({ phase = "morning", night = false, paused
         data-render-active={sceneActive ? "true" : "false"}
         data-pause-reason={pauseReason}
       >
-        <StaticParallaxScene phase={themeName} mobile={mobile} active={sceneActive} />
+        <HeroInitialScene phase={themeName} active={sceneActive} />
         <AmbientLife phase={themeName} mobile={mobile} />
       </div>
     );
@@ -451,18 +213,11 @@ export default function ParallaxScene({ phase = "morning", night = false, paused
       data-phase={contract.phase}
       data-renderer="webgl"
       data-render-active={renderActive ? "true" : "false"}
+      data-webgl-ready={webglReady ? "true" : "false"}
       data-pause-reason={pauseReason}
       style={getStaticSceneStyle(contract.phase, mobile)}
     >
-      <SkyBackdrop phase={contract.phase} mobile={mobile} />
-      {!webglReady && (
-        <StaticParallaxScene
-          phase={contract.phase}
-          mobile={mobile}
-          active={sceneActive}
-          includeSky={false}
-        />
-      )}
+      <HeroInitialScene phase={contract.phase} active={sceneActive && !webglReady} />
       <WebGLScene
         phase={contract.phase}
         pointer={pointer}

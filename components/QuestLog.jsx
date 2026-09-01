@@ -11,13 +11,12 @@ export default function QuestLog() {
   }));
 
   return (
-    <div
+    <nav
       className="questlog"
-      role="list"
       aria-label="Profile highlights"
       data-testid="quest-log"
     >
       <HudStatusStrip items={items} />
-    </div>
+    </nav>
   );
 }
