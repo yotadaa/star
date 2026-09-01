@@ -18,6 +18,8 @@
 
 ## Done
 
+- [x] ~~**Repair Hero entity dodge movement**~~ (2026-09-01) - captured the live flight position before cancellation, converted the dodge endpoint back to lane-relative flight coordinates, kept desktop/mobile dodges above the Hero copy, and verified pointer/touch/keyboard/reduced-motion behavior with zero post-build handoff jump. Plan: `plans/hero-entity-dodge-continuity-2026-09-01.md`; evidence: `validation/hero-entity-dodge-2026-09-01/README.md`.
+
 - [x] ~~**Build the interactive CV Lore route; finish public copy, SEO, and Featured Blog**~~ (2026-09-01) - rendered the supplied two-page English CV as semantic `/lore` HTML with native detail dialogs and a byte-identical download, linked it only through Home `Read the Lore`, added three server-rendered recent Blog cards, and rewrote public page copy and metadata while preserving Blog article SEO. Plans: `plans/interactive-cv-lore-2026-09-01.md` and `plans/public-copy-seo-featured-blog-2026-09-01.md`; evidence: `validation/interactive-cv-lore-2026-09-01/validation.md`.
 
 - [x] ~~**Preserve and optimize `/blog/{slug}` SEO metadata**~~ (2026-09-01) - retained every canonical, article, social, and structured-data field; aligned per-article language and Open Graph locale; localized publication/update dates; exposed real `dateModified` values visibly; and passed all 37 published routes, 35 unique featured images, an unknown-slug noindex probe, and desktop/mobile overflow gates. Plan: `plans/blog-slug-seo-audit-2026-09-01.md`; evidence: `validation/blog-slug-seo-2026-09-01/validation.md`.

@@ -248,14 +248,14 @@ export default function HeroEntityLayer({ phase = "morning" }) {
     const layer = layerRef.current;
     if (!layer) return;
 
+    const targetRect = event.currentTarget.getBoundingClientRect();
+    const layerRect = layer.getBoundingClientRect();
     const previousProgress = encounter.resumeProgress || 0;
     const animationTime = Number(flightAnimationRef.current?.currentTime || 0);
     const resumeProgress = Math.min(previousProgress + animationTime / encounter.duration, 1);
     interactingRef.current = true;
     stopFlight();
     clearTimer(spawnTimerRef);
-    const targetRect = event.currentTarget.getBoundingClientRect();
-    const layerRect = layer.getBoundingClientRect();
     const startX = targetRect.left - layerRect.left;
     const startY = targetRect.top - layerRect.top;
     const centerX = startX + targetRect.width / 2;
@@ -285,7 +285,12 @@ export default function HeroEntityLayer({ phase = "morning" }) {
     const xMin = 14;
     const xMax = Math.max(xMin, layerRect.width - targetRect.width - 14);
     const yMin = 20;
-    const yMax = Math.max(yMin, layerRect.height - targetRect.height - 20);
+    const heroCopyRect = layer.closest(".hero")?.querySelector(".hero-copy")?.getBoundingClientRect();
+    const heroYMax = layerRect.height - targetRect.height - 20;
+    const copyYMax = heroCopyRect
+      ? heroCopyRect.top - layerRect.top - targetRect.height - 12
+      : heroYMax;
+    const yMax = Math.max(yMin, Math.min(heroYMax, copyYMax));
     const horizontalDirection = pointerX <= centerX ? 1 : -1;
     const verticalDirection = Math.abs(pointerY - centerY) < 8
       ? (Math.random() > 0.5 ? 1 : -1)
@@ -296,7 +301,12 @@ export default function HeroEntityLayer({ phase = "morning" }) {
     if (Math.abs(dodgeEndX - startX) < dodgeDistanceX * 0.45) {
       dodgeEndX = clamp(startX - horizontalDirection * dodgeDistanceX, xMin, xMax);
     }
-    const dodgeEndY = clamp(startY + verticalDirection * dodgeDistanceY, yMin, yMax);
+    let dodgeEndY = clamp(startY + verticalDirection * dodgeDistanceY, yMin, yMax);
+    if (Math.abs(dodgeEndY - startY) < dodgeDistanceY * 0.45) {
+      dodgeEndY = clamp(startY - verticalDirection * dodgeDistanceY, yMin, yMax);
+    }
+    const laneOffsetY = layerRect.height * (encounter.lane / 100);
+    const flightResumeY = Math.round(dodgeEndY - laneOffsetY);
     setEncounter((current) => {
       if (!current || current.id !== encounter.id) return current;
       return {
@@ -307,6 +317,7 @@ export default function HeroEntityLayer({ phase = "morning" }) {
         dodgeStartY: Math.round(startY),
         dodgeEndX: Math.round(dodgeEndX),
         dodgeEndY: Math.round(dodgeEndY),
+        flightResumeY,
         resumeProgress,
       };
     });
@@ -320,7 +331,7 @@ export default function HeroEntityLayer({ phase = "morning" }) {
           ...current,
           status: "flying",
           courseOffsetX: Math.round(dodgeEndX - baseline.x),
-          courseOffsetY: Math.round(dodgeEndY - baseline.y),
+          courseOffsetY: Math.round(flightResumeY - baseline.y),
         };
       });
       interactingRef.current = false;
@@ -346,7 +357,9 @@ export default function HeroEntityLayer({ phase = "morning" }) {
       "--flight-start-x": encounter?.dodgeEndX
         ? `${encounter.dodgeEndX}px`
         : encounter?.direction === "right" ? "-10rem" : "calc(100vw + 10rem)",
-      "--flight-start-y": encounter?.dodgeEndY ? `${encounter.dodgeEndY}px` : "0px",
+      "--flight-start-y": Number.isFinite(encounter?.flightResumeY)
+        ? `${encounter.flightResumeY}px`
+        : "0px",
       "--flap-duration": `${encounter?.flap || 1}ms`,
       "--static-x": encounter?.direction === "right" ? "12%" : "calc(100% - 10rem)",
     };
