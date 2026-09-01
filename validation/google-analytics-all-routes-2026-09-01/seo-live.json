@@ -1,0 +1,33 @@
+{
+  "auditedAt": "2026-09-01T15:21:29.816Z",
+  "origin": "https://me.mukhtada.my.id",
+  "summary": {
+    "robotsStatus": 200,
+    "sitemapIndexStatus": 200,
+    "childSitemapCount": 2,
+    "publicUrlCount": 47,
+    "indexableUrlCount": 47,
+    "crawlableHtmlPageCount": 47,
+    "discoveredOutsideSitemapCount": 0,
+    "maxResponseMs": 1341,
+    "failureCount": 0,
+    "warningCount": 0
+  },
+  "childSitemaps": [
+    {
+      "url": "https://me.mukhtada.my.id/sitemap-pages.xml",
+      "status": 200,
+      "contentType": "application/xml; charset=utf-8",
+      "urlCount": 7
+    },
+    {
+      "url": "https://me.mukhtada.my.id/sitemap-blog.xml",
+      "status": 200,
+      "contentType": "application/xml; charset=utf-8",
+      "urlCount": 40
+    }
+  ],
+  "discoveredOutsideSitemaps": [],
+  "failures": [],
+  "warnings": []
+}

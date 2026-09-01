@@ -13,11 +13,12 @@ placeholder names in `.env.example`.
 | Variable | Visibility | When it is needed |
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | Public | Canonical production origin; keep it set to the exact HTTPS hostname |
-| `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` | Public | GA4 browser measurement ID; the component renders nothing when absent or malformed |
+| `GOOGLE_ANALYTICS_ID` | Server-read, public in `<head>` | GA4 measurement ID; the root Server Component renders nothing when absent or malformed |
 | `GOOGLE_SITE_VERIFICATION` | Public in `<head>` | Only when Search Console supplies an HTML-tag verification token |
 | `BING_SITE_VERIFICATION` | Public in `<head>` | Only when Bing supplies an `msvalidate.01` HTML-tag token |
 | `AHREFS_SITE_VERIFICATION` | Public in `<head>` | Only when Ahrefs HTML-tag verification is used instead of GSC import |
-| `INDEXNOW_API_KEY` | Server-only | Existing IndexNow key file and submission client; never prefix with `NEXT_PUBLIC_` |
+| `PAGESPEED_INSIGHT_API` | Server-only CLI | Optional API key used only by `npm run pagespeed:audit`; never rendered by Next.js |
+| `AHREFS_INDEXNOW_KEY` | Server-only | Preferred IndexNow key file and submission client variable; never prefix with `NEXT_PUBLIC_` |
 
 Paste only the `content` value from a verification meta tag, not the complete
 `<meta>` element. Empty or malformed verification values are deliberately not
@@ -26,7 +27,9 @@ rendered.
 The GA measurement ID and ownership tokens are publicly visible by design once
 their scripts/meta tags are served. Environment variables keep deployment
 configuration out of tracked code; they do not turn browser-visible values into
-secrets. `INDEXNOW_API_KEY` is different and must remain server-only.
+secrets. `PAGESPEED_INSIGHT_API` and `AHREFS_INDEXNOW_KEY` are different and
+must remain server-only. The IndexNow reader temporarily accepts the older
+`INDEXNOW_API_KEY` name as a deployment migration fallback.
 
 ## Tools that need no application credential
 
@@ -35,8 +38,10 @@ secrets. `INDEXNOW_API_KEY` is different and must remain server-only.
   the optional HTML-tag method uses `GOOGLE_SITE_VERIFICATION`.
 - Screaming Frog: install and configure the desktop crawler locally. Do not put
   a license or account credential in this repository.
-- PageSpeed Insights and Chrome Lighthouse: run the URL/browser audits directly.
-  No PageSpeed API key is needed for this workflow.
+- PageSpeed Insights and Chrome Lighthouse: run URL/browser audits directly, or
+  use `npm run pagespeed:audit -- --url=https://example.com` for a repeatable
+  API result. Google allows keyless requests, but this CLI requires the
+  configured server-only key to avoid anonymous quota limits.
 - Google Rich Results Test: submit representative public URLs directly. It uses
   no application credential.
 - Google Trends: use the Explore dashboard for query research. It uses no

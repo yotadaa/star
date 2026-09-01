@@ -5,12 +5,13 @@ import { siteVerificationMetadata } from "../lib/seoVerification.mjs";
 const fixtureMeasurementId = `G-${"A1".repeat(5)}`;
 
 assert.equal(
-  configuredGoogleAnalyticsId({ NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ` ${fixtureMeasurementId} ` }),
+  configuredGoogleAnalyticsId({ GOOGLE_ANALYTICS_ID: ` ${fixtureMeasurementId} ` }),
   fixtureMeasurementId,
 );
 assert.equal(configuredGoogleAnalyticsId({}), "");
-assert.equal(configuredGoogleAnalyticsId({ NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: "not-a-measurement-id" }), "");
-assert.equal(configuredGoogleAnalyticsId({ NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: "G-ABC123';alert(1)//" }), "");
+assert.equal(configuredGoogleAnalyticsId({ GOOGLE_ANALYTICS_ID: "not-a-measurement-id" }), "");
+assert.equal(configuredGoogleAnalyticsId({ GOOGLE_ANALYTICS_ID: "G-ABC123';alert(1)//" }), "");
+assert.equal(configuredGoogleAnalyticsId({ NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: fixtureMeasurementId }), "");
 
 assert.deepEqual(siteVerificationMetadata({}), {});
 assert.deepEqual(

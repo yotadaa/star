@@ -1,11 +1,21 @@
 import assert from "node:assert/strict";
 import {
+  configuredIndexNowKeyFromEnvironment,
   createIndexNowPayload,
   INDEXNOW_ENDPOINT,
   submitIndexNowUrls,
 } from "../lib/indexNowCore.mjs";
 
 const key = "test-indexnow-key-2026";
+assert.equal(configuredIndexNowKeyFromEnvironment({ AHREFS_INDEXNOW_KEY: key }), key);
+assert.equal(configuredIndexNowKeyFromEnvironment({ INDEXNOW_API_KEY: key }), key);
+assert.equal(
+  configuredIndexNowKeyFromEnvironment({
+    AHREFS_INDEXNOW_KEY: key,
+    INDEXNOW_API_KEY: "legacy-indexnow-key",
+  }),
+  key,
+);
 const siteOrigin = "https://me.mukhtada.my.id";
 const urls = [
   `${siteOrigin}/blog`,

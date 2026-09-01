@@ -5,7 +5,10 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { ConvexHttpClient } from "convex/browser";
 import { makeFunctionReference } from "convex/server";
 import { completeBlogSeoData } from "./blog-seo-data.mjs";
-import { submitIndexNowUrls } from "../lib/indexNowCore.mjs";
+import {
+  configuredIndexNowKeyFromEnvironment,
+  submitIndexNowUrls,
+} from "../lib/indexNowCore.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const defaultBatchPath = path.join(
@@ -354,7 +357,7 @@ export async function publishGroundedBlogBatch(batchPath = defaultBatchPath) {
   try {
     const siteOrigin = process.env.NEXT_PUBLIC_SITE_URL || "https://me.mukhtada.my.id";
     indexNow = await submitIndexNowUrls({
-      key: process.env.INDEXNOW_API_KEY,
+      key: configuredIndexNowKeyFromEnvironment(process.env),
       siteOrigin,
       urls: [
         new URL("/blog", `${siteOrigin}/`).toString(),

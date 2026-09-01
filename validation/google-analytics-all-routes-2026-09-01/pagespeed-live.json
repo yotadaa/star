@@ -1,0 +1,20 @@
+{
+  "analyzedAt": "2026-09-01T15:19:20.368Z",
+  "requestedUrl": "https://me.mukhtada.my.id/",
+  "finalUrl": "https://me.mukhtada.my.id/",
+  "strategy": "mobile",
+  "lighthouseVersion": "13.4.1",
+  "scores": {
+    "performance": 75,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100
+  },
+  "metrics": {
+    "firstContentfulPaint": "1.1 s",
+    "largestContentfulPaint": "3.5 s",
+    "totalBlockingTime": "550 ms",
+    "cumulativeLayoutShift": "0",
+    "speedIndex": "4.3 s"
+  }
+}

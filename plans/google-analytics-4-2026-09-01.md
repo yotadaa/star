@@ -15,8 +15,8 @@ analytics.
   analytics component.
 - No Content Security Policy is configured in `next.config.js` or the app.
 - `@next/third-parties` is not installed. The project forbids adding an npm
-  dependency without explicit approval, so the implementation will use
-  `next/script`, which ships with the existing Next.js dependency.
+  dependency without explicit approval, so the implementation uses the native
+  Google tag snippet from the root layout.
 - Google documents the supplied snippet as the standard Google tag setup.
 - Next.js documents that GA4 can be placed in the root layout and that page
   changes based on browser history should be handled through GA4 Enhanced
@@ -28,12 +28,12 @@ analytics.
 
 ## Implementation
 
-1. Add `components/GoogleAnalytics.jsx` with two `afterInteractive` scripts:
-   - async `gtag.js` loader for `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID`;
+1. Add `components/GoogleAnalytics.jsx` with two scripts in the root `head`:
+   - async `gtag.js` loader for `GOOGLE_ANALYTICS_ID`;
    - the supplied `dataLayer`, `gtag('js', ...)`, and `gtag('config', ...)`
      initialization.
-2. Render the component once from `app/layout.js`, after the application body
-   content, so every App Router route receives the same tag.
+2. Render the component once from `app/layout.js` immediately inside `head`, so
+   every App Router route receives the same tag in its initial document.
 3. Add no dependency, CSS, cookie, database field, custom event, or fabricated
    measurement.
 

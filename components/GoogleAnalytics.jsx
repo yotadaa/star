@@ -1,4 +1,3 @@
-import Script from "next/script";
 import { configuredGoogleAnalyticsId } from "@/lib/googleAnalytics.mjs";
 
 export default function GoogleAnalytics() {
@@ -9,19 +8,21 @@ export default function GoogleAnalytics() {
 
   return (
     <>
-      <Script
+      <script
         async
         src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-        strategy="afterInteractive"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
+      <script
+        id="google-analytics"
+        dangerouslySetInnerHTML={{
+          __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', ${serializedMeasurementId});
-        `}
-      </Script>
+        `,
+        }}
+      />
     </>
   );
 }

@@ -97,6 +97,9 @@ export default function RootLayout({ children }) {
       lang={DEFAULT_LANGUAGE}
       className={`${fraunces.variable} ${silkscreen.variable} ${nunito.variable}`}
     >
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body>
         <script
           type="application/ld+json"
@@ -108,7 +111,6 @@ export default function RootLayout({ children }) {
             <SiteProvider>{children}</SiteProvider>
           </ConvexClientProvider>
         </AuthProvider>
-        <GoogleAnalytics />
       </body>
     </html>
   );

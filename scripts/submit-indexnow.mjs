@@ -4,10 +4,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   INDEXNOW_KEY_PATH,
+  configuredIndexNowKeyFromEnvironment,
   normalizeIndexNowUrls,
   normalizeSiteOrigin,
   submitIndexNowUrls,
-  validateIndexNowKey,
 } from "../lib/indexNowCore.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -77,7 +77,7 @@ const dryRun = process.argv.includes("--dry-run");
 const siteOrigin = normalizeSiteOrigin(
   process.env.NEXT_PUBLIC_SITE_URL || "https://me.mukhtada.my.id",
 );
-const key = validateIndexNowKey(process.env.INDEXNOW_API_KEY);
+const key = configuredIndexNowKeyFromEnvironment(process.env);
 const explicitUrls = process.argv
   .filter((argument) => argument.startsWith("--url="))
   .map((argument) => argument.slice("--url=".length));

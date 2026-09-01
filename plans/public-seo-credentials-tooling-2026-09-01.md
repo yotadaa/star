@@ -25,11 +25,12 @@ environment variables versus dashboard-only setup.
 
 | Tool | Application environment needed? | Boundary |
 |---|---|---|
-| Google Analytics 4 | `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` | Public browser ID, configured through env to keep deployment config out of source |
+| Google Analytics 4 | `GOOGLE_ANALYTICS_ID` | Server-read browser ID emitted into the root `<head>`, configured through env to keep deployment config out of source |
 | Google Search Console | `GOOGLE_SITE_VERIFICATION` only for HTML-tag verification | Public ownership token; a Domain property instead uses DNS and no app env |
 | Bing Webmaster Tools | `BING_SITE_VERIFICATION` only for HTML-tag verification | Public ownership token; GSC import or DNS needs no app env |
 | Ahrefs Webmaster Tools | `AHREFS_SITE_VERIFICATION` only for HTML-tag verification | Prefer GSC import; dashboard OAuth credentials never enter this app |
-| IndexNow | `INDEXNOW_API_KEY` | Existing server-only ownership key; never `NEXT_PUBLIC_` |
+| PageSpeed Insights API | `PAGESPEED_INSIGHT_API` | Optional server-only CLI credential; never rendered into the site |
+| IndexNow | `AHREFS_INDEXNOW_KEY` | Server-only ownership key; never `NEXT_PUBLIC_` |
 | Screaming Frog | No | Desktop crawler configuration/license stays outside the app |
 | Lighthouse / PageSpeed Insights | No | Browser/web audit; no API integration is required |
 | Rich Results Test | No | URL-based web validator |
@@ -38,7 +39,7 @@ environment variables versus dashboard-only setup.
 ## Implementation plan
 
 1. Move the GA4 measurement ID to ignored `.env.local` for local validation
-   and read it from `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` at build time. Render no
+   and read it from `GOOGLE_ANALYTICS_ID` in the root Server Component. Render no
    analytics scripts when the value is missing or malformed.
 2. Add optional, validated Google/Bing/Ahrefs ownership metadata sourced only
    from environment variables. Keep empty values out of rendered HTML.

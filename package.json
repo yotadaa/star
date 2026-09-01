@@ -35,6 +35,7 @@
     "credentials:audit": "node scripts/audit-tracked-credentials.mjs",
     "seo:env:verify": "node scripts/verify-seo-environment.mjs",
     "seo:audit": "node scripts/audit-public-seo.mjs",
+    "pagespeed:audit": "node scripts/run-pagespeed-insights.mjs",
     "indexnow:verify": "node scripts/verify-indexnow.mjs",
     "indexnow:submit": "node scripts/submit-indexnow.mjs",
     "convex:typecheck": "tsc --noEmit"

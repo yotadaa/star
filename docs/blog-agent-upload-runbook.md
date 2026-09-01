@@ -31,7 +31,7 @@ Important boundaries:
 - Keep `status` as `"draft"` and do not run the publisher until the user has explicitly authorized publication.
 - The grounded publisher intentionally rejects draft payloads. A publishable payload must use `"status": "published"` and a truthful `publishedAt` value.
 - Publishing changes live Convex/R2 state. Committing and pushing are separate actions and also require user authorization unless the current task already grants it.
-- Never expose `CONVEX_INTERNAL_API_KEY`, `INDEXNOW_API_KEY`, or other secret values in logs, Markdown, screenshots, commits, or chat output.
+- Never expose `CONVEX_INTERNAL_API_KEY`, `AHREFS_INDEXNOW_KEY`, or other secret values in logs, Markdown, screenshots, commits, or chat output.
 
 ## 2. Required environment
 
@@ -41,11 +41,11 @@ The publisher loads repository-root `.env.local`. It requires:
 CONVEX_CLOUD_URL=https://<deployment>.convex.cloud
 CONVEX_INTERNAL_API_KEY=<server-only-secret>
 NEXT_PUBLIC_SITE_URL=https://me.mukhtada.my.id
-INDEXNOW_API_KEY=<server-only-indexnow-key>
+AHREFS_INDEXNOW_KEY=<server-only-indexnow-key>
 OWNER_EMAIL=<owner-email>
 ```
 
-`CONVEX_CLOUD_URL` and `CONVEX_INTERNAL_API_KEY` are mandatory. `OWNER_EMAIL` has the repository owner as a fallback, but configuring it explicitly is preferable. `INDEXNOW_API_KEY` is required for a successful search-engine notification, though an IndexNow failure does not undo a completed Blog or R2 write.
+`CONVEX_CLOUD_URL` and `CONVEX_INTERNAL_API_KEY` are mandatory. `OWNER_EMAIL` has the repository owner as a fallback, but configuring it explicitly is preferable. `AHREFS_INDEXNOW_KEY` is required for a successful search-engine notification, though an IndexNow failure does not undo a completed Blog or R2 write.
 
 Do not add R2 access secrets to the Blog payload. The publisher asks the protected Convex bridge for a signed upload URL and then verifies the resulting R2-backed file record.
 

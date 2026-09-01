@@ -4,7 +4,7 @@
 
 Passed. The App Router root layout now loads one Google tag and initializes one
 GA4 config command for the env-configured measurement ID on every route. The
-implementation uses the existing `next/script` API and adds no package, CSS,
+implementation uses the native async Google tag in the root `head` and adds no package, CSS,
 database field, cookie implementation, or custom event.
 
 ## Source and implementation
@@ -16,8 +16,8 @@ database field, cookie implementation, or custom event.
   `https://www.googletagmanager.com/gtag/js?id=<configured-id>`.
 - Initialization keeps the supplied `dataLayer`, `gtag('js', ...)`, and
   `gtag('config', ...)` contract.
-- Both scripts use Next.js `afterInteractive`, matching the framework's
-  deferred third-party-script behavior.
+- Both scripts are present in the initial document `head`, matching Google's
+  all-page tag-detection contract; the external loader remains asynchronous.
 - No manual route-change pageview is emitted. GA4 Enhanced Measurement is the
   owner-controlled setting for browser-history page changes, avoiding a second
   custom page-view path that could duplicate data.
@@ -62,14 +62,14 @@ Visual inspection found no changed layout, clipping, or overflow.
 - P0 guardrail: none; no dependency, color, emoji, modal, or audio change.
 - P1 functional: none after final runtime assertions.
 - P2 accessibility: none; the tag adds no visible or interactive UI.
-- P3 performance: script loading is deferred until after hydration. No app
-  render loop, listener, or manual page-view observer was added.
+- P3 performance: the external loader is asynchronous. No app render loop,
+  listener, or manual page-view observer was added.
 - P4 cosmetic: none; visual output is unchanged.
 
 ## Deployment boundary
 
-The code installs the tag when `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` is configured
-in the build environment. GA4 Realtime or DebugView confirmation requires the
+The code installs the tag when `GOOGLE_ANALYTICS_ID` is configured in the
+server/build environment. GA4 Realtime or DebugView confirmation requires the
 deployed production site and access to the user's Google Analytics property.
 Enhanced Measurement's browser-history option should remain enabled in the GA4
 web data stream so App Router navigations are counted without custom duplicate

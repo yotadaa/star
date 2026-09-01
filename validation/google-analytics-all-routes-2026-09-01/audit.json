@@ -1,0 +1,42 @@
+{
+  "sitemapHtmlRouteCount": 47,
+  "additionalHtmlRouteCount": 2,
+  "initialDocumentFailures": [],
+  "initialDocumentContract": {
+    "loaderCount": 1,
+    "inlineScriptCount": 1,
+    "placement": "head",
+    "sameMeasurementId": true
+  },
+  "browser": {
+    "home": {
+      "measurementId": "[configured-ga-measurement-id]",
+      "loaderCount": 1,
+      "headLoaderCount": 1,
+      "inlineScriptCount": 1,
+      "jsCommandCount": 1,
+      "configCommandCount": 1,
+      "overflow": 0
+    },
+    "aboutAfterClientNavigation": {
+      "measurementId": "[configured-ga-measurement-id]",
+      "loaderCount": 1,
+      "headLoaderCount": 1,
+      "inlineScriptCount": 1,
+      "jsCommandCount": 1,
+      "configCommandCount": 1,
+      "overflow": 0
+    },
+    "aboutMobile": {
+      "measurementId": "[configured-ga-measurement-id]",
+      "loaderCount": 1,
+      "headLoaderCount": 1,
+      "inlineScriptCount": 1,
+      "jsCommandCount": 1,
+      "configCommandCount": 1,
+      "overflow": 0
+    },
+    "interceptedLoaderRequests": 2,
+    "consoleErrors": []
+  }
+}
