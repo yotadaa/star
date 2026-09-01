@@ -134,7 +134,7 @@ function validatePayload(payload, article, { requireProviderNeutral = false } = 
     throw new Error(`seoDescription is missing or too long for ${article.slug}`);
   }
   if (
-    payload.language !== "en-US"
+    !/^[a-z]{2,3}(?:-[A-Z]{2})?$/.test(payload.language || "")
     || !payload.articleSection?.trim()
     || !payload.author?.id
     || !payload.author?.name
@@ -308,15 +308,18 @@ async function publishArticle(client, secret, article) {
 
   const storedImages = (post?.blocks || []).filter(
     (block) => block.type === "image"
-      && block.storageId
       && block.assetKey
       && block.src?.startsWith("https://"),
   );
+  const storedAssetKeys = new Set(storedImages.map((block) => block.assetKey));
+  const expectedAssetKeys = new Set(article.assets.map((asset) => asset.assetKey));
   if (
     !post
     || post.slug !== article.slug
     || post.status !== "published"
     || storedImages.length !== article.assets.length
+    || storedAssetKeys.size !== expectedAssetKeys.size
+    || [...expectedAssetKeys].some((assetKey) => !storedAssetKeys.has(assetKey))
   ) {
     throw new Error(`Published Blog verification failed for ${article.slug}`);
   }

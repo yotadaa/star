@@ -1,0 +1,23 @@
+{
+  "name": "did-google-august-2026-spam-update-target-ai-content-2026-09-01",
+  "articles": [
+    {
+      "slug": "did-google-august-2026-spam-update-target-ai-content",
+      "payloadPath": "validation/did-google-august-2026-spam-update-target-ai-content-2026-09-01/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:did-google-august-2026-spam-update-target-ai-content:feature-fact-versus-speculation",
+          "sourcePath": "validation/did-google-august-2026-spam-update-target-ai-content-2026-09-01/assets/google-spam-update-fact-versus-speculation-feature-en.png",
+          "fileName": "google-spam-update-fact-versus-speculation-feature-en.png",
+          "evidenceKind": "deterministic-editorial-feature"
+        },
+        {
+          "assetKey": "blog:did-google-august-2026-spam-update-target-ai-content:diagnostic-evidence-flow",
+          "sourcePath": "validation/did-google-august-2026-spam-update-target-ai-content-2026-09-01/assets/google-spam-update-diagnostic-flow-en.png",
+          "fileName": "google-spam-update-diagnostic-flow-en.png",
+          "evidenceKind": "deterministic-editorial-diagram"
+        }
+      ]
+    }
+  ]
+}

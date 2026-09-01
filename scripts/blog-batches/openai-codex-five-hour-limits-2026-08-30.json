@@ -1,0 +1,41 @@
+{
+  "name": "openai-codex-five-hour-limits-2026-08-30",
+  "articles": [
+    {
+      "slug": "openai-plus-five-hour-limit-explained",
+      "payloadPath": "validation/openai-plus-five-hour-limit-2026-08-30/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:openai-plus-five-hour-limit-explained:feature-window-weekly-plan",
+          "sourcePath": "validation/openai-plus-five-hour-limit-2026-08-30/assets/five-hour-window-weekly-plan-feature.png",
+          "fileName": "openai-plus-five-hour-window-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:openai-plus-five-hour-limit-explained:evidence-tibo-announcement",
+          "sourcePath": "validation/openai-plus-five-hour-limit-2026-08-30/assets/tibo-five-hour-announcement-evidence.png",
+          "fileName": "openai-plus-five-hour-announcement-evidence.png",
+          "evidenceKind": "attributed-first-party-social-source-evidence"
+        }
+      ]
+    },
+    {
+      "slug": "codex-five-hour-limit-active-turns",
+      "payloadPath": "validation/codex-limit-grace-removed-2026-08-30/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:codex-five-hour-limit-active-turns:feature-boundary-counter",
+          "sourcePath": "validation/codex-limit-grace-removed-2026-08-30/assets/codex-limit-boundary-feature.png",
+          "fileName": "codex-five-hour-boundary-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:codex-five-hour-limit-active-turns:evidence-community-immediate-stop",
+          "sourcePath": "validation/codex-limit-grace-removed-2026-08-30/assets/evidence-community-aug27-immediate-stop.jpg",
+          "fileName": "codex-five-hour-immediate-stop-evidence.jpg",
+          "evidenceKind": "attributed-community-report-evidence"
+        }
+      ]
+    }
+  ]
+}

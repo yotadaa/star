@@ -1,12 +1,16 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
+import { flushSync } from "react-dom";
 import GithubActivityCalendar from "@/components/GithubActivityCalendar";
 import { PixelButton, RarityTag } from "@/components/claude";
 import { featuredQuests } from "@/lib/data";
+import useWebMcpTool from "@/components/webmcp/useWebMcpTool";
+import { normalizeProjectFilters, PROJECT_CATEGORIES, PROJECT_TYPES, selectProjects } from "@/lib/projects/projectFilters.mjs";
+import { WEBMCP_TOOL_DEFINITIONS } from "@/lib/webmcp/toolCatalog.mjs";
 
-const TYPES = ["All", "Web", "AI", "Data"];
-const CATS = ["All", "Personal", "Research", "Community"];
+const TYPES = PROJECT_TYPES;
+const CATS = PROJECT_CATEGORIES;
 
 function tierRarity(tier = "") {
   if (tier.includes("TIER S")) return "epic";
@@ -18,13 +22,25 @@ export default function ProjectsGrid() {
   const [type, setType] = useState("All");
   const [cat, setCat] = useState("All");
 
-  const list = useMemo(
-    () =>
-      featuredQuests.filter(
-        (q) => (type === "All" || q.type === type) && (cat === "All" || q.category === cat)
-      ),
-    [type, cat]
-  );
+  const list = useMemo(() => selectProjects(featuredQuests, { type, category: cat }), [type, cat]);
+  const filterProjects = useCallback((input) => {
+    const filters = normalizeProjectFilters(input);
+    if (!filters) {
+      const error = new Error("Both project filters must use supported values.");
+      error.code = "INVALID_INPUT";
+      throw error;
+    }
+    const results = selectProjects(featuredQuests, filters);
+    flushSync(() => {
+      setType(filters.type);
+      setCat(filters.category);
+    });
+    return { filters, visibleCount: results.length };
+  }, []);
+  useWebMcpTool({
+    definition: WEBMCP_TOOL_DEFINITIONS.filterProjects,
+    execute: filterProjects,
+  });
 
   return (
     <div data-testid="projects-grid">

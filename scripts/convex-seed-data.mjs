@@ -26,7 +26,22 @@ const GROUNDED_BLOG_PAYLOAD_PATHS = [
   "validation/moltbook-ai-agents-social-network-2026-08-24/payload.json",
   "validation/human-made-ai-slop-selling-point-2026-08-24/payload.json",
   "validation/instagram-real-content-labeled-ai-2026-08-24/payload.json",
+  "validation/ox-alpha-glm-5-3-flash-investigation-2026-08-27/payload.json",
+  "validation/ox-alpha-anonymous-preview-2026-08-28/payload.json",
+  "validation/openai-plus-five-hour-limit-2026-08-30/payload.json",
+  "validation/codex-limit-grace-removed-2026-08-30/payload.json",
   "validation/openai-bel-rumor-investigation-2026-08-28/payload.json",
+  "validation/free-portfolio-stack-nextjs-convex-r2-vercel-2026-08-30/payload.json",
+  "validation/cloudflare-workers-vs-vercel-nextjs-free-2026-08-30/payload.json",
+  "validation/open-source-tools-2026-stack-that-works-together-2026-08-30/payload.json",
+  "validation/hacktoberfest-2026-english/payload.json",
+  "validation/hacktoberfest-2026-indonesian/payload.json",
+  "validation/nodejs-26-nextjs-en-2026-08-31/payload.json",
+  "validation/nodejs-26-nextjs-id-2026-08-31/payload.json",
+  "validation/webmcp-nextjs-agent-ready-en-2026-08-31/payload.json",
+  "validation/webmcp-nextjs-agent-ready-id-2026-08-31/payload.json",
+  "validation/google-august-2026-spam-update-ai-content-2026-09-01/payload.json",
+  "validation/did-google-august-2026-spam-update-target-ai-content-2026-09-01/payload.json",
 ];
 
 function readGroundedBlogPayloads() {
@@ -293,7 +308,7 @@ export function buildSeedTables(data) {
 }
 
 export const expectedSeedCounts = {
-  blogPosts: 25,
+  blogPosts: 40,
   inventoryItems: 14,
   contentEntries: 6,
   contactChannels: 5,

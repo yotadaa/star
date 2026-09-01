@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Alur diagnosis penurunan trafik organik</title>
+  <desc id="desc">Lima tahap dari penandaan waktu, segmentasi Search Console, pemeriksaan teknis, pencarian pola, hingga perubahan terukur.</desc>
+  <defs>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#ded5c8" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" markerWidth="22" markerHeight="22" refX="20" refY="11" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L22,11 L0,22 Z" fill="#28736b"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="1000" fill="#f2ede4"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+
+  <text x="80" y="95" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#786f63">DIAGNOSIS PENURUNAN TRAFIK ORGANIK</text>
+  <text x="80" y="165" font-family="Arial, sans-serif" font-size="56" font-weight="800" fill="#22262a">Mulai dari urutan bukti, bukan tebakan target</text>
+  <line x1="80" y1="205" x2="1520" y2="205" stroke="#22262a" stroke-width="5"/>
+
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(70 290)">
+      <rect width="270" height="330" rx="22" fill="#fbfaf6" stroke="#bcb3a7" stroke-width="3"/>
+      <circle cx="48" cy="52" r="24" fill="#28736b"/>
+      <text x="48" y="62" text-anchor="middle" font-size="26" font-weight="800" fill="#ffffff">1</text>
+      <text x="32" y="115" font-size="28" font-weight="800" fill="#22262a">TANDAI WAKTU</text>
+      <text x="32" y="168" font-size="24" fill="#56615f">Sebelum, saat,</text>
+      <text x="32" y="204" font-size="24" fill="#56615f">atau sesudah</text>
+      <text x="32" y="240" font-size="24" fill="#56615f">rollout?</text>
+      <rect x="32" y="270" width="206" height="34" rx="17" fill="#dbe7e4"/>
+      <text x="135" y="294" text-anchor="middle" font-size="18" font-weight="700" fill="#28736b">BATAS KRONOLOGI</text>
+    </g>
+
+    <g transform="translate(370 290)">
+      <rect width="270" height="330" rx="22" fill="#fbfaf6" stroke="#bcb3a7" stroke-width="3"/>
+      <circle cx="48" cy="52" r="24" fill="#28736b"/>
+      <text x="48" y="62" text-anchor="middle" font-size="26" font-weight="800" fill="#ffffff">2</text>
+      <text x="32" y="115" font-size="28" font-weight="800" fill="#22262a">SEGMENTASI GSC</text>
+      <text x="32" y="168" font-size="23" fill="#56615f">Halaman · kueri</text>
+      <text x="32" y="204" font-size="23" fill="#56615f">Negara · perangkat</text>
+      <text x="32" y="240" font-size="23" fill="#56615f">Search appearance</text>
+      <rect x="32" y="270" width="206" height="34" rx="17" fill="#dbe7e4"/>
+      <text x="135" y="294" text-anchor="middle" font-size="18" font-weight="700" fill="#28736b">PISAHKAN POLA</text>
+    </g>
+
+    <g transform="translate(670 290)">
+      <rect width="270" height="330" rx="22" fill="#fbfaf6" stroke="#bcb3a7" stroke-width="3"/>
+      <circle cx="48" cy="52" r="24" fill="#28736b"/>
+      <text x="48" y="62" text-anchor="middle" font-size="26" font-weight="800" fill="#ffffff">3</text>
+      <text x="32" y="115" font-size="28" font-weight="800" fill="#22262a">CEK TEKNIS</text>
+      <text x="32" y="168" font-size="22" fill="#56615f">Manual action · index</text>
+      <text x="32" y="204" font-size="22" fill="#56615f">Canonical · robots</text>
+      <text x="32" y="240" font-size="22" fill="#56615f">Server log · deploy</text>
+      <rect x="32" y="270" width="206" height="34" rx="17" fill="#dbe7e4"/>
+      <text x="135" y="294" text-anchor="middle" font-size="18" font-weight="700" fill="#28736b">SINGKIRKAN ERROR</text>
+    </g>
+
+    <g transform="translate(970 290)">
+      <rect width="270" height="330" rx="22" fill="#fbfaf6" stroke="#bcb3a7" stroke-width="3"/>
+      <circle cx="48" cy="52" r="24" fill="#28736b"/>
+      <text x="48" y="62" text-anchor="middle" font-size="26" font-weight="800" fill="#ffffff">4</text>
+      <text x="32" y="115" font-size="28" font-weight="800" fill="#22262a">CARI POLA</text>
+      <text x="32" y="168" font-size="23" fill="#56615f">Direktori · template</text>
+      <text x="32" y="204" font-size="23" fill="#56615f">Bahasa · sumber</text>
+      <text x="32" y="240" font-size="23" fill="#56615f">Proses generasi</text>
+      <rect x="32" y="270" width="206" height="34" rx="17" fill="#dbe7e4"/>
+      <text x="135" y="294" text-anchor="middle" font-size="18" font-weight="700" fill="#28736b">PETAKAN KEBIJAKAN</text>
+    </g>
+
+    <g transform="translate(1270 290)">
+      <rect width="260" height="330" rx="22" fill="#efe0d7" stroke="#c69179" stroke-width="3"/>
+      <circle cx="48" cy="52" r="24" fill="#9d654f"/>
+      <text x="48" y="62" text-anchor="middle" font-size="26" font-weight="800" fill="#ffffff">5</text>
+      <text x="32" y="115" font-size="28" font-weight="800" fill="#4d3932">UBAH TERUKUR</text>
+      <text x="32" y="168" font-size="23" fill="#6f5248">Satu kelompok</text>
+      <text x="32" y="204" font-size="23" fill="#6f5248">Changelog jelas</text>
+      <text x="32" y="240" font-size="23" fill="#6f5248">Ukur kembali</text>
+      <rect x="32" y="270" width="196" height="34" rx="17" fill="#ddc1b5"/>
+      <text x="130" y="294" text-anchor="middle" font-size="18" font-weight="700" fill="#6f4538">JAGA JEJAK SEBAB</text>
+    </g>
+
+    <path d="M340 455 H360" stroke="#28736b" stroke-width="6" marker-end="url(#arrow)"/>
+    <path d="M640 455 H660" stroke="#28736b" stroke-width="6" marker-end="url(#arrow)"/>
+    <path d="M940 455 H960" stroke="#28736b" stroke-width="6" marker-end="url(#arrow)"/>
+    <path d="M1240 455 H1260" stroke="#28736b" stroke-width="6" marker-end="url(#arrow)"/>
+  </g>
+
+  <rect x="70" y="700" width="1460" height="190" rx="26" fill="#22262a"/>
+  <text x="115" y="770" font-family="Arial, sans-serif" font-size="29" font-weight="700" fill="#9dc4bd">PRINSIP KERJA</text>
+  <text x="115" y="842" font-family="Arial, sans-serif" font-size="43" font-weight="800" fill="#ffffff">Korelasi tanggal adalah petunjuk audit, bukan bukti sebab.</text>
+  <text x="115" y="930" font-family="Arial, sans-serif" font-size="22" fill="#6c665f">Sumber alur: panduan debugging Google Search dan dimensi Search Analytics API.</text>
+</svg>

@@ -54,6 +54,33 @@ function validHttpUrl(value) {
   }
 }
 
+function storedImageHosts(convexUrl) {
+  const hosts = new Set([new URL(convexUrl).host]);
+  const configuredR2Domain = String(process.env.R2_PUBLIC_DOMAIN || "")
+    .trim()
+    .replace(/\/+$/, "");
+  if (!configuredR2Domain) return hosts;
+
+  try {
+    const url = new URL(configuredR2Domain);
+    if (
+      url.protocol !== "https:"
+      || url.username
+      || url.password
+      || url.pathname !== "/"
+      || url.search
+      || url.hash
+    ) {
+      fail("R2_PUBLIC_DOMAIN must be an exact HTTPS origin");
+    }
+    hosts.add(url.host);
+    return hosts;
+  } catch (error) {
+    if (String(error?.message || "").startsWith("BLOG_SEO_DATA_INVALID:")) throw error;
+    fail("R2_PUBLIC_DOMAIN must be an exact HTTPS origin");
+  }
+}
+
 function durableImage(image = {}) {
   const width = positiveInteger(image.width);
   const height = positiveInteger(image.height);
@@ -188,7 +215,7 @@ async function mapWithConcurrency(items, limit, mapper) {
 }
 
 async function measureCurrentImages(posts, convexUrl) {
-  const storageHost = new URL(convexUrl).host;
+  const allowedStoredHosts = storedImageHosts(convexUrl);
   const images = posts.flatMap((post) => (post.blocks || [])
     .filter((block) => block.type === "image")
     .map((block) => ({
@@ -203,8 +230,8 @@ async function measureCurrentImages(posts, convexUrl) {
     if (!BLOG_IMAGE_DIMENSIONS[image.key]) fail(`${image.slug} has an image missing from the dimension manifest`);
     const source = new URL(image.src);
     if (source.protocol !== "https:") fail(`${image.slug} image source must use HTTPS`);
-    if (image.stored && source.host !== storageHost) {
-      fail(`${image.slug} stored image resolved outside the configured Convex host`);
+    if (image.stored && !allowedStoredHosts.has(source.host)) {
+      fail(`${image.slug} stored image resolved outside the configured storage hosts`);
     }
     if (!image.stored && image.src !== image.key) {
       fail(`${image.slug} external image does not match its checked-in source key`);

@@ -1,0 +1,47 @@
+{
+  "name": "two-stack-guides-2026-08-30",
+  "articles": [
+    {
+      "slug": "cloudflare-workers-vs-vercel-nextjs-free",
+      "payloadPath": "validation/cloudflare-workers-vs-vercel-nextjs-free-2026-08-30/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:cloudflare-workers-vs-vercel-nextjs-free:feature-two-paths",
+          "sourcePath": "validation/cloudflare-workers-vs-vercel-nextjs-free-2026-08-30/assets/nextjs-two-paths-feature.png",
+          "fileName": "cloudflare-workers-vs-vercel-nextjs-free-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:cloudflare-workers-vs-vercel-nextjs-free:evidence-vinext-default",
+          "sourcePath": "validation/cloudflare-workers-vs-vercel-nextjs-free-2026-08-30/assets/vinext-guidance-reconstruction.png",
+          "fileName": "cloudflare-vinext-guidance-reconstruction.png",
+          "evidenceKind": "deterministic-guidance-diagram"
+        },
+        {
+          "assetKey": "blog:cloudflare-workers-vs-vercel-nextjs-free:comparison-boundaries",
+          "sourcePath": "validation/cloudflare-workers-vs-vercel-nextjs-free-2026-08-30/assets/free-tier-boundaries.png",
+          "fileName": "cloudflare-vercel-free-tier-boundaries.png",
+          "evidenceKind": "deterministic-comparison-chart"
+        }
+      ]
+    },
+    {
+      "slug": "open-source-tools-2026-stack-that-works-together",
+      "payloadPath": "validation/open-source-tools-2026-stack-that-works-together-2026-08-30/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:open-source-tools-2026-stack-that-works-together:feature-toolbench",
+          "sourcePath": "validation/open-source-tools-2026-stack-that-works-together-2026-08-30/assets/feature-open-source-toolbench.png",
+          "fileName": "open-source-tools-2026-feature.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:open-source-tools-2026-stack-that-works-together:evidence-opencode-terminal",
+          "sourcePath": "validation/open-source-tools-2026-stack-that-works-together-2026-08-30/assets/evidence-opencode-terminal-ui.png",
+          "fileName": "opencode-terminal-interface-evidence.png",
+          "evidenceKind": "first-party-mit-repository-asset"
+        }
+      ]
+    }
+  ]
+}

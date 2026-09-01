@@ -1,0 +1,34 @@
+{
+  "articles": [
+    {
+      "slug": "free-portfolio-stack-nextjs-convex-r2-vercel",
+      "payloadPath": "validation/free-portfolio-stack-nextjs-convex-r2-vercel-2026-08-30/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:free-portfolio-stack-nextjs-convex-r2-vercel:feature-workbench-stack",
+          "sourcePath": "validation/free-portfolio-stack-nextjs-convex-r2-vercel-2026-08-30/assets/portfolio-stack-workbench-feature.png",
+          "fileName": "portfolio-stack-workbench-feature.png",
+          "evidenceKind": "original-editorial-feature"
+        },
+        {
+          "assetKey": "blog:free-portfolio-stack-nextjs-convex-r2-vercel:evidence-r2-checkout",
+          "sourcePath": "validation/free-portfolio-stack-nextjs-convex-r2-vercel-2026-08-30/assets/r2-checkout-evidence.jpg",
+          "fileName": "r2-checkout-evidence.jpg",
+          "evidenceKind": "first-party-documentation-evidence"
+        },
+        {
+          "assetKey": "blog:free-portfolio-stack-nextjs-convex-r2-vercel:evidence-r2-free-tier",
+          "sourcePath": "validation/free-portfolio-stack-nextjs-convex-r2-vercel-2026-08-30/assets/r2-free-tier-evidence.jpg",
+          "fileName": "r2-free-tier-evidence.jpg",
+          "evidenceKind": "first-party-documentation-evidence"
+        },
+        {
+          "assetKey": "blog:free-portfolio-stack-nextjs-convex-r2-vercel:evidence-live-portfolio",
+          "sourcePath": "validation/free-portfolio-stack-nextjs-convex-r2-vercel-2026-08-30/assets/live-portfolio-home.jpg",
+          "fileName": "live-portfolio-home.jpg",
+          "evidenceKind": "user-owned-live-implementation"
+        }
+      ]
+    }
+  ]
+}

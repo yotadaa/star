@@ -1,0 +1,30 @@
+{
+  "_comment": "Verified values only. Source: Artificial Analysis GLM-5.3-Flash page (S09), accessed 2026-08-27. Claim rows C09 and C10. Do not edit without re-checking the source.",
+  "source": {
+    "owner": "Artificial Analysis",
+    "url": "https://artificialanalysis.ai/models/glm-5-3-flash/",
+    "accessed": "2026-08-27",
+    "comparisonSet": 110,
+    "indexVersion": "Intelligence Index v4.1.1"
+  },
+  "panels": [
+    {
+      "title": "Intelligence Index v4.1.1",
+      "unit": "index points",
+      "rank": "3rd of 110",
+      "bars": [
+        { "label": "GLM-5.3-Flash", "value": 57, "highlight": true },
+        { "label": "Median of 110 models", "value": 28, "highlight": false }
+      ]
+    },
+    {
+      "title": "Output speed",
+      "unit": "tokens per second",
+      "rank": "46th of 110",
+      "bars": [
+        { "label": "GLM-5.3-Flash", "value": 50.2, "highlight": true },
+        { "label": "Median of 110 models", "value": 65.1, "highlight": false }
+      ]
+    }
+  ]
+}

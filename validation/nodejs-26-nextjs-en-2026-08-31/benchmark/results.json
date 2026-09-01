@@ -1,0 +1,50 @@
+{
+  "capturedAt": "2026-09-01T12:50:59.218Z",
+  "platform": "linux-x64",
+  "project": {
+    "next": "15.5.19",
+    "react": "19.0.0",
+    "convex": "^1.45.0"
+  },
+  "method": "One clean production build and one local production-server start per runtime; .next removed before each build. Startup is measured through the first successful GET /. RSS is a single Linux process snapshot. This is a compatibility probe, not a statistically stable performance benchmark.",
+  "results": [
+    {
+      "label": "Configured Node 24 candidate",
+      "version": "v24.20.0",
+      "build": {
+        "exitCode": 0,
+        "elapsedMs": 52054,
+        "stdout": "   ▲ Next.js 15.5.19\n   - Environments: .env.local\n   - Experiments (use with caution):\n     · optimizePackageImports\n\n   Creating an optimized production build ...\n ✓ Compiled successfully in 22.2s\n   Skipping linting\n   Checking validity of types ...\n   Collecting page data ...\n   Generating static pages (0/16) ...\n   Generating static pages (4/16) \r\n   Generating static pages (8/16) \r\n   Generating static pages (12/16) \r\n ✓ Generating static pages (16/16)\n   Finalizing page optimization ...\n   Collecting build traces ...\n\nRoute (app)                                 Size  First Load JS  Revalidate  Expire\n┌ ○ /                                    8.87 kB         138 kB          5m      1y\n├ ○ /_not-found                            213 B         103 kB\n├ ƒ /about                               1.66 kB         109 kB\n├ ƒ /api/about/entries                     213 B         103 kB\n├ ƒ /api/auth/[...nextauth]                213 B         103 kB\n├ ƒ /api/backend/files                     213 B         103 kB\n├ ƒ /api/backend/files/[id]                213 B         103 kB\n├ ƒ /api/backend/health                    213 B         103 kB\n├ ƒ /api/backend/records                   213 B         103 kB\n├ ƒ /api/backend/records/[id]              213 B         103 kB\n├ ƒ /api/blog/posts                        213 B         103 kB\n├ ƒ /api/blog/posts/[id]                   213 B         103 kB\n├ ƒ /api/blog/posts/[id]/comments          213 B         103 kB\n├ ƒ /api/blog/posts/[id]/reading           213 B         103 kB\n├ ƒ /api/blog/posts/[id]/upvote            213 B         103 kB\n├ ƒ /api/chat/messages                     213 B         103 kB\n├ ƒ /api/contact/channels                  213 B         103 kB\n├ ƒ /api/contact/events                    213 B         103 kB\n├ ○ /api/github-activity                   213 B         103 kB          1h      1y\n├ ƒ /api/inventory/items                   213 B         103 kB\n├ ƒ /api/manage/nala                       213 B         103 kB\n├ ƒ /api/media/[id]                        213 B         103 kB\n├ ƒ /api/nala/chat                         213 B         103 kB\n├ ƒ /api/webmcp/blog-search                213 B         103 kB\n├ ƒ /blog                                5.33 kB         121 kB\n├ ƒ /blog/[slug]                         6.49 kB         145 kB\n├ ƒ /blog/admin                          2.48 kB         117 kB\n├ ƒ /blog/admin/[id]/edit                  132 B         122 kB\n├ ƒ /blog/admin/new                        132 B         122 kB\n├ ƒ /contact                             1.67 kB         109 kB\n├ ƒ /forbidden                             697 B         115 kB\n├ ○ /icon.svg                                0 B            0 B\n├ ƒ /indexnow-key.txt                      213 B         103 kB\n├ ○ /lore                                1.42 kB         108 kB\n├ ƒ /manage                               3.7 kB         139 kB\n├ ○ /manifest.webmanifest                  213 B         103 kB\n├ ○ /opengraph-image                       213 B         103 kB\n├ ƒ /projects                            4.39 kB         117 kB\n├ ƒ /redirect                              213 B         103 kB\n├ ƒ /research                            1.67 kB         109 kB\n├ ○ /robots.txt                            213 B         103 kB\n├ ƒ /sitemap-blog.xml                      213 B         103 kB\n├ ○ /sitemap-pages.xml                     213 B         103 kB\n└ ○ /sitemap.xml                           213 B         103 kB\n+ First Load JS shared by all             103 kB\n  ├ chunks/1255-a1d43dff9827c512.js      46.2 kB\n  ├ chunks/4bd1b696-f785427dddbba9fb.js  54.2 kB\n  └ other shared chunks (total)           2.3 kB\n\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n\n",
+        "stderr": ""
+      },
+      "server": {
+        "ok": true,
+        "status": 200,
+        "startupMs": 926,
+        "rssKiB": 148444,
+        "lastError": null,
+        "stdout": "   ▲ Next.js 15.5.19\n   - Local:        http://127.0.0.1:4134\n   - Network:      http://127.0.0.1:4134\n\n ✓ Starting...\n ✓ Ready in 344ms\n",
+        "stderr": ""
+      }
+    },
+    {
+      "label": "Current runtime v26.7.0",
+      "version": "v26.7.0",
+      "build": {
+        "exitCode": 0,
+        "elapsedMs": 38329,
+        "stdout": "   ▲ Next.js 15.5.19\n   - Environments: .env.local\n   - Experiments (use with caution):\n     · optimizePackageImports\n\n   Creating an optimized production build ...\n ✓ Compiled successfully in 17.3s\n   Skipping linting\n   Checking validity of types ...\n   Collecting page data ...\n   Generating static pages (0/16) ...\n   Generating static pages (4/16) \r\n   Generating static pages (8/16) \r\n   Generating static pages (12/16) \r\n ✓ Generating static pages (16/16)\n   Finalizing page optimization ...\n   Collecting build traces ...\n\nRoute (app)                                 Size  First Load JS  Revalidate  Expire\n┌ ○ /                                    8.87 kB         138 kB          5m      1y\n├ ○ /_not-found                            214 B         103 kB\n├ ƒ /about                               1.67 kB         109 kB\n├ ƒ /api/about/entries                     214 B         103 kB\n├ ƒ /api/auth/[...nextauth]                214 B         103 kB\n├ ƒ /api/backend/files                     214 B         103 kB\n├ ƒ /api/backend/files/[id]                214 B         103 kB\n├ ƒ /api/backend/health                    214 B         103 kB\n├ ƒ /api/backend/records                   214 B         103 kB\n├ ƒ /api/backend/records/[id]              214 B         103 kB\n├ ƒ /api/blog/posts                        214 B         103 kB\n├ ƒ /api/blog/posts/[id]                   214 B         103 kB\n├ ƒ /api/blog/posts/[id]/comments          214 B         103 kB\n├ ƒ /api/blog/posts/[id]/reading           214 B         103 kB\n├ ƒ /api/blog/posts/[id]/upvote            214 B         103 kB\n├ ƒ /api/chat/messages                     214 B         103 kB\n├ ƒ /api/contact/channels                  214 B         103 kB\n├ ƒ /api/contact/events                    214 B         103 kB\n├ ○ /api/github-activity                   214 B         103 kB          1h      1y\n├ ƒ /api/inventory/items                   214 B         103 kB\n├ ƒ /api/manage/nala                       214 B         103 kB\n├ ƒ /api/media/[id]                        214 B         103 kB\n├ ƒ /api/nala/chat                         214 B         103 kB\n├ ƒ /api/webmcp/blog-search                214 B         103 kB\n├ ƒ /blog                                5.32 kB         121 kB\n├ ƒ /blog/[slug]                         6.51 kB         145 kB\n├ ƒ /blog/admin                          2.49 kB         117 kB\n├ ƒ /blog/admin/[id]/edit                  132 B         122 kB\n├ ƒ /blog/admin/new                        132 B         122 kB\n├ ƒ /contact                             1.67 kB         109 kB\n├ ƒ /forbidden                             692 B         115 kB\n├ ○ /icon.svg                                0 B            0 B\n├ ƒ /indexnow-key.txt                      214 B         103 kB\n├ ○ /lore                                1.42 kB         108 kB\n├ ƒ /manage                              3.71 kB         139 kB\n├ ○ /manifest.webmanifest                  214 B         103 kB\n├ ○ /opengraph-image                       214 B         103 kB\n├ ƒ /projects                            4.41 kB         117 kB\n├ ƒ /redirect                              214 B         103 kB\n├ ƒ /research                            1.67 kB         109 kB\n├ ○ /robots.txt                            214 B         103 kB\n├ ƒ /sitemap-blog.xml                      214 B         103 kB\n├ ○ /sitemap-pages.xml                     214 B         103 kB\n└ ○ /sitemap.xml                           214 B         103 kB\n+ First Load JS shared by all             103 kB\n  ├ chunks/1255-a1d43dff9827c512.js      46.3 kB\n  ├ chunks/4bd1b696-f785427dddbba9fb.js  54.2 kB\n  └ other shared chunks (total)          2.29 kB\n\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n\n",
+        "stderr": ""
+      },
+      "server": {
+        "ok": true,
+        "status": 200,
+        "startupMs": 896,
+        "rssKiB": 168976,
+        "lastError": null,
+        "stdout": "   ▲ Next.js 15.5.19\n   - Local:        http://127.0.0.1:4136\n   - Network:      http://127.0.0.1:4136\n\n ✓ Starting...\n ✓ Ready in 394ms\n",
+        "stderr": ""
+      }
+    }
+  ]
+}

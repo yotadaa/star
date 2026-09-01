@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1672" height="941" viewBox="0 0 1672 941">
+  <rect width="1672" height="941" fill="#10151a"/><path d="M0 720 C260 610 410 790 690 675 S1180 470 1672 600 V941 H0Z" fill="#183640"/>
+  <circle cx="1338" cy="230" r="176" fill="#e7b35a" opacity=".9"/><circle cx="1338" cy="230" r="128" fill="#10151a"/>
+  <g fill="none" stroke="#e7b35a" stroke-width="6" opacity=".8"><path d="M110 210h520v170H110z"/><path d="M160 260h160M160 305h290M160 350h230"/><path d="M400 530h610v180H400z"/><path d="M460 580h180M460 625h430M460 670h280"/></g>
+  <g stroke="#b9d5d1" stroke-width="4" fill="none"><path d="M680 295 C810 360 890 430 1000 530"/><path d="M690 340 C820 420 870 470 990 570"/><path d="M1000 530l-26-6m26 6-9-25"/></g><g fill="#b9d5d1"><circle cx="690" cy="295" r="9"/><circle cx="1000" cy="530" r="9"/></g>
+  <text x="110" y="115" fill="#f3efe4" font-family="Arial,sans-serif" font-size="54" font-weight="700">OPEN SOURCE / OKTOBER</text><text x="110" y="815" fill="#f3efe4" font-family="Arial,sans-serif" font-size="34">Kontribusi bisa berupa ruang, alat, atau eksperimen bersama.</text>
+</svg>

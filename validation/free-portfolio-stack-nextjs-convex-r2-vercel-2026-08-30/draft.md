@@ -1,0 +1,124 @@
+# A Portfolio Stack That Can Stay at $0: Next.js, Convex, R2, and Vercel
+
+Three providers can all print **$0** on a pricing page and mean three different things. For a content-rich personal portfolio, Next.js on Vercel Hobby, Convex Free, and Cloudflare R2 Standard can keep the monthly infrastructure bill at zero. A domain is separate: an existing one can be reused, while a new portfolio can simply buy an inexpensive domain and count its registration and renewal outside the free stack. The other catches sit in three different boundaries: Vercel restricts Hobby to non-commercial personal use, Convex stops at hard resource caps, and R2 starts with a checkout flow before its included storage and operations can keep the bill at $0.
+
+That makes this stack useful, but not universally “free” and certainly not necessary for every portfolio. It is a strong fit when projects, articles, read counts, or other records need to change without a redeploy and when uploaded media needs a durable home. A static résumé with six images should probably remain static.
+
+![A wooden workbench with printed portfolio pages, an index-card box, and a metal media case connected by black cords.](asset://blog:free-portfolio-stack-nextjs-convex-r2-vercel:feature-workbench-stack)
+
+*A useful portfolio stack separates presentation, structured content, and durable media instead of asking one service to do every job.*
+
+## The four layers solve four different problems
+
+[Next.js](https://nextjs.org/docs) is the presentation and application layer. It renders the home page, project pages, Blog routes, metadata, and server endpoints. The framework is open source under the [MIT license](https://github.com/vercel/next.js), and it is not tied to one host: the deployment documentation covers Node.js servers, Docker containers, static export, and platform adapters.
+
+[Vercel](https://vercel.com/pricing) is the managed deployment layer in this version of the architecture. A push can build the Next.js application, place static assets near readers, and run server functions without maintaining a machine. That convenience is the reason to use it, not because Next.js requires it.
+
+[Convex](https://docs.convex.dev/client/nextjs/app-router/) is the structured application-data layer. It is useful for records that need indexes, validation, mutations, and reactive updates: Blog posts, project entries, comments, view counters, or an owner dashboard. The official Next.js App Router integration and Vercel's [Next.js + Convex template](https://vercel.com/templates/next.js/next-js-convex-template) make this pairing a supported starting point rather than an improvised bridge.
+
+[Cloudflare R2](https://developers.cloudflare.com/r2/) is the object-storage layer. It holds bytes such as feature images, screenshots, PDFs, and audio. Those objects have different access patterns and lifetimes from Blog metadata, so keeping the file in R2 and only its stable record in Convex is a useful separation.
+
+```flowchart
+flowchart LR
+  Visitor --> NextJS[Next.js on Vercel]
+  NextJS --> Convex[Convex records and queries]
+  NextJS --> R2[R2 media on a custom domain]
+  Convex --> R2Record[Stable asset record]
+  R2Record --> R2
+```
+
+The diagram also reveals the cost: there are three managed services to configure, secure, and monitor. Separation is valuable only when the application needs what each boundary provides.
+
+## What the free allowances actually cover
+
+The current published limits are generous for a modest personal site, but they are not interchangeable.
+
+| Layer | Current $0 allowance or condition | Boundary that matters |
+|---|---|---|
+| Next.js | Open-source framework under the MIT license | Hosting, databases, and storage are separate decisions |
+| Vercel Hobby | 1 million Edge Requests, 100 GB Fast Data Transfer, 4 CPU-hours, 360 GB-hours of provisioned memory, and 1 million function invocations per month | Hobby is for non-commercial personal use; individual features can pause after their limits |
+| Convex Free | 1 million function calls, 0.5 GB database storage, 1 GB database input/output, 20 GB-hours of action compute, 1 GB file storage, and 1 GB data egress | Free uses hard caps rather than automatic paid overage |
+| R2 Standard | 10 GB-month, 1 million Class A operations, 10 million Class B operations, and free Internet egress per month | Checkout activates a billable product; production delivery needs a domain; free allocation excludes Infrequent Access storage |
+
+These figures were checked against the providers' first-party pages on 30 August 2026. They are a current snapshot, not a permanent price promise. The plan pages should be checked again before launch, especially when a portfolio starts carrying client work or meaningful traffic.
+
+Vercel's [Hobby documentation](https://vercel.com/docs/plans/hobby) says the plan has no billing cycle and generally pauses a feature after its allowance is exhausted. That behavior limits surprise charges, but the non-commercial rule is the more important constraint. A personal showcase is the intended shape. A storefront, a paid client site, or a portfolio operating as a business surface needs a separate terms review and may need Pro.
+
+Convex's [platform limits](https://docs.convex.dev/production/state/limits) call Free limits **hard resource caps**. That wording has operational consequences. When a write-dependent feature reaches a cap, hoping for a graceful page is not a plan; the application needs monitoring, bounded queries, and a deliberate response. Convex also counts more than obvious button clicks. Client calls, subscription updates, scheduled executions, and file access can all contribute to function usage, so a pageview-to-call estimate is workload-specific.
+
+## R2 is a free allocation inside a billable product
+
+R2 deserves its own explanation because “free to get started” is easy to misread as “no billing setup.” Cloudflare's [getting-started guide](https://developers.cloudflare.com/r2/get-started/#before-you-begin) requires an R2 subscription and tells the account owner to complete checkout. The current project account made the distinction visible: Vercel Hobby and Convex Free started without a payment method, while R2 required one.
+
+![Cloudflare R2 documentation stating that an R2 subscription and checkout are required before use and that usage is billed monthly.](asset://blog:free-portfolio-stack-nextjs-convex-r2-vercel:evidence-r2-checkout)
+
+*R2 can produce a $0 bill inside its included usage, but activation still begins with a subscription and checkout flow.*
+
+The distinction is simple: the payment method is not charged merely because a bucket exists inside the included allocation, but it is available for charges when billable usage exceeds that allocation. Cloudflare publishes paid rates and [billable-unit rounding](https://developers.cloudflare.com/r2/pricing/#billable-unit-rounding); this article does not assume a hard spend cap that the documentation does not promise.
+
+The free tier itself has four separate meters. Storage is measured in **GB-month**, meaning average retained storage across the billing period, not a one-time 10 GB upload coupon. Class A covers write and list work such as `PutObject` and `ListObjects`; Class B covers read-oriented operations such as `GetObject` and `HeadObject`. Internet egress is free, but storage and operation counts still matter.
+
+![Cloudflare R2 documentation showing 10 GB-month storage, one million Class A operations, ten million Class B operations, and free Internet egress in the Standard free tier.](asset://blog:free-portfolio-stack-nextjs-convex-r2-vercel:evidence-r2-free-tier)
+
+*Cloudflare's current R2 table gives four separate monthly allowances and excludes Infrequent Access storage from the free tier.*
+
+For public production media, Cloudflare also says the managed `r2.dev` address is intended for development and can be throttled. Its [public-bucket guidance](https://developers.cloudflare.com/r2/buckets/public-buckets/) recommends a custom domain. The domain must be added as a zone in the same Cloudflare account as the R2 bucket. If the portfolio does not already own one, the practical answer is to buy an inexpensive domain and add it to Cloudflare. Registration and renewal are separate from the R2 free tier, so the complete site is not literally cost-free unless it reuses an existing domain or accepts a provider subdomain. The custom domain gives the portfolio a durable media hostname, caching control, and fewer reasons to expose a development endpoint as permanent infrastructure.
+
+## The inspected portfolio already uses this split
+
+The architecture is not only a pricing-page proposal. The inspected project uses Next.js 15.5, Convex, and `@convex-dev/r2`. Blog posts are stored as validated, indexed records. Image uploads receive checksum-addressed R2 object keys. The publisher verifies the stored hash and byte count, saves a stable asset record, and replaces provider-neutral asset references with public R2 URLs during publication.
+
+![The live Mukhtada portfolio home page with a navigation bar, centered introduction, and two call-to-action buttons.](asset://blog:free-portfolio-stack-nextjs-convex-r2-vercel:evidence-live-portfolio)
+
+*The inspected project is not a hypothetical diagram: its public home page is rendered by Next.js while editable content and Blog media live behind separate services.*
+
+That publishing path has two practical safeguards. A semantic asset key and SHA-256 checksum establish image identity; matching bytes are reused. A slug identifies the article, so a retry updates the existing post instead of creating a duplicate. Together, those safeguards turn three services into an operable content system.
+
+## A practical build order
+
+A reliable implementation begins with the simplest layer and adds state only when the previous boundary is clear.
+
+1. **Build the portfolio routes in Next.js.** Start with semantic pages for the home, projects, about, contact, and Blog. Decide which routes can remain static and which require server data.
+2. **Deploy a read-only version to Vercel Hobby.** Verify the production domain, responsive layout, keyboard navigation, image dimensions, and `alt` text before adding a data plane.
+3. **Model only mutable records in Convex.** A Blog post needs a unique slug, status, publication date, SEO fields, author identity, and native content blocks. Add indexes for public queries instead of fetching a large collection and filtering in the browser.
+4. **Keep secrets and privileged writes on the server.** The browser may read public posts, but publication, deletion, signed uploads, and administrative queries need authenticated or backend-only boundaries.
+5. **Add R2 when the media requirement justifies it.** Create a Standard bucket, complete the billing setup, configure S3-compatible credentials, restrict their scope, and expose public files through a custom domain rather than `r2.dev`.
+6. **Store file identity, not file bytes, in Convex.** Record an asset key, checksum, media type, dimensions, and final URL. This supports deduplication and gives every rendered image a descriptive `alt` field.
+7. **Make publication repeatable.** A safe publisher uploads only changed bytes, upserts the article by slug, reads it back, and retries without duplication.
+8. **Add monitoring before traffic.** Watch all three dashboards because a green Vercel project does not reveal a Convex cap or an R2 operation spike.
+
+This order also leaves several valid stopping points. A portfolio that never reaches step three does not need Convex. A site whose images live comfortably in the repository or Convex's included 1 GB file storage may not need R2.
+
+## Where the stack earns its complexity
+
+The strongest case is editorial control: an owner can publish a Blog post, correct a project description, or update a feature image without rebuilding the whole application. Convex provides the record and query model. R2 gives the media a URL that can outlive a deployment.
+
+The second advantage is independent scaling. Text-heavy reads, real-time subscriptions, and image delivery do not compete inside one undifferentiated quota. An image-heavy article consumes R2 resources while a reactive comment thread consumes Convex resources. That separation makes the source of growth easier to see.
+
+The third is portability at the framework boundary. Next.js can move to another Node.js or container host. Convex also documents a [self-hosting path](https://docs.convex.dev/self-hosting), although its license and operational requirements deserve their own review. Neither option makes migration free, but the application is not technically inseparable from one Vercel deployment.
+
+## The cons are operational, not cosmetic
+
+The first disadvantage is account surface. There are three dashboards, three sets of environment variables, three failure modes, and at least two production domains. A leaked storage credential or a permissive publication mutation can do more damage than a slightly slow landing page.
+
+The second is split observability. Vercel may show a healthy deployment while Convex refuses a write at a hard cap. R2 may serve cached images quickly while Class A operations rise because an upload job is retrying badly. Alerting and logs have to follow the same boundaries as the architecture.
+
+The third is terms mismatch. Vercel Hobby's non-commercial rule may matter before its technical limits do. R2's payment method also changes the risk model: $0 depends on staying inside current allowances, not on billing being impossible.
+
+The fourth is unnecessary machinery. Convex Free already includes 1 GB of file storage. For a small gallery, putting images there can be the better decision. For a fully static portfolio, repository images plus a static Next.js export may be simpler still. Architecture should answer the site's behavior, not imitate a fashionable diagram.
+
+## Search performance starts after the stack decision
+
+No stack can guarantee the top position in Google or Bing. Google's [people-first guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) asks for original analysis, useful coverage, clear sourcing, and first-hand experience. Bing's [Webmaster Guidelines](https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a) explicitly say SEO does not guarantee rankings.
+
+What the architecture can do is remove avoidable indexing friction. Each Blog page can emit a unique title and description, a canonical URL, `BlogPosting` structured data, meaningful headings, descriptive image alternatives, and crawlable related links. Published slugs can enter an XML sitemap, while private and administrative routes stay out. A successful deploy can then send an IndexNow notification, which tells participating engines that a URL changed; it does not promise a crawl, index, or rank.
+
+The content still has to carry the page. This article targets a narrow gap that generic “free portfolio” tutorials often miss: the four-service architecture, the incompatible meanings of free, the R2 checkout boundary, and the point at which the extra services become unnecessary. That is more defensible than repeating a broad keyword or promising a ranking nobody controls.
+
+## The verdict: free can be honest when the boundaries are visible
+
+For a personal, non-commercial portfolio with mutable content and durable media, Next.js, Vercel Hobby, Convex Free, and R2 Standard form a credible $0 infrastructure stack. Vercel removes server maintenance, Convex supplies structured reactive data, and R2 gives uploaded media a separate home with free Internet egress. A new domain remains the small external purchase: buying an inexpensive one is enough, but its registration and renewal should not be hidden inside the word “free.”
+
+The honest recommendation has two conditions. R2 still requires checkout and a payment method, and all quoted allowances can change. A developer should read the live pricing pages, configure usage alerts where available, and keep a path back to a simpler static site.
+
+The best starting point is Vercel's official [Next.js + Convex template](https://vercel.com/templates/next.js/next-js-convex-template), followed by one decision: does the portfolio truly need media storage beyond the repository or Convex's included files? If the answer is no, R2 should remain out. If the answer is yes, its billing boundary should be designed in before the first upload, not discovered after it.

@@ -1,0 +1,19 @@
+# Terminology ledger
+
+| Term | Accepted meaning | Direct source | Rejected alternatives | Wording used in article |
+|---|---|---|---|---|
+| `stealth/ox-alpha` | OpenRouter route slug for an anonymously provided preview model, listed 2026-08-20, free during preview, 1,048,576-token context, text/image/video input | OpenRouter model page `https://openrouter.ai/stealth/ox-alpha`, accessed 2026-08-27 | "Ox Alpha" as a finished product name; "Ox Alpha" as an OpenRouter-built model (OpenRouter states it only routes requests) | "the anonymous `stealth/ox-alpha` route" |
+| Stealth model (OpenRouter) | A model listed without naming its developer or provider, offered for preview while the lab collects usage feedback | OpenRouter Ox Alpha model page; Z.ai announcement describing anonymous testing | "leaked model"; "unreleased checkpoint obtained without permission" — neither is supported | "a stealth listing, where the router names the route but not the lab" |
+| GLM-5.3-Flash | Z.ai's first natively multimodal GLM-5-series model; 320B total parameters, 18B active; released 2026-08-26; MIT license | `https://z.ai/blog/glm-5.3-flash`; `https://huggingface.co/zai-org/GLM-5.3-Flash` | GLM-5.3 (a **different** model with different price and attention compute); GLM-5.2 (the predecessor it is compared against) | "GLM-5.3-Flash" always written in full, never shortened to "GLM-5.3" |
+| GLM-5.3 | A separate, larger GLM-5.3-series model. Z.ai reports GLM-5.3-Flash cuts attention compute 3.0× and KV-cache 4.4× **relative to GLM-5.3**, and gives Coding Plan users 3× the usable quota of GLM-5.3 | `https://z.ai/blog/glm-5.3-flash`; `https://z.ai/blog/glm-5.3` | Treating GLM-5.3 and GLM-5.3-Flash as one model or one score line | "GLM-5.3, the larger sibling" |
+| Active parameters | The subset of a Mixture-of-Experts model's weights used per token; 18B of 320B here | Z.ai announcement; Artificial Analysis model page | Total parameter count; "18B model" | "18 billion of its 320 billion parameters are active per token" |
+| Artificial Analysis Intelligence Index v4.1.1 | A composite index run by Artificial Analysis over GDPval-AA v2, τ³-Banking, Terminal-Bench v2.1, SciCode, Humanity's Last Exam, GPQA Diamond, CritPt, AA-Omniscience, and AA-LCR | `https://artificialanalysis.ai/models/glm-5-3-flash/`, accessed 2026-08-27 | Treating the index as a Z.ai-run benchmark; comparing a v4.1.1 score to any other index version | "Artificial Analysis Intelligence Index v4.1.1" with the version stated |
+| DeepSWE v1.1 | A software-engineering benchmark version; Z.ai's run used the mini-swe-agent harness, temperature 0.95, top-p 1.0, six-hour timeout, 400K context | Z.ai announcement evaluation notes | The community `MatchaOnMuffins/oxalpha` run, which is a different configuration and not comparable as an equivalent number | "DeepSWE v1.1, run on the mini-swe-agent harness" |
+| Z.ai Code Bench v1.0 | Z.ai's own coding benchmark, run inside Claude Code 2.1.207 | Z.ai announcement | An independent benchmark | "Z.ai's own Code Bench v1.0" |
+| mHC (Manifold-Constrained Hyper-Connections) | An architecture component Z.ai names in GLM-5.3-Flash; no independent description found | Z.ai announcement; HF model card | Any expansion or mechanism explanation not stated by Z.ai | Named only, not explained |
+| Cost per Intelligence Index task | Artificial Analysis's own measured cost of running its index; **$0.09** on the AA page vs **$0.045 "discounted"** in Z.ai's announcement | AA model page; Z.ai announcement | Treating the two figures as the same measurement | Both figures given with their owners named |
+
+## Unresolved terms
+
+None material to the article. `mHC` and `IndexPool` are named by Z.ai without an
+independent description, so the article names them without explaining mechanism.

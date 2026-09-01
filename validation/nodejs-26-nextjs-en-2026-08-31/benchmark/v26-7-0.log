@@ -1,0 +1,71 @@
+   ▲ Next.js 15.5.19
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 17.3s
+   Skipping linting
+   Checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/16) ...
+   Generating static pages (4/16)
+   Generating static pages (8/16)
+   Generating static pages (12/16)
+ ✓ Generating static pages (16/16)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS  Revalidate  Expire
+┌ ○ /                                    8.87 kB         138 kB          5m      1y
+├ ○ /_not-found                            214 B         103 kB
+├ ƒ /about                               1.67 kB         109 kB
+├ ƒ /api/about/entries                     214 B         103 kB
+├ ƒ /api/auth/[...nextauth]                214 B         103 kB
+├ ƒ /api/backend/files                     214 B         103 kB
+├ ƒ /api/backend/files/[id]                214 B         103 kB
+├ ƒ /api/backend/health                    214 B         103 kB
+├ ƒ /api/backend/records                   214 B         103 kB
+├ ƒ /api/backend/records/[id]              214 B         103 kB
+├ ƒ /api/blog/posts                        214 B         103 kB
+├ ƒ /api/blog/posts/[id]                   214 B         103 kB
+├ ƒ /api/blog/posts/[id]/comments          214 B         103 kB
+├ ƒ /api/blog/posts/[id]/reading           214 B         103 kB
+├ ƒ /api/blog/posts/[id]/upvote            214 B         103 kB
+├ ƒ /api/chat/messages                     214 B         103 kB
+├ ƒ /api/contact/channels                  214 B         103 kB
+├ ƒ /api/contact/events                    214 B         103 kB
+├ ○ /api/github-activity                   214 B         103 kB          1h      1y
+├ ƒ /api/inventory/items                   214 B         103 kB
+├ ƒ /api/manage/nala                       214 B         103 kB
+├ ƒ /api/media/[id]                        214 B         103 kB
+├ ƒ /api/nala/chat                         214 B         103 kB
+├ ƒ /api/webmcp/blog-search                214 B         103 kB
+├ ƒ /blog                                5.32 kB         121 kB
+├ ƒ /blog/[slug]                         6.51 kB         145 kB
+├ ƒ /blog/admin                          2.49 kB         117 kB
+├ ƒ /blog/admin/[id]/edit                  132 B         122 kB
+├ ƒ /blog/admin/new                        132 B         122 kB
+├ ƒ /contact                             1.67 kB         109 kB
+├ ƒ /forbidden                             692 B         115 kB
+├ ○ /icon.svg                                0 B            0 B
+├ ƒ /indexnow-key.txt                      214 B         103 kB
+├ ○ /lore                                1.42 kB         108 kB
+├ ƒ /manage                              3.71 kB         139 kB
+├ ○ /manifest.webmanifest                  214 B         103 kB
+├ ○ /opengraph-image                       214 B         103 kB
+├ ƒ /projects                            4.41 kB         117 kB
+├ ƒ /redirect                              214 B         103 kB
+├ ƒ /research                            1.67 kB         109 kB
+├ ○ /robots.txt                            214 B         103 kB
+├ ƒ /sitemap-blog.xml                      214 B         103 kB
+├ ○ /sitemap-pages.xml                     214 B         103 kB
+└ ○ /sitemap.xml                           214 B         103 kB
++ First Load JS shared by all             103 kB
+  ├ chunks/1255-a1d43dff9827c512.js      46.3 kB
+  ├ chunks/4bd1b696-f785427dddbba9fb.js  54.2 kB
+  └ other shared chunks (total)          2.29 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

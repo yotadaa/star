@@ -1,0 +1,113 @@
+{
+  "name": "six-bilingual-platform-guides-2026-08-31",
+  "articles": [
+    {
+      "slug": "hacktoberfest-2026-new-rules-no-pr-counter",
+      "payloadPath": "validation/hacktoberfest-2026-english/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:hacktoberfest-2026-new-rules-no-pr-counter:feature",
+          "sourcePath": "validation/hacktoberfest-2026-english/feature.png",
+          "fileName": "hacktoberfest-2026-new-format-en.png",
+          "evidenceKind": "original-editorial-illustration"
+        }
+      ]
+    },
+    {
+      "slug": "hacktoberfest-2026-aturan-cara-ikut",
+      "payloadPath": "validation/hacktoberfest-2026-indonesian/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:hacktoberfest-2026-aturan-cara-ikut:feature",
+          "sourcePath": "validation/hacktoberfest-2026-indonesian/feature.png",
+          "fileName": "hacktoberfest-2026-format-baru-id.png",
+          "evidenceKind": "original-editorial-illustration"
+        }
+      ]
+    },
+    {
+      "slug": "nodejs-26-lts-nextjs-upgrade-guide",
+      "payloadPath": "validation/nodejs-26-nextjs-en-2026-08-31/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:nodejs-26-lts-nextjs-upgrade-guide:feature-runtime-workbench",
+          "sourcePath": "validation/nodejs-26-nextjs-en-2026-08-31/assets/node24-node26-workbench-feature.png",
+          "fileName": "nodejs-26-nextjs-runtime-workbench-en.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:nodejs-26-lts-nextjs-upgrade-guide:evidence-compatibility-probe",
+          "sourcePath": "validation/nodejs-26-nextjs-en-2026-08-31/assets/node24-node26-compatibility-probe.png",
+          "fileName": "nodejs-24-26-nextjs-compatibility-probe-en.png",
+          "evidenceKind": "deterministic-local-measurement-chart"
+        }
+      ]
+    },
+    {
+      "slug": "nodejs-26-lts-nextjs-panduan-upgrade",
+      "payloadPath": "validation/nodejs-26-nextjs-id-2026-08-31/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:nodejs-26-lts-nextjs-panduan-upgrade:feature-runtime-workbench",
+          "sourcePath": "validation/nodejs-26-nextjs-id-2026-08-31/assets/node24-node26-workbench-feature.png",
+          "fileName": "nodejs-26-nextjs-runtime-workbench-id.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:nodejs-26-lts-nextjs-panduan-upgrade:evidence-compatibility-probe",
+          "sourcePath": "validation/nodejs-26-nextjs-id-2026-08-31/assets/node24-node26-compatibility-probe.png",
+          "fileName": "nodejs-24-26-nextjs-compatibility-probe-id.png",
+          "evidenceKind": "deterministic-local-measurement-chart"
+        }
+      ]
+    },
+    {
+      "slug": "webmcp-vs-mcp-nextjs-agent-ready",
+      "payloadPath": "validation/webmcp-nextjs-agent-ready-en-2026-08-31/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:webmcp-vs-mcp-nextjs-agent-ready:feature-tool-index",
+          "sourcePath": "validation/webmcp-nextjs-agent-ready-en-2026-08-31/assets/webmcp-tool-index-feature.png",
+          "fileName": "webmcp-nextjs-tool-index-en.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:webmcp-vs-mcp-nextjs-agent-ready:evidence-tool-surface",
+          "sourcePath": "validation/webmcp-nextjs-agent-ready-en-2026-08-31/assets/webmcp-tool-surface.png",
+          "fileName": "webmcp-nextjs-tool-surface-en.png",
+          "evidenceKind": "deterministic-architecture-diagram"
+        },
+        {
+          "assetKey": "blog:webmcp-vs-mcp-nextjs-agent-ready:evidence-live-filter",
+          "sourcePath": "validation/webmcp-nextjs-agent-ready-en-2026-08-31/assets/webmcp-filter-projects-evidence.jpg",
+          "fileName": "webmcp-live-project-filter-en.jpg",
+          "evidenceKind": "first-party-live-interface-evidence"
+        }
+      ]
+    },
+    {
+      "slug": "webmcp-vs-mcp-nextjs-agent-ready-id",
+      "payloadPath": "validation/webmcp-nextjs-agent-ready-id-2026-08-31/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:webmcp-vs-mcp-nextjs-agent-ready-id:feature-tool-index",
+          "sourcePath": "validation/webmcp-nextjs-agent-ready-id-2026-08-31/assets/webmcp-tool-index-feature.png",
+          "fileName": "webmcp-nextjs-tool-index-id.png",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:webmcp-vs-mcp-nextjs-agent-ready-id:evidence-tool-surface",
+          "sourcePath": "validation/webmcp-nextjs-agent-ready-id-2026-08-31/assets/webmcp-tool-surface.png",
+          "fileName": "webmcp-nextjs-tool-surface-id.png",
+          "evidenceKind": "deterministic-architecture-diagram"
+        },
+        {
+          "assetKey": "blog:webmcp-vs-mcp-nextjs-agent-ready-id:evidence-live-filter",
+          "sourcePath": "validation/webmcp-nextjs-agent-ready-id-2026-08-31/assets/webmcp-filter-projects-evidence.jpg",
+          "fileName": "webmcp-live-project-filter-id.jpg",
+          "evidenceKind": "first-party-live-interface-evidence"
+        }
+      ]
+    }
+  ]
+}

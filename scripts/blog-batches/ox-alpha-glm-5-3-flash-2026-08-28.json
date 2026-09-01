@@ -1,0 +1,23 @@
+{
+  "name": "ox-alpha-glm-5-3-flash-2026-08-28",
+  "articles": [
+    {
+      "slug": "ox-alpha-was-glm-5-3-flash",
+      "payloadPath": "validation/ox-alpha-glm-5-3-flash-investigation-2026-08-27/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:ox-alpha-was-glm-5-3-flash:feature-unlabelled-jar",
+          "sourcePath": "validation/ox-alpha-glm-5-3-flash-investigation-2026-08-27/assets/feature-unlabelled-jar.jpg",
+          "fileName": "ox-alpha-glm-5-3-flash-feature.jpg",
+          "evidenceKind": "generated-editorial"
+        },
+        {
+          "assetKey": "blog:ox-alpha-was-glm-5-3-flash:chart-independent-measurements",
+          "sourcePath": "validation/ox-alpha-glm-5-3-flash-investigation-2026-08-27/assets/chart-independent-measurements.png",
+          "fileName": "ox-alpha-glm-5-3-flash-independent-measurements.png",
+          "evidenceKind": "generated-factual-chart"
+        }
+      ]
+    }
+  ]
+}

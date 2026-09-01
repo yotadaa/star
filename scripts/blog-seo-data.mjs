@@ -140,6 +140,72 @@ export const BLOG_SEO_RECORDS = Object.freeze({
     articleSection: "AI Investigation",
     featuredImageKey: "blog:ox-alpha-api-left-a-trail:featured-trail",
   }),
+  "ox-alpha-was-glm-5-3-flash": Object.freeze({
+    seoTitle: "Ox Alpha Was GLM-5.3-Flash: What Z.ai Confirmed and What It Didn't",
+    seoDescription:
+      "Z.ai confirmed that Ox Alpha was GLM-5.3-Flash. Independent measurement, vendor claims and preview-week user reports, with the one question the reveal left open.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "AI Investigation",
+    featuredImageKey: "blog:ox-alpha-was-glm-5-3-flash:feature-unlabelled-jar",
+  }),
+  "ox-alpha-anonymous-preview": Object.freeze({
+    seoTitle: "Ten Trillion Tokens Under a Name Nobody Could Check",
+    seoDescription:
+      "Ox Alpha ran 10.3 trillion tokens on OpenRouter under a codename. What its users could verify about data handling, and what the record still does not say.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "AI Investigation",
+    featuredImageKey: "blog:ox-alpha-anonymous-preview:feature-sealed-parcel",
+  }),
+  "openai-plus-five-hour-limit-explained": Object.freeze({
+    seoTitle: "OpenAI's Five-Hour Plus Limit: What It Actually Limits",
+    seoDescription:
+      "OpenAI restored a five-hour window for Plus across Codex and ChatGPT Work. It meters variable usage inside weekly limits, not five hours of active work.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "AI Investigation",
+    featuredImageKey: "blog:openai-plus-five-hour-limit-explained:feature-window-weekly-plan",
+  }),
+  "codex-five-hour-limit-active-turns": Object.freeze({
+    seoTitle: "Codex Five-Hour Limit: Why Are Some Runs Stopping?",
+    seoDescription:
+      "Recent Codex hard-stop reports conflict with OpenAI's active-turn promise. The evidence points to an enforcement mismatch, not a declared policy removal.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "AI Investigation",
+    featuredImageKey: "blog:codex-five-hour-limit-active-turns:feature-boundary-counter",
+  }),
+  "free-portfolio-stack-nextjs-convex-r2-vercel": Object.freeze({
+    seoTitle: "Free Portfolio Stack: Next.js, Convex, R2, and Vercel",
+    seoDescription:
+      "Build a $0 portfolio infrastructure stack with Next.js, Vercel, Convex, and R2. Compare free limits, R2 billing, domain setup, tradeoffs, and SEO.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Technical Case Study",
+    featuredImageKey:
+      "blog:free-portfolio-stack-nextjs-convex-r2-vercel:feature-workbench-stack",
+  }),
+  "cloudflare-workers-vs-vercel-nextjs-free": Object.freeze({
+    seoTitle: "Cloudflare Workers vs Vercel for Free Next.js",
+    seoDescription:
+      "Compare Cloudflare Workers Free and Vercel Hobby for Next.js: vinext compatibility, static traffic, function limits, build quotas, plan policy, pros, and cons.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Research Note",
+    featuredImageKey:
+      "blog:cloudflare-workers-vs-vercel-nextjs-free:feature-two-paths",
+  }),
+  "open-source-tools-2026-stack-that-works-together": Object.freeze({
+    seoTitle: "11 Open-Source Tools for a Practical 2026 Stack",
+    seoDescription:
+      "Compare 11 open-source tools for 2026 across code search, Python, documents, analytics, AI agents, sync, backup, licenses, permissions, and tradeoffs.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Research Note",
+    featuredImageKey:
+      "blog:open-source-tools-2026-stack-that-works-together:feature-toolbench",
+  }),
   "openai-bel-rumor-one-source-no-confirmation": Object.freeze({
     seoTitle: "OpenAI Bel Rumor: One Source, No Confirmation",
     seoDescription:
@@ -228,9 +294,99 @@ export const BLOG_SEO_RECORDS = Object.freeze({
     author: BLOG_AUTHOR,
     articleSection: "Community Story",
   }),
+  "hacktoberfest-2026-new-rules-no-pr-counter": Object.freeze({
+    seoTitle: "Hacktoberfest 2026: New Rules and How to Join",
+    seoDescription:
+      "Hacktoberfest 2026 drops the four-PR counter. See Preptember dates, event formats, shirt limits, and a safe route for participants in Indonesia.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Community Story",
+    featuredImageKey: "blog:hacktoberfest-2026-new-rules-no-pr-counter:feature",
+  }),
+  "hacktoberfest-2026-aturan-cara-ikut": Object.freeze({
+    seoTitle: "Hacktoberfest 2026: Aturan Baru dan Cara Ikut",
+    seoDescription:
+      "Hacktoberfest 2026 tidak lagi menghitung empat PR. Pelajari jadwal Preptember, format acara, aturan kaus, dan cara ikut dari Indonesia.",
+    language: "id-ID",
+    author: BLOG_AUTHOR,
+    articleSection: "Community Story",
+    featuredImageKey: "blog:hacktoberfest-2026-aturan-cara-ikut:feature",
+  }),
+  "nodejs-26-lts-nextjs-upgrade-guide": Object.freeze({
+    seoTitle: "Node.js 26 LTS for Next.js: Upgrade Guide",
+    seoDescription:
+      "Test Node.js 26 with Next.js: LTS date, Temporal, removed APIs, Node 24 comparison, Vercel and Convex limits, compatibility matrix, and upgrade plan.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Technical Case Study",
+    featuredImageKey: "blog:nodejs-26-lts-nextjs-upgrade-guide:feature-runtime-workbench",
+  }),
+  "nodejs-26-lts-nextjs-panduan-upgrade": Object.freeze({
+    seoTitle: "Node.js 26 LTS untuk Next.js: Panduan Upgrade",
+    seoDescription:
+      "Uji Node.js 26 dengan Next.js: tanggal LTS, Temporal, API yang dihapus, perbandingan Node 24, batas Vercel dan Convex, serta rencana upgrade.",
+    language: "id-ID",
+    author: BLOG_AUTHOR,
+    articleSection: "Technical Case Study",
+    featuredImageKey: "blog:nodejs-26-lts-nextjs-panduan-upgrade:feature-runtime-workbench",
+  }),
+  "webmcp-vs-mcp-nextjs-agent-ready": Object.freeze({
+    seoTitle: "WebMCP vs MCP for Next.js: Agent-Ready Website Guide",
+    seoDescription:
+      "Add WebMCP to Next.js with structured tools, safe published-only search, visible state updates, lifecycle cleanup, security boundaries, and MCP comparison.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "Technical Case Study",
+    featuredImageKey: "blog:webmcp-vs-mcp-nextjs-agent-ready:feature-tool-index",
+  }),
+  "webmcp-vs-mcp-nextjs-agent-ready-id": Object.freeze({
+    seoTitle: "WebMCP vs MCP di Next.js: Panduan Website Agent-Ready",
+    seoDescription:
+      "Tambahkan WebMCP ke Next.js dengan tool terstruktur, pencarian published-only, sinkronisasi state, lifecycle cleanup, batas keamanan, dan perbandingan MCP.",
+    language: "id-ID",
+    author: BLOG_AUTHOR,
+    articleSection: "Technical Case Study",
+    featuredImageKey: "blog:webmcp-vs-mcp-nextjs-agent-ready-id:feature-tool-index",
+  }),
+  "google-august-2026-spam-update-ai-content": Object.freeze({
+    seoTitle: "Google August 2026 Spam Update: Benarkah Menargetkan AI?",
+    seoDescription:
+      "Google tidak menyebut konten AI sebagai target August 2026 spam update. Artikel ini memisahkan fakta resmi, volatilitas SERP, spekulasi, dan diagnosis.",
+    language: "id-ID",
+    author: BLOG_AUTHOR,
+    articleSection: "AI Investigation",
+    featuredImageKey:
+      "blog:google-august-2026-spam-update-ai-content:featured-fact-versus-speculation",
+  }),
+  "did-google-august-2026-spam-update-target-ai-content": Object.freeze({
+    seoTitle: "Did Google's August 2026 Spam Update Target AI?",
+    seoDescription:
+      "Google did not name AI content as a target of its August 2026 spam update. This evidence-led guide separates policy, SERP volatility, speculation, and diagnosis.",
+    language: "en-US",
+    author: BLOG_AUTHOR,
+    articleSection: "AI Investigation",
+    featuredImageKey:
+      "blog:did-google-august-2026-spam-update-target-ai-content:feature-fact-versus-speculation",
+  }),
 });
 
 export const BLOG_IMAGE_DIMENSIONS = Object.freeze({
+  "blog:did-google-august-2026-spam-update-target-ai-content:feature-fact-versus-speculation": { width: 1600, height: 900 },
+  "blog:did-google-august-2026-spam-update-target-ai-content:diagnostic-evidence-flow": { width: 1600, height: 1000 },
+  "blog:google-august-2026-spam-update-ai-content:featured-fact-versus-speculation": { width: 1600, height: 900 },
+  "blog:google-august-2026-spam-update-ai-content:diagnostic-evidence-flow": { width: 1600, height: 1000 },
+  "blog:hacktoberfest-2026-new-rules-no-pr-counter:feature": { width: 1672, height: 941 },
+  "blog:hacktoberfest-2026-aturan-cara-ikut:feature": { width: 1672, height: 941 },
+  "blog:nodejs-26-lts-nextjs-upgrade-guide:feature-runtime-workbench": { width: 1672, height: 941 },
+  "blog:nodejs-26-lts-nextjs-upgrade-guide:evidence-compatibility-probe": { width: 1600, height: 900 },
+  "blog:nodejs-26-lts-nextjs-panduan-upgrade:feature-runtime-workbench": { width: 1672, height: 941 },
+  "blog:nodejs-26-lts-nextjs-panduan-upgrade:evidence-compatibility-probe": { width: 1600, height: 900 },
+  "blog:webmcp-vs-mcp-nextjs-agent-ready:feature-tool-index": { width: 1672, height: 941 },
+  "blog:webmcp-vs-mcp-nextjs-agent-ready:evidence-tool-surface": { width: 1600, height: 900 },
+  "blog:webmcp-vs-mcp-nextjs-agent-ready:evidence-live-filter": { width: 1265, height: 720 },
+  "blog:webmcp-vs-mcp-nextjs-agent-ready-id:feature-tool-index": { width: 1672, height: 941 },
+  "blog:webmcp-vs-mcp-nextjs-agent-ready-id:evidence-tool-surface": { width: 1600, height: 900 },
+  "blog:webmcp-vs-mcp-nextjs-agent-ready-id:evidence-live-filter": { width: 1265, height: 720 },
   "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:featured-runner-workbench": { width: 1672, height: 941 },
   "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:source-npm-verbose": { width: 842, height: 540 },
   "blog:deepseek-harness-npx-stuck-pnpm-dlx-wrapper:source-npx-stall": { width: 749, height: 384 },
@@ -294,6 +450,22 @@ export const BLOG_IMAGE_DIMENSIONS = Object.freeze({
   "blog:ox-alpha-api-left-a-trail:openrouter-model-card": { width: 1265, height: 712 },
   "blog:ox-alpha-api-left-a-trail:serving-layer-trace": { width: 1672, height: 941 },
   "blog:ox-alpha-api-left-a-trail:tokenizer-fingerprint": { width: 1672, height: 941 },
+  "blog:ox-alpha-anonymous-preview:feature-sealed-parcel": { width: 1402, height: 1122 },
+  "blog:ox-alpha-was-glm-5-3-flash:chart-independent-measurements": { width: 1200, height: 760 },
+  "blog:ox-alpha-was-glm-5-3-flash:feature-unlabelled-jar": { width: 1536, height: 1024 },
+  "blog:openai-plus-five-hour-limit-explained:feature-window-weekly-plan": { width: 1672, height: 941 },
+  "blog:openai-plus-five-hour-limit-explained:evidence-tibo-announcement": { width: 625, height: 535 },
+  "blog:codex-five-hour-limit-active-turns:feature-boundary-counter": { width: 1672, height: 941 },
+  "blog:codex-five-hour-limit-active-turns:evidence-community-immediate-stop": { width: 1265, height: 720 },
+  "blog:free-portfolio-stack-nextjs-convex-r2-vercel:feature-workbench-stack": { width: 1672, height: 941 },
+  "blog:free-portfolio-stack-nextjs-convex-r2-vercel:evidence-r2-checkout": { width: 1430, height: 894 },
+  "blog:free-portfolio-stack-nextjs-convex-r2-vercel:evidence-r2-free-tier": { width: 1430, height: 894 },
+  "blog:free-portfolio-stack-nextjs-convex-r2-vercel:evidence-live-portfolio": { width: 1425, height: 891 },
+  "blog:cloudflare-workers-vs-vercel-nextjs-free:feature-two-paths": { width: 1672, height: 941 },
+  "blog:cloudflare-workers-vs-vercel-nextjs-free:evidence-vinext-default": { width: 1600, height: 900 },
+  "blog:cloudflare-workers-vs-vercel-nextjs-free:comparison-boundaries": { width: 1600, height: 1000 },
+  "blog:open-source-tools-2026-stack-that-works-together:feature-toolbench": { width: 1672, height: 941 },
+  "blog:open-source-tools-2026-stack-that-works-together:evidence-opencode-terminal": { width: 1824, height: 1488 },
   "blog:openai-bel-rumor-one-source-no-confirmation:feature-source-gap": { width: 1672, height: 941 },
   "blog:openai-bel-rumor-one-source-no-confirmation:evidence-original-bel-post": { width: 1265, height: 500 },
   "blog:openai-bel-rumor-one-source-no-confirmation:claim-status-matrix": { width: 1600, height: 1080 },

@@ -1,0 +1,16 @@
+# Terminology ledger
+
+| Term | Accepted meaning | Direct source | Rejected alternative | Article wording |
+|---|---|---|---|---|
+| Next.js | An open-source React framework for full-stack web applications; the inspected repository uses the MIT license. | https://nextjs.org/docs; https://github.com/vercel/next.js | A hosting service or database. | `Next.js framework` |
+| Vercel Hobby | Vercel's $0 plan for personal projects and small-scale apps, restricted to non-commercial personal use. | https://vercel.com/docs/plans/hobby | A universally free commercial hosting plan. | `Vercel Hobby` |
+| Convex Free | Convex's $0 managed plan with hard resource caps; Starter shares included amounts but permits paid overage. | https://docs.convex.dev/production/state/limits | Unlimited free backend or the pay-as-you-go Starter plan. | `Convex Free` |
+| Cloudflare R2 | S3-compatible object storage priced by stored bytes and operations, with no Internet egress charge. | https://developers.cloudflare.com/r2/get-started/; https://developers.cloudflare.com/r2/pricing/ | A CDN, database, or automatically free service without billing setup. | `Cloudflare R2` or `R2` |
+| GB-month | The average quantity of storage held during a billing month, not a one-time upload allowance. | https://developers.cloudflare.com/r2/pricing/#storage-usage | Ten gigabytes uploaded once regardless of retention. | `GB-month` with a plain explanation |
+| Class A operation | R2 operations that generally mutate or enumerate state, including PutObject and ListObjects. | https://developers.cloudflare.com/r2/pricing/#class-a-operations | Every HTTP request to the website. | `Class A write/list operation` |
+| Class B operation | R2 read-oriented operations such as GetObject and HeadObject. | https://developers.cloudflare.com/r2/pricing/#class-b-operations | Every CDN-cached image view. | `Class B read operation` |
+| Free | A possible $0 monthly bill while usage and use case remain inside current plan terms and allowances. | Provider pricing and limit pages | Permanent, unlimited, or impossible to bill. | `can stay at $0` |
+| Hard cap | A limit that prevents additional use or mutations instead of automatically charging for overage. | https://docs.convex.dev/production/state/limits | A soft warning or automatic paid overage. | `hard resource cap` |
+| IndexNow | A URL-change notification protocol; an accepted submission is not a crawl, index, or rank guarantee. | docs/blog-agent-upload-runbook.md; Bing Webmaster Guidelines | Instant guaranteed Bing ranking. | `IndexNow notification` |
+| Search-optimized | Structured, useful, crawlable, accurately sourced content that follows provider guidance. | Google Search Central; Bing Webmaster Guidelines | Guaranteed number-one placement or keyword stuffing. | `built to compete in search` |
+| R2 custom domain | A domain or subdomain under the owner's control, added as a zone in the same Cloudflare account as the R2 bucket and connected for public production delivery. | https://developers.cloudflare.com/r2/buckets/public-buckets/#add-your-domain-to-cloudflare | A requirement for creating the bucket itself, or the rate-limited `r2.dev` development address. | `production custom domain` |

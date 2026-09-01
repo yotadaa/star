@@ -1,0 +1,17 @@
+{
+  "name": "ox-alpha-anonymous-preview-2026-08-28",
+  "articles": [
+    {
+      "slug": "ox-alpha-anonymous-preview",
+      "payloadPath": "validation/ox-alpha-anonymous-preview-2026-08-28/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:ox-alpha-anonymous-preview:feature-sealed-parcel",
+          "sourcePath": "validation/ox-alpha-anonymous-preview-2026-08-28/assets/feature-sealed-parcel.jpg",
+          "fileName": "ox-alpha-anonymous-preview-feature.jpg",
+          "evidenceKind": "generated-editorial"
+        }
+      ]
+    }
+  ]
+}

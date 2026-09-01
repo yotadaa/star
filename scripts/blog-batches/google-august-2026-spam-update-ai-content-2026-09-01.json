@@ -1,0 +1,23 @@
+{
+  "name": "google-august-2026-spam-update-ai-content-2026-09-01",
+  "articles": [
+    {
+      "slug": "google-august-2026-spam-update-ai-content",
+      "payloadPath": "validation/google-august-2026-spam-update-ai-content-2026-09-01/payload.json",
+      "assets": [
+        {
+          "assetKey": "blog:google-august-2026-spam-update-ai-content:featured-fact-versus-speculation",
+          "sourcePath": "validation/google-august-2026-spam-update-ai-content-2026-09-01/assets/google-spam-update-fact-versus-speculation-feature.png",
+          "fileName": "google-spam-update-fact-versus-speculation-feature.png",
+          "evidenceKind": "user-supplied-editorial-feature"
+        },
+        {
+          "assetKey": "blog:google-august-2026-spam-update-ai-content:diagnostic-evidence-flow",
+          "sourcePath": "validation/google-august-2026-spam-update-ai-content-2026-09-01/assets/google-spam-update-diagnostic-flow.png",
+          "fileName": "google-spam-update-diagnostic-evidence-flow.png",
+          "evidenceKind": "reconstructed-editorial-diagram"
+        }
+      ]
+    }
+  ]
+}

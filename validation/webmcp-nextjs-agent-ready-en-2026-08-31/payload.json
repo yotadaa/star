@@ -1,0 +1,290 @@
+{
+  "title": "WebMCP vs MCP: Making a Next.js Website Agent-Ready Without Screen Scraping",
+  "slug": "webmcp-vs-mcp-nextjs-agent-ready",
+  "excerpt": "A five-tool WebMCP layer gives browser agents structured access to published Blog summaries, projects, research, contacts, and visible filters without exposing drafts or sending messages.",
+  "status": "published",
+  "publishedAt": "2026-08-31T23:04:00+07:00",
+  "tags": [
+    "WebMCP",
+    "MCP",
+    "Next.js",
+    "AI Agents",
+    "Web Standards"
+  ],
+  "readTime": "8 min read",
+  "coverTone": "research",
+  "sourceHref": "https://developer.chrome.com/docs/ai/webmcp",
+  "seoTitle": "WebMCP vs MCP for Next.js: Agent-Ready Website Guide",
+  "seoDescription": "Add WebMCP to Next.js with structured tools, safe published-only search, visible state updates, lifecycle cleanup, security boundaries, and MCP comparison.",
+  "language": "en-US",
+  "author": {
+    "id": "https://me.mukhtada.my.id/#person",
+    "name": "Mukhtada Billah NST",
+    "url": "https://me.mukhtada.my.id/"
+  },
+  "articleSection": "Technical Case Study",
+  "featuredImage": {
+    "assetKey": "blog:webmcp-vs-mcp-nextjs-agent-ready:feature-tool-index",
+    "alt": "A laptop portfolio interface is connected by thread to five physical index tabs labeled Search, Filter, Project, Research, and Contact, beside a read-only stamp.",
+    "width": 1672,
+    "height": 941
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A browser agent can already operate a website by reading the DOM, locating a button, clicking it, waiting for the page to change, and trying again. Every step asks the model to reinterpret an interface built for a person."
+    },
+    {
+      "type": "paragraph",
+      "text": "WebMCP gives the page another option. The site can declare a named tool, describe its inputs with JSON Schema, connect it to the same application logic that serves the user interface, and return a bounded result. A tool named `filter_projects` makes the purpose of “AI” explicit instead of leaving the agent to infer it from a badge, link, or control."
+    },
+    {
+      "type": "paragraph",
+      "text": "That improvement has a strict boundary. [WebMCP is a proposed standard and remains experimental](https://developer.chrome.com/docs/ai/webmcp). Chrome exposes it through a Chrome 149 origin trial or a local development flag. A website that adds WebMCP still needs semantic HTML, accessible controls, stable URLs, and ordinary browser behavior."
+    },
+    {
+      "type": "image",
+      "assetKey": "blog:webmcp-vs-mcp-nextjs-agent-ready:feature-tool-index",
+      "alt": "A laptop portfolio interface is connected by thread to five physical index tabs labeled Search, Filter, Project, Research, and Contact, beside a read-only stamp.",
+      "width": 1672,
+      "height": 941,
+      "text": "WebMCP adds a machine-readable route into existing product logic; it does not replace the human-facing interface."
+    },
+    {
+      "type": "heading",
+      "text": "WebMCP and MCP solve different discovery problems"
+    },
+    {
+      "type": "paragraph",
+      "text": "MCP usually connects an agent client to a separately configured server. That server can expose tools and resources without the agent first opening a particular web page. It is useful for durable integrations with repositories, databases, local tools, and remote services."
+    },
+    {
+      "type": "paragraph",
+      "text": "WebMCP attaches tools to the active document. The current [Community Group draft defines `document.modelContext.registerTool()`](https://webmachinelearning.github.io/webmcp/) for JavaScript tools and also describes declarative tools for HTML forms. A browser agent discovers those tools after it visits the page. The page state, visible interface, and tool implementation can therefore share one lifecycle."
+    },
+    {
+      "type": "table",
+      "text": "Question / WebMCP / MCP",
+      "rows": [
+        [
+          "Question",
+          "WebMCP",
+          "MCP"
+        ],
+        [
+          "Where do tools live?",
+          "In the active web document",
+          "In a configured local or remote server"
+        ],
+        [
+          "How are tools discovered?",
+          "The client visits the site",
+          "The client connects to the MCP server"
+        ],
+        [
+          "Natural state boundary",
+          "Current page and browser session",
+          "Server resources and integration scope"
+        ],
+        [
+          "Typical strength",
+          "Reliable use of a human-facing web app",
+          "Reusable access beyond one page"
+        ],
+        [
+          "Main constraint",
+          "Experimental browser support and visit-first discovery",
+          "Installation, credentials, transport, and server permissions"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The name can be misleading. The WebMCP specification says browsers may expose page tools to their agents through MCP, proprietary function calling, or another mechanism. It does not require every browser-agent connection to use the MCP wire protocol."
+    },
+    {
+      "type": "heading",
+      "text": "A five-tool surface for a Next.js portfolio"
+    },
+    {
+      "type": "paragraph",
+      "text": "The portfolio at `me.mukhtada.my.id` now declares five small tools. Four are global read-only lookups. One exists only while the Projects page and its visible grid are mounted."
+    },
+    {
+      "type": "image",
+      "assetKey": "blog:webmcp-vs-mcp-nextjs-agent-ready:evidence-tool-surface",
+      "alt": "Diagram of five WebMCP tools: four read-only public lookups and one reversible project filter.",
+      "width": 1600,
+      "height": 900,
+      "text": "The tool boundary excludes drafts, message sending, automatic navigation, and cross-origin exposure."
+    },
+    {
+      "type": "table",
+      "text": "Tool / Input / Output or visible effect",
+      "rows": [
+        [
+          "Tool",
+          "Input",
+          "Output or visible effect"
+        ],
+        [
+          "`search_blog`",
+          "optional keyword and category",
+          "up to five published summaries"
+        ],
+        [
+          "`get_project`",
+          "exact project title",
+          "one public project and its verified URL"
+        ],
+        [
+          "`find_research`",
+          "exact paper title",
+          "one publication and a proposed URL"
+        ],
+        [
+          "`get_contact_channels`",
+          "none",
+          "verified public channels; no message sent"
+        ],
+        [
+          "`filter_projects`",
+          "type and category enums",
+          "the actual visible grid changes and returns its card count"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "This surface deliberately omits `send_contact_message`. The site has public contact channels, not a message composer with a confirmation step. Giving an agent a tool name that implies delivery would promise behavior the product does not have. `get_contact_channels` returns the options and states `messageSent: false`."
+    },
+    {
+      "type": "paragraph",
+      "text": "Navigation is similarly restrained. Research and project tools return repository-owned URLs with `navigationPerformed: false`. The browser client or user can decide whether to open them. Caller-supplied URLs are never accepted."
+    },
+    {
+      "type": "heading",
+      "text": "Progressive enhancement in the root client layer"
+    },
+    {
+      "type": "paragraph",
+      "text": "The global tools mount inside the existing client provider. A small hook checks for `document.modelContext?.registerTool`. If the API is absent, it renders nothing, logs no production error, and leaves the website unchanged."
+    },
+    {
+      "type": "paragraph",
+      "text": "Each registration receives an `AbortController`. Unmounting the component, moving to a private route, or replaying an effect in React Strict Mode aborts that registration. The execute function stays in a ref, so ordinary React renders do not accumulate duplicate tool names."
+    },
+    {
+      "type": "code",
+      "text": "useEffect(() => {\n  if (!enabled || !document.modelContext?.registerTool) return;\n\n  const controller = new AbortController();\n  document.modelContext.registerTool(\n    { ...definition, execute: (input, options) => run(input, options.signal) },\n    { signal: controller.signal },\n  );\n\n  return () => controller.abort();\n}, [definition, enabled]);"
+    },
+    {
+      "type": "paragraph",
+      "text": "The exact code also converts every result to plain JSON text, returns stable errors, and enforces a 1,500-character ceiling. That keeps a search result from flooding the agent context."
+    },
+    {
+      "type": "heading",
+      "text": "The Blog search route cannot inherit owner access"
+    },
+    {
+      "type": "paragraph",
+      "text": "The existing Blog API is session-aware. An authenticated owner can request drafts. Reusing that endpoint inside WebMCP would create a subtle leak: the same browser that manages the site could expose unpublished titles or excerpts to an agent."
+    },
+    {
+      "type": "paragraph",
+      "text": "A dedicated `/api/webmcp/blog-search` route fixes the boundary on the server. It always requests published data, rejects unknown parameters such as `includeDrafts`, whitelists output fields, strips bodies and internal IDs, returns no more than five rows, and sends `Cache-Control: no-store`."
+    },
+    {
+      "type": "paragraph",
+      "text": "An anonymous request and a request carrying a cookie produced the same response bytes for the same query. A request containing `includeDrafts=true` returned HTTP 400. That behavior matters more than asking every caller to remember `credentials: \"omit\"`; the endpoint itself is incapable of opting into draft semantics."
+    },
+    {
+      "type": "paragraph",
+      "text": "Blog excerpts remain untrusted content. The tool definition uses `untrustedContentHint`, and the response is serialized as plain data rather than HTML. [Chrome’s WebMCP security guidance](https://developer.chrome.com/docs/ai/webmcp/secure-tools) recommends that hint for user-generated or externally sourced material, alongside `readOnlyHint` for non-mutating tools."
+    },
+    {
+      "type": "heading",
+      "text": "One selector controls both the grid and the tool"
+    },
+    {
+      "type": "paragraph",
+      "text": "`filter_projects` is registered inside `ProjectsGrid`, not in the global provider. That placement gives the tool the same React setters and the same project list used by the visible controls. Leaving `/projects` removes the tool automatically."
+    },
+    {
+      "type": "paragraph",
+      "text": "Both manual button clicks and tool calls use one pure selector:"
+    },
+    {
+      "type": "code",
+      "text": "export function selectProjects(projects, filters) {\n  return projects.filter((project) =>\n    (filters.type === \"All\" || project.type === filters.type) &&\n    (filters.category === \"All\" || project.category === filters.category)\n  );\n}"
+    },
+    {
+      "type": "paragraph",
+      "text": "The tool accepts enums rather than free text. An invalid pair changes neither filter. A valid pair is committed synchronously before the handler returns, so the returned `visibleCount` describes the grid already on screen."
+    },
+    {
+      "type": "image",
+      "assetKey": "blog:webmcp-vs-mcp-nextjs-agent-ready:evidence-live-filter",
+      "alt": "The live portfolio Projects page filtered to AI and All categories, showing two matching project cards.",
+      "width": 1265,
+      "height": 720,
+      "text": "The same selector produced the two visible AI project cards on desktop and mobile without horizontal overflow."
+    },
+    {
+      "type": "heading",
+      "text": "What the compatibility checks prove"
+    },
+    {
+      "type": "paragraph",
+      "text": "The implementation has five unique tool definitions. Every schema rejects additional properties; tool names and parameter names stay under Chrome’s recommended 30-character budget; descriptions stay below 500 characters; and encoded outputs are capped at 1,500 characters."
+    },
+    {
+      "type": "paragraph",
+      "text": "A mock model-context test registered a tool, invoked it, parsed its bounded JSON result, and confirmed that aborting the lifecycle signal removed it. The published-only endpoint held the same response across anonymous and cookie-bearing requests. The normal browser smoke test ran with `document.modelContext` undefined and rendered the Projects page without a WebMCP-specific warning or console error."
+    },
+    {
+      "type": "paragraph",
+      "text": "Native agent selection requires a Chrome 149 origin-trial client with the WebMCP API enabled. Until that client is part of the test surface, no percentage should be attached to `search_blog` selection, confirmation handling, or schema interpretation across agents. A complete native test covers discovery, direct invocation, ambiguous prompts, rapid state changes, and confirmation UI."
+    },
+    {
+      "type": "heading",
+      "text": "Security choices that matter more than the demo"
+    },
+    {
+      "type": "paragraph",
+      "text": "[Chrome describes prompt injection as an unresolved class of risk for agentic systems](https://developer.chrome.com/docs/ai/webmcp/secure-tools). A structured tool removes DOM-guessing steps, but its description and output still enter an agent’s context."
+    },
+    {
+      "type": "paragraph",
+      "text": "Five constraints keep this portfolio surface narrow:"
+    },
+    {
+      "type": "list",
+      "text": "1. **No cross-origin exposure.** The registration does not set `exposedTo`; the default same-origin policy remains in place.\n2. **No private content.** Blog search uses a separate published-only endpoint and never falls back to the owner API.\n3. **No irreversible actions.** The only mutation changes two visible filters and is immediately reversible.\n4. **No caller-controlled destinations.** Project and research URLs come from the checked repository catalog.\n5. **No silent contact action.** Contact tools list channels without opening a popup, invoking `mailto:`, recording analytics, or sending a message."
+    },
+    {
+      "type": "paragraph",
+      "text": "Future write tools need a separate design. Posting a comment, sending a form, copying private text, downloading a file, or changing account state cannot inherit the safety assumptions of a read-only lookup."
+    },
+    {
+      "type": "heading",
+      "text": "Current limits and the challenge window"
+    },
+    {
+      "type": "paragraph",
+      "text": "WebMCP clients must visit a website before they can discover its tools. That makes it different from a general integration directory. Chrome also says the API is primarily designed for local browser workflows with a human in the loop, and complex interfaces may require state refactoring."
+    },
+    {
+      "type": "paragraph",
+      "text": "The platform is moving quickly. The [OpenAI WebMCP Challenge](https://openai.com/webmcp-challenge/) opened submissions on 25 August 2026 and closes on 3 September at 1 p.m. PT, which is 4 September at 03:00 WIB. OpenAI plans to announce winners on 23 September, while noting that the date may change with submission volume. Existing applications are eligible; the useful work is not limited to greenfield demos."
+    },
+    {
+      "type": "paragraph",
+      "text": "A durable Next.js implementation should therefore keep the experimental surface small. Tool registration belongs behind one hook. Business logic should stay in ordinary tested modules. Unsupported browsers should receive the full human website. If the proposal changes, removing the provider mount should disable WebMCP without dismantling the portfolio itself."
+    },
+    {
+      "type": "paragraph",
+      "text": "For broader agent infrastructure, [Open-Source Tools for 2026](/blog/open-source-tools-2026-stack-that-works-together) covers the surrounding toolchain, while [Why 100 Agent Skills Can Be Worse Than 5](/blog/why-100-agent-skills-can-be-worse-than-5) explains why a smaller tool catalog can be easier for an agent to route correctly."
+    }
+  ]
+}

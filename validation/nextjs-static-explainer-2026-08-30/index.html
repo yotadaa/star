@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>What is Next.js? — Static Explainer</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --carbon: #151714;
+        --paper: #e9dfc5;
+        --steel: #7f857d;
+        --ink-blue: #345d62;
+        --orange: #c75a2a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: var(--carbon);
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        overflow: hidden;
+        font-family: "DejaVu Sans Mono", "IBM Plex Mono", monospace;
+      }
+
+      .poster {
+        position: relative;
+        isolation: isolate;
+        width: min(100vw, 1920px);
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        background: var(--carbon);
+        color: var(--paper);
+      }
+
+      .poster::before {
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        content: "";
+        background: rgb(21 23 20 / 20%);
+        pointer-events: none;
+      }
+
+      .machine {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .masthead {
+        position: absolute;
+        z-index: 3;
+        top: 5.4%;
+        left: 4.6%;
+        width: 55%;
+      }
+
+      .eyebrow,
+      .panel-label,
+      .card-kicker,
+      .boundary,
+      .source {
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow {
+        margin: 0 0 1.1rem;
+        color: var(--orange);
+        font-size: clamp(10px, 0.75vw, 15px);
+        font-weight: 800;
+      }
+
+      h1 {
+        max-width: 940px;
+        margin: 0;
+        font-family: "Arial Narrow", "Liberation Sans Narrow", sans-serif;
+        font-size: clamp(34px, 4.15vw, 80px);
+        font-stretch: condensed;
+        font-weight: 800;
+        letter-spacing: -0.055em;
+        line-height: 0.91;
+        text-wrap: balance;
+      }
+
+      .definition {
+        width: fit-content;
+        margin: 1.3rem 0 0;
+        padding: 0.48rem 0.72rem;
+        border-left: 5px solid var(--orange);
+        background: var(--paper);
+        color: var(--carbon);
+        font-size: clamp(10px, 0.9vw, 18px);
+        font-weight: 700;
+      }
+
+      .functions {
+        position: absolute;
+        z-index: 3;
+        top: 6.2%;
+        right: 4.6%;
+        width: 30%;
+        padding: 1.25rem 1.4rem 1.35rem;
+        border: 1px solid rgb(233 223 197 / 45%);
+        background: rgb(21 23 20 / 88%);
+      }
+
+      .panel-label {
+        margin: 0 0 0.8rem;
+        color: var(--steel);
+        font-size: clamp(9px, 0.67vw, 13px);
+        font-weight: 800;
+      }
+
+      .function-row {
+        display: grid;
+        grid-template-columns: 0.8rem 1fr;
+        gap: 0.8rem;
+        align-items: start;
+        padding: 0.62rem 0;
+        border-top: 1px solid rgb(233 223 197 / 22%);
+        font-family: "Arial Narrow", "Liberation Sans Narrow", sans-serif;
+        font-size: clamp(11px, 1.05vw, 20px);
+        font-weight: 700;
+        letter-spacing: 0.015em;
+        line-height: 1.05;
+        text-transform: uppercase;
+      }
+
+      .slot {
+        display: block;
+        width: 0.45rem;
+        height: 1.35rem;
+        background: var(--orange);
+      }
+
+      .flow-card {
+        position: absolute;
+        z-index: 4;
+        bottom: 13.5%;
+        width: 25%;
+        padding: 1.05rem 1.15rem;
+        border: 2px solid var(--carbon);
+        background: var(--paper);
+        color: var(--carbon);
+        box-shadow: 7px 7px 0 var(--carbon);
+      }
+
+      .flow-card.input {
+        left: 3.8%;
+      }
+
+      .flow-card.output {
+        right: 3.8%;
+      }
+
+      .card-kicker {
+        margin: 0 0 0.45rem;
+        color: var(--ink-blue);
+        font-size: clamp(8px, 0.62vw, 12px);
+        font-weight: 900;
+      }
+
+      .flow-card h2 {
+        margin: 0;
+        font-family: "Arial Narrow", "Liberation Sans Narrow", sans-serif;
+        font-size: clamp(18px, 1.55vw, 30px);
+        font-weight: 900;
+        letter-spacing: -0.025em;
+        line-height: 0.98;
+        text-transform: uppercase;
+      }
+
+      .flow-card p {
+        margin: 0.55rem 0 0;
+        font-size: clamp(8px, 0.68vw, 13px);
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      .center-tag {
+        position: absolute;
+        z-index: 4;
+        bottom: 16.1%;
+        left: 50%;
+        width: 22%;
+        padding: 0.68rem 0.9rem;
+        border: 2px solid var(--paper);
+        background: var(--orange);
+        color: var(--carbon);
+        font-family: "Arial Narrow", "Liberation Sans Narrow", sans-serif;
+        font-size: clamp(16px, 1.75vw, 34px);
+        font-weight: 900;
+        letter-spacing: -0.025em;
+        line-height: 0.96;
+        text-align: center;
+        text-transform: uppercase;
+        transform: translateX(-50%) rotate(-1deg);
+      }
+
+      .center-tag small {
+        display: block;
+        margin-top: 0.32rem;
+        font-family: "DejaVu Sans Mono", "IBM Plex Mono", monospace;
+        font-size: clamp(7px, 0.55vw, 11px);
+        letter-spacing: 0.11em;
+      }
+
+      .footer {
+        position: absolute;
+        z-index: 5;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2rem;
+        align-items: center;
+        min-height: 8.5%;
+        padding: 0.8rem 4.6%;
+        border-top: 1px solid rgb(233 223 197 / 35%);
+        background: var(--carbon);
+      }
+
+      .boundary {
+        margin: 0;
+        max-width: 1280px;
+        font-size: clamp(8px, 0.64vw, 12px);
+        font-weight: 800;
+        line-height: 1.4;
+      }
+
+      .source {
+        margin: 0;
+        color: var(--steel);
+        font-size: clamp(7px, 0.54vw, 10px);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 820px) {
+        body {
+          align-items: start;
+          overflow: auto;
+        }
+
+        .poster {
+          width: 100%;
+          min-height: 1320px;
+          aspect-ratio: auto;
+        }
+
+        .machine {
+          top: 19%;
+          height: 39%;
+          object-position: center;
+        }
+
+        .masthead {
+          top: 4%;
+          width: 91%;
+        }
+
+        h1 {
+          max-width: 560px;
+          font-size: clamp(38px, 12vw, 62px);
+        }
+
+        .definition {
+          max-width: 88%;
+          font-size: 11px;
+        }
+
+        .functions {
+          top: 54%;
+          right: 4.6%;
+          left: 4.6%;
+          width: auto;
+        }
+
+        .function-row {
+          font-size: 13px;
+        }
+
+        .flow-card {
+          top: 75%;
+          bottom: auto;
+          width: 42.5%;
+          min-height: 118px;
+        }
+
+        .flow-card h2 {
+          font-size: 18px;
+        }
+
+        .flow-card p {
+          font-size: 8px;
+        }
+
+        .center-tag {
+          top: 45%;
+          bottom: auto;
+          width: 43%;
+          font-size: 20px;
+        }
+
+        .footer {
+          grid-template-columns: 1fr;
+          gap: 0.32rem;
+          min-height: 10.5%;
+          padding-block: 0.65rem;
+        }
+
+        .boundary {
+          font-size: 8px;
+        }
+
+        .source {
+          font-size: 7px;
+          text-align: left;
+          white-space: normal;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="poster" aria-label="Static explanation of what Next.js does">
+      <img
+        class="machine"
+        src="assets/nextjs-routing-press.png"
+        alt="A worn mechanical press between a tray of loose paper cards and a tray holding one completed sheet."
+        width="1672"
+        height="941"
+      />
+
+      <header class="masthead">
+        <p class="eyebrow">React builds the pieces</p>
+        <h1>Next.js builds the application around them.</h1>
+        <p class="definition">A React framework for full-stack web applications.</p>
+      </header>
+
+      <section class="functions" aria-label="What Next.js adds">
+        <p class="panel-label">What the press adds</p>
+        <div class="function-row"><span class="slot" aria-hidden="true"></span><span>Files become routes</span></div>
+        <div class="function-row"><span class="slot" aria-hidden="true"></span><span>Work runs on the server or in the browser</span></div>
+        <div class="function-row"><span class="slot" aria-hidden="true"></span><span>Build tools and web optimizations come configured</span></div>
+      </section>
+
+      <section class="flow-card input" aria-label="Input">
+        <p class="card-kicker">Input</p>
+        <h2>React components</h2>
+        <p>Interface pieces: navigation, cards, forms, buttons.</p>
+      </section>
+
+      <div class="center-tag" aria-label="Next.js routes, rendering, and tooling">
+        Next.js
+        <small>Routes · rendering · tooling</small>
+      </div>
+
+      <section class="flow-card output" aria-label="Output">
+        <p class="card-kicker">Output</p>
+        <h2>A working web application</h2>
+        <p>Pages, server endpoints, interactive UI, and production output.</p>
+      </section>
+
+      <footer class="footer">
+        <p class="boundary">The framework shapes the app. Hosting, databases, and file storage remain separate choices.</p>
+        <p class="source">Source: Next.js documentation + Mukhtada's portfolio-stack article</p>
+      </footer>
+    </main>
+  </body>
+</html>

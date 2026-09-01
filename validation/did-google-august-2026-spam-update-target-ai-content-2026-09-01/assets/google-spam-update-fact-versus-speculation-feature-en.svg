@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="#ddd4c6" stroke-width="1"/>
+    </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#2a2926" flood-opacity=".12"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="#f3eee4"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <text x="90" y="92" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#766c60">AUGUST 2026 SPAM UPDATE</text>
+  <text x="90" y="158" font-family="Arial, sans-serif" font-size="52" font-weight="800" fill="#25272a">Separate official facts from speculation</text>
+
+  <rect x="70" y="196" width="835" height="510" rx="28" fill="#fffdf8" stroke="#d7cbb8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="115" y="262" font-family="Arial, sans-serif" font-size="27" font-weight="800" fill="#2b706b">OFFICIAL RECORD</text>
+  <text x="115" y="340" font-family="Arial, sans-serif" font-size="60" font-weight="800" fill="#20292a">AUGUST 18</text>
+  <text x="115" y="386" font-family="monospace" font-size="34" fill="#596766">09:27 PDT</text>
+  <line x1="130" y1="448" x2="792" y2="448" stroke="#b8cdca" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="130" cy="448" r="15" fill="#2d7f79"/>
+  <circle cx="792" cy="448" r="15" fill="#2d7f79"/>
+  <text x="115" y="515" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="#2b706b">GLOBAL • ALL LANGUAGES</text>
+  <text x="115" y="580" font-family="Arial, sans-serif" font-size="38" font-weight="800" fill="#20292a">COMPLETED AUGUST 21</text>
+  <text x="115" y="628" font-family="Arial, sans-serif" font-size="29" fill="#625d56">No target category was announced.</text>
+
+  <g fill="#eadbd2" stroke="#c99578" stroke-width="2">
+    <rect x="1050" y="246" width="460" height="92" rx="20"/>
+    <rect x="1070" y="366" width="440" height="92" rx="20"/>
+    <rect x="1088" y="486" width="422" height="92" rx="20"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#704f45">
+    <text x="1090" y="302">“AI CONTENT”</text><text x="1468" y="302">?</text>
+    <text x="1110" y="422">“ALL SCALED PAGES”</text><text x="1468" y="422">?</text>
+    <text x="1128" y="542">“AUTOMATIC PENALTY”</text><text x="1468" y="542">?</text>
+  </g>
+
+  <g transform="translate(918 510)">
+    <circle cx="0" cy="0" r="136" fill="#f3eee4" stroke="#25272a" stroke-width="20"/>
+    <circle cx="0" cy="0" r="90" fill="#fffdf8" stroke="#88aaa6" stroke-width="6"/>
+    <line x1="94" y1="98" x2="275" y2="280" stroke="#25272a" stroke-width="27"/>
+    <text x="0" y="-12" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="800" fill="#2b706b">EVIDENCE</text>
+    <text x="0" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#555d5c">≠ assumption</text>
+  </g>
+
+  <text x="90" y="845" font-family="Arial, sans-serif" font-size="31" font-weight="700" fill="#3f403f">Timing is an audit clue, not proof of cause.</text>
+</svg>

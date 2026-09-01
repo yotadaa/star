@@ -8,6 +8,7 @@ import UtilityBar from "./UtilityBar";
 import RouteProgressBar from "./RouteProgressBar";
 import Footer from "@/components/Footer";
 import { ToastProvider, XpScrollBar } from "@/components/claude";
+import WebMcpProvider from "@/components/webmcp/WebMcpProvider";
 
 const SiteCtx = createContext(null);
 export const useSite = () => useContext(SiteCtx);
@@ -65,6 +66,7 @@ export default function SiteProvider({ children }) {
   return (
     <SiteCtx.Provider value={{ phase, night, cycleTheme, toggleNight, paletteOpen, setPaletteOpen, playerOpen, setPlayerOpen, playerTab, openPlayerStatus, chatOpen, setChatOpen }}>
       <ToastProvider>
+        <WebMcpProvider pathname={pathname} />
         <XpScrollBar />
         <RouteProgressBar />
         {!isManageRoute && <UtilityBar />}

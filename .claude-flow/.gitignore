@@ -1,0 +1,14 @@
+# Claude Flow runtime files
+data/
+logs/
+sessions/
+neural/
+daemon-state.json
+harness-active-policy.json
+memory-package.json
+metrics/
+policy/
+security/
+swarm/
+*.log
+*.tmp
