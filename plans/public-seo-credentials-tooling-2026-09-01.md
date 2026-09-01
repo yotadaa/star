@@ -73,5 +73,5 @@ Final evidence will be stored in
 `validation/public-seo-credentials-tooling-2026-09-01/`.
 
 Status: done. The final live crawl passed 44/44 sitemap URLs with zero failures
-or warnings; the credential scan passed 2,391 tracked files; IndexNow accepted
+or warnings; the credential scan passed 2,401 tracked files; IndexNow accepted
 38 URLs; typecheck, production build, and the redacted GA browser audit passed.

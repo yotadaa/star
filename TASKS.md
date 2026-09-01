@@ -15,7 +15,7 @@
 
 ## Done
 
-- [x] ~~**Harden public SEO tooling and credential boundaries**~~ (2026-09-01) - moved the GA4 property ID to env, added env-only optional Google/Bing/Ahrefs verification metadata, sanitized the configured ID from all 2,391 tracked files, documented the exact public/server-only boundary, and added a Googlebot-style audit proving 44/44 sitemap URLs are 200, self-canonical, indexable, structured, and discoverable from Home with 0 failures or warnings. Plan: `plans/public-seo-credentials-tooling-2026-09-01.md`; evidence: `validation/public-seo-credentials-tooling-2026-09-01/validation.md`.
+- [x] ~~**Harden public SEO tooling and credential boundaries**~~ (2026-09-01) - moved the GA4 property ID to env, added env-only optional Google/Bing/Ahrefs verification metadata, sanitized the configured ID from all 2,401 tracked files, documented the exact public/server-only boundary, and added a Googlebot-style audit proving 44/44 sitemap URLs are 200, self-canonical, indexable, structured, and discoverable from Home with 0 failures or warnings. Plan: `plans/public-seo-credentials-tooling-2026-09-01.md`; evidence: `validation/public-seo-credentials-tooling-2026-09-01/validation.md`.
 
 - [x] ~~**Activate IndexNow in Vercel production**~~ (2026-09-01) - confirmed the live key route returns 200, timing-safe verification matched the ignored local server key, and IndexNow accepted the Blog index plus all 37 published articles (38 URLs total) with HTTP 200. This confirms submission receipt, not indexing. Evidence: `validation/public-seo-credentials-tooling-2026-09-01/indexnow-submission.json`.
 

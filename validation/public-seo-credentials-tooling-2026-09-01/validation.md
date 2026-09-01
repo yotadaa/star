@@ -4,7 +4,7 @@
 
 Passed. Deployment-specific analytics and verification values now enter through
 environment variables, no configured GA measurement ID or high-confidence
-credential pattern remains in 2,391 tracked files, and the production indexing
+credential pattern remains in 2,401 tracked files, and the production indexing
 surface passes a Googlebot-style crawl with zero failures or warnings.
 
 Google's current minimum eligibility requirements are crawl access, HTTP 200,
@@ -22,7 +22,7 @@ and [Google ownership verification](https://support.google.com/webmasters/answer
 | Ignored local environment | `.env.local` is covered by `.gitignore` and is not tracked |
 | Concrete configured GA ID in tracked files | 0 |
 | High-confidence API key, OAuth client ID, bearer token, private key patterns | 0 |
-| Tracked files scanned | 2,391 |
+| Tracked files scanned | 2,401 |
 | Package or lockfile dependency change | None |
 | Runtime guard tests | Valid IDs/tokens accepted; empty, malformed, and markup-like values omitted |
 
