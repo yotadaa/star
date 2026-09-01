@@ -1,0 +1,253 @@
+{
+  "cases": [
+    {
+      "name": "desktop-morning",
+      "phase": "morning",
+      "width": 1440,
+      "height": 1000,
+      "species": "rabbit",
+      "faunaBox": {
+        "x": 62.05091094970703,
+        "y": 905.7817993164062,
+        "width": 65.99999237060547,
+        "height": 42
+      },
+      "copyBox": {
+        "x": 230,
+        "y": 331.71875,
+        "width": 980,
+        "height": 336.5625
+      },
+      "actionsBox": {
+        "x": 254,
+        "y": 619.78125,
+        "width": 932,
+        "height": 48.5
+      },
+      "scrollCueBox": {
+        "x": 698.75,
+        "y": 942,
+        "width": 42.5,
+        "height": 36
+      },
+      "overlapsCopy": false,
+      "overlapsActions": false,
+      "overlapsScrollCue": false,
+      "focusableDescendants": 0,
+      "parentAriaHidden": "true",
+      "pointerEvents": "none",
+      "shellRenderer": "static",
+      "logicalEncounterCount": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "addedFaunaImageRequests": []
+    },
+    {
+      "name": "desktop-noon",
+      "phase": "noon",
+      "width": 1440,
+      "height": 1000,
+      "species": "cat",
+      "faunaBox": {
+        "x": 345.6000061035156,
+        "y": 906,
+        "width": 66,
+        "height": 42
+      },
+      "copyBox": {
+        "x": 230,
+        "y": 331.71875,
+        "width": 980,
+        "height": 336.5625
+      },
+      "actionsBox": {
+        "x": 254,
+        "y": 619.78125,
+        "width": 932,
+        "height": 48.5
+      },
+      "scrollCueBox": {
+        "x": 698.75,
+        "y": 942,
+        "width": 42.5,
+        "height": 36
+      },
+      "overlapsCopy": false,
+      "overlapsActions": false,
+      "overlapsScrollCue": false,
+      "focusableDescendants": 0,
+      "parentAriaHidden": "true",
+      "pointerEvents": "none",
+      "shellRenderer": "static",
+      "logicalEncounterCount": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "addedFaunaImageRequests": []
+    },
+    {
+      "name": "tablet-morning",
+      "phase": "morning",
+      "width": 768,
+      "height": 1024,
+      "species": "rabbit",
+      "faunaBox": {
+        "x": 47.98936080932617,
+        "y": 928.2241821289062,
+        "width": 66.00000381469727,
+        "height": 42
+      },
+      "copyBox": {
+        "x": 46.078125,
+        "y": 359.265625,
+        "width": 675.828125,
+        "height": 305.46875
+      },
+      "actionsBox": {
+        "x": 70.078125,
+        "y": 616.234375,
+        "width": 627.828125,
+        "height": 48.5
+      },
+      "scrollCueBox": {
+        "x": 362.75,
+        "y": 966,
+        "width": 42.5,
+        "height": 36
+      },
+      "overlapsCopy": false,
+      "overlapsActions": false,
+      "overlapsScrollCue": false,
+      "focusableDescendants": 0,
+      "parentAriaHidden": "true",
+      "pointerEvents": "none",
+      "shellRenderer": "static",
+      "logicalEncounterCount": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "addedFaunaImageRequests": []
+    },
+    {
+      "name": "mobile-noon",
+      "phase": "noon",
+      "width": 375,
+      "height": 812,
+      "species": "cat",
+      "faunaBox": {
+        "x": 90,
+        "y": 727.78125,
+        "width": 66,
+        "height": 42
+      },
+      "copyBox": {
+        "x": 22.5,
+        "y": 160.421875,
+        "width": 330,
+        "height": 491.15625
+      },
+      "actionsBox": {
+        "x": 40.5,
+        "y": 540.578125,
+        "width": 294,
+        "height": 111
+      },
+      "scrollCueBox": {
+        "x": 166.25,
+        "y": 754,
+        "width": 42.5,
+        "height": 36
+      },
+      "overlapsCopy": false,
+      "overlapsActions": false,
+      "overlapsScrollCue": false,
+      "focusableDescendants": 0,
+      "parentAriaHidden": "true",
+      "pointerEvents": "none",
+      "shellRenderer": "static",
+      "logicalEncounterCount": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "addedFaunaImageRequests": []
+    }
+  ],
+  "lifecycle": {
+    "overlayStart": 483.3340000000841,
+    "overlayEnd": 483.3340000000841,
+    "overlayActive": "false",
+    "afterOverlay": 816.7200000000554,
+    "overlayClosedActive": "true",
+    "offscreenStart": 1066.7100000000555,
+    "offscreenEnd": 1066.7100000000555,
+    "offscreenActive": "false",
+    "resumed": 1200.1339999999834
+  },
+  "reduced": {
+    "style": {
+      "animationName": "none",
+      "opacity": "0.86",
+      "transform": "matrix(1, 0, 0, 1, 26.25, 0)",
+      "willChange": "auto"
+    },
+    "scopedRunning": 0,
+    "renderer": "static",
+    "faunaBox": {
+      "x": 26.25,
+      "y": 727.78125,
+      "width": 66,
+      "height": 42
+    },
+    "scrollCueBox": {
+      "x": 166.25,
+      "y": 754,
+      "width": 42.5,
+      "height": 36
+    },
+    "overlapsScrollCue": false
+  },
+  "phaseTransitions": [
+    {
+      "phase": "morning",
+      "faunaCount": 1,
+      "species": "rabbit",
+      "ambientLayers": 1
+    },
+    {
+      "phase": "noon",
+      "faunaCount": 1,
+      "species": "cat",
+      "ambientLayers": 1
+    },
+    {
+      "phase": "sunset",
+      "faunaCount": 0,
+      "species": null,
+      "ambientLayers": 1
+    },
+    {
+      "phase": "night",
+      "faunaCount": 0,
+      "species": null,
+      "ambientLayers": 1
+    },
+    {
+      "phase": "morning",
+      "faunaCount": 1,
+      "species": "rabbit",
+      "ambientLayers": 1
+    }
+  ],
+  "webgl": {
+    "renderer": "webgl",
+    "canvasCount": 1,
+    "ambientLayerCount": 1,
+    "faunaCount": 1,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "consoleErrors": []
+  },
+  "concurrency": {
+    "groundRoots": 1,
+    "airRoots": 1,
+    "logicalTotal": 2,
+    "ambientLayers": 1
+  }
+}

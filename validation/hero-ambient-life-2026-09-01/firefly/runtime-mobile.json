@@ -1,0 +1,383 @@
+{
+  "viewport": {
+    "width": 375,
+    "height": 812
+  },
+  "geometry": [
+    {
+      "clusterSize": 2,
+      "targetMetrics": {
+        "width": 102,
+        "height": 68,
+        "focused": true,
+        "focusableCount": 1,
+        "childPointerEvents": [
+          "none",
+          "none"
+        ]
+      },
+      "focusEnvelope": {
+        "sampleCount": 30,
+        "minTop": 73.2014389038086,
+        "maxBottom": 157.17431640625,
+        "collisions": []
+      },
+      "obstacles": {
+        "navigation": {
+          "left": 64,
+          "top": 12,
+          "right": 323,
+          "bottom": 66
+        },
+        "heroCopy": {
+          "left": 22.5,
+          "top": 160.421875,
+          "right": 352.5,
+          "bottom": 651.578125
+        },
+        "heroStatus": null,
+        "heroActions": {
+          "left": 40.5,
+          "top": 540.578125,
+          "right": 334.5,
+          "bottom": 651.578125
+        },
+        "celestial": [
+          {
+            "kind": "moon",
+            "left": 152.5,
+            "top": 60.296875,
+            "right": 245.875,
+            "bottom": 153.671875
+          }
+        ],
+        "scrollWidth": 375,
+        "clientWidth": 375
+      }
+    },
+    {
+      "clusterSize": 3,
+      "targetMetrics": {
+        "width": 102,
+        "height": 68,
+        "focused": true,
+        "focusableCount": 1,
+        "childPointerEvents": [
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "focusEnvelope": {
+        "sampleCount": 30,
+        "minTop": 73.18758392333984,
+        "maxBottom": 157.1873779296875,
+        "collisions": []
+      },
+      "obstacles": {
+        "navigation": {
+          "left": 64,
+          "top": 12,
+          "right": 323,
+          "bottom": 66
+        },
+        "heroCopy": {
+          "left": 22.5,
+          "top": 160.421875,
+          "right": 352.5,
+          "bottom": 651.578125
+        },
+        "heroStatus": null,
+        "heroActions": {
+          "left": 40.5,
+          "top": 540.578125,
+          "right": 334.5,
+          "bottom": 651.578125
+        },
+        "celestial": [
+          {
+            "kind": "moon",
+            "left": 152.5,
+            "top": 60.296875,
+            "right": 245.875,
+            "bottom": 153.671875
+          }
+        ],
+        "scrollWidth": 375,
+        "clientWidth": 375
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "input": "click",
+      "states": [
+        "flying",
+        "dodging",
+        "flying"
+      ],
+      "dodgeTransitions": 1,
+      "sparkAdds": 1,
+      "sparkRemaining": 0,
+      "returnedState": "flying",
+      "focusRetained": true,
+      "focusedFlightPlayState": "paused",
+      "focusedFlightTime": 0,
+      "beforeBlurRect": {
+        "left": 117,
+        "top": 77.87353515625,
+        "right": 219,
+        "bottom": 145.87353515625
+      },
+      "postDodgeFocusEnvelope": {
+        "sampleCount": 30,
+        "minTop": 71.18954467773438,
+        "maxBottom": 155.18545532226562,
+        "collisions": []
+      },
+      "blurResume": {
+        "afterBlur": {
+          "activeTestId": "cta-quests",
+          "flightPlayState": "running",
+          "flightTime": 0,
+          "rect": {
+            "left": 117,
+            "top": 78.00856018066406,
+            "right": 219,
+            "bottom": 146.00856018066406
+          }
+        },
+        "resumed": {
+          "flightPlayState": "running",
+          "flightTime": 333.33100000018055,
+          "rect": {
+            "left": 48.56731414794922,
+            "top": 82.76810455322266,
+            "right": 150.56732177734375,
+            "bottom": 150.76809692382812
+          }
+        },
+        "positionJump": 0.1350250244140625,
+        "noMaterialPositionJump": true,
+        "timeAdvance": 333.33100000018055,
+        "resumedRunning": true
+      }
+    },
+    {
+      "input": "tap",
+      "states": [
+        "flying",
+        "dodging",
+        "flying"
+      ],
+      "dodgeTransitions": 1,
+      "sparkAdds": 1,
+      "sparkRemaining": 0,
+      "returnedState": "flying",
+      "focusRetained": true,
+      "focusedFlightPlayState": "paused",
+      "focusedFlightTime": 0,
+      "beforeBlurRect": {
+        "left": 117,
+        "top": 79.19261932373047,
+        "right": 219,
+        "bottom": 147.192626953125
+      },
+      "postDodgeFocusEnvelope": {
+        "sampleCount": 30,
+        "minTop": 71.19054412841797,
+        "maxBottom": 155.1854705810547,
+        "collisions": []
+      },
+      "blurResume": {
+        "afterBlur": {
+          "activeTestId": "cta-quests",
+          "flightPlayState": "running",
+          "flightTime": 0,
+          "rect": {
+            "left": 117,
+            "top": 79.19261932373047,
+            "right": 219,
+            "bottom": 147.192626953125
+          }
+        },
+        "resumed": {
+          "flightPlayState": "running",
+          "flightTime": 333.31699999996545,
+          "rect": {
+            "left": 48.57089614868164,
+            "top": 82.83137512207031,
+            "right": 150.57089614868164,
+            "bottom": 150.8313751220703
+          }
+        },
+        "positionJump": 0,
+        "noMaterialPositionJump": true,
+        "timeAdvance": 333.31699999996545,
+        "resumedRunning": true
+      }
+    },
+    {
+      "input": "Enter",
+      "states": [
+        "flying",
+        "dodging",
+        "flying"
+      ],
+      "dodgeTransitions": 1,
+      "sparkAdds": 1,
+      "sparkRemaining": 0,
+      "returnedState": "flying",
+      "focusRetained": true,
+      "focusedFlightPlayState": "paused",
+      "focusedFlightTime": 0,
+      "beforeBlurRect": {
+        "left": 117,
+        "top": 77.74938201904297,
+        "right": 219,
+        "bottom": 145.7493896484375
+      },
+      "postDodgeFocusEnvelope": {
+        "sampleCount": 30,
+        "minTop": 71.19062042236328,
+        "maxBottom": 155.18545532226562,
+        "collisions": []
+      },
+      "blurResume": {
+        "afterBlur": {
+          "activeTestId": "cta-quests",
+          "flightPlayState": "running",
+          "flightTime": 0,
+          "rect": {
+            "left": 117,
+            "top": 77.87360382080078,
+            "right": 219,
+            "bottom": 145.87359619140625
+          }
+        },
+        "resumed": {
+          "flightPlayState": "running",
+          "flightTime": 333.30600000011225,
+          "rect": {
+            "left": 48.57319641113281,
+            "top": 82.719482421875,
+            "right": 150.5731964111328,
+            "bottom": 150.719482421875
+          }
+        },
+        "positionJump": 0.1242218017578125,
+        "noMaterialPositionJump": true,
+        "timeAdvance": 333.30600000011225,
+        "resumedRunning": true
+      }
+    },
+    {
+      "input": "Space",
+      "states": [
+        "flying",
+        "dodging",
+        "flying"
+      ],
+      "dodgeTransitions": 1,
+      "sparkAdds": 1,
+      "sparkRemaining": 0,
+      "returnedState": "flying",
+      "focusRetained": true,
+      "focusedFlightPlayState": "paused",
+      "focusedFlightTime": 0,
+      "beforeBlurRect": {
+        "left": 117,
+        "top": 78.00846099853516,
+        "right": 219,
+        "bottom": 146.00845336914062
+      },
+      "postDodgeFocusEnvelope": {
+        "sampleCount": 30,
+        "minTop": 71.18757629394531,
+        "maxBottom": 155.18545532226562,
+        "collisions": []
+      },
+      "blurResume": {
+        "afterBlur": {
+          "activeTestId": "cta-quests",
+          "flightPlayState": "running",
+          "flightTime": 0,
+          "rect": {
+            "left": 117,
+            "top": 78.1548843383789,
+            "right": 219,
+            "bottom": 146.15487670898438
+          }
+        },
+        "resumed": {
+          "flightPlayState": "running",
+          "flightTime": 333.3190000000776,
+          "rect": {
+            "left": 48.57041931152344,
+            "top": 82.76800537109375,
+            "right": 150.57041931152344,
+            "bottom": 150.76800537109375
+          }
+        },
+        "positionJump": 0.14642333984375,
+        "noMaterialPositionJump": true,
+        "timeAdvance": 333.3190000000776,
+        "resumedRunning": true
+      }
+    }
+  ],
+  "focusedPhaseHandoff": {
+    "before": {
+      "phase": "night",
+      "activeTestId": "hero-entity-firefly"
+    },
+    "after": {
+      "phase": "morning",
+      "activeTestId": "cta-quests",
+      "fireflyCount": 0
+    },
+    "focusMovedToFirstHeroCta": true
+  },
+  "visibilityLifecycle": {
+    "method": "controlled document.visibilityState override plus native visibilitychange event",
+    "hiddenStart": {
+      "flyerTime": 49.98500000017447,
+      "flyerPlayState": "paused",
+      "groundTime": 749.9570000000633,
+      "groundPlayState": "paused",
+      "shellActive": "false",
+      "layerPaused": "true"
+    },
+    "hiddenEnd": {
+      "flyerTime": 49.98500000017447,
+      "flyerPlayState": "paused",
+      "groundTime": 749.9570000000633,
+      "groundPlayState": "paused",
+      "shellActive": "false",
+      "layerPaused": "true"
+    },
+    "resumed": {
+      "flyerTime": 416.6360000000999,
+      "flyerPlayState": "running",
+      "groundTime": 1116.6079999999888,
+      "groundPlayState": "running",
+      "shellActive": "true",
+      "layerPaused": "false"
+    },
+    "flyerFrozen": true,
+    "groundFrozen": true,
+    "flyerResumed": true,
+    "groundResumed": true
+  },
+  "reducedMotion": {
+    "renderer": "static",
+    "spriteCount": 2,
+    "targetWidth": 102,
+    "targetHeight": 68,
+    "encounterStatic": true,
+    "scopedRunningAnimations": 0,
+    "scrollWidth": 375,
+    "clientWidth": 375
+  },
+  "consoleErrors": []
+}

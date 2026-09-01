@@ -4,7 +4,7 @@
 - **Route:** `/` — Hero cockpit
 - **Source:** user-supplied `Hero Ambient Life — Feature Spec`
 - **Architecture review:** Sol Extra High, read-only, before implementation
-- **Status:** in progress
+- **Status:** validated — Sol Extra High final verdict READY, no P0–P3 findings
 
 ## Scope decision
 
@@ -52,7 +52,7 @@ The following proposal items remain deliberately deferred:
   draw call, dependency, hex color, audio, score, or reward.
 - **Screenshot evidence:**
   `validation/hero-ambient-life-2026-09-01/firefly/`
-- **Status:** validated
+- **Status:** validated after mobile focus/evidence remediation
 
 ## Task 2 — Decorative ground fauna
 
@@ -79,7 +79,7 @@ The following proposal items remain deliberately deferred:
   UI card, or full-surface `will-change`.
 - **Screenshot evidence:**
   `validation/hero-ambient-life-2026-09-01/ground-fauna/`
-- **Status:** in progress
+- **Status:** validated
 
 ## Validation matrix
 
@@ -105,3 +105,13 @@ The following proposal items remain deliberately deferred:
 5. A phase change may restart ground ambience but must never queue missed
    cycles.
 6. Firefly and ground-fauna changes are independently reversible.
+
+## Final review
+
+Sol Extra High reviewed the live source and assertion-bearing evidence twice
+after implementation. The first pass closed the original mobile-envelope and
+evidence gaps but found a post-dodge navigation/resume P2. The compact firefly
+dodge now derives a navigation-safe vertical band and falls back to horizontal
+movement when that band is narrow. All four input paths then passed full-cycle
+post-dodge geometry plus measured blur continuity and WAAPI resumption. Final
+verdict: **READY**, with no P0–P3 findings remaining.

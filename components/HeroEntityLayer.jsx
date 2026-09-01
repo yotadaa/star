@@ -356,9 +356,27 @@ export default function HeroEntityLayer({ phase = "morning", paused = false }) {
     if (Math.abs(dodgeEndX - startX) < dodgeDistanceX * 0.45) {
       dodgeEndX = clamp(startX - horizontalDirection * dodgeDistanceX, xMin, xMax);
     }
-    let dodgeEndY = clamp(startY + verticalDirection * dodgeDistanceY, yMin, yMax);
-    if (Math.abs(dodgeEndY - startY) < dodgeDistanceY * 0.45) {
-      dodgeEndY = clamp(startY - verticalDirection * dodgeDistanceY, yMin, yMax);
+    const compactFirefly = encounter.entity === "firefly" && window.innerWidth <= 640;
+    const navigationRect = compactFirefly
+      ? document.querySelector('[data-testid="top-nav"]')?.getBoundingClientRect()
+      : null;
+    const safeYMin = navigationRect
+      ? Math.max(yMin, navigationRect.bottom - layerRect.top + 12)
+      : yMin;
+    const safeYMax = Math.max(safeYMin, yMax);
+    const verticalRoom = safeYMax - safeYMin;
+    let dodgeEndY;
+
+    if (compactFirefly && verticalRoom < dodgeDistanceY * 0.45) {
+      // Mobile's nav/copy band is intentionally narrow. Keep the already-safe
+      // flight lane and make the dodge horizontal instead of forcing the focus
+      // target into either obstacle.
+      dodgeEndY = clamp(startY, safeYMin, safeYMax);
+    } else {
+      dodgeEndY = clamp(startY + verticalDirection * dodgeDistanceY, safeYMin, safeYMax);
+      if (Math.abs(dodgeEndY - startY) < dodgeDistanceY * 0.45) {
+        dodgeEndY = clamp(startY - verticalDirection * dodgeDistanceY, safeYMin, safeYMax);
+      }
     }
     const laneOffsetY = layerRect.height * (encounter.lane / 100);
     const flightResumeY = Math.round(dodgeEndY - laneOffsetY);

@@ -2,7 +2,6 @@
 
 ## Active
 
-- [ ] **Complete the approved Hero Ambient Life continuation** - add a one-focus-target night firefly cluster and one decorative morning/noon ground-fauna slot without changing the repaired flyer state machine or adding WebGL work; conditional tower/water/audio/sky-breathing proposals remain deferred. Plan: `plans/hero-ambient-life-continuation-2026-09-01.md`.
 - [ ] **Commit every completed work unit** - after a coherent implementation + validation pass, create a git commit before starting the next unrelated unit. See `plans/commit-validation-workflow.md`.
 - [ ] **Replace native dropdowns with custom controls** - later, scan all built-in HTML dropdowns/selects and replace them with design-system custom dropdowns.
 
@@ -17,6 +16,8 @@
 - [ ] **Align the existing Player Status popup with the neobrutalist system** - remove its older rounded/gradient treatment observed during Player HUD shortcut validation; evidence: `screenshots/player-hud-2026-07-04/desktop-inventory-shortcut.png`.
 
 ## Done
+
+- [x] ~~**Complete the approved Hero Ambient Life continuation**~~ (2026-09-01) - added an explicit 1/6 night firefly branch rendered as one accessible 2–3-sprite cluster, a decorative morning rabbit/noon cat ground slot, compact-firefly navigation-safe horizontal dodge fallback, and assertion-bearing mobile/lifecycle evidence without new WebGL work, assets, dependencies, or color tokens. Sol Extra High final verdict: READY with no P0–P3 findings. Plan: `plans/hero-ambient-life-continuation-2026-09-01.md`; evidence: `validation/hero-ambient-life-2026-09-01/README.md`.
 
 - [x] ~~**Restore, harden, and optimize the Home Hero**~~ (2026-09-01) - restored the open-air sky/atmosphere and shining celestial orbit, made the moon rise left and set right, moved/dimmed clouds into their night formation, added cheap CSS grass, preserved entity focus/dodge continuity, paused every renderer/ambient path, removed the duplicate WebGL context, cut desktop scene images by 91.4%, streamed Featured Blog independently, and expanded top-nav targets to 44 px. Sol Extra High final verdict: READY. The requested daylight lede palette remains an explicitly documented sub-AA limitation. Plan: `plans/hero-audit-remediation-2026-09-01.md`; evidence: `validation/hero-audit-remediation-2026-09-01/README.md`.
 

@@ -1604,6 +1604,90 @@ a.hud-chip:focus-visible {
   filter: brightness(.68) saturate(.72);
 }
 
+.hero-ground-fauna {
+  position: absolute;
+  bottom: clamp(24px, 5.2vh, 54px);
+  left: 0;
+  width: 66px;
+  height: 42px;
+  color: var(--parchment-dark);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(-76px, 0, 0);
+  will-change: transform, opacity;
+  animation: hero-ground-fauna-roam 22s linear -3s infinite;
+}
+
+.hero-ground-fauna[data-species="cat"] {
+  color: var(--gold);
+  animation-delay: -10s;
+  animation-duration: 24s;
+}
+
+.hero-ground-fauna-sprite {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  image-rendering: pixelated;
+}
+
+.hero-ground-fauna-fill {
+  fill: currentColor;
+  stroke: var(--ink);
+  stroke-width: 1.6;
+  paint-order: stroke fill;
+}
+
+.hero-ground-fauna-fill.is-muted {
+  opacity: .72;
+}
+
+.hero-ground-fauna-stroke {
+  fill: none;
+  stroke: var(--ink);
+  stroke-linecap: square;
+  stroke-width: 4;
+}
+
+.hero-ground-fauna-eye {
+  fill: var(--ink);
+}
+
+@keyframes hero-ground-fauna-roam {
+  0%,
+  9% {
+    opacity: 0;
+    transform: translate3d(-76px, 0, 0);
+  }
+
+  12% {
+    opacity: .86;
+    transform: translate3d(3vw, 0, 0);
+  }
+
+  27% {
+    opacity: .9;
+    transform: translate3d(15vw, -2px, 0);
+  }
+
+  40%,
+  70% {
+    opacity: .9;
+    transform: translate3d(24vw, 0, 0);
+  }
+
+  76% {
+    opacity: 0;
+    transform: translate3d(24vw, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(24vw, 0, 0);
+  }
+}
+
 @keyframes hero-grass-sway {
   from {
     transform: rotate(calc(var(--grass-lean, 0deg) - 3deg));
@@ -1712,6 +1796,7 @@ a.hud-chip:focus-visible {
 .parallax-scene-shell[data-render-active="false"] .parallax-static-celestial-drift,
 .parallax-scene-shell[data-render-active="false"] .parallax-static-aureole,
 .parallax-scene-shell[data-render-active="false"] .parallax-static-cloud,
+.parallax-scene-shell[data-render-active="false"] .hero-ground-fauna,
 .parallax-scene-shell[data-render-active="false"] .hero-ambient-grass-blade {
   animation-play-state: paused;
 }
@@ -1725,6 +1810,7 @@ a.hud-chip:focus-visible {
   .parallax-static-celestial-drift,
   .parallax-static-aureole,
   .parallax-static-cloud,
+  .hero-ground-fauna,
   .hero-ambient-grass-blade {
     animation: none;
     transition: none;
@@ -1736,6 +1822,12 @@ a.hud-chip:focus-visible {
 
   .hero-ambient-grass-blade {
     transform: rotate(var(--grass-lean, 0deg));
+  }
+
+  .hero-ground-fauna {
+    opacity: .86;
+    transform: translate3d(7vw, 0, 0);
+    will-change: auto;
   }
 
   .parallax-static-aureole {
@@ -1934,6 +2026,12 @@ a.hud-chip:focus-visible {
 .hero-entity-target.is-firefly-cluster {
   width: 102px;
   height: 76px;
+}
+
+@media (max-width: 640px) {
+  .hero-entity-target.is-firefly-cluster {
+    height: 68px;
+  }
 }
 
 .hero-entity-target.is-firefly-cluster .hero-entity-sprite {
