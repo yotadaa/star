@@ -21,7 +21,7 @@ const BLOCK_TYPES = [
 
 const DEFAULT_AUTHOR = {
   id: "https://me.mukhtada.my.id/#person",
-  name: "Mukhtada Billah NST",
+  name: "Mukhtada",
   url: "https://me.mukhtada.my.id/",
 };
 

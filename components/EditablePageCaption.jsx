@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { displayOwnerText } from "@/lib/identity.mjs";
 import { PixelButton, SpriteIcon } from "@/components/claude";
 
 function safeHref(value) {
@@ -10,7 +11,7 @@ function safeHref(value) {
 }
 
 function renderCaptionText(value) {
-  const text = String(value || "");
+  const text = displayOwnerText(value);
   const parts = [];
   const pattern = /(\*\*([^*]+)\*\*|_([^_]+)_|\[([^\]]+)\]\(([^)]+)\))/g;
   let lastIndex = 0;

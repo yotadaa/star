@@ -3,9 +3,9 @@ import { pageMetadata, absoluteUrl, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Interactive CV",
-  description: "Read Mukhtada Billah NST's interactive CV, covering Information Systems education, web development, AI tooling, data research, and community work.",
+  description: "Read Mukhtada's interactive CV, covering Information Systems education, web development, AI tooling, data research, and community work.",
   path: "/lore",
-  tags: ["Mukhtada Billah NST CV", "full-stack developer Jambi", "Information Systems student", "AI tooling", "data research"],
+  tags: ["Mukhtada CV", "full-stack developer Jambi", "Information Systems student", "AI tooling", "data research"],
 });
 
 export default function LorePage() {
@@ -14,8 +14,8 @@ export default function LorePage() {
     "@type": "ProfilePage",
     "@id": `${SITE_URL}/lore#profile-page`,
     url: absoluteUrl("/lore"),
-    name: "Interactive CV · Mukhtada Billah NST",
-    description: "Education, organization work, development experience, research support, and technical skills from Mukhtada Billah NST's CV.",
+    name: "Interactive CV · Mukhtada",
+    description: "Education, organization work, development experience, research support, and technical skills from Mukhtada's CV.",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     mainEntity: { "@id": `${SITE_URL}/#person` },
     inLanguage: "en-US",

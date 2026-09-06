@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Mukhtada Billah NST — Full-stack developer, AI tooling, and data research portfolio";
+export const alt = "Mukhtada — Full-stack developer, AI tooling, and data research portfolio";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -75,7 +75,7 @@ export default function OpenGraphImage() {
               // FULL-STACK · AI · DATA
             </div>
             <div style={{ display: "flex", fontSize: 76, lineHeight: 1.02, letterSpacing: -2 }}>
-              Mukhtada Billah NST
+              Mukhtada
             </div>
             <div
               style={{

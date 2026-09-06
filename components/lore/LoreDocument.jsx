@@ -26,7 +26,7 @@ export default function LoreDocument() {
   return (
     <div className="lore-document">
       <section className="lore-cover" aria-labelledby="lore-title">
-        <div className="lore-cover-photo"><img src={loreProfile.portrait} alt="Portrait of Mukhtada Billah NST" /></div>
+        <div className="lore-cover-photo"><img src={loreProfile.portrait} alt="Portrait of Mukhtada" /></div>
         <div className="lore-cover-copy">
           <span className="pixel-label">// Personal record · 2026</span>
           <h1 id="lore-title">{loreProfile.name}</h1>

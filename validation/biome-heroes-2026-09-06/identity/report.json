@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "results": [
+    {
+      "path": "/",
+      "title": "Mukhtada — Full-Stack Developer, AI & Data",
+      "description": "Mukhtada is an Information Systems student at the University of Jambi who builds full-stack web products, AI tools, data projects, and research.",
+      "h1": "Full-stack developer building  web, AI, and data systems."
+    },
+    {
+      "path": "/about",
+      "title": "About Mukhtada",
+      "description": "Mukhtada studies Information Systems at the University of Jambi and works on full-stack web development, AI tools, data science, and research.",
+      "h1": "About Mukhtada"
+    },
+    {
+      "path": "/projects",
+      "title": "Web, AI & Data Projects · Mukhtada",
+      "description": "Web, AI, data science, and research projects by Mukhtada, with project summaries, technology stacks, and source links.",
+      "h1": "Web, AI, and data projects"
+    },
+    {
+      "path": "/research",
+      "title": "Information Systems Research · Mukhtada",
+      "description": "Published information systems research by Mukhtada on education analytics, scheduling optimization, tourism digitization, and safety systems.",
+      "h1": "Information systems research"
+    },
+    {
+      "path": "/blog",
+      "title": "Web Development, AI & Research Blog · Mukhtada",
+      "description": "Articles by Mukhtada about Next.js, AI tooling, open-source software, technical investigations, and information systems research.",
+      "h1": "Web development, AI, and research articles"
+    },
+    {
+      "path": "/contact",
+      "title": "Contact Mukhtada",
+      "description": "Contact Mukhtada about full-stack web development, AI tooling, data projects, research, or community technology work.",
+      "h1": "Contact Mukhtada"
+    },
+    {
+      "path": "/lore",
+      "title": "Interactive CV · Mukhtada",
+      "description": "Read Mukhtada's interactive CV, covering Information Systems education, web development, AI tooling, data research, and community work.",
+      "h1": "Mukhtada"
+    },
+    {
+      "path": "/blog/regresi-linear-372-fitur-waktu-tempuh-jakarta",
+      "bylineShort": true
+    }
+  ]
+}
