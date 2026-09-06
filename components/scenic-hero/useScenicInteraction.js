@@ -31,10 +31,18 @@ export default function useScenicInteraction(scene, completed, record) {
     const action = object.action;
     if (!action) return;
     if (action.depth) { selectDepth(action.depth); return; }
-    const count = advanceAction(actionCounts.current[object.id], action.stages);
+    const stages = action.stages || 1;
+    const previous = completed && action.restore ? stages : actionCounts.current[object.id] || 0;
+    // A restored discovery is already complete. Reinspection must not restart
+    // the uncover sequence or repeat its completion announcement.
+    if (previous >= stages) {
+      setNotice(action.doneLabel || action.done);
+      return;
+    }
+    const count = advanceAction(previous, stages);
     actionCounts.current = { ...actionCounts.current, [object.id]: count };
     setActions(actionCounts.current);
-    const done = count === (action.stages || 1);
+    const done = count === stages;
     setNotice(done ? action.done : action.progress?.[count - 1] || action.label);
     if (done && action.discover) record(scene.discoveryId);
   };

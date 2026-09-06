@@ -95,9 +95,15 @@ try {
  await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});document.dispatchEvent(new Event('visibilitychange'));});
  check('hidden page paused',await hero.getAttribute('data-motion')==='paused');
  await page.evaluate(()=>{delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));}); await ready();
- for(const phase of ['morning','noon','sunset','night']) {
+ for(const phase of ['morning','noon','sunset','night','morning']) {
+  const previousPhase=await page.getByTestId('daynight-toggle').getAttribute('data-phase');
   for(let i=0;i<4&&await page.getByTestId('daynight-toggle').getAttribute('data-phase')!==phase;i++) await page.getByTestId('daynight-toggle').click();
   await page.waitForFunction(p=>document.querySelector('[data-scene]').dataset.phase===p,phase);
+  if(previousPhase!==phase) {
+   await page.waitForFunction(p=>{const node=document.querySelector(`[data-atmosphere-phase="${p}"]`);const opacity=Number(getComputedStyle(node).opacity);return opacity>.05&&opacity<.95;},phase);
+   check(`${phase}: real intermediate atmosphere`,true);
+   await page.screenshot({path:`${out}/desktop-${phase}-transition.png`});
+  }
   await page.waitForTimeout(1050);
   await page.evaluate(()=>window.scrollTo(0,document.querySelector('[data-scene]').offsetHeight-600));
   await page.waitForTimeout(150);

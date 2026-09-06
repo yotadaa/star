@@ -1,0 +1,142 @@
+{
+  "page": "projects",
+  "generator": "OpenAI built-in imagegen",
+  "assets": [
+    {
+      "id": "desert-768",
+      "src": "/scenic-heroes/projects/desert-768.webp",
+      "width": 768,
+      "height": 512,
+      "bytes": 16322,
+      "alpha": false,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "sha256": "59089203d5816a6a38bcee75175c98cd2bb33ad84eba04437a5422c406f010d0",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-5da21f5c-fafc-49c0-894c-615793f411ba.png",
+      "sourceSha256": "6266fedcb79b79ee901596ff59763c8ff3faeb3aecd0b5492072da7ef36a65e4"
+    },
+    {
+      "id": "desert-1280",
+      "src": "/scenic-heroes/projects/desert-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 42504,
+      "alpha": false,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "sha256": "b641cb7952b83e7fd674cd0b353ad41ac9602d358d60382b88c50ee065b5b173",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-5da21f5c-fafc-49c0-894c-615793f411ba.png",
+      "sourceSha256": "6266fedcb79b79ee901596ff59763c8ff3faeb3aecd0b5492072da7ef36a65e4"
+    },
+    {
+      "id": "desert-1536",
+      "src": "/scenic-heroes/projects/desert-1536.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 58116,
+      "alpha": false,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "sha256": "17f3e5f6a2889cdbfc3da0ecc43b0891d268e0132acc263e23a928231ce6a0f9",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-5da21f5c-fafc-49c0-894c-615793f411ba.png",
+      "sourceSha256": "6266fedcb79b79ee901596ff59763c8ff3faeb3aecd0b5492072da7ef36a65e4"
+    },
+    {
+      "id": "arch",
+      "src": "/scenic-heroes/projects/arch.webp",
+      "width": 1000,
+      "height": 954,
+      "bytes": 250188,
+      "alpha": true,
+      "crop": {
+        "left": 18,
+        "top": 45,
+        "width": 1219,
+        "height": 1163
+      },
+      "sha256": "b3a0eb1c9bc55f2687fb3835d7ad6e8e1f4f40d0e81c2e028ad867eaee4a0617",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-0fb7c166-9c0b-45df-917c-85b25ee16ef9.png",
+      "sourceSha256": "d0ca3814e9a8cc9383a162efb8d2c4b6d90784f7b573f78a437cbf343e2851c9"
+    },
+    {
+      "id": "sandbank",
+      "src": "/scenic-heroes/projects/sandbank.webp",
+      "width": 1300,
+      "height": 504,
+      "bytes": 274556,
+      "alpha": true,
+      "crop": {
+        "left": 0,
+        "top": 429,
+        "width": 1536,
+        "height": 595
+      },
+      "sha256": "e247a42f8c9ebbe651316cbe44ac1935c94142a45bc39501760526da0bb34080",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-d100c9b7-0671-4e0c-bc09-4b6b67d8bf29.png",
+      "sourceSha256": "9936a1dce7fcd7bfa31da87dbf29a143689ee0d4cfaaeccbec842216d16fa6c7"
+    },
+    {
+      "id": "compass",
+      "src": "/scenic-heroes/projects/compass.webp",
+      "width": 384,
+      "height": 392,
+      "bytes": 46104,
+      "alpha": true,
+      "crop": {
+        "left": 155,
+        "top": 108,
+        "width": 904,
+        "height": 922
+      },
+      "sha256": "78af00642dbd1cf0e921b0725c0e0729ead8604e95f4407b70fc10f71d2ae297",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-193c88b7-3ae5-48bf-930c-affb19fa6588.png",
+      "sourceSha256": "b600906545a63d1389ba4053b70c68827ea88950381693200e5c61e2ead871cd"
+    },
+    {
+      "id": "beetle",
+      "src": "/scenic-heroes/projects/beetle.webp",
+      "width": 256,
+      "height": 173,
+      "bytes": 15968,
+      "alpha": true,
+      "crop": {
+        "left": 109,
+        "top": 262,
+        "width": 1103,
+        "height": 746
+      },
+      "sha256": "80dd8a3d8d0e1bdfb6d9dc4909ab3cddbf6c14094479e04b672645a5f541cf2e",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-4f8ba6f9-e111-4bc2-9148-2a2051bca973.png",
+      "sourceSha256": "43bcdc493c06c375f0baa58b771bbac23950dfa594aeecc40886f756892fc560"
+    },
+    {
+      "id": "sand-cover",
+      "src": "/scenic-heroes/projects/sand-cover.webp",
+      "width": 384,
+      "height": 142,
+      "bytes": 28104,
+      "alpha": true,
+      "crop": {
+        "left": 52,
+        "top": 269,
+        "width": 1447,
+        "height": 536
+      },
+      "sha256": "27de2144b56ca72752e22df1354a3fc33b74f18eacf982bb5896834baef4c259",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-3005f0cf-5a3d-44c6-a28e-7ae6ebfe3ce6.png",
+      "sourceSha256": "2d186171b122348b2e3c20a301327dc69e0caa2b5fcf997c77aa5fb48580e5a0"
+    }
+  ]
+}

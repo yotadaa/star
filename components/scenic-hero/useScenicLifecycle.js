@@ -26,9 +26,22 @@ export default function useScenicLifecycle(rootRef, userPaused) {
       if (!focusedTransforms.size || !root.contains(target)) return;
       const rect = target.getBoundingClientRect();
       const x = rect.left - bounds.left, y = rect.top - bounds.top;
-      setFocusTarget({ x, y, width: rect.width, height: rect.height, label: target.getAttribute("aria-label"), labelLeft: Math.max(12, Math.min(x, bounds.width - 272)) - x, labelTop: Math.min(y + rect.height + 10, bounds.height - 90) - y });
+      const labelWidth = 260, labelHeight = 34, gap = 10;
+      const labelLeft = Math.max(12, Math.min(x, bounds.width - labelWidth - 12));
+      let labelTop = Math.min(y + rect.height + gap, bounds.height - 90);
+      // Keep the label clear of controls and live feedback at any breakpoint.
+      const obstacles = [rect, ...[...root.querySelectorAll('[data-scene-controls], [role="status"]')]
+        .filter(node => node.textContent.trim()).map(node => node.getBoundingClientRect())]
+        .sort((a, b) => b.top - a.top);
+      for (const obstacle of obstacles) {
+        const left = obstacle.left - bounds.left, top = obstacle.top - bounds.top;
+        if (labelLeft < left + obstacle.width && labelLeft + labelWidth > left && labelTop < top + obstacle.height && labelTop + labelHeight + gap > top) labelTop = top - labelHeight - gap;
+      }
+      setFocusTarget({ x, y, width: rect.width, height: rect.height, label: target.getAttribute("aria-label"), labelLeft: labelLeft - x, labelTop: Math.max(12, labelTop) - y });
     };
+    const focusLabel = new MutationObserver(() => updateFocusIndicator());
     const releaseFocus = () => {
+      focusLabel.disconnect();
       for (const [node, original] of focusedTransforms) {
         node.style.transform = original.transform;
         node.style.transition = original.transition;
@@ -51,6 +64,9 @@ export default function useScenicLifecycle(rootRef, userPaused) {
       }
       if (parents.length) {
         bounds = root.getBoundingClientRect();
+        focusLabel.observe(event.target, { attributes: true, attributeFilter: ["aria-label"] });
+        const notice = root.querySelector('[role="status"]');
+        if (notice) focusLabel.observe(notice, { childList: true, subtree: true, characterData: true });
         updateFocusIndicator(event.target);
       }
     };

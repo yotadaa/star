@@ -17,7 +17,7 @@ Precedence: current owner approval → `PRODUCT.md` → existing palette/type ro
 | SH-00 | Plan, source inventory, architecture decision | committed | approved mockup | this folder | a1892de |
 | SH-01 | Shared primitives + About canopy | committed | SH-00 | `validation/biome-heroes-2026-09-06/about/` | 4c4e5a7 |
 | SH-01b | Shared phase transitions + Home | committed | SH-01 | `validation/hero-time-transition-2026-09-06/` | 6884b95 |
-| SH-01c | About stability, readable copy, foreground breakout | owner-accepted; follow-ups open | SH-01b | `validation/hero-time-transition-2026-09-06/README.md` | pending |
+| SH-01c | About stability, readable copy, foreground breakout | committed; follow-ups open | SH-01b | `validation/hero-time-transition-2026-09-06/README.md` | e882135 |
 | SH-02 | Projects desert | validating | owner approved proceeding from SH-01c | `validation/biome-heroes-2026-09-06/projects/` | pending |
 | SH-03 | Research future city | planned | committed SH-02 | `validation/biome-heroes-2026-09-06/research/` | pending |
 | SH-04 | Blog snow | planned | committed SH-03 | `validation/biome-heroes-2026-09-06/blog/` | pending |

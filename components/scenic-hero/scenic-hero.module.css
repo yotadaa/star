@@ -108,7 +108,6 @@
 .content { padding-top: 20px; margin-top: -1px; position: relative; scroll-margin-top: 100px; }
 @keyframes sceneSway { 0%,100% { transform: rotate(calc(var(--sway) * -1)); } 50% { transform: rotate(var(--sway)); } }
 @keyframes sceneFloat { 0%,100% { transform: translate(0,0); } 47% { transform: translate(var(--travel-x), var(--travel-y)); } }
-@keyframes sceneDrift { from { transform: translate(calc(var(--travel-x) * -1), calc(var(--travel-y) * -1)); } to { transform: translate(var(--travel-x), var(--travel-y)); } }
 @keyframes sceneVisit { 0%,65%,100% { transform: translate(0,0) rotate(0); } 69% { transform: translate(22px,-18px) rotate(-4deg); } 75% { transform: translate(22px,14px) rotate(1deg); } 84% { transform: translate(22px,14px) rotate(0); } 89% { transform: translate(15px,-24px) rotate(-3deg); } }
 @media (max-width: 1023px) {
   .flow { --scene-overhang: var(--scene-overhang-tablet, 0px); }
@@ -153,3 +152,8 @@
 
 .objectButton:hover .objectLabel, .objectButton:focus-visible .objectLabel { opacity: 1; }
 .objectButton:focus .objectLabel { visibility: hidden; }
+
+/* Atmospheric primitives are small physical particles; scenery uses real cutouts. */
+.primitive[data-material="dust"] { background: var(--palette-cream); opacity: .38; filter: blur(.5px); }
+.ambient[data-animation="drift"] { animation-name: sceneDrift; animation-timing-function: linear; }
+@keyframes sceneDrift { 0% { transform: translate(calc(var(--travel-x) * -1), calc(var(--travel-y) * -1)); opacity: 0; } 20%,70% { opacity: 1; } 100% { transform: translate(var(--travel-x), var(--travel-y)); opacity: 0; } }

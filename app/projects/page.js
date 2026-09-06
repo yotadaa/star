@@ -1,6 +1,8 @@
 import { auth } from "@/auth";
 import EditablePageCaption from "@/components/EditablePageCaption";
-import PageHeader from "@/components/PageHeader";
+import ScenicHero from "@/components/scenic-hero/ScenicHero";
+import { projectsScene } from "@/components/scenic-hero/scenes/projects";
+import scenicStyles from "@/components/scenic-hero/scenic-hero.module.css";
 import ProjectsGrid from "@/components/ProjectsGrid";
 import { listAboutEntries } from "@/lib/backend/featureStore";
 import { publicPageCopy } from "@/lib/data";
@@ -21,16 +23,18 @@ export default async function ProjectsPage() {
   const canManage = session?.user?.role === "owner";
 
   return (
-    <div className="page-wrap">
-      <PageHeader label={publicPageCopy.projects.label} title={publicPageCopy.projects.title}>
+    <>
+      <ScenicHero scene={projectsScene} title={publicPageCopy.projects.title} contentId="projects-content" cta="Explore projects">
         <EditablePageCaption
           entryKey="projects-caption"
           title="Projects caption"
           initialText={caption}
           canManage={canManage}
         />
-      </PageHeader>
-      <ProjectsGrid />
-    </div>
+      </ScenicHero>
+      <div id="projects-content" className={`page-wrap ${scenicStyles.content}`}>
+        <ProjectsGrid />
+      </div>
+    </>
   );
 }

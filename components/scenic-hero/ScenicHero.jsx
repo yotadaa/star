@@ -53,7 +53,7 @@ export default function ScenicHero({ scene, title, children, contentId, cta }) {
         <div className={styles.caption}>{children}</div>
         <a href={`#${contentId}`} className={styles.cta}>{cta}<ArrowDown size={16} aria-hidden="true" /></a>
       </header>
-      <div className={styles.controls}>
+      <div className={styles.controls} data-scene-controls>
         <span className={styles.place}>{scene.name}</span>
         <div className={styles.tools}>
           {scene.focus && <div className={styles.focusControls} role="group" aria-label="Choose scene depth">

@@ -1,0 +1,588 @@
+{
+  "base": "http://127.0.0.1:3125",
+  "conditions": "Local production build, fresh browser contexts, no network/CPU throttling; analytics blocked. Whole-page metrics include existing shell and backend latency.",
+  "samples": [
+    {
+      "width": 1440,
+      "run": 1,
+      "cls": 0,
+      "lcp": 1996,
+      "longTasks": [
+        {
+          "start": 430,
+          "duration": 56
+        },
+        {
+          "start": 502.5,
+          "duration": 110
+        },
+        {
+          "start": 631.1999999992549,
+          "duration": 102
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/arch.webp",
+          "bytes": 250188
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/sandbank.webp",
+          "bytes": 274556
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/compass.webp",
+          "bytes": 46104
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/sand-cover.webp",
+          "bytes": 28104
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/beetle.webp",
+          "bytes": 15968
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/desert-1536.webp",
+          "bytes": 58116
+        }
+      ],
+      "animations": 8,
+      "nav": {
+        "name": "http://127.0.0.1:3125/projects",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 778.0999999996275,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 2,
+        "domainLookupStart": 2,
+        "domainLookupEnd": 2,
+        "connectStart": 2,
+        "secureConnectionStart": 0,
+        "connectEnd": 2,
+        "requestStart": 14.400000000372529,
+        "responseStart": 329.09999999962747,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 329.09999999962747,
+        "responseEnd": 341.59999999962747,
+        "transferSize": 13043,
+        "encodedBodySize": 12743,
+        "decodedBodySize": 47410,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 430,
+        "domContentLoadedEventStart": 430,
+        "domContentLoadedEventEnd": 430.09999999962747,
+        "domComplete": 777.9000000003725,
+        "loadEventStart": 778.0999999996275,
+        "loadEventEnd": 778.0999999996275,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 673036
+    },
+    {
+      "width": 1440,
+      "run": 2,
+      "cls": 0.00007458333333333333,
+      "lcp": 508,
+      "longTasks": [
+        {
+          "start": 408,
+          "duration": 103
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/arch.webp",
+          "bytes": 250188
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/sandbank.webp",
+          "bytes": 274556
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/compass.webp",
+          "bytes": 46104
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/sand-cover.webp",
+          "bytes": 28104
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/beetle.webp",
+          "bytes": 15968
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/desert-1536.webp",
+          "bytes": 58116
+        }
+      ],
+      "animations": 8,
+      "nav": {
+        "name": "http://127.0.0.1:3125/projects",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 555.2999999988824,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.6999999992549419,
+        "domainLookupStart": 0.6999999992549419,
+        "domainLookupEnd": 0.6999999992549419,
+        "connectStart": 0.6999999992549419,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.6999999992549419,
+        "requestStart": 5.899999998509884,
+        "responseStart": 226.2999999988824,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 226.2999999988824,
+        "responseEnd": 238.19999999925494,
+        "transferSize": 13043,
+        "encodedBodySize": 12743,
+        "decodedBodySize": 47410,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 298.2999999988824,
+        "domContentLoadedEventStart": 298.2999999988824,
+        "domContentLoadedEventEnd": 298.5,
+        "domComplete": 555.0999999996275,
+        "loadEventStart": 555.2999999988824,
+        "loadEventEnd": 555.2999999988824,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 673036
+    },
+    {
+      "width": 1440,
+      "run": 3,
+      "cls": 0.00007458333333333333,
+      "lcp": 520,
+      "longTasks": [
+        {
+          "start": 346.80000000074506,
+          "duration": 55
+        },
+        {
+          "start": 421.30000000074506,
+          "duration": 113
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/arch.webp",
+          "bytes": 250188
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/sandbank.webp",
+          "bytes": 274556
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/compass.webp",
+          "bytes": 46104
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/sand-cover.webp",
+          "bytes": 28104
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/beetle.webp",
+          "bytes": 15968
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/desert-1536.webp",
+          "bytes": 58116
+        }
+      ],
+      "animations": 8,
+      "nav": {
+        "name": "http://127.0.0.1:3125/projects",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 592.9000000003725,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.5,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 0.5,
+        "connectStart": 0.5,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.5,
+        "requestStart": 5.099999999627471,
+        "responseStart": 225.09999999962747,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 225.09999999962747,
+        "responseEnd": 234.5,
+        "transferSize": 13043,
+        "encodedBodySize": 12743,
+        "decodedBodySize": 47410,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 299.5,
+        "domContentLoadedEventStart": 299.5,
+        "domContentLoadedEventEnd": 299.7000000011176,
+        "domComplete": 592.8000000007451,
+        "loadEventStart": 592.9000000003725,
+        "loadEventEnd": 592.9000000003725,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 673036
+    },
+    {
+      "width": 375,
+      "run": 1,
+      "cls": 0,
+      "lcp": 448,
+      "longTasks": [
+        {
+          "start": 339.7999999988824,
+          "duration": 57
+        },
+        {
+          "start": 422.7999999988824,
+          "duration": 140
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/arch.webp",
+          "bytes": 250188
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/sandbank.webp",
+          "bytes": 274556
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/compass.webp",
+          "bytes": 46104
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/sand-cover.webp",
+          "bytes": 28104
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/beetle.webp",
+          "bytes": 15968
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/desert-768.webp",
+          "bytes": 16322
+        }
+      ],
+      "animations": 8,
+      "nav": {
+        "name": "http://127.0.0.1:3125/projects",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 586.2999999988824,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.8999999985098839,
+        "domainLookupStart": 0.8999999985098839,
+        "domainLookupEnd": 0.8999999985098839,
+        "connectStart": 0.8999999985098839,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.8999999985098839,
+        "requestStart": 5.599999999627471,
+        "responseStart": 221.2999999988824,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 221.2999999988824,
+        "responseEnd": 233.69999999925494,
+        "transferSize": 13043,
+        "encodedBodySize": 12743,
+        "decodedBodySize": 47410,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 305.59999999962747,
+        "domContentLoadedEventStart": 305.59999999962747,
+        "domContentLoadedEventEnd": 305.7999999988824,
+        "domComplete": 586.1999999992549,
+        "loadEventStart": 586.2999999988824,
+        "loadEventEnd": 586.2999999988824,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 631242
+    },
+    {
+      "width": 375,
+      "run": 2,
+      "cls": 0,
+      "lcp": 460,
+      "longTasks": [
+        {
+          "start": 347.3999999985099,
+          "duration": 52
+        },
+        {
+          "start": 416.7999999988824,
+          "duration": 109
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/arch.webp",
+          "bytes": 250188
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/sandbank.webp",
+          "bytes": 274556
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/compass.webp",
+          "bytes": 46104
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/sand-cover.webp",
+          "bytes": 28104
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/beetle.webp",
+          "bytes": 15968
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/desert-768.webp",
+          "bytes": 16322
+        }
+      ],
+      "animations": 8,
+      "nav": {
+        "name": "http://127.0.0.1:3125/projects",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 582.5,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.599999999627471,
+        "domainLookupStart": 0.599999999627471,
+        "domainLookupEnd": 0.599999999627471,
+        "connectStart": 0.599999999627471,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.599999999627471,
+        "requestStart": 6,
+        "responseStart": 226.59999999962747,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 226.59999999962747,
+        "responseEnd": 237.69999999925494,
+        "transferSize": 13043,
+        "encodedBodySize": 12743,
+        "decodedBodySize": 47410,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 301.2999999988824,
+        "domContentLoadedEventStart": 301.3999999985099,
+        "domContentLoadedEventEnd": 301.59999999962747,
+        "domComplete": 582.3999999985099,
+        "loadEventStart": 582.3999999985099,
+        "loadEventEnd": 582.5,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 631242
+    },
+    {
+      "width": 375,
+      "run": 3,
+      "cls": 0,
+      "lcp": 780,
+      "longTasks": [
+        {
+          "start": 627.5999999996275,
+          "duration": 77
+        },
+        {
+          "start": 732.5,
+          "duration": 99
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/arch.webp",
+          "bytes": 250188
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/sandbank.webp",
+          "bytes": 274556
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/compass.webp",
+          "bytes": 46104
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/sand-cover.webp",
+          "bytes": 28104
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/beetle.webp",
+          "bytes": 15968
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/projects/desert-768.webp",
+          "bytes": 16322
+        }
+      ],
+      "animations": 8,
+      "nav": {
+        "name": "http://127.0.0.1:3125/projects",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 877.3000000007451,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.6999999992549419,
+        "domainLookupStart": 0.6999999992549419,
+        "domainLookupEnd": 0.6999999992549419,
+        "connectStart": 0.6999999992549419,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.6999999992549419,
+        "requestStart": 6.199999999254942,
+        "responseStart": 560.9000000003725,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 560.9000000003725,
+        "responseEnd": 568.5,
+        "transferSize": 13043,
+        "encodedBodySize": 12743,
+        "decodedBodySize": 47410,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 714.1999999992549,
+        "domContentLoadedEventStart": 714.1999999992549,
+        "domContentLoadedEventEnd": 714.4000000003725,
+        "domComplete": 877.1999999992549,
+        "loadEventStart": 877.3000000007451,
+        "loadEventEnd": 877.3000000007451,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 631242
+    }
+  ]
+}

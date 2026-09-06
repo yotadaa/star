@@ -1,0 +1,48 @@
+{
+  "page": "projects",
+  "generator": "OpenAI built-in imagegen",
+  "assets": [
+    {
+      "id": "desert",
+      "prompt": "Photorealistic distant environment plate for an interactive Japanese RPG inspired portfolio hero. Vast quiet stone desert viewed from a low sheltered ledge, distant weathered sandstone mesas on the far right horizon, pale warm dusty sky and subtle windblown haze, muted ochre and sand colors. Quiet uncluttered darker rock shadow on left half for separate website copy. Natural late-afternoon sunlight from upper left, authentic geological erosion, restrained saturation, fine sand texture. Wide landscape 1536x1024. Background only: NO close foreground rocks or objects, NO arch, NO compass, no animals, no person, no UI, no text, no buildings, no fantasy glow, no painted/cartoon rendering, no HDR. Leave space for separate arch and sandbank cutouts to be composited in front.",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-5da21f5c-fafc-49c0-894c-615793f411ba.png",
+      "width": 1536,
+      "cutout": false
+    },
+    {
+      "id": "arch",
+      "prompt": "One production cutout asset, actual transparent alpha background: a large naturally eroded sandstone arch with asymmetric pillars and a broad irregular open center, isolated entire formation, roots of both rock pillars visible. Three-quarter slightly low camera view, natural warm late-afternoon sunlight from upper LEFT. Real photographic granular sandstone, horizontal strata, cracked edges, warm ochre with subdued brown shadows, restrained saturation. Ground-level geological form, not a manmade gateway. No floor/background/sky, no scenery through the opening: opening truly transparent. NO flora, animals, people, text, magical glow, ornaments, vignette or cast shadow on a background. Tall-ish square canvas. This standalone realistic rock will occupy the right side of a layered desert hero. Avoid AI fantasy illustration, impossible stone geometry, plastic CGI or HDR.",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-0fb7c166-9c0b-45df-917c-85b25ee16ef9.png",
+      "width": 1000,
+      "cutout": true
+    },
+    {
+      "id": "sandbank",
+      "prompt": "Production foreground cutout asset on actual transparent alpha: low wide desert sandbank with an uneven shallow crest, a few small weathered sandstone rocks only toward the left and far right edges; mostly fine wind-combed sand in the middle. Side view from slightly above, ground plane recedes away from camera. Wide landscape canvas, continuous solid bottom but transparent sky above the irregular crest, natural late-afternoon light from upper LEFT. Photographic ochre sand granules and eroded rock texture, restrained saturation, realistic scale. No background, no sky, no distant scenery, no compass, no plants, no animals, no lettering. No plastic CGI, painterly fantasy or ground shadow outside the cutout. This is a separate foreground terrain layer, not a complete landscape.",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-d100c9b7-0671-4e0c-bc09-4b6b67d8bf29.png",
+      "width": 1300,
+      "cutout": true
+    },
+    {
+      "id": "compass",
+      "prompt": "One isolated small antique brass pocket compass, lid absent, seen at a shallow three-quarter angle from above so it can lie on a desert sandbank. Weathered real brass, tiny scratches and oxidation in seams, subtly dusty rim, clear slightly reflective glass, simple needle and small unlettered engraved tick marks on a cream face. Photographic material detail, warm afternoon sunlight from upper LEFT. Actual transparent alpha background, no surface, no sand, no cast shadow outside object. Entire object visible with generous margins. Square canvas. No text or letters, no extra objects, no hand, no glow, no fantasy embellishments, no glossy CGI. Production object sprite.",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-193c88b7-3ae5-48bf-930c-affb19fa6588.png",
+      "width": 384,
+      "cutout": true
+    },
+    {
+      "id": "beetle",
+      "prompt": "One tiny realistic desert darkling beetle production cutout. Three-quarter view from slightly above, facing LEFT, anatomically plausible oval matte dark brown textured elytra, exactly six delicate legs and two short antennae, no exaggerated face. Natural restrained wildlife macro photography, warm soft desert light from upper LEFT. Entire beetle visible on actual transparent alpha background, no ground or shadow or sand. Square canvas, no text, no additional insects, no cartoon, no shiny toy CGI, no fantastical colors. Small separate creature for a sandbank environment.",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-4f8ba6f9-e111-4bc2-9148-2a2051bca973.png",
+      "width": 256,
+      "cutout": true
+    },
+    {
+      "id": "sand-cover",
+      "prompt": "A single small shallow oval mound of fine ochre desert sand, isolated production cutout on actual transparent alpha. Slightly elevated three-quarter view, low irregular crest and feathered scattered grains around its base, believable fine granular texture. Warm natural afternoon sunlight from upper left with soft self-shadow on the mound, no cast shadow/background plane. Entire mound inside frame. Landscape canvas. No rocks, no compass, no other object, no writing, no painting, no fantasy. This separate thin sand mound will partially cover a pocket compass in an interactive scene; realistic material, restrained color.",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-3005f0cf-5a3d-44c6-a28e-7ae6ebfe3ce6.png",
+      "width": 384,
+      "cutout": true
+    }
+  ]
+}

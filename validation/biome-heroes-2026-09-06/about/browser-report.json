@@ -283,7 +283,7 @@
   "phases": [
     {
       "phase": "morning",
-      "edge": 644,
+      "edge": 710,
       "above": [
         234,
         221,
@@ -336,6 +336,20 @@
         41,
         40
       ]
+    },
+    {
+      "phase": "morning",
+      "edge": 600,
+      "above": [
+        234,
+        221,
+        192
+      ],
+      "below": [
+        234,
+        221,
+        192
+      ]
     }
   ],
   "checks": [
@@ -375,9 +389,14 @@
     "offscreen paused",
     "hidden page paused",
     "morning: seamless edge",
+    "noon: real intermediate atmosphere",
     "noon: seamless edge",
+    "sunset: real intermediate atmosphere",
     "sunset: seamless edge",
+    "night: real intermediate atmosphere",
     "night: seamless edge",
+    "morning: real intermediate atmosphere",
+    "morning: seamless edge",
     "discovery persists on reload",
     "SSR content and navigation without JS",
     "blocked session storage safe",
