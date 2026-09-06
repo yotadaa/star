@@ -1,6 +1,8 @@
 import { auth } from "@/auth";
 import EditablePageCaption from "@/components/EditablePageCaption";
-import PageHeader from "@/components/PageHeader";
+import ScenicHero from "@/components/scenic-hero/ScenicHero";
+import { aboutScene } from "@/components/scenic-hero/scenes/about";
+import scenicStyles from "@/components/scenic-hero/scenic-hero.module.css";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import SkillsGrid from "@/components/SkillsGrid";
 import Achievements from "@/components/Achievements";
@@ -30,15 +32,16 @@ export default async function AboutPage() {
   const canManage = session?.user?.role === "owner";
 
   return (
-    <div className="page-wrap">
-      <PageHeader label={publicPageCopy.about.label} title={publicPageCopy.about.title}>
+    <>
+      <ScenicHero scene={aboutScene} title={publicPageCopy.about.title} contentId="about-content" cta="Explore my experience">
         <EditablePageCaption
           entryKey="about-caption"
           title="About caption"
           initialText={caption}
           canManage={canManage}
         />
-      </PageHeader>
+      </ScenicHero>
+      <div id="about-content" className={`page-wrap ${scenicStyles.content}`}>
 
       <EditablePageCaption
         entryKey="intro"
@@ -88,6 +91,7 @@ export default async function AboutPage() {
         <h2 style={{ color: "var(--ink)" }}>Selected achievements</h2>
       </div>
       <Achievements />
-    </div>
+      </div>
+    </>
   );
 }

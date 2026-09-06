@@ -1,0 +1,184 @@
+{
+  "scope": "staged",
+  "repo": "star",
+  "summary": {
+    "changed_count": 178,
+    "affected_count": 9,
+    "changed_files": 27,
+    "risk_level": "high"
+  },
+  "partial": false,
+  "truncated": false,
+  "returnedSymbols": 178,
+  "affectedProcesses": [
+    {
+      "id": "proc_49_scenichero",
+      "name": "ScenicHero → ParseDiscoveries",
+      "process_type": "cross_community",
+      "step_count": 4,
+      "changed_steps": [
+        {
+          "symbol": "sync",
+          "step": 3
+        },
+        {
+          "symbol": "useDiscoveryJournal",
+          "step": 2
+        },
+        {
+          "symbol": "ScenicHero",
+          "step": 1
+        },
+        {
+          "symbol": "parseDiscoveries",
+          "step": 4
+        }
+      ]
+    },
+    {
+      "id": "proc_50_scenichero",
+      "name": "ScenicHero → ResetPointer",
+      "process_type": "cross_community",
+      "step_count": 4,
+      "changed_steps": [
+        {
+          "symbol": "sync",
+          "step": 3
+        },
+        {
+          "symbol": "resetPointer",
+          "step": 4
+        },
+        {
+          "symbol": "useScenicLifecycle",
+          "step": 2
+        },
+        {
+          "symbol": "ScenicHero",
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "proc_64_aboutpage",
+      "name": "AboutPage → StaticAboutEntries",
+      "process_type": "intra_community",
+      "step_count": 3,
+      "changed_steps": [
+        {
+          "symbol": "AboutPage",
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "proc_65_aboutpage",
+      "name": "AboutPage → Warning",
+      "process_type": "cross_community",
+      "step_count": 3,
+      "changed_steps": [
+        {
+          "symbol": "AboutPage",
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "proc_106_scenichero",
+      "name": "ScenicHero → SyncPhase",
+      "process_type": "cross_community",
+      "step_count": 3,
+      "changed_steps": [
+        {
+          "symbol": "syncPhase",
+          "step": 3
+        },
+        {
+          "symbol": "useScenicLifecycle",
+          "step": 2
+        },
+        {
+          "symbol": "ScenicHero",
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "proc_107_scenicscene",
+      "name": "ScenicScene → PlacementVars",
+      "process_type": "intra_community",
+      "step_count": 3,
+      "changed_steps": [
+        {
+          "symbol": "ScenicScene",
+          "step": 1
+        },
+        {
+          "symbol": "ScenicObject",
+          "step": 2
+        },
+        {
+          "symbol": "placementVars",
+          "step": 3
+        }
+      ]
+    },
+    {
+      "id": "proc_108_onpointer",
+      "name": "OnPointer → Clamp",
+      "process_type": "intra_community",
+      "step_count": 3,
+      "changed_steps": [
+        {
+          "symbol": "onPointer",
+          "step": 1
+        },
+        {
+          "symbol": "clamp",
+          "step": 3
+        },
+        {
+          "symbol": "parallaxOffset",
+          "step": 2
+        }
+      ]
+    },
+    {
+      "id": "proc_183_interact",
+      "name": "Interact → ParseDiscoveries",
+      "process_type": "intra_community",
+      "step_count": 4,
+      "changed_steps": [
+        {
+          "symbol": "record",
+          "step": 3
+        },
+        {
+          "symbol": "parseDiscoveries",
+          "step": 4
+        },
+        {
+          "symbol": "interact",
+          "step": 1
+        },
+        {
+          "symbol": "selectDepth",
+          "step": 2
+        }
+      ]
+    },
+    {
+      "id": "proc_272_aboutpage",
+      "name": "AboutPage → GetConvexServerClient",
+      "process_type": "cross_community",
+      "step_count": 4,
+      "changed_steps": [
+        {
+          "symbol": "AboutPage",
+          "step": 1
+        }
+      ]
+    }
+  ],
+  "review": "New shared scenic helpers and About route are intentionally included; lifecycle/state/render tests cover the nine listed flows. Preexisting backend/auth changes excluded."
+}

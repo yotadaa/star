@@ -1,0 +1,108 @@
+{
+  "page": "about",
+  "generator": "OpenAI built-in imagegen",
+  "assets": [
+    {
+      "id": "forest-768",
+      "src": "/scenic-heroes/about/forest-768.webp",
+      "width": 768,
+      "height": 512,
+      "bytes": 45924,
+      "alpha": false,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "sha256": "315922f4c1a867d5bda33011f58a8c544cff69fdd6cf4ed5814335aaabc20e55",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-45b442e0-b180-423a-88e2-e2b688cd530f.png",
+      "sourceSha256": "fcd51b87cec15155a65d00efe726958c29a7b41ebec59cdbc4a53ef893a4d897"
+    },
+    {
+      "id": "forest-1280",
+      "src": "/scenic-heroes/about/forest-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 120362,
+      "alpha": false,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "sha256": "f1bd023f2385f2fb24ea43310a96e91ccc72515e6fc48015f98ee8f636d7ca66",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-45b442e0-b180-423a-88e2-e2b688cd530f.png",
+      "sourceSha256": "fcd51b87cec15155a65d00efe726958c29a7b41ebec59cdbc4a53ef893a4d897"
+    },
+    {
+      "id": "forest-1536",
+      "src": "/scenic-heroes/about/forest-1536.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 166182,
+      "alpha": false,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "sha256": "c913b57440b0bd36c5d397220a8b2659de471457997576fdbbf23711cd4800e2",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-45b442e0-b180-423a-88e2-e2b688cd530f.png",
+      "sourceSha256": "fcd51b87cec15155a65d00efe726958c29a7b41ebec59cdbc4a53ef893a4d897"
+    },
+    {
+      "id": "branch",
+      "src": "/scenic-heroes/about/branch.webp",
+      "width": 1400,
+      "height": 528,
+      "bytes": 104822,
+      "alpha": true,
+      "crop": {
+        "left": 9,
+        "top": 166,
+        "width": 1522,
+        "height": 574
+      },
+      "sha256": "e03272c79ef3b2aee120ae2a9b57c46a2365f8c3558be857668706f362d4cf1b",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-34b52f88-ae1f-4a89-8d83-e96660969aaf.png",
+      "sourceSha256": "6f1bd7432000f5cf6a6bb29c4e6efbbddd9758bad97dd093906a144058cba944"
+    },
+    {
+      "id": "foliage",
+      "src": "/scenic-heroes/about/foliage.webp",
+      "width": 900,
+      "height": 601,
+      "bytes": 146526,
+      "alpha": true,
+      "crop": {
+        "left": 16,
+        "top": 6,
+        "width": 1513,
+        "height": 1010
+      },
+      "sha256": "171bc7af95aba557ac998c875151c81158f23500a0021e3352acf1a481de6c9d",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-74730287-c9d5-4b7a-b50f-0b02874a2514.png",
+      "sourceSha256": "6453eaa95a02641bc263aef54927989da7153340614d93c54deb38aafec8ad2c"
+    },
+    {
+      "id": "bird",
+      "src": "/scenic-heroes/about/bird.webp",
+      "width": 384,
+      "height": 297,
+      "bytes": 24538,
+      "alpha": true,
+      "crop": {
+        "left": 52,
+        "top": 162,
+        "width": 1163,
+        "height": 900
+      },
+      "sha256": "7be31a1f604e24280f32ca501540344cb7b2bb11948d70bff5674665c9af6a64",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-75ee666c-5c49-4714-ae87-eb1282f786b1.png",
+      "sourceSha256": "217ddbf6e1f5e529d9e3d7b73053dbfd6b6e5d665a1137206b5f51c6f5de680c"
+    }
+  ]
+}

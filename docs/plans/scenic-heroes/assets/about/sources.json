@@ -1,0 +1,34 @@
+{
+  "page": "about",
+  "generator": "OpenAI built-in imagegen",
+  "assets": [
+    {
+      "id": "forest",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-45b442e0-b180-423a-88e2-e2b688cd530f.png",
+      "width": 1536,
+      "cutout": false,
+      "prompt": "Distant forest plate. Photographic soft morning light, quiet left copy area, no close objects."
+    },
+    {
+      "id": "branch",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-34b52f88-ae1f-4a89-8d83-e96660969aaf.png",
+      "width": 1400,
+      "cutout": true,
+      "prompt": "Create a production raster cutout asset: a single long irregular tree branch, thick at the far RIGHT and tapering toward the LEFT, with two small bare secondary twigs. Side view, horizontal, entire branch inside the canvas with generous margins. Photographic bark texture: rough fissured grey-brown bark with sparse olive moss and pale lichen, organic imperfect geometry, physically credible branching. Soft natural forest light from upper right, restrained colors, detailed natural texture. NO leaves, NO birds, NO background or ground, NO shadows on a background, NO text, NO border. Actual transparent alpha background, not a checkerboard image. Wide landscape 1536x1024 canvas. This is a separate object for a layered realistic Japanese RPG forest hero; avoid cartoon, painted illustration, plastic CGI, fantasy glow and glossy texture."
+    },
+    {
+      "id": "foliage",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-74730287-c9d5-4b7a-b50f-0b02874a2514.png",
+      "width": 900,
+      "cutout": true,
+      "prompt": "Create one production raster cutout asset: an airy asymmetrical cluster of real broadleaf forest foliage attached to several fine twigs. Twig attachment/pivot at lower right; leaves fan toward upper left. Include irregular negative spaces between leaves and varied leaf sizes, convincing leaf veins, curled edges, a few natural blemishes. Photographic natural botanical material, dark olive and sage with subtle warm sunlight from top right; realistic transmitted light only on a few leaves. Entire cluster within frame. Actual transparent alpha background, no checkerboard, no ground shadow. NO branch trunk, NO animals, NO environment, NO text, NO border. Landscape canvas 1536x1024. Avoid glossy fake leaves, repeating leaf patterns, cartoon, painterly fantasy and HDR."
+    },
+    {
+      "id": "bird",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-75ee666c-5c49-4714-ae87-eb1282f786b1.png",
+      "width": 384,
+      "cutout": true,
+      "prompt": "Create a separate production raster cutout of ONE small olive-backed songbird with a cream chest, warm brown wings, fine realistic feathers, tiny dark eye and slender dark beak. Bird in natural perched side profile facing LEFT, wings folded, two anatomically correct tiny feet gripping an imaginary narrow perch. No actual branch/perch. Full body and tail entirely visible, soft diffuse forest lighting upper right, plausible natural proportions, photographic wildlife texture. Actual transparent alpha background, not checkerboard; NO floor or cast shadow, no environment, no text, no border, no extra birds. Square canvas. Avoid cartoon, illustration, toy proportions, hyperglossy feathers or fantasy glow."
+    }
+  ]
+}

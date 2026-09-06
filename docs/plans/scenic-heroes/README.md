@@ -14,8 +14,8 @@ Precedence: current owner approval → `PRODUCT.md` → existing palette/type ro
 
 | ID | Page / unit | Status | Dependencies | Evidence | Commit |
 |---|---|---|---|---|---|
-| SH-00 | Plan, source inventory, architecture decision | planned | approved mockup | this folder | pending |
-| SH-01 | Shared primitives + About canopy | planned | SH-00 | `validation/biome-heroes-2026-09-06/about/` | pending |
+| SH-00 | Plan, source inventory, architecture decision | committed | approved mockup | this folder | a1892de |
+| SH-01 | Shared primitives + About canopy | validated | SH-00 | `validation/biome-heroes-2026-09-06/about/` | pending |
 | SH-02 | Projects desert | planned | committed SH-01 | `validation/biome-heroes-2026-09-06/projects/` | pending |
 | SH-03 | Research future city | planned | committed SH-02 | `validation/biome-heroes-2026-09-06/research/` | pending |
 | SH-04 | Blog snow | planned | committed SH-03 | `validation/biome-heroes-2026-09-06/blog/` | pending |
@@ -182,3 +182,9 @@ Before commit: complete untruncated GitNexus change analysis, staged diff check 
 | Sourcing alternative reviewed | https://polyhaven.com/a/pine_tree_01 — useful realistic reference; not automatically a production asset |
 
 GitNexus repository binding: `star`, `/home/tada/projects/star`, index/HEAD `d54a026`. Five route functions returned UNKNOWN/no indexed callers. Resolved through the actual Next App Router file convention and text verification that these functions have no userland callers; not treated as unused.
+
+### SH-01a — Attached organism geometry (technical refinement)
+
+Visual round three exposed tablet drift between separately positioned bird and perch. Split this P1 into a bounded attachment fix: nested object descriptors use the branch image as their coordinate system; the child keeps an independent action, animation, parallax and stable target. No page conditional or breakpoint-specific perch guess. Blur is applied to individual image surfaces so keyboard labels and outlines remain sharp. Acceptance: bird feet rest on the same branch at1440/768/375; nested actions reach the common controller; focus/reduced-motion/lifecycle tests still pass. Evidence stays in the About folder.
+
+Owner follow-up: use only Mukhtada as the public display name across pages. Implemented and validated in commit 695ec17; see display-name.md.

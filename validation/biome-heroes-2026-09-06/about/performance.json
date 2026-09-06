@@ -1,0 +1,544 @@
+{
+  "base": "http://127.0.0.1:3125",
+  "conditions": "Local production build, fresh browser contexts, no network/CPU throttling; analytics blocked. Whole-page metrics include existing shell and backend latency.",
+  "samples": [
+    {
+      "width": 1440,
+      "run": 1,
+      "cls": 0,
+      "lcp": 2084,
+      "longTasks": [
+        {
+          "start": 803.3000000002794,
+          "duration": 120
+        },
+        {
+          "start": 931.5,
+          "duration": 105
+        },
+        {
+          "start": 1891.7000000001863,
+          "duration": 156
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "bytes": 146526
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "bytes": 104822
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "bytes": 24538
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "bytes": 166182
+        }
+      ],
+      "animations": 4,
+      "nav": {
+        "name": "http://127.0.0.1:3125/about",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1085.8000000002794,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 1.400000000372529,
+        "domainLookupStart": 1.400000000372529,
+        "domainLookupEnd": 1.400000000372529,
+        "connectStart": 1.400000000372529,
+        "secureConnectionStart": 0,
+        "connectEnd": 1.400000000372529,
+        "requestStart": 13.900000000372529,
+        "responseStart": 638.9000000003725,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 638.9000000003725,
+        "responseEnd": 719.5,
+        "transferSize": 20368,
+        "encodedBodySize": 20068,
+        "decodedBodySize": 73704,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 744.7000000001863,
+        "domContentLoadedEventStart": 744.7000000001863,
+        "domContentLoadedEventEnd": 745,
+        "domComplete": 1085.8000000002794,
+        "loadEventStart": 1085.8000000002794,
+        "loadEventEnd": 1085.8000000002794,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 442068
+    },
+    {
+      "width": 1440,
+      "run": 2,
+      "cls": 0,
+      "lcp": 672,
+      "longTasks": [
+        {
+          "start": 374.60000000009313,
+          "duration": 95
+        },
+        {
+          "start": 488.60000000009313,
+          "duration": 107
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "bytes": 146526
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "bytes": 104822
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "bytes": 24538
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "bytes": 166182
+        }
+      ],
+      "animations": 4,
+      "nav": {
+        "name": "http://127.0.0.1:3125/about",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 702,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.8999999999068677,
+        "domainLookupStart": 0.8999999999068677,
+        "domainLookupEnd": 0.8999999999068677,
+        "connectStart": 0.8999999999068677,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.8999999999068677,
+        "requestStart": 7.100000000093132,
+        "responseStart": 271.10000000009313,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 271.10000000009313,
+        "responseEnd": 298.60000000009313,
+        "transferSize": 20368,
+        "encodedBodySize": 20068,
+        "decodedBodySize": 73704,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 479.89999999990687,
+        "domContentLoadedEventStart": 479.89999999990687,
+        "domContentLoadedEventEnd": 480.10000000009313,
+        "domComplete": 702,
+        "loadEventStart": 702,
+        "loadEventEnd": 702,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 442068
+    },
+    {
+      "width": 1440,
+      "run": 3,
+      "cls": 0,
+      "lcp": 620,
+      "longTasks": [
+        {
+          "start": 321.40000000037253,
+          "duration": 96
+        },
+        {
+          "start": 457.20000000018626,
+          "duration": 115
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "bytes": 146526
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "bytes": 104822
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "bytes": 24538
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "bytes": 166182
+        }
+      ],
+      "animations": 4,
+      "nav": {
+        "name": "http://127.0.0.1:3125/about",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 654.1000000000931,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.7000000001862645,
+        "domainLookupStart": 0.7000000001862645,
+        "domainLookupEnd": 0.7000000001862645,
+        "connectStart": 0.7000000001862645,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.7000000001862645,
+        "requestStart": 5,
+        "responseStart": 249.10000000009313,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 249.10000000009313,
+        "responseEnd": 266.60000000009313,
+        "transferSize": 20368,
+        "encodedBodySize": 20068,
+        "decodedBodySize": 73704,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 440.8000000002794,
+        "domContentLoadedEventStart": 440.90000000037253,
+        "domContentLoadedEventEnd": 441,
+        "domComplete": 654.1000000000931,
+        "loadEventStart": 654.1000000000931,
+        "loadEventEnd": 654.1000000000931,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 442068
+    },
+    {
+      "width": 375,
+      "run": 1,
+      "cls": 0,
+      "lcp": 492,
+      "longTasks": [
+        {
+          "start": 326.70000000018626,
+          "duration": 107
+        },
+        {
+          "start": 464.5,
+          "duration": 110
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "bytes": 146526
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "bytes": 104822
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "bytes": 24538
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "bytes": 45924
+        }
+      ],
+      "animations": 4,
+      "nav": {
+        "name": "http://127.0.0.1:3125/about",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 611.7000000001863,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.8999999999068677,
+        "domainLookupStart": 0.8999999999068677,
+        "domainLookupEnd": 0.8999999999068677,
+        "connectStart": 0.8999999999068677,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.8999999999068677,
+        "requestStart": 5.600000000093132,
+        "responseStart": 246.20000000018626,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 246.20000000018626,
+        "responseEnd": 265.70000000018626,
+        "transferSize": 20368,
+        "encodedBodySize": 20068,
+        "decodedBodySize": 73704,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 610.8999999999069,
+        "domContentLoadedEventStart": 610.8999999999069,
+        "domContentLoadedEventEnd": 611.5,
+        "domComplete": 611.7000000001863,
+        "loadEventStart": 611.7000000001863,
+        "loadEventEnd": 611.7000000001863,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 321810
+    },
+    {
+      "width": 375,
+      "run": 2,
+      "cls": 0,
+      "lcp": 512,
+      "longTasks": [
+        {
+          "start": 354.1999999997206,
+          "duration": 107
+        },
+        {
+          "start": 492.29999999981374,
+          "duration": 120
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "bytes": 146526
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "bytes": 104822
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "bytes": 24538
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "bytes": 45924
+        }
+      ],
+      "animations": 4,
+      "nav": {
+        "name": "http://127.0.0.1:3125/about",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 655.2999999998137,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 1,
+        "domainLookupStart": 1,
+        "domainLookupEnd": 1,
+        "connectStart": 1,
+        "secureConnectionStart": 0,
+        "connectEnd": 1,
+        "requestStart": 5.899999999906868,
+        "responseStart": 259.5,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 259.5,
+        "responseEnd": 288,
+        "transferSize": 20368,
+        "encodedBodySize": 20068,
+        "decodedBodySize": 73704,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 654.3999999999069,
+        "domContentLoadedEventStart": 654.5,
+        "domContentLoadedEventEnd": 654.8999999999069,
+        "domComplete": 655.1999999997206,
+        "loadEventStart": 655.2999999998137,
+        "loadEventEnd": 655.2999999998137,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 321810
+    },
+    {
+      "width": 375,
+      "run": 3,
+      "cls": 0,
+      "lcp": 484,
+      "longTasks": [
+        {
+          "start": 363.8000000002794,
+          "duration": 65
+        },
+        {
+          "start": 444.20000000018626,
+          "duration": 109
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "bytes": 146526
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "bytes": 104822
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "bytes": 24538
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "bytes": 45924
+        }
+      ],
+      "animations": 4,
+      "nav": {
+        "name": "http://127.0.0.1:3125/about",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 599.8000000002794,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.8000000002793968,
+        "domainLookupStart": 0.8000000002793968,
+        "domainLookupEnd": 0.8000000002793968,
+        "connectStart": 0.8000000002793968,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.8000000002793968,
+        "requestStart": 6.300000000279397,
+        "responseStart": 240.8000000002794,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 240.8000000002794,
+        "responseEnd": 257.70000000018626,
+        "transferSize": 20368,
+        "encodedBodySize": 20068,
+        "decodedBodySize": 73704,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 314.5,
+        "domContentLoadedEventStart": 314.5,
+        "domContentLoadedEventEnd": 314.60000000009313,
+        "domComplete": 599.8000000002794,
+        "loadEventStart": 599.8000000002794,
+        "loadEventEnd": 599.8000000002794,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 321810
+    }
+  ]
+}
