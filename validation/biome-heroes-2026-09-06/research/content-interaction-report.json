@@ -1,0 +1,29 @@
+{
+  "base": "http://127.0.0.1:3125",
+  "checks": [
+    "1440: existing title",
+    "1440: publication records and links preserved",
+    "1440: research stats remain factual",
+    "1440: signal connected",
+    "1440: one city discovery",
+    "1440: current focus label",
+    "1440: revisit inspects without repeated discovery",
+    "768: existing title",
+    "768: publication records and links preserved",
+    "768: research stats remain factual",
+    "768: signal connected",
+    "768: one city discovery",
+    "768: current focus label",
+    "768: revisit inspects without repeated discovery",
+    "375: existing title",
+    "375: publication records and links preserved",
+    "375: research stats remain factual",
+    "375: signal connected",
+    "375: one city discovery",
+    "375: current focus label",
+    "375: revisit inspects without repeated discovery",
+    "no runtime errors"
+  ],
+  "errors": [],
+  "status": "passed"
+}

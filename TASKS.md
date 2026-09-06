@@ -11,6 +11,8 @@
 
 ## Someday
 
+- [ ] **Attribute Research desktop phase-frame cost** — final local production samples show p95 33.4–50 ms (maximum 50.1 ms), versus mobile p95 16.7 ms. Images remain mounted/loaded and all six cold runs have zero idle long tasks. Do not claim a 60 fps desktop gate. Evidence: `validation/biome-heroes-2026-09-06/research/phase-motion.json`.
+
 - [ ] **Attribute the remaining About sunset long task** — owner accepted the current composition and requested moving forward. The local production trace still exceeded its frame budget (55.7ms p95, 370ms maximum); do not claim this gate passed. Evidence: `validation/hero-time-transition-2026-09-06/report.json`.
 - [ ] **Verify the About night hover-label contrast** — Astra observed the branch hover plaque dimmed beneath the atmosphere; keyboard focus uses its separate clear label. Retained after the owner requested proceeding. Evidence: `validation/hero-time-transition-2026-09-06/about-1440-night-copy-breakout.png`.
 - [ ] **Extend the existing Nala mobile FAB clearance audit to About** — Astra observed the fixed assistant trigger overlapping the lower-right introduction at 375px. This is the existing global FAB concern, outside the branch/scenic change. Evidence: `validation/hero-time-transition-2026-09-06/about-375-breakout.png`.
@@ -20,6 +22,8 @@
 - [ ] **Align the existing Player Status popup with the neobrutalist system** - remove its older rounded/gradient treatment observed during Player HUD shortcut validation; evidence: `screenshots/player-hud-2026-07-04/desktop-inventory-shortcut.png`.
 
 ## Done
+
+- [x] ~~**Add the immersive Research cyberpunk hero**~~ (2026-09-07) — independent city/rooftop assets, rain, vapor, two shuttles and a session-local receiver discovery; original publication data preserved. Astra accepted the final screenshots. Production build, 61 browser/content assertions, ten unit checks and 24 live fade-transition captures passed. Desktop frame pacing remains a separately tracked P3. Plan: `docs/plans/scenic-heroes/research-checklist.md`; evidence: `validation/biome-heroes-2026-09-06/research/README.md`.
 
 - [x] ~~**Repair GA4 all-route detection and audit the SEO roadmap**~~ (2026-09-01) - migrated GA4 to the server-read `GOOGLE_ANALYTICS_ID`, placed one native tag pair in the root document head, proved 47 sitemap routes plus forbidden/404 documents are tagged exactly once, retained singleton behavior across client navigation, connected the server-only PageSpeed API and Ahrefs IndexNow env names, and classified all 12 roadmap steps without claiming account-level or recurring work as complete. The current public mobile PSI result is 75/100/100/100 and the SEO crawl passes 47/47 URLs. Plan: `plans/google-analytics-all-routes-2026-09-01.md`; evidence: `validation/google-analytics-all-routes-2026-09-01/README.md`.
 

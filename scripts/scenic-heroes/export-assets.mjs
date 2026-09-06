@@ -2,6 +2,7 @@ import sharp from 'sharp';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
+import { prepareAlpha } from './prepare-alpha.mjs';
 
 const page = process.argv[2];
 if (!['about', 'projects', 'research', 'blog', 'contact'].includes(page)) throw new Error('Supply a known page');
@@ -12,7 +13,8 @@ await mkdir(output, { recursive: true });
 const manifest = { page, generator: source.generator, assets: [] };
 const descriptors = {};
 for (const asset of source.assets) {
-  const original = await readFile(asset.source);
+  const sourceBytes = await readFile(asset.source);
+  const original = await prepareAlpha(sourceBytes, asset);
   const metadata = await sharp(original).metadata();
   let crop = { left: 0, top: 0, width: metadata.width, height: metadata.height };
   if (asset.cutout) {
@@ -37,7 +39,7 @@ for (const asset of source.assets) {
     const m = await sharp(bytes).metadata();
     const descriptor = { src: `/scenic-heroes/${page}/${name}.webp`, width: m.width, height: m.height };
     descriptors[name] = descriptor;
-    manifest.assets.push({ id: name, ...descriptor, bytes: bytes.length, alpha: !!m.hasAlpha, crop, sha256: createHash('sha256').update(bytes).digest('hex'), source: asset.source, sourceSha256: createHash('sha256').update(original).digest('hex') });
+    manifest.assets.push({ id: name, ...descriptor, bytes: bytes.length, alpha: !!m.hasAlpha, crop, sha256: createHash('sha256').update(bytes).digest('hex'), source: asset.source, sourceSha256: createHash('sha256').update(sourceBytes).digest('hex'), ...(asset.matte || asset.alphaScale ? { preparation: { matte: asset.matte, alphaScale: asset.alphaScale } } : {}) });
   }
 }
 await writeFile(path.join(root, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');

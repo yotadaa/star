@@ -99,7 +99,7 @@
 .journal ul { list-style: none; padding: 0; margin: 0 0 16px; }
 .journal li { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid color-mix(in srgb, var(--palette-cream) 20%, transparent); padding: 10px 0; font-size: 12px; }
 .journal li span:last-child { color: var(--palette-gold); }
-.fade { --scene-page-color: var(--phase-page); transition: --scene-page-color var(--phase-ui-duration) ease; z-index: 4; top: auto; bottom: -1px; height: 30%; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--scene-page-color, var(--phase-page)) 18%, transparent) 20%, color-mix(in srgb, var(--scene-page-color, var(--phase-page)) 65%, transparent) 57%, var(--scene-page-color, var(--phase-page)) 94%); }
+.fade { z-index: 4; top: auto; bottom: -1px; height: 30%; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--scene-page-color, var(--phase-page)) 18%, transparent) 20%, color-mix(in srgb, var(--scene-page-color, var(--phase-page)) 65%, transparent) 57%, var(--scene-page-color, var(--phase-page)) 94%); }
 .atmosphere { z-index: 2; }
 .atmospherePlane { position: absolute; inset: 0; transition: opacity var(--scene-phase-duration) var(--phase-easing); }
 .hero[data-motion="paused"], .hero[data-motion="reduced"] { --scene-phase-duration: 0ms; }
@@ -157,3 +157,6 @@
 .primitive[data-material="dust"] { background: var(--palette-cream); opacity: .38; filter: blur(.5px); }
 .ambient[data-animation="drift"] { animation-name: sceneDrift; animation-timing-function: linear; }
 @keyframes sceneDrift { 0% { transform: translate(calc(var(--travel-x) * -1), calc(var(--travel-y) * -1)); opacity: 0; } 20%,70% { opacity: 1; } 100% { transform: translate(var(--travel-x), var(--travel-y)); opacity: 0; } }
+
+.primitive[data-material="rain"] { height: 24px; aspect-ratio: auto; border-radius: 0; background: var(--palette-cream); color: var(--palette-cream); opacity: .2; transform: rotate(8deg); box-shadow: 73px 41px 0 currentColor, -56px 114px 0 currentColor, 122px 176px 0 currentColor; }
+.primitive[data-material="signal-light"] { background: var(--palette-gold); box-shadow: 0 0 8px 2px color-mix(in srgb, var(--palette-gold) 45%, transparent); }

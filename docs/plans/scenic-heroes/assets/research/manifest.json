@@ -1,0 +1,186 @@
+{
+  "page": "research",
+  "generator": "OpenAI built-in imagegen",
+  "assets": [
+    {
+      "id": "city-768",
+      "src": "/scenic-heroes/research/city-768.webp",
+      "width": 768,
+      "height": 512,
+      "bytes": 39400,
+      "alpha": false,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "sha256": "1a5ed419c415da92ae17a7a5e7f97ec4f032fb0ca25d3073bc20f11c13a45c8a",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-d0f1852b-87c0-4fb9-a91c-a08a7c5f033d.png",
+      "sourceSha256": "6c8571d850058c29b99879bbf679829d55e6dc42eba4fb9b9f1b6efd8e5d8069"
+    },
+    {
+      "id": "city-1280",
+      "src": "/scenic-heroes/research/city-1280.webp",
+      "width": 1280,
+      "height": 853,
+      "bytes": 95126,
+      "alpha": false,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "sha256": "ecf0cf0bdc1b6364b506eea9cf4b20b09e7ff8a2eb41cbe20af85dd0a44416ec",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-d0f1852b-87c0-4fb9-a91c-a08a7c5f033d.png",
+      "sourceSha256": "6c8571d850058c29b99879bbf679829d55e6dc42eba4fb9b9f1b6efd8e5d8069"
+    },
+    {
+      "id": "city-1536",
+      "src": "/scenic-heroes/research/city-1536.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 121296,
+      "alpha": false,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "sha256": "4a57b0a9abafb506e3489d871d1441be3a1838840b065fa60aa4dd65e3146360",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-d0f1852b-87c0-4fb9-a91c-a08a7c5f033d.png",
+      "sourceSha256": "6c8571d850058c29b99879bbf679829d55e6dc42eba4fb9b9f1b6efd8e5d8069"
+    },
+    {
+      "id": "facade",
+      "src": "/scenic-heroes/research/facade.webp",
+      "width": 797,
+      "height": 1882,
+      "bytes": 223048,
+      "alpha": true,
+      "crop": {
+        "left": 6,
+        "top": 7,
+        "width": 797,
+        "height": 1882
+      },
+      "sha256": "0fc6941a24ecec22812cd0fe6c55ef402717e11dc2e6d55d548e600e708de988",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-3e3dbb9f-982b-4788-a76a-fa87b857742d.png",
+      "sourceSha256": "842ea5126195a81f2479bcea454b74db9bd8c58cafb0c42333a21316d6485111",
+      "preparation": {
+        "matte": {
+          "low": 170,
+          "high": 210,
+          "chroma": 22,
+          "background": 238
+        }
+      }
+    },
+    {
+      "id": "middle-block",
+      "src": "/scenic-heroes/research/middle-block.webp",
+      "width": 880,
+      "height": 587,
+      "bytes": 96970,
+      "alpha": true,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "sha256": "6a6b9f1c992914d37387aac03528db9efafbc2f6b7d5a64a835e20ef73a4ef81",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-69477f70-d0ec-4638-9426-5647215b5087.png",
+      "sourceSha256": "ad2caf9ff0990a82dada48a1d5ea0c16383c6faba35eb5d37dfb98decf6ed43e",
+      "preparation": {
+        "matte": {
+          "low": 170,
+          "high": 210,
+          "chroma": 22,
+          "background": 238
+        }
+      }
+    },
+    {
+      "id": "rooftop",
+      "src": "/scenic-heroes/research/rooftop.webp",
+      "width": 1300,
+      "height": 300,
+      "bytes": 114964,
+      "alpha": true,
+      "crop": {
+        "left": 0,
+        "top": 81,
+        "width": 2206,
+        "height": 509
+      },
+      "sha256": "ff8678ff5f45dda9b57505ce2c510d807f4a48a55a8d6fbc1c62c3c83a36a28a",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-e553cbba-98cd-46f5-9c82-5386aa59ee66.png",
+      "sourceSha256": "d946134542e1f1add50ec2f5657e820ab6fa6c56beddd7de4b0365c36319977e",
+      "preparation": {
+        "matte": {
+          "low": 170,
+          "high": 210,
+          "chroma": 22,
+          "background": 238
+        }
+      }
+    },
+    {
+      "id": "signal",
+      "src": "/scenic-heroes/research/signal.webp",
+      "width": 420,
+      "height": 499,
+      "bytes": 28634,
+      "alpha": true,
+      "crop": {
+        "left": 67,
+        "top": 18,
+        "width": 1069,
+        "height": 1271
+      },
+      "sha256": "53f580d6f346ab6ab9840c0e10142c5eba5b5d3d6e33707e0ceb3e233253bf19",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-985ded81-201f-4d96-b211-65e95f9e846c.png",
+      "sourceSha256": "63131b21c9a22b8d6d8cd5caa86b4760c4abbcf7851f9812d1ac00ea56d9d120"
+    },
+    {
+      "id": "shuttle",
+      "src": "/scenic-heroes/research/shuttle.webp",
+      "width": 420,
+      "height": 165,
+      "bytes": 16276,
+      "alpha": true,
+      "crop": {
+        "left": 38,
+        "top": 176,
+        "width": 1445,
+        "height": 566
+      },
+      "sha256": "46cc881e8d96b52181b2da97aece49fbf4e5613cb69519f61c671dfbf8848a66",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-5c8b4472-9078-4f8c-a51f-05878b6ff0ef.png",
+      "sourceSha256": "b7b460905e153eaf7381039a844ff7febc988f483170caf91df65b93ab84ed8b"
+    },
+    {
+      "id": "vapor",
+      "src": "/scenic-heroes/research/vapor.webp",
+      "width": 720,
+      "height": 175,
+      "bytes": 26538,
+      "alpha": true,
+      "crop": {
+        "left": 104,
+        "top": 131,
+        "width": 2024,
+        "height": 491
+      },
+      "sha256": "ecb8ee1894b260bcf3c410e9626e6a386dce8dfdfad5239e9220070e7d1a6379",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-f1b42ae8-5dfc-4b61-9290-2fd6f4745cbc.png",
+      "sourceSha256": "37819a43b85c621c37bc0def471d5b5471911437217ae8a355e7b1a94f642402",
+      "preparation": {
+        "alphaScale": 0.42
+      }
+    }
+  ]
+}

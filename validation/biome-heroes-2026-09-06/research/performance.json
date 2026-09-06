@@ -1,0 +1,604 @@
+{
+  "base": "http://127.0.0.1:3125",
+  "conditions": "Local production build, fresh browser contexts, no network/CPU throttling; analytics blocked. Whole-page metrics include existing shell and backend latency.",
+  "samples": [
+    {
+      "width": 1440,
+      "run": 1,
+      "cls": 0,
+      "lcp": 632,
+      "longTasks": [
+        {
+          "start": 396.09999999962747,
+          "duration": 113
+        },
+        {
+          "start": 537.5,
+          "duration": 103
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/middle-block.webp",
+          "bytes": 96970
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/vapor.webp",
+          "bytes": 26538
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/shuttle.webp",
+          "bytes": 16276
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/facade.webp",
+          "bytes": 223048
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/rooftop.webp",
+          "bytes": 114964
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/signal.webp",
+          "bytes": 28634
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/city-1536.webp",
+          "bytes": 121296
+        }
+      ],
+      "animations": 12,
+      "nav": {
+        "name": "http://127.0.0.1:3125/research",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 680.7999999988824,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 1.199999999254942,
+        "domainLookupStart": 1.199999999254942,
+        "domainLookupEnd": 1.199999999254942,
+        "connectStart": 1.199999999254942,
+        "secureConnectionStart": 0,
+        "connectEnd": 1.199999999254942,
+        "requestStart": 10.699999999254942,
+        "responseStart": 319.90000000037253,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 319.90000000037253,
+        "responseEnd": 334.59999999962747,
+        "transferSize": 16451,
+        "encodedBodySize": 16151,
+        "decodedBodySize": 61863,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 680.0999999996275,
+        "domContentLoadedEventStart": 680.1999999992549,
+        "domContentLoadedEventEnd": 680.5999999996275,
+        "domComplete": 680.7999999988824,
+        "loadEventStart": 680.7999999988824,
+        "loadEventEnd": 680.7999999988824,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 627726
+    },
+    {
+      "width": 1440,
+      "run": 2,
+      "cls": 0,
+      "lcp": 860,
+      "longTasks": [
+        {
+          "start": 745.2000000011176,
+          "duration": 104
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/middle-block.webp",
+          "bytes": 96970
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/vapor.webp",
+          "bytes": 26538
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/shuttle.webp",
+          "bytes": 16276
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/facade.webp",
+          "bytes": 223048
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/rooftop.webp",
+          "bytes": 114964
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/signal.webp",
+          "bytes": 28634
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/city-1536.webp",
+          "bytes": 121296
+        }
+      ],
+      "animations": 12,
+      "nav": {
+        "name": "http://127.0.0.1:3125/research",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 895,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.6000000014901161,
+        "domainLookupStart": 0.6000000014901161,
+        "domainLookupEnd": 0.6000000014901161,
+        "connectStart": 0.6000000014901161,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.6000000014901161,
+        "requestStart": 5.5,
+        "responseStart": 575.6000000014901,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 575.6000000014901,
+        "responseEnd": 587.8000000007451,
+        "transferSize": 16451,
+        "encodedBodySize": 16151,
+        "decodedBodySize": 61863,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 642.1000000014901,
+        "domContentLoadedEventStart": 642.1000000014901,
+        "domContentLoadedEventEnd": 642.2000000011176,
+        "domComplete": 895,
+        "loadEventStart": 895,
+        "loadEventEnd": 895,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 627726
+    },
+    {
+      "width": 1440,
+      "run": 3,
+      "cls": 0,
+      "lcp": 504,
+      "longTasks": [
+        {
+          "start": 306.2999999988824,
+          "duration": 71
+        },
+        {
+          "start": 408.90000000037253,
+          "duration": 103
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/middle-block.webp",
+          "bytes": 96970
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/vapor.webp",
+          "bytes": 26538
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/shuttle.webp",
+          "bytes": 16276
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/facade.webp",
+          "bytes": 223048
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/rooftop.webp",
+          "bytes": 114964
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/signal.webp",
+          "bytes": 28634
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/city-1536.webp",
+          "bytes": 121296
+        }
+      ],
+      "animations": 12,
+      "nav": {
+        "name": "http://127.0.0.1:3125/research",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 557.7999999988824,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.6999999992549419,
+        "domainLookupStart": 0.6999999992549419,
+        "domainLookupEnd": 0.6999999992549419,
+        "connectStart": 0.6999999992549419,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.6999999992549419,
+        "requestStart": 7.799999998882413,
+        "responseStart": 234.2999999988824,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 234.2999999988824,
+        "responseEnd": 247.19999999925494,
+        "transferSize": 16451,
+        "encodedBodySize": 16151,
+        "decodedBodySize": 61863,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 386.90000000037253,
+        "domContentLoadedEventStart": 387.09999999962747,
+        "domContentLoadedEventEnd": 387.2999999988824,
+        "domComplete": 557.7999999988824,
+        "loadEventStart": 557.7999999988824,
+        "loadEventEnd": 557.7999999988824,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 627726
+    },
+    {
+      "width": 375,
+      "run": 1,
+      "cls": 0,
+      "lcp": 436,
+      "longTasks": [
+        {
+          "start": 394.40000000037253,
+          "duration": 104
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/middle-block.webp",
+          "bytes": 96970
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/vapor.webp",
+          "bytes": 26538
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/shuttle.webp",
+          "bytes": 16276
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/facade.webp",
+          "bytes": 223048
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/rooftop.webp",
+          "bytes": 114964
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/signal.webp",
+          "bytes": 28634
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/city-768.webp",
+          "bytes": 39400
+        }
+      ],
+      "animations": 12,
+      "nav": {
+        "name": "http://127.0.0.1:3125/research",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 542,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.8000000007450581,
+        "domainLookupStart": 0.8000000007450581,
+        "domainLookupEnd": 0.8000000007450581,
+        "connectStart": 0.8000000007450581,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.8000000007450581,
+        "requestStart": 4.900000000372529,
+        "responseStart": 227.5,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 227.5,
+        "responseEnd": 238.59999999962747,
+        "transferSize": 16451,
+        "encodedBodySize": 16151,
+        "decodedBodySize": 61863,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 294.80000000074506,
+        "domContentLoadedEventStart": 294.80000000074506,
+        "domContentLoadedEventEnd": 295,
+        "domComplete": 542,
+        "loadEventStart": 542,
+        "loadEventEnd": 542,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 545830
+    },
+    {
+      "width": 375,
+      "run": 2,
+      "cls": 0,
+      "lcp": 436,
+      "longTasks": [
+        {
+          "start": 317.90000000037253,
+          "duration": 67
+        },
+        {
+          "start": 409.30000000074506,
+          "duration": 102
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/middle-block.webp",
+          "bytes": 96970
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/vapor.webp",
+          "bytes": 26538
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/shuttle.webp",
+          "bytes": 16276
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/facade.webp",
+          "bytes": 223048
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/rooftop.webp",
+          "bytes": 114964
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/signal.webp",
+          "bytes": 28634
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/city-768.webp",
+          "bytes": 39400
+        }
+      ],
+      "animations": 12,
+      "nav": {
+        "name": "http://127.0.0.1:3125/research",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 548.3000000007451,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 1,
+        "domainLookupStart": 1,
+        "domainLookupEnd": 1,
+        "connectStart": 1,
+        "secureConnectionStart": 0,
+        "connectEnd": 1,
+        "requestStart": 10.5,
+        "responseStart": 232.09999999962747,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 232.09999999962747,
+        "responseEnd": 244,
+        "transferSize": 16451,
+        "encodedBodySize": 16151,
+        "decodedBodySize": 61863,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 547.5999999996275,
+        "domContentLoadedEventStart": 547.7000000011176,
+        "domContentLoadedEventEnd": 548.0999999996275,
+        "domComplete": 548.3000000007451,
+        "loadEventStart": 548.3000000007451,
+        "loadEventEnd": 548.3000000007451,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 545830
+    },
+    {
+      "width": 375,
+      "run": 3,
+      "cls": 0,
+      "lcp": 456,
+      "longTasks": [
+        {
+          "start": 308.09999999962747,
+          "duration": 69
+        },
+        {
+          "start": 401.8999999985099,
+          "duration": 103
+        }
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/middle-block.webp",
+          "bytes": 96970
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/vapor.webp",
+          "bytes": 26538
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/shuttle.webp",
+          "bytes": 16276
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/facade.webp",
+          "bytes": 223048
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/rooftop.webp",
+          "bytes": 114964
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/signal.webp",
+          "bytes": 28634
+        },
+        {
+          "url": "http://127.0.0.1:3125/scenic-heroes/research/city-768.webp",
+          "bytes": 39400
+        }
+      ],
+      "animations": 12,
+      "nav": {
+        "name": "http://127.0.0.1:3125/research",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 550.7999999988824,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.6999999992549419,
+        "domainLookupStart": 0.6999999992549419,
+        "domainLookupEnd": 0.6999999992549419,
+        "connectStart": 0.6999999992549419,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.6999999992549419,
+        "requestStart": 4.799999998882413,
+        "responseStart": 227,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 227,
+        "responseEnd": 240.2999999988824,
+        "transferSize": 16451,
+        "encodedBodySize": 16151,
+        "decodedBodySize": 61863,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 383.8999999985099,
+        "domContentLoadedEventStart": 383.8999999985099,
+        "domContentLoadedEventEnd": 384,
+        "domComplete": 550.7999999988824,
+        "loadEventStart": 550.7999999988824,
+        "loadEventEnd": 550.7999999988824,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "idleLongTasks": [],
+      "imageBytes": 545830
+    }
+  ]
+}

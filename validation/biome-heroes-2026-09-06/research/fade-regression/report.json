@@ -1,0 +1,798 @@
+{
+  "base": "http://127.0.0.1:3125",
+  "sampling": "Live, unpaused transitions; screenshot requested 35ms after actual toggle. Pixels sampled on both sides of the visible hero edge.",
+  "samples": [
+    {
+      "route": "about",
+      "width": 1440,
+      "phase": "noon",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            245,
+            236,
+            216
+          ],
+          "below": [
+            245,
+            236,
+            216
+          ]
+        },
+        {
+          "above": [
+            245,
+            236,
+            216
+          ],
+          "below": [
+            245,
+            236,
+            216
+          ]
+        }
+      ],
+      "gap": 0
+    },
+    {
+      "route": "about",
+      "width": 1440,
+      "phase": "sunset",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            245,
+            236,
+            216
+          ],
+          "below": [
+            245,
+            236,
+            216
+          ]
+        },
+        {
+          "above": [
+            245,
+            236,
+            216
+          ],
+          "below": [
+            245,
+            236,
+            216
+          ]
+        }
+      ],
+      "gap": 0
+    },
+    {
+      "route": "about",
+      "width": 1440,
+      "phase": "night",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            234,
+            211,
+            161
+          ],
+          "below": [
+            234,
+            212,
+            161
+          ]
+        },
+        {
+          "above": [
+            235,
+            212,
+            161
+          ],
+          "below": [
+            234,
+            212,
+            161
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "about",
+      "width": 1440,
+      "phase": "morning",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            21,
+            41,
+            40
+          ],
+          "below": [
+            21,
+            41,
+            40
+          ]
+        },
+        {
+          "above": [
+            21,
+            41,
+            40
+          ],
+          "below": [
+            21,
+            41,
+            40
+          ]
+        }
+      ],
+      "gap": 0
+    },
+    {
+      "route": "about",
+      "width": 375,
+      "phase": "noon",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            245,
+            236,
+            216
+          ],
+          "below": [
+            245,
+            236,
+            216
+          ]
+        },
+        {
+          "above": [
+            245,
+            236,
+            216
+          ],
+          "below": [
+            245,
+            236,
+            216
+          ]
+        }
+      ],
+      "gap": 0
+    },
+    {
+      "route": "about",
+      "width": 375,
+      "phase": "sunset",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            235,
+            213,
+            163
+          ],
+          "below": [
+            235,
+            213,
+            163
+          ]
+        },
+        {
+          "above": [
+            235,
+            212,
+            163
+          ],
+          "below": [
+            235,
+            213,
+            163
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "about",
+      "width": 375,
+      "phase": "night",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            22,
+            41,
+            40
+          ],
+          "below": [
+            22,
+            41,
+            40
+          ]
+        },
+        {
+          "above": [
+            21,
+            41,
+            40
+          ],
+          "below": [
+            22,
+            41,
+            40
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "about",
+      "width": 375,
+      "phase": "morning",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            233,
+            220,
+            191
+          ],
+          "below": [
+            233,
+            220,
+            191
+          ]
+        },
+        {
+          "above": [
+            233,
+            220,
+            191
+          ],
+          "below": [
+            233,
+            220,
+            191
+          ]
+        }
+      ],
+      "gap": 0
+    },
+    {
+      "route": "projects",
+      "width": 1440,
+      "phase": "noon",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            245,
+            236,
+            216
+          ],
+          "below": [
+            245,
+            236,
+            216
+          ]
+        },
+        {
+          "above": [
+            245,
+            236,
+            216
+          ],
+          "below": [
+            245,
+            236,
+            216
+          ]
+        }
+      ],
+      "gap": 0
+    },
+    {
+      "route": "projects",
+      "width": 1440,
+      "phase": "sunset",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            237,
+            217,
+            174
+          ],
+          "below": [
+            237,
+            217,
+            174
+          ]
+        },
+        {
+          "above": [
+            237,
+            218,
+            174
+          ],
+          "below": [
+            237,
+            217,
+            174
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "projects",
+      "width": 1440,
+      "phase": "night",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            37,
+            54,
+            50
+          ],
+          "below": [
+            37,
+            53,
+            50
+          ]
+        },
+        {
+          "above": [
+            37,
+            53,
+            49
+          ],
+          "below": [
+            37,
+            53,
+            50
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "projects",
+      "width": 1440,
+      "phase": "morning",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            234,
+            221,
+            192
+          ],
+          "below": [
+            233,
+            220,
+            191
+          ]
+        },
+        {
+          "above": [
+            233,
+            220,
+            191
+          ],
+          "below": [
+            233,
+            220,
+            191
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "projects",
+      "width": 375,
+      "phase": "noon",
+      "edge": 600.4375,
+      "pixels": [
+        {
+          "above": [
+            245,
+            236,
+            216
+          ],
+          "below": [
+            245,
+            236,
+            216
+          ]
+        },
+        {
+          "above": [
+            245,
+            236,
+            216
+          ],
+          "below": [
+            245,
+            236,
+            216
+          ]
+        }
+      ],
+      "gap": 0
+    },
+    {
+      "route": "projects",
+      "width": 375,
+      "phase": "sunset",
+      "edge": 600.4375,
+      "pixels": [
+        {
+          "above": [
+            236,
+            214,
+            166
+          ],
+          "below": [
+            235,
+            214,
+            166
+          ]
+        },
+        {
+          "above": [
+            236,
+            214,
+            166
+          ],
+          "below": [
+            235,
+            214,
+            166
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "projects",
+      "width": 375,
+      "phase": "night",
+      "edge": 600.4375,
+      "pixels": [
+        {
+          "above": [
+            128,
+            127,
+            102
+          ],
+          "below": [
+            128,
+            126,
+            102
+          ]
+        },
+        {
+          "above": [
+            128,
+            127,
+            102
+          ],
+          "below": [
+            128,
+            126,
+            102
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "projects",
+      "width": 375,
+      "phase": "morning",
+      "edge": 600.4375,
+      "pixels": [
+        {
+          "above": [
+            224,
+            213,
+            185
+          ],
+          "below": [
+            224,
+            212,
+            185
+          ]
+        },
+        {
+          "above": [
+            224,
+            213,
+            185
+          ],
+          "below": [
+            224,
+            212,
+            185
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "research",
+      "width": 1440,
+      "phase": "noon",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            245,
+            236,
+            216
+          ],
+          "below": [
+            245,
+            236,
+            216
+          ]
+        },
+        {
+          "above": [
+            245,
+            236,
+            216
+          ],
+          "below": [
+            245,
+            236,
+            216
+          ]
+        }
+      ],
+      "gap": 0
+    },
+    {
+      "route": "research",
+      "width": 1440,
+      "phase": "sunset",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            240,
+            224,
+            190
+          ],
+          "below": [
+            240,
+            225,
+            190
+          ]
+        },
+        {
+          "above": [
+            240,
+            225,
+            191
+          ],
+          "below": [
+            240,
+            225,
+            190
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "research",
+      "width": 1440,
+      "phase": "night",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            215,
+            196,
+            150
+          ],
+          "below": [
+            215,
+            196,
+            150
+          ]
+        },
+        {
+          "above": [
+            214,
+            195,
+            150
+          ],
+          "below": [
+            215,
+            196,
+            150
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "research",
+      "width": 1440,
+      "phase": "morning",
+      "edge": 600,
+      "pixels": [
+        {
+          "above": [
+            37,
+            54,
+            52
+          ],
+          "below": [
+            37,
+            54,
+            51
+          ]
+        },
+        {
+          "above": [
+            36,
+            53,
+            51
+          ],
+          "below": [
+            37,
+            54,
+            51
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "research",
+      "width": 375,
+      "phase": "noon",
+      "edge": 600.4375,
+      "pixels": [
+        {
+          "above": [
+            243,
+            234,
+            212
+          ],
+          "below": [
+            243,
+            234,
+            212
+          ]
+        },
+        {
+          "above": [
+            243,
+            234,
+            212
+          ],
+          "below": [
+            243,
+            234,
+            212
+          ]
+        }
+      ],
+      "gap": 0
+    },
+    {
+      "route": "research",
+      "width": 375,
+      "phase": "sunset",
+      "edge": 600.4375,
+      "pixels": [
+        {
+          "above": [
+            236,
+            214,
+            166
+          ],
+          "below": [
+            235,
+            214,
+            166
+          ]
+        },
+        {
+          "above": [
+            236,
+            214,
+            166
+          ],
+          "below": [
+            235,
+            214,
+            166
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "research",
+      "width": 375,
+      "phase": "night",
+      "edge": 600.4375,
+      "pixels": [
+        {
+          "above": [
+            30,
+            47,
+            45
+          ],
+          "below": [
+            29,
+            47,
+            45
+          ]
+        },
+        {
+          "above": [
+            29,
+            47,
+            45
+          ],
+          "below": [
+            29,
+            47,
+            45
+          ]
+        }
+      ],
+      "gap": 1
+    },
+    {
+      "route": "research",
+      "width": 375,
+      "phase": "morning",
+      "edge": 600.4375,
+      "pixels": [
+        {
+          "above": [
+            224,
+            213,
+            185
+          ],
+          "below": [
+            224,
+            212,
+            185
+          ]
+        },
+        {
+          "above": [
+            224,
+            213,
+            185
+          ],
+          "below": [
+            224,
+            212,
+            185
+          ]
+        }
+      ],
+      "gap": 1
+    }
+  ]
+}

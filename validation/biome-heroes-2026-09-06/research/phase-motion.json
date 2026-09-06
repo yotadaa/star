@@ -1,0 +1,78 @@
+{
+  "base": "http://127.0.0.1:3125",
+  "conditions": "Local production Chromium, no CPU/network throttling, serial samples without screenshot work. Frame intervals cover the whole page, not only the hero.",
+  "samples": [
+    {
+      "width": 1440,
+      "phase": "noon",
+      "frames": 65,
+      "p95": 49.999999999999545,
+      "max": 50,
+      "stableImages": true,
+      "loaded": true
+    },
+    {
+      "width": 1440,
+      "phase": "sunset",
+      "frames": 70,
+      "p95": 33.399999999999636,
+      "max": 33.399999999999636,
+      "stableImages": true,
+      "loaded": true
+    },
+    {
+      "width": 1440,
+      "phase": "night",
+      "frames": 61,
+      "p95": 33.399999999999636,
+      "max": 50,
+      "stableImages": true,
+      "loaded": true
+    },
+    {
+      "width": 1440,
+      "phase": "morning",
+      "frames": 65,
+      "p95": 33.5,
+      "max": 50.100000000000364,
+      "stableImages": true,
+      "loaded": true
+    },
+    {
+      "width": 375,
+      "phase": "noon",
+      "frames": 88,
+      "p95": 16.700000000000728,
+      "max": 16.800000000000182,
+      "stableImages": true,
+      "loaded": true
+    },
+    {
+      "width": 375,
+      "phase": "sunset",
+      "frames": 87,
+      "p95": 16.700000000000728,
+      "max": 16.800000000000182,
+      "stableImages": true,
+      "loaded": true
+    },
+    {
+      "width": 375,
+      "phase": "night",
+      "frames": 88,
+      "p95": 16.700000000000728,
+      "max": 16.800000000000182,
+      "stableImages": true,
+      "loaded": true
+    },
+    {
+      "width": 375,
+      "phase": "morning",
+      "frames": 87,
+      "p95": 16.700000000000728,
+      "max": 16.80000000000109,
+      "stableImages": true,
+      "loaded": true
+    }
+  ]
+}

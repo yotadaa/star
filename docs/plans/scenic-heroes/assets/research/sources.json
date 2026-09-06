@@ -1,0 +1,101 @@
+{
+  "page": "research",
+  "generator": "OpenAI built-in imagegen",
+  "assets": [
+    {
+      "id": "city",
+      "width": 1536,
+      "cutout": false,
+      "prompt": "Use case: precise-object-edit. Recompose this realistic Japanese cyberpunk megacity environment plate for an immersive parallax website. Keep photographic rain-soaked materials, teal/coral practical panels and amber windows, blue-grey monsoon clouds. IMPORTANT COMPOSITION CHANGE: bring the skyline from the extreme right to the CENTER AND RIGHT TWO THIRDS; make varied dense tall towers visible behind x=50% through x=85%, starting at 25% from top. Left third is quiet luminous storm cloud above a much lower receding skyline; lower third has dense small distant rooftops across the whole width. Clear city canyons and layers of fog between buildings, utilitarian suspended bridges and cable infrastructure integrated realistically. Stronger luminous teal and coral panels with physical localized bloom in the wet air, occupied amber interiors, recognizable cyberpunk atmosphere but grounded photographic architecture. Moody blue-hour storm light with dark concrete and illuminated clouds rather than washed-out pale grey, high-quality natural materials, believable structural perspective. Keep caption space at x=0-35% y=10-55% quiet. No close foreground facade, rooftop parapet, antenna device or flying vehicles; these are independent assets. No readable text, fake characters, giant holograms, UI, logo or border. Wide 1536x1024 city background only.",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-d0f1852b-87c0-4fb9-a91c-a08a7c5f033d.png",
+      "previous": {
+        "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-2e5b658d-5f9e-4a69-beb7-5cdbabfd2164.png",
+        "prompt": "Production environmental background plate for a layered interactive website hero. Photographically realistic future Japanese city just after rain, seen across rooftops from an elevated viewpoint. Distant dense but orderly buildings on the RIGHT and low horizon, atmospheric blue-grey haze, pale overcast sky occupying the upper two thirds and open left half. Restrained believable future architecture, concrete, weathered metal, small warm practical window lights. Natural soft daylight, real tonal variation, no saturated neon. This is distant scenery only: NO foreground facade, NO close roof, NO antenna, NO vehicles, NO rain streaks, NO people, NO text, NO signage, NO UI. Leave quiet sky on the left for separate HTML caption. Wide landscape1536x1024, natural lens, consistent straight building lines, not a fantasy painting, not a glossy CGI poster."
+      },
+      "editTarget": "/home/tada/projects/star/public/scenic-heroes/research/city-1536.webp",
+      "revisions": [
+        {
+          "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-dfb98356-b4a4-44d1-8f2b-38474e8f7e4b.png",
+          "prompt": "Use case: lighting-weather and architectural style-transfer. Edit this distant environment plate into an atmospheric realistic Japanese CYBERPUNK megacity after rain. This is a background layer for an interactive parallax portfolio. Keep the open LEFT half and upper left as quiet soft blue-grey monsoon cloud and haze for HTML text, but change the RIGHT skyline into a dense vertical near-future city with varied tall layered towers, narrow utility bridges and real weathered infrastructure. Clear cyberpunk character from practical luminous teal and coral lightbox panels, small amber windows, attached vertical light strips and reflected light inside humid gaps. Mid-distance fog obscures lower distant streets. Moody late-afternoon storm daylight, clouds still illuminated and moderate exposure, NOT pitch-black night. Photographic materials, restrained bloom confined to actual lamps, strong atmospheric perspective and believable straight architecture. No foreground roof, close building facade, antenna, vehicles, individual rain streaks or people; these will be independent sprites. No lettering, pseudo-Japanese text, logos, holograms, abstract gradients, UI or watermarks. Wide 1536x1024. Keep left reading space clear while the city on right feels inhabited, complex, damp and breathing."
+        }
+      ]
+    },
+    {
+      "id": "facade",
+      "width": 900,
+      "cutout": true,
+      "prompt": "Use case: precise-object-edit, lighting-weather. Edit this isolated building into a REALISTIC Japanese cyberpunk city facade at overcast storm daylight. Preserve the exact complete structural silhouette, perspective, dimensions, roof equipment and actual transparent alpha around all edges. Change the dead grey facade with believable retrofitted technology: two narrow attached teal tube-light rails along selected vertical concrete seams, a compact coral lightbox panel mounted to an upper service wall, a few warm amber occupied window interiors, patched metal utility covers and subtle rain-darkened concrete. Clearly physical lights integrated into architecture, localized colored reflections on wet surfaces, modest bloom inside silhouette, no halo painted outside the alpha edge. This is weathered everyday architecture, not a clean toy render. Keep concrete texture, pipes, scaffolding and realistic engineering; moderate blue-grey storm daylight leaves details readable. No letters, signage text, digits, logos, sky, city backdrop, ground, people, vegetation, holograms or UI. Actual transparent background, no solid color or checkerboard baked in.",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-3e3dbb9f-982b-4788-a76a-fa87b857742d.png",
+      "previous": {
+        "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-9e60dbfe-1775-4b95-977d-da8fec0629c3.png",
+        "prompt": "One independent production cutout on actual transparent alpha background: a close future Japanese building facade, tall narrow asymmetrical concrete and dull metal service tower with precise structural verticals, a few recessed windows and modest rooftop utility boxes. Three-quarter view from a slightly elevated neighboring rooftop. Weathered realistic grey concrete, seams, oxidation and subtle wet streaks after rain. Soft overcast daylight, restrained material palette, no neon. The complete silhouette including top and lower base is isolated with generous transparent margins; transparent around the building, no city or sky. NO text, signage, letters, people, trees, antenna, vehicle, decorative circuitry, glow, outlines or UI. Photographic texture and physically coherent construction, not a toy or painterly illustration."
+      },
+      "editTarget": "/home/tada/projects/star/public/scenic-heroes/research/facade.webp",
+      "matte": {
+        "low": 170,
+        "high": 210,
+        "chroma": 22,
+        "background": 238
+      }
+    },
+    {
+      "id": "middle-block",
+      "width": 880,
+      "cutout": true,
+      "prompt": "Use case: precise-object-edit, lighting-weather. Edit the supplied isolated city building cluster to match a grounded Japanese cyberpunk megacity in moody blue-grey storm daylight just after rain. Preserve complete geometry, three-building arrangement, view from above, transparent silhouette and clear alpha around/between volumes. Add inhabited amber window interiors, a few small physical teal and coral backlit panels attached to walls, horizontal teal utility lamps in selected recessed balconies, wet concrete and metal picking up those colored reflections. Controlled real light emission with realistic falloff, no enormous bloom or glowing object outline. Contrast from weathered materials, clear structural lines and varied real building details. No text, Japanese-like scribbles, logos, floating holograms, decorative circuitry, people, vehicles, sky, roof foreground, surroundings or UI. Transparent production cutout, same aspect ratio and shape.",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-69477f70-d0ec-4638-9426-5647215b5087.png",
+      "previous": {
+        "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-f0105314-2a3a-4d6f-a542-a1abc765e428.png",
+        "prompt": "A standalone middle-distance cluster of three connected low Japanese near-future city buildings, isolated on a truly transparent alpha background. Boxy believable staggered concrete structures with a few recessed balconies, darker ventilation panels and wet window glass, coherent simple structural geometry. Seen from slightly above, full skyline silhouette visible. Soft overcast light just after rain, photographic weathered blue-grey materials with subtle warm practical windows. Wide horizontal cluster, not a towering skyscraper. Transparent sky around and between separated upper volumes. No surrounding city, ground plane or background, no close foreground, no vehicles, people, greenery, text, signs, neon advertising, holograms or decorative circuitry. Production environment cutout for parallax, not a complete scene."
+      },
+      "editTarget": "/home/tada/projects/star/public/scenic-heroes/research/middle-block.webp",
+      "matte": {
+        "low": 170,
+        "high": 210,
+        "chroma": 22,
+        "background": 238
+      }
+    },
+    {
+      "id": "rooftop",
+      "width": 1300,
+      "cutout": true,
+      "prompt": "Use case: lighting-weather. Edit this wet concrete rooftop cutout for a realistic Japanese cyberpunk environment. Preserve its exact wide low geometry and irregular parapet silhouette, open surface and view from slightly above, actual transparent alpha above the ledge, continuous bottom. Make the rain-darkened concrete a cooler blue-grey under storm daylight; add localized subtle teal and coral reflections from off-frame architectural lights across portions of the shallow puddles, with irregular water ripples and real roughness. Reflections must be physically smeared in water, never clean neon graphic stripes or full-surface gradient. Keep chipped stone, rain stains and damp concrete texture. No new devices, buildings, railings, people, plants, text, UI, skyline, sky or solid backdrop. Clean alpha edge with no colored fringe. Moderate exposure, not black night.",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-e553cbba-98cd-46f5-9c82-5386aa59ee66.png",
+      "previous": {
+        "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-5449ed4f-b87f-4f64-a177-405756a9f229.png",
+        "prompt": "One wide foreground rooftop cutout for layered website scenery, actual transparent alpha above its irregular top edge: a low wet weathered concrete parapet and shallow roof surface seen from slightly above, extending horizontally across the canvas. Plain utilitarian Japanese urban rooftop, old rain stains, small chipped edges, restrained shallow puddle reflections, a couple of unobtrusive metal joints. Soft cloudy daylight, realistic muted grey concrete texture, plausible perspective. Solid continuous bottom, transparent above, wide landscape ratio. No building skyline, sky, antenna, device, vehicle, people, plants, text or UI. No sharp artificial outline, decorative patterns, magical glow, plastic CGI or stylized illustration. Keep the middle roof surface open for a separate small signal receiver."
+      },
+      "editTarget": "/home/tada/projects/star/public/scenic-heroes/research/rooftop.webp",
+      "matte": {
+        "low": 170,
+        "high": 210,
+        "chroma": 22,
+        "background": 238
+      }
+    },
+    {
+      "id": "signal",
+      "width": 420,
+      "cutout": true,
+      "prompt": "A single small rooftop radio receiver/transmitter, isolated entire device on actual transparent alpha. Plausible Japanese near-future industrial equipment: compact matte weathered metal base with four small feet, one short vertical antenna mast and a modest circular amber indicator lens on the front, turned OFF. Three-quarter view from slightly above, the object can sit on a roof. Real metal seams, tiny screws, subtle oxidation and raindrops, soft overcast daylight. Simple legible silhouette, grey/olive materials, restrained proportions. No supporting roof or ground, no cable trailing off canvas, no text or labels, no digits, no sci-fi energy beams, holograms, decorative circuitry, neon or background. Entire item inside frame with transparent margin, photographic material quality, standalone game environment object.",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-985ded81-201f-4d96-b211-65e95f9e846c.png"
+    },
+    {
+      "id": "shuttle",
+      "width": 420,
+      "cutout": true,
+      "prompt": "One small autonomous commuter air shuttle for a grounded Japanese near-future city, independent cutout on actual transparent alpha background. Side profile with a slight three-quarter view from above, facing LEFT. Simple compact elongated capsule body, weathered off-white painted metal with muted charcoal underside, dark windows, restrained engineering seams and small recessed propulsion housings. Believable precise silhouette, no wings spanning large distances, no fantasy weapons. Soft overcast daylight after rain, realistic fine surface texture and rain streaks, no glowing trails or bloom. Entire vehicle isolated with clear margins, no city, sky, floor, shadow cast on background, text, logos, occupants or UI. Photoreal production environment sprite, not cartoon, plastic toy or glossy promotional render.",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-5c8b4472-9078-4f8c-a51f-05878b6ff0ef.png"
+    },
+    {
+      "id": "vapor",
+      "source": "/home/tada/.codex/generated_images/01a07676-7860-7de0-b86b-a1ef2ede16ce/exec-f1b42ae8-5dfc-4b61-9290-2fd6f4745cbc.png",
+      "prompt": "Use case: photorealistic-natural. A single subtle horizontal wisp of rooftop exhaust vapor, isolated on genuinely transparent alpha, for a realistic Japanese cyberpunk city after rain. Wispy translucent blue-grey steam, asymmetrical organic turbulent folds, very soft dissipating edges in every direction, a faint localized teal illumination on the right half. Wide low shape with ample transparent margins, not a large opaque cumulus cloud. No pipe, roof, scenery, sky, person, symbols or text. Absolutely no solid-color background or baked checkerboard, preserve actual alpha including partially transparent vapor. Production atmospheric sprite to be slowly translated independently over distant wet rooftops; restrained density so buildings remain visible through it.",
+      "width": 720,
+      "cutout": true,
+      "alphaScale": 0.42
+    }
+  ],
+  "direction": "Owner requested atmosphere and cyberpunk vibes on 2026-09-07; practical architectural lighting, wet reflections, independent weather and transit."
+}

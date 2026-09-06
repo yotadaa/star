@@ -1,0 +1,261 @@
+[
+  {
+    "t": 21,
+    "fade": "oklab(0.26268 -0.0250027 -0.00590687)",
+    "main": "oklab(0.26268 -0.0250027 -0.00590687)",
+    "fadeAnimations": [
+      {
+        "property": "--scene-page-color",
+        "time": 0
+      }
+    ],
+    "mainAnimations": [
+      {
+        "property": "background-color",
+        "time": 0
+      },
+      {
+        "property": "color",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "t": 28,
+    "fade": "oklab(0.26268 -0.0250027 -0.00590687)",
+    "main": "oklab(0.26268 -0.0250027 -0.00590687)",
+    "fadeAnimations": [
+      {
+        "property": "--scene-page-color",
+        "time": 0
+      }
+    ],
+    "mainAnimations": [
+      {
+        "property": "background-color",
+        "time": 0
+      },
+      {
+        "property": "color",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "t": 47,
+    "fade": "oklab(0.26268 -0.0250027 -0.00590687)",
+    "main": "oklab(0.26268 -0.0250027 -0.00590687)",
+    "fadeAnimations": [
+      {
+        "property": "--scene-page-color",
+        "time": 0
+      }
+    ],
+    "mainAnimations": [
+      {
+        "property": "background-color",
+        "time": 0
+      },
+      {
+        "property": "color",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "t": 62,
+    "fade": "oklab(0.31611 -0.0227086 -0.00198065)",
+    "main": "oklab(0.31611 -0.0227086 -0.00198065)",
+    "fadeAnimations": [
+      {
+        "property": "--scene-page-color",
+        "time": 16.674000000840294
+      }
+    ],
+    "mainAnimations": [
+      {
+        "property": "background-color",
+        "time": 16.674000000840294
+      },
+      {
+        "property": "color",
+        "time": 16.674000000840294
+      }
+    ]
+  },
+  {
+    "t": 80,
+    "fade": "oklab(0.429869 -0.0178244 0.0063786)",
+    "main": "oklab(0.429869 -0.0178244 0.0063786)",
+    "fadeAnimations": [
+      {
+        "property": "--scene-page-color",
+        "time": 33.37400000084001
+      }
+    ],
+    "mainAnimations": [
+      {
+        "property": "background-color",
+        "time": 33.37400000084001
+      },
+      {
+        "property": "color",
+        "time": 33.37400000084001
+      }
+    ]
+  },
+  {
+    "t": 117,
+    "fade": "oklab(0.749029 -0.0041211 0.0298314)",
+    "main": "oklab(0.749029 -0.0041211 0.0298314)",
+    "fadeAnimations": [
+      {
+        "property": "--scene-page-color",
+        "time": 83.27400000084006
+      }
+    ],
+    "mainAnimations": [
+      {
+        "property": "background-color",
+        "time": 83.27400000084006
+      },
+      {
+        "property": "color",
+        "time": 83.27400000084006
+      }
+    ]
+  },
+  {
+    "t": 135,
+    "fade": "oklab(0.806159 -0.0016682 0.0340294)",
+    "main": "oklab(0.806159 -0.0016682 0.0340294)",
+    "fadeAnimations": [
+      {
+        "property": "--scene-page-color",
+        "time": 99.97400000084022
+      }
+    ],
+    "mainAnimations": [
+      {
+        "property": "background-color",
+        "time": 99.97400000084022
+      },
+      {
+        "property": "color",
+        "time": 99.97400000084022
+      }
+    ]
+  },
+  {
+    "t": 154,
+    "fade": "oklab(0.846187 0.0000504057 0.0369708)",
+    "main": "oklab(0.846187 0.0000504057 0.0369708)",
+    "fadeAnimations": [
+      {
+        "property": "--scene-page-color",
+        "time": 116.67400000084038
+      }
+    ],
+    "mainAnimations": [
+      {
+        "property": "background-color",
+        "time": 116.67400000084038
+      },
+      {
+        "property": "color",
+        "time": 116.67400000084038
+      }
+    ]
+  },
+  {
+    "t": 173,
+    "fade": "oklab(0.873179 0.00120932 0.0389542)",
+    "main": "oklab(0.873179 0.00120932 0.0389542)",
+    "fadeAnimations": [
+      {
+        "property": "--scene-page-color",
+        "time": 133.3740000008401
+      }
+    ],
+    "mainAnimations": [
+      {
+        "property": "background-color",
+        "time": 133.3740000008401
+      },
+      {
+        "property": "color",
+        "time": 133.3740000008401
+      }
+    ]
+  },
+  {
+    "t": 193,
+    "fade": "oklab(0.889883 0.00192651 0.0401817)",
+    "main": "oklab(0.889883 0.00192651 0.0401817)",
+    "fadeAnimations": [
+      {
+        "property": "--scene-page-color",
+        "time": 149.97400000084005
+      }
+    ],
+    "mainAnimations": [
+      {
+        "property": "background-color",
+        "time": 149.97400000084005
+      },
+      {
+        "property": "color",
+        "time": 149.97400000084005
+      }
+    ]
+  },
+  {
+    "t": 234,
+    "fade": "rgb(234, 221, 192)",
+    "main": "rgb(234, 221, 192)",
+    "fadeAnimations": [],
+    "mainAnimations": []
+  },
+  {
+    "t": 258,
+    "fade": "rgb(234, 221, 192)",
+    "main": "rgb(234, 221, 192)",
+    "fadeAnimations": [],
+    "mainAnimations": []
+  },
+  {
+    "t": 278,
+    "fade": "rgb(234, 221, 192)",
+    "main": "rgb(234, 221, 192)",
+    "fadeAnimations": [],
+    "mainAnimations": []
+  },
+  {
+    "t": 299,
+    "fade": "rgb(234, 221, 192)",
+    "main": "rgb(234, 221, 192)",
+    "fadeAnimations": [],
+    "mainAnimations": []
+  },
+  {
+    "t": 321,
+    "fade": "rgb(234, 221, 192)",
+    "main": "rgb(234, 221, 192)",
+    "fadeAnimations": [],
+    "mainAnimations": []
+  },
+  {
+    "t": 343,
+    "fade": "rgb(234, 221, 192)",
+    "main": "rgb(234, 221, 192)",
+    "fadeAnimations": [],
+    "mainAnimations": []
+  },
+  {
+    "t": 363,
+    "fade": "rgb(234, 221, 192)",
+    "main": "rgb(234, 221, 192)",
+    "fadeAnimations": [],
+    "mainAnimations": []
+  }
+]

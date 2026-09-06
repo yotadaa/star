@@ -1,0 +1,337 @@
+{
+  "route": "research",
+  "base": "http://127.0.0.1:3125",
+  "errors": [],
+  "viewports": [
+    {
+      "width": 1440,
+      "documentWidth": 1440,
+      "h1": [
+        "Information systems research"
+      ],
+      "title": "Information Systems Research · Mukhtada",
+      "images": [
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/city-1536.webp",
+          "width": 1536,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/middle-block.webp",
+          "width": 880,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/vapor.webp",
+          "width": 720,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/shuttle.webp",
+          "width": 420,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/facade.webp",
+          "width": 797,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/shuttle.webp",
+          "width": 420,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/vapor.webp",
+          "width": 720,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/rooftop.webp",
+          "width": 1300,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/signal.webp",
+          "width": 420,
+          "loaded": true
+        }
+      ],
+      "targets": [
+        {
+          "label": "Connect the rooftop receiver",
+          "w": 124.40625,
+          "h": 147.796875
+        },
+        {
+          "label": "Pause ambient motion",
+          "w": 82.5625,
+          "h": 44
+        },
+        {
+          "label": "Journal 0/5",
+          "w": 114.140625,
+          "h": 44
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "documentWidth": 768,
+      "h1": [
+        "Information systems research"
+      ],
+      "title": "Information Systems Research · Mukhtada",
+      "images": [
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/city-1280.webp",
+          "width": 1280,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/middle-block.webp",
+          "width": 880,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/vapor.webp",
+          "width": 720,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/shuttle.webp",
+          "width": 420,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/facade.webp",
+          "width": 797,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/shuttle.webp",
+          "width": 420,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/vapor.webp",
+          "width": 720,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/rooftop.webp",
+          "width": 1300,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/signal.webp",
+          "width": 420,
+          "loaded": true
+        }
+      ],
+      "targets": [
+        {
+          "label": "Connect the rooftop receiver",
+          "w": 115.1875,
+          "h": 136.84375
+        },
+        {
+          "label": "Pause ambient motion",
+          "w": 82.5625,
+          "h": 44
+        },
+        {
+          "label": "Journal 0/5",
+          "w": 114.140625,
+          "h": 44
+        }
+      ]
+    },
+    {
+      "width": 375,
+      "documentWidth": 375,
+      "h1": [
+        "Information systems research"
+      ],
+      "title": "Information Systems Research · Mukhtada",
+      "images": [
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/city-768.webp",
+          "width": 768,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/middle-block.webp",
+          "width": 880,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/vapor.webp",
+          "width": 720,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/shuttle.webp",
+          "width": 420,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/facade.webp",
+          "width": 797,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/shuttle.webp",
+          "width": 420,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/vapor.webp",
+          "width": 720,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/rooftop.webp",
+          "width": 1300,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/research/signal.webp",
+          "width": 420,
+          "loaded": true
+        }
+      ],
+      "targets": [
+        {
+          "label": "Connect the rooftop receiver",
+          "w": 99.21875,
+          "h": 117.875
+        },
+        {
+          "label": "Pause ambient motion",
+          "w": 75.84375,
+          "h": 44
+        },
+        {
+          "label": "Journal 0/5",
+          "w": 105.46875,
+          "h": 44
+        }
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "phase": "morning",
+      "edge": 632,
+      "above": [
+        234,
+        221,
+        192
+      ],
+      "below": [
+        234,
+        221,
+        192
+      ]
+    },
+    {
+      "phase": "noon",
+      "edge": 600,
+      "above": [
+        245,
+        236,
+        216
+      ],
+      "below": [
+        245,
+        236,
+        216
+      ]
+    },
+    {
+      "phase": "sunset",
+      "edge": 600,
+      "above": [
+        234,
+        211,
+        161
+      ],
+      "below": [
+        234,
+        212,
+        161
+      ]
+    },
+    {
+      "phase": "night",
+      "edge": 600,
+      "above": [
+        21,
+        41,
+        40
+      ],
+      "below": [
+        21,
+        41,
+        40
+      ]
+    },
+    {
+      "phase": "morning",
+      "edge": 600,
+      "above": [
+        234,
+        221,
+        192
+      ],
+      "below": [
+        234,
+        221,
+        192
+      ]
+    }
+  ],
+  "checks": [
+    "1440: no overflow",
+    "1440: one h1",
+    "1440: all assets loaded",
+    "1440: only this route assets",
+    "1440: 44px targets",
+    "768: no overflow",
+    "768: one h1",
+    "768: all assets loaded",
+    "768: only this route assets",
+    "768: 44px targets",
+    "375: no overflow",
+    "375: one h1",
+    "375: all assets loaded",
+    "375: only this route assets",
+    "375: 44px targets",
+    "completed scene action",
+    "one discovery recorded",
+    "journal Escape closes and restores focus",
+    "manual pause",
+    "no running hero animation on pause",
+    "reduced motion has zero running animations",
+    "overlay command-palette pauses",
+    "overlay player-status-popup pauses",
+    "overlay world-chat-panel pauses",
+    "offscreen paused",
+    "hidden page paused",
+    "morning: seamless edge",
+    "noon: real intermediate atmosphere",
+    "noon: seamless edge",
+    "sunset: real intermediate atmosphere",
+    "sunset: seamless edge",
+    "night: real intermediate atmosphere",
+    "night: seamless edge",
+    "morning: real intermediate atmosphere",
+    "morning: seamless edge",
+    "discovery persists on reload",
+    "SSR content and navigation without JS",
+    "blocked session storage safe",
+    "no runtime errors"
+  ],
+  "status": "passed"
+}

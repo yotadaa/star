@@ -1,6 +1,6 @@
 # SH-02 — Projects completion
 
-Status: validated · 2026-09-07
+Status: committed (`abc8f6a`) · 2026-09-07
 
 Sources: owner-approved desert mockup, scenic README §5 SH-02, PRODUCT.md accessibility and anti-reference rules. Owner accepted the caption iteration and explicitly requested moving forward on 2026-09-07. Remaining About diagnostics are separate follow-ups, not a reason to reopen the accepted composition.
 
@@ -14,7 +14,7 @@ Sources: owner-approved desert mockup, scenic README §5 SH-02, PRODUCT.md acces
 - [x] Verify generic lifecycle, four actual intermediate phase blends and fade endpoints, keyboard, storage fallback, SSR and asset budgets (39 browser assertions).
 - [x] Inspect actual interaction/focus screenshots with Astra. Final overlap review: ACCEPT; mobile label clears compass, feedback and controls; correct stage3 label; desktop focus remains clear.
 - [x] Production build and regression of shared About action behavior (48 browser assertions plus 15 focus assertions).
-- [ ] Stage only Projects paths and the small shared interaction change; commit separately.
+- [x] Stage only Projects paths and necessary shared interaction/focus changes; committed separately as `abc8f6a`.
 
 Evidence: `validation/biome-heroes-2026-09-06/projects/`; composition evidence: `validation/hero-time-transition-2026-09-06/projects-*-copy-breakout.png`. No placeholder or fabricated portfolio facts.
 

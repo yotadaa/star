@@ -1,11 +1,12 @@
-/* Only the small edge fade interpolates a color; artwork never remounts. */
-@property --scene-page-color { syntax: "<color>"; inherits: false; initial-value: transparent; }
+/* One inherited color keeps the page and its scenic fade in the same paint. */
+@property --scene-page-color { syntax: "<color>"; inherits: true; initial-value: transparent; }
 
 :root { --phase-visual-duration: 0ms; --phase-ui-duration: 0ms; --phase-easing: cubic-bezier(.22, 1, .36, 1); }
 html[data-phase-transition-ready="true"][data-phase-transition-suspended="false"] { --phase-visual-duration: 900ms; --phase-ui-duration: 180ms; }
 main.site-main {
-  background-color: var(--phase-page);
-  transition: background-color var(--phase-ui-duration) ease, color var(--phase-ui-duration) ease;
+  --scene-page-color: var(--phase-page);
+  background-color: var(--scene-page-color);
+  transition: --scene-page-color var(--phase-ui-duration) ease, color var(--phase-ui-duration) ease;
 }
 .parallax-initial-scene { --phase-local-duration: var(--phase-visual-duration); }
 .parallax-scene-shell[data-render-active="false"] .parallax-initial-scene,

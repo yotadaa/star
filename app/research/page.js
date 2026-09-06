@@ -1,6 +1,8 @@
 import { auth } from "@/auth";
 import EditablePageCaption from "@/components/EditablePageCaption";
-import PageHeader from "@/components/PageHeader";
+import ScenicHero from "@/components/scenic-hero/ScenicHero";
+import { researchScene } from "@/components/scenic-hero/scenes/research";
+import scenicStyles from "@/components/scenic-hero/scenic-hero.module.css";
 import Reveal from "@/components/Reveal";
 import { HudStatusStrip, LockedSlot, SpriteIcon } from "@/components/claude";
 import { listAboutEntries } from "@/lib/backend/featureStore";
@@ -27,15 +29,16 @@ export default async function ResearchPage() {
     .reduce((value, citations, index) => (citations >= index + 1 ? index + 1 : value), 0);
 
   return (
-    <div className="page-wrap">
-      <PageHeader label={publicPageCopy.research.label} title={publicPageCopy.research.title}>
+    <>
+      <ScenicHero scene={researchScene} title={publicPageCopy.research.title} contentId="research-content" cta="Read publications">
         <EditablePageCaption
           entryKey="research-caption"
           title="Research caption"
           initialText={caption}
           canManage={canManage}
         />
-      </PageHeader>
+      </ScenicHero>
+      <div id="research-content" className={`page-wrap ${scenicStyles.content}`}>
       <HudStatusStrip
         className="research-hud"
         items={[
@@ -67,6 +70,7 @@ export default async function ResearchPage() {
           <LockedSlot label="Next publication - in progress" />
         </Reveal>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
