@@ -1,4 +1,5 @@
 import { HERO_PROFILES, getHeroVisualContract, getStaticSceneStyle } from "@/components/hero/visualContract";
+import HeroSky from "./HeroSky";
 
 const COMMON_CLOUD_COUNT = Math.min(
   HERO_PROFILES.desktop.clouds.length,
@@ -50,7 +51,6 @@ function ResponsiveCelestial({ kind, phase }) {
   const visibility = kind === "sun" ? contractTheme.sunVisibility : contractTheme.moonVisibility;
   const position = orbitPosition(angle, kind);
   const opacity = orbitOpacity(angle, visibility, kind);
-  if (opacity <= 0) return null;
 
   return (
     <span
@@ -122,7 +122,7 @@ function ResponsiveSceneryImage({
   );
 }
 
-export default function HeroInitialScene({ phase = "morning", active = false }) {
+export default function HeroInitialScene({ phase = "morning", active = false, skyActive = active }) {
   const desktop = HERO_PROFILES.desktop;
   const mobile = HERO_PROFILES.mobile;
 
@@ -135,11 +135,7 @@ export default function HeroInitialScene({ phase = "morning", active = false }) 
       style={getStaticSceneStyle(phase, false)}
       aria-hidden="true"
     >
-      <span
-        className="parallax-static-sky is-visible"
-        data-sky-phase={phase}
-        style={getStaticSceneStyle(phase, false)}
-      />
+      <HeroSky phase={phase} active={skyActive} />
 
       <ResponsiveCelestial kind="sun" phase={phase} />
       <ResponsiveCelestial kind="moon" phase={phase} />

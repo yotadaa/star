@@ -1,0 +1,35 @@
+/* Only the small edge fade interpolates a color; artwork never remounts. */
+@property --scene-page-color { syntax: "<color>"; inherits: false; initial-value: transparent; }
+
+:root { --phase-visual-duration: 0ms; --phase-ui-duration: 0ms; --phase-easing: cubic-bezier(.22, 1, .36, 1); }
+html[data-phase-transition-ready="true"][data-phase-transition-suspended="false"] { --phase-visual-duration: 900ms; --phase-ui-duration: 180ms; }
+main.site-main {
+  background-color: var(--phase-page);
+  transition: background-color var(--phase-ui-duration) ease, color var(--phase-ui-duration) ease;
+}
+.parallax-initial-scene { --phase-local-duration: var(--phase-visual-duration); }
+.parallax-scene-shell[data-render-active="false"] .parallax-initial-scene,
+.parallax-webgl-scene[data-active="false"] .parallax-initial-scene { --phase-local-duration: 0ms; }
+.parallax-sky-stack > .parallax-static-sky[data-sky-phase]::after { opacity: 0; transition: none; }
+.parallax-sky-stack > .parallax-static-sky[data-sky-phase="night"]::after { opacity: .58; }
+.parallax-initial-cloud {
+  transition: left var(--phase-local-duration) var(--phase-easing), top var(--phase-local-duration) var(--phase-easing), opacity var(--phase-local-duration) var(--phase-easing), filter var(--phase-local-duration) var(--phase-easing);
+}
+.parallax-initial-celestial {
+  transition: left var(--phase-local-duration) var(--phase-easing), top var(--phase-local-duration) var(--phase-easing), opacity var(--phase-local-duration) var(--phase-easing);
+}
+/* Shade the static composition once; animating three large image filters stalls
+   low-power renderers. The existing sky colors supply the night wash. */
+.parallax-initial-scene .parallax-static-landscape { filter: none; }
+.parallax-initial-scene[data-phase] .parallax-initial-cloud { filter: saturate(.72); }
+.parallax-initial-scene[data-phase="night"] .parallax-static-wash { background-color: color-mix(in srgb, var(--static-sky-top) 72%, transparent); }
+.parallax-static-wash { transition: background-color var(--phase-local-duration) var(--phase-easing); }
+.parallax-static-sky::after { transition-duration: var(--phase-local-duration); }
+/* These controls retain light fills at night; surface-theme ink is not their
+   foreground. Keep glyph contrast fixed while the atmosphere changes. */
+.hero-copy[data-hero-phase] { --lore-text: var(--palette-ink); --hero-outline-color: var(--palette-ink); --hero-body-outline-width: 2px; }
+.hero-copy .btn.primary { color: var(--palette-ink); }
+.hero .lede { font-weight: 500; }
+@media (prefers-reduced-motion: reduce) {
+  html[data-phase-transition-ready][data-phase-transition-suspended] { --phase-visual-duration: 0ms; --phase-ui-duration: 0ms; }
+}

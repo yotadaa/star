@@ -217,7 +217,7 @@ export default function ParallaxScene({ phase = "morning", night = false, paused
       data-pause-reason={pauseReason}
       style={getStaticSceneStyle(contract.phase, mobile)}
     >
-      <HeroInitialScene phase={contract.phase} active={sceneActive && !webglReady} />
+      <HeroInitialScene phase={contract.phase} active={sceneActive && !webglReady} skyActive={sceneActive} />
       <WebGLScene
         phase={contract.phase}
         pointer={pointer}

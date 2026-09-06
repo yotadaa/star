@@ -1,5 +1,7 @@
 import { Fraunces, Silkscreen, Nunito } from "next/font/google";
 import "./globals.css";
+import "./phase-transitions.css";
+import PhaseTransitionController from "@/components/site/PhaseTransitionController";
 import AuthProvider from "@/components/auth/AuthProvider";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -101,6 +103,7 @@ export default function RootLayout({ children }) {
         <GoogleAnalytics />
       </head>
       <body>
+        <PhaseTransitionController />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: structuredData }}

@@ -1,0 +1,7433 @@
+{
+  "base": "http://127.0.0.1:3125",
+  "traces": [
+    {
+      "mode": "static",
+      "target": "noon",
+      "before": "0",
+      "events": [
+        {
+          "t": 3014.199999999255,
+          "type": "transitionrun",
+          "property": "opacity"
+        },
+        {
+          "t": 3014.199999999255,
+          "type": "transitionstart",
+          "property": "opacity"
+        },
+        {
+          "t": 3917.2999999988824,
+          "type": "transitionend",
+          "property": "opacity"
+        }
+      ],
+      "frames": [
+        {
+          "t": 2937.6,
+          "color": "0",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 2979.2,
+          "color": "0",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 2995.3,
+          "color": "0",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3009.3,
+          "color": "0.0350635",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3030.1,
+          "color": "0.135897",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3037.1,
+          "color": "0.168588",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3051,
+          "color": "0.23149",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3064.9,
+          "color": "0.291558",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3078.9,
+          "color": "0.349032",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3092.8,
+          "color": "0.402967",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3113.7,
+          "color": "0.478029",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3127.6,
+          "color": "0.523897",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3134.5,
+          "color": "0.54547",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3148.5,
+          "color": "0.586836",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3162.4,
+          "color": "0.624794",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3176.3,
+          "color": "0.659764",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3190.2,
+          "color": "0.691882",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3204.2,
+          "color": "0.721507",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3218.1,
+          "color": "0.74838",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3232,
+          "color": "0.772893",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3245.9,
+          "color": "0.795217",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3259.9,
+          "color": "0.81566",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3273.8,
+          "color": "0.834091",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3287.7,
+          "color": "0.850819",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3301.6,
+          "color": "0.865989",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3315.5,
+          "color": "0.879737",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3329.4,
+          "color": "0.892187",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3343.3,
+          "color": "0.903457",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3357.3,
+          "color": "0.913723",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3371.3,
+          "color": "0.922998",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3385.1,
+          "color": "0.93126",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3399.1,
+          "color": "0.93883",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3412.9,
+          "color": "0.945565",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3426.9,
+          "color": "0.951727",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3440.8,
+          "color": "0.957239",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3454.8,
+          "color": "0.962235",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3468.7,
+          "color": "0.966695",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3482.6,
+          "color": "0.970702",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3496.5,
+          "color": "0.974297",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3510.5,
+          "color": "0.977539",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3524.4,
+          "color": "0.980418",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3538.2,
+          "color": "0.982971",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3552.1,
+          "color": "0.985263",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3566.1,
+          "color": "0.987314",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3580.1,
+          "color": "0.989131",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3594,
+          "color": "0.990726",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3607.9,
+          "color": "0.992131",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3621.9,
+          "color": "0.993373",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3635.7,
+          "color": "0.994444",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3649.7,
+          "color": "0.99539",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3663.5,
+          "color": "0.996198",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3677.5,
+          "color": "0.996903",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3691.5,
+          "color": "0.997506",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3705.3,
+          "color": "0.998011",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3719.3,
+          "color": "0.998442",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3733.2,
+          "color": "0.998798",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3747.1,
+          "color": "0.999091",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3761,
+          "color": "0.999329",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3775,
+          "color": "0.99952",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3788.9,
+          "color": "0.999668",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3802.8,
+          "color": "0.99978",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3816.8,
+          "color": "0.999863",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3830.6,
+          "color": "0.999921",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3844.6,
+          "color": "0.99996",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3858.4,
+          "color": "0.999983",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3872.4,
+          "color": "0.999995",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3886.3,
+          "color": "0.999999",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3900.2,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3914.1,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3928.1,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3942,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3956,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3969.9,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3983.7,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3997.7,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4011.6,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4025.5,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4039.4,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4053.3,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4067.3,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4081.2,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4095.2,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4109,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4123,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4136.9,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4150.8,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4164.7,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4178.6,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4192.6,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4206.5,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4220.5,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4234.4,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4248.2,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4262.2,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4276.1,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4290,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        }
+      ],
+      "mutations": [
+        {
+          "t": 2954.5999999996275,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 2954.699999999255,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 2954.699999999255,
+          "attribute": "data-cockpit-phase",
+          "value": "noon"
+        },
+        {
+          "t": 2954.699999999255,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 2984.5,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 2987.0999999996275,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 2987.199999999255,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 3854.9000000003725,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 3921.5,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 3921.5,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 3921.5,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        }
+      ],
+      "click": 2937.5,
+      "after": "1",
+      "changed": 2987.0999999996275,
+      "planes": [
+        {
+          "phase": "morning",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "noon",
+          "opacity": "1",
+          "promotion": "auto"
+        },
+        {
+          "phase": "sunset",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "night",
+          "opacity": "0",
+          "promotion": "auto"
+        }
+      ],
+      "finalPhase": "noon",
+      "stats": {
+        "intermediate": 64,
+        "commitLatency": 49.59999999962747,
+        "p95": 14,
+        "max": 20.899999999999636
+      },
+      "text": {
+        "buttons": [
+          {
+            "text": "View featured projects",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              236,
+              182,
+              63,
+              255
+            ],
+            "contrast": 8.673317460591331
+          },
+          {
+            "text": "Read the Lore",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              232,
+              226,
+              195,
+              255
+            ],
+            "contrast": 12.32361189211286
+          }
+        ],
+        "caption": {
+          "fill": "rgb(245, 236, 216)",
+          "stroke": "rgb(22, 36, 31)",
+          "width": "2px",
+          "contrast": 13.682095495413376
+        }
+      }
+    },
+    {
+      "mode": "static",
+      "target": "sunset",
+      "before": "0",
+      "events": [
+        {
+          "t": 5407.299999998882,
+          "type": "transitionrun",
+          "property": "opacity"
+        },
+        {
+          "t": 5407.299999998882,
+          "type": "transitionstart",
+          "property": "opacity"
+        },
+        {
+          "t": 6297.699999999255,
+          "type": "transitionend",
+          "property": "opacity"
+        }
+      ],
+      "frames": [
+        {
+          "t": 5335.066,
+          "color": "0",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5362,
+          "color": "0",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5382.9,
+          "color": "0",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5389.9,
+          "color": "0",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5403.7,
+          "color": "0.0688243",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5417.7,
+          "color": "0.136104",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5431.6,
+          "color": "0.200355",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5445.6,
+          "color": "0.262295",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5459.5,
+          "color": "0.320864",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5473.4,
+          "color": "0.376372",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5501.3,
+          "color": "0.478179",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5515.2,
+          "color": "0.524037",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5522.1,
+          "color": "0.545605",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5536.1,
+          "color": "0.586961",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5543,
+          "color": "0.60618",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5556.9,
+          "color": "0.642629",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5570.8,
+          "color": "0.676156",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5584.8,
+          "color": "0.707119",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5598.7,
+          "color": "0.735237",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5612.6,
+          "color": "0.76091",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5626.6,
+          "color": "0.784469",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5640.5,
+          "color": "0.805748",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5654.3,
+          "color": "0.824957",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5668.3,
+          "color": "0.842652",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5682.2,
+          "color": "0.858584",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5696.1,
+          "color": "0.873027",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5710.1,
+          "color": "0.886201",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5723.9,
+          "color": "0.897958",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5737.9,
+          "color": "0.908752",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5751.8,
+          "color": "0.918441",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5765.7,
+          "color": "0.9272",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5779.7,
+          "color": "0.935166",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5793.6,
+          "color": "0.942305",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5807.5,
+          "color": "0.948746",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5821.4,
+          "color": "0.954552",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5835.3,
+          "color": "0.959783",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5849.3,
+          "color": "0.964522",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5863.2,
+          "color": "0.96875",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5877.2,
+          "color": "0.972572",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5891.1,
+          "color": "0.975973",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5904.9,
+          "color": "0.978997",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5918.9,
+          "color": "0.981739",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5932.8,
+          "color": "0.984166",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5946.7,
+          "color": "0.986325",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5960.7,
+          "color": "0.988256",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5974.6,
+          "color": "0.989953",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5988.5,
+          "color": "0.99145",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6002.4,
+          "color": "0.992768",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6016.3,
+          "color": "0.993922",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6030.3,
+          "color": "0.994937",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6044.2,
+          "color": "0.995811",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6058.1,
+          "color": "0.996566",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6072.1,
+          "color": "0.997219",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6085.9,
+          "color": "0.997767",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6099.8,
+          "color": "0.998234",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6113.8,
+          "color": "0.998628",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6127.7,
+          "color": "0.998952",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6141.6,
+          "color": "0.999216",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6155.6,
+          "color": "0.99943",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6169.5,
+          "color": "0.999598",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6183.4,
+          "color": "0.999728",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6197.4,
+          "color": "0.999825",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6211.2,
+          "color": "0.999895",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6225.2,
+          "color": "0.999943",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6239.1,
+          "color": "0.999973",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6253,
+          "color": "0.99999",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6266.9,
+          "color": "0.999998",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6280.8,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6294.7,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6308.7,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6322.6,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6336.6,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6350.4,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6364.4,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6378.3,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6392.2,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6406.1,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6420.1,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6434,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6447.9,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6461.9,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6475.8,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6489.7,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6503.6,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6517.5,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6531.5,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6545.3,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6559.3,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6573.3,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6587.2,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6601.1,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6615,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6628.9,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6642.8,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6656.8,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6670.7,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        }
+      ],
+      "mutations": [
+        {
+          "t": 5337.5,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 5337.5,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 5337.5,
+          "attribute": "data-cockpit-phase",
+          "value": "sunset"
+        },
+        {
+          "t": 5337.5,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 5338.4000000003725,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 5367.9000000003725,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 5367.9000000003725,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 6237.5,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 6302.0999999996275,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 6302.0999999996275,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 6302.0999999996275,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        }
+      ],
+      "click": 5326,
+      "after": "1",
+      "changed": 5367.9000000003725,
+      "planes": [
+        {
+          "phase": "morning",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "noon",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "sunset",
+          "opacity": "1",
+          "promotion": "auto"
+        },
+        {
+          "phase": "night",
+          "opacity": "0",
+          "promotion": "auto"
+        }
+      ],
+      "finalPhase": "sunset",
+      "stats": {
+        "intermediate": 63,
+        "commitLatency": 41.90000000037253,
+        "p95": 14,
+        "max": 27.900000000000546
+      },
+      "text": {
+        "buttons": [
+          {
+            "text": "View featured projects",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              236,
+              182,
+              63,
+              255
+            ],
+            "contrast": 8.673317460591331
+          },
+          {
+            "text": "Read the Lore",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              241,
+              212,
+              161,
+              255
+            ],
+            "contrast": 11.232290182524693
+          }
+        ],
+        "caption": {
+          "fill": "color(srgb 0.919529 0.829961 0.631529)",
+          "stroke": "rgb(22, 36, 31)",
+          "width": "2px",
+          "contrast": 11.047280245921478
+        }
+      }
+    },
+    {
+      "mode": "static",
+      "target": "night",
+      "before": "0",
+      "events": [
+        {
+          "t": 7695.5,
+          "type": "transitionrun",
+          "property": "opacity"
+        },
+        {
+          "t": 7695.5,
+          "type": "transitionstart",
+          "property": "opacity"
+        },
+        {
+          "t": 8560.199999999255,
+          "type": "transitionend",
+          "property": "opacity"
+        }
+      ],
+      "frames": [
+        {
+          "t": 7597.266,
+          "color": "0",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7631.2,
+          "color": "0",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7645.2,
+          "color": "0",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7693.8,
+          "color": "0.231153",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7735.6,
+          "color": "0.402681",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7756.4,
+          "color": "0.477427",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7791.2,
+          "color": "0.586336",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7812.1,
+          "color": "0.642327",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7854,
+          "color": "0.735199",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7861,
+          "color": "0.748424",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7874.8,
+          "color": "0.772765",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7888.8,
+          "color": "0.795254",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7902.7,
+          "color": "0.815554",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7916.7,
+          "color": "0.834122",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7930.6,
+          "color": "0.850847",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7944.5,
+          "color": "0.866014",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7958.4,
+          "color": "0.879759",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7972.3,
+          "color": "0.892208",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7986.3,
+          "color": "0.903553",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8000.2,
+          "color": "0.91374",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8014.1,
+          "color": "0.92295",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8028,
+          "color": "0.931274",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8041.9,
+          "color": "0.938791",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8055.8,
+          "color": "0.945576",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8069.8,
+          "color": "0.951737",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8083.7,
+          "color": "0.957248",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8097.6,
+          "color": "0.962209",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8111.5,
+          "color": "0.966672",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8125.5,
+          "color": "0.970708",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8139.4,
+          "color": "0.974302",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8153.4,
+          "color": "0.977545",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8167.3,
+          "color": "0.980423",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8181.1,
+          "color": "0.982975",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8195.1,
+          "color": "0.985282",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8209,
+          "color": "0.987317",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8222.9,
+          "color": "0.989122",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8236.8,
+          "color": "0.990717",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8250.7,
+          "color": "0.992124",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8264.7,
+          "color": "0.993367",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8278.6,
+          "color": "0.994446",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8292.5,
+          "color": "0.995385",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8306.5,
+          "color": "0.996204",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8320.4,
+          "color": "0.996904",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8334.3,
+          "color": "0.997503",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8348.2,
+          "color": "0.998012",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8362.1,
+          "color": "0.99844",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8376.1,
+          "color": "0.998798",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8390,
+          "color": "0.999091",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8403.9,
+          "color": "0.999329",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8417.9,
+          "color": "0.99952",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8431.7,
+          "color": "0.999667",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8445.7,
+          "color": "0.99978",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8459.6,
+          "color": "0.999863",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8473.6,
+          "color": "0.999921",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8487.4,
+          "color": "0.999959",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8501.3,
+          "color": "0.999983",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8515.3,
+          "color": "0.999995",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8529.2,
+          "color": "0.999999",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8543.2,
+          "color": "1",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8557.1,
+          "color": "1",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8570.9,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8584.9,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8598.9,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8612.8,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8626.7,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8640.5,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8654.5,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8668.4,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8682.3,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8696.3,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8710.2,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8724.1,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8738,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8752,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8765.8,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8779.8,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8793.7,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8807.6,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8821.6,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8835.4,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8849.4,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8863.3,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8877.2,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8891.2,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8905.1,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8919,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8932.9,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8946.9,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        }
+      ],
+      "mutations": [
+        {
+          "t": 7597.5,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 7597.5,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 7597.5,
+          "attribute": "data-cockpit-phase",
+          "value": "night"
+        },
+        {
+          "t": 7597.5,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 7598.299999998882,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 7636.699999999255,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 7636.799999998882,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 8497,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 8570.900000000373,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 8570.900000000373,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 8570.900000000373,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        }
+      ],
+      "click": 7585.0999999996275,
+      "after": "1",
+      "changed": 7636.699999999255,
+      "planes": [
+        {
+          "phase": "morning",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "noon",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "sunset",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "night",
+          "opacity": "1",
+          "promotion": "auto"
+        }
+      ],
+      "finalPhase": "night",
+      "stats": {
+        "intermediate": 55,
+        "commitLatency": 51.59999999962747,
+        "p95": 20.900000000000546,
+        "max": 48.600000000000364
+      },
+      "text": {
+        "buttons": [
+          {
+            "text": "View featured projects",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              236,
+              182,
+              63,
+              255
+            ],
+            "contrast": 8.673317460591331
+          },
+          {
+            "text": "Read the Lore",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              204,
+              214,
+              166,
+              255
+            ],
+            "contrast": 10.516153585858609
+          }
+        ],
+        "caption": {
+          "fill": "rgb(234, 221, 192)",
+          "stroke": "rgb(22, 36, 31)",
+          "width": "2px",
+          "contrast": 11.944274516995593
+        }
+      }
+    },
+    {
+      "mode": "static",
+      "target": "morning",
+      "before": "0",
+      "events": [
+        {
+          "t": 9571.299999998882,
+          "type": "transitionrun",
+          "property": "opacity"
+        },
+        {
+          "t": 9571.299999998882,
+          "type": "transitionstart",
+          "property": "opacity"
+        },
+        {
+          "t": 10453.199999999255,
+          "type": "transitionend",
+          "property": "opacity"
+        }
+      ],
+      "frames": [
+        {
+          "t": 9484.666,
+          "color": "0",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9538.5,
+          "color": "0",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9545.4,
+          "color": "0",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9566.4,
+          "color": "0.103099",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9601.2,
+          "color": "0.262157",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9636,
+          "color": "0.403012",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9656.9,
+          "color": "0.478069",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9691.7,
+          "color": "0.58687",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9726.5,
+          "color": "0.676313",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9740.4,
+          "color": "0.707052",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9754.3,
+          "color": "0.735175",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9768.2,
+          "color": "0.760854",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9782.1,
+          "color": "0.784257",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9796,
+          "color": "0.805556",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9810,
+          "color": "0.825047",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9824,
+          "color": "0.842734",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9851.8,
+          "color": "0.873094",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9865.7,
+          "color": "0.886172",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9879.6,
+          "color": "0.898013",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9893.6,
+          "color": "0.908802",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9907.4,
+          "color": "0.91842",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9921.4,
+          "color": "0.92724",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9935.3,
+          "color": "0.935149",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9949.2,
+          "color": "0.942289",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9963.2,
+          "color": "0.948776",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9977.1,
+          "color": "0.954579",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9991,
+          "color": "0.959807",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10004.9,
+          "color": "0.964512",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10018.8,
+          "color": "0.968741",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10032.8,
+          "color": "0.972564",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10046.7,
+          "color": "0.975966",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10060.6,
+          "color": "0.979011",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10074.5,
+          "color": "0.981733",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10088.4,
+          "color": "0.98416",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10102.3,
+          "color": "0.986321",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10116.3,
+          "color": "0.988252",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10130.2,
+          "color": "0.989949",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10144.2,
+          "color": "0.991457",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10158.1,
+          "color": "0.992774",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10172,
+          "color": "0.993928",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10185.9,
+          "color": "0.994935",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10199.8,
+          "color": "0.995809",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10213.7,
+          "color": "0.996565",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10227.6,
+          "color": "0.997213",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10241.6,
+          "color": "0.99777",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10255.5,
+          "color": "0.998236",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10269.4,
+          "color": "0.998627",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10283.4,
+          "color": "0.998953",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10297.2,
+          "color": "0.999216",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10311.2,
+          "color": "0.99943",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10325.2,
+          "color": "0.999599",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10339.1,
+          "color": "0.999728",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10353,
+          "color": "0.999825",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10366.9,
+          "color": "0.999895",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10380.8,
+          "color": "0.999943",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10394.7,
+          "color": "0.999973",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10408.6,
+          "color": "0.99999",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10422.6,
+          "color": "0.999998",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10436.4,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10450.4,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10464.3,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 10478.2,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10492.2,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10506.1,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10520,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10533.9,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10547.8,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10561.7,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10575.7,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10589.6,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10603.5,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10617.5,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10631.4,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10645.3,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10659.3,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10673.2,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10687.1,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10701,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10715,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10728.9,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10742.7,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10756.7,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10770.6,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10784.5,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10798.4,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10812.4,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10826.3,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10840.2,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 10854.1,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        }
+      ],
+      "mutations": [
+        {
+          "t": 9486.5,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 9486.599999999627,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 9486.599999999627,
+          "attribute": "data-cockpit-phase",
+          "value": "morning"
+        },
+        {
+          "t": 9486.599999999627,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 9487.400000000373,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 9540.799999998882,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 9540.799999998882,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 10387.599999999627,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 10475,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 10475,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 10475,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        }
+      ],
+      "click": 9472.799999998882,
+      "after": "1",
+      "changed": 9540.799999998882,
+      "planes": [
+        {
+          "phase": "morning",
+          "opacity": "1",
+          "promotion": "auto"
+        },
+        {
+          "phase": "noon",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "sunset",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "night",
+          "opacity": "0",
+          "promotion": "auto"
+        }
+      ],
+      "finalPhase": "morning",
+      "stats": {
+        "intermediate": 55,
+        "commitLatency": 68,
+        "p95": 27.799999999999272,
+        "max": 34.80000000000109
+      },
+      "text": {
+        "buttons": [
+          {
+            "text": "View featured projects",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              236,
+              182,
+              63,
+              255
+            ],
+            "contrast": 8.673317460591331
+          },
+          {
+            "text": "Read the Lore",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              242,
+              225,
+              174,
+              255
+            ],
+            "contrast": 12.368781960804148
+          }
+        ],
+        "caption": {
+          "fill": "rgb(234, 221, 192)",
+          "stroke": "rgb(22, 36, 31)",
+          "width": "2px",
+          "contrast": 11.944274516995593
+        }
+      }
+    },
+    {
+      "mode": "static",
+      "target": "rapid reversal",
+      "reversal": {
+        "samples": [
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0689417,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.102888,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0.0689613,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0.136236,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0.200029,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0.200029,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0.200029,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0.200029,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0.200029,
+              0.135783
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0.200029,
+              0.135783
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0.200029,
+              0.135783
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.16844,
+              0.200029,
+              0.135783
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.156715,
+              0.186105,
+              0.126331
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.140039,
+              0.166302,
+              0.112889
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.119326,
+              0.141705,
+              0.0961916
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.100625,
+              0.119496,
+              0.0811155
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0765585,
+              0.0909162,
+              0.0617154
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0602121,
+              0.0715042,
+              0.0485382
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0573074,
+              0.0680547,
+              0.0461967
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0518975,
+              0.0616303,
+              0.0418356
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0469077,
+              0.0557047,
+              0.0378133
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0423814,
+              0.0503295,
+              0.0341645
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0382525,
+              0.0454263,
+              0.0308361
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0344923,
+              0.040961,
+              0.027805
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0310725,
+              0.0368998,
+              0.0250482
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0279446,
+              0.0331853,
+              0.0225267
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.025127,
+              0.0298393,
+              0.0202554
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0225719,
+              0.026805,
+              0.0181957
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0202405,
+              0.0240364,
+              0.0163163
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0181449,
+              0.0215477,
+              0.014627
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.016248,
+              0.0192951,
+              0.0130979
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0145319,
+              0.0172572,
+              0.0117145
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0129803,
+              0.0154146,
+              0.0104637
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0115685,
+              0.013738,
+              0.00932561
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0103117,
+              0.0122455,
+              0.00831246
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00916087,
+              0.0108789,
+              0.00738476
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00813074,
+              0.00965557,
+              0.00655436
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00720241,
+              0.00855314,
+              0.00580601
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00636088,
+              0.00755379,
+              0.00512764
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00560968,
+              0.00666171,
+              0.00452208
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0049348,
+              0.00586026,
+              0.00397804
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00432927,
+              0.00514118,
+              0.00348992
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00378677,
+              0.00449693,
+              0.00305259
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00329822,
+              0.00391676,
+              0.00265876
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00286532,
+              0.00340268,
+              0.00230979
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00247961,
+              0.00294464,
+              0.00199887
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00213674,
+              0.00253746,
+              0.00172247
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00183271,
+              0.00217642,
+              0.00147739
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00156209,
+              0.00185505,
+              0.00125924
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00132541,
+              0.00157397,
+              0.00106844
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00111756,
+              0.00132715,
+              0.00090089
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000935777,
+              0.00111127,
+              0.00075435
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000777505,
+              0.000923318,
+              0.000626763
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000640409,
+              0.000760511,
+              0.000516247
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000521559,
+              0.000619371,
+              0.000420439
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000420669,
+              0.00049956,
+              0.00033911
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000334448,
+              0.00039717,
+              0.000269606
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000262453,
+              0.000311673,
+              0.000211569
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00020248,
+              0.000240453,
+              0.000163224
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000153117,
+              0.000181833,
+              0.000123431
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000113061,
+              0.000134264,
+              0.0000911409
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0000811088,
+              0.0000963198,
+              0.0000653835
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0000561503,
+              0.0000666806,
+              0.0000452639
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0000370426,
+              0.0000439895,
+              0.0000298608
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0000231053,
+              0.0000274384,
+              0.0000186257
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0000132478,
+              0.0000157323,
+              0.0000106794
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00000683201,
+              0.00000811327,
+              0.00000550742
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00000293472,
+              0.00000348509,
+              0.00000236574
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              9.09159e-7,
+              0.00000107966,
+              7.32892e-7
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              1.36643e-7,
+              1.62268e-7,
+              1.1015e-7
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              3.02748e-10,
+              3.59525e-10,
+              2.44051e-10
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          }
+        ],
+        "phase": "morning",
+        "stable": true,
+        "settled": [
+          {
+            "phase": "morning",
+            "opacity": "1",
+            "promotion": "auto"
+          },
+          {
+            "phase": "noon",
+            "opacity": "0",
+            "promotion": "auto"
+          },
+          {
+            "phase": "sunset",
+            "opacity": "0",
+            "promotion": "auto"
+          },
+          {
+            "phase": "night",
+            "opacity": "0",
+            "promotion": "auto"
+          }
+        ]
+      }
+    },
+    {
+      "mode": "webgl",
+      "target": "noon",
+      "before": "0",
+      "events": [
+        {
+          "t": 2774.800000000745,
+          "type": "transitionrun",
+          "property": "opacity"
+        },
+        {
+          "t": 2774.9000000003725,
+          "type": "transitionstart",
+          "property": "opacity"
+        },
+        {
+          "t": 3679.0999999996275,
+          "type": "transitionend",
+          "property": "opacity"
+        }
+      ],
+      "frames": [
+        {
+          "t": 2688.1,
+          "color": "0",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 2743.9,
+          "color": "0",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 2764.8,
+          "color": "0",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2771.7,
+          "color": "0.0348248",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2785.6,
+          "color": "0.102811",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2799.6,
+          "color": "0.168828",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2813.5,
+          "color": "0.23172",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2827.4,
+          "color": "0.291777",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2841.3,
+          "color": "0.34884",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2855.2,
+          "color": "0.402786",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2869.2,
+          "color": "0.453887",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2883.1,
+          "color": "0.501374",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2897,
+          "color": "0.545629",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2911,
+          "color": "0.586984",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2924.8,
+          "color": "0.624668",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2938.8,
+          "color": "0.659889",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2952.7,
+          "color": "0.691997",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2966.6,
+          "color": "0.72141",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2980.6,
+          "color": "0.748476",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 2994.4,
+          "color": "0.772812",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3008.4,
+          "color": "0.795297",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3022.2,
+          "color": "0.815454",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3036.2,
+          "color": "0.834031",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3050.1,
+          "color": "0.850764",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3064,
+          "color": "0.865939",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3078,
+          "color": "0.879786",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3091.9,
+          "color": "0.892232",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3105.9,
+          "color": "0.903575",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3119.8,
+          "color": "0.913759",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3133.7,
+          "color": "0.922968",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3147.6,
+          "color": "0.93129",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3161.5,
+          "color": "0.938805",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3175.4,
+          "color": "0.945589",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3189.3,
+          "color": "0.951707",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3203.3,
+          "color": "0.957258",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3217.2,
+          "color": "0.962219",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3231.1,
+          "color": "0.96668",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3245,
+          "color": "0.970688",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3258.9,
+          "color": "0.974285",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3272.9,
+          "color": "0.977529",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3286.8,
+          "color": "0.980409",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3300.7,
+          "color": "0.98298",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3314.6,
+          "color": "0.985271",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3328.5,
+          "color": "0.987307",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3342.5,
+          "color": "0.989125",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3356.4,
+          "color": "0.99072",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3370.4,
+          "color": "0.992136",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3384.3,
+          "color": "0.993369",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3398.1,
+          "color": "0.994441",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3412.1,
+          "color": "0.995387",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3426,
+          "color": "0.996201",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3440,
+          "color": "0.996906",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3453.8,
+          "color": "0.9975",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3467.8,
+          "color": "0.998013",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3481.7,
+          "color": "0.99844",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3495.6,
+          "color": "0.998797",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3509.5,
+          "color": "0.99909",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3523.5,
+          "color": "0.99933",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3537.4,
+          "color": "0.999519",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3551.3,
+          "color": "0.999667",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3565.2,
+          "color": "0.99978",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3579.2,
+          "color": "0.999863",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3593.1,
+          "color": "0.999921",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3607,
+          "color": "0.99996",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3620.9,
+          "color": "0.999983",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3634.8,
+          "color": "0.999995",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3648.7,
+          "color": "0.999999",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3662.7,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3676.6,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0.9s"
+        },
+        {
+          "t": 3690.5,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3704.5,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3718.4,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3732.3,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3746.2,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3760.1,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3774,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3788,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3801.9,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3815.8,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3829.7,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3843.7,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3857.5,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3871.5,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3885.5,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3899.4,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3913.3,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3927.2,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3941.2,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3955,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3969,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3982.8,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 3996.8,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4010.8,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4024.6,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4038.6,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        },
+        {
+          "t": 4052.5,
+          "color": "1",
+          "phase": "noon",
+          "duration": "0s"
+        }
+      ],
+      "mutations": [
+        {
+          "t": 2711.300000000745,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 2711.300000000745,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 2711.300000000745,
+          "attribute": "data-cockpit-phase",
+          "value": "noon"
+        },
+        {
+          "t": 2711.300000000745,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 2742.0999999996275,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 2747.800000000745,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 2747.9000000003725,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 3614.2000000011176,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 3683,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 3683,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 3683,
+          "attribute": "style",
+          "value": "--static-sky-top: #1d6fa3; --static-sky-mid: #77bde0; --static-sky-horizon: #f8e9bd; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        }
+      ],
+      "click": 2689.0999999996275,
+      "after": "1",
+      "changed": 2747.800000000745,
+      "planes": [
+        {
+          "phase": "morning",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "noon",
+          "opacity": "1",
+          "promotion": "auto"
+        },
+        {
+          "phase": "sunset",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "night",
+          "opacity": "0",
+          "promotion": "auto"
+        }
+      ],
+      "finalPhase": "noon",
+      "stats": {
+        "intermediate": 64,
+        "commitLatency": 58.70000000111759,
+        "p95": 14,
+        "max": 14
+      },
+      "text": {
+        "buttons": [
+          {
+            "text": "View featured projects",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              236,
+              182,
+              63,
+              255
+            ],
+            "contrast": 8.673317460591331
+          },
+          {
+            "text": "Read the Lore",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              232,
+              226,
+              195,
+              255
+            ],
+            "contrast": 12.32361189211286
+          }
+        ],
+        "caption": {
+          "fill": "rgb(245, 236, 216)",
+          "stroke": "rgb(22, 36, 31)",
+          "width": "2px",
+          "contrast": 13.682095495413376
+        }
+      }
+    },
+    {
+      "mode": "webgl",
+      "target": "sunset",
+      "before": "0",
+      "events": [
+        {
+          "t": 4877.0999999996275,
+          "type": "transitionrun",
+          "property": "opacity"
+        },
+        {
+          "t": 4877.300000000745,
+          "type": "transitionstart",
+          "property": "opacity"
+        },
+        {
+          "t": 5768.700000001118,
+          "type": "transitionend",
+          "property": "opacity"
+        }
+      ],
+      "frames": [
+        {
+          "t": 4788.9,
+          "color": "0",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 4846.1,
+          "color": "0",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 4860,
+          "color": "0",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 4873.9,
+          "color": "0.0693526",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 4887.8,
+          "color": "0.136142",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 4901.7,
+          "color": "0.200391",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 4915.6,
+          "color": "0.261897",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 4929.6,
+          "color": "0.320897",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 4943.5,
+          "color": "0.376403",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 4957.4,
+          "color": "0.428745",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 4971.3,
+          "color": "0.477865",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 4985.2,
+          "color": "0.523744",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 4999.1,
+          "color": "0.56641",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5013.1,
+          "color": "0.606202",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5027,
+          "color": "0.642649",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5040.9,
+          "color": "0.676175",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5054.9,
+          "color": "0.707136",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5068.7,
+          "color": "0.735059",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5082.7,
+          "color": "0.760924",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5096.6,
+          "color": "0.784321",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5110.6,
+          "color": "0.80576",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5124.4,
+          "color": "0.824968",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5138.4,
+          "color": "0.842661",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5152.3,
+          "color": "0.858593",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5166.3,
+          "color": "0.873134",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5180.2,
+          "color": "0.886208",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5194,
+          "color": "0.897965",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5208,
+          "color": "0.908758",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5221.9,
+          "color": "0.918447",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5235.9,
+          "color": "0.927264",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5249.8,
+          "color": "0.935171",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5263.7,
+          "color": "0.942309",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5277.6,
+          "color": "0.948749",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5291.6,
+          "color": "0.954595",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5305.4,
+          "color": "0.959786",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5319.4,
+          "color": "0.964525",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5333.3,
+          "color": "0.968753",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5347.2,
+          "color": "0.972549",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5361.2,
+          "color": "0.975975",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5375.1,
+          "color": "0.97902",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5389,
+          "color": "0.98174",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5402.9,
+          "color": "0.984167",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5416.9,
+          "color": "0.986341",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5430.8,
+          "color": "0.988257",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5444.7,
+          "color": "0.989953",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5458.6,
+          "color": "0.991451",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5472.6,
+          "color": "0.992777",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5486.4,
+          "color": "0.993923",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5500.3,
+          "color": "0.994931",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5514.3,
+          "color": "0.995812",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5528.2,
+          "color": "0.996567",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5542.1,
+          "color": "0.997215",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5556,
+          "color": "0.997767",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5570,
+          "color": "0.998238",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5583.8,
+          "color": "0.998626",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5597.8,
+          "color": "0.998952",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5611.7,
+          "color": "0.999216",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5625.7,
+          "color": "0.999431",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5639.6,
+          "color": "0.999598",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5653.5,
+          "color": "0.999728",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5667.4,
+          "color": "0.999825",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5681.3,
+          "color": "0.999895",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5695.3,
+          "color": "0.999943",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5709.2,
+          "color": "0.999973",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5723.1,
+          "color": "0.99999",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5737,
+          "color": "0.999998",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5751,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5764.9,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5778.8,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0.9s"
+        },
+        {
+          "t": 5792.7,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5806.7,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5820.5,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5834.4,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5848.4,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5862.3,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5876.2,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5890.2,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5904.1,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5918,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5931.9,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5945.8,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5959.8,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5973.7,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 5987.6,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6001.5,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6015.5,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6029.4,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6043.3,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6057.2,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6071.2,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6085,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6099,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6112.9,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6126.8,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6140.7,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        },
+        {
+          "t": 6154.7,
+          "color": "1",
+          "phase": "sunset",
+          "duration": "0s"
+        }
+      ],
+      "mutations": [
+        {
+          "t": 4807.700000001118,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 4807.9000000003725,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 4807.9000000003725,
+          "attribute": "data-cockpit-phase",
+          "value": "sunset"
+        },
+        {
+          "t": 4807.9000000003725,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 4839.200000001118,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 4849.700000001118,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 4849.800000000745,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 5709.700000001118,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 5785.5999999996275,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 5785.700000001118,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 5785.700000001118,
+          "attribute": "style",
+          "value": "--static-sky-top: #312b56; --static-sky-mid: #c16f63; --static-sky-horizon: #f3c06d; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        }
+      ],
+      "click": 4788.200000001118,
+      "after": "1",
+      "changed": 4849.700000001118,
+      "planes": [
+        {
+          "phase": "morning",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "noon",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "sunset",
+          "opacity": "1",
+          "promotion": "auto"
+        },
+        {
+          "phase": "night",
+          "opacity": "0",
+          "promotion": "auto"
+        }
+      ],
+      "finalPhase": "sunset",
+      "stats": {
+        "intermediate": 63,
+        "commitLatency": 61.5,
+        "p95": 14,
+        "max": 14
+      },
+      "text": {
+        "buttons": [
+          {
+            "text": "View featured projects",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              236,
+              182,
+              63,
+              255
+            ],
+            "contrast": 8.673317460591331
+          },
+          {
+            "text": "Read the Lore",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              241,
+              212,
+              161,
+              255
+            ],
+            "contrast": 11.232290182524693
+          }
+        ],
+        "caption": {
+          "fill": "color(srgb 0.919529 0.829961 0.631529)",
+          "stroke": "rgb(22, 36, 31)",
+          "width": "2px",
+          "contrast": 11.047280245921478
+        }
+      }
+    },
+    {
+      "mode": "webgl",
+      "target": "night",
+      "before": "0",
+      "events": [
+        {
+          "t": 6839,
+          "type": "transitionrun",
+          "property": "opacity"
+        },
+        {
+          "t": 6839.0999999996275,
+          "type": "transitionstart",
+          "property": "opacity"
+        },
+        {
+          "t": 7723.800000000745,
+          "type": "transitionend",
+          "property": "opacity"
+        }
+      ],
+      "frames": [
+        {
+          "t": 6754.866,
+          "color": "0",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 6788.1,
+          "color": "0",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 6802,
+          "color": "0",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6836.8,
+          "color": "0.102802",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6871.6,
+          "color": "0.261889",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6899.5,
+          "color": "0.376395",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6927.4,
+          "color": "0.478199",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6955.2,
+          "color": "0.5667",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 6983,
+          "color": "0.642644",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7010.8,
+          "color": "0.70692",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7024.7,
+          "color": "0.735056",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7038.7,
+          "color": "0.760921",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7052.6,
+          "color": "0.784318",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7066.6,
+          "color": "0.805757",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7080.5,
+          "color": "0.825098",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7094.4,
+          "color": "0.842659",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7108.3,
+          "color": "0.85859",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7122.2,
+          "color": "0.873033",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7136.2,
+          "color": "0.886206",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7150.1,
+          "color": "0.898044",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7164,
+          "color": "0.908757",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7177.9,
+          "color": "0.918445",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7191.9,
+          "color": "0.927263",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7205.8,
+          "color": "0.935169",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7219.7,
+          "color": "0.942308",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7233.7,
+          "color": "0.948792",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7247.6,
+          "color": "0.954594",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7261.5,
+          "color": "0.959821",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7275.4,
+          "color": "0.964524",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7289.3,
+          "color": "0.968752",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7303.2,
+          "color": "0.972548",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7317.1,
+          "color": "0.975952",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7331,
+          "color": "0.978998",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7345,
+          "color": "0.98174",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7358.9,
+          "color": "0.984167",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7372.8,
+          "color": "0.986326",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7386.7,
+          "color": "0.988244",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7400.6,
+          "color": "0.989942",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7414.6,
+          "color": "0.991451",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7428.5,
+          "color": "0.992768",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7442.4,
+          "color": "0.993923",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7456.3,
+          "color": "0.994931",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7470.2,
+          "color": "0.995806",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7484.2,
+          "color": "0.996567",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7498.1,
+          "color": "0.997215",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7512,
+          "color": "0.997767",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7526,
+          "color": "0.998237",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7539.9,
+          "color": "0.998628",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7553.8,
+          "color": "0.998952",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7567.7,
+          "color": "0.999216",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7581.7,
+          "color": "0.99943",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7595.6,
+          "color": "0.999598",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7609.5,
+          "color": "0.999728",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7623.5,
+          "color": "0.999825",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7637.3,
+          "color": "0.999895",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7651.2,
+          "color": "0.999942",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7665.1,
+          "color": "0.999973",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7679.1,
+          "color": "0.99999",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7693,
+          "color": "0.999998",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7707,
+          "color": "1",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7720.9,
+          "color": "1",
+          "phase": "night",
+          "duration": "0.9s"
+        },
+        {
+          "t": 7734.8,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7748.7,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7762.6,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7776.5,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7790.5,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7804.4,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7818.3,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7832.2,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7846.1,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7860.1,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7874,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7887.9,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7901.8,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7915.8,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7929.7,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7943.7,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7957.6,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7971.5,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7985.3,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 7999.3,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8013.2,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8027.2,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8041.1,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8055,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8068.9,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8082.8,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        },
+        {
+          "t": 8096.8,
+          "color": "1",
+          "phase": "night",
+          "duration": "0s"
+        }
+      ],
+      "mutations": [
+        {
+          "t": 6759.0999999996275,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 6759.200000001118,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 6759.200000001118,
+          "attribute": "data-cockpit-phase",
+          "value": "night"
+        },
+        {
+          "t": 6759.200000001118,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 6760.200000001118,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 6794,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 6794,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 7665.5,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 7735.5999999996275,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 7735.5999999996275,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 7735.5999999996275,
+          "attribute": "style",
+          "value": "--static-sky-top: #010208; --static-sky-mid: #040a17; --static-sky-horizon: #071526; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        }
+      ],
+      "click": 6741.300000000745,
+      "after": "1",
+      "changed": 6794,
+      "planes": [
+        {
+          "phase": "morning",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "noon",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "sunset",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "night",
+          "opacity": "1",
+          "promotion": "auto"
+        }
+      ],
+      "finalPhase": "night",
+      "stats": {
+        "intermediate": 56,
+        "commitLatency": 52.69999999925494,
+        "p95": 27.800000000000182,
+        "max": 34.80000000000018
+      },
+      "text": {
+        "buttons": [
+          {
+            "text": "View featured projects",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              236,
+              182,
+              63,
+              255
+            ],
+            "contrast": 8.673317460591331
+          },
+          {
+            "text": "Read the Lore",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              204,
+              214,
+              166,
+              255
+            ],
+            "contrast": 10.516153585858609
+          }
+        ],
+        "caption": {
+          "fill": "rgb(234, 221, 192)",
+          "stroke": "rgb(22, 36, 31)",
+          "width": "2px",
+          "contrast": 11.944274516995593
+        }
+      }
+    },
+    {
+      "mode": "webgl",
+      "target": "morning",
+      "before": "0",
+      "events": [
+        {
+          "t": 8691.200000001118,
+          "type": "transitionrun",
+          "property": "opacity"
+        },
+        {
+          "t": 8691.300000000745,
+          "type": "transitionstart",
+          "property": "opacity"
+        },
+        {
+          "t": 9568.599999999627,
+          "type": "transitionend",
+          "property": "opacity"
+        }
+      ],
+      "frames": [
+        {
+          "t": 8572.066,
+          "color": "0",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 8625.8,
+          "color": "0",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 8660.5,
+          "color": "0",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8688.4,
+          "color": "0.136015",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8716.2,
+          "color": "0.261781",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8744.1,
+          "color": "0.376298",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8772,
+          "color": "0.478114",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8799.8,
+          "color": "0.566626",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8813.7,
+          "color": "0.606128",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8827.6,
+          "color": "0.642581",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8841.5,
+          "color": "0.676112",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8855.5,
+          "color": "0.707079",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8869.4,
+          "color": "0.735201",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8883.3,
+          "color": "0.760877",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8897.3,
+          "color": "0.784438",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8911.2,
+          "color": "0.805721",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8925.1,
+          "color": "0.825065",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8939,
+          "color": "0.842629",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8953,
+          "color": "0.858672",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8966.8,
+          "color": "0.873008",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8980.8,
+          "color": "0.886184",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 8994.7,
+          "color": "0.898024",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9008.6,
+          "color": "0.908738",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9022.5,
+          "color": "0.918429",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9036.5,
+          "color": "0.927248",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9050.4,
+          "color": "0.935156",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9064.3,
+          "color": "0.942296",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9078.2,
+          "color": "0.948737",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9092.2,
+          "color": "0.954585",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9106.1,
+          "color": "0.959812",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9120,
+          "color": "0.964516",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9133.9,
+          "color": "0.968745",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9147.9,
+          "color": "0.972567",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9161.8,
+          "color": "0.975969",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9175.7,
+          "color": "0.979014",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9189.6,
+          "color": "0.981735",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9203.5,
+          "color": "0.984162",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9217.4,
+          "color": "0.986323",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9231.4,
+          "color": "0.988254",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9245.3,
+          "color": "0.98995",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9259.3,
+          "color": "0.991458",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9273.1,
+          "color": "0.992766",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9287.1,
+          "color": "0.993929",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9301,
+          "color": "0.994936",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9314.9,
+          "color": "0.99581",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9328.8,
+          "color": "0.996565",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9342.8,
+          "color": "0.997218",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9356.7,
+          "color": "0.99777",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9370.6,
+          "color": "0.998237",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9384.5,
+          "color": "0.998627",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9398.5,
+          "color": "0.998953",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9412.3,
+          "color": "0.999216",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9426.3,
+          "color": "0.99943",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9440.2,
+          "color": "0.999598",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9454.2,
+          "color": "0.999728",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9468.1,
+          "color": "0.999825",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9482,
+          "color": "0.999895",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9495.8,
+          "color": "0.999942",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9509.8,
+          "color": "0.999973",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9523.7,
+          "color": "0.99999",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9537.7,
+          "color": "0.999998",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9551.6,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9565.5,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0.9s"
+        },
+        {
+          "t": 9579.4,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9593.3,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9607.3,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9621.2,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9635.1,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9649,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9663,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9676.9,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9690.8,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9704.7,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9718.6,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9732.5,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9746.4,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9760.4,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9774.3,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9788.2,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9802.1,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9816.1,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9830,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9844,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9857.9,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9871.8,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9885.7,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9899.6,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9913.6,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9927.5,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9941.4,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        },
+        {
+          "t": 9955.3,
+          "color": "1",
+          "phase": "morning",
+          "duration": "0s"
+        }
+      ],
+      "mutations": [
+        {
+          "t": 8579.800000000745,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 8579.800000000745,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 0; z-index: 1; transition: none; will-change: opacity;"
+        },
+        {
+          "t": 8579.800000000745,
+          "attribute": "data-cockpit-phase",
+          "value": "morning"
+        },
+        {
+          "t": 8579.900000000373,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 8580.599999999627,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 8647.200000001118,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 8647.300000000745,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 1; z-index: 1; transition: opacity var(--phase-visual-duration) var(--phase-easing); will-change: opacity;"
+        },
+        {
+          "t": 9479.099999999627,
+          "attribute": "data-phase-transition-suspended",
+          "value": "false"
+        },
+        {
+          "t": 9581.400000000373,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 9581.5,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        },
+        {
+          "t": 9581.5,
+          "attribute": "style",
+          "value": "--static-sky-top: #243f5e; --static-sky-mid: #5f9fba; --static-sky-horizon: #f6d79f; --celestial-tint: #d9ecff; opacity: 1; z-index: 0; transition: none; will-change: auto;"
+        }
+      ],
+      "click": 8560.400000000373,
+      "after": "1",
+      "changed": 8647.200000001118,
+      "planes": [
+        {
+          "phase": "morning",
+          "opacity": "1",
+          "promotion": "auto"
+        },
+        {
+          "phase": "noon",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "sunset",
+          "opacity": "0",
+          "promotion": "auto"
+        },
+        {
+          "phase": "night",
+          "opacity": "0",
+          "promotion": "auto"
+        }
+      ],
+      "finalPhase": "morning",
+      "stats": {
+        "intermediate": 58,
+        "commitLatency": 86.80000000074506,
+        "p95": 27.799999999999272,
+        "max": 27.899999999999636
+      },
+      "text": {
+        "buttons": [
+          {
+            "text": "View featured projects",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              236,
+              182,
+              63,
+              255
+            ],
+            "contrast": 8.673317460591331
+          },
+          {
+            "text": "Read the Lore",
+            "fill": [
+              22,
+              36,
+              31,
+              255
+            ],
+            "background": [
+              242,
+              225,
+              174,
+              255
+            ],
+            "contrast": 12.368781960804148
+          }
+        ],
+        "caption": {
+          "fill": "rgb(234, 221, 192)",
+          "stroke": "rgb(22, 36, 31)",
+          "width": "2px",
+          "contrast": 11.944274516995593
+        }
+      }
+    },
+    {
+      "mode": "webgl",
+      "target": "rapid reversal",
+      "reversal": {
+        "samples": [
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0692548,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0.0351182,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0.103095,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0.135949,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0.135949,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0.135949,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0.135949,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0.135949,
+              0.103027
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0.135949,
+              0.103027
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0.135949,
+              0.103027
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.136048,
+              0.135949,
+              0.103027
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.113132,
+              0.11305,
+              0.0856731
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0963432,
+              0.096273,
+              0.0729591
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0811903,
+              0.0811313,
+              0.0614842
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.06783,
+              0.0677806,
+              0.0513666
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0562225,
+              0.0561816,
+              0.0425764
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.046299,
+              0.0462653,
+              0.0350615
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0379248,
+              0.0378972,
+              0.0287198
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0342153,
+              0.0341904,
+              0.0259107
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0309048,
+              0.0308823,
+              0.0234037
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.027867,
+              0.0278467,
+              0.0211032
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0250852,
+              0.0250669,
+              0.0189966
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0225942,
+              0.0225778,
+              0.0171103
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0203007,
+              0.0202859,
+              0.0153734
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0182364,
+              0.0182231,
+              0.0138101
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0163529,
+              0.016341,
+              0.0123838
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0146598,
+              0.0146491,
+              0.0111016
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0131273,
+              0.0131177,
+              0.00994109
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0117409,
+              0.0117323,
+              0.00889118
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0104787,
+              0.0104711,
+              0.00793536
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00934668,
+              0.00933987,
+              0.00707809
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00832428,
+              0.00831822,
+              0.00630385
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00740151,
+              0.00739612,
+              0.00560505
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00656357,
+              0.00655879,
+              0.00497049
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00581924,
+              0.005815,
+              0.00440682
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00513935,
+              0.00513561,
+              0.00389195
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00453243,
+              0.00452913,
+              0.00343234
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00398718,
+              0.00398428,
+              0.00301943
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00349796,
+              0.00349541,
+              0.00264895
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00305965,
+              0.00305743,
+              0.00231703
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00266493,
+              0.00266299,
+              0.00201811
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00231518,
+              0.0023135,
+              0.00175325
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00200355,
+              0.00200209,
+              0.00151726
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00172465,
+              0.00172339,
+              0.00130605
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00148089,
+              0.00147981,
+              0.00112145
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00126224,
+              0.00126132,
+              0.000955871
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.001071,
+              0.00107022,
+              0.000811052
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000903066,
+              0.000902409,
+              0.000683878
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000756187,
+              0.000755636,
+              0.000572648
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000627448,
+              0.000626991,
+              0.000475156
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000516789,
+              0.000516413,
+              0.000391356
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000421494,
+              0.000421188,
+              0.000319191
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000339431,
+              0.000339184,
+              0.000257046
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000270301,
+              0.000270104,
+              0.000204694
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000212123,
+              0.000211968,
+              0.000160637
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000163659,
+              0.00016354,
+              0.000123936
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.000123509,
+              0.000123419,
+              0.0000935314
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0000911878,
+              0.0000911214,
+              0.000069055
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0000654076,
+              0.00006536,
+              0.0000495322
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0000452724,
+              0.0000452395,
+              0.0000342841
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0000298595,
+              0.0000298378,
+              0.0000226121
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0000186872,
+              0.0000186736,
+              0.0000141516
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.0000107174,
+              0.0000107096,
+              0.0000081161
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00000549965,
+              0.00000549565,
+              0.0000041648
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0.00000235996,
+              0.00000235824,
+              0.00000178716
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              7.3709e-7,
+              7.36553e-7,
+              5.58186e-7
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              1.11139e-7,
+              1.11058e-7,
+              8.41634e-8
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              2.23145e-10,
+              2.22983e-10,
+              1.68984e-10
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          },
+          {
+            "opacity": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coverage": 1
+          }
+        ],
+        "phase": "morning",
+        "stable": true,
+        "settled": [
+          {
+            "phase": "morning",
+            "opacity": "1",
+            "promotion": "auto"
+          },
+          {
+            "phase": "noon",
+            "opacity": "0",
+            "promotion": "auto"
+          },
+          {
+            "phase": "sunset",
+            "opacity": "0",
+            "promotion": "auto"
+          },
+          {
+            "phase": "night",
+            "opacity": "0",
+            "promotion": "auto"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "passed"
+}
