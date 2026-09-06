@@ -27,11 +27,8 @@ test('pointer offsets remain bounded outside the scene and safe for zero size', 
  assert.deepEqual(parallaxOffset({ x: 1, y: 1 }, { width: 0, height: 0 }, 10), { x: 0, y: 0 });
 });
 
-test('fixed scenic foreground stays AA over worst-case white artwork', () => {
+test('scenic letter fill and ink contour exceed AA contrast', () => {
  const foreground=[245,236,216], ink=[22,36,31];
  const luminance=rgb=>rgb.map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4;}).reduce((s,v,i)=>s+v*[.2126,.7152,.0722][i],0);
- for(const opacity of [.76,.78,.84]) {
-  const background=ink.map(v=>v*opacity+255*(1-opacity));
-  assert.ok((luminance(foreground)+.05)/(luminance(background)+.05)>=4.5);
- }
+ assert.ok((luminance(foreground)+.05)/(luminance(ink)+.05)>=4.5);
 });

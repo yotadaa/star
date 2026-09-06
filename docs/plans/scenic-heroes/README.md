@@ -15,14 +15,16 @@ Precedence: current owner approval → `PRODUCT.md` → existing palette/type ro
 | ID | Page / unit | Status | Dependencies | Evidence | Commit |
 |---|---|---|---|---|---|
 | SH-00 | Plan, source inventory, architecture decision | committed | approved mockup | this folder | a1892de |
-| SH-01 | Shared primitives + About canopy | validated | SH-00 | `validation/biome-heroes-2026-09-06/about/` | pending |
-| SH-02 | Projects desert | planned | committed SH-01 | `validation/biome-heroes-2026-09-06/projects/` | pending |
+| SH-01 | Shared primitives + About canopy | committed | SH-00 | `validation/biome-heroes-2026-09-06/about/` | 4c4e5a7 |
+| SH-01b | Shared phase transitions + Home | committed | SH-01 | `validation/hero-time-transition-2026-09-06/` | 6884b95 |
+| SH-01c | About stability, readable copy, foreground breakout | owner-accepted; follow-ups open | SH-01b | `validation/hero-time-transition-2026-09-06/README.md` | pending |
+| SH-02 | Projects desert | validating | owner approved proceeding from SH-01c | `validation/biome-heroes-2026-09-06/projects/` | pending |
 | SH-03 | Research future city | planned | committed SH-02 | `validation/biome-heroes-2026-09-06/research/` | pending |
 | SH-04 | Blog snow | planned | committed SH-03 | `validation/biome-heroes-2026-09-06/blog/` | pending |
 | SH-05 | Contact underwater | planned | committed SH-04 | `validation/biome-heroes-2026-09-06/contact/` | pending |
 | SH-06 | Final five-route integration review | planned | SH-01–05 | `validation/biome-heroes-2026-09-06/summary.json` | within SH-05 |
 
-Statuses: planned → assets-in-progress → implementing → validating → validated → committed. A failed check returns the unit to implementing. Update the page checklist and this ledger together; never report an asset or page complete without its evidence. The next page starts only after the prior page commit.
+Statuses: planned → assets-in-progress → implementing → validating → validated → committed. A failed check returns the unit to implementing. Update the page checklist and this ledger together; never report an asset or page complete without its evidence. The next page starts after the prior page commit. On 2026-09-07 the owner explicitly accepted the caption iteration and requested moving forward; About's remaining motion-budget and hover-label checks are retained as follow-ups rather than falsely marked passed.
 
 ## 3. Architecture decision
 
@@ -63,7 +65,7 @@ Hero sits before a normal narrow content wrapper. Main CTA scrolls to an actual 
 
 The bottom 25–30% of the scene fades to `var(--phase-page)`/inherited `var(--parchment)`. Its last pixels are fully opaque and the following content uses the identical computed token. Overlap by 1px to prevent subpixel seams. Test morning, noon, sunset and night; do not hardcode cream.
 
-Preserve the approved unboxed text composition. Sol suggested an opaque plaque for contrast; use a sufficiently dark local scrim instead because a plaque would change the approved visual. Check worst-case contrast against the brightest possible artwork and actual rendered screenshots. Existing fixed palette foreground roles must not inherit night-remapped text incorrectly.
+Preserve the approved unboxed text composition. The owner rejected both the broad left scrim and a local caption backing during implementation. Use contrasting letter fill/contour,17–20px caption type, and scene-specific placement/tone data. There is no panel behind the copy. Inspect real screenshots and measure the fill/contour pair; existing fixed foreground roles must not inherit night-remapped text incorrectly. See `time-transitions.md` for the approved refinement and evidence.
 
 ## 4. Asset production and traceability
 
@@ -175,7 +177,7 @@ Before commit: complete untruncated GitNexus change analysis, staged diff check 
 | Generic primitives plus route data | Owner's explicit maintainable/scalable/reusable requirement; each route imports only its own data |
 | About-only focus | Owner's explicit “ini implement di 1 page aja” |
 | New realistic cutout assets | Owner approved mock composition but explicitly rejected direct prototype artwork in production |
-| Unboxed copy with measured scrim | Approved mock and PRODUCT identity; avoids introducing a new plaque/card |
+| Unboxed copy with contrasting glyph contour | Owner rejected broad scrim and localized backing; accepted the final readable text iteration |
 | Phase-aware fade | Owner's explicit seamless hero/content transition |
 | Native motion pause | https://developer.mozilla.org/en-US/docs/Web/API/Animation/pause |
 | Visibility lifecycle | https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API |

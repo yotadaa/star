@@ -1,28 +1,40 @@
+.flow { --scene-overhang: var(--scene-overhang-desktop, 0px); }
 .hero {
+  --scene-phase-duration: var(--phase-visual-duration, 0ms);
   --scene-pointer-x: 0px;
   --scene-pointer-y: 0px;
   position: relative;
   isolation: isolate;
   min-height: 820px;
   min-height: max(760px, min(92svh, 1080px));
-  overflow: hidden;
+  overflow: visible;
   background: var(--palette-pine-deep);
   color: var(--palette-cream);
 }
-.backdrop, .scenery, .depth, .scrim, .fade {
+.viewport { position: absolute; inset: 0; overflow: clip; z-index: 0; pointer-events: none; }
+.breakoutClip { position: absolute; inset: 0 0 calc(-1 * var(--scene-overhang)); overflow: clip; z-index: 2; pointer-events: none; }
+.breakoutCoordinates { position: absolute; inset: 0 0 var(--scene-overhang); transition: opacity var(--scene-phase-duration) var(--phase-easing); }
+.breakoutClearance { height: var(--scene-overhang); pointer-events: none; }
+.backdrop, .scenery, .depth, .fade, .atmosphere {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 .backdrop { z-index: 0; overflow: hidden; }
-.backgroundImage { width: 100%; height: 100%; object-fit: cover; filter: blur(var(--depth-blur, 0px)); transform: scale(1.025); transition: filter 650ms ease; }
+.backgroundImage { width: 100%; height: 100%; object-fit: cover; transform: scale(1.025); }
 .backdrop picture { display: block; height: 100%; }
+.backgroundPlane { position: absolute; inset: 0; }
+/* Two cached views of one URL: only opacity changes during an optical focus pull. */
+.backgroundPlane[data-focus-plane="soft"] { opacity: 1; transition: opacity 650ms ease; }
+.backgroundPlane[data-focus-plane="soft"] .backgroundImage { filter: blur(var(--background-defocus)); }
+.backgroundPlane[data-focus-plane="soft"][data-visible="false"] { opacity: 0; }
 .scenery { z-index: 1; }
 .depth { isolation: isolate; }
 .object {
   position: absolute;
   left: var(--x, 50%);
   top: var(--y, 50%);
+  bottom: var(--b, auto);
   width: var(--w, 30%);
   opacity: var(--object-opacity, 1);
   transform: rotate(var(--r, 0deg));
@@ -30,33 +42,43 @@
   transform-origin: var(--pivot);
 }
 .objectImage { display: block; width: 100%; height: auto; object-fit: contain; user-select: none; pointer-events: none; filter: blur(var(--depth-blur, 0px)); transition: filter 650ms ease; }
-.parallax { position: relative; transform: translate(calc(var(--scene-pointer-x) * var(--parallax)), calc(var(--scene-pointer-y) * var(--parallax))); }
+.parallax { position: relative; transition: transform 120ms ease-out; transform: translate(calc(var(--scene-pointer-x) * var(--parallax)), calc(var(--scene-pointer-y) * var(--parallax))); }
 .ambient { display: block; transform-origin: var(--pivot); animation-duration: var(--duration); animation-delay: var(--delay); animation-timing-function: ease-in-out; animation-iteration-count: infinite; animation-play-state: paused; }
 .ambient[data-animation="sway"] { animation-name: sceneSway; }
 .ambient[data-animation="drift"] { animation-name: sceneDrift; }
 .ambient[data-animation="float"] { animation-name: sceneFloat; }
 .ambient[data-animation="visitor"] { animation-name: sceneVisit; }
 .hero[data-motion="running"] .ambient { animation-play-state: running; }
-.object:focus-within .ambient, .object:hover .ambient { animation-play-state: paused; }
-.object:focus-within .parallax { position: relative; transform: none; }
+.object:focus-within .ambient { animation-play-state: paused; }
 .objectButton { display: block; position: relative; min-width: 44px; min-height: 44px; width: 100%; padding: 0; border: 0; background: transparent; color: var(--palette-cream); cursor: pointer; pointer-events: auto; }
-.objectButton:focus-visible { outline: 2px dashed var(--palette-gold); outline-offset: 6px; }
+.objectButton[data-hit-area] { position: absolute; left: var(--hit-x); top: var(--hit-y); width: var(--hit-w); height: var(--hit-h); }
+.objectButton:focus-visible { outline: 2px dashed var(--palette-cream); outline-offset: 6px; }
+.hero[data-focus-indicator="true"] .objectButton:focus-visible { outline: none; }
+.focusIndicator { position: absolute; z-index: 6; pointer-events: none; border: 2px dashed var(--palette-cream); outline: 2px solid var(--palette-ink); outline-offset: 1px; }
+.focusIndicator span { position: absolute; top: calc(100% + 10px); left: 0; max-width: 260px; padding: 7px 10px; background: var(--palette-ink); color: var(--palette-cream); border: 1px solid var(--palette-cream); font: 500 12px/1.5 var(--font-body); white-space: nowrap; }
 .objectLabel { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); padding: 7px 10px; color: var(--palette-cream); background: var(--palette-ink); border: 1px solid var(--palette-cream); font: 500 12px/1.5 var(--font-body); white-space: nowrap; opacity: 0; }
 .object[data-kind="branch"] .objectLabel { top: 50%; }
-.scrim {
-  z-index: 2;
-  background: linear-gradient(90deg, color-mix(in srgb, var(--palette-ink) 84%, transparent) 0%, color-mix(in srgb, var(--palette-ink) 78%, transparent) 60%, transparent 88%);
-}
+.objectButton[data-hit-area] .objectLabel { transform: translateX(-50%) rotate(calc(-1 * var(--r))); }
 .copy {
+  --copy-fill: var(--palette-cream);
+  --copy-contour: var(--palette-ink);
   position: relative;
   z-index: 3;
   width: min(46%, 620px);
-  margin-left: max(6vw, calc((100vw - 1280px) / 2));
-  padding: clamp(180px, 24vh, 290px) 0 300px;
+  margin-left: var(--copy-inset, max(6vw, calc((100vw - 1280px) / 2)));
+  padding: var(--copy-top, clamp(180px, 24vh, 290px)) 0 300px;
+  pointer-events: none;
 }
-.copy h1 { color: var(--palette-cream); font-family: var(--font-display); font-size: clamp(2.6rem, 4.2vw, 4rem); font-weight: 500; line-height: 1.12; letter-spacing: -.025em; margin: 0 0 26px; text-wrap: balance; }
+.copy > * { pointer-events: auto; }
+.copy[data-copy-tone="dark"] { --copy-fill: var(--palette-ink); --copy-contour: var(--palette-cream); }
+.copy h1 { color: var(--copy-fill); font-family: var(--font-display); font-size: clamp(2.6rem, 4.2vw, 4rem); font-weight: 500; line-height: 1.12; letter-spacing: -.025em; margin: 0 0 26px; text-wrap: balance; }
 .caption { max-width: 52ch; }
-.caption p { color: var(--palette-cream); font: 400 clamp(1rem, 1.1vw, 1.0625rem)/1.8 var(--font-body); margin: 0; text-wrap: pretty; }
+.caption p { color: var(--copy-fill); font: 500 clamp(1.0625rem, 1.35vw, 1.25rem)/1.75 var(--font-body); margin: 0; text-wrap: pretty; }
+/* Glyph-sized contrast follows the lettering; no panel covers the artwork. */
+.copy h1, .caption p { -webkit-text-stroke: 2px var(--copy-contour); paint-order: stroke fill; text-shadow: 0 1px 2px color-mix(in srgb, var(--copy-contour) 65%, transparent); }
+@supports not (-webkit-text-stroke: 2px var(--palette-ink)) {
+  .copy h1, .caption p { text-shadow: -1px -1px 0 var(--copy-contour), 1px -1px 0 var(--copy-contour), -1px 1px 0 var(--copy-contour), 1px 1px 0 var(--copy-contour); }
+}
 .caption :global(.caption-inline-editor) { color: var(--palette-ink); background: var(--palette-cream); padding: 16px; }
 .caption :global(.caption-inline-editor textarea) { color: var(--palette-ink); background: var(--palette-cream); }
 .caption :global(.caption-edit-trigger) { color: var(--palette-cream); }
@@ -77,18 +99,21 @@
 .journal ul { list-style: none; padding: 0; margin: 0 0 16px; }
 .journal li { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid color-mix(in srgb, var(--palette-cream) 20%, transparent); padding: 10px 0; font-size: 12px; }
 .journal li span:last-child { color: var(--palette-gold); }
-.fade { z-index: 4; top: auto; bottom: -1px; height: 30%; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--phase-page) 18%, transparent) 20%, color-mix(in srgb, var(--phase-page) 65%, transparent) 57%, var(--phase-page) 94%); }
-.hero[data-phase="night"] .backdrop { filter: brightness(.4) saturate(.7); }
-.hero[data-phase="night"] .scenery { filter: brightness(.62) saturate(.72); }
-.hero[data-phase="sunset"] .backdrop { filter: sepia(.18) brightness(.85); }
-.hero[data-phase="sunset"] .scenery { filter: sepia(.12) brightness(.9); }
-.hero[data-phase="noon"] .backdrop { filter: brightness(1.08); }
+.fade { --scene-page-color: var(--phase-page); transition: --scene-page-color var(--phase-ui-duration) ease; z-index: 4; top: auto; bottom: -1px; height: 30%; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--scene-page-color, var(--phase-page)) 18%, transparent) 20%, color-mix(in srgb, var(--scene-page-color, var(--phase-page)) 65%, transparent) 57%, var(--scene-page-color, var(--phase-page)) 94%); }
+.atmosphere { z-index: 2; }
+.atmospherePlane { position: absolute; inset: 0; transition: opacity var(--scene-phase-duration) var(--phase-easing); }
+.hero[data-motion="paused"], .hero[data-motion="reduced"] { --scene-phase-duration: 0ms; }
+.hero[data-motion="paused"] * { transition: none; }
+.hero[data-motion="running"] .ambient:not([data-animation="none"]) { will-change: transform; }
 .content { padding-top: 20px; margin-top: -1px; position: relative; scroll-margin-top: 100px; }
 @keyframes sceneSway { 0%,100% { transform: rotate(calc(var(--sway) * -1)); } 50% { transform: rotate(var(--sway)); } }
 @keyframes sceneFloat { 0%,100% { transform: translate(0,0); } 47% { transform: translate(var(--travel-x), var(--travel-y)); } }
 @keyframes sceneDrift { from { transform: translate(calc(var(--travel-x) * -1), calc(var(--travel-y) * -1)); } to { transform: translate(var(--travel-x), var(--travel-y)); } }
 @keyframes sceneVisit { 0%,65%,100% { transform: translate(0,0) rotate(0); } 69% { transform: translate(22px,-18px) rotate(-4deg); } 75% { transform: translate(22px,14px) rotate(1deg); } 84% { transform: translate(22px,14px) rotate(0); } 89% { transform: translate(15px,-24px) rotate(-3deg); } }
 @media (max-width: 1023px) {
+  .flow { --scene-overhang: var(--scene-overhang-tablet, 0px); }
+  .objectButton[data-hit-area] { left: var(--t-hit-x); top: var(--t-hit-y); width: var(--t-hit-w); height: var(--t-hit-h); }
+  .object { left: var(--t-x); top: var(--t-y); bottom: var(--t-b); width: var(--t-w); transform: rotate(var(--t-r)); }
   .copy { width: 53%; margin-left: 5%; padding-top: 180px; }
   .copy h1 { font-size: clamp(2.5rem, 5vw, 3.6rem); }
   .controls { left: 5%; right: 5%; flex-wrap: wrap; gap: 12px; }
@@ -96,13 +121,14 @@
   .tools { gap: 6px; }
 }
 @media (max-width: 700px) {
+  .flow { --scene-overhang: var(--scene-overhang-mobile, 0px); }
+  .objectButton[data-hit-area] { left: var(--m-hit-x); top: var(--m-hit-y); width: var(--m-hit-w); height: var(--m-hit-h); }
   .hero { min-height: 900px; }
   .copy { width: 88%; margin-left: 6%; padding: 170px 0 450px; }
   .copy h1 { font-size: clamp(2.35rem, 8.5vw, 3.4rem); max-width: 520px; }
   .caption { max-width: 48ch; }
-  .caption p { font-size: 1rem; }
-  .scrim { background: linear-gradient(180deg, color-mix(in srgb, var(--palette-ink) 80%, transparent) 0%, color-mix(in srgb, var(--palette-ink) 76%, transparent) 52%, transparent 77%); }
-  .object { left: var(--m-x, var(--x)); top: var(--m-y, var(--y)); width: var(--m-w, var(--w)); transform: rotate(var(--m-r, var(--r, 0deg))); }
+  .caption p { font-size: 1.0625rem; }
+  .object { left: var(--m-x, var(--x)); top: var(--m-y, var(--y)); bottom: var(--m-b, auto); width: var(--m-w, var(--w)); transform: rotate(var(--m-r, var(--r, 0deg))); }
   .controls { left: 6%; right: 6%; bottom: 145px; display: grid; gap: 14px; }
   .tools { justify-content: flex-start; }
   .tools button { padding: 10px; font-size: 11px; }
@@ -116,13 +142,14 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .hero *, .hero *::before, .hero *::after { animation: none !important; transition: none !important; }
-  .parallax { position: relative; transform: none !important; }
+  .parallax { transform: none !important; }
 }
 .hero[data-motion="reduced"] .ambient { animation: none; }
 .hero[data-motion="reduced"] .depth, .hero[data-motion="reduced"] .object { transition: none; }
 
 .primitive { display: block; width: 100%; aspect-ratio: 1; border-radius: 50%; pointer-events: none; filter: blur(var(--depth-blur, 0px)); }
-.primitive[data-material="celestial"] { background: var(--palette-cream); opacity: .72; box-shadow: 0 0 36px 12px color-mix(in srgb, var(--palette-gold) 15%, transparent); }
+.primitive[data-material="celestial"] { transition: background-color var(--scene-phase-duration) var(--phase-easing), opacity var(--scene-phase-duration) var(--phase-easing), box-shadow var(--scene-phase-duration) var(--phase-easing); background: var(--palette-cream); opacity: .72; box-shadow: 0 0 36px 12px color-mix(in srgb, var(--palette-gold) 15%, transparent); }
 .hero[data-phase="night"] .primitive[data-material="celestial"] { opacity: .95; box-shadow: none; }
 
 .objectButton:hover .objectLabel, .objectButton:focus-visible .objectLabel { opacity: 1; }
+.objectButton:focus .objectLabel { visibility: hidden; }

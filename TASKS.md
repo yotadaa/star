@@ -11,6 +11,10 @@
 
 ## Someday
 
+- [ ] **Attribute the remaining About sunset long task** — owner accepted the current composition and requested moving forward. The local production trace still exceeded its frame budget (55.7ms p95, 370ms maximum); do not claim this gate passed. Evidence: `validation/hero-time-transition-2026-09-06/report.json`.
+- [ ] **Verify the About night hover-label contrast** — Astra observed the branch hover plaque dimmed beneath the atmosphere; keyboard focus uses its separate clear label. Retained after the owner requested proceeding. Evidence: `validation/hero-time-transition-2026-09-06/about-1440-night-copy-breakout.png`.
+- [ ] **Extend the existing Nala mobile FAB clearance audit to About** — Astra observed the fixed assistant trigger overlapping the lower-right introduction at 375px. This is the existing global FAB concern, outside the branch/scenic change. Evidence: `validation/hero-time-transition-2026-09-06/about-375-breakout.png`.
+
 - [ ] **Upgrade the pre-existing vulnerable web/auth dependency paths** - `npm audit --omit=dev` currently reports two critical and four high findings across pinned Next.js 15.5.19, Auth.js beta.31, PostCSS 8.5.10, Sharp, and NanoID; test auth semantics and image optimization before applying the available upgrades. Evidence: `validation/convex-r2-migration-2026-08-26/validation.md`.
 - [ ] **Keep the Nala mobile FAB clear of Blog media captions, table rows, carousel controls, and reader forms** - the existing global assistant trigger covers a small lower-right area at 375 px; evidence: `validation/gpt-6-astra-rumor-blog/mobile-top.jpg`, `mobile-carousel-controls.jpg`, and `validation/blog-english-reader-polish-2026-08-24/`.
 - [ ] **Align the existing Player Status popup with the neobrutalist system** - remove its older rounded/gradient treatment observed during Player HUD shortcut validation; evidence: `screenshots/player-hud-2026-07-04/desktop-inventory-shortcut.png`.

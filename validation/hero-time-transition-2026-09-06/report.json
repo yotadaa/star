@@ -1,0 +1,2001 @@
+{
+  "base": "http://127.0.0.1:3125",
+  "checks": [
+    "about/1440/noon: latest phase",
+    "about/1440/noon: stable images and objects",
+    "about/1440/noon: real intermediate appearance",
+    "1440/noon: fade inherits current page fill",
+    "about/1440/sunset: latest phase",
+    "about/1440/sunset: stable images and objects",
+    "about/1440/sunset: real intermediate appearance",
+    "1440/sunset: fade inherits current page fill",
+    "about/1440/night: latest phase",
+    "about/1440/night: stable images and objects",
+    "about/1440/night: real intermediate appearance",
+    "1440/night: fade inherits current page fill",
+    "about/1440/morning: latest phase",
+    "about/1440/morning: stable images and objects",
+    "about/1440/morning: real intermediate appearance",
+    "1440/morning: fade inherits current page fill",
+    "about/1440: rapid retarget settles",
+    "about/1440: saved target restored",
+    "about/1440: reduced target immediate",
+    "about/1440: reduced zero phase duration",
+    "about/375/noon: latest phase",
+    "about/375/noon: stable images and objects",
+    "about/375/noon: real intermediate appearance",
+    "375/noon: fade inherits current page fill",
+    "about/375/sunset: latest phase",
+    "about/375/sunset: stable images and objects",
+    "about/375/sunset: real intermediate appearance",
+    "375/sunset: fade inherits current page fill",
+    "about/375/night: latest phase",
+    "about/375/night: stable images and objects",
+    "about/375/night: real intermediate appearance",
+    "375/night: fade inherits current page fill",
+    "about/375/morning: latest phase",
+    "about/375/morning: stable images and objects",
+    "about/375/morning: real intermediate appearance",
+    "375/morning: fade inherits current page fill",
+    "about/375: rapid retarget settles",
+    "about/375: saved target restored",
+    "about/375: reduced target immediate",
+    "about/375: reduced zero phase duration",
+    "home/1440/noon: latest phase",
+    "home/1440/noon: stable images and objects",
+    "home/1440/noon: real intermediate appearance",
+    "home/1440/sunset: latest phase",
+    "home/1440/sunset: stable images and objects",
+    "home/1440/sunset: real intermediate appearance",
+    "home/1440/night: latest phase",
+    "home/1440/night: stable images and objects",
+    "home/1440/night: real intermediate appearance",
+    "home/1440/morning: latest phase",
+    "home/1440/morning: stable images and objects",
+    "home/1440/morning: real intermediate appearance",
+    "home/1440: rapid retarget settles",
+    "home/1440: saved target restored",
+    "home/1440: reduced target immediate",
+    "home/1440: reduced zero phase duration",
+    "home/375/noon: latest phase",
+    "home/375/noon: stable images and objects",
+    "home/375/noon: real intermediate appearance",
+    "home/375/sunset: latest phase",
+    "home/375/sunset: stable images and objects",
+    "home/375/sunset: real intermediate appearance",
+    "home/375/night: latest phase",
+    "home/375/night: stable images and objects",
+    "home/375/night: real intermediate appearance",
+    "home/375/morning: latest phase",
+    "home/375/morning: stable images and objects",
+    "home/375/morning: real intermediate appearance",
+    "home/375: rapid retarget settles",
+    "home/375: saved target restored",
+    "home/375: reduced target immediate",
+    "home/375: reduced zero phase duration",
+    "About/1440/noon: no large scene filter",
+    "About/1440/noon: frame p95 <= 34ms",
+    "About/1440/noon: under 10% frame gaps over34ms",
+    "About/1440/sunset: no large scene filter"
+  ],
+  "errors": [],
+  "samples": [
+    {
+      "label": "about",
+      "width": 1440,
+      "before": {
+        "t": 3411.5,
+        "phase": "morning",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "1"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "rgb(234, 221, 192)",
+        "fadeColor": "rgb(234, 221, 192)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 920
+      },
+      "middle": {
+        "t": 3557,
+        "phase": "noon",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0.831324"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0.168676"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "rgb(237, 225, 199)",
+        "fadeColor": "rgb(237, 225, 199)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 920
+      },
+      "after": {
+        "t": 5944.300000000745,
+        "phase": "noon",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "1"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "rgb(245, 236, 216)",
+        "fadeColor": "rgb(245, 236, 216)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 920
+      }
+    },
+    {
+      "label": "about",
+      "width": 1440,
+      "before": {
+        "t": 7047.10000000149,
+        "phase": "noon",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "1"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "rgb(245, 236, 216)",
+        "fadeColor": "rgb(245, 236, 216)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 920
+      },
+      "middle": {
+        "t": 7157.9000000003725,
+        "phase": "sunset",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0.768692"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0.231308"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "oklab(0.913488 0.00290027 0.047262)",
+        "fadeColor": "oklab(0.913488 0.00290027 0.047262)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 920
+      },
+      "after": {
+        "t": 9460.10000000149,
+        "phase": "sunset",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "1"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "color(srgb 0.919529 0.829961 0.631529)",
+        "fadeColor": "color(srgb 0.919529 0.829961 0.631529)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 920
+      }
+    },
+    {
+      "label": "about",
+      "width": 1440,
+      "before": {
+        "t": 10503.200000001118,
+        "phase": "sunset",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "1"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "color(srgb 0.919529 0.829961 0.631529)",
+        "fadeColor": "color(srgb 0.919529 0.829961 0.631529)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 920
+      },
+      "middle": {
+        "t": 10728.400000000373,
+        "phase": "night",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0.463398"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0.536602"
+          }
+        ],
+        "sky": null,
+        "main": "oklab(0.27612 -0.0243587 -0.00423357)",
+        "fadeColor": "oklab(0.27612 -0.0243587 -0.00423357)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 920
+      },
+      "after": {
+        "t": 12783.700000001118,
+        "phase": "night",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "1"
+          }
+        ],
+        "sky": null,
+        "main": "color(srgb 0.0821961 0.159529 0.157255)",
+        "fadeColor": "color(srgb 0.0821961 0.159529 0.157255)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 920
+      }
+    },
+    {
+      "label": "about",
+      "width": 1440,
+      "before": {
+        "t": 13607.700000001118,
+        "phase": "night",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "1"
+          }
+        ],
+        "sky": null,
+        "main": "color(srgb 0.0821961 0.159529 0.157255)",
+        "fadeColor": "color(srgb 0.0821961 0.159529 0.157255)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 920
+      },
+      "middle": {
+        "t": 13739.200000001118,
+        "phase": "morning",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0.243876"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0.756124"
+          }
+        ],
+        "sky": null,
+        "main": "oklab(0.572335 -0.0117075 0.0168474)",
+        "fadeColor": "oklab(0.572335 -0.0117075 0.0168474)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 920
+      },
+      "after": {
+        "t": 16165.900000000373,
+        "phase": "morning",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "1"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "rgb(234, 221, 192)",
+        "fadeColor": "rgb(234, 221, 192)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 920
+      }
+    },
+    {
+      "label": "about",
+      "width": 375,
+      "before": {
+        "t": 3052.2000000011176,
+        "phase": "morning",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "1"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "rgb(234, 221, 192)",
+        "fadeColor": "rgb(234, 221, 192)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 900
+      },
+      "middle": {
+        "t": 3218.4000000003725,
+        "phase": "noon",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0.831431"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0.168569"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "rgb(240, 229, 205)",
+        "fadeColor": "rgb(240, 229, 205)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 900
+      },
+      "after": {
+        "t": 4607.700000001118,
+        "phase": "noon",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "1"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "rgb(245, 236, 216)",
+        "fadeColor": "rgb(245, 236, 216)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 900
+      }
+    },
+    {
+      "label": "about",
+      "width": 375,
+      "before": {
+        "t": 4913.9000000003725,
+        "phase": "noon",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "1"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "rgb(245, 236, 216)",
+        "fadeColor": "rgb(245, 236, 216)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 900
+      },
+      "middle": {
+        "t": 5007.300000000745,
+        "phase": "sunset",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0.799437"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0.200563"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "oklab(0.919302 0.00267604 0.0437148)",
+        "fadeColor": "oklab(0.919302 0.00267604 0.0437148)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 900
+      },
+      "after": {
+        "t": 6386.700000001118,
+        "phase": "sunset",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "1"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "color(srgb 0.919529 0.829961 0.631529)",
+        "fadeColor": "color(srgb 0.919529 0.829961 0.631529)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 900
+      }
+    },
+    {
+      "label": "about",
+      "width": 375,
+      "before": {
+        "t": 6660.9000000003725,
+        "phase": "sunset",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "1"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "color(srgb 0.919529 0.829961 0.631529)",
+        "fadeColor": "color(srgb 0.919529 0.829961 0.631529)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 900
+      },
+      "middle": {
+        "t": 6808,
+        "phase": "night",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0.696278"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0.303722"
+          }
+        ],
+        "sky": null,
+        "main": "oklab(0.490856 -0.0140699 0.0225016)",
+        "fadeColor": "oklab(0.490856 -0.0140699 0.0225016)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 900
+      },
+      "after": {
+        "t": 8234.700000001118,
+        "phase": "night",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "1"
+          }
+        ],
+        "sky": null,
+        "main": "color(srgb 0.0821961 0.159529 0.157255)",
+        "fadeColor": "color(srgb 0.0821961 0.159529 0.157255)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 900
+      }
+    },
+    {
+      "label": "about",
+      "width": 375,
+      "before": {
+        "t": 8439.200000001118,
+        "phase": "night",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "1"
+          }
+        ],
+        "sky": null,
+        "main": "color(srgb 0.0821961 0.159529 0.157255)",
+        "fadeColor": "color(srgb 0.0821961 0.159529 0.157255)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 900
+      },
+      "middle": {
+        "t": 8584.099999999627,
+        "phase": "morning",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "0.274136"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0.725864"
+          }
+        ],
+        "sky": null,
+        "main": "oklab(0.862033 0.000730751 0.0381352)",
+        "fadeColor": "oklab(0.862033 0.000730751 0.0381352)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 900
+      },
+      "after": {
+        "t": 9969,
+        "phase": "morning",
+        "atmosphere": [
+          {
+            "phase": "morning",
+            "color": "color(srgb 0.960784 0.92549 0.847059 / 0.035)",
+            "opacity": "1"
+          },
+          {
+            "phase": "noon",
+            "color": "color(srgb 0 0 0 / 0)",
+            "opacity": "0"
+          },
+          {
+            "phase": "sunset",
+            "color": "color(srgb 0.721569 0.286275 0.168627 / 0.19)",
+            "opacity": "0"
+          },
+          {
+            "phase": "night",
+            "color": "color(srgb 0.0705882 0.211765 0.258824 / 0.72)",
+            "opacity": "0"
+          }
+        ],
+        "sky": null,
+        "main": "rgb(234, 221, 192)",
+        "fadeColor": "rgb(234, 221, 192)",
+        "images": [
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
+          "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp"
+        ],
+        "objects": 7,
+        "heroHeight": 900
+      }
+    },
+    {
+      "label": "home",
+      "width": 1440,
+      "before": {
+        "t": 2697.60000000149,
+        "phase": "morning",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "1"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "rgb(234, 221, 192)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "middle": {
+        "t": 2927.2000000011176,
+        "phase": "noon",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "1"
+          ],
+          [
+            "noon",
+            "0.200441"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "rgb(241, 230, 206)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "after": {
+        "t": 5120.9000000003725,
+        "phase": "noon",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "1"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "rgb(245, 236, 216)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      }
+    },
+    {
+      "label": "home",
+      "width": 1440,
+      "before": {
+        "t": 6131.60000000149,
+        "phase": "noon",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "1"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "rgb(245, 236, 216)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "middle": {
+        "t": 6272.800000000745,
+        "phase": "sunset",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "1"
+          ],
+          [
+            "sunset",
+            "0.200151"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "oklab(0.908079 0.00310889 0.0505621)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "after": {
+        "t": 8372.900000000373,
+        "phase": "sunset",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "1"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "color(srgb 0.919529 0.829961 0.631529)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      }
+    },
+    {
+      "label": "home",
+      "width": 1440,
+      "before": {
+        "t": 9361.300000000745,
+        "phase": "sunset",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "1"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "color(srgb 0.919529 0.829961 0.631529)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "middle": {
+        "t": 9574.700000001118,
+        "phase": "night",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "1"
+          ],
+          [
+            "night",
+            "0.43823"
+          ]
+        ],
+        "main": "oklab(0.287073 -0.0238339 -0.00286993)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "after": {
+        "t": 11375.10000000149,
+        "phase": "night",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "1"
+          ]
+        ],
+        "main": "color(srgb 0.0821961 0.159529 0.157255)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      }
+    },
+    {
+      "label": "home",
+      "width": 1440,
+      "before": {
+        "t": 11963.5,
+        "phase": "night",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "1"
+          ]
+        ],
+        "main": "color(srgb 0.0821961 0.159529 0.157255)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "middle": {
+        "t": 12116.60000000149,
+        "phase": "morning",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0.273802"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "1"
+          ]
+        ],
+        "main": "oklab(0.760755 -0.00361766 0.030693)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "after": {
+        "t": 14301.400000000373,
+        "phase": "morning",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "1"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "rgb(234, 221, 192)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/desktop/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      }
+    },
+    {
+      "label": "home",
+      "width": 375,
+      "before": {
+        "t": 2439.5999999996275,
+        "phase": "morning",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "1"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "rgb(234, 221, 192)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "middle": {
+        "t": 2642.2999999988824,
+        "phase": "noon",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "1"
+          ],
+          [
+            "noon",
+            "0.200572"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "rgb(241, 230, 206)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "after": {
+        "t": 4090,
+        "phase": "noon",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "1"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "rgb(245, 236, 216)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      }
+    },
+    {
+      "label": "home",
+      "width": 375,
+      "before": {
+        "t": 4457.0999999996275,
+        "phase": "noon",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "1"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "rgb(245, 236, 216)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "middle": {
+        "t": 4590.9000000003725,
+        "phase": "sunset",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "1"
+          ],
+          [
+            "sunset",
+            "0.200413"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "oklab(0.903201 0.00329703 0.0535382)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "after": {
+        "t": 6031.5999999996275,
+        "phase": "sunset",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "1"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "color(srgb 0.919529 0.829961 0.631529)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      }
+    },
+    {
+      "label": "home",
+      "width": 375,
+      "before": {
+        "t": 6356.4000000003725,
+        "phase": "sunset",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "1"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "color(srgb 0.919529 0.829961 0.631529)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "middle": {
+        "t": 6515.5,
+        "phase": "night",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "1"
+          ],
+          [
+            "night",
+            "0.273956"
+          ]
+        ],
+        "main": "oklab(0.423964 -0.017275 0.0141734)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "after": {
+        "t": 7969.299999998882,
+        "phase": "night",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "1"
+          ]
+        ],
+        "main": "color(srgb 0.0821961 0.159529 0.157255)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      }
+    },
+    {
+      "label": "home",
+      "width": 375,
+      "before": {
+        "t": 8224.099999999627,
+        "phase": "night",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "1"
+          ]
+        ],
+        "main": "color(srgb 0.0821961 0.159529 0.157255)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "middle": {
+        "t": 8381.299999998882,
+        "phase": "morning",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "0.273952"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "1"
+          ]
+        ],
+        "main": "oklab(0.732611 -0.00482602 0.0286249)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      },
+      "after": {
+        "t": 9904,
+        "phase": "morning",
+        "atmosphere": null,
+        "sky": [
+          [
+            "morning",
+            "1"
+          ],
+          [
+            "noon",
+            "0"
+          ],
+          [
+            "sunset",
+            "0"
+          ],
+          [
+            "night",
+            "0"
+          ]
+        ],
+        "main": "rgb(234, 221, 192)",
+        "fadeColor": null,
+        "images": [
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/moon.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/cloud.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/mountains.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/forest-hills.webp",
+          "http://127.0.0.1:3125/assets/parallax/optimized/mobile/meadow.webp"
+        ],
+        "objects": 2,
+        "heroHeight": 1000
+      }
+    }
+  ],
+  "frames": [
+    {
+      "width": 1440,
+      "target": "noon",
+      "p95": 21,
+      "max": 34.80000000000018,
+      "over34": 0.03278688524590164,
+      "frames": 61,
+      "longTasks": [],
+      "largeFilters": []
+    },
+    {
+      "width": 1440,
+      "target": "sunset",
+      "p95": 55.69999999999982,
+      "max": 370,
+      "over34": 0.18421052631578946,
+      "frames": 38,
+      "longTasks": [
+        {
+          "start": 4859.4000000003725,
+          "duration": 376
+        }
+      ],
+      "largeFilters": []
+    }
+  ],
+  "status": "failed",
+  "failure": "About/1440/sunset: frame p95 <= 34ms"
+}

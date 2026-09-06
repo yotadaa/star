@@ -22,8 +22,9 @@ export default function ScenicObject({ object, state, active, onInteract, motion
   const progress = state?.progress || 0;
   const reveal = object.reveal ? (object.reveal.invert ? 1 - progress : progress) : 1;
   const variables = {
-    ...placementVars({ x: "50%", y: "50%", w: "30%", r: "0deg", ...object.layout }),
-    ...placementVars({ x: "50%", y: "50%", w: "30%", r: "0deg", ...object.layout, ...object.mobile }, "m-"),
+    ...placementVars({ x: "50%", y: "50%", b: "auto", w: "30%", r: "0deg", ...object.layout }),
+    ...placementVars({ x: "50%", y: "50%", b: "auto", w: "30%", r: "0deg", ...object.layout, ...object.tablet }, "t-"),
+    ...placementVars({ x: "50%", y: "50%", b: "auto", w: "30%", r: "0deg", ...object.layout, ...object.tablet, ...object.mobile }, "m-"),
     "--pivot": object.pivot || "50% 50%",
     "--parallax": object.parallax ?? 0,
     "--duration": `${object.motion?.duration || 9}s`,
@@ -32,6 +33,9 @@ export default function ScenicObject({ object, state, active, onInteract, motion
     "--travel-x": object.motion?.x || "8px",
     "--travel-y": object.motion?.y || "-4px",
     "--object-opacity": reveal,
+    ...placementVars(action?.hitArea?.desktop, "hit-"),
+    ...placementVars(action?.hitArea?.tablet || action?.hitArea?.desktop, "t-hit-"),
+    ...placementVars(action?.hitArea?.mobile || action?.hitArea?.desktop, "m-hit-"),
   };
   const trigger = () => {
     onInteract(object);
@@ -47,10 +51,11 @@ export default function ScenicObject({ object, state, active, onInteract, motion
 
   return (
     <div className={styles.object} data-object={object.id} data-active={active || undefined} data-kind={object.kind || "scenery"} style={variables}>
-      <div className={styles.parallax}>
+      <div className={styles.parallax} data-scene-parallax>
+          {action?.hitArea && <span aria-hidden="true">{visual}</span>}
           {action ? (
-            <button type="button" className={styles.objectButton} aria-label={state?.label || action.label} onClick={trigger} aria-pressed={action.pressed ? Boolean(active) : undefined}>
-              {visual}
+            <button type="button" className={styles.objectButton} data-hit-area={Boolean(action.hitArea) || undefined} aria-label={state?.label || action.label} onClick={trigger} aria-pressed={action.pressed || action.depth ? Boolean(active) : undefined}>
+              {!action.hitArea && visual}
               <span className={styles.objectLabel}>{state?.label || action.label}</span>
             </button>
           ) : <span aria-hidden="true">{visual}</span>}

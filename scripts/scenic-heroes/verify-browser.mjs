@@ -91,14 +91,14 @@ try {
  await page.waitForFunction(()=>document.querySelector('[data-scene]').dataset.motion==='paused');
  check('offscreen paused',await hero.getAttribute('data-motion')==='paused');
  await page.evaluate(()=>window.scrollTo(0,0)); await ready();
- // CDP visibility emulation exercises the actual event handler (not CSS inspection).
+ // A synthetic visibility event exercises the handler; this is not OS tab suspension.
  await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});document.dispatchEvent(new Event('visibilitychange'));});
  check('hidden page paused',await hero.getAttribute('data-motion')==='paused');
  await page.evaluate(()=>{delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));}); await ready();
  for(const phase of ['morning','noon','sunset','night']) {
   for(let i=0;i<4&&await page.getByTestId('daynight-toggle').getAttribute('data-phase')!==phase;i++) await page.getByTestId('daynight-toggle').click();
   await page.waitForFunction(p=>document.querySelector('[data-scene]').dataset.phase===p,phase);
-  await page.waitForTimeout(750);
+  await page.waitForTimeout(1050);
   await page.evaluate(()=>window.scrollTo(0,document.querySelector('[data-scene]').offsetHeight-600));
   await page.waitForTimeout(150);
   const edge=await hero.evaluate(n=>n.getBoundingClientRect().bottom);

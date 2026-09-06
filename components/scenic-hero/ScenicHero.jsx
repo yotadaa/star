@@ -3,10 +3,11 @@
 import { useRef, useState } from "react";
 import { Pause, Play, BookOpen, ArrowDown, Focus } from "lucide-react";
 import ScenicScene from "./ScenicScene";
+import ScenicAtmosphere from "./ScenicAtmosphere";
 import useScenicInteraction from "./useScenicInteraction";
 import useScenicLifecycle from "./useScenicLifecycle";
 import useDiscoveryJournal from "./useDiscoveryJournal";
-import { DISCOVERIES, DISCOVERY_IDS, focusBlur } from "./sceneState.mjs";
+import { DISCOVERIES, DISCOVERY_IDS } from "./sceneState.mjs";
 import styles from "./scenic-hero.module.css";
 
 export default function ScenicHero({ scene, title, children, contentId, cta }) {
@@ -14,25 +15,40 @@ export default function ScenicHero({ scene, title, children, contentId, cta }) {
   const [paused, setPaused] = useState(false);
   const journalButton = useRef(null);
   const [journalOpen, setJournalOpen] = useState(false);
-  const { motion, phase } = useScenicLifecycle(rootRef, paused);
+  const { motion, phase, focusTarget } = useScenicLifecycle(rootRef, paused);
   const { discoveries, record } = useDiscoveryJournal();
   const completed = discoveries.includes(scene.discoveryId);
 
   const { depth, selectDepth, interact, actionState, notice } = useScenicInteraction(scene, completed, record);
   const closeJournal = () => { setJournalOpen(false); journalButton.current?.focus(); };
+  const breakout = scene.breakout;
+  const flowStyle = breakout ? {
+    "--scene-overhang-desktop": breakout.desktop,
+    "--scene-overhang-tablet": breakout.tablet,
+    "--scene-overhang-mobile": breakout.mobile,
+  } : undefined;
 
   return (
-    <section ref={rootRef} className={styles.hero} data-scene={scene.id} data-motion={motion} data-phase={phase} data-focus={depth} aria-label={scene.name} onKeyDown={(event) => { if (event.key === "Escape" && journalOpen) { event.stopPropagation(); closeJournal(); } }}>
-      <div className={styles.backdrop} aria-hidden="true" style={{ "--depth-blur": `${scene.focus ? focusBlur("far", depth, scene.focus.blur) : 0}px` }}>
-        <picture>
+    <div className={styles.flow} style={flowStyle}>
+    <section ref={rootRef} className={styles.hero} data-scene={scene.id} data-motion={motion} data-phase={phase} data-focus={depth} data-focus-indicator={Boolean(focusTarget)} aria-label={scene.name} onKeyDown={(event) => { if (event.key === "Escape" && journalOpen) { event.stopPropagation(); closeJournal(); } }}>
+      <div className={styles.viewport}>
+      <div className={styles.backdrop} aria-hidden="true" style={{ "--background-defocus": `${scene.focus?.backgroundBlur || 4}px` }}>
+        {(scene.focus ? ["sharp", "soft"] : ["sharp"]).map((plane) => <picture key={plane} className={styles.backgroundPlane} data-focus-plane={plane} data-visible={plane === "sharp" || depth !== "far"}>
           <source media="(max-width: 700px)" srcSet={scene.background.mobile} />
           <source media="(max-width: 1400px)" srcSet={scene.background.medium} />
-          <img src={scene.background.src} alt="" width={scene.background.width} height={scene.background.height} fetchPriority="high" className={styles.backgroundImage} />
-        </picture>
+          <img src={scene.background.src} alt="" width={scene.background.width} height={scene.background.height} fetchPriority={plane === "sharp" ? "high" : "auto"} className={styles.backgroundImage} />
+        </picture>)}
       </div>
       <ScenicScene scene={scene} depth={depth} motion={motion} interact={interact} actionState={actionState} />
-      <div className={styles.scrim} aria-hidden="true" />
-      <header className={styles.copy}>
+      <ScenicAtmosphere phase={phase} appearance={scene.atmosphere} />
+      <div className={styles.fade} data-scene-fade aria-hidden="true" />
+      </div>
+      {breakout && <div className={styles.breakoutClip} data-scene-breakout>
+        <div className={styles.breakoutCoordinates} style={{ opacity: breakout.opacity?.[phase] ?? 1 }}>
+          <ScenicScene scene={scene} depth={depth} motion={motion} interact={interact} actionState={actionState} foreground />
+        </div>
+      </div>}
+      <header className={styles.copy} data-copy-tone={scene.copy?.tones?.[phase] || "light"} style={{ "--copy-top": scene.copy?.top, "--copy-inset": scene.copy?.inset }}>
         <h1>{title}</h1>
         <div className={styles.caption}>{children}</div>
         <a href={`#${contentId}`} className={styles.cta}>{cta}<ArrowDown size={16} aria-hidden="true" /></a>
@@ -48,13 +64,17 @@ export default function ScenicHero({ scene, title, children, contentId, cta }) {
         </div>
       </div>
       <div className={styles.notice} role="status" aria-live="polite" aria-atomic="true">{notice}</div>
+      {focusTarget && <div className={styles.focusIndicator} data-scene-focus-ring aria-hidden="true" style={{ left: focusTarget.x, top: focusTarget.y, width: focusTarget.width, height: focusTarget.height }}>
+        <span style={{ left: focusTarget.labelLeft, top: focusTarget.labelTop }}>{focusTarget.label}</span>
+      </div>}
       {journalOpen && <aside id={`${scene.id}-journal`} className={styles.journal} aria-label="Exploration journal">
         <h2>Places observed</h2>
         <p>Discoveries from this browsing session.</p>
         <ul>{Object.entries(DISCOVERIES).map(([id, label]) => <li key={id}><span>{label}</span><span>{discoveries.includes(id) ? "Observed" : "Unexplored"}</span></li>)}</ul>
         <button type="button" onClick={closeJournal}>Close journal</button>
       </aside>}
-      <div className={styles.fade} aria-hidden="true" />
     </section>
+    {breakout && <div className={styles.breakoutClearance} data-scene-clearance aria-hidden="true" />}
+    </div>
   );
 }

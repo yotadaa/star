@@ -1,6 +1,6 @@
 {
   "route": "about",
-  "base": "http://127.0.0.1:3123",
+  "base": "http://127.0.0.1:3125",
   "errors": [],
   "viewports": [
     {
@@ -12,37 +12,42 @@
       "title": "About Mukhtada",
       "images": [
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/forest-1536.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
           "width": 1536,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/foliage.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/forest-1536.webp",
+          "width": 1536,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
           "width": 900,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/branch.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
           "width": 1400,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/bird.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
           "width": 384,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/foliage.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
           "width": 900,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/branch.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
           "width": 1400,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/foliage.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
           "width": 900,
           "loaded": true
         }
@@ -60,8 +65,8 @@
         },
         {
           "label": "Focus on nearby bark",
-          "w": 1267.1875,
-          "h": 477.90625
+          "w": 207.359375,
+          "h": 86.890625
         },
         {
           "label": "Near",
@@ -99,37 +104,42 @@
       "title": "About Mukhtada",
       "images": [
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/forest-1280.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/forest-1280.webp",
           "width": 1280,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/foliage.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/forest-1280.webp",
+          "width": 1280,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
           "width": 900,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/branch.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
           "width": 1400,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/bird.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
           "width": 384,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/foliage.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
           "width": 900,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/branch.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
           "width": 1400,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/foliage.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
           "width": 900,
           "loaded": true
         }
@@ -147,8 +157,8 @@
         },
         {
           "label": "Focus on nearby bark",
-          "w": 675.828125,
-          "h": 254.875
+          "w": 110.578125,
+          "h": 46.328125
         },
         {
           "label": "Near",
@@ -186,37 +196,42 @@
       "title": "About Mukhtada",
       "images": [
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/forest-768.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
           "width": 768,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/foliage.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/forest-768.webp",
+          "width": 768,
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
           "width": 900,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/branch.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
           "width": 1400,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/bird.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/bird.webp",
           "width": 384,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/foliage.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
           "width": 900,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/branch.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/branch.webp",
           "width": 1400,
           "loaded": true
         },
         {
-          "src": "http://127.0.0.1:3123/scenic-heroes/about/foliage.webp",
+          "src": "http://127.0.0.1:3125/scenic-heroes/about/foliage.webp",
           "width": 900,
           "loaded": true
         }
@@ -234,8 +249,8 @@
         },
         {
           "label": "Focus on nearby bark",
-          "w": 592.5,
-          "h": 223.453125
+          "w": 106.640625,
+          "h": 44.6875
         },
         {
           "label": "Near",
