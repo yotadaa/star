@@ -6,6 +6,7 @@ import RequireLoginGate from "@/components/auth/RequireLoginGate";
 import { PixelButton, SpriteIcon } from "@/components/claude";
 import { compressBlogImage, formatImageBytes } from "@/lib/blog/compressImage";
 import BlogPostRenderer from "./BlogPostRenderer";
+import BlogTableEditor from "./BlogTableEditor";
 
 const BLOCK_TYPES = [
   { type: "heading", label: "Heading", icon: "icon-heading" },
@@ -488,21 +489,7 @@ function BlockInput({ block, onChange }) {
   }
 
   if (block.type === "table") {
-    const value = block.rows?.map((row) => row.join(" | ")).join("\n") || "";
-    return (
-      <textarea
-        className="writer-table-input"
-        value={value}
-        rows={3}
-        onChange={(event) =>
-          onChange({
-            text: "Table",
-            rows: event.target.value.split(/\n+/).map((row) => row.split("|").map((cell) => cell.trim())),
-          })
-        }
-        placeholder="Column 1 | Column 2&#10;Value | Value"
-      />
-    );
+    return <BlogTableEditor block={block} onChange={onChange} />;
   }
 
   const props = {

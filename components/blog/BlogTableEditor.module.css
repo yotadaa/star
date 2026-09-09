@@ -1,0 +1,274 @@
+:global(.writer-block-table):has(> .shell) {
+  min-width: 0;
+}
+
+.shell {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 14px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--cream) 82%, var(--parchment));
+  box-shadow: 4px 4px 0 color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+.topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.eyebrow,
+.summary,
+.headerHint,
+.announcement {
+  margin: 0;
+}
+
+.eyebrow,
+.captionField > span {
+  color: var(--coral-dark);
+  font-family: var(--font-pixel), monospace;
+  font-size: 9px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.summary {
+  margin-top: 4px;
+  color: var(--ink-soft);
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.shell .actions button {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1.5px solid var(--ink);
+  border-radius: 3px;
+  background: var(--cream);
+  color: var(--ink);
+  cursor: pointer;
+  font: 800 .76rem var(--font-body), sans-serif;
+}
+
+.shell .actions button:hover {
+  background: var(--gold);
+}
+
+.captionField {
+  display: grid;
+  gap: 5px;
+}
+
+.shell .captionInput {
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1.5px solid var(--ink);
+  border-radius: 3px;
+  background: var(--cream);
+  color: var(--ink);
+  font: 700 .92rem var(--font-body), sans-serif;
+}
+
+.captionField small {
+  color: var(--ink-soft);
+  font-size: .75rem;
+  line-height: 1.45;
+}
+
+.headerHint {
+  margin-top: 13px;
+  color: var(--ink-soft);
+  font-size: .78rem;
+  line-height: 1.45;
+}
+
+.scrollRegion {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1.5px solid var(--ink);
+  border-radius: 3px;
+  background: var(--cream);
+  contain: inline-size paint;
+  overscroll-behavior-inline: contain;
+}
+
+.table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  color: var(--ink);
+}
+
+.table th,
+.table td {
+  min-width: 168px;
+  padding: 7px;
+  border-right: 1px solid color-mix(in srgb, var(--ink) 28%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 28%, transparent);
+  vertical-align: middle;
+}
+
+.table tr:last-child > * {
+  border-bottom: 0;
+}
+
+.table tr > *:last-child {
+  border-right: 0;
+}
+
+.table thead th:not(.rowLabel) {
+  background: color-mix(in srgb, var(--gold) 23%, var(--cream));
+}
+
+.table .rowLabel {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 72px;
+  width: 72px;
+  background: var(--parchment);
+  color: var(--ink-soft);
+  font-family: var(--font-pixel), monospace;
+  font-size: 8px;
+  letter-spacing: .06em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.table thead .rowLabel {
+  z-index: 2;
+}
+
+.cellControl {
+  display: grid;
+  grid-template-columns: minmax(136px, 1fr) 32px;
+  align-items: center;
+  gap: 6px;
+}
+
+.table td:not(.rowActionCell) {
+  background: var(--cream);
+}
+
+.shell .table textarea {
+  width: 100%;
+  min-width: 136px;
+  min-height: 36px;
+  padding: 7px 8px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent);
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--cream) 84%, white);
+  color: var(--ink);
+  font: 700 .86rem var(--font-body), sans-serif;
+  line-height: 1.45;
+  resize: none;
+}
+
+.shell .table thead textarea {
+  font-weight: 900;
+}
+
+.rowActionCell {
+  min-width: 48px !important;
+  width: 48px;
+  background: var(--parchment);
+  text-align: center;
+}
+
+.shell .removeButton {
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--coral-dark);
+  border-radius: 2px;
+  background: var(--cream);
+  color: var(--coral-dark);
+  cursor: pointer;
+}
+
+.shell .removeButton:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--coral-dark) 12%, var(--cream));
+}
+
+.shell .removeButton:disabled {
+  opacity: .38;
+  cursor: not-allowed;
+}
+
+.shell button:focus-visible,
+.shell input:focus-visible,
+.shell textarea:focus-visible,
+.scrollRegion:focus-visible {
+  outline: 2px solid var(--aurora);
+  outline-offset: 2px;
+}
+
+.emptyCell {
+  min-width: 260px !important;
+  padding: 18px !important;
+  color: var(--ink-soft);
+  font-size: .82rem;
+  text-align: center;
+}
+
+.announcement {
+  min-height: 1.2em;
+  margin-top: 8px;
+  color: var(--ink-soft);
+  font-size: .75rem;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 11px;
+  }
+
+  .topbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .actions {
+    justify-content: flex-start;
+  }
+
+  .shell .actions button {
+    flex: 1 1 132px;
+  }
+}

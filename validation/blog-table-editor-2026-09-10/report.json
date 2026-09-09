@@ -1,0 +1,28 @@
+{
+  "desktop": {
+    "columnsAfterEdit": 4,
+    "dataRowsAfterEdit": 5,
+    "minimumControlSizePassed": true,
+    "wrappedCellTextPassed": true,
+    "semanticColumnHeaders": 6,
+    "semanticRowLabels": 5
+  },
+  "mobile": {
+    "documentClientWidth": 375,
+    "documentScrollWidth": 375,
+    "tableClientWidth": 229,
+    "tableScrollWidth": 813,
+    "localTableScrollPassed": true,
+    "documentOverflowPassed": true
+  },
+  "actions": {
+    "addRow": "passed",
+    "addColumn": "passed",
+    "editHeader": "passed",
+    "editCell": "passed",
+    "editCaption": "passed",
+    "removeRow": "passed",
+    "removeColumn": "passed",
+    "focusHandoff": "passed"
+  }
+}
