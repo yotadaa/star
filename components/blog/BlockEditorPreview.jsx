@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import RequireLoginGate from "@/components/auth/RequireLoginGate";
 import { PixelButton, SpriteIcon } from "@/components/claude";
@@ -69,6 +69,67 @@ function newBlock(type = "paragraph") {
   if (type === "icon") return { type, text: "Important milestone" };
   if (type === "divider") return { type, text: "" };
   return { type, text: "" };
+}
+
+function fitTextareaToContent(textarea) {
+  if (!textarea) return;
+  textarea.style.height = "auto";
+  textarea.style.height = `${textarea.scrollHeight}px`;
+}
+
+function AutoHeightTextarea({ onChange, style, value, ...props }) {
+  const textareaRef = useRef(null);
+
+  useLayoutEffect(() => {
+    fitTextareaToContent(textareaRef.current);
+  }, [value]);
+
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    if (!textarea) return undefined;
+
+    let cancelled = false;
+    const refitAfterFontsLoad = () => {
+      if (!cancelled) fitTextareaToContent(textarea);
+    };
+    fitTextareaToContent(textarea);
+    document.fonts?.ready.then(refitAfterFontsLoad);
+
+    if (typeof ResizeObserver === "undefined") {
+      const handleWindowResize = () => fitTextareaToContent(textarea);
+      window.addEventListener("resize", handleWindowResize);
+      return () => {
+        cancelled = true;
+        window.removeEventListener("resize", handleWindowResize);
+      };
+    }
+
+    let previousWidth = textarea.getBoundingClientRect().width;
+    const observer = new ResizeObserver(([entry]) => {
+      const nextWidth = entry.contentRect.width;
+      if (nextWidth === previousWidth) return;
+      previousWidth = nextWidth;
+      fitTextareaToContent(textarea);
+    });
+    observer.observe(textarea);
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <textarea
+      {...props}
+      ref={textareaRef}
+      value={value}
+      onChange={(event) => {
+        fitTextareaToContent(event.currentTarget);
+        onChange?.(event);
+      }}
+      style={{ ...style, overflowY: "hidden", resize: "none" }}
+    />
+  );
 }
 
 export default function BlockEditorPreview({ post }) {
@@ -521,5 +582,5 @@ function BlockInput({ block, onChange }) {
       </div>
     );
   }
-  return <textarea className="writer-paragraph-input" rows={block.type === "list" ? 3 : 1} {...props} />;
+  return <AutoHeightTextarea className="writer-paragraph-input" rows={block.type === "list" ? 3 : 1} {...props} />;
 }
