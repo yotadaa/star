@@ -5,6 +5,7 @@ import PhaseTransitionController from "@/components/site/PhaseTransitionControll
 import AuthProvider from "@/components/auth/AuthProvider";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import CloudflareWebAnalytics from "@/components/CloudflareWebAnalytics";
 import SiteProvider from "@/components/site/SiteProvider";
 import { siteVerificationMetadata } from "@/lib/seoVerification.mjs";
 import {
@@ -114,6 +115,7 @@ export default function RootLayout({ children }) {
             <SiteProvider>{children}</SiteProvider>
           </ConvexClientProvider>
         </AuthProvider>
+        <CloudflareWebAnalytics />
       </body>
     </html>
   );
